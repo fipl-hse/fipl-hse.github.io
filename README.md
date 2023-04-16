@@ -39,4 +39,4 @@ Add, commit and push the updated `docs` directory.
 
 ### Check the Deployment
 
-Head to the `https://fipl-hse.github.io` to check the deployment.
+Head to the [https://fipl-hse.github.io](https://fipl-hse.github.io) to check the deployment.
