@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to fipl-hse-programming's documentation!
-================================================
+################################################
 
 .. toctree::
    :maxdepth: 2
@@ -20,7 +20,7 @@ ReStructuredText (rst): plain text markup
 .. contents:: The tiny table of contents
 
 What is reStructuredText?
-~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************
 
 An easy-to-read, what-you-see-is-what-you-get plaintext markup syntax
 and parser system, abbreviated *rst*. In other words, using a simple
@@ -33,7 +33,7 @@ text editor, documents can be created which
   - latex (and therefore pdf)
 
 What is it good for?
-~~~~~~~~~~~~~~~~~~~~
+********************
 
 reStructuredText can be used, for example, to
 
@@ -45,7 +45,7 @@ reStructuredText can be used, for example, to
 - to document source code
 
 Show me some formatting examples
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+********************************
 
 You can highlight text in *italics* or, to provide even more emphasis
 in **bold**. Often, when describing computer code, we like to use a
@@ -69,7 +69,7 @@ as well.
 
 
 Where can I learn more?
-~~~~~~~~~~~~~~~~~~~~~~~
+***********************
 
 reStructuredText is described at
 http://docutils.sourceforge.net/rst.html. We provide some geeky small
