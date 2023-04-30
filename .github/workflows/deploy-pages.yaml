@@ -1,0 +1,25 @@
+name: Githb Pages Deployment For FIPL
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-core-tests:
+    name: Deploy pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Deploy sphinx docs to gh-pages branch
+        uses: uibcdf/action-sphinx-docs-to-gh-pages@v1.1.0
+        with:
+          branch: main
+          dir_docs: source
