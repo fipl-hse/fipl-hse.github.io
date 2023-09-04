@@ -1,4 +1,4 @@
-name: Githb Pages Deployment For FIPL
+name: Github Pages Deployment
 
 on:
   push:
@@ -10,14 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Set up Python 3.x
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+
       - name: Deploy sphinx docs to gh-pages branch
         uses: uibcdf/action-sphinx-docs-to-gh-pages@v1.1.0
         with:
