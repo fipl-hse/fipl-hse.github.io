@@ -8,3 +8,6 @@ Welcome to FAL's programming course documentation.
    :caption: Get Started
 
    docs/introduction.rst
+   docs/lab_1.rst
+   docs/lab_1_api.rst
+   docs/other.rst
