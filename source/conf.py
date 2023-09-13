@@ -11,10 +11,9 @@ import sys
 
 sys.path.insert(0, os.path.abspath('..'))
 
-
-project = 'fipl-hse-programming'
-copyright = '2023, Andrei K., Alexander D., Dmitry U.'
-author = 'Andrei K., Alexander D., Dmitry U.'
+project = 'Лабораторный Практикум и Курс Лекций'
+copyright = '2023, Демидовский А.В.'
+author = 'Демидовский А.В. и другие'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -23,6 +22,7 @@ extensions = [
     'sphinx_design',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary'
+    'docxbuilder',
 ]
 
 templates_path = ['_templates']
@@ -31,7 +31,7 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_book_theme'
+html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 # html_title = project
 html_logo = '_static/fal_logo.jpeg'
