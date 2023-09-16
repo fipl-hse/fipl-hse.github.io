@@ -21,7 +21,7 @@ author = 'Демидовский А.В. и другие'
 extensions = [
     'sphinx_design',
     'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary'
+    'sphinx.ext.autosummary',
     'docxbuilder',
 ]
 

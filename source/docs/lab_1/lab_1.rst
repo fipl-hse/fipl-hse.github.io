@@ -1,18 +1,21 @@
-LAB 1
-############
+######
+Лабораторная работа №1. Классификация текста с помощью юни-грамм
+######
 
-This is the documentation page for the first lab.
 
-You should implement the ``multiply`` function:
+Шаг 1. Токенизировать текст
+#####
 
-.. autofunction:: lab_1.main.multiply
+Реализуйте функцию :py:func:`lab_1.main.tokenize`
 
-Fill the class ``Converter``:
 
-.. autoclass:: lab_1.main.Converter
+Шаг 2. Получить частотный словарь по заданному тексту
+#####
 
-And implement the ``convert`` method:
+Реализуйте функцию :py:func:`lab_1.main.calculate_frequencies`
 
-.. autofunction:: lab_1.main.Converter.convert
 
-some text and function reference :py:func:`lab_1.main.multiply`
+Шаг 3. Создать профиль конкретного языка
+#####
+
+Реализуйте функцию :py:func:`lab_1.main.create_language_profile`

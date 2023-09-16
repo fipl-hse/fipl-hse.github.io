@@ -17,13 +17,27 @@ Install the requirements with:
 python3 -m pip install -r requirements.txt
 ```
 
+### Build API Pages for the Labs
+
+```bash
+sphinx-apidoc -o source/docs/lab_#/api --no-toc -f --no-headings -t templates/apidoc lab_#_source_dir
+```
+
+**NOTE**: This should be done prior building of the project.
+
 ### Build Website
 
 Build the website with:
 
-```bash
-sphinx-build -b html source build
-```
+1. Fool-proof(tm) script:
+   ```bash
+   ./build_html.sh
+   ```
+
+2. Manually
+   ```bash
+   sphinx-build -b html source build
+   ```
 
 where:
 * `source` is the directory with the `*.rst` files
