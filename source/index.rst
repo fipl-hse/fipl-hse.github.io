@@ -6,11 +6,11 @@
 Авторские права принадлежат Демидовскому А.В.**
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :titlesonly:
     :numbered:
     :caption: Структура материалов
 
-    docs/lab_1/lab_1.rst
-    docs/book_python_lectures/introduction.rst
-    docs/book_python_practice/introduction.rst
+    docs/lab_1_keywords_tfidf/lab.rst
+    docs/lab_2_keywords_cooccurrence/lab.rst
+    docs/lab_3_keywords_textrank/lab.rst

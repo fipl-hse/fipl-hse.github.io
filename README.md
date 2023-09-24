@@ -20,7 +20,7 @@ python3 -m pip install -r requirements.txt
 ### Build API Pages for the Labs
 
 ```bash
-sphinx-apidoc -o source/docs/lab_#/api --no-toc -f --no-headings -t templates/apidoc lab_#_source_dir
+python3 docs_generator/generate.py
 ```
 
 **NOTE**: This should be done prior building of the project.
