@@ -62,7 +62,7 @@ class ProjectConfig(ProjectConfigDTO):
         with config_path.open(encoding='utf-8', mode='r') as config_file:
             json_content = config_file.read()
         # pylint: disable=no-member
-        self._dto = ProjectConfigDTO.__pydantic_model__.parse_raw(f"{json_content}")
+        self._dto = ProjectConfigDTO.__pydantic_validator__.validate_json(f"{json_content}")
 
     def get_thresholds(self) -> dict:
         """

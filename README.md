@@ -10,38 +10,23 @@
 
 ## How to Build
 
-### Install Requirements
-
-Install the requirements with:
-```bash
-python3 -m pip install -r requirements.txt
-```
-
-### Build API Pages for the Labs
-
-```bash
-python3 docs_generator/generate.py
-```
-
-**NOTE**: This should be done prior building of the project.
-
-### Build Website
-
-Build the website with:
-
-1. Fool-proof(tm) script:
+1. Create virtual environment: `python -m venv venv`
+2. Install the requirements with:
    ```bash
-   ./build_html.sh
+   python -m pip install -r requirements.txt
    ```
 
-2. Manually
+3. Build API Pages for the Labs:
+
    ```bash
-   sphinx-build -b html source build
+   export PYTHONPATH=$(pwd):$PYTHONPATH
+   python docs_generator/generate.py
    ```
 
-where:
-* `source` is the directory with the `*.rst` files
-* `build` is the directory where the built website will be stored
+4. Build the website with:
+   ```bash
+   bash build_html.sh
+   ```
 
 ### Copy the Built Website
 
