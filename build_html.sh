@@ -9,5 +9,9 @@ fi
 
 mkdir -p ${BUILD_DIR}
 
+source venv/bin/activate
+
+python docs_generator/generate.py
+
 sphinx-build -b html source ${BUILD_DIR}
 sphinx-build -b docx source ${BUILD_DIR}

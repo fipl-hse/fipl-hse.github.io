@@ -10,24 +10,23 @@
 
 ## How to Build
 
-### Install Requirements
+1. Create virtual environment: `python -m venv venv`
+2. Install the requirements with:
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
 
-Install the requirements with:
-```bash
-python3 -m pip install -r requirements.txt
-```
+3. Build API Pages for the Labs:
 
-### Build Website
+   ```bash
+   export PYTHONPATH=$(pwd):$PYTHONPATH
+   python docs_generator/generate.py
+   ```
 
-Build the website with:
-
-```bash
-sphinx-build -b html source build
-```
-
-where:
-* `source` is the directory with the `*.rst` files
-* `build` is the directory where the built website will be stored
+4. Build the website with:
+   ```bash
+   bash build_html.sh
+   ```
 
 ### Copy the Built Website
 

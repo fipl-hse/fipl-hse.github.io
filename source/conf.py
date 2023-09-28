@@ -6,6 +6,11 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import os
+import sys
+
+sys.path.insert(0, os.path.abspath('..'))
+
 project = 'Лабораторный Практикум и Курс Лекций'
 copyright = '2023, Демидовский А.В.'
 author = 'Демидовский А.В. и другие'
@@ -15,6 +20,8 @@ author = 'Демидовский А.В. и другие'
 
 extensions = [
     'sphinx_design',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
     'docxbuilder',
 ]
 
