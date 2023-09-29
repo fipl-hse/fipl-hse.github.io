@@ -23,6 +23,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'docxbuilder',
+    'sphinx.ext.napoleon'
 ]
 
 templates_path = ['_templates']

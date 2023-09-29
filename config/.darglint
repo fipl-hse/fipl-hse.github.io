@@ -1,0 +1,4 @@
+[darglint]
+enable=DAR104
+strictness=full
+docstring_style=google

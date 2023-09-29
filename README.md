@@ -20,7 +20,7 @@
 
    ```bash
    export PYTHONPATH=$(pwd):$PYTHONPATH
-   python docs_generator/generate.py
+   python tools/docs_generator/generate.py
    ```
 
 4. Build the website with:
