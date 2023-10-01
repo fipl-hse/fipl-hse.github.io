@@ -1,0 +1,79 @@
+"""
+Check docstrings for conformance to the Google-style-docstrings
+
+Google-style-docstrings:
+https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
+
+Darglint tool is used for docstring completion check,
+i.e., all parameters are present and have typings, etc.
+
+Pydocstyle is used for docstring style check,
+i.e., all new lines are present, correct wording & punctuation, etc.
+"""
+import subprocess
+from pathlib import Path
+
+from config.constants import PROJECT_CONFIG_PATH, PROJECT_ROOT
+from config.project_config import ProjectConfig
+
+
+def check_docstrings_with_darglint():
+    pass
+
+
+def check_docstrings(project_root_path: Path,
+                     labs_list: list[str]) -> None:
+    """
+
+    Args:
+        project_root_path:
+        labs_list:
+
+    Returns:
+
+    """
+    for lab_name in labs_list:
+        all_errors = ''
+        lab_path = project_root_path.joinpath(lab_name)
+        main_path = lab_path.joinpath('main.py')
+        print(f'Checking {main_path}')
+        darglint_args = [
+            'darglint',
+            '--docstring-style',
+            'google',
+            '--strictness',
+            'full',
+            '--enable',
+            'DAR104',
+            main_path
+        ]
+        print(f'FULL DARGLINT COMMAND: {" ".join(map(str, darglint_args))}')
+        result = subprocess.run(args=darglint_args, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        if result.returncode == 0:
+            print(f'All docstrings in {main_path} conform to Google-style according to Darglint\n')
+        else:
+            all_errors += f'Darglint errors:\n{result.stdout}'
+
+        pydocstyle_args = [
+            'pydocstyle',
+            '--convention',
+            'google',
+            main_path
+        ]
+        print(f'FULL PYDOCSTYLE COMMAND: {" ".join(map(str, pydocstyle_args))}')
+        result = subprocess.run(args=pydocstyle_args, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        if result.returncode == 0:
+            print(f'All docstrings in {main_path} conform to Google-style according to Pydocstyle\n')
+        else:
+            all_errors += f'Pydocstyle errors:\n{result.stdout}'
+
+        if all_errors:
+            print(f'Docstrings in {main_path} do not conform to Google-style.\n'
+                  f'ERRORS:\n{all_errors}\n')
+
+
+if __name__ == '__main__':
+    project_config = ProjectConfig(config_path=PROJECT_CONFIG_PATH)
+
+    check_docstrings(project_root_path=PROJECT_ROOT,
+                     labs_list=project_config.get_labs_names())
