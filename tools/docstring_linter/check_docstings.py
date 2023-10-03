@@ -13,12 +13,7 @@ i.e., all new lines are present, correct wording & punctuation, etc.
 import subprocess
 from pathlib import Path
 
-from config.constants import PROJECT_CONFIG_PATH, PROJECT_ROOT
-from config.project_config import ProjectConfig
-
-
-def check_docstrings_with_darglint():
-    pass
+from config.constants import PROJECT_CONFIG, PROJECT_ROOT
 
 
 def check_docstrings(project_root_path: Path,
@@ -32,10 +27,14 @@ def check_docstrings(project_root_path: Path,
     Returns:
 
     """
+
+    has_failed = False
+
     for lab_name in labs_list:
         all_errors = ''
         lab_path = project_root_path.joinpath(lab_name)
         main_path = lab_path.joinpath('main.py')
+
         print(f'Checking {main_path}')
         darglint_args = [
             'darglint',
@@ -48,6 +47,7 @@ def check_docstrings(project_root_path: Path,
             main_path
         ]
         print(f'FULL DARGLINT COMMAND: {" ".join(map(str, darglint_args))}')
+
         result = subprocess.run(args=darglint_args, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         if result.returncode == 0:
             print(f'All docstrings in {main_path} conform to Google-style according to Darglint\n')
@@ -61,6 +61,7 @@ def check_docstrings(project_root_path: Path,
             main_path
         ]
         print(f'FULL PYDOCSTYLE COMMAND: {" ".join(map(str, pydocstyle_args))}')
+
         result = subprocess.run(args=pydocstyle_args, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         if result.returncode == 0:
             print(f'All docstrings in {main_path} conform to Google-style according to Pydocstyle\n')
@@ -70,10 +71,17 @@ def check_docstrings(project_root_path: Path,
         if all_errors:
             print(f'Docstrings in {main_path} do not conform to Google-style.\n'
                   f'ERRORS:\n{all_errors}\n')
+            has_failed = True
+
+    if has_failed:
+        print(f'\nThe docstring check was not successful! Check the logs above.')
+        print('The error explanations for\n'
+              'Darglint: https://github.com/terrencepreilly/darglint#error-codes\n'
+              'Pydocstyle: http://www.pydocstyle.org/en/stable/error_codes.html')
+    exit(has_failed)
 
 
 if __name__ == '__main__':
-    project_config = ProjectConfig(config_path=PROJECT_CONFIG_PATH)
 
     check_docstrings(project_root_path=PROJECT_ROOT,
-                     labs_list=project_config.get_labs_names())
+                     labs_list=PROJECT_CONFIG.get_labs_names())

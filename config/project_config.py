@@ -11,8 +11,6 @@ from re import Pattern
 from pydantic.dataclasses import dataclass
 from pydantic.json import pydantic_encoder
 
-from config.constants import PROJECT_ROOT
-
 
 @dataclass
 class Lab:
@@ -57,11 +55,12 @@ class ProjectConfig(ProjectConfigDTO):
     Project Config implementation
     """
 
-    def __init__(self, config_path: Path) -> None:
+    def __init__(self, project_root: Path, config_path: Path) -> None:
         super().__init__()
         with config_path.open(encoding='utf-8', mode='r') as config_file:
             json_content = config_file.read()
         # pylint: disable=no-member
+        self._project_root = project_root
         self._dto = ProjectConfigDTO.__pydantic_validator__.validate_json(f"{json_content}")
 
     def get_thresholds(self) -> dict:
@@ -88,7 +87,7 @@ class ProjectConfig(ProjectConfigDTO):
         labs_list = self.get_labs_names()
         if include_addons:
             labs_list.extend(self.get_addons_names())
-        return [PROJECT_ROOT / lab for lab in labs_list]
+        return [self._project_root / lab for lab in labs_list]
 
     def get_addons_names(self) -> list:
         """

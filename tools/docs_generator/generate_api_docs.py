@@ -1,8 +1,10 @@
 import subprocess
 from pathlib import Path
 
-from config.constants import PROJECT_CONFIG_PATH, PROJECT_ROOT
-from config.project_config import ProjectConfig
+from config.constants import (PROJECT_ROOT,
+                              API_DOC_TEMPLATES_PATH,
+                              RST_DOCS_ROOT,
+                              PROJECT_CONFIG)
 
 
 def generate_api_docs(project_root_path: Path,
@@ -58,10 +60,9 @@ def generate_api_docs(project_root_path: Path,
 
 
 if __name__ == '__main__':
-    project_config = ProjectConfig(config_path=PROJECT_CONFIG_PATH)
 
     generate_api_docs(project_root_path=PROJECT_ROOT,
-                      labs_list=project_config.get_labs_names(),
-                      rst_docs_root=PROJECT_ROOT.joinpath('source/docs'),
-                      apidoc_templates_path=PROJECT_ROOT.joinpath('templates/apidoc'),
+                      labs_list=PROJECT_CONFIG.get_labs_names(),
+                      rst_docs_root=RST_DOCS_ROOT,
+                      apidoc_templates_path=API_DOC_TEMPLATES_PATH,
                       overwrite=True)

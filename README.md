@@ -9,23 +9,20 @@
    * the built website
 
 ## How to Build
-
 1. Create virtual environment: `python -m venv venv`
 2. Install the requirements with:
    ```bash
    python -m pip install -r requirements.txt
    ```
-
-3. Build API Pages for the Labs:
-
+3. Check docstrings for errors:
    ```bash
    export PYTHONPATH=$(pwd):$PYTHONPATH
-   python tools/docs_generator/generate.py
+   python tools/docstring_linter/check_docstrings.py
    ```
-
 4. Build the website with:
    ```bash
-   bash build_html.sh
+   export PYTHONPATH=$(pwd):$PYTHONPATH
+   python tools/docs_generator/build_documentation.py
    ```
 
 ### Copy the Built Website
