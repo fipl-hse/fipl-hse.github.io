@@ -63,7 +63,7 @@ def build_documentation(build_directory: Path) -> None:
         print(f'Documentation is built in {build_directory}')
 
         full_build_log = 'BUILD LOG:\n' + result_html.stdout + '\n' + result_docs.stdout
-        log_file_path = build_directory.joinpath('build.log')
+        log_file_path = build_directory.joinpath('_build.log')
         with open(file=log_file_path, mode='w', encoding='utf-8') as log_file:
             log_file.write(full_build_log)
 
