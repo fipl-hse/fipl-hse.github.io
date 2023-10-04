@@ -20,7 +20,7 @@ def is_dict_valid(dictionary: dict,
         can_be_empty (bool): whether the dictionary could be empty
 
     Returns:
-        bool: is the dictionary conforms to the specified types
+        bool: does the dictionary conform to the specified types
     """
     if not isinstance(dictionary, dict):
         return False

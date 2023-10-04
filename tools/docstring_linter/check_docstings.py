@@ -18,7 +18,9 @@ from config.constants import PROJECT_CONFIG, PROJECT_ROOT
 
 def check_docstrings(project_root_path: Path,
                      labs_list: list[str]) -> None:
-    """
+    """Summary
+
+    Description
 
     Args:
         project_root_path:
