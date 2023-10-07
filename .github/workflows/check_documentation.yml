@@ -1,0 +1,53 @@
+name: Documentation Check
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  Check_Docstrings:
+    name: Check Docstrings with Linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements_dev.txt
+
+      - name: Check Docstrings
+        run: | 
+          export PYTHONPATH=$(pwd):$PYTHONPATH
+          python3 tools/docstring_linter/check_docstrings.py
+
+  Build_Documentation:
+    name: Build Documentation
+    needs: 'Check_Docstrings'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Build Documentation
+        run:
+          export PYTHONPATH=$(pwd):$PYTHONPATH
+          python3 tools/docs_generator/build_documentation.py
