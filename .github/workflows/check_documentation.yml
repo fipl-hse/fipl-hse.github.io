@@ -57,6 +57,14 @@ jobs:
         run: python3 -m pip install -r requirements.txt
 
       - name: Build Documentation
-        run:
+        run: |
           export PYTHONPATH=$(pwd):$PYTHONPATH
           python3 tools/docs_generator/build_documentation.py
+
+      - name: Upload build log
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: docs-build-log
+          path: ${{ github.workspace }}/source/build/build.log
+          if-no-files-found: error
