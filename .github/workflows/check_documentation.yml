@@ -30,6 +30,7 @@ jobs:
           python3 tools/docstring_linter/check_docstrings.py
 
       - name: Upload check log
+        if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: docstring-check-log
