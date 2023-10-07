@@ -29,6 +29,13 @@ jobs:
           export PYTHONPATH=$(pwd):$PYTHONPATH
           python3 tools/docstring_linter/check_docstrings.py
 
+      - name: Upload check log
+        uses: actions/upload-artifact@v3
+        with:
+          name: docstring-check-log
+          path: ${{ github.workspace }}/docstring_check.log
+          if-no-files-found: error
+
   Build_Documentation:
     name: Build Documentation
     needs: 'Check_Docstrings'
