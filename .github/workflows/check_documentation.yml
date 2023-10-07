@@ -38,6 +38,7 @@ jobs:
           if-no-files-found: error
 
   Build_Documentation:
+    if: ${{ always() }}
     name: Build Documentation
     needs: 'Check_Docstrings'
     runs-on: ubuntu-latest
