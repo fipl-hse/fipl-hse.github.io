@@ -1,15 +1,11 @@
 {
     "labs": [
         {
-            "name": "lab_1_keywords_tfidf",
+            "name": "lab_1_classify_by_unigrams",
             "coverage": 96
         },
         {
-            "name": "lab_2_keywords_cooccurrence",
-            "coverage": 96
-        },
-        {
-            "name": "lab_3_keywords_textrank",
+            "name": "lab_2_tokenize_by_bpe",
             "coverage": 96
         }
     ],

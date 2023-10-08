@@ -3,12 +3,12 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from config.constants import (PROJECT_ROOT,
-                              API_DOC_TEMPLATES_PATH,
+from config.constants import (API_DOC_TEMPLATES_PATH,
                               RST_DOCS_ROOT,
                               PROJECT_CONFIG,
                               DOC_BUILD_DIR,
-                              WEBSITE_ROOT)
+                              WEBSITE_ROOT,
+                              SOURCE_CODE_ROOT)
 from tools.docs_generator.generate_api_docs import generate_api_docs
 
 
@@ -28,7 +28,7 @@ def build_documentation(build_directory: Path) -> None:
                 exist_ok=True)
 
     print(f'Generating API docs...')
-    generate_api_docs(project_root_path=PROJECT_ROOT,
+    generate_api_docs(source_code_root=SOURCE_CODE_ROOT,
                       labs_list=PROJECT_CONFIG.get_labs_names(),
                       rst_docs_root=RST_DOCS_ROOT,
                       apidoc_templates_path=API_DOC_TEMPLATES_PATH,

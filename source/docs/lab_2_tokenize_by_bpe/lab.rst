@@ -8,15 +8,15 @@
     :titlesonly:
     :caption: Full API
 
-    lab_2_keywords_cooccurrence.api.rst
+    lab_2_tokenize_by_bpe.api.rst
 
 Шаг 1. Something
 #################
 
-Реализуйте функцию :py:func:`lab_2_keywords_cooccurrence.main.extract_phrases`
+Реализуйте функцию :py:func:`lab_2_tokenize_by_bpe.main.prepare_word`
 
 
 Шаг 2. Something
 #################
 
-Реализуйте функцию :py:func:`lab_2_keywords_cooccurrence.main.extract_candidate_keyword_phrases`
+Реализуйте функцию :py:func:`lab_2_tokenize_by_bpe.main.collect_frequencies`

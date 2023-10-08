@@ -13,17 +13,17 @@ i.e., all new lines are present, correct wording & punctuation, etc.
 import subprocess
 from pathlib import Path
 
-from config.constants import PROJECT_CONFIG, PROJECT_ROOT
+from config.constants import PROJECT_CONFIG, PROJECT_ROOT, SOURCE_CODE_ROOT
 
 
-def check_docstrings(project_root_path: Path,
+def check_docstrings(source_code_root: Path,
                      labs_list: list[str]) -> None:
     """Summary
 
     Description
 
     Args:
-        project_root_path:
+        source_code_root:
         labs_list:
 
     Returns:
@@ -34,7 +34,7 @@ def check_docstrings(project_root_path: Path,
 
     for lab_name in labs_list:
         lab_errors = ''
-        lab_path = project_root_path.joinpath(lab_name)
+        lab_path = source_code_root.joinpath(lab_name)
         main_path = lab_path.joinpath('main.py')
 
         print(f'\nChecking {main_path}')
@@ -90,5 +90,5 @@ def check_docstrings(project_root_path: Path,
 
 
 if __name__ == '__main__':
-    check_docstrings(project_root_path=PROJECT_ROOT,
+    check_docstrings(source_code_root=SOURCE_CODE_ROOT,
                      labs_list=PROJECT_CONFIG.get_labs_names())

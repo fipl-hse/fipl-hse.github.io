@@ -1,13 +1,13 @@
 import subprocess
 from pathlib import Path
 
-from config.constants import (PROJECT_ROOT,
-                              API_DOC_TEMPLATES_PATH,
+from config.constants import (API_DOC_TEMPLATES_PATH,
                               RST_DOCS_ROOT,
-                              PROJECT_CONFIG)
+                              PROJECT_CONFIG,
+                              SOURCE_CODE_ROOT)
 
 
-def generate_api_docs(project_root_path: Path,
+def generate_api_docs(source_code_root: Path,
                       labs_list: list[str],
                       rst_docs_root: Path,
                       apidoc_templates_path: Path,
@@ -19,7 +19,7 @@ def generate_api_docs(project_root_path: Path,
     rst_docs_root/lab_name.
 
     Args:
-        project_root_path:
+        source_code_root:
         labs_list:
         rst_docs_root:
         apidoc_templates_path:
@@ -30,7 +30,7 @@ def generate_api_docs(project_root_path: Path,
     """
 
     for lab_name in labs_list:
-        lab_path = project_root_path.joinpath(lab_name)
+        lab_path = source_code_root.joinpath(lab_name)
         lab_doc_api_path = rst_docs_root.joinpath(lab_name)
 
         args = [
@@ -61,7 +61,7 @@ def generate_api_docs(project_root_path: Path,
 
 if __name__ == '__main__':
 
-    generate_api_docs(project_root_path=PROJECT_ROOT,
+    generate_api_docs(source_code_root=SOURCE_CODE_ROOT,
                       labs_list=PROJECT_CONFIG.get_labs_names(),
                       rst_docs_root=RST_DOCS_ROOT,
                       apidoc_templates_path=API_DOC_TEMPLATES_PATH,
