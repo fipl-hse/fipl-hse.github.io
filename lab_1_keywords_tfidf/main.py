@@ -1,5 +1,5 @@
-"""
-Lab 1
+"""Lab 1.
+
 Extract keywords based on frequency related metrics
 """
 from string import punctuation
@@ -35,14 +35,13 @@ def is_dict_valid(dictionary: dict,
 
 # 4: Text Preprocessing
 def clean_and_tokenize(text: str) -> Optional[list[str]]:
-    """
-    Removes punctuation, casts to lowercase, splits into tokens
+    """Remove punctuation, cast to lowercase, splits into tokens.
 
-    Parameters:
-    text (str): Original text
+    Args:
+        text (str): Original text
 
     Returns:
-    list[str]: A sequence of lowercase tokens with no punctuation
+        list[str]: A sequence of lowercase tokens with no punctuation
 
     In case of corrupt input arguments, None is returned
     """

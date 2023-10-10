@@ -1,5 +1,5 @@
-"""
-Lab 2
+"""Lab 2.
+
 Extract keywords based on co-occurrence frequency
 """
 import json
@@ -15,10 +15,13 @@ KeyPhrases = Sequence[KeyPhrase]
 
 # 4: Phrase splitting and preprocessing, extracting candidate keyword phrases
 def extract_phrases(text: str) -> Optional[Sequence[str]]:
-    """
-    Splits the text into separate phrases using phrase delimiters
-    :param text: an original text
-    :return: a list of phrases
+    """Split the text into separate phrases using phrase delimiters.
+
+    Args:
+        text (str): Original text
+
+    Returns:
+        Sequence[str]: A list of phrases
 
     In case of corrupt input arguments, None is returned
     """
@@ -30,15 +33,17 @@ def extract_phrases(text: str) -> Optional[Sequence[str]]:
 
 def extract_candidate_keyword_phrases(phrases: Sequence[str],
                                       stop_words: Sequence[str]) -> Optional[KeyPhrases]:
-    """
-    Creates a list of candidate keyword phrases by splitting the given phrases by the stop words
-    :param phrases: a list of the phrases
-    :param stop_words: a list of the stop words
-    :return: the candidate keyword phrases for the text
+    """Create a list of candidate keyword phrases by splitting the given phrases by the stop words.
+
+    Args:
+        phrases (Sequence[str]): A list of the phrases
+        stop_words (Sequence[str]): A list of the stop words
+
+    Returns:
+        KeyPhrases: The candidate keyword phrases for the text
 
     In case of corrupt input arguments, None is returned
     """
-
     if not isinstance(phrases, list) or not isinstance(stop_words, list):
         return None
     if not phrases or not stop_words:
@@ -64,10 +69,13 @@ def extract_candidate_keyword_phrases(phrases: Sequence[str],
 # 6: Full algorithm
 def calculate_frequencies_for_content_words(candidate_keyword_phrases: KeyPhrases) \
         -> Optional[Mapping[str, int]]:
-    """
-    Extracts the content words from the candidate keyword phrases list and computes their frequencies
-    :param candidate_keyword_phrases: a list of the candidate keyword phrases
-    :return: a dictionary with the content words and corresponding frequencies
+    """Extract the content words from the candidate keyword phrases list and compute their frequencies.
+
+    Args:
+        candidate_keyword_phrases (KeyPhrases): A list of the candidate keyword phrases
+
+    Returns:
+        Mapping[str, int]: A dictionary with the content words and corresponding frequencies
 
     In case of corrupt input arguments, None is returned
     """
@@ -84,17 +92,19 @@ def calculate_frequencies_for_content_words(candidate_keyword_phrases: KeyPhrase
 
 def calculate_word_degrees(candidate_keyword_phrases: KeyPhrases,
                            content_words: Sequence[str]) -> Optional[Mapping[str, int]]:
-    """
-    Calculates the word degrees based on the candidate keyword phrases list
+    """Calculate the word degrees based on the candidate keyword phrases list.
+
     Degree of a word is equal to the total length of all keyword phrases the word is found in
 
-    :param content_words: the content words from the candidate keywords
-    :param candidate_keyword_phrases: the candidate keyword phrases for the text
-    :return: the words and their degrees
+    Args:
+        candidate_keyword_phrases (KeyPhrases): The candidate keyword phrases for the text
+        content_words (Sequence[str]): The content words from the candidate keywords
+
+    Returns:
+        Mapping[str, int]: The words and their degrees
 
     In case of corrupt input arguments, None is returned
     """
-
     if not isinstance(candidate_keyword_phrases, list) or not isinstance(content_words, list):
         return None
     if not candidate_keyword_phrases or not content_words:
@@ -115,16 +125,17 @@ def calculate_word_degrees(candidate_keyword_phrases: KeyPhrases,
 
 def calculate_word_scores(word_degrees: Mapping[str, int],
                           word_frequencies: Mapping[str, int]) -> Optional[Mapping[str, float]]:
-    """
-    Calculate the word score based on the word degree and word frequency metrics
+    """Calculate the word score based on the word degree and word frequency metrics.
 
-    :param word_degrees: a mapping between the word and the degree
-    :param word_frequencies: a mapping between the word and the frequency
-    :return: a dictionary with {word: word_score}
+    Args:
+        word_degrees (Mapping[str, int]): A mapping between the word and the degree
+        word_frequencies (Mapping[str, int]): A mapping between the word and the frequency
+
+    Returns:
+        Mapping[str, float]: A dictionary with {word: word_score}
 
     In case of corrupt input arguments, None is returned
     """
-
     if not isinstance(word_frequencies, dict) or not isinstance(word_degrees, dict):
         return None
     if not word_frequencies or not word_degrees:
@@ -143,17 +154,21 @@ def calculate_word_scores(word_degrees: Mapping[str, int],
 def calculate_cumulative_score_for_candidates(candidate_keyword_phrases: KeyPhrases,
                                               word_scores: Mapping[str, float]) \
         -> Optional[Mapping[KeyPhrase, float]]:
-    """
-    Calculate cumulative score for each candidate keyword phrase. Cumulative score for a keyword phrase equals to
+    """Calculate cumulative score for each candidate keyword phrase.
+
+    Cumulative score for a keyword phrase equals to
     the sum of the word scores of each keyword phrase's constituent
 
-    :param candidate_keyword_phrases: a list of candidate keyword phrases
-    :param word_scores: word scores
-    :return: a dictionary containing the mapping between the candidate keyword phrases and respective cumulative scores
+    Args:
+        candidate_keyword_phrases (KeyPhrases): A list of candidate keyword phrases
+        word_scores (Mapping[str, float]): Word scores
+
+    Returns:
+        Mapping[KeyPhrase, float]: A dictionary containing the mapping between
+        the candidate keyword phrases and respective cumulative scores
 
     In case of corrupt input arguments, None is returned
     """
-
     if not isinstance(candidate_keyword_phrases, list) or not isinstance(word_scores, dict):
         return None
     if not candidate_keyword_phrases or not word_scores:
@@ -177,17 +192,18 @@ def calculate_cumulative_score_for_candidates(candidate_keyword_phrases: KeyPhra
 def get_top_n(keyword_phrases_with_scores: Mapping[KeyPhrase, float],
               top_n: int,
               max_length: int) -> Optional[Sequence[str]]:
-    """
-    Extracts the top N keyword phrases based on their scores and lengths
+    """Extract the top N keyword phrases based on their scores and lengths.
 
-    :param keyword_phrases_with_scores: a dictionary containing the keyword phrases and their cumulative scores
-    :param top_n: the number of the keyword phrases to extract
-    :param max_length: maximal length of a keyword phrase to be considered
-    :return: a list of keyword phrases sorted by their scores in descending order
+    Args:
+        keyword_phrases_with_scores (Mapping[KeyPhrase, float]): A dictionary containing the keyword phrases and their cumulative scores
+        top_n (int): The number of the keyword phrases to extract
+        max_length (int): Maximal length of a keyword phrase to be considered
+
+    Returns:
+        Sequence[str]: A list of keyword phrases sorted by their scores in descending order
 
     In case of corrupt input arguments, None is returned
     """
-
     if not isinstance(keyword_phrases_with_scores, dict) or \
             not isinstance(top_n, int) or \
             not isinstance(max_length, int):
@@ -208,12 +224,16 @@ def get_top_n(keyword_phrases_with_scores: Mapping[KeyPhrase, float],
 # 8: Adjoining keywords extraction
 def extract_adjoining_keyword_phrases(candidate_keyword_phrases: KeyPhrases) \
         -> Optional[Sequence[tuple[KeyPhrase, KeyPhrase]]]:
-    """
-    Helper function that extracts the keyword phrases that are found at least twice together
-    :param candidate_keyword_phrases: a list of candidate keyword phrases
-    :return: pairs of keyword phrases that are found together at least twice
-    """
+    """Extract the keyword phrases that are found at least twice together.
 
+    Helper function
+
+    Args:
+        candidate_keyword_phrases (KeyPhrases): A list of candidate keyword phrases
+
+    Returns:
+        Sequence[tuple[KeyPhrase, KeyPhrase]]: Pairs of keyword phrases that are found together at least twice
+    """
     adjoining_keyword_phrases = []
     possible_pairs = []
 
@@ -232,9 +252,7 @@ def extract_adjoining_keyword_phrases(candidate_keyword_phrases: KeyPhrases) \
 
 def extract_candidate_keyword_phrases_with_adjoining(candidate_keyword_phrases: KeyPhrases,
                                                      phrases: Sequence[str]) -> Optional[KeyPhrases]:
-    """
-    Extracts the adjoining keyword phrases from the candidate keywords Sequence and
-    builds new candidate keywords containing stop words
+    """Extract the adjoining keyword phrases from the candidate keywords Sequence and build new candidate keywords containing stop words.
 
     Adjoining keywords: such pairs that are found at least twice in the candidate keyword phrases list one after another
 
@@ -244,13 +262,15 @@ def extract_candidate_keyword_phrases_with_adjoining(candidate_keyword_phrases: 
         2. Combine these three pieces in the new candidate keyword phrase, i.e.:
             new_candidate_keyword = [first_constituent, stop_word, second_constituent]
 
-    :param candidate_keyword_phrases: a list of candidate keyword phrases
-    :param phrases: a list of phrases
-    :return: a list containing the pairs of candidate keyword phrases that are found at least twice together
+    Args:
+        candidate_keyword_phrases (KeyPhrases): A list of candidate keyword phrases
+        phrases (Sequence[str]): A list of phrases
+
+    Returns:
+        KeyPhrases: A list containing the pairs of candidate keyword phrases that are found at least twice together
 
     In case of corrupt input arguments, None is returned
     """
-
     if not isinstance(candidate_keyword_phrases, list) or not isinstance(phrases, list):
         return None
     if not candidate_keyword_phrases or not phrases:
@@ -309,18 +329,22 @@ def calculate_cumulative_score_for_candidates_with_stop_words(candidate_keyword_
                                                               word_scores: Mapping[str, float],
                                                               stop_words: Sequence[str]) \
         -> Optional[Mapping[KeyPhrase, float]]:
-    """
-    Calculate cumulative score for each candidate keyword phrase. Cumulative score for a keyword phrase equals to
+    """Calculate cumulative score for each candidate keyword phrase.
+
+    Cumulative score for a keyword phrase equals to
     the sum of the word scores of each keyword phrase's constituent except for the stop words
 
-    :param candidate_keyword_phrases: a list of candidate keyword phrases
-    :param word_scores: word scores
-    :param stop_words: a list of stop words
-    :return: a dictionary containing the mapping between the candidate keyword phrases and respective cumulative scores
+    Args:
+        candidate_keyword_phrases (KeyPhrases): A list of candidate keyword phrases
+        word_scores (Mapping[str, float]): Word scores
+        stop_words (Sequence[str]): A list of stop words
+
+    Returns:
+        Mapping[KeyPhrase, float]: A dictionary containing the mapping between the candidate keyword phrases
+        and respective cumulative scores
 
     In case of corrupt input arguments, None is returned
     """
-
     if not isinstance(candidate_keyword_phrases, list) \
             or not isinstance(word_scores, dict) \
             or not isinstance(stop_words, list):
@@ -343,13 +367,17 @@ def calculate_cumulative_score_for_candidates_with_stop_words(candidate_keyword_
 def find_subsequence_position(subsequence: Union[Sequence[str], tuple[str, ...]],
                               sequence: Union[Sequence[str], tuple[str, ...]],
                               start: int) -> int:
-    """
-    A utility function that finds the starting position of a subsequence in a sequence
+    """Find the starting position of a subsequence in a sequence.
 
-    :param subsequence: a subsequence for which the function searches
-    :param sequence: a sequence in which the function searches
-    :param start: starting position of the search
-    :return: position from which the subsequence starts; -1 returned if the subsequence is not found
+    Helper function
+
+    Args:
+        subsequence (Union[Sequence[str], tuple[str, ...]]): A subsequence for which the function searches
+        sequence (Union[Sequence[str], tuple[str, ...]]): A sequence in which the function searches
+        start (int): Starting position of the search
+
+    Returns:
+        int: A position from which the subsequence starts; -1 returned if the subsequence is not found
     """
     for idx in range(start, len(sequence) - len(subsequence) + 1):
         if tuple(sequence[idx:idx + len(subsequence)]) == subsequence:
@@ -359,20 +387,30 @@ def find_subsequence_position(subsequence: Union[Sequence[str], tuple[str, ...]]
 
 # 10: Stop words generation
 def find_ceil_of_value(value: float) -> int:
-    """
-    Helper function to find the ceiling value (closes int x that is >= value) of the given value
-    :param value: the value for which the ceiling value should be found
-    :return: the ceiling value
+    """Find the ceiling value (closes int x that is >= value) of the given value.
+
+    Helper function
+
+    Args:
+        value (float): The value for which the ceiling value should be found
+
+    Returns:
+        int: The ceiling value
     """
     return int(value) if int(value) == value else int(value + 1)
 
 
 def find_percentile(data: Union[Sequence[int], tuple[int, ...]], percentage: int) -> int:
-    """
-    Helper function for finding the percentile value
-    :param data: an array of values
-    :param percentage: required percentile
-    :return: the percentile
+    """Find the percentile value.
+
+    Helper function
+
+    Args:
+        data (Union[Sequence[int], tuple[int, ...]]): An array of values
+        percentage (int): Required percentile
+
+    Returns:
+        int: The percentile
     """
     size = len(data)
     return sorted(data)[find_ceil_of_value((size * percentage) / 100) - 1]
@@ -380,14 +418,15 @@ def find_percentile(data: Union[Sequence[int], tuple[int, ...]], percentage: int
 
 def generate_stop_words(text: str,
                         max_length: int) -> Optional[Sequence[str]]:
-    """
-    Generates the list of stop words from the given text
+    """Generate the list of stop words from the given text.
 
-    :param text: the text
-    :param max_length: maximum length (in characters) of an individual stop word
-    :return: a list of stop words
-    """
+    Args:
+        text (str): The text
+        max_length (int): Maximum length (in characters) of an individual stop word
 
+    Returns:
+        Sequence[str]: A list of stop words
+    """
     if not isinstance(text, str) or not isinstance(max_length, int):
         return None
     if max_length <= 0:
@@ -410,10 +449,13 @@ def generate_stop_words(text: str,
 
 
 def load_stop_words(path: Path) -> Optional[Mapping[str, Sequence[str]]]:
-    """
-    Loads stop word lists from the file
-    :param path: path to the file with stop word lists
-    :return: a dictionary containing the language names and corresponding stop word lists
+    """Load stop word lists from the file.
+
+    Args:
+        path (Path): A path to the file with stop word lists
+
+    Returns:
+        Mapping[str, Sequence[str]]: A dictionary containing the language names and corresponding stop word lists
     """
     if not isinstance(path, Path) or not path:
         return None
