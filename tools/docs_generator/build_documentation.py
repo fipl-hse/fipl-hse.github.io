@@ -10,6 +10,7 @@ from config.constants import (API_DOC_TEMPLATES_PATH,
                               WEBSITE_ROOT,
                               SOURCE_CODE_ROOT)
 from tools.docs_generator.generate_api_docs import generate_api_docs
+from tools.helpers import prepare_args_for_shell
 
 
 def build_documentation(build_directory: Path) -> None:
@@ -42,8 +43,13 @@ def build_documentation(build_directory: Path) -> None:
         WEBSITE_ROOT,
         build_directory
     ]
-    print(f'HTML BUILD COMMAND: {" ".join(map(str, args))}')
-    result_html = subprocess.run(args=args, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    args = prepare_args_for_shell(args)
+    print(f'HTML BUILD COMMAND: {args}')
+    result_html = subprocess.run(args=args,
+                                 text=True,
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT,
+                                 shell=True)
     if result_html.returncode != 0:
         print(f'There are problems with building html: {result_html.stdout}')
 
@@ -54,8 +60,13 @@ def build_documentation(build_directory: Path) -> None:
         WEBSITE_ROOT,
         build_directory
     ]
-    print(f'DOCX BUILD COMMAND: {" ".join(map(str, args))}')
-    result_docs = subprocess.run(args=args, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    args = prepare_args_for_shell(args)
+    print(f'DOCX BUILD COMMAND: {args}')
+    result_docs = subprocess.run(args=args,
+                                 text=True,
+                                 stdout=subprocess.PIPE,
+                                 stderr=subprocess.STDOUT,
+                                 shell=True)
     if result_docs.returncode != 0:
         print(f'There are problems with building docx: {result_docs.stdout}')
 

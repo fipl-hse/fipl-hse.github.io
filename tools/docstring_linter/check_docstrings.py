@@ -14,6 +14,7 @@ import subprocess
 from pathlib import Path
 
 from config.constants import PROJECT_CONFIG, PROJECT_ROOT, SOURCE_CODE_ROOT
+from tools.helpers import prepare_args_for_shell
 
 
 def check_docstrings(source_code_root: Path,
@@ -48,9 +49,14 @@ def check_docstrings(source_code_root: Path,
             'DAR104',
             main_path
         ]
-        print(f'FULL DARGLINT COMMAND: {" ".join(map(str, darglint_args))}')
+        darglint_args = prepare_args_for_shell(darglint_args)
+        print(f'FULL DARGLINT COMMAND: {darglint_args}')
 
-        result = subprocess.run(args=darglint_args, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        result = subprocess.run(args=darglint_args,
+                                text=True,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.STDOUT,
+                                shell=True)
         if result.returncode == 0:
             print(f'All docstrings in {main_path} conform to Google-style according to Darglint\n')
         else:
@@ -62,9 +68,14 @@ def check_docstrings(source_code_root: Path,
             'google',
             main_path
         ]
-        print(f'FULL PYDOCSTYLE COMMAND: {" ".join(map(str, pydocstyle_args))}')
+        pydocstyle_args = prepare_args_for_shell(pydocstyle_args)
+        print(f'FULL PYDOCSTYLE COMMAND: {pydocstyle_args}')
 
-        result = subprocess.run(args=pydocstyle_args, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        result = subprocess.run(args=pydocstyle_args,
+                                text=True,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.STDOUT,
+                                shell=True)
         if result.returncode == 0:
             print(f'All docstrings in {main_path} conform to Google-style according to Pydocstyle\n')
         else:

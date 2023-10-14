@@ -5,6 +5,7 @@ from config.constants import (API_DOC_TEMPLATES_PATH,
                               RST_DOCS_ROOT,
                               PROJECT_CONFIG,
                               SOURCE_CODE_ROOT)
+from tools.helpers import prepare_args_for_shell
 
 
 def generate_api_docs(source_code_root: Path,
@@ -51,16 +52,18 @@ def generate_api_docs(source_code_root: Path,
         excluded_paths = (lab_path.joinpath('tests'), lab_path.joinpath('assets'), lab_path.joinpath('start.py'))
         args.extend(excluded_paths)
 
-        print(f'FULL COMMAND: {" ".join(map(str, args))}')
-        result = subprocess.run(args=args)
+        args = prepare_args_for_shell(args)
+
+        print(f'FULL COMMAND: {args}')
+        result = subprocess.run(args=args,
+                                shell=True)
         if result.returncode == 0:
             print(f'API DOC FOR {lab_path} GENERATED IN {lab_doc_api_path}\n')
         else:
-            print(f'ERROR WITH CODE: {result.returncode} + {result.stderr}\n')
+            print(f'ERROR CODE: {result.returncode}. ERROR: {result.stderr}\n')
 
 
 if __name__ == '__main__':
-
     generate_api_docs(source_code_root=SOURCE_CODE_ROOT,
                       labs_list=PROJECT_CONFIG.get_labs_names(),
                       rst_docs_root=RST_DOCS_ROOT,
