@@ -35,6 +35,7 @@ def collect_source_files(repository: str,
         shutil.rmtree(path=destination)
 
     # Sparsely checkout repository
+    # Requires git v2.37.1+
     clone_args = [
         'git',
         'clone',
