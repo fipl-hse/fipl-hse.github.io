@@ -58,7 +58,8 @@ def collect_source_files(repository: str,
     checkout_args = [
         'git',
         'sparse-checkout',
-        'add',
+        'set',
+        '--no-cone',
         prepare_args_for_shell(files_to_collect)
     ]
     checkout_args = prepare_args_for_shell(checkout_args)
@@ -78,15 +79,6 @@ def collect_source_files(repository: str,
 
     # Remove git tree/objects
     shutil.rmtree(destination.joinpath('.git'))
-
-    # `git sparse-checkout` checkouts the top-level files regardless
-    # Remove the top-level files that are not in `files_to_collect`
-    # I do not like this ;|
-    for file_ in os.listdir(destination):
-        full_path = destination.joinpath(file_)
-        if not os.path.isdir(full_path) and Path(file_) not in files_to_collect:
-            full_path.unlink()
-            continue
 
 
 if __name__ == '__main__':
