@@ -1,5 +1,5 @@
 ############################################################################
-Материалы для прохождения курса "Программирование для лингвистов"
+TEXT TEXT TEXT
 ############################################################################
 
 **Документы находятся в формате черновика. Распространять запрещается.
@@ -11,6 +11,5 @@
     :numbered:
     :caption: Структура материалов
 
-    docs/lab_1_keywords_tfidf/lab.rst
-    docs/lab_2_keywords_cooccurrence/lab.rst
-    docs/lab_3_keywords_textrank/lab.rst
+    docs/lab_1_classify_by_unigrams/lab.rst
+    docs/lab_2_tokenize_by_bpe/lab.rst
