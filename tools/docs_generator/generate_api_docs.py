@@ -15,7 +15,7 @@ def generate_api_docs(source_code_root: Path,
                       overwrite: bool = False) -> None:
     """Generate API docs for all laboratory works.
 
-    Iterate over all the lab* folders under the project_root_path and
+    Iterate over the specified lab* folders under the source_code_root and
     generate the API .rst document in the corresponding folder under the
     rst_docs_root/lab_name.
 
@@ -32,12 +32,12 @@ def generate_api_docs(source_code_root: Path,
 
     for lab_name in labs_list:
         lab_path = source_code_root.joinpath(lab_name)
-        lab_doc_api_path = rst_docs_root.joinpath(lab_name)
+        lab_api_doc_path = rst_docs_root.joinpath(lab_name)
 
         args = [
             'sphinx-apidoc',
             '-o',
-            lab_doc_api_path,
+            lab_api_doc_path,
             '--no-toc',
             '--no-headings',
             '--suffix',
@@ -58,7 +58,7 @@ def generate_api_docs(source_code_root: Path,
         result = subprocess.run(args=args,
                                 shell=True)
         if result.returncode == 0:
-            print(f'API DOC FOR {lab_path} GENERATED IN {lab_doc_api_path}\n')
+            print(f'API DOC FOR {lab_path} GENERATED IN {lab_api_doc_path}\n')
         else:
             print(f'ERROR CODE: {result.returncode}. ERROR: {result.stderr}\n')
 

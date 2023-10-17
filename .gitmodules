@@ -1,0 +1,3 @@
+[submodule "tools/sphinx-versioned"]
+	path = tools/sphinx-versioned
+	url = https://github.com/devanshshukla99/sphinx-versioned-docs.git
