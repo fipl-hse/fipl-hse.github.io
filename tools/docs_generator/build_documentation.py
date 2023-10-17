@@ -28,12 +28,12 @@ def build_documentation(build_directory: Path) -> None:
     os.makedirs(name=build_directory,
                 exist_ok=True)
 
-    print(f'Generating API docs...')
-    generate_api_docs(source_code_root=SOURCE_CODE_ROOT,
-                      labs_list=PROJECT_CONFIG.get_labs_names(),
-                      rst_docs_root=RST_DOCS_ROOT,
-                      apidoc_templates_path=API_DOC_TEMPLATES_PATH,
-                      overwrite=True)
+    # print(f'Generating API docs...')
+    # generate_api_docs(source_code_root=SOURCE_CODE_ROOT,
+    #                   labs_list=PROJECT_CONFIG.get_labs_names(),
+    #                   rst_docs_root=RST_DOCS_ROOT,
+    #                   apidoc_templates_path=API_DOC_TEMPLATES_PATH,
+    #                   overwrite=True)
 
     print(f'Building documentation...')
     args = [

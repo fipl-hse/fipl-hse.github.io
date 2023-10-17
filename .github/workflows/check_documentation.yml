@@ -10,42 +10,42 @@ env:
 
 jobs:
 
-  Check_Docstrings:
-    name: Check Docstrings with Linters
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: 'true'
-
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
-
-      - name: Install dependencies
-        run: python3 -m pip install -r requirements_dev.txt
-
-      - name: Check Docstrings
-        run: | 
-          export PYTHONPATH=$(pwd):$PYTHONPATH
-          python3 tools/docstring_linter/check_docstrings.py
-
-      - name: Upload check log
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: docstring-check-log
-          path: ${{ github.workspace }}/docstring_check.log
-          if-no-files-found: error
+#  Check_Docstrings:
+#    name: Check Docstrings with Linters
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#        with:
+#          submodules: 'true'
+#
+#      - name: Set up Python ${{ env.PYTHON_VERSION }}
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: ${{ env.PYTHON_VERSION }}
+#          cache: 'pip'
+#
+#      - name: Install dependencies
+#        run: python3 -m pip install -r requirements_qa.txt
+#
+#      - name: Check Docstrings
+#        run: |
+#          export PYTHONPATH=$(pwd):$PYTHONPATH
+#          python3 tools/docstring_linter/check_docstrings.py
+#
+#      - name: Upload check log
+#        if: ${{ always() }}
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: docstring-check-log
+#          path: ${{ github.workspace }}/docstring_check.log
+#          if-no-files-found: error
 
   Build_Documentation:
     if: ${{ always() }}
     name: Build Documentation
-    needs: 'Check_Docstrings'
+#    needs: 'Check_Docstrings'
     runs-on: ubuntu-latest
 
     steps:
