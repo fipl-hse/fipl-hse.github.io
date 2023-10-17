@@ -1,7 +1,10 @@
-from config.project_config import ProjectConfig
-from config.constants import PROJECT_CONFIG_PATH, PROJECT_ROOT
-from pathlib import Path
 import subprocess
+from pathlib import Path
+
+from config.constants import (PROJECT_ROOT,
+                              API_DOC_TEMPLATES_PATH,
+                              RST_DOCS_ROOT,
+                              PROJECT_CONFIG)
 
 
 def generate_api_docs(project_root_path: Path,
@@ -9,17 +12,21 @@ def generate_api_docs(project_root_path: Path,
                       rst_docs_root: Path,
                       apidoc_templates_path: Path,
                       overwrite: bool = False) -> None:
-    """
-    Iterates over all the lab* folders under the project_root_path and
-    generates the API .rst document in the corresponding folder under
-    rst_docs_root/lab_name
+    """Generate API docs for all laboratory works.
 
-    :param project_root_path:
-    :param labs_list:
-    :param rst_docs_root:
-    :param apidoc_templates_path:
-    :param overwrite:
-    :return:
+    Iterate over all the lab* folders under the project_root_path and
+    generate the API .rst document in the corresponding folder under the
+    rst_docs_root/lab_name.
+
+    Args:
+        project_root_path:
+        labs_list:
+        rst_docs_root:
+        apidoc_templates_path:
+        overwrite:
+
+    Returns:
+
     """
 
     for lab_name in labs_list:
@@ -44,19 +51,18 @@ def generate_api_docs(project_root_path: Path,
         excluded_paths = (lab_path.joinpath('tests'), lab_path.joinpath('assets'), lab_path.joinpath('start.py'))
         args.extend(excluded_paths)
 
-        print(f'ARGS: {args}')
+        print(f'FULL COMMAND: {" ".join(map(str, args))}')
         result = subprocess.run(args=args)
         if result.returncode == 0:
-            print(f'API DOC FOR {lab_path} GENERATED\n')
+            print(f'API DOC FOR {lab_path} GENERATED IN {lab_doc_api_path}\n')
         else:
             print(f'ERROR WITH CODE: {result.returncode} + {result.stderr}\n')
 
 
 if __name__ == '__main__':
-    project_config = ProjectConfig(config_path=PROJECT_CONFIG_PATH)
 
     generate_api_docs(project_root_path=PROJECT_ROOT,
-                      labs_list=project_config.get_labs_names(),
-                      rst_docs_root=PROJECT_ROOT.joinpath('source/docs'),
-                      apidoc_templates_path=PROJECT_ROOT.joinpath('templates/apidoc'),
+                      labs_list=PROJECT_CONFIG.get_labs_names(),
+                      rst_docs_root=RST_DOCS_ROOT,
+                      apidoc_templates_path=API_DOC_TEMPLATES_PATH,
                       overwrite=True)

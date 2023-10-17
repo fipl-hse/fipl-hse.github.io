@@ -20,4 +20,4 @@
 Шаг 2. Получить частотный словарь по заданному тексту
 #################
 
-Реализуйте функцию :py:func:`lab_1_keywords_tfidf.main.calculate_frequencies`
+Реализуйте функцию :py:func:`lab_1_keywords_tfidf.main.is_dict_valid`
