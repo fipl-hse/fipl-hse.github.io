@@ -1,4 +1,0 @@
-lab_1_classify_by_unigrams/README.md
-lab_2_tokenize_by_bpe/README.md
-docs
-README.md

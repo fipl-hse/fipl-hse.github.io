@@ -3,18 +3,15 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from config.constants import (API_DOC_TEMPLATES_PATH,
-                              RST_DOCS_ROOT,
-                              PROJECT_CONFIG,
-                              DOC_BUILD_DIR,
-                              WEBSITE_ROOT,
-                              SOURCE_CODE_ROOT)
-from tools.docs_generator.generate_api_docs import generate_api_docs
+from config.constants import (DOC_BUILD_DIR,
+                              WEBSITE_ROOT)
 from tools.helpers import prepare_args_for_shell
 
 
 def build_documentation(build_directory: Path) -> None:
-    """Build full website with lab & API docs
+    # TODO: Currently assumes only one repository -> one version
+    # TODO: make use of sphinx-versioned and refactor
+    """Build full website from sources
 
     Args:
         build_directory:
@@ -27,13 +24,6 @@ def build_documentation(build_directory: Path) -> None:
 
     os.makedirs(name=build_directory,
                 exist_ok=True)
-
-    # print(f'Generating API docs...')
-    # generate_api_docs(source_code_root=SOURCE_CODE_ROOT,
-    #                   labs_list=PROJECT_CONFIG.get_labs_names(),
-    #                   rst_docs_root=RST_DOCS_ROOT,
-    #                   apidoc_templates_path=API_DOC_TEMPLATES_PATH,
-    #                   overwrite=True)
 
     print(f'Building documentation...')
     args = [

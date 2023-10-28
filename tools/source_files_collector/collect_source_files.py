@@ -16,9 +16,14 @@ def get_files_to_collect_from_file(files_to_collect_path: Path) -> list[Path]:
         return list(files_to_collect)
 
 
-def collect_source_files(repository: str,
-                         files_to_collect_path: Path,
-                         destination: Path) -> None:
+def get_repositories_to_collect_from_file(repositories_to_collect_path: Path) -> list[str]:
+    with open(file=repositories_to_collect_path, encoding='utf-8', mode='r') as fd:
+        return fd.read().split('\n')
+
+
+def collect_source_files_from_repo(repository: str,
+                                   files_to_collect_path: Path,
+                                   destination: Path) -> None:
     """
 
     Args:
@@ -82,12 +87,13 @@ def collect_source_files(repository: str,
 
 
 if __name__ == '__main__':
+    # TODO: Currently works only with one repository
+    # TODO: Make use of sphinx-versioned and refactor
+
     # Example usage:
     # python collect_source_files.py \
-    # --repository "https://github.com/fipl-hse/2023-2-level-labs.git" \
-    # --files-to-collect-path ../../config/files_to_collect.txt \
+    # --repositories-to-collect-path ../../config/repositories_to_collect.txt \
     # --destination ../../labs
     args = parser.parse_args()
-    collect_source_files(repository=args.repository,
-                         files_to_collect_path=args.files_to_collect_path,
+    collect_source_files(repositories_to_collect_path=args.repositories_to_collect_path,
                          destination=args.destination)
