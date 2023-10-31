@@ -1,4 +1,5 @@
-==============================
+.. _starting-guide-label:
+
 Подготовка к прохождению курса
 ==============================
 
@@ -6,8 +7,8 @@
 каждому студенту необходимо сделать несколько шагов, которые подготовят
 необходимые инструменты к дальнейшей работе.
 
-.. contents:: Шаги:
-   :depth: 1
+.. contents:: Содержание:
+   :depth: 2
 
 Установка интерпретатора языка программирования Python
 ------------------------------------------------------
@@ -18,7 +19,7 @@
 1. Скачайте установочный файл для своей системы
    с `официального сайта <https://www.python.org/downloads/>`__.
 
-   .. image:: ../images/starting_guide/download_python.png
+   .. image:: _static/starting_guide/download_python.png
 
 .. important:: Для скачивания нажмите кнопку ``Download Python 3.XX.XX``.
                Версия Python должна быть >= 3.10!
@@ -44,9 +45,9 @@
 1. Скачайте установочный файл для своей системы с `официального
    сайта <https://git-scm.com>`__:
 
-   .. image:: ../images/starting_guide/git_main_page.png
+   .. image:: _static/starting_guide/git_main_page.png
 
-.. important:: Для скачивания нажмите кнопку ``Download for <название ОС>``
+.. important:: Для скачивания нажмите кнопку ``Download for <название ОС>``.
 
 2. Запустите установочный файл и следуйте указанием по установке
 3. Проверьте корректность установки:
@@ -68,7 +69,7 @@
 1. Скачайте установочный файл для своей системы с `официального
    сайта <https://www.jetbrains.com/pycharm/download/>`__:
 
-   .. image:: ../images/starting_guide/pycharm_download.png
+   .. image:: _static/starting_guide/pycharm_download.png
 
 .. important:: Для скачивания нажмите кнопку ``Download``.
 
@@ -85,7 +86,7 @@
 
    2. Вы должны увидеть похожий интерфейс:
 
-      .. image:: ../images/starting_guide/pycharm_project_selection.png
+      .. image:: _static/starting_guide/pycharm_project_selection.png
 
 Регистрация на платформе GitHub
 -------------------------------
@@ -95,7 +96,7 @@
 1. Откройте `главную страницу платформы <https://github.com>`__.
 2. В верхнем правом углу нажмите кнопку ``Sign up``:
 
-   .. image:: ../images/starting_guide/github_sign_up.png
+   .. image:: _static/starting_guide/github_sign_up.png
 
 3. Пройдите регистрацию.
 
@@ -121,31 +122,31 @@
 2. В правом верхнем углу нажмите на свой аватар и из списка выберите
    ``Settings``:
 
-   .. image:: ../images/starting_guide/github_open_settings_from_main_page.png
+   .. image:: _static/starting_guide/github_open_settings_from_main_page.png
 
 3. Из списка слева выберите вкладку ``Developer settings``:
 
-   .. image:: ../images/starting_guide/github_developer_settings.png
+   .. image:: _static/starting_guide/github_developer_settings.png
 
 4. Из списка слева выберите вкладку ``Personal access tokens``:
 
-   .. image:: ../images/starting_guide/github_pat_tab.png
+   .. image:: _static/starting_guide/github_pat_tab.png
 
 5. Нажмите кнопку ``Generate new token``:
 
-   .. image:: ../images/starting_guide/github_generate_new_pat.png
+   .. image:: _static/starting_guide/github_generate_new_pat.png
 
 6. Введите название для PAT в поле ``Note`` (1), выберите ``Expiration``
    (2), поставьте галочку слева от настроек ``repo`` (3), ``workflow``
    (4), ``gist`` (5):
 
-   .. image:: ../images/starting_guide/github_pat_settings.png
+   .. image:: _static/starting_guide/github_pat_settings.png
 
 7. Внизу страницы нажмите кнопку ``Generate token``.
 
 8. Нажмите кнопку копирования, чтобы перенести токен в буфер обмена:
 
-   .. image:: ../images/starting_guide/github_pat_copy.png
+   .. image:: _static/starting_guide/github_pat_copy.png
 
 .. important:: **Обязательно** сохраните этот токен! Он будет
                использоваться в других шагах в качестве пароля,
@@ -171,11 +172,11 @@
 1. Откройте сайт репозитория, который Вам прислал преподаватель.
 2. В верхнем правом углу нажмите кнопку ``Fork``:
 
-   .. image:: ../images/starting_guide/github_forking.png
+   .. image:: _static/starting_guide/github_forking.png
 
 3. На открывшейся странице нажмите кнопку ``Create Fork``:
 
-   .. image:: ../images/starting_guide/github_forking_2.png
+   .. image:: _static/starting_guide/github_forking_2.png
 
 4. Форк создан. Обратите внимание на ссылку в адресной строке браузера:
    она будет содержать **имя Вашего GitHub пользователя** и название
@@ -183,7 +184,7 @@
 
    -  ``https://github.com/<имя-Вашего-пользователя>/202X-2-level-labs``
 
-   .. image:: ../images/starting_guide/github_forking_3.png
+   .. image:: _static/starting_guide/github_forking_3.png
 
 Добавления менторов в коллабораторы
 -----------------------------------
@@ -198,7 +199,7 @@
 
 1. Откройте сайт форка, который Вы создали на шаге `Создание форка репозитория`_.
 
-   .. image:: ../images/starting_guide/github_forking_3.png
+   .. image:: _static/starting_guide/github_forking_3.png
 
 .. important:: Обратите внимание на ссылку в адресной строке браузера:
                она будет содержать **имя Вашего GitHub пользователя**
@@ -206,28 +207,28 @@
 
 2. Нажмите кнопку ``Settings``:
 
-   .. image:: ../images/starting_guide/github_settings.png
+   .. image:: _static/starting_guide/github_settings.png
 
 3. Слева выберите вкладку ``Collaborators``:
 
-   .. image:: ../images/starting_guide/github_collaborators_tab.png
+   .. image:: _static/starting_guide/github_collaborators_tab.png
 
 4. Нажмите кнопку ``Add people``:
 
-   .. image:: ../images/starting_guide/github_add_collaborators.png
+   .. image:: _static/starting_guide/github_add_collaborators.png
 
 5. В открывшемся окне введите имя GitHub пользователя ментора и выберите
    его из списка:
 
-   .. image:: ../images/starting_guide/github_select_collaborator.png
+   .. image:: _static/starting_guide/github_select_collaborator.png
 
 6. Нажмите кнопку ``Add <имя-пользователя> to this repository``:
 
-   .. image:: ../images/starting_guide/github_add_collaborator_finish.png
+   .. image:: _static/starting_guide/github_add_collaborator_finish.png
 
 7. Вы отправили запрос ментору на добавления в коллабораторы:
 
-   .. image:: ../images/starting_guide/github_add_collaborator_pending.png
+   .. image:: _static/starting_guide/github_add_collaborator_pending.png
 
 .. important:: После данного шага **обязательно напишите добавленному
                ментору**, чтобы он мог принять запрос.
@@ -248,7 +249,7 @@
 1. Откройте сайт Вашего форка, который Вы создали на предыдущем шаге.
 2. Нажмите кнопку ``Code``, выберите ``HTTPS`` и нажмите кнопку копирования:
 
-   .. image:: ../images/starting_guide/cloning_repository.png
+   .. image:: _static/starting_guide/cloning_repository.png
 
 3. Откройте терминал и перейдите в удобную папку:
 
@@ -279,12 +280,12 @@ PyCharm, выполните следующие шаги:
 
 1. Откройте PyCharm и нажмите кнопку ``Open``:
 
-   .. image:: ../images/starting_guide/opening_project.png
+   .. image:: _static/starting_guide/opening_project.png
 
 2. В открывшемся окне выберите папку с форком, который Вы склонировали
    на шаге `Клонирование форка репозитория для локальной работы`_:
 
-   .. image:: ../images/starting_guide/selecting_folder.png
+   .. image:: _static/starting_guide/selecting_folder.png
 
 .. note:: На скриншоте выше показано, что форк был склонирован в
           папку ``PycharmProjects``.
@@ -295,7 +296,7 @@ PyCharm, выполните следующие шаги:
 
 3. В открывшемся окне нажмите кнопку ``OK``:
 
-   .. image:: ../images/starting_guide/setting_interpreter.png
+   .. image:: _static/starting_guide/setting_interpreter.png
 
 .. important:: Если в поле ``Base Interpreter`` версия Python < 3.9, то
                нажмите на ``Python 3.X`` и из выпадающего списка выберите более
@@ -303,7 +304,7 @@ PyCharm, выполните следующие шаги:
 
 4. Проект создан. Слева Вы можете увидеть файлы проекта:
 
-   .. image:: ../images/starting_guide/initial_project_setup.png
+   .. image:: _static/starting_guide/initial_project_setup.png
 
 .. _working-pipeline:
 
@@ -343,16 +344,16 @@ Git - система контроля версий, которая позвол�
 
 1. Откройте терминал в среде разработки PyCharm:
 
-   .. image:: ../images/starting_guide/pycharm_open_terminal.png
+   .. image:: _static/starting_guide/pycharm_open_terminal.png
 
 2. В терминале выполните команду
    ``git add <путь-до-лабораторной-работы>/main.py``:
 
-   .. image:: ../images/starting_guide/git_add.png
+   .. image:: _static/starting_guide/git_add.png
 
 3. В терминале выполните команду ``git commit -m "message"``:
 
-   .. image:: ../images/starting_guide/git_commit.png
+   .. image:: _static/starting_guide/git_commit.png
 
 .. note:: В качестве ``message`` рекомендуется использовать краткое
           описание тех изменений, которые Вы сделали. Этот текст будет
@@ -373,7 +374,7 @@ Git - система контроля версий, которая позвол�
 
 1. Откройте терминал в среде разработки PyCharm:
 
-   .. image:: ../images/starting_guide/pycharm_open_terminal.png
+   .. image:: _static/starting_guide/pycharm_open_terminal.png
 
 2. В терминале выполните команду ``git pull``:
 
@@ -382,7 +383,7 @@ Git - система контроля версий, которая позвол�
 
 3. В терминале выполните команду ``git push``:
 
-   .. image:: ../images/starting_guide/git_push.png
+   .. image:: _static/starting_guide/git_push.png
 
 .. note:: При просьбе ввести пароль, введите :ref:`созданный Personal
           Access Token <creating-pat>`.
@@ -390,7 +391,7 @@ Git - система контроля версий, которая позвол�
 4. Откройте главную страницу Вашего форка.
    Вы увидите сделанный *commit* и сообщение, которое Вы написали:
 
-   .. image:: ../images/starting_guide/fork_updated.png
+   .. image:: _static/starting_guide/fork_updated.png
 
 Больше информации о командах, описанных выше, можно найти в `официальной
 документации по Git <https://git-scm.com/docs>`__.
@@ -406,40 +407,40 @@ Git - система контроля версий, которая позвол�
 
 2. Выберите вкладку Pull Requests:
 
-   .. image:: ../images/starting_guide/github_pull_request_highlighted.png
+   .. image:: _static/starting_guide/github_pull_request_highlighted.png
 
 3. Нажмите кнопку ``New pull request``:
 
-   .. image:: ../images/starting_guide/github_new_pull_request.png
+   .. image:: _static/starting_guide/github_new_pull_request.png
 
 4. Нажмите кнопку ``compare across forks``:
 
-   .. image:: ../images/starting_guide/github_compare_across_forks.png
+   .. image:: _static/starting_guide/github_compare_across_forks.png
 
 5. Нажмите ``head repository`` и из списка выберите Ваш форк (он будет
    содержать имя Вашего пользователя):
 
-   .. image:: ../images/starting_guide/github_choose_fork.png
+   .. image:: _static/starting_guide/github_choose_fork.png
 
 6. Нажмите кнопку ``Create pull request``:
 
-   .. image:: ../images/starting_guide/github_create_pull_request_final_step.png
+   .. image:: _static/starting_guide/github_create_pull_request_final_step.png
 
 7. Введите название для Pull Request:
 
-   .. image:: ../images/starting_guide/github_name_pull_request.png
+   .. image:: _static/starting_guide/github_name_pull_request.png
 
 .. important:: Имя PR должно соответствовать следующему шаблону:
-               ``Laboratory work #X, Name Surname - 2XFPLX``
+               ``Laboratory work #X, Name Surname - 2XFPLX``.
 
 8. Нажмите ``Assignees`` и из списка выберите ментора, который указан в
    таблице успеваемости:
 
-   .. image:: ../images/starting_guide/github_assignees.png
+   .. image:: _static/starting_guide/github_assignees.png
 
 9. Нажмите кнопку ``Create pull request``:
 
-   .. image:: ../images/starting_guide/github_create_pull_request_done.png
+   .. image:: _static/starting_guide/github_create_pull_request_done.png
 
 .. note:: Pull Request появится в списке PR, который находится на
           странице из шага №2.

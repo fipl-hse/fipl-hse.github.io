@@ -1,9 +1,10 @@
-==========================
+.. _faq-label:
+
 Frequently asked questions
 ==========================
 
 .. contents:: Content:
-   :depth: 1
+   :depth: 2
 
 Labs
 ----

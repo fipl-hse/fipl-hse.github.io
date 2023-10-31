@@ -1,4 +1,5 @@
-====================================
+.. _running-tests-label:
+
 Working with tests: locally and in CI
 =====================================
 
@@ -19,24 +20,24 @@ To configure tests locally you need to perform several steps:
 
 2. Create a new configuration:
 
-   .. image:: ../images/tests/pycharm_create_configuration.jpg
+   .. image:: _static/tests/pycharm_create_configuration.jpg
 
 3. Choose ``pytest`` as a target:
 
-   .. image:: ../images/tests/pycharm_choose_pytest_template.jpg
+   .. image:: _static/tests/pycharm_choose_pytest_template.jpg
 
 4. Fill ``pytest`` configuration and click ``OK``:
 
-   .. image:: ../images/tests/pycharm_fill_pytest_configuration.jpg
+   .. image:: _static/tests/pycharm_fill_pytest_configuration.jpg
 
 5. Run ``pytest`` configuration:
 
-   .. image:: ../images/tests/pycharm_run_pytest.jpg
+   .. image:: _static/tests/pycharm_run_pytest.jpg
 
    This should run all the tests in the repository. You can inspect them
    by clicking through a list at the bottom of a screen.
 
-   .. image:: ../images/tests/pycharm_tests_report.png
+   .. image:: _static/tests/pycharm_tests_report.png
 
 6. As you have some tests failing, you want to debug them. Then, first,
    you need to limit a scope of running tests and the mark level you
@@ -45,7 +46,7 @@ To configure tests locally you need to perform several steps:
    configuration menu and pass additional parameters, like
    ``-m stage_2_1_crawler_config_check``.
 
-   .. image:: ../images/tests/pycharm_control_tests_scope.jpg
+   .. image:: _static/tests/pycharm_control_tests_scope.jpg
 
    You can choose any of the labels that are described in
    ``../pyproject.toml`` and combine with a mark.
@@ -88,8 +89,8 @@ automatically started, normally within a minute or two. To see the
 results, navigate to your PR and click either the particular step in the
 report at the end of a page, or click **Checks** in the toolbar.
 
-.. image:: ../images/tests/ci_report.png
+.. image:: _static/tests/ci_report.png
 
-.. image:: ../images/tests/ci_tab.png
+.. image:: _static/tests/ci_tab.png
 
 Inspect each step by clicking through the list to the left.
