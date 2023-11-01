@@ -38,6 +38,7 @@ def build_documentation(build_directory: Path) -> None:
     print(f'Building documentation...')
     args = [
         'sphinx-build',
+        '-n',
         '-b',
         'html',
         WEBSITE_ROOT,
@@ -55,6 +56,7 @@ def build_documentation(build_directory: Path) -> None:
 
     args = [
         'sphinx-build',
+        '-n',
         '-b',
         'docx',
         WEBSITE_ROOT,
