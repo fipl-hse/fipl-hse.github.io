@@ -6,10 +6,11 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-import os
+from pathlib import Path
 import sys
 
-sys.path.insert(0, os.path.abspath('..'))
+project_root = Path('..').resolve()
+sys.path.insert(0, str(project_root))
 
 project = 'Программирование для лингвистов'
 copyright = '2023, Демидовский А.В. и другие'
