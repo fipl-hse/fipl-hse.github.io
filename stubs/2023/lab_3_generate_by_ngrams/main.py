@@ -309,11 +309,10 @@ class BeamSearcher:
             sequence (tuple[int, ...]): Base sequence to continue
 
         Returns:
-            Optional[list[tuple[int, float]]]: Tokens to use for
-            base sequence continuation
-            The return value has the following format:
-            [(token, probability), ...]
-            The return value length matches the Beam Size parameter.
+            list[tuple[int, float]]: Tokens to use for base sequence continuation.
+                The return value has the following format:
+                [(token, probability), ...].
+                The return value length matches the Beam Size parameter.
 
         In case of corrupt input arguments or methods used return None.
         """
@@ -332,10 +331,10 @@ class BeamSearcher:
         Args:
             sequence (tuple[int, ...]): Base sequence to continue
             next_tokens (list[tuple[int, float]]): Token for sequence continuation
-            sequence_candidates (dict[tuple[int, ...], dict]): Storage with all sequences generated
+            sequence_candidates (dict[tuple[int, ...], float]): Storage with all sequences generated
 
         Returns:
-            Optional[dict[tuple[int, ...], float]]: Updated sequence candidates
+            dict[tuple[int, ...], float]: Updated sequence candidates
 
         In case of corrupt input arguments or unexpected behaviour of methods used return None.
         """
@@ -347,7 +346,7 @@ class BeamSearcher:
         Remove those sequence candidates that do not make top-N most probable sequences.
 
         Args:
-            sequence_candidates (int): Current candidate sequences
+            sequence_candidates (dict[tuple[int, ...], float]): Current candidate sequences
 
         Returns:
             dict[tuple[int, ...], float]: Pruned sequences
@@ -362,9 +361,9 @@ class BeamSearchTextGenerator:
 
     Attributes:
         _language_model (tuple[NGramLanguageModel]): Language models for next token prediction
-        _text_processor (NGramLanguageModel): A TextProcessor instance to handle text processing
-        _beam_width (NGramLanguageModel): Beam width parameter for generation
-        beam_searcher (NGramLanguageModel): Searcher instances for each language model
+        _text_processor (TextProcessor): A TextProcessor instance to handle text processing
+        _beam_width (int): Beam width parameter for generation
+        beam_searcher (BeamSearcher): Searcher instances for each language model
     """
 
     def __init__(self,
@@ -406,8 +405,7 @@ class BeamSearchTextGenerator:
             sequence_to_continue (tuple[int, ...]): Sequence to continue
 
         Returns:
-            Optional[list[tuple[int, float]]]: Next tokens for sequence
-            continuation
+            list[tuple[int, float]]: Next tokens for sequence continuation
 
         In case of corrupt input arguments return None.
         """
@@ -421,6 +419,7 @@ class NGramLanguageModelReader:
         _json_path (str): Local path to assets file
         _eow_token (str): Special token for text processor
         _text_processor (TextProcessor): A TextProcessor instance to handle text processing
+        _content (dict): N-grams from external JSON
     """
 
     def __init__(self, json_path: str, eow_token: str) -> None:
@@ -462,8 +461,8 @@ class BackOffGenerator:
     Language model for back-off based text generation.
 
     Attributes:
-        _language_models (dict[int, NGramLanguageModel]): Language models for next token prediction
-        _text_processor (NGramLanguageModel): A TextProcessor instance to handle text processing
+        _language_models (tuple[NGramLanguageModel, ...]): Language models for next token prediction
+        _text_processor (TextProcessor): A TextProcessor instance to handle text processing
     """
 
     def __init__(self,
@@ -473,7 +472,7 @@ class BackOffGenerator:
         Initializes an instance of BackOffGenerator.
 
         Args:
-            language_models (tuple[NGramLanguageModel]): Language models to use for text generation
+            language_models (tuple[NGramLanguageModel, ...]): Language models to use for text generation
             text_processor (TextProcessor): A TextProcessor instance to handle text processing
         """
 
@@ -503,8 +502,7 @@ class BackOffGenerator:
             sequence_to_continue (tuple[int, ...]): Sequence to continue
 
         Returns:
-            Optional[dict[int, float]]: Next tokens for sequence
-            continuation
+            dict[int, float]: Next tokens for sequence continuation
 
         In case of corrupt input arguments return None.
         """
