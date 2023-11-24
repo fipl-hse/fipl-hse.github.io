@@ -64,7 +64,7 @@ collections, itertools, а также сторонние модули.**
 
 .. important:: Выполнение Шага 1 соответствует 4 баллам.
 
-Реализуйте функцию :py:func:`stubs.2023.lab_1_classify_by_unigrams.main.tokenize`.
+Реализуйте функцию :py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.tokenize`.
 
 Например, строка ``'Hey! How are you?'`` должна быть токенизирована
 следующим образом:
@@ -78,7 +78,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте функцию
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.calculate_frequencies`.
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.calculate_frequencies`.
 
 Под относительной частотой подразумевается отношение количества
 вхождений токена к общему числу токенов.
@@ -134,11 +134,11 @@ collections, itertools, а также сторонние модули.**
 ``"name"``.
 
 Для создания профиля языка реализуйте функцию
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.create_language_profile`.
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.create_language_profile`.
 
-Используйте функцию :py:func:`stubs.2023.lab_1_classify_by_unigrams.main.tokenize`
+Используйте функцию :py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.tokenize`
 для токенизации и функцию
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.calculate_frequencies`
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.calculate_frequencies`
 для получения частотного словаря.
 
 Продемонстрируйте создание языкового профиля для английского языка в
@@ -168,7 +168,7 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
 значение меньше, тем ближе предсказанные значения к истинным.
 
 Для того чтобы рассчитать метрику ``MSE``,
-реализуйте функцию :py:func:`stubs.2023.lab_1_classify_by_unigrams.main.calculate_mse`.
+реализуйте функцию :py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.calculate_mse`.
 
 Шаг 5. Сравнить два языковых профиля
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -209,9 +209,9 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
           в первом? Почему?
 
 Реализуйте функцию сравнения двух языковых профилей
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.compare_profiles`.
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.compare_profiles`.
 Для расчета метрики ``MSE`` нужно обратиться к функции
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.calculate_mse`.
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.calculate_mse`.
 
 Шаг 6. Определить язык неизвестного текста
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -219,7 +219,7 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
 .. important:: Выполнение Шагов 1-6 соответствует 8 баллам.
 
 Чтобы определить язык неизвестного текста,
-реализуйте функцию :py:func:`stubs.2023.lab_1_classify_by_unigrams.main.detect_language`.
+реализуйте функцию :py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.detect_language`.
 
 Она устанавливает язык текста на основе метрики ``MSE`` и
 возвращает название языка с ее наименьшим значением. Название языка
@@ -228,7 +228,7 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
 первое.
 
 Для нахождения метрики ``MSE`` нужно использовать функцию
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.compare_profiles`.
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.compare_profiles`.
 
 В файле ``start.py`` определите, к какому языку ближе текст на
 неизвестном языке: к английскому или к немецкому. Текст на немецком
@@ -258,7 +258,7 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
 `ссылке <https://docs.python.org/3/library/json.html>`__.
 
 Реализуйте функцию чтения языкового профиля из файла
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.load_profile`.
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.load_profile`.
 При этом функция должна только читать файл,
 никакой дополнительной обработки не подразумевается.
 
@@ -278,7 +278,7 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
 
 На данном шаге Вам нужно привести языковой профиль к нашему единому формату.
 Для этого реализуйте функцию
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.preprocess_profile`,
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.preprocess_profile`,
 
 Напоминаем, что языковой профиль должен содержать
 только два ключа: ``name`` и ``freq``. По ключу ``freq`` содержится
@@ -342,9 +342,9 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
 нужно загрузить и предобработать сразу несколько профилей.
 
 Для этого реализуйте функцию
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.collect_profiles`,
-которая должна вызывать :py:func:`stubs.2023.lab_1_classify_by_unigrams.main.load_profile`
-и :py:func:`stubs.2023.lab_1_classify_by_unigrams.main.preprocess_profile`.
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.collect_profiles`,
+которая должна вызывать :py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.load_profile`
+и :py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.preprocess_profile`.
 
 Пример вызова функции:
 
@@ -359,7 +359,7 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
 несколько возможных вариантов.
 
 Для этого реализуйте функцию
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.detect_language_advanced`.
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.detect_language_advanced`.
 Она возвращает отсортированный список кортежей вида
 ``[('lang1', score), ('lang2', score)]``, где первым элементом кортежа
 выступает название языка, а вторым - значение ``MSE``. Длина списка
@@ -380,7 +380,7 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
 сформировать понятный отчет.
 
 Для этого реализуйте функцию
-:py:func:`stubs.2023.lab_1_classify_by_unigrams.main.print_report`,
+:py:func:`stubs.labs_2023.lab_1_classify_by_unigrams.main.print_report`,
 которая выводит отчет в следующей форме:
 
 .. code:: py
