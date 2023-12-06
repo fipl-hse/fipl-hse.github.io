@@ -303,7 +303,10 @@ class GeneratorRuleStudent:
     Base class for students generators.
     """
 
+    #: Generator instance
     _generator: GreedyTextGenerator | TopPGenerator | BeamSearchTextGenerator
+
+    #: Generator type
     _generator_type: int
 
     def __init__(
