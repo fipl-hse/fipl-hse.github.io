@@ -4,7 +4,7 @@ Change API references.
 import re
 from pathlib import Path
 
-from config.constants import PROJECT_CONFIG_PATH, PROJECT_ROOT
+from config.constants import PROJECT_CONFIG_PATH, PROJECT_ROOT, RST_DOCS_ROOT
 from config.project_config import ProjectConfig
 
 
@@ -30,5 +30,5 @@ if __name__ == '__main__':
     project_config = ProjectConfig(PROJECT_ROOT, PROJECT_CONFIG_PATH)
     labs_list = project_config.get_labs_names()
     rst_files = [file for lab in labs_list
-                 for file in Path(PROJECT_ROOT / 'source' / 'docs' / 'labs' / lab).glob('lab[0-9].rst')]
+                 for file in Path(RST_DOCS_ROOT / 'labs' / lab).glob('lab[0-9].rst')]
     update_references(rst_files)
