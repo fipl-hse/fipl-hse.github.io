@@ -16,14 +16,13 @@ def get_files_to_collect_from_file(files_to_collect_path: Path) -> list[Path]:
         return list(files_to_collect)
 
 
-def collect_source_files(repository: str,
-                         files_to_collect_path: Path,
-                         destination: Path) -> None:
+def collect_source_files_from_repo(repository: str,
+                                   destination: Path) -> None:
     """
+    Expects the repository to have a BOM file under config/website/bom.txt
 
     Args:
         repository:
-        files_to_collect_path:
         destination: an absolute path in which the repository will be sparsely cloned
 
     Returns:
@@ -52,9 +51,33 @@ def collect_source_files(repository: str,
     subprocess.run(args=clone_args,
                    shell=True)
 
-    files_to_collect = get_files_to_collect_from_file(files_to_collect_path)
+    # Checkout config to get files to collect
+    # NOTE: Requires a leading slash
+    bom_path = '/config/website/bom.txt'
+
+    # Set the BOM file for checkout
+    checkout_args = [
+        'git',
+        'sparse-checkout',
+        'set',
+        '--no-cone',
+        bom_path
+    ]
+    checkout_args = prepare_args_for_shell(checkout_args)
+    print(f'Checking out BOM...')
+    subprocess.run(args=checkout_args,
+                   shell=True,
+                   cwd=destination)
+    checkout_args = [
+        'git',
+        'checkout'
+    ]
+    subprocess.run(args=prepare_args_for_shell(checkout_args),
+                   shell=True,
+                   cwd=destination)
 
     # Set the required files for checkout
+    files_to_collect = get_files_to_collect_from_file(destination.joinpath(bom_path))
     checkout_args = [
         'git',
         'sparse-checkout',
@@ -67,7 +90,6 @@ def collect_source_files(repository: str,
     subprocess.run(args=checkout_args,
                    shell=True,
                    cwd=destination)
-
     # Checkout files
     checkout_args = [
         'git',
@@ -78,16 +100,19 @@ def collect_source_files(repository: str,
                    cwd=destination)
 
     # Remove git tree/objects
-    shutil.rmtree(destination.joinpath('.git'))
+    shutil.rmtree(destination.joinpath('.git'), ignore_errors=True)
+    # Remove config
+    shutil.rmtree(destination.joinpath('config'), ignore_errors=True)
 
 
 if __name__ == '__main__':
+    # TODO: Currently works only with one repository
+
     # Example usage:
     # python collect_source_files.py \
-    # --repository "https://github.com/fipl-hse/2023-2-level-labs.git" \
-    # --files-to-collect-path ../../config/files_to_collect.txt \
+    # --repository https://github.com/org/repository.git \
     # --destination ../../labs
     args = parser.parse_args()
-    collect_source_files(repository=args.repository,
-                         files_to_collect_path=args.files_to_collect_path,
-                         destination=args.destination)
+
+    collect_source_files_from_repo(repository=args.repository,
+                                   destination=args.destination)
