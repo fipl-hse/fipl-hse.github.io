@@ -5,9 +5,17 @@ Neural machine translation module.
 from pathlib import Path
 from typing import Iterable, Iterator, Sequence
 
+import pandas as pd
+import torch
+from pandas import DataFrame
 from torch.utils.data import Dataset
 
-from core_utils.llm.time_decorator import report_time
+from stubs.llm_2023.core_utils.llm_pipeline import AbstractLLMPipeline
+from stubs.llm_2023.core_utils.metrics import Metrics
+from stubs.llm_2023.core_utils.raw_data_importer import AbstractRawDataImporter
+from stubs.llm_2023.core_utils.raw_data_preprocessor import AbstractRawDataPreprocessor
+from stubs.llm_2023.core_utils.task_evaluator import AbstractTaskEvaluator
+from stubs.llm_2023.core_utils.time_decorator import report_time
 
 
 class RawDataImporter(AbstractRawDataImporter):

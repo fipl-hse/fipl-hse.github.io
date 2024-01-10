@@ -11,14 +11,14 @@ click on the object/class name.
 
    .. tab:: Step 1
 
-      .. figure:: _static/working_with_api_1.png
+      .. figure:: ../_static/working_with_api_1.png
          :align: center
 
          Example of working with API.
 
    .. tab:: Step 2
 
-      .. figure:: _static/working_with_api_2.png
+      .. figure:: ../_static/working_with_api_2.png
          :align: center
 
          Example of working with API.

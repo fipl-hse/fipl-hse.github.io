@@ -4,6 +4,11 @@ Web service for model inference.
 # pylint: disable=too-few-public-methods, undefined-variable, unused-import, assignment-from-no-return
 from pathlib import Path
 
+from fastapi import FastAPI
+from pydantic.dataclasses import dataclass
+
+from stubs.llm_2023.lab_7.main import LLMPipeline
+
 
 def init_application() -> tuple[FastAPI, LLMPipeline]:
     """
