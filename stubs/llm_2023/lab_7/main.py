@@ -102,13 +102,17 @@ class LLMPipeline(AbstractLLMPipeline):
     Translation model.
     """
 
-    def __init__(self, model_name: str, dataset: TaskDataset, device: str) -> None:
+    def __init__(
+        self, model_name: str, dataset: TaskDataset, max_length: int, batch_size: int, device: str
+    ) -> None:
         """
         Initialize an instance of HelsinkiNLPModel.
 
         Args:
             model_name (str): The name of the pre-trained model.
             dataset (TaskDataset): The dataset to be used for translation.
+            max_length (int): The maximum length of generated sequence.
+            batch_size (int): The size of the batch inside DataLoader.
             device (str): The device for inference.
         """
 

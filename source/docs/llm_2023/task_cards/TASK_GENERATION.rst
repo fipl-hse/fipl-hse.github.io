@@ -45,7 +45,7 @@ Datasets
    4. **Preprocess**:
 
       1. Choose columns ``instruction``, ``context`` and ``response``.
-      2. Rename columns ``instruction`` to ``question`` and ``response`` to ``answer``.
+      2. Rename columns ``instruction`` to ``question`` and ``response`` to ``target``.
       3. Reset indexes.
 
 3. `RussianNLP/wikiomnia wikiomnia_ruGPT3_filtered <https://huggingface.co/datasets/RussianNLP/wikiomnia?row=1>`__
@@ -80,6 +80,20 @@ Datasets
       3. Rename column ``prompt`` to ``question``.
       4. Reset indexes.
       5. Process column ``messages`` with raw text into two columns ``context`` and ``answer``.
+
+Inferring batch
+---------------
+Process of implementing method
+:py:meth:`lab_7_llm.main.LLMPipeline._infer_batch`
+for question-answering task has its specifics.
+
+1. You need to transpose the sample_batch before you pass it to the tokenizer,
+so that it is a sequence of tuples where each tuple has two strings: a question and a context.
+2. The prediction of the model will consist of two tensors
+that contain start scores and end score respectively.
+3. Only the ids between start and end location corresponding
+to the answer have to be decoded and passed on.
+4. To get the ids, iterate through ``input_ids`` field of the tokenized batch.
 
 Metrics
 -------

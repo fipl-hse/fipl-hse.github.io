@@ -181,7 +181,7 @@ def calculate_precision(actual: list[tuple[str, ...]], reference: list[tuple[str
 
     Args:
         actual (list[tuple[str, ...]]): Predicted sequence of n-grams
-        reference (reference: list[tuple[str, ...]]): Expected sequence of n-grams
+        reference (list[tuple[str, ...]]): Expected sequence of n-grams
 
     Returns:
         float: Value of Precision metric
