@@ -40,7 +40,7 @@ class RawDataPreprocessor(AbstractRawDataPreprocessor):
         Analyze preprocessed dataset.
 
         Returns:
-            dict: dataset key properties.
+            dict: Dataset key properties
         """
 
     @report_time
@@ -60,7 +60,7 @@ class TaskDataset(Dataset):
         Initialize an instance of TaskDataset.
 
         Args:
-            data (pandas.DataFrame): original data.
+            data (pandas.DataFrame): Original data
         """
 
     def __len__(self) -> int:
@@ -68,7 +68,7 @@ class TaskDataset(Dataset):
         Return the number of items in the dataset.
 
         Returns:
-            int: The number of items in the dataset.
+            int: The number of items in the dataset
         """
 
     def __getitem__(self, index: int) -> tuple[str, ...]:
@@ -87,7 +87,7 @@ class TaskDataset(Dataset):
         Overriden iter method for static checks.
 
         Returns:
-            Iterator: The iterator instance.
+            Iterator: The iterator instance
         """
 
     @property
@@ -109,11 +109,11 @@ class LLMPipeline(AbstractLLMPipeline):
         Initialize an instance of HelsinkiNLPModel.
 
         Args:
-            model_name (str): The name of the pre-trained model.
-            dataset (TaskDataset): The dataset to be used for translation.
-            max_length (int): The maximum length of generated sequence.
-            batch_size (int): The size of the batch inside DataLoader.
-            device (str): The device for inference.
+            model_name (str): The name of the pre-trained model
+            dataset (TaskDataset): The dataset to be used for translation
+            max_length (int): The maximum length of generated sequence
+            batch_size (int): The size of the batch inside DataLoader
+            device (str): The device for inference
         """
 
     def analyze_model(self) -> dict:
@@ -121,13 +121,19 @@ class LLMPipeline(AbstractLLMPipeline):
         Analyze model computing properties.
 
         Returns:
-            dict: properties of a model
+            dict: Properties of a model
         """
 
     @report_time
     def infer_sample(self, sample: tuple[str, ...]) -> str | None:
         """
         Infer model on a single sample.
+
+        Args:
+            sample (tuple[str, ...]): Sample from dataset
+
+        Returns:
+            str | None: A prediction
         """
 
     @report_time
@@ -136,7 +142,7 @@ class LLMPipeline(AbstractLLMPipeline):
         Translate the dataset sentences.
 
         Returns:
-            list[str]: A list of predictions.
+            pd.DataFrame: Data with predictions
         """
 
     @torch.no_grad()
@@ -145,10 +151,10 @@ class LLMPipeline(AbstractLLMPipeline):
         Infer single batch.
 
         Args:
-            sample_batch (Sequence[tuple[str, ...]]): batch to infer the model
+            sample_batch (Sequence[tuple[str, ...]]): Batch to infer the model
 
         Returns:
-            list[str]: model predictions as strings
+            list[str]: Model predictions as strings
         """
 
 
@@ -162,8 +168,8 @@ class TaskEvaluator(AbstractTaskEvaluator):
         Initialize an instance of Evaluator.
 
         Args:
-            data_path (pathlib.Path): Path to predictions.
-            metrics (Iterable[Metrics]): List of metrics to check.
+            data_path (pathlib.Path): Path to predictions
+            metrics (Iterable[Metrics]): List of metrics to check
         """
 
     @report_time
@@ -172,5 +178,5 @@ class TaskEvaluator(AbstractTaskEvaluator):
         Evaluate the predictions against the references using the specified metric.
 
         Returns:
-            dict | None: A dictionary containing information about the calculated metric.
+            dict | None: A dictionary containing information about the calculated metric
         """
