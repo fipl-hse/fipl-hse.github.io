@@ -1,6 +1,5 @@
-Laboratory work №7. Name
-========================
-
+Laboratory work №7. Large Language Models no. 1
+===============================================
 
 .. toctree::
     :maxdepth: 1
@@ -34,19 +33,19 @@ Configuring model
 Model behavior is fully defined by a configuration file that is called ``settings.json``
 and it is placed on the same level as ``main.py``.
 
-+----------------------------+------------------------------------------------+---------+
-| Config parameter           | Description                                    | Type    |
-+============================+================================================+=========+
-| ``parameters``             |Set up parameters for laboratory work           |``dict`` |
-+----------------------------+------------------------------------------------+---------+
-| ``model``                  |Name of the the chosen model                    | ``str`` |
-+----------------------------+------------------------------------------------+---------+
-| ``dataset``                |Name of the dataset                             | ``str`` |
-+----------------------------+------------------------------------------------+---------+
-| ``metrics``                |Name of the metrics used for the chosen task    | ``str`` |
-+----------------------------+------------------------------------------------+---------+
-|``target_score``            |Desired mark for laboratory work                | ``int`` |
-+----------------------------+------------------------------------------------+---------+
++----------------------------+------------------------------------------------+--------------+
+| Config parameter           | Description                                    |     Type     |
++============================+================================================+==============+
+| ``parameters``             |Set up parameters for laboratory work           |   ``dict``   |
++----------------------------+------------------------------------------------+--------------+
+| ``model``                  |Name of the the chosen model                    |    ``str``   |
++----------------------------+------------------------------------------------+--------------+
+| ``dataset``                |Name of the dataset                             |    ``str``   |
++----------------------------+------------------------------------------------+--------------+
+| ``metrics``                |Name of the metrics used for the chosen task    | ``list[str]``|
++----------------------------+------------------------------------------------+--------------+
+|``target_score``            |Desired mark for laboratory work                |    ``int``   |
++----------------------------+------------------------------------------------+--------------+
 
 Assessment criteria
 ----------------------
@@ -105,12 +104,12 @@ This class inherits from
 
 It has the following internal attributes:
     * ``self._hf_name`` - string with the name of the HuggingFace dataset.
-    * ``self._raw_data`` - fills with the downloaded pd.DataFrame.
+    * ``self._raw_data`` - downloaded pd.DataFrame.
 
 Stage 1.1. Download dataset
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 Implement a method
-:py:meth:`stubs.llm_2023.lab_7.main.RawDataImporter.obtain`,
+:py:meth:`stubs.llm_2023.lab_7.main.RawDataImporter.obtain`
 which allows to download dataset and filling ``_raw_data`` attribute.
 
 You have to use
@@ -152,15 +151,22 @@ which allows to analyze dataset.
 
 You have to get the following dataset properties:
     1. Number of samples in dataset.
-    2. Dataset columns.
-    3. Dataset duplicates.
-    4. Dataset empty rows.
+    2. Number of columns in dataset.
+    3. Number of duplicates in dataset.
+    4. Number of empty rows in dataset.
     5. Length of the dataset minimal sample.
     6. Length of the dataset maximal sample.
 
 Method should return a dictionary with dataset properties.
 
-Stage 2.2. Preprocess dataset
+Stage 2.2. Demonstrate the result in ``start.py``
+"""""""""""""""""""""""""""""""""""""""""""""""""
+.. important:: Stages 1 - 2.1 are required to get the mark **4**.
+
+Demonstrate your dataset analysis
+in the ``main()`` function of the ``start.py`` module.
+
+Stage 2.3. Preprocess dataset
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 Implement method
 :py:meth:`stubs.llm_2023.lab_7.main.RawDataPreprocessor.transform`
@@ -180,13 +186,6 @@ which allows to preprocess dataset.
           according to the preprocessing instruction, use fields of the
           :py:class:`stubs.llm_2023.core_utils.raw_data_preprocessor.ColumnNames` abstraction.
 
-Stage 2.3. Demonstrate the result in ``start.py``
-"""""""""""""""""""""""""""""""""""""""""""""""""
-.. important:: Stages 1 - 2 are required to get the mark **4**.
-
-Demonstrate your dataset analysis
-in the ``main()`` function of the ``start.py`` module.
-
 Stage 3. Introduce dataset abstraction: ``TaskDataset``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 To work with the model we will use
@@ -203,6 +202,9 @@ This class inherits from ``torch.utils.data.Dataset`` abstraction.
 
 It has one internal attribute:
     * ``self._data`` - pd.DataFrame with preprocessed data.
+
+.. important:: When initializing ``TaskDataset`` abstraction in ``start.py`` module,
+               limit the pd.DataFrame to the first 100 samples.
 
 Stage 3.1. Implement magic methods
 """"""""""""""""""""""""""""""""""
@@ -232,11 +234,12 @@ This class inherits from
 
 It has the following internal attributes:
     * ``self._model_name`` - a string with the model name.
-    * ``self._model`` - fills with the model instance.
+    * ``self._model`` - the model instance.
     * ``self._dataset`` - ``Dataset`` instance.
     * ``self._device`` - a string with a device type (``cpu``, ``cuda`` or ``mps``).
-    * ``self._tokenizer`` - fills with tokenizer instance suitable for your model.
-    * ``self._batch_size`` - fill with the batch size.
+    * ``self._tokenizer`` - the tokenizer instance suitable for your model.
+    * ``self._batch_size`` - an integer with batch size.
+    * ``self._max_length`` - an integer with maximum length of generated sequence.
 
 Stage 4.1. Analyze model properties
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -263,12 +266,22 @@ Implement method
 :py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline.infer_sample`,
 which allows to infer one sample from dataset.
 
+.. note:: If the model is not defined, method returns **None**.
+
 Stage 4.3. Demonstrate the result in ``start.py``
 """""""""""""""""""""""""""""""""""""""""""""""""
-.. important:: Stages 3 - 4.2 are required to get the mark **6**.
+.. important:: Stages 2.3 - 4.2 are required to get the mark **6**.
 
 Demonstrate model properties analysis and dataset sample inference
 in the ``main()`` function of the ``start.py`` module.
+
+As parameters for initialization ``LLMPipeline`` abstraction,
+use:
+
+    * ``batch_size`` = 64
+    * ``max_length`` = 120.
+
+.. note:: For generation task use ``max_length`` = 512.
 
 Stage 4.4. Infer dataset
 """""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,6 +296,32 @@ which allows to infer the dataset.
           ``padding=True``, ``truncation=True`` to handle varying sequence lengths.
 
 Method returns pd.DataFrame with ``target`` and ``predictions`` columns.
+
+Stage 4.5. Infer batch
+"""""""""""""""""""""""""""""""""""""""""""""""""
+LLMs typically work with datasets with thousands of samples.
+Consequently, iterating through these datasets one sample at a
+time proves highly inefficient, particularly when considering
+that each batch conceptually aligns with the inference on a single sample.
+
+Also, you may have already noticed that
+there is some duplication in methods
+:py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline.infer_sample`
+and :py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline.infer_dataset`.
+
+To be able to eliminate all aforementioned problems
+first you need to implement method
+:py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline._infer_batch`
+which allows to infer a single batch.
+
+.. note:: There are going to be a few peculiarities
+         when implementing method for generation task.
+         You can find them in :ref:`generation-label`.
+
+Method returns a list with model predictions.
+
+.. note:: Then you have to use this method to get predictions
+          for one sample and for the whole dataset.
 
 Stage 5. Introduce evaluation abstraction: ``TaskEvaluator``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -304,7 +343,7 @@ It has the following internal attributes:
 Stage 5.1. Evaluate model performance
 """""""""""""""""""""""""""""""""""""""""""""""""
 Implement method
-:py:meth:`stubs.llm_2023.lab_7.main.TaskEvaluator.run`,
+:py:meth:`stubs.llm_2023.lab_7.main.TaskEvaluator.run`
 which allows to evaluate the predictions against the
 references using the specified metric.
 
@@ -342,7 +381,7 @@ for the chosen task.
 
 Stage 6.1. Initialize core application
 """""""""""""""""""""""""""""""""""""""""""""""""
-Implement method,
+Implement method
 which allows to initialize all needed
 instances for pipeline and web-service.
 
@@ -351,7 +390,7 @@ instances for pipeline and web-service.
 
 Stage 6.2. Make root endpoint
 """""""""""""""""""""""""""""""""""""""""""""""""
-Implement method,
+Implement method
 which allows to create a root endpoint of the service.
 
 Root endpoint is the base URL of your service,
@@ -363,7 +402,7 @@ Your start page should be made using
 .. note:: Put file with your CSS markup into ``assets/main.css`` module.
 
 User interface should contain:
-    * ``Entry field`` to write your data for request.
+    * ``Entry field`` where you write your query.
     * ``Button`` to send data to the server.
     * ``Output`` field to display the results received from the server.
 
@@ -374,10 +413,10 @@ Method returns a dictionary with your page content.
 Stage 6.2. Make main endpoint
 """""""""""""""""""""""""""""""""""""""""""""""""
 When a user clicks the button on the start page,
-a POST request must be initiated to the main endpoint,
+a POST request must be initiated to the main endpoint
 which is responsible for processing the data using LLM pipeline.
 
-Implement method,
+Implement method
 which allows to create a main endpoint for model call.
 
 To be able to make a query in an ``entry field``
