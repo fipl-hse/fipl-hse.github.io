@@ -26,8 +26,17 @@ extensions = [
     'docxbuilder',
     'sphinx.ext.napoleon',
     'sphinx_tabs.tabs',
-    'notfound.extension'
+    'notfound.extension',
+    'sphinx.ext.intersphinx',
 ]
+
+intersphinx_mapping = {
+    "torch": ("https://pytorch.org/docs/stable", '../config/intersphinx/pytorch.inv'),
+    'python': ('https://docs.python.org/3', None),
+    "pandas": ('http://pandas.pydata.org/pandas-docs/stable/', '../config/intersphinx/pandas.inv'),
+    "pydantic": ('https://docs.pydantic.dev/latest/', '../config/intersphinx/pydantic.inv'),
+    "fastapi": ('https://fastapi.tiangolo.com/', '../config/intersphinx/fastapi.inv'),
+}
 
 templates_path = ['_templates']
 exclude_patterns = []
