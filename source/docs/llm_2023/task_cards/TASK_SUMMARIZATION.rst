@@ -130,3 +130,5 @@ Metrics
 
 -  BLEU
 -  ROUGE
+
+.. note:: Use the ``rougeL`` metric.

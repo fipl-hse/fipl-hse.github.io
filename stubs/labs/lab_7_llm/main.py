@@ -10,34 +10,37 @@ import torch
 from pandas import DataFrame
 from torch.utils.data import Dataset
 
-from stubs.llm_2023.core_utils.llm_pipeline import AbstractLLMPipeline
-from stubs.llm_2023.core_utils.metrics import Metrics
-from stubs.llm_2023.core_utils.raw_data_importer import AbstractRawDataImporter
-from stubs.llm_2023.core_utils.raw_data_preprocessor import AbstractRawDataPreprocessor
-from stubs.llm_2023.core_utils.task_evaluator import AbstractTaskEvaluator
-from stubs.llm_2023.core_utils.time_decorator import report_time
+from stubs.core_utils.llm.llm_pipeline import AbstractLLMPipeline
+from stubs.core_utils.llm.metrics import Metrics
+from stubs.core_utils.llm.raw_data_importer import AbstractRawDataImporter
+from stubs.core_utils.llm.raw_data_preprocessor import AbstractRawDataPreprocessor
+from stubs.core_utils.llm.task_evaluator import AbstractTaskEvaluator
+from stubs.core_utils.llm.time_decorator import report_time
 
 
 class RawDataImporter(AbstractRawDataImporter):
     """
-    Custom implementation of data importer.
+    A class that imports the HuggingFace dataset.
     """
 
     @report_time
     def obtain(self) -> None:
         """
-        Import dataset.
+        Download a dataset.
+
+        Raises:
+            TypeError: In case of downloaded dataset is not pd.DataFrame
         """
 
 
 class RawDataPreprocessor(AbstractRawDataPreprocessor):
     """
-    Custom implementation of data preprocessor.
+    A class that analyzes and preprocesses a dataset.
     """
 
     def analyze(self) -> dict:
         """
-        Analyze preprocessed dataset.
+        Analyze a dataset.
 
         Returns:
             dict: Dataset key properties
@@ -52,7 +55,7 @@ class RawDataPreprocessor(AbstractRawDataPreprocessor):
 
 class TaskDataset(Dataset):
     """
-    Dataset with translation data.
+    A class that converts pd.DataFrame to Dataset and works with it.
     """
 
     def __init__(self, data: pd.DataFrame) -> None:
@@ -94,23 +97,26 @@ class TaskDataset(Dataset):
     def data(self) -> DataFrame:
         """
         Property with access to preprocessed DataFrame.
+
+        Returns:
+            pandas.DataFrame: Preprocessed DataFrame
         """
 
 
 class LLMPipeline(AbstractLLMPipeline):
     """
-    Translation model.
+    A class that initializes a model, analyzes its properties and infers it.
     """
 
     def __init__(
         self, model_name: str, dataset: TaskDataset, max_length: int, batch_size: int, device: str
     ) -> None:
         """
-        Initialize an instance of HelsinkiNLPModel.
+        Initialize an instance of LLMPipeline.
 
         Args:
             model_name (str): The name of the pre-trained model
-            dataset (TaskDataset): The dataset to be used for translation
+            dataset (TaskDataset): The dataset used
             max_length (int): The maximum length of generated sequence
             batch_size (int): The size of the batch inside DataLoader
             device (str): The device for inference
@@ -130,7 +136,7 @@ class LLMPipeline(AbstractLLMPipeline):
         Infer model on a single sample.
 
         Args:
-            sample (tuple[str, ...]): Sample from dataset
+            sample (tuple[str, ...]): The given sample for inference with model
 
         Returns:
             str | None: A prediction
@@ -139,7 +145,7 @@ class LLMPipeline(AbstractLLMPipeline):
     @report_time
     def infer_dataset(self) -> pd.DataFrame:
         """
-        Translate the dataset sentences.
+        Infer model on a whole dataset.
 
         Returns:
             pd.DataFrame: Data with predictions
@@ -148,7 +154,7 @@ class LLMPipeline(AbstractLLMPipeline):
     @torch.no_grad()
     def _infer_batch(self, sample_batch: Sequence[tuple[str, ...]]) -> list[str]:
         """
-        Infer single batch.
+        Infer model on a single batch.
 
         Args:
             sample_batch (Sequence[tuple[str, ...]]): Batch to infer the model
@@ -160,7 +166,7 @@ class LLMPipeline(AbstractLLMPipeline):
 
 class TaskEvaluator(AbstractTaskEvaluator):
     """
-    Evaluator for comparing prediction quality using the specified metric.
+    A class that compares prediction quality using the specified metric.
     """
 
     def __init__(self, data_path: Path, metrics: Iterable[Metrics]) -> None:

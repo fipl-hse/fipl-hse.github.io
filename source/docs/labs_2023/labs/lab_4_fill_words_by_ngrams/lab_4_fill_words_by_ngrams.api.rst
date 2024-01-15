@@ -5,7 +5,7 @@ Submodules
 ----------
 
 
-.. automodule:: stubs.labs_2023.lab_4_fill_words_by_ngrams.main
+.. automodule:: stubs.labs.lab_4_fill_words_by_ngrams.main
    :members:
    :undoc-members:
    :show-inheritance:
