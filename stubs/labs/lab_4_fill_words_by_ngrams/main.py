@@ -4,8 +4,8 @@ Lab 4.
 Top-p sampling generation and filling gaps with ngrams
 """
 # pylint:disable=too-few-public-methods, too-many-arguments
-from stubs.labs_2023.lab_3_generate_by_ngrams.main import (BeamSearchTextGenerator, GreedyTextGenerator,
-                                                           NGramLanguageModel, TextProcessor)
+from stubs.labs.lab_3_generate_by_ngrams.main import (BeamSearchTextGenerator, GreedyTextGenerator,
+                                                      NGramLanguageModel, TextProcessor)
 
 
 class WordProcessor(TextProcessor):

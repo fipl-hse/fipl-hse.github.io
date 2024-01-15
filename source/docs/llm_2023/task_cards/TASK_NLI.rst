@@ -33,6 +33,9 @@ Datasets
    3. **Preprocess**:
 
       1. Filter the dataset by the column ``source`` with the value ``mnli``.
+
+         1. This step you should implement in :py:meth:`stubs.labs.lab_7_llm.main.RawDataImporter.obtain`.
+
       2. Leave only columns ``premise_ru``, ``hypothesis_ru`` and ``label``.
       3. Rename column ``premise_ru`` to ``premise``.
       4. Rename column ``hypothesis_ru`` to ``hypothesis``.

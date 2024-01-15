@@ -34,19 +34,19 @@ Configuring model
 Model behavior is fully defined by a configuration file that is called ``settings.json``
 and it is placed on the same level as ``main.py``.
 
-+----------------------------+------------------------------------------------+--------------+
-| Config parameter           | Description                                    |     Type     |
-+============================+================================================+==============+
-| ``parameters``             |Set up parameters for laboratory work           |   ``dict``   |
-+----------------------------+------------------------------------------------+--------------+
-| ``model``                  |Name of the the chosen model                    |    ``str``   |
-+----------------------------+------------------------------------------------+--------------+
-| ``dataset``                |Name of the dataset                             |    ``str``   |
-+----------------------------+------------------------------------------------+--------------+
-| ``metrics``                |Name of the metrics used for the chosen task    | ``list[str]``|
-+----------------------------+------------------------------------------------+--------------+
-|``target_score``            |Desired mark for laboratory work                |    ``int``   |
-+----------------------------+------------------------------------------------+--------------+
++------------------------+---------------------------------------------+--------------+
+| Config parameter       | Description                                 | Type         |
++========================+=============================================+==============+
+| ``parameters``         |Set up parameters for laboratory work        | ``dict``     |
++------------------------+---------------------------------------------+--------------+
+| ``parameters.model``   |Name of the the chosen model                 | ``str``      |
++------------------------+---------------------------------------------+--------------+
+| ``parameters.dataset`` |Name of the dataset                          | ``str``      |
++------------------------+---------------------------------------------+--------------+
+| ``parameters.metrics`` |Name of the metrics used for the chosen task | ``list[str]``|
++------------------------+---------------------------------------------+--------------+
+| ``target_score``       |Desired mark for laboratory work             | ``int``      |
++------------------------+---------------------------------------------+--------------+
 
 Assessment criteria
 -------------------
@@ -100,10 +100,10 @@ Stage 1. Introduce importer abstraction: ``RawDataImporter``
 To work with the model first of all you need to import the chosen HuggingFace dataset.
 
 To be able to download dataset inside your program you need to implement special
-:py:class:`stubs.llm_2023.lab_7.main.RawDataImporter` abstraction.
+:py:class:`stubs.labs.lab_7_llm.main.RawDataImporter` abstraction.
 
 This class inherits from
-:py:class:`stubs.llm_2023.core_utils.raw_data_importer.AbstractRawDataImporter` abstraction.
+:py:class:`stubs.core_utils.llm.raw_data_importer.AbstractRawDataImporter` abstraction.
 
 It has the following internal attributes:
     * ``self._hf_name`` - string with the name of the HuggingFace dataset;
@@ -113,7 +113,7 @@ Stage 1.1. Download dataset
 """""""""""""""""""""""""""
 
 Implement a method
-:py:meth:`stubs.llm_2023.lab_7.main.RawDataImporter.obtain`
+:py:meth:`stubs.labs.lab_7_llm.main.RawDataImporter.obtain`
 which allows to download dataset and filling ``_raw_data`` attribute.
 
 You have to use
@@ -139,10 +139,10 @@ Before putting dataset into model we have to preprocess it.
 
 To be able to perform all needed preprocessing and analyze the chosen dataset
 inside your program you need to implement
-:py:class:`stubs.llm_2023.lab_7.main.RawDataPreprocessor` abstraction.
+:py:class:`stubs.labs.lab_7_llm.main.RawDataPreprocessor` abstraction.
 
 This class inherits from
-:py:class:`stubs.llm_2023.core_utils.raw_data_preprocessor.AbstractRawDataPreprocessor` abstraction.
+:py:class:`stubs.core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor` abstraction.
 
 It has the following internal attributes:
     * ``self._raw_data`` - downloaded pd.DataFrame;
@@ -152,7 +152,7 @@ Stage 2.1. Analyze dataset properties
 """""""""""""""""""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.llm_2023.lab_7.main.RawDataPreprocessor.analyze`
+:py:meth:`stubs.labs.lab_7_llm.main.RawDataPreprocessor.analyze`
 which allows to analyze dataset.
 
 You have to get the following dataset properties:
@@ -177,7 +177,7 @@ Stage 2.3. Preprocess dataset
 """""""""""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.llm_2023.lab_7.main.RawDataPreprocessor.transform`
+:py:meth:`stubs.labs.lab_7_llm.main.RawDataPreprocessor.transform`
 which allows to preprocess dataset.
 
 .. important:: You can find all needed preprocessing for your
@@ -192,7 +192,7 @@ which allows to preprocess dataset.
 
 .. note:: To change column names
           according to the preprocessing instruction, use fields of the
-          :py:class:`stubs.llm_2023.core_utils.raw_data_preprocessor.ColumnNames` abstraction.
+          :py:class:`stubs.core_utils.llm.raw_data_preprocessor.ColumnNames` abstraction.
 
 Stage 3. Introduce dataset abstraction: ``TaskDataset``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,7 +205,7 @@ get the number of samples in the dataset,
 retrieve an item from the dataset by index
 and override ``iter`` method for static checks
 you need to implement
-:py:class:`stubs.llm_2023.lab_7.main.TaskDataset` abstraction.
+:py:class:`stubs.labs.lab_7_llm.main.TaskDataset` abstraction.
 
 This class inherits from ``torch.utils.data.Dataset`` abstraction.
 
@@ -218,18 +218,18 @@ It has one internal attribute:
 Stage 3.1. Implement magic methods
 """"""""""""""""""""""""""""""""""
 
-    1. Implement method :py:meth:`stubs.llm_2023.lab_7.main.TaskDataset.__len__`
+    1. Implement method :py:meth:`stubs.labs.lab_7_llm.main.TaskDataset.__len__`
        which allows to get the number of items in dataset.
-    2. Implement method :py:meth:`stubs.llm_2023.lab_7.main.TaskDataset.__getitem__`
+    2. Implement method :py:meth:`stubs.labs.lab_7_llm.main.TaskDataset.__getitem__`
        which allows to retrieve an item from the dataset by index.
-    3. Implement method :py:meth:`stubs.llm_2023.lab_7.main.TaskDataset.__iter__`
+    3. Implement method :py:meth:`stubs.labs.lab_7_llm.main.TaskDataset.__iter__`
        which allows to override iter method for static checks.
 
 Stage 3.2. Retrieve data
 """"""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.llm_2023.lab_7.main.TaskDataset.data`
+:py:meth:`stubs.labs.lab_7_llm.main.TaskDataset.data`
 which allows to access preprocessed ``pd.Dataframe``.
 
 Stage 4. Introduce model pipeline abstraction: ``LLMPipeline``
@@ -239,10 +239,10 @@ Now we are ready to run our model.
 
 To be able to initialize our model, analyze its properties,
 infer the whole dataset and one sample from it you need to implement
-:py:class:`stubs.llm_2023.lab_7.main.LLMPipeline` abstraction.
+:py:class:`stubs.labs.lab_7_llm.main.LLMPipeline` abstraction.
 
 This class inherits from
-:py:class:`stubs.llm_2023.core_utils.llm_pipeline.AbstractLLMPipeline` abstraction.
+:py:class:`stubs.core_utils.llm.llm_pipeline.AbstractLLMPipeline` abstraction.
 
 It has the following internal attributes:
     * ``self._model_name`` - a string with the model name;
@@ -257,7 +257,7 @@ Stage 4.1. Analyze model properties
 """""""""""""""""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline.analyze_model`
+:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.analyze_model`
 which allows to analyze model properties.
 
 You have to get the following model properties:
@@ -277,7 +277,7 @@ Stage 4.2. Infer one sample from dataset
 """"""""""""""""""""""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline.infer_sample`,
+:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.infer_sample`,
 which allows to infer one sample from dataset.
 
 .. note:: If the model is not defined, method returns **None**.
@@ -302,7 +302,7 @@ Stage 4.4. Infer dataset
 """"""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline.infer_dataset`,
+:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.infer_dataset`,
 which allows to infer the dataset.
 
 .. note:: While iterating through dataset samples,
@@ -323,12 +323,12 @@ that each batch conceptually aligns with the inference on a single sample.
 
 Also, you may have already noticed that
 there is some duplication in methods
-:py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline.infer_sample`
-and :py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline.infer_dataset`.
+:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.infer_sample`
+and :py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.infer_dataset`.
 
 To be able to eliminate all aforementioned problems
 first you need to implement method
-:py:meth:`stubs.llm_2023.lab_7.main.LLMPipeline._infer_batch`
+:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline._infer_batch`
 which allows to infer a single batch.
 
 .. note:: There are going to be a few peculiarities
@@ -347,14 +347,14 @@ Now we have our predictions and can evaluate obtained result.
 
 To be able to evaluate the performance of the model
 with an appropriate metric you need to implement
-:py:class:`stubs.llm_2023.lab_7.main.TaskEvaluator` abstraction.
+:py:class:`stubs.labs.lab_7_llm.main.TaskEvaluator` abstraction.
 
 This class inherits from
-:py:class:`stubs.llm_2023.core_utils.task_evaluator.AbstractTaskEvaluator` abstraction.
+:py:class:`stubs.core_utils.llm.task_evaluator.AbstractTaskEvaluator` abstraction.
 
 It has the following internal attributes:
     * ``self._metrics`` - a field of
-      :py:class:`stubs.llm_2023.core_utils.metrics.Metrics` abstraction
+      :py:class:`stubs.core_utils.llm.metrics.Metrics` abstraction
       with suitable metric;
     * ``self._data_path`` - a string with the path to the `predictions.csv`.
 
@@ -362,7 +362,7 @@ Stage 5.1. Evaluate model performance
 """""""""""""""""""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.llm_2023.lab_7.main.TaskEvaluator.run`
+:py:meth:`stubs.labs.lab_7_llm.main.TaskEvaluator.run`
 which allows to evaluate the predictions against the
 references using the specified metric.
 

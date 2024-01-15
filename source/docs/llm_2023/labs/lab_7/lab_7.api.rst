@@ -5,7 +5,7 @@ Submodules
 ----------
 
 
-.. automodule:: stubs.llm_2023.lab_7.main
+.. automodule:: stubs.labs.lab_7_llm.main
    :members:
    :undoc-members:
    :show-inheritance:
