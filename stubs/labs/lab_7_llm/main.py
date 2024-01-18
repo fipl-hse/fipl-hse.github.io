@@ -85,14 +85,6 @@ class TaskDataset(Dataset):
             tuple[str, ...]: The item to be received
         """
 
-    def __iter__(self) -> Iterator:
-        """
-        Overriden iter method for static checks.
-
-        Returns:
-            Iterator: The iterator instance
-        """
-
     @property
     def data(self) -> DataFrame:
         """

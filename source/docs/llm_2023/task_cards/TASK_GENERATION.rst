@@ -9,7 +9,7 @@ Models
 +------------------------------------------------------------------+------+-----------+
 | Model                                                            | Lang | Task      |
 +==================================================================+======+===========+
-| `timpal0l/mdeberta-v3-base-squad2 <https://                      | EN   | CLOSED QA |
+| `timpal0l/mdeberta-v3-base-squad2                                | EN   | CLOSED QA |
 | <https://huggingface.co/timpal0l/mdeberta-v3-base-squad2>`__     |      |           |
 +------------------------------------------------------------------+------+-----------+
 | `VMware/electra-small-mrqa                                       | EN   | CLOSED QA |

@@ -1,5 +1,6 @@
 docutils==0.18.1
 docxbuilder==1.2.0
+fastapi==0.108.0
 pandas==2.1.4
 pydantic==2.4.1
 sphinx==7.2.5
