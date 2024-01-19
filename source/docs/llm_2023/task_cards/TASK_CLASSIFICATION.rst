@@ -10,7 +10,7 @@ Models
 | Model                                                               | Lang |
 +=====================================================================+======+
 | `cointegrated/rubert-tiny-toxicity <https                           | EN   |
-| ://huggingface.co/cointegrated/rubert-tiny-toxicity>`__            |      |
+| ://huggingface.co/cointegrated/rubert-tiny-toxicity>`__             |      |
 +---------------------------------------------------------------------+------+
 | `cointegrated/rubert-tiny2-cedr-emotion-detection <https://hugging  | RU   |
 | face.co/cointegrated/rubert-tiny2-cedr-emotion-detection>`__        |      |

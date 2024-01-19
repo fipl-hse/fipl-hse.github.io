@@ -407,6 +407,13 @@ which has the following internal attributes:
     * ``self._batch_size`` - an integer with batch size;
     * ``self._max_length`` - an integer with maximum length of generated sequence.
 
+.. note:: When loading a model and tokenizer, you will import special
+          `Auto Classes <https://huggingface.co/docs/transformers/model_doc/auto>`__.
+          However, for some models and tokenizers you need to use special classes
+          that are based on the architecture of the pre-trained model.
+          You can find out which class you need to use
+          through the ``architectures`` parameter of the model ``config`` object.
+
 See the intended instantiation:
 
 .. code:: py

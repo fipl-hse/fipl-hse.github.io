@@ -132,4 +132,5 @@ Metrics
 -  BLEU
 -  ROUGE
 
-.. note:: Use the ``rougeL`` metric.
+.. note:: Use the ``rougeL`` metric and set ``seed=77`` parameter
+          when loading the rouge metric.
