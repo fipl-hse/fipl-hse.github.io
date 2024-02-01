@@ -54,6 +54,28 @@
 |            |                     | /fipl-hse/2023-hello-llm/blob/main                   |
 |            |                     | /seminars/seminar_01_16_2024/try_iter_data.py>`__.   |
 +------------+---------------------+------------------------------------------------------+
+| 23.01.2024 | Инференс            | Анализ ``PyTorch`` модели.                           |
+|            | языковых            | `Листинг <https://github.com                         |
+|            | моделей.            | /fipl-hse/2023-hello-llm/blob/main                   |
+|            |                     | /seminars/seminar_01_23_2024/try_info.py>`__.        |
+|            |                     | Инференс модели.                                     |
+|            |                     | `Листинг <https://github.com                         |
+|            |                     | /fipl-hse/2023-hello-llm/blob/main                   |
+|            |                     | /seminars/seminar_01_23_2024/try_model.py>`__.       |
++------------+---------------------+------------------------------------------------------+
+| 30.01.2024 | Оценка качества     | Инференс генерационной модели.                       |
+|            | работы языковых     | `Листинг <https://github.com                         |
+|            | моделей.            | /fipl-hse/2023-hello-llm/blob/main                   |
+|            |                     | /seminars/seminar_01_30_2024/try_generate.py>`__.    |
+|            |                     | Упаковка семплов через ``DataLoader``.               |
+|            |                     | `Листинг <https://github.com/fipl-hse                |
+|            |                     | /2023-hello-llm/blob/main/seminars                   |
+|            |                     | /seminar_01_30_2024/try_dataloader.py>`__.           |
+|            |                     | Оценка качества модели.                              |
+|            |                     | `Листинг <https://github.com/fipl-hse                |
+|            |                     | /2023-hello-llm-admin/blob/main/seminars             |
+|            |                     | /seminar_01_30_2024/try_evaluate.py>`__.             |
++------------+---------------------+------------------------------------------------------+
 
 Более полное содержание пройденных занятий Вы найдете в :ref:`lectures-content-llm-label`.
 
@@ -106,7 +128,6 @@
 
 1. `Таблица
    успеваемости <https://docs.google.com/spreadsheets/d/1-HdXUVbMZtLjgy2wUT7hFgLtJ_OtfmCpIt26c0XlFR8/edit#gid=0>`__
-2. `Сайт с документацией <https://fipl-hse.github.io/>`__
-3. :ref:`starting-guide-label`
-4. :ref:`running-tests-label`
-5. :ref:`faq-label`
+2. :ref:`starting-guide-label`
+3. :ref:`running-tests-label`
+4. :ref:`faq-label`
