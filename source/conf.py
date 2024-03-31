@@ -31,12 +31,19 @@ extensions = [
 ]
 
 intersphinx_mapping = {
-    "torch": ("https://pytorch.org/docs/stable", '../config/intersphinx/pytorch.inv'),
-    'python': ('https://docs.python.org/3', None),
-    "pandas": ('http://pandas.pydata.org/pandas-docs/stable/', '../config/intersphinx/pandas.inv'),
-    "pydantic": ('https://docs.pydantic.dev/latest/', '../config/intersphinx/pydantic.inv'),
-    "fastapi": ('https://fastapi.tiangolo.com/', '../config/intersphinx/fastapi.inv'),
+    "torch": ("https://pytorch.org/docs/stable", "../config/intersphinx/pytorch.inv"),
+    "python": ("https://docs.python.org/3", None),
+    "pandas": ("http://pandas.pydata.org/pandas-docs/stable/", "../config/intersphinx/pandas.inv"),
+    "pydantic": ("https://docs.pydantic.dev/latest/", "../config/intersphinx/pydantic.inv"),
+    "fastapi": ("https://fastapi.tiangolo.com/", "../config/intersphinx/fastapi.inv"),
+    "requests": ("https://requests.readthedocs.io/en/latest/", None),
+    "bs4": ("https://www.crummy.com/software/BeautifulSoup/bs4/doc/", None)
 }
+
+nitpick_ignore = [
+    ('py:class', 'spacy.tokens.token.Token'),
+    ('py:class', 'spacy.tokens.Token'),
+]
 
 templates_path = ['_templates']
 exclude_patterns = []

@@ -27,7 +27,7 @@
     :maxdepth: 2
     :titlesonly:
 
-    lab_1_classify_by_unigrams/lab1.rst
-    lab_2_tokenize_by_bpe/lab2.rst
-    lab_3_generate_by_ngrams/lab3.rst
-    lab_4_fill_words_by_ngrams/lab4.rst
+    lab_1_classify_by_unigrams/lab_1.rst
+    lab_2_tokenize_by_bpe/lab_2.rst
+    lab_3_generate_by_ngrams/lab_3.rst
+    lab_4_fill_words_by_ngrams/lab_4.rst

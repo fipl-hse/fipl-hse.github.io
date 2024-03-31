@@ -140,8 +140,7 @@ In many cases the issue turns out to be wrong opening of the PyCharm.
 Make sure that you open the whole ``202X-2-level-labs`` as a project,
 not just the folder with a particular lab.
 
-More details on correct PyCharm opening can be found
-`here <starting_guide.rst>`__.
+More details on correct PyCharm opening can be found :ref:`starting-guide-ru-label`.
 
 Running tests
 -------------
