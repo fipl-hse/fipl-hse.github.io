@@ -41,7 +41,7 @@ Project Timeline
    1. Short summary: Your code can automatically parse a media website
       you are going to choose, save texts and its metadata in a proper
       format.
-   2. Deadline: **TBD**.
+   2. Deadline: April 29th.
    3. Format: each student works in their own PR.
    4. Dataset volume: 5-7 articles.
    5. Design document: :ref:`scrapper-label`.
@@ -59,11 +59,11 @@ Project Timeline
 Lectures history
 ----------------
 
-+--------+---------------------------------------+---------------------+
-| Date   | Lecture topic                         | Important links     |
-+========+=======================================+=====================+
-| TBD    | TBD                                   | TBD                 |
-+--------+---------------------------------------+---------------------+
++------------+-------------------------------------------+----------------------+
+| Date       | Lecture topic                             | Important links      |
++============+===========================================+======================+
+| 01.04.2024 | Lecture: Introduction to technical track. | :ref:`scrapper-label`|
++------------+-------------------------------------------+----------------------+
 
 You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
 
@@ -162,7 +162,9 @@ Resources
 3. `Python programming course from previous semester
    <https://github.com/fipl-hse/2023-2-level-labs>`__
 4. `Scrapping tutorials (russian) <https://youtu.be/7hn1_t2ZtJQ>`__
-5. :ref:`starting-guide-en-label`
-6. :ref:`ctlr-tests-label`
-7. :ref:`run-in-terminal-label`
-8. :ref:`ctlr-faq-label`
+5. `Scrapping tutorials (English)
+   <https://www.youtube.com/playlist?list=PL1jK3K11NINiOn4DdIDVdyQpcU3kaNxl0>`__
+6. :ref:`starting-guide-en-label`
+7. :ref:`ctlr-tests-label`
+8. :ref:`run-in-terminal-label`
+9. :ref:`ctlr-faq-label`

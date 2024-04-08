@@ -121,8 +121,8 @@ key-value pairs.
 Assessment criteria
 -------------------
 
-You state your ambitions on the mark by editing
-``target_score.txt`` file. Possible values are ``4``, ``6``,
+You state your ambitions on the mark by editing ``target_score`` parameter
+in ``settings.json`` file. Possible values are ``4``, ``6``,
 ``8``, and ``10``. See example below:
 
 .. code:: bash
@@ -276,7 +276,8 @@ configuration. When config is invalid:
 When all validation criteria are passed there is no exception thrown and
 program continues its execution.
 
-.. note:: This method should be called during :py:class:`stubs.labs.lab_5_scrapper.scrapper.Config`
+.. note:: This method should be called during
+          :py:class:`stubs.labs.lab_5_scrapper.scrapper.Config`
           class instance initialization step before
           :py:meth:`stubs.labs.lab_5_scrapper.scrapper.Config._extract_config_content` method
           call to check config fields and make sure they are appropriate and
@@ -406,7 +407,7 @@ Parser is initialized the following way:
 
 .. code:: py
 
-   parser = HTMLParser(article_url=full_url, article_id=i, config=configuration)
+   parser = HTMLParser(full_url=full_url, article_id=i, config=configuration)
 
 :py:class:`stubs.labs.lab_5_scrapper.scrapper.HTMLParser` instance
 saves all constructor arguments in attributes with corresponding names.
@@ -507,15 +508,16 @@ paper <https://www.nn.ru/text/realty/2021/01/26/69724161/>`__ it is
 stated that the article was published at ``26 ЯНВАРЯ 2021, 07:30``, but
 in the meta-information it must be written as\ ``2021-01-26 07:30:00``.
 
+To correctly process the date, implement
+:py:meth:`stubs.labs.lab_5_scrapper.scrapper.HTMLParser.unify_date_format`
+method.
+
 .. hint:: Use `datetime <https://docs.python.org/3/library/datetime.html>`__
           module for such manipulations. In particular, you need to parse the
           date from your website that is represented as a string and transform
           it to the instance of ``datetime``. For that it might be useful to
           look into `datetime.datetime.strptime() <https://docs.python.org/3/library/
           datetime.html#strftime-strptime-behavior>`__ method.
-
-.. hint:: Inspect :py:class:`stubs.core_utils.ctlr.article.article.Article`
-          class for any date transformations.
 
 Except for that, you are also expected to extract information about
 topics, or keywords, which relate to the article you are parsing. You
@@ -525,7 +527,9 @@ keywords present in your source, leave this list empty.
 
 You should extend
 :py:meth:`stubs.labs.lab_5_scrapper.scrapper.HTMLParser._fill_article_with_meta_information`
-method with date manipulations and topics extraction.
+method with a call to
+:py:meth:`stubs.labs.lab_5_scrapper.scrapper.HTMLParser.unify_date_format`
+method and topics extraction.
 
 Stage 8. Determine the optimal number of seed URLs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -533,7 +537,7 @@ Stage 8. Determine the optimal number of seed URLs
 .. important:: **Stages 0-8** are required to get the mark **8**.
 
 As it was stated in **Stage 2.1**,
-“:py:class:`stubs.labs.lab_5_scrapper.scrapper.Crawler` is an entity that visits
+:py:class:`stubs.labs.lab_5_scrapper.scrapper.Crawler` is an entity that visits
 ``seed_urls`` with the intention to collect URLs with articles that
 should be parsed later". Often you can reach the situation when there
 are not enough article links on the given URL. For example, you may want
