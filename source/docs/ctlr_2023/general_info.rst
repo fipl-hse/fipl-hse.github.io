@@ -59,11 +59,47 @@ Project Timeline
 Lectures history
 ----------------
 
-+------------+-------------------------------------------+----------------------+
-| Date       | Lecture topic                             | Important links      |
-+============+===========================================+======================+
-| 01.04.2024 | Lecture: Introduction to technical track. | :ref:`scrapper-label`|
-+------------+-------------------------------------------+----------------------+
++------------+---------------------+--------------------------------------------+
+| Date       | Lecture topic       | Important links                            |
++============+=====================+============================================+
+| 01.04.2024 | Lecture:            | Lab no. 5 description                      |
+|            | Introduction to     |                                            |
+|            | technical track.    |                                            |
++------------+---------------------+--------------------------------------------+
+| 01.04.2024 | Seminar: Local      | N/A                                        |
+|            | setup. Choose       |                                            |
+|            | website.            |                                            |
++------------+---------------------+--------------------------------------------+
+| 08.04.2024 | Lecture: 3rd party  | N/A                                        |
+|            | libraries. Browser  |                                            |
+|            | headers.            |                                            |
++------------+---------------------+--------------------------------------------+
+| 08.04.2024 | Seminar:            | `Листинг <https://github.com/fipl-hse/     |
+|            | ``requests``:       | 2023-2-level-ctlr/blob/main/seminars/      |
+|            | install, API.       | seminar_04_08_2024/try_requests.py>`__.    |
++------------+---------------------+--------------------------------------------+
+| 15.04.2024 | Lecture: HTML       | N/A                                        |
+|            | structure. ``bs4``  |                                            |
+|            | library.            |                                            |
++------------+---------------------+--------------------------------------------+
+| 15.04.2024 | Seminar:            | `Листинг <https://github.com/fipl-hse/     |
+|            | ``bs4``:            | 2023-2-level-ctlr/blob/main/seminars/      |
+|            | install, API.       | seminar_04_15_2024/try_bs.py>`__.          |
++------------+---------------------+--------------------------------------------+
+| 22.04.2024 | Lecture: Filesystem | N/A                                        |
+|            | with ``pathlib``,   |                                            |
+|            | dates.              |                                            |
++------------+---------------------+--------------------------------------------+
+| 22.04.2024 | Seminar:            | `Листинг 1 <https://github.com/fipl-hse/   |
+|            | Filesystem with     | 2023-2-level-ctlr/blob/main/seminars/      |
+|            | ``pathlib``, dates. | seminar_04_22_2024/try_fs.py>`__.          |
+|            |                     | `Листинг 2 <https://github.com/fipl-hse/   |
+|            |                     | 2023-2-level-ctlr/blob/main/seminars/      |
+|            |                     | seminar_04_22_2024/try_json.py>`__.        |
+|            |                     | `Листинг 3 <https://github.com/fipl-hse/   |
+|            |                     | 2023-2-level-ctlr/blob/main/seminars/      |
+|            |                     | seminar_04_22_2024/try_dates.py>`__.       |
++------------+---------------------+--------------------------------------------+
 
 You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
 
