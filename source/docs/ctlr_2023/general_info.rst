@@ -156,9 +156,9 @@ Resources
 ---------
 
 1. `Academic performance
-   <https://docs.google.com/spreadsheets/d/1ZEMhQy039vf4mCrM6UZF_GnfDWsCTjmbazibuCM_t7s/edit#gid=0>`__
+   <https://docs.google.com/spreadsheets/d/1DGxzwFYhJUIYHq13LMqA756tQD0sBP0_V0jt4KMaAZ0/edit#gid=0>`__
 2. `Media websites list
-   <https://docs.google.com/spreadsheets/d/1ENdfTb7ZOoVMeBcldSJuH4IWMYtHKO8Y94Qqq_e3Q34/edit#gid=0>`__
+   <https://docs.google.com/spreadsheets/d/1r-VN2oZVwhZ6CbA8gRbNRTCkUOHvef5yzm3ElxqL6bo/edit#gid=0>`__
 3. `Python programming course from previous semester
    <https://github.com/fipl-hse/2023-2-level-labs>`__
 4. `Scrapping tutorials (russian) <https://youtu.be/7hn1_t2ZtJQ>`__
