@@ -88,7 +88,7 @@ Before calling it, make sure you have already filled the
 
 .. note:: :py:func:`stubs.core_utils.ctlr.visualizer.visualize` function must be called
           during the execution of
-          ``POSFrequencyPipeline.run`` method.
+          :py:meth:`lab_6_pipeline.pipeline.POSFrequencyPipeline.run` method.
 
 .. note:: The name of the resulting image must have the same id as
           the article analysed.

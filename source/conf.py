@@ -37,12 +37,15 @@ intersphinx_mapping = {
     "pydantic": ("https://docs.pydantic.dev/latest/", "../config/intersphinx/pydantic.inv"),
     "fastapi": ("https://fastapi.tiangolo.com/", "../config/intersphinx/fastapi.inv"),
     "requests": ("https://requests.readthedocs.io/en/latest/", None),
-    "bs4": ("https://www.crummy.com/software/BeautifulSoup/bs4/doc/", None)
+    "bs4": ("https://www.crummy.com/software/BeautifulSoup/bs4/doc/", None),
+    "networkx": ("https://networkx.org/documentation/stable", None)
 }
 
 nitpick_ignore = [
     ('py:class', 'spacy.tokens.token.Token'),
     ('py:class', 'spacy.tokens.Token'),
+    ('py:class', 'stanza.models.common.doc.Document'),
+    ('py:class', 'DiGraph'),
 ]
 
 templates_path = ['_templates']

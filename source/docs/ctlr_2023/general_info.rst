@@ -100,6 +100,11 @@ Lectures history
 |            |                     | 2023-2-level-ctlr/blob/main/seminars/      |
 |            |                     | seminar_04_22_2024/try_dates.py>`__.       |
 +------------+---------------------+--------------------------------------------+
+| 29.04.2024 | Introduction to lab | N/A                                        |
+|            | 6. CoNLLU format.   |                                            |
++------------+---------------------+--------------------------------------------+
+| 29.04.2024 | Lab 5 handover.     | N/A                                        |
++------------+---------------------+--------------------------------------------+
 
 You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
 
