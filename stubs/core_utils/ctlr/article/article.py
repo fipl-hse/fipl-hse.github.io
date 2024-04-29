@@ -1,10 +1,13 @@
 """
 Article implementation.
 """
+# pylint: disable=no-name-in-module
+
 import enum
 import pathlib
+import re
+import string
 from datetime import datetime
-from typing import Optional, Protocol, Sequence
 
 from stubs.core_utils.ctlr.constants import ASSETS_PATH
 
@@ -34,44 +37,22 @@ def get_article_id_from_filepath(path: pathlib.Path) -> int:
     """
     return int(path.stem.split('_')[0])
 
- 
-# pylint: disable=too-few-public-methods
-class SentenceProtocol(Protocol):
+
+def split_by_sentence(text: str) -> list[str]:
     """
-    Protocol definition for sentences.
+    Split the given text by sentence separators.
 
-    Make dependency inversion from direct
-    import from lab 6 implementation of ConlluSentence.
+    Args:
+        text (str): raw text to split
+
+    Returns:
+        list[str]: List of sentences
     """
-
-    def get_cleaned_sentence(self) -> str:
-        """
-        Clean a sentence.
-
-        All tokens should be normalized and joined with a space
-
-        Returns:
-            str: Clean sentence
-        """
-
-    def get_tokens(self) -> list:
-        """
-        Get tokens as ConlluToken instances.
-
-        Returns:
-            list: List of ConlluToken instances
-        """
-
-    def get_conllu_text(self, include_morphological_tags: bool) -> str:
-        """
-        Get a text in the CONLL-U format.
-
-        Args:
-            include_morphological_tags (bool): Include morphological tags or not
-
-        Returns:
-            str: A text in the CONLL-U format
-        """
+    pattern = r"(?<!\w\.\w.)(?<![А-Я][а-я]\.)((?<=\.|\?|!)|(?<=\?\"|!\"))\s(?=[А-Я])"
+    text = re.sub(r'[\n|\t]+', '. ', text)
+    sentences = [sentence for sentence in re.split(pattern, text) if sentence.replace(' ', '')
+                 and len(sentence) > 10]
+    return sentences
 
 
 class ArtifactType(enum.Enum):
@@ -79,9 +60,8 @@ class ArtifactType(enum.Enum):
     Types of artifacts that can be created by text processing pipelines.
     """
     CLEANED = 'cleaned'
-    MORPHOLOGICAL_CONLLU = 'morphological_conllu'
-    POS_CONLLU = 'pos_conllu'
-    FULL_CONLLU = 'full_conllu'
+    UDPIPE_CONLLU = 'udpipe_conllu'
+    STANZA_CONLLU = 'stanza_conllu'
 
 
 class Article:
@@ -89,17 +69,17 @@ class Article:
     Article class implementation.
     """
     #: A date
-    date: Optional[datetime]
+    date: datetime | None
 
-    #: CONLL-U sentences
-    _conllu_sentences: Sequence[SentenceProtocol]
+    #: ConLLU information
+    _conllu_info: str
 
-    def __init__(self, url: Optional[str], article_id: int) -> None:
+    def __init__(self, url: str | None, article_id: int) -> None:
         """
-        Initialize an instance of Article.
+        Initialize an instance of Article class.
 
         Args:
-            url (Optional[str]): Site url
+            url (str | None): Site url
             article_id (int): Article id
         """
         self.url = url
@@ -112,6 +92,7 @@ class Article:
         self.text = ''
         self.pos_frequencies = {}
         self._conllu_sentences = []
+        self.pattern_matches = {}
 
     def set_pos_info(self, pos_freq: dict) -> None:
         """
@@ -121,6 +102,15 @@ class Article:
             pos_freq (dict): POS frequencies
         """
         self.pos_frequencies = pos_freq
+
+    def set_patterns_info(self, pattern_matches: dict) -> None:
+        """
+        Set patterns frequencies attribute.
+
+        Args:
+            pattern_matches (dict): Syntactic patterns
+        """
+        self.pattern_matches = pattern_matches
 
     def get_meta(self) -> dict:
         """
@@ -136,7 +126,8 @@ class Article:
             'date': self._date_to_text() or None,
             'author': self.author,
             'topics': self.topics,
-            'pos_frequencies': self.pos_frequencies
+            'pos_frequencies': self.pos_frequencies,
+            'pattern_matches': self.pattern_matches
         }
 
     def get_raw_text(self) -> str:
@@ -148,33 +139,36 @@ class Article:
         """
         return self.text
 
-    def get_conllu_text(self) -> str:
+    def get_conllu_text(self, include_morphological_tags: bool) -> str:
         """
         Get the text in the CONLL-U format.
+
+        Args:
+            include_morphological_tags (bool): Flag to include morphological information
 
         Returns:
             str: A text in the CONLL-U format
         """
-        return '\n'.join([sentence.get_conllu_text() for sentence in
+        return '\n'.join([sentence.get_conllu_text(include_morphological_tags) for sentence in
                           self._conllu_sentences])
 
-    def set_conllu_sentences(self, sentences: Sequence[SentenceProtocol]) -> None:
+    def set_conllu_info(self, info: str) -> None:
         """
         Set the conllu_sentences_attribute.
 
         Args:
-            sentences (Sequence[SentenceProtocol]): CONLL-U sentences
+            info (str): CONLL-U sentences
         """
-        self._conllu_sentences = sentences
+        self._conllu_info = info
 
-    def get_conllu_sentences(self) -> Sequence[SentenceProtocol]:
+    def get_conllu_info(self) -> str:
         """
         Get the sentences from ConlluArticle.
 
         Returns:
-            Sequence[SentenceProtocol]: Sentences from ConlluArticle
+            str: Sentences from ConlluArticle
         """
-        return self._conllu_sentences
+        return self._conllu_info
 
     def get_cleaned_text(self) -> str:
         """
@@ -183,8 +177,7 @@ class Article:
         Returns:
             str: Cleaned text.
         """
-        return ' '.join([sentence.get_cleaned_sentence() for
-                         sentence in self._conllu_sentences])
+        return self.text.lower().translate(str.maketrans('', '', string.punctuation))
 
     def _date_to_text(self) -> str:
         """
@@ -225,9 +218,8 @@ class Article:
         Returns:
             pathlib.Path: Path to Article instance
         """
-        conllu = kind in (ArtifactType.POS_CONLLU,
-                          ArtifactType.MORPHOLOGICAL_CONLLU,
-                          ArtifactType.FULL_CONLLU)
+        conllu = kind in (ArtifactType.UDPIPE_CONLLU,
+                          ArtifactType.STANZA_CONLLU)
 
         extension = '.conllu' if conllu else '.txt'
         article_name = f"{self.article_id}_{kind.value}{extension}"

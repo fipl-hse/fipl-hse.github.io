@@ -28,3 +28,4 @@ click on the object/class name.
     :titlesonly:
 
     lab_5_scrapper/lab_5.rst
+    lab_6_pipeline/lab_6.rst
