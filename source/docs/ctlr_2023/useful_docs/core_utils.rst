@@ -19,19 +19,6 @@ The ``article`` package is responsible for handling the articles you
 have collected from your website. You are going to use it for both
 Lab 5 and Lab 6. See exhaustive guide for :ref:`ctlr-article-label`.
 
-Tools package
--------------
-
-This package contains ``ud_validator.py`` module.
-It is responsible for verifying that the generated CoNLL-U files match the
-format. For more details on the CoNLL-U format, refer to :ref:`ud-format-label`.
-
-As a part of Lab 6, you are to perform a morphological analysis of the
-collected articles. Results must be saved as a CoNLL-U file.
-The correctness of the file format can be verified via `script prepared for you
-<https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/core_utils/tools/ud_validator/validate.py>`__.
-To learn how to use it, refer to the :ref:`ud-format-label`.
-
 Configurations DTO
 ------------------
 
@@ -88,7 +75,7 @@ Before calling it, make sure you have already filled the
 
 .. note:: :py:func:`stubs.core_utils.ctlr.visualizer.visualize` function must be called
           during the execution of
-          :py:meth:`lab_6_pipeline.pipeline.POSFrequencyPipeline.run` method.
+          :py:meth:`stubs.labs.lab_6_pipeline.pipeline.POSFrequencyPipeline.run` method.
 
 .. note:: The name of the resulting image must have the same id as
           the article analysed.
