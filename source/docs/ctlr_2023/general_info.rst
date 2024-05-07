@@ -41,7 +41,7 @@ Project Timeline
    1. Short summary: Your code can automatically parse a media website
       you are going to choose, save texts and its metadata in a proper
       format.
-   2. Deadline: April 29th.
+   2. Deadline: **April, 29**.
    3. Format: each student works in their own PR.
    4. Dataset volume: 5-7 articles.
    5. Design document: :ref:`scrapper-label`.
@@ -51,10 +51,10 @@ Project Timeline
    1. Short summary: Your code can automatically process raw texts from
       previous step, make point-of-speech tagging and basic
       morphological analysis.
-   2. Deadline: **TBD**.
+   2. Deadline: **May, 27**.
    3. Format: each student works in their own PR.
    4. Dataset volume: 5-7 articles.
-   5. Design document: TBD.
+   5. Design document: :ref:`pipeline-label`.
 
 Lectures history
 ----------------
@@ -136,13 +136,17 @@ Technical solution
 | ``json``              | working with json text    | scrapper,    | 4       |
 |                       | format                    | pipeline     |         |
 +-----------------------+---------------------------+--------------+---------+
-| `pymystem3 <https://  | module for morphological  | pipeline     | 6       |
-| pypi.org/project      | analysis                  |              |         |
-| /pymystem3/>`__       |                           |              |         |
+| `spacy_udpipe <https: | module for morphological  | pipeline     | 6       |
+| //pypi.org/project    | analysis                  |              |         |
+| /spacy-udpipe/>`__    |                           |              |         |
 +-----------------------+---------------------------+--------------+---------+
-| `pymorphy2 <https://p | module for morphological  | pipeline     | 10      |
+| `stanza <https://p    | module for morphological  | pipeline     | 8       |
 | ypi.org/project       | analysis                  |              |         |
-| /pymorphy2/>`__       |                           |              |         |
+| /stanza/>`__          |                           |              |         |
++-----------------------+---------------------------+--------------+---------+
+| `networkx <https:/    | working with graphs       | pipeline     | 10      |
+| /pypi.org/project     |                           |              |         |
+| /networkx/>`__        |                           |              |         |
 +-----------------------+---------------------------+--------------+---------+
 
 Software solution is built on top of three components:
@@ -188,7 +192,7 @@ are satisfied:**
 
    1. Example: ``Scrapper, Irina Novikova - 20FPL2``.
 
-2. Has a filled file ``target_score.txt`` with an expected mark.
+2. Has a filled file ``settings.json`` with an expected mark.
    Acceptable values: 4, 6, 8, 10.
 3. Has green status.
 4. Has a label ``done``, set by mentor.
@@ -202,7 +206,7 @@ Resources
    <https://docs.google.com/spreadsheets/d/1r-VN2oZVwhZ6CbA8gRbNRTCkUOHvef5yzm3ElxqL6bo/edit#gid=0>`__
 3. `Python programming course from previous semester
    <https://github.com/fipl-hse/2023-2-level-labs>`__
-4. `Scrapping tutorials (russian) <https://youtu.be/7hn1_t2ZtJQ>`__
+4. `Scrapping tutorials (Russian) <https://youtu.be/7hn1_t2ZtJQ>`__
 5. `Scrapping tutorials (English)
    <https://www.youtube.com/playlist?list=PL1jK3K11NINiOn4DdIDVdyQpcU3kaNxl0>`__
 6. :ref:`starting-guide-en-label`
