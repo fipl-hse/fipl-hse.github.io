@@ -15,6 +15,5 @@ Useful Materials
     core_utils.rst
     article.rst
     ud_format.rst
-    ud_mapping.rst
     dataset.rst
     faq.rst
