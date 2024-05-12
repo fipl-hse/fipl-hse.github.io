@@ -170,11 +170,6 @@ class POSFrequencyPipeline:
             analyzer (LibraryWrapper): Analyzer instance
         """
 
-    def run(self) -> None:
-        """
-        Visualize the frequencies of each part of speech.
-        """
-
     def _count_frequencies(self, article: Article) -> dict[str, int]:
         """
         Count POS frequency in Article.
@@ -184,6 +179,11 @@ class POSFrequencyPipeline:
 
         Returns:
             dict[str, int]: POS frequencies
+        """
+
+    def run(self) -> None:
+        """
+        Visualize the frequencies of each part of speech.
         """
 
 
