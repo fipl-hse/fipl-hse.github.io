@@ -749,7 +749,7 @@ maybe, provide us with better understanding of the text.
 
 This is a sample result we are going to obtain:
 
-.. figure:: ../../_static/sample_visualization.png
+.. figure:: ../../_static/lab_6_pipeline/sample_visualization.png
    :alt: sample_visualization.png
 
 .. warning:: Starting from the current stage, you are expected to work with files and
@@ -901,7 +901,7 @@ of each sentence in the article which we will subsequently search for.
 
 Example of the graph for the sentence: Я учусь в университете.
 
-   .. figure:: ../../_static/sample_sentence_graph.png
+   .. figure:: ../../_static/lab_6_pipeline/sample_sentence_graph.png
       :alt: sentence graph sample
 
 In order to make a graph of syntactic dependencies for each sentence in the article,
@@ -939,7 +939,7 @@ and we want to make an ideal graph for our pattern.
 
 Example of the ideal graph for our syntactic pattern:
 
-   .. figure:: ../../_static/sample_ideal_graph.png
+   .. figure:: ../../_static/lab_6_pipeline/sample_ideal_graph.png
       :alt: ideal graph sample
 
 After that, we are searching for the subgraphs in our graph
