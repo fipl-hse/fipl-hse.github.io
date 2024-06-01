@@ -18,4 +18,5 @@ Useful Materials
     UD_intro.rst
     graphs_intro.rst
     dataset.rst
+    final_project.rst
     faq.rst

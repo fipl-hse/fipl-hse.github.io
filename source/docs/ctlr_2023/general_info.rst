@@ -105,6 +105,17 @@ Lectures history
 +------------+---------------------+--------------------------------------------+
 | 29.04.2024 | Lab 5 handover.     | N/A                                        |
 +------------+---------------------+--------------------------------------------+
+| 13.05.2024 | Seminar:            | `Листинг <https://github.com/fipl-hse/     |
+|            | text analysis with  | 2023-2-level-ctlr/blob/main/seminars/      |
+|            | ``udpipe``,         | seminar_05_13_2024/try_spacy_udpipe.py>`__.|
+|            | ``stanza``.         | `Листинг <https://github.com/fipl-hse/     |
+|            |                     | 2023-2-level-ctlr/blob/main/seminars/      |
+|            |                     | seminar_05_13_2024/try_stanza.py>`__.      |
++------------+---------------------+--------------------------------------------+
+| 20.05.2024 | Seminar:            | `Листинг <https://github.com/fipl-hse/     |
+|            | graph analysis with | 2023-2-level-ctlr/blob/main/seminars/      |
+|            | ``networkx``,       | seminar_05_20_2024/try_networkx.py>`__.    |
++------------+---------------------+--------------------------------------------+
 
 You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
 
