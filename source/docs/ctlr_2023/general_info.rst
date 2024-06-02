@@ -116,6 +116,11 @@ Lectures history
 |            | graph analysis with | 2023-2-level-ctlr/blob/main/seminars/      |
 |            | ``networkx``,       | seminar_05_20_2024/try_networkx.py>`__.    |
 +------------+---------------------+--------------------------------------------+
+| 27.05.2024 | Lab 6 handover.     | N/A                                        |
++------------+---------------------+--------------------------------------------+
+| 03.06.2024 | Extra handover day  | N/A                                        |
+|            | (with penalties)    |                                            |
++------------+---------------------+--------------------------------------------+
 
 You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
 

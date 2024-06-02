@@ -69,9 +69,24 @@ and suggest improvements, if any.
           if it does not fail, send it to Klimova Margarita Andreevna.
 
           This script can be run from PyCharm or PowerShell from a root of the project,
-          like this: ``python admin_utils/final_project/checker.py``.
+          like this: ``python admin_utils/final_project/checker.py PATH_TO_FILE``.
           Your forks should contain this script already, so pull and use, otherwise,
           type to the chat and ask assistants.
+
+          For example, you have file ``final.conllu``, place it in ``data`` folder:
+
+          .. code:: bash
+
+                |-- 2023-2-level-ctrl
+                    |-- data
+                        |-- final.conllu
+
+          Then you can run the checker script with (do not forget to activate
+          environment and update ``PYTHONPATH``):
+
+          .. code:: bash
+
+                python admin_utils/final_project/checker.py data/final.conllu
 
 Meanwhile your task will be to prepare the **exam presentation**,
 which should include a report of the mistakes in tokenization
