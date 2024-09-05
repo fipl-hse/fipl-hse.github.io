@@ -16,9 +16,9 @@
 -  `Блюдова Василиса Михайловна <https://t.me/Vasilisa282>`__ -
    ассистент
 -  `Зайцева Вита Вячеславовна <https://t.me/v_ttec>`__ - ассистент
--  `Подпрятова Анна <https://t.me/anpruch>`__ - ассистент
--  `Хомутова Екатерина <https://t.me/ekaterina_hom>`__ - ассистент
--  `Нуртдинова Софья <https://t.me/sunrielly>`__ - ассистент
+-  `Подпрятова Анна Сергеевна <https://t.me/anpruch>`__ - ассистент
+-  `Хомутова Екатерина Сергеевна <https://t.me/ekaterina_hom>`__ - ассистент
+-  `Нуртдинова Софья Алексеевна <https://t.me/sunrielly>`__ - ассистент
 
 План лабораторных работ
 -----------------------
@@ -116,7 +116,7 @@
 Ресурсы
 -------
 
-1. Таблица успеваемости
+1. `Таблица успеваемости <https://docs.google.com/spreadsheets/d/19Lt-2ZOAJZWD3cY73KWYrRADEDW3Dcoi/edit?usp=sharing&ouid=115855108520729946560&rtpof=true&sd=true>`__
 2. :ref:`starting-guide-ru-label`
 3. :ref:`running-tests-label`
 4. :ref:`faq-label`
