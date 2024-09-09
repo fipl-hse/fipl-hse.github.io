@@ -3,34 +3,38 @@ Lab 1.
 
 Language detection
 """
+# pylint:disable=too-many-locals, unused-argument, unused-variable
+
 
 def tokenize(text: str) -> list[str] | None:
     """
     Split a text into tokens.
 
-    Convert the tokens into lowercase, remove punctuation, digits and other symbols.
+    Convert the tokens into lowercase, remove punctuation, digits and other symbols
 
     Args:
         text (str): A text
 
     Returns:
-        list[str]: A list of lower-cased tokens without punctuation
+        list[str] | None: A list of lower-cased tokens without punctuation
 
-    In case of corrupt input arguments, None is returned.
+    In case of corrupt input arguments, None is returned
     """
+
 
 def calculate_frequencies(tokens: list[str] | None) -> dict[str, float] | None:
     """
     Calculate frequencies of given tokens.
 
     Args:
-        tokens (list[str]): A list of tokens
+        tokens (list[str] | None): A list of tokens
 
     Returns:
-        dict[str, float]: A dictionary with frequencies
+        dict[str, float] | None: A dictionary with frequencies
 
-    In case of corrupt input arguments, None is returned.
+    In case of corrupt input arguments, None is returned
     """
+
 
 def create_language_profile(language: str, text: str) -> dict[str, str | dict[str, float]] | None:
     """
@@ -41,10 +45,11 @@ def create_language_profile(language: str, text: str) -> dict[str, str | dict[st
         text (str): A text
 
     Returns:
-        dict[str, str | dict[str, float]]: A dictionary with two keys – name, freq
+        dict[str, str | dict[str, float]] | None: A dictionary with two keys – name, freq
 
-    In case of corrupt input arguments, None is returned.
+    In case of corrupt input arguments, None is returned
     """
+
 
 def calculate_mse(predicted: list, actual: list) -> float | None:
     """
@@ -55,12 +60,16 @@ def calculate_mse(predicted: list, actual: list) -> float | None:
         actual (list): A list of actual values
 
     Returns:
-        float: The score
+        float | None: The score
 
-    In case of corrupt input arguments, None is returned.
+    In case of corrupt input arguments, None is returned
     """
 
-def compare_profiles(unknown_profile: dict[str, str | dict[str, float]], profile_to_compare: dict[str, str | dict[str, float]]) -> float | None:
+
+def compare_profiles(
+    unknown_profile: dict[str, str | dict[str, float]],
+    profile_to_compare: dict[str, str | dict[str, float]],
+) -> float | None:
     """
     Compare profiles and calculate the distance using symbols.
 
@@ -70,13 +79,18 @@ def compare_profiles(unknown_profile: dict[str, str | dict[str, float]], profile
             to compare the unknown profile to
 
     Returns:
-        float: The distance between the profiles
+        float | None: The distance between the profiles
 
     In case of corrupt input arguments or lack of keys 'name' and
-    'freq' in arguments, None is returned.
+    'freq' in arguments, None is returned
     """
 
-def detect_language(unknown_profile: dict[str, str | dict[str, float]], profile_1: dict[str, str | dict[str, float]], profile_2: dict[str, str | dict[str, float]]) -> str | None:
+
+def detect_language(
+    unknown_profile: dict[str, str | dict[str, float]],
+    profile_1: dict[str, str | dict[str, float]],
+    profile_2: dict[str, str | dict[str, float]],
+) -> str | None:
     """
     Detect the language of an unknown profile.
 
@@ -87,10 +101,11 @@ def detect_language(unknown_profile: dict[str, str | dict[str, float]], profile_
         profile_2 (dict[str, str | dict[str, float]]): A dictionary of a known profile
 
     Returns:
-        str: A language
+        str | None: A language
 
-    In case of corrupt input arguments, None is returned.
+    In case of corrupt input arguments, None is returned
     """
+
 
 def load_profile(path_to_file: str) -> dict | None:
     """
@@ -100,10 +115,11 @@ def load_profile(path_to_file: str) -> dict | None:
         path_to_file (str): A path to the language profile
 
     Returns:
-        dict: A dictionary with at least two keys – name, freq
+        dict | None: A dictionary with at least two keys – name, freq
 
-    In case of corrupt input arguments, None is returned.
+    In case of corrupt input arguments, None is returned
     """
+
 
 def preprocess_profile(profile: dict) -> dict[str, str | dict] | None:
     """
@@ -113,12 +129,13 @@ def preprocess_profile(profile: dict) -> dict[str, str | dict] | None:
         profile (dict): A loaded profile
 
     Returns:
-        dict[str, str | dict]: A dict with a lower-cased loaded profile
+        dict[str, str | dict] | None: A dict with a lower-cased loaded profile
             with relative frequencies without unnecessary n-grams
 
     In case of corrupt input arguments or lack of keys 'name', 'n_words' and
-    'freq' in arguments, None is returned.
+    'freq' in arguments, None is returned
     """
+
 
 def collect_profiles(paths_to_profiles: list) -> list[dict[str, str | dict[str, float]]] | None:
     """
@@ -128,12 +145,15 @@ def collect_profiles(paths_to_profiles: list) -> list[dict[str, str | dict[str, 
         paths_to_profiles (list): A list of strings to the profiles
 
     Returns:
-        list[dict[str, str | dict[str, float]]]: A list of loaded profiles
+        list[dict[str, str | dict[str, float]]] | None: A list of loaded profiles
 
-    In case of corrupt input arguments, None is returned.
+    In case of corrupt input arguments, None is returned
     """
 
-def detect_language_advanced(unknown_profile: dict[str, str | dict[str, float]], known_profiles: list) -> list | None:
+
+def detect_language_advanced(
+    unknown_profile: dict[str, str | dict[str, float]], known_profiles: list
+) -> list | None:
     """
     Detect the language of an unknown profile.
 
@@ -143,10 +163,11 @@ def detect_language_advanced(unknown_profile: dict[str, str | dict[str, float]],
         known_profiles (list): A list of known profiles
 
     Returns:
-        list: A sorted list of tuples containing a language and a distance
+        list | None: A sorted list of tuples containing a language and a distance
 
-    In case of corrupt input arguments, None is returned.
+    In case of corrupt input arguments, None is returned
     """
+
 
 def print_report(detections: list[tuple[str, float]]) -> None:
     """
@@ -155,5 +176,5 @@ def print_report(detections: list[tuple[str, float]]) -> None:
     Args:
         detections (list[tuple[str, float]]): A list with distances for each available language
 
-    In case of corrupt input arguments, None is returned.
+    In case of corrupt input arguments, None is returned
     """
