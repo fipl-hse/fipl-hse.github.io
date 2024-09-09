@@ -1,5 +1,5 @@
-lab\_1\_classify\_by\_unigrams package
-======================================
+lab\_1 package
+==============
 
 Submodules
 ----------

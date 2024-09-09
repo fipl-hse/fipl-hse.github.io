@@ -27,4 +27,4 @@
     :maxdepth: 2
     :titlesonly:
 
-    lab_1_classify_by_unigrams/lab_1.rst
+    lab_1/lab_1.rst

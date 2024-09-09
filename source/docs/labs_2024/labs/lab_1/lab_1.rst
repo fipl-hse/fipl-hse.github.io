@@ -7,7 +7,7 @@
     :titlesonly:
     :caption: Full API
 
-    lab_1_classify_by_unigrams.api.rst
+    lab_1.api.rst
 
 
 Дано
