@@ -7,7 +7,7 @@
     :titlesonly:
     :caption: Full API
 
-    lab_2_retrieval_w_bm25.api.rst
+    lab_2.api.rst
 
 
 Дано
