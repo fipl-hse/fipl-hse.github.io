@@ -28,3 +28,4 @@
     :titlesonly:
 
     lab_1/lab_1.rst
+    lab_2/lab_2.rst
