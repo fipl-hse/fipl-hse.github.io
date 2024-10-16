@@ -71,7 +71,7 @@ collections, itertools, а также сторонние модули.**
 в переменной ``documents``.
 
 Для того, чтобы разбить текст на токены,
-реализуйте функцию :py:func:`lab_2_retrieval_w_bm25.main.tokenize`.
+реализуйте функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.tokenize`.
 
 Рассмотрим работу этой и следующих функций на примере начальных предложений
 трёх детских историй, которые впоследствии мы хотим рекомендовать по запросам пользователей.
@@ -112,7 +112,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 
 Чтобы удалить стоп-слова из токенизированного текста,
 реализуйте функцию
-:py:func:`lab_2_retrieval_w_bm25.main.remove_stopwords`,
+:py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.remove_stopwords`,
 
 Удалив стоп-слова из наших трёх документов, мы получим следующие списки. Они значительно меньше,
 так как в них остались только самые значимые слова.
@@ -137,7 +137,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 
 Для того чтобы создать список уникальных слов из всех документов,
 реализуйте функцию
-:py:func:`lab_2_retrieval_w_bm25.main.build_vocabulary`.
+:py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.build_vocabulary`.
 
 Из трёх документов детских историй после выкидывания стоп-слов, например,
 мы можем получить список следующих уникальных токенов:
@@ -183,7 +183,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 * :math:`|D|` - длина документа.
 
 Для того чтобы посчитать частоту слова в документе,
-реализуйте функцию :py:func:`lab_2_retrieval_w_bm25.main.calculate_tf`.
+реализуйте функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.calculate_tf`.
 Таким образом, каждый документ из коллекции будет иметь свой словарь с ``TF``
 значениями для каждого уникального слова.
 
@@ -226,7 +226,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 * :math:`\sum^{m}_{j=1}n_j` - количество документов, в которых содержится интересующее слово.
 
 Для того чтобы посчитать обратную частоту документа,
-реализуйте функцию :py:func:`lab_2_retrieval_w_bm25.main.calculate_idf`.
+реализуйте функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.calculate_idf`.
 Таким образом, у всей коллекции документов будет общий словарь с ``IDF``
 значениями для каждого уникального слова.
 
@@ -248,7 +248,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 
 Для того, чтобы для каждого уникального слова в коллекции документов
 получить значение метрики ``TF-IDF``, реализуйте функцию
-:py:func:`lab_2_retrieval_w_bm25.main.calculate_tf_idf`.
+:py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.calculate_tf_idf`.
 
 Напоминаем, метрика ``TF-IDF`` имеет следующую формулу:
 :math:`TF\_IDF = TF \cdot IDF`.
@@ -311,7 +311,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 которую мы получили в ходе подсчета метрики ``TF-IDF`` для каждого слова.
 
 Для того чтобы рассчитать метрику ``BM25`` для заданного документа относительно всей коллекции,
-реализуйте функцию :py:func:`lab_2_retrieval_w_bm25.main.calculate_bm25`.
+реализуйте функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.calculate_bm25`.
 
 После подсчёта ``BM25`` для каждого из текстов коллекции должны получиться словари.
 Детские истории имеют следующие:
@@ -357,7 +357,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 
 Для того, чтобы отранжировать документы по убыванию релевантности
 (то есть по убыванию значений метрики), реализуйте функцию
-:py:func:`lab_2_retrieval_w_bm25.main.rank_documents`.
+:py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.rank_documents`.
 
 Так, например, у нас есть три документа: [0, 1, 2] — текст про мальчика-волшебника,
 текст про Стивена и его питомцев и текст про пикник принцессы и дракона.
@@ -366,10 +366,10 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 ``""A story about a wizard boy in a tower!"``
 с желанием получить какую-нибудь книжку, соответствующую его предпочтениям в литературе.
 
-Реализация функции :py:func:`lab_2_retrieval_w_bm25.main.rank_documents` должна уметь
+Реализация функции :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.rank_documents` должна уметь
 получить запрос ``query`` и осуществить его предобработку с помощью функций
-:py:func:`lab_2_retrieval_w_bm25.main.tokenize`
-и :py:func:`lab_2_retrieval_w_bm25.main.remove_stopwords`.
+:py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.tokenize`
+и :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.remove_stopwords`.
 
 Получив токены запроса, функция должна обратиться к коллекции словарей метрики (``TF-IDF``
 или ``BM25``, в зависимости от того, что подаётся функции на вход) и посчитать суммарное
@@ -414,7 +414,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
   изменяться в пределах [0, 1].
 
 Для того, чтобы посчитать значение оптимизированной метрики ``BM25``, реализуйте
-функцию :py:func:`lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff`.
+функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff`.
 
 Значения ``BM25`` с модификацией слегка отличаются от значений обычной метрики, что можно
 увидеть и среди значений для наших детских историй.
@@ -459,7 +459,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 научиться сохранять их.
 
 Для того, чтобы сохранить полученные значения метрик в ``json`` файл, реализуйте
-функцию :py:func:`lab_2_retrieval_w_bm25.main.save_index`.
+функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.save_index`.
 
 .. note:: Для сохранения данных в ``json`` файл вам может потребоваться метод `dump <https://www.geeksforgeeks.org/json-dump-in-python/>`__, который в качестве аргументов принимает Python объект, который вы хотите сохранить в ``json``, файловый объект, в который будут сохранены данные, и отступ - целое число, определяющее количество пробелов для отступа.
 
@@ -477,7 +477,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 в файл, однако важно также научиться корректно загружать их из него.
 
 Для того, чтобы загрузить полученные значения метрик, реализуйте
-функцию :py:func:`lab_2_retrieval_w_bm25.main.load_index`.
+функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.load_index`.
 
 .. note:: Для загрузки данных из ``json`` файла вам может потребоваться метод `load <https://www.geeksforgeeks.org/json-load-in-python/>`__, который в качестве аргумента принимает объект ``json`` файла, из которого считываются данные.
 
@@ -514,7 +514,7 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 
 Для того чтобы рассчитать ранговую корреляцию Спирмена между полученным
 списков рангов и "золотым стандартом",
-реализуйте функцию :py:func:`lab_2_retrieval_w_bm25.main.calculate_spearman`.
+реализуйте функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.calculate_spearman`.
 
 В итоге для коллекции из трёх детских историй при рассчитывании рангов для ``TF-IDF``,
 обычного ``BM25`` и эффективного ``BM25``, получаются следующие документы в порядке
@@ -538,8 +538,8 @@ They rarely leaved the tower, but the summer weather was just perfect for the hi
 между рангами, полученными с использованием ``TF-IDF``, ``BM25`` и оптимизированного ``BM25``
 и золотым стандартом.
 Золотой стандарт представляет собой список из 10 рангов, полученных в результате вызова функции
-:py:func:`lab_2_retrieval_w_bm25.main.rank_documents` на значениях, полученных с использованием
-оптимизированной метрики ``BM25`` (:py:func:`lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff`).
+:py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.rank_documents` на значениях, полученных с использованием
+оптимизированной метрики ``BM25`` (:py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff`).
 При корректном выполнении лабораторной работы золотой стандарт должен быть следующим:
 ``[1, 7, 5, 0, 9, 2, 3, 4, 6, 8]``.
 
