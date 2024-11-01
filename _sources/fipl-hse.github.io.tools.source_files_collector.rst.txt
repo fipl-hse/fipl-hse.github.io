@@ -1,0 +1,29 @@
+fipl\-hse.github.io.tools.source\_files\_collector package
+==========================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.tools.source\_files\_collector.argument\_parser module
+--------------------------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.tools.source_files_collector.argument_parser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fipl\-hse.github.io.tools.source\_files\_collector.collect\_source\_files module
+--------------------------------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.tools.source_files_collector.collect_source_files
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.tools.source_files_collector
+   :members:
+   :undoc-members:
+   :show-inheritance:
