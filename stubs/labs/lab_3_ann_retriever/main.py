@@ -7,6 +7,9 @@ Vector search with text retrieving
 # pylint: disable=too-few-public-methods, too-many-arguments, duplicate-code, unused-argument
 from typing import Protocol
 
+Vector = tuple[float, ...]
+"Type alias for vector representation of a text."
+
 
 class NodeLike(Protocol):
     """
@@ -33,8 +36,19 @@ class NodeLike(Protocol):
         """
 
 
-Vector = tuple[float, ...]
-"\nType alias for vector representation of a text.\n"
+def calculate_distance(query_vector: Vector, document_vector: Vector) -> float | None:
+    """
+    Calculate Euclidean distance for a document vector.
+
+    Args:
+        query_vector (Vector): Vectorized query
+        document_vector (Vector): Vectorized documents
+
+    Returns:
+        float | None: Euclidean distance for vector
+
+    In case of corrupt input arguments, None is returned.
+    """
 
 
 def save_vector(vector: Vector) -> dict:
@@ -93,7 +107,7 @@ class Tokenizer:
 
     def tokenize_documents(self, documents: list[str]) -> list[list[str]] | None:
         """
-        Tokenize the input documents .
+        Tokenize the input documents.
 
         Args:
             documents (list[str]): Documents to tokenize
@@ -136,9 +150,12 @@ class Vectorizer:
             corpus (list[list[str]]): Tokenized documents to vectorize
         """
 
-    def build(self) -> None:
+    def build(self) -> bool:
         """
         Build vocabulary with tokenized_documents.
+
+        Returns:
+            bool: True if built successfully, False in other case
         """
 
     def vectorize(self, tokenized_document: list[str]) -> Vector | None:
@@ -147,19 +164,6 @@ class Vectorizer:
 
         Args:
             tokenized_document (list[str]): Tokenized document to vectorize
-
-        Returns:
-            Vector | None: TF-IDF vector for document
-
-        In case of corrupt input arguments, None is returned.
-        """
-
-    def _calculate_tf_idf(self, document: list[str]) -> Vector | None:
-        """
-        Get TF-IDF for document.
-
-        Args:
-            document (list[str]): Tokenized document to vectorize
 
         Returns:
             Vector | None: TF-IDF vector for document
@@ -185,7 +189,7 @@ class Vectorizer:
         Save the Vectorizer state to file.
 
         Args:
-            file_path (str): The path to the file where the instance will be saved
+            file_path (str): The path to the file where the instance should be saved
 
         Returns:
             bool: True if saved successfully, False in other case
@@ -196,7 +200,7 @@ class Vectorizer:
         Save the Vectorizer state to file.
 
         Args:
-            file_path (str): The path to the file where the instance will be saved
+            file_path (str): The path to the file from which to load the instance
 
         Returns:
             bool: True if the vectorizer was saved successfully
@@ -204,20 +208,18 @@ class Vectorizer:
         In case of corrupt input arguments, False is returned.
         """
 
+    def _calculate_tf_idf(self, document: list[str]) -> Vector | None:
+        """
+        Get TF-IDF for document.
 
-def calculate_distance(query_vector: Vector, document_vector: Vector) -> float | None:
-    """
-    Calculate Euclidean distance for a document vector.
+        Args:
+            document (list[str]): Tokenized document to vectorize
 
-    Args:
-        query_vector (Vector): Vectorized vector
-        document_vector (Vector): Vectorized documents
+        Returns:
+            Vector | None: TF-IDF vector for document
 
-    Returns:
-        float | None: Euclidean distance for vector
-
-    In case of corrupt input arguments, None is returned.
-    """
+        In case of corrupt input arguments, None is returned.
+        """
 
 
 class BasicSearchEngine:
@@ -237,19 +239,6 @@ class BasicSearchEngine:
         Args:
             vectorizer (Vectorizer): Vectorizer for documents vectorization
             tokenizer (Tokenizer): Tokenizer for tokenization
-        """
-
-    def _index_document(self, document: str) -> Vector | None:
-        """
-        Index document.
-
-        Args:
-            document (str): Document to index
-
-        Returns:
-            Vector | None: Returns document vector
-
-        In case of corrupt input arguments, None is returned.
         """
 
     def index_documents(self, documents: list[str]) -> bool:
@@ -281,31 +270,6 @@ class BasicSearchEngine:
         In case of corrupt input arguments, None is returned.
         """
 
-    def _calculate_knn(
-        self, query_vector: Vector, document_vectors: list[Vector], n_neighbours: int
-    ) -> list[tuple[int, float]] | None:
-        """
-        Calculate TF-IDF scores for a document.
-
-        Args:
-            query_vector (Vector): Vectorized vector
-            document_vectors (list[Vector]): Vectorized documents
-            n_neighbours (int): Number of neighbours to return
-
-        Returns:
-            list[tuple[int, float]] | None: Nearest neighbours indices and distances
-
-        In case of corrupt input arguments, None is returned.
-        """
-
-    def _dump_documents(self) -> dict:
-        """
-        Dump documents states for save the Engine.
-
-        Returns:
-            dict: document and document_vectors states
-        """
-
     def save(self, file_path: str) -> bool:
         """
         Save the Vectorizer state to file.
@@ -317,26 +281,15 @@ class BasicSearchEngine:
             bool: returns True if save was done correctly, False in another cases
         """
 
-    def _load_documents(self, state: dict) -> bool:
-        """
-        Load documents from state.
-
-        Args:
-            state (dict): state with documents
-
-        Returns:
-            bool: True if documents were loaded, False in other cases
-        """
-
     def load(self, file_path: str) -> bool:
         """
         Load engine from state.
 
         Args:
-            file_path (str): state with documents
+            file_path (str): The path to the file with state
 
         Returns:
-            bool: True if documents were loaded, False in other cases
+            bool: True if engine was loaded, False in other cases
         """
 
     def retrieve_vectorized(self, query_vector: Vector) -> str | None:
@@ -350,6 +303,55 @@ class BasicSearchEngine:
             str | None: Answer document
 
         In case of corrupt input arguments, None is returned.
+        """
+
+    def _calculate_knn(
+        self, query_vector: Vector, document_vectors: list[Vector], n_neighbours: int
+    ) -> list[tuple[int, float]] | None:
+        """
+        Find nearest neighbours for a query vector.
+
+        Args:
+            query_vector (Vector): Vectorized query
+            document_vectors (list[Vector]): Vectorized documents
+            n_neighbours (int): Number of neighbours to return
+
+        Returns:
+            list[tuple[int, float]] | None: Nearest neighbours indices and distances
+
+        In case of corrupt input arguments, None is returned.
+        """
+
+    def _index_document(self, document: str) -> Vector | None:
+        """
+        Index document.
+
+        Args:
+            document (str): Document to index
+
+        Returns:
+            Vector | None: Returns document vector
+
+        In case of corrupt input arguments, None is returned.
+        """
+
+    def _dump_documents(self) -> dict:
+        """
+        Dump documents states for save the Engine.
+
+        Returns:
+            dict: document and document_vectors states
+        """
+
+    def _load_documents(self, state: dict) -> bool:
+        """
+        Load documents from state.
+
+        Args:
+            state (dict): state with documents
+
+        Returns:
+            bool: True if documents were loaded, False in other cases
         """
 
 
@@ -414,7 +416,7 @@ class NaiveKDTree:
 
     def build(self, vectors: list[Vector]) -> bool:
         """
-        Build tree by calling _build_tree method.
+        Build tree.
 
         Args:
             vectors (list[Vector]): Vectors for tree building
@@ -439,16 +441,12 @@ class NaiveKDTree:
         In case of corrupt input arguments, None is returned.
         """
 
-    def _find_closest(self, vector: Vector, k: int = 1) -> list[tuple[float, int]] | None:
+    def save(self) -> dict | None:
         """
-        Get k nearest neighbours for vector by filling best list.
-
-        Args:
-            vector (Vector): Vector for getting knn
-            k (int): The number of nearest neighbours to return
+        Save NaiveKDTree instance to state.
 
         Returns:
-            list[tuple[float, int]] | None: The list of k nearest neighbours
+            dict | None: state of the NaiveKDTree instance
 
         In case of corrupt input arguments, None is returned.
         """
@@ -464,12 +462,16 @@ class NaiveKDTree:
             bool: True is loaded successfully, False in other cases
         """
 
-    def save(self) -> dict | None:
+    def _find_closest(self, vector: Vector, k: int = 1) -> list[tuple[float, int]] | None:
         """
-        Save NaiveKDTree instance to state.
+        Get k nearest neighbours for vector by filling best list.
+
+        Args:
+            vector (Vector): Vector for getting knn
+            k (int): The number of nearest neighbours to return
 
         Returns:
-            dict | None: state of the NaiveKDTree instance
+            list[tuple[float, int]] | None: The list of k nearest neighbours
 
         In case of corrupt input arguments, None is returned.
         """
