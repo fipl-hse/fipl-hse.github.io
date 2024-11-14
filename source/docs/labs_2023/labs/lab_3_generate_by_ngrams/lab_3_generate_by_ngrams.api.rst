@@ -5,7 +5,7 @@ Submodules
 ----------
 
 
-.. automodule:: stubs.labs.lab_3_generate_by_ngrams.main
+.. automodule:: lab_3_generate_by_ngrams.main
    :members:
    :undoc-members:
    :show-inheritance:

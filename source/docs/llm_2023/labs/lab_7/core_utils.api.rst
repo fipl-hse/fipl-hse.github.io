@@ -5,7 +5,7 @@ Submodules
 ----------
 
 
-.. automodule:: stubs.core_utils.llm.llm_pipeline
+.. automodule:: core_utils.llm.llm_pipeline
    :members:
    :undoc-members:
    :show-inheritance:
@@ -13,7 +13,7 @@ Submodules
    :special-members: __init__, __str__, __len__, __getitem__, __iter__
 
 
-.. automodule:: stubs.core_utils.llm.metrics
+.. automodule:: core_utils.llm.metrics
    :members:
    :undoc-members:
    :show-inheritance:
@@ -21,7 +21,7 @@ Submodules
    :special-members: __init__, __str__, __len__, __getitem__, __iter__
 
 
-.. automodule:: stubs.core_utils.llm.raw_data_importer
+.. automodule:: core_utils.llm.raw_data_importer
    :members:
    :undoc-members:
    :show-inheritance:
@@ -29,7 +29,7 @@ Submodules
    :special-members: __init__, __str__, __len__, __getitem__, __iter__
 
 
-.. automodule:: stubs.core_utils.llm.raw_data_preprocessor
+.. automodule:: core_utils.llm.raw_data_preprocessor
    :members:
    :undoc-members:
    :show-inheritance:
@@ -37,7 +37,7 @@ Submodules
    :special-members: __init__, __str__, __len__, __getitem__, __iter__
 
 
-.. automodule:: stubs.core_utils.llm.task_evaluator
+.. automodule:: core_utils.llm.task_evaluator
    :members:
    :undoc-members:
    :show-inheritance:

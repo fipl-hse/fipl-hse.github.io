@@ -6,9 +6,9 @@ import pathlib
 
 from networkx import DiGraph
 
-from stubs.core_utils.ctlr.article.article import Article
-from stubs.core_utils.ctlr.pipeline import (AbstractCoNLLUAnalyzer, CoNLLUDocument, LibraryWrapper,
-                                            PipelineProtocol, StanzaDocument, TreeNode)
+from core_utils.ctlr.article.article import Article
+from core_utils.ctlr.pipeline import (AbstractCoNLLUAnalyzer, CoNLLUDocument, LibraryWrapper,
+                                      PipelineProtocol, StanzaDocument, TreeNode)
 
 
 class CorpusManager:

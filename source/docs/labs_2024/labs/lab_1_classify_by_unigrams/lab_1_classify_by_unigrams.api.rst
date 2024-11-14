@@ -1,11 +1,11 @@
-lab\_1 package
-==============
+lab\_1\_classify\_by\_unigrams package
+======================================
 
 Submodules
 ----------
 
 
-.. automodule:: stubs.labs.lab_1_classify_by_unigrams.main
+.. automodule:: lab_1_classify_by_unigrams.main
    :members:
    :undoc-members:
    :show-inheritance:

@@ -6,8 +6,8 @@ import pathlib
 from pathlib import Path
 from typing import Optional, Union
 
-from stubs.core_utils.ctlr.article.article import (Article, ArtifactType, date_from_meta,
-                                                   get_article_id_from_filepath)
+from core_utils.ctlr.article.article import (Article, ArtifactType, date_from_meta,
+                                             get_article_id_from_filepath)
 
 
 def to_raw(article: Article) -> None:

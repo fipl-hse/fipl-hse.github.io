@@ -5,7 +5,7 @@ Interface definitions for text processing pipelines.
 from dataclasses import dataclass
 from typing import Protocol
 
-from stubs.core_utils.ctlr.article.article import Article
+from core_utils.ctlr.article.article import Article
 
 
 class PipelineProtocol(Protocol):

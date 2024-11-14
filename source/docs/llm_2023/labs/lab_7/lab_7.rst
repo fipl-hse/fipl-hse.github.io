@@ -176,17 +176,17 @@ Stage 1. Introduce importer abstraction: ``RawDataImporter``
 First of all, you need to import the chosen HuggingFace dataset.
 
 To download your dataset inside your program you need to implement
-:py:class:`stubs.labs.lab_7_llm.main.RawDataImporter` abstraction.
+:py:class:`lab_7_llm.main.RawDataImporter` abstraction.
 
 This class inherits from
-:py:class:`stubs.core_utils.llm.raw_data_importer.AbstractRawDataImporter` abstraction,
+:py:class:`core_utils.llm.raw_data_importer.AbstractRawDataImporter` abstraction,
 which has the following internal attributes:
 
     * ``self._hf_name`` - string with the name of the HuggingFace dataset;
     * ``self._raw_data`` - downloaded pd.DataFrame.
 
 .. important:: To get data from ``RawDataImporter`` abstraction, use
-               :py:attr:`stubs.core_utils.llm.raw_data_importer.AbstractRawDataImporter.raw_data` property.
+               :py:attr:`core_utils.llm.raw_data_importer.AbstractRawDataImporter.raw_data` property.
 
 .. note:: Property is a method with a ``@property`` decorator
           that can be accessed like a field.
@@ -203,7 +203,7 @@ written in ``settings.json`` file.
 Stage 1.1. Download dataset
 """""""""""""""""""""""""""
 
-Implement :py:meth:`stubs.labs.lab_7_llm.main.RawDataImporter.obtain` method
+Implement :py:meth:`lab_7_llm.main.RawDataImporter.obtain` method
 which allows to download dataset and fill ``self._raw_data`` attribute.
 
 You have to use
@@ -232,17 +232,17 @@ Before putting the dataset into the model we have to analyze and preprocess it.
 
 To perform all needed preprocessing and analyze your dataset
 inside your program you need to implement
-:py:class:`stubs.labs.lab_7_llm.main.RawDataPreprocessor` abstraction.
+:py:class:`lab_7_llm.main.RawDataPreprocessor` abstraction.
 
 This class inherits from
-:py:class:`stubs.core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor` abstraction,
+:py:class:`core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor` abstraction,
 which has the following internal attributes:
 
     * ``self._raw_data`` - downloaded pd.DataFrame;
     * ``self._data`` - preprocessed pd.DataFrame.
 
 .. important:: To get processed data from ``RawDataPreprocessor`` abstraction, use
-               :py:attr:`stubs.core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor.data` property.
+               :py:attr:`core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor.data` property.
 
 See the intended instantiation:
 
@@ -262,7 +262,7 @@ and identify potential problems such as missing values or outliers.
 This helps to better prepare your data, improve model performance
 and increase forecast accuracy.
 
-Implement :py:meth:`stubs.labs.lab_7_llm.main.RawDataPreprocessor.analyze`
+Implement :py:meth:`lab_7_llm.main.RawDataPreprocessor.analyze`
 method which allows to analyze raw dataset.
 
 Method should return a dictionary with the following dataset properties.
@@ -312,7 +312,7 @@ Data cleaning, label coding and more contribute to the quality and efficiency of
 allowing it to better extract patterns from the data.
 
 Implement method
-:py:meth:`stubs.labs.lab_7_llm.main.RawDataPreprocessor.transform`
+:py:meth:`lab_7_llm.main.RawDataPreprocessor.transform`
 which allows to preprocess dataset.
 
 .. important:: You can find all needed preprocessing for your
@@ -326,7 +326,7 @@ which allows to preprocess dataset.
 
 .. note:: According to preprocessing instructions in task cards,
           you should change column names. To do this use fields of the
-          :py:class:`stubs.core_utils.llm.raw_data_preprocessor.ColumnNames` abstraction.
+          :py:class:`core_utils.llm.raw_data_preprocessor.ColumnNames` abstraction.
 
 Save your preprocessed dataset to ``self._data`` attribute.
 
@@ -340,7 +340,7 @@ we will use PyTorch ``DataLoader`` abstraction, which will allow us
 to efficiently load the data into the model's memory,
 process it in batches and pass it to the model.
 
-Implement :py:class:`stubs.labs.lab_7_llm.main.TaskDataset` abstraction
+Implement :py:class:`lab_7_llm.main.TaskDataset` abstraction
 to convert ``pd.DataFrame`` to ``Dataset`` and override some methods.
 
 This class inherits from ``torch.utils.data.Dataset`` abstraction,
@@ -367,7 +367,7 @@ Stage 3.1. Get the dataset length
 In the next two steps, we will override some methods
 that will allow us to further work with PyTorch ``DataLoader`` abstraction.
 
-Implement :py:meth:`stubs.labs.lab_7_llm.main.TaskDataset.__len__` method
+Implement :py:meth:`lab_7_llm.main.TaskDataset.__len__` method
 which allows to get the number of items in dataset.
 PyTorch ``DataLoader`` uses this method
 to determine the total number of batches in an epoch.
@@ -375,7 +375,7 @@ to determine the total number of batches in an epoch.
 Stage 3.2. Retrieve an item from the dataset
 """"""""""""""""""""""""""""""""""""""""""""
 
-Implement :py:meth:`stubs.labs.lab_7_llm.main.TaskDataset.__getitem__` method
+Implement :py:meth:`lab_7_llm.main.TaskDataset.__getitem__` method
 which allows to retrieve an item from the dataset by index.
 
 PyTorch ``DataLoader`` calls this method to retrieve data for each batch.
@@ -388,7 +388,7 @@ Depending on the task, the number of columns may vary.
 Stage 3.3. Retrieve data
 """"""""""""""""""""""""
 
-Implement :py:attr:`stubs.labs.lab_7_llm.main.TaskDataset.data` property
+Implement :py:attr:`lab_7_llm.main.TaskDataset.data` property
 which allows to access the preprocessed ``pd.DataFrame``.
 
 Stage 4. Introduce model pipeline abstraction: ``LLMPipeline``
@@ -398,10 +398,10 @@ Now we are ready to run our model.
 
 To initialize our model, analyze its properties,
 infer model on the whole dataset and one sample from it you need to implement
-:py:class:`stubs.labs.lab_7_llm.main.LLMPipeline` abstraction.
+:py:class:`lab_7_llm.main.LLMPipeline` abstraction.
 
 This class inherits from
-:py:class:`stubs.core_utils.llm.llm_pipeline.AbstractLLMPipeline` abstraction,
+:py:class:`core_utils.llm.llm_pipeline.AbstractLLMPipeline` abstraction,
 which has the following internal attributes:
 
     * ``self._model_name`` - a string with the model name;
@@ -432,7 +432,7 @@ Stage 4.1. Analyze model properties
 """""""""""""""""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.analyze_model`
+:py:meth:`lab_7_llm.main.LLMPipeline.analyze_model`
 which allows to analyze model properties.
 
 Method should return a dictionary with the following model properties.
@@ -479,7 +479,7 @@ Stage 4.2. Infer one sample from dataset
 """"""""""""""""""""""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.infer_sample`,
+:py:meth:`lab_7_llm.main.LLMPipeline.infer_sample`,
 which allows to infer one sample from dataset.
 
 .. note:: If the model is not defined, method returns **None**.
@@ -505,7 +505,7 @@ Stage 4.4. Infer dataset
 """"""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.infer_dataset`,
+:py:meth:`lab_7_llm.main.LLMPipeline.infer_dataset`,
 which allows to infer the dataset.
 
 While iterating through dataset samples,
@@ -532,12 +532,12 @@ that each batch conceptually aligns with the inference on a single sample.
 
 Also, you may have already noticed that
 there is some duplication in methods
-:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.infer_sample`
-and :py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline.infer_dataset`.
+:py:meth:`lab_7_llm.main.LLMPipeline.infer_sample`
+and :py:meth:`lab_7_llm.main.LLMPipeline.infer_dataset`.
 
 To be able to eliminate all aforementioned problems
 first you need to implement method
-:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline._infer_batch`
+:py:meth:`lab_7_llm.main.LLMPipeline._infer_batch`
 which allows to infer a single batch.
 
 .. note:: There are going to be a few peculiarities
@@ -554,14 +554,14 @@ Now we have our predictions and can evaluate obtained result.
 
 To be able to evaluate the performance of the model
 with appropriate metrics you need to implement
-:py:class:`stubs.labs.lab_7_llm.main.TaskEvaluator` abstraction.
+:py:class:`lab_7_llm.main.TaskEvaluator` abstraction.
 
 This class inherits from
-:py:class:`stubs.core_utils.llm.task_evaluator.AbstractTaskEvaluator` abstraction,
+:py:class:`core_utils.llm.task_evaluator.AbstractTaskEvaluator` abstraction,
 which has the following internal attributes:
 
     * ``self._metrics`` - a field of
-      :py:class:`stubs.core_utils.llm.metrics.Metrics` abstraction
+      :py:class:`core_utils.llm.metrics.Metrics` abstraction
       with suitable metric;
     * ``self._data_path`` - a string with the path to the ``predictions.csv`` file.
 
@@ -579,7 +579,7 @@ Stage 5.1. Evaluate model performance
 """""""""""""""""""""""""""""""""""""
 
 Implement method
-:py:meth:`stubs.labs.lab_7_llm.main.TaskEvaluator.run`
+:py:meth:`lab_7_llm.main.TaskEvaluator.run`
 which allows to evaluate the predictions against the
 references using the specified metric.
 
@@ -634,7 +634,7 @@ Stage 6.1. Initialize core application
 Let's start implementing the service with initialisation
 all needed instances for a pipeline and web-service.
 To do this, implement
-:py:meth:`stubs.labs.lab_7_llm.service.init_application` method.
+:py:meth:`lab_7_llm.service.init_application` method.
 
 .. important:: Remember, you have to implement your service using
               ``FastAPI`` web framework.
@@ -683,13 +683,13 @@ So, an example of start page might look like this:
 .. image:: ../../_static/site.png
 
 And now we are ready to implement
-:py:meth:`stubs.labs.lab_7_llm.service.root` method
+:py:meth:`lab_7_llm.service.root` method
 which allows to create a root endpoint of the service.
 The method should return an HTML page using ``TemplateResponse``
 which renders an HTML page based on a specific template and passed data.
 Before that you need to create a template using
 ``Jinja2Templates`` with ``assets`` directory and
-call :py:meth:`stubs.labs.lab_7_llm.service.init_application` method.
+call :py:meth:`lab_7_llm.service.init_application` method.
 
 .. note:: Use ``@app.get("/")``
           decorator to create a route for the root URL.
@@ -701,11 +701,11 @@ When a user clicks the button on the start page,
 a POST request must be initiated to the main endpoint
 which is responsible for processing the data using LLM pipeline.
 
-Implement :py:meth:`stubs.labs.lab_7_llm.service.infer` method
+Implement :py:meth:`lab_7_llm.service.infer` method
 which allows to create a main endpoint for model call.
 
 To make a query in an ``entry field`` you need to implement
-:py:class:`stubs.labs.lab_7_llm.service.Query` abstraction
+:py:class:`lab_7_llm.service.Query` abstraction
 with ``question`` field which contains text of the query.
 Use ``@dataclass`` decorator from ``pydantic`` module.
 

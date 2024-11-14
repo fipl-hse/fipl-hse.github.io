@@ -5,7 +5,7 @@ Submodules
 ----------
 
 
-.. automodule:: stubs.labs.lab_2_tokenize_by_bpe.main
+.. automodule:: lab_2_tokenize_by_bpe.main
    :members:
    :undoc-members:
    :show-inheritance:

@@ -4,7 +4,7 @@ lab\_6\_pipeline package
 Submodules
 ----------
 
-.. automodule:: stubs.labs.lab_6_pipeline.pipeline
+.. automodule:: lab_6_pipeline.pipeline
    :members:
    :undoc-members:
    :show-inheritance:

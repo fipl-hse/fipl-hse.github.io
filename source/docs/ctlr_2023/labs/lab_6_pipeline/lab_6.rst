@@ -256,12 +256,12 @@ Responsibility Principle, we will quickly realize that it is not the
 responsibility of the Pipeline to know where the dataset files are
 located and how to read/write to them, etc. Therefore, we need a new
 abstraction to be responsible for such tasks. We call it
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager`.
+:py:class:`lab_6_pipeline.pipeline.CorpusManager`.
 
 Stage 1.1. Introduce ``CorpusManager`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The :py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager` is an entity
+The :py:class:`lab_6_pipeline.pipeline.CorpusManager` is an entity
 that knows where the dataset is placed
 and what are the available files of this dataset.
 
@@ -271,7 +271,7 @@ It should be instantiated with the following instruction:
 
    corpus_manager = CorpusManager(path_to_raw_txt_data=ASSETS_PATH)
 
-The :py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager` instance validates
+The :py:class:`lab_6_pipeline.pipeline.CorpusManager` instance validates
 the dataset provided and saves all the constructor arguments in attributes
 with corresponding names. Each instance should also have an additional
 attribute ``self._storage`` of a dictionary type and filled with
@@ -285,9 +285,9 @@ Stage 1.2. Implement a method for a dataset validation
 
 Pipeline expects that dataset is collected by scrapper. It must not
 start working if dataset is invalid. The very first thing that should
-happen after :py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager`
+happen after :py:class:`lab_6_pipeline.pipeline.CorpusManager`
 is instantiated is a dataset validation.
-Implement :py:meth:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager._validate_dataset`
+Implement :py:meth:`lab_6_pipeline.pipeline.CorpusManager._validate_dataset`
 method.
 
 .. note:: Remember to use ``pathlib`` module in order
@@ -316,11 +316,11 @@ When dataset is valid, method returns ``None``. Otherwise:
 Stage 1.3. Implement a method for filling files storage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-During initialization of :py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager`,
+During initialization of :py:class:`lab_6_pipeline.pipeline.CorpusManager`,
 it should scan the provided folder path and register each dataset entry.
 All the storage is represented as ``self._storage`` attribute.
 Filling the storage should be done by executing
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager._scan_dataset` method.
+:py:meth:`lab_6_pipeline.pipeline.CorpusManager._scan_dataset` method.
 
 .. note:: Call this method during initialization and save the results in
           ``self._storage`` attribute.
@@ -330,9 +330,9 @@ Filling the storage should be done by executing
 
 The method should contain logic for iterating over the content of the
 folder, finding all ``N_raw.txt`` files and creating
-:py:class:`stubs.core_utils.ctlr.article.article.Article` instance for each file.
+:py:class:`core_utils.ctlr.article.article.Article` instance for each file.
 
-.. note:: The :py:class:`stubs.core_utils.ctlr.article.article.Article` constructor
+.. note:: The :py:class:`core_utils.ctlr.article.article.Article` constructor
           expects URL as the first argument. It
           should be safe to pass ``None`` instead of the real URL. Pipeline
           does not need to know where was the article downloaded from.
@@ -340,7 +340,7 @@ folder, finding all ``N_raw.txt`` files and creating
 
 As it was stated before, ``self._storage`` attribute is just a
 dictionary. Keys are ids of the files, values are instances of the
-:py:class:`stubs.core_utils.ctlr.article.article.Article` class.
+:py:class:`core_utils.ctlr.article.article.Article` class.
 For example, pipeline finds a file ``1_raw.txt``.
 Then we put new pair to the storage:
 
@@ -348,7 +348,7 @@ Then we put new pair to the storage:
 
    self._storage[1] = Article(url=None, article_id=1)
 
-.. note:: The :py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager`
+.. note:: The :py:class:`lab_6_pipeline.pipeline.CorpusManager`
           knows where are the files,
           it can easily find them by id, but it is not its responsibility
           to perform actual file reads and writes.
@@ -359,16 +359,16 @@ Stage 1.4. Implement a method for retrieval of files storage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``self._storage`` attribute is not a part of
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager`
+:py:class:`lab_6_pipeline.pipeline.CorpusManager`
 interface, therefore we need a special getter - a method that just
 returns a storage value. At this stage, you need to implement
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
+:py:meth:`lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
 
 .. attention:: Can you explain why we might need getters?
 
-Eventually, :py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager` should return
-a dictionary of :py:class:`stubs.core_utils.ctlr.article.article.Article` instances via
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
+Eventually, :py:class:`lab_6_pipeline.pipeline.CorpusManager` should return
+a dictionary of :py:class:`core_utils.ctlr.article.article.Article` instances via
+:py:meth:`lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
 
 Stage 2. Introduce abstraction for processing texts: ``TextProcessingPipeline``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -391,11 +391,11 @@ Stage 2.1. Implement simplified logic of ``TextProcessingPipeline``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All of the above stages are necessary for implementing simplified
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline` abstraction.
+:py:class:`lab_6_pipeline.pipeline.TextProcessingPipeline` abstraction.
 It takes the raw text of the article and saves the processed
 (lowercased with no punctuation) text to a file ``N_cleaned.txt``.
 The abstraction should have ``self._corpus`` attribute which represents your
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager` abstraction.
+:py:class:`lab_6_pipeline.pipeline.CorpusManager` abstraction.
 
 It should be instantiated with the following instruction:
 
@@ -404,16 +404,16 @@ It should be instantiated with the following instruction:
    pipeline = TextProcessingPipeline(corpus_manager)
 
 It is executed with a simple interface method
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline.run`
+:py:meth:`lab_6_pipeline.pipeline.TextProcessingPipeline.run`
 that you need to implement. Once executed,
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline.run`
+:py:meth:`lab_6_pipeline.pipeline.TextProcessingPipeline.run`
 iterates through the available articles taken from
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager`,
+:py:class:`lab_6_pipeline.pipeline.CorpusManager`,
 reads each file, performs basic
 preprocessing and writes processed text to files.
 
 .. note:: It is mandatory to get articles with the
-          :py:meth:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
+          :py:meth:`lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
 
 Stage 2.2. Save the results of text preprocessing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -421,9 +421,9 @@ Stage 2.2. Save the results of text preprocessing
 .. important:: **Stages 0-2.2** are required to get the **mark 4**.
 
 It is mandatory to save generated text to file in the
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline.run` method.
+:py:meth:`lab_6_pipeline.pipeline.TextProcessingPipeline.run` method.
 In order to do this, inspect the ``core_utils/article/io.py`` module.
-Use :py:func:`stubs.core_utils.ctlr.article.io.to_cleaned` function
+Use :py:func:`core_utils.ctlr.article.io.to_cleaned` function
 to save cleaned text to the appropriate folder. Call this
 function with the article instance you want to save text for.
 
@@ -450,7 +450,7 @@ of the format fields refer to the `dedicated
 page <https://universaldependencies.org/format.html>`__.
 
 As all article text information storing and managing is done by the
-:py:class:`stubs.core_utils.ctlr.article.article.Article` abstraction,
+:py:class:`core_utils.ctlr.article.article.Article` abstraction,
 see :ref:`ctlr-article-label` before proceeding to the next stages.
 
 Stage 3.1. Introduce ``UDPipeAnalyzer`` abstraction
@@ -459,7 +459,7 @@ Stage 3.1. Introduce ``UDPipeAnalyzer`` abstraction
 Given that the present laboratory work implements text processing via more than one
 linguistic model (UDPipe and Stanza), there is a need for unified interface. For this
 reason, you are required to implement a wrapper abstraction over UDPipe model:
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer`. This abstraction is responsible
+:py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer`. This abstraction is responsible
 for processing text and outputting its linguistic features in CoNLL-U format.
 
 Notice that this class inherits from
@@ -475,13 +475,13 @@ First, the wrapper should be instantiated with the following instruction:
    udpipe_analyzer = UDPipeAnalyzer()
 
 Wrapper does not accept any arguments during initialization, but calls protected method
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap`,
+:py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap`,
 which is responsible for loading and setting up the UDPipe model.
 
 .. hint:: Path to the required UDPipe model is stored in
           ``core_utils/constants.py`` module as ``UDPIPE_MODEL_PATH``.
 
-The :py:meth:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap` method
+The :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap` method
 must read the UDPipe model via ``spacy_udpipe`` library, add CoNLL-U formatter
 to the model pipeline and define specific configurations for the model.
 
@@ -490,15 +490,15 @@ to the model pipeline and define specific configurations for the model.
          <https://github.com/TakeLab/spacy-udpipe/blob/master/README.md>`__
          to learn more about appropriate configuration details.
 
-Finally, :py:meth:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap`
+Finally, :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap`
 returns the resulting model, which is further stored in the protected
 ``self._analyzer`` attribute of
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer` instance.
+:py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer` instance.
 
 .. note:: Naturally, methods of ``spacy-udpipe`` module return an instance of
           its own abstraction ``Language``, not the instance of ``AbstractCoNLLUAnalyzer``,
           as specified in the typing annotation of
-          :py:meth:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap`.
+          :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap`.
           However, given that the laboratory work covers more than one language analyzer,
           it is necessary to unite all the different types of analyzer instances used.
           For this exact reason class ``AbstractCoNLLUAnalyzer`` is defined: it does not
@@ -511,7 +511,7 @@ Stage 3.2. Process text via ``UDPipeAnalyzer`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Next, you are required to implement
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer.analyze` method.
+:py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.analyze` method.
 It is a public method used to process texts into CoNLL-U formatted markup.
 The method accepts a list of strings and produces a list of strings.
 
@@ -526,24 +526,24 @@ to retrieve linguistic features of the text in a required format.
 Stage 3.3. Save linguistic markup via ``UDPipeAnalyzer`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Finally, :py:class:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer` abstraction
+Finally, :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer` abstraction
 must possess a method for producing a file with ``.conllu`` extension with
 retrieved linguistic markup.
-Method :py:meth:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu` does not perform
+Method :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu` does not perform
 any analysis, but operates fields of
-:py:class:`stubs.core_utils.ctlr.article.article.Article` instance.
+:py:class:`core_utils.ctlr.article.article.Article` instance.
 
-The method accepts one instance of :py:class:`stubs.core_utils.ctlr.article.article.Article`
+The method accepts one instance of :py:class:`core_utils.ctlr.article.article.Article`
 as an argument. It is presumed that the given article object
 has a filled attribute with CoNLL-U markup. The method thus uses interface of
-the :py:class:`stubs.core_utils.ctlr.article.article.Article` instance to save the stored
+the :py:class:`core_utils.ctlr.article.article.Article` instance to save the stored
 information into the ``N_udpipe_conllu.conllu`` file,
 where ``N`` corresponds to the identifier of the article.
 
 .. note:: It is mandatory to use
-          :py:meth:`stubs.core_utils.ctlr.article.article.Article.get_file_path`
+          :py:meth:`core_utils.ctlr.article.article.Article.get_file_path`
           and
-          :py:meth:`stubs.core_utils.ctlr.article.article.Article.get_conllu_info`
+          :py:meth:`core_utils.ctlr.article.article.Article.get_conllu_info`
           methods.
 
 Stage 3.4. Extend ``TextProcessingPipeline`` with morphological analysis logic
@@ -556,22 +556,22 @@ data retrieval you need to define overall processing logic to fill article insta
 with markup and save processing result in the UD format. All
 processing and filling actions is the responsibility of pipeline.
 So you need to extend
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline`.
+:py:class:`lab_6_pipeline.pipeline.TextProcessingPipeline`.
 
 For mark 6, apart from punctuation removal and casting to
 lowercase, you must implement the extraction of all information required by
 UD format and save it in the corresponding ``.conllu`` files. In other words,
 the execution of the
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline.run` method
+:py:meth:`lab_6_pipeline.pipeline.TextProcessingPipeline.run` method
 must result in producing both ``N_cleaned.txt`` and ``N_udpipe_conllu.conllu`` files
 for each available article.
 
 In order to achieve that, first, make sure that during the instantiation of the pipeline
-an instance of :py:class:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer` model is accepted
+an instance of :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer` model is accepted
 as an argument and saved to the ``_analyzer`` protected attribute.
 
 Then, during the execution of
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline.run` method,
+:py:meth:`lab_6_pipeline.pipeline.TextProcessingPipeline.run` method,
 apart from cleaning of each article perform the following:
 
 1. Extract ConLLU formatted markup of the text via analyzer.
@@ -579,9 +579,9 @@ apart from cleaning of each article perform the following:
 3. Save the stored markup to ``.conllu`` file via analyzer interface.
 
 .. note:: It is mandatory to use
-          :py:meth:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer.analyze`,
-          :py:meth:`stubs.core_utils.ctlr.article.article.Article.set_conllu_info` and
-          :py:meth:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu` methods.
+          :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.analyze`,
+          :py:meth:`core_utils.ctlr.article.article.Article.set_conllu_info` and
+          :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu` methods.
 
 Stage 4. Extract linguistic markup using Stanza model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -598,20 +598,20 @@ Stage 4.1. Introduce ``StanzaAnalyzer`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Implement
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer` abstraction.
+:py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer` abstraction.
 It is a wrapper over a Stanza model. Similarly, its responsibility
 is processing text and outputting its linguistic features in CoNLL-U format.
 
 Notice that this wrapper inherits from ``LibraryWrapper`` protocol,
 which means that its interface is dictated by the protocol and identical to that of
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer` abstraction.
-In other words, :py:class:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer` and
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer` have the same function and
+:py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer` abstraction.
+In other words, :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer` and
+:py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer` have the same function and
 interface, meaning that they can be used interchangeably, but their inner workings
 are different as they are based on separate models. Thus, the resulting processing
 may also vary.
 
-The :py:class:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer`
+The :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer`
 wrapper should be instantiated with the following instruction:
 
 .. code:: python
@@ -619,10 +619,10 @@ wrapper should be instantiated with the following instruction:
    stanza_analyzer = StanzaAnalyzer()
 
 Wrapper does not accept any arguments during initialization, but calls protected method
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer._bootstrap`,
+:py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer._bootstrap`,
 which is responsible for downloading and initializing the Stanza model.
 
-The :py:meth:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer._bootstrap` method must
+The :py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer._bootstrap` method must
 download via ``stanza`` library a model for the Russian language with the following
 functionality:
 
@@ -633,7 +633,7 @@ functionality:
 
 The method then initializes an instance of Stanza model and returns it.
 The model returned is further stored in the protected ``self._analyzer`` attribute of
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer` instance.
+:py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer` instance.
 
 .. tip:: Refer to the corresponding seminar materials
          or inspect `the official repository of the library
@@ -644,7 +644,7 @@ Stage 4.2. Process text via ``StanzaAnalyzer`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Next, you are required to implement
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer.analyze` method.
+:py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.analyze` method.
 It is a public method used to process texts into CoNLL-U formatted markup.
 The method accepts a list of strings and produces a list of
 ``StanzaDocument`` instances.
@@ -660,12 +660,12 @@ to retrieve linguistic features of the text.
 Stage 4.3. Save linguistic markup via ``StanzaAnalyzer`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Finally, :py:class:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer` abstraction
+Finally, :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer` abstraction
 must possess a method for producing a file with ``.conllu`` extension with
 retrieved linguistic markup.
-Method :py:meth:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer.to_conllu`
+Method :py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.to_conllu`
 does not perform any analysis but operates fields of
-:py:class:`stubs.core_utils.ctlr.article.article.Article`
+:py:class:`core_utils.ctlr.article.article.Article`
 instance along with functions from ``stanza.utils.conll``.
 
 .. tip:: To learn more about the Stanza library interface,
@@ -674,26 +674,26 @@ instance along with functions from ``stanza.utils.conll``.
          <https://stanfordnlp.github.io/stanza>`__.
 
 The method accepts
-one instance of :py:class:`stubs.core_utils.ctlr.article.article.Article` as an argument.
+one instance of :py:class:`core_utils.ctlr.article.article.Article` as an argument.
 It is presumed that the given article object has a filled attribute with CoNLL-U markup.
 The method thus uses interface of the
-:py:class:`stubs.core_utils.ctlr.article.article.Article`
+:py:class:`core_utils.ctlr.article.article.Article`
 instance to save the stored UD information into the ``N_stanza_conllu.conllu`` file,
 where ``N`` corresponds to the identifier of the article.
 
 .. tip:: It is mandatory to use
-         :py:meth:`stubs.core_utils.ctlr.article.article.Article.get_file_path`
+         :py:meth:`core_utils.ctlr.article.article.Article.get_file_path`
          and
-         :py:meth:`stubs.core_utils.ctlr.article.article.Article.get_conllu_info`
+         :py:meth:`core_utils.ctlr.article.article.Article.get_conllu_info`
          methods.
 
 Stage 4.4. Ensure compatibility of ``TextProcessingPipeline`` with ``StanzaAnalyzer``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Since both :py:class:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer`
-and :py:class:`stubs.labs.lab_6_pipeline.pipeline.UDPipeAnalyzer` derive from the same interface
+Since both :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer`
+and :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer` derive from the same interface
 protocol and carry the same functionality, there is no need to adjust
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline` logic to working with
+:py:class:`lab_6_pipeline.pipeline.TextProcessingPipeline` logic to working with
 Stanza wrapper. Perform a self-check by ensuring that your code works accordingly to
 the following examples.
 
@@ -727,8 +727,8 @@ files for each available article, with no ``.conllu`` files:
     pipeline.run()
 
 If you encounter errors from using
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline`
-with :py:class:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer`,
+:py:class:`lab_6_pipeline.pipeline.TextProcessingPipeline`
+with :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer`,
 then you must have made a mistake during either implementation of the
 model wrapper or markup extraction during pipeline execution.
 
@@ -761,10 +761,10 @@ Stage 5.1 Extend ``StanzaAnalyzer`` with CoNLL-U parsing functionality
 
 In order to process information stored in the ``.conllu`` files,
 you are required to implement a
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer.from_conllu` method.
+:py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.from_conllu` method.
 
 Its responsibility is the opposite of that of
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.StanzaAnalyzer.to_conllu` method: it
+:py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.to_conllu` method: it
 accepts article instance, derives the name of the file where its UD properties are stored,
 and converts its contents to the ``StanzaDocument`` via ``stanza.utils.conll``.
 
@@ -777,10 +777,10 @@ Stage 5.2. Introduce ``POSFrequencyPipeline`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now we are going to work with
-the :py:class:`stubs.labs.lab_6_pipeline.pipeline.POSFrequencyPipeline` class.
-The :py:class:`stubs.labs.lab_6_pipeline.pipeline.POSFrequencyPipeline`
+the :py:class:`lab_6_pipeline.pipeline.POSFrequencyPipeline` class.
+The :py:class:`lab_6_pipeline.pipeline.POSFrequencyPipeline`
 is instantiated in the similar manner as the
-:py:class:`stubs.labs.lab_6_pipeline.pipeline.TextProcessingPipeline`.
+:py:class:`lab_6_pipeline.pipeline.TextProcessingPipeline`.
 During initialization it must accept an instance of ``CorpusManager``
 and an instance of ``StanzaAnalyzer``.
 
@@ -798,20 +798,20 @@ Stage 5.3. Implement core logic of ``POSFrequencyPipeline``
 
 .. important:: **Stages 0-5.3** are required to get the **mark 8**.
 
-The :py:class:`stubs.labs.lab_6_pipeline.pipeline.POSFrequencyPipeline`
+The :py:class:`lab_6_pipeline.pipeline.POSFrequencyPipeline`
 is executed with the same interface method
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.POSFrequencyPipeline.run`
+:py:meth:`lab_6_pipeline.pipeline.POSFrequencyPipeline.run`
 that you need to implement.
 
 Once executed,
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.POSFrequencyPipeline.run`:
+:py:meth:`lab_6_pipeline.pipeline.POSFrequencyPipeline.run`:
 
 1. Iterates through the available articles taken from
-   :py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager`.
+   :py:class:`lab_6_pipeline.pipeline.CorpusManager`.
 2. Retrieves UD information for each article via ``StanzaAnalyzer`` interface
    (notice only ``N_stanza_conllu.conllu`` files can be used).
 3. Calculates frequencies of each part of speech via protected method
-   :py:meth:`stubs.labs.lab_6_pipeline.pipeline.POSFrequencyPipeline._count_frequencies`,
+   :py:meth:`lab_6_pipeline.pipeline.POSFrequencyPipeline._count_frequencies`,
    which accepts article instance and returns the dictionary
    in the format ``{<POS>: <number of occurrences>}``.
 4. Writes them to the meta file via ``Article`` instance interface.
@@ -819,12 +819,12 @@ Once executed,
    convention ``N_image.png``.
 
 .. note:: It is mandatory to get articles with the
-          :py:meth:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
+          :py:meth:`lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
 
-.. note:: It is mandatory to use :py:meth:`stubs.core_utils.ctlr.article.article.Article.get_file_path`,
-          :py:meth:`stubs.core_utils.ctlr.article.article.Article.set_pos_info` methods and
-          :py:func:`stubs.core_utils.ctlr.article.io.to_meta`,
-          :py:func:`stubs.core_utils.ctlr.article.io.from_meta` functions.
+.. note:: It is mandatory to use :py:meth:`core_utils.ctlr.article.article.Article.get_file_path`,
+          :py:meth:`core_utils.ctlr.article.article.Article.set_pos_info` methods and
+          :py:func:`core_utils.ctlr.article.io.to_meta`,
+          :py:func:`core_utils.ctlr.article.io.from_meta` functions.
 
 .. attention:: You have to create ``EmptyFileError`` exception class and to
                raise it when an article file is empty.
@@ -832,7 +832,7 @@ Once executed,
 .. attention:: Make sure that resulting meta files are valid: they must
                contain no more than one dictionary-like object.
 
-For visualization, you need to use :py:func:`stubs.core_utils.ctlr.visualizer.visualize`
+For visualization, you need to use :py:func:`core_utils.ctlr.visualizer.visualize`
 function.
 
 Sample usage:
@@ -862,7 +862,7 @@ Stage 6.1. Introduce ``PatternSearchPipeline`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now we are going to work with
-the :py:class:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline` class.
+the :py:class:`lab_6_pipeline.pipeline.PatternSearchPipeline` class.
 During instantiation it must accept an instance of ``CorpusManager``,
 instance of ``StanzaAnalyzer`` and tuple of POS tags
 for required syntactic pattern.
@@ -906,16 +906,16 @@ Example of the graph for the sentence: Я учусь в университете
 
 In order to make a graph of syntactic dependencies for each sentence in the article,
 you are required to implement a
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs` method.
+:py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs` method.
 
 The method accepts
-one instance of :py:class:`stubs.core_utils.ctlr.pipeline.CoNLLUDocument` as an argument.
+one instance of :py:class:`core_utils.ctlr.pipeline.CoNLLUDocument` as an argument.
 It is presumed that the given document object
 contains information from ``conllu`` file
 which was obtained using
-:py:meth:`stubs.core_utils.ctlr.pipeline.LibraryWrapper.from_conllu` method.
+:py:meth:`core_utils.ctlr.pipeline.LibraryWrapper.from_conllu` method.
 
-The :py:meth:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs` method
+The :py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs` method
 iterates through each sentence in the article and creates nodes and edges for the words
 in the sentence. Pass ``upos`` as ``label`` argument when creating node and
 ``deprel`` as a ``label`` argument when creating edge.
@@ -964,19 +964,19 @@ about the received patterns or calculate some statistics we need to use
 a more traditional way of storing information.
 
 For these aims there are
-:py:class:`stubs.core_utils.ctlr.pipeline.TreeNode` class.
+:py:class:`core_utils.ctlr.pipeline.TreeNode` class.
 It stores information about the node of the tree.
 You have to instantiate it with the POS tag,
 text and list of dependent children of your node.
 
 To add all children to this list you have to implement a
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline._add_children` method.
+:py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._add_children` method.
 It accepts the current graph - an instance of
 `DiGraph <https://networkx.org/documentation/stable/reference/classes/digraph.html>`__ class,
 a dictionary with matched subgraphs, ID of the root node and
 root node of the matched subgraph. It iterates through the available
 children of the accepted root node, instantiates
-:py:class:`stubs.core_utils.ctlr.pipeline.TreeNode` class
+:py:class:`core_utils.ctlr.pipeline.TreeNode` class
 and appends information about the new children into root node.
 
 The method works recursively: until all the children of the current root node
@@ -998,10 +998,10 @@ will not be found.
         else:
             return number * calculate_factorial(number - 1) # Recursive case
 
-The :py:meth:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline._find_pattern` method
+The :py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._find_pattern` method
 returns a dictionary which as keys contains the indexes of sentences
 where the required pattern was found,
-and as values a list of :py:class:`stubs.core_utils.ctlr.pipeline.TreeNode` class instances
+and as values a list of :py:class:`core_utils.ctlr.pipeline.TreeNode` class instances
 with information about the pattern matches.
 
 Stage 6.3. Implement core logic of ``PatternSearchPipeline``
@@ -1009,30 +1009,30 @@ Stage 6.3. Implement core logic of ``PatternSearchPipeline``
 
 .. important:: **Stages 0-6.3** are required to get the **mark 10**.
 
-The :py:class:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline`
+The :py:class:`lab_6_pipeline.pipeline.PatternSearchPipeline`
 is executed with the same interface method
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline.run`
+:py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline.run`
 that you need to implement.
 
 Once executed,
-:py:meth:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline.run`:
+:py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline.run`:
 
 1. Iterates through the available articles taken from
-   :py:class:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager`.
+   :py:class:`lab_6_pipeline.pipeline.CorpusManager`.
 2. Retrieves UD information for each article via ``StanzaAnalyzer`` interface
    (notice only ``N_stanza_conllu.conllu`` files can be used).
 3. Makes graphs of syntactic dependencies for each article via protected method
-   :py:meth:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs`.
+   :py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs`.
 4. Searches for the required pattern for each article via protected method
-   :py:meth:`stubs.labs.lab_6_pipeline.pipeline.PatternSearchPipeline._find_pattern`.
+   :py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._find_pattern`.
 5. Writes them to the meta file via ``Article`` instance interface.
 
 .. note:: It is mandatory to get articles with the
-          :py:meth:`stubs.labs.lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
+          :py:meth:`lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
 
-.. note:: It is mandatory to use :py:meth:`stubs.core_utils.ctlr.article.article.Article.get_file_path`,
-          :py:meth:`stubs.core_utils.ctlr.article.article.Article.set_pos_info` method and
-          :py:func:`stubs.core_utils.ctlr.article.io.to_meta` function.
+.. note:: It is mandatory to use :py:meth:`core_utils.ctlr.article.article.Article.get_file_path`,
+          :py:meth:`core_utils.ctlr.article.article.Article.set_pos_info` method and
+          :py:func:`core_utils.ctlr.article.io.to_meta` function.
 
 .. attention:: Make sure that resulting meta files are valid: they must
                contain no more than one dictionary-like object.
