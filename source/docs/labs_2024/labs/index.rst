@@ -30,3 +30,4 @@
     lab_1_classify_by_unigrams/lab_1.rst
     lab_2_retrieval_w_bm25/lab_2.rst
     lab_3_ann_retriever/lab_3.rst
+    lab_4_retrieval_w_clustering/lab_4.rst
