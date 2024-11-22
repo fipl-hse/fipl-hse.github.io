@@ -4,7 +4,7 @@ lab\_5\_scrapper package
 Submodules
 ----------
 
-.. automodule:: stubs.labs.lab_5_scrapper.scrapper
+.. automodule:: lab_5_scrapper.scrapper
    :members:
    :undoc-members:
    :show-inheritance:

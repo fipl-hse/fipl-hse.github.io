@@ -5,7 +5,7 @@ Module with description of abstract task evaluator.
 from abc import ABC, abstractmethod
 from typing import Iterable
 
-from stubs.core_utils.llm.metrics import Metrics
+from core_utils.llm.metrics import Metrics
 
 
 class AbstractTaskEvaluator(ABC):

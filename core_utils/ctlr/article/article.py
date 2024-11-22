@@ -9,7 +9,7 @@ import pathlib
 import re
 import string
 
-from stubs.core_utils.ctlr.constants import ASSETS_PATH
+from core_utils.ctlr.constants import ASSETS_PATH
 
 
 def date_from_meta(date_txt: str) -> datetime.datetime:

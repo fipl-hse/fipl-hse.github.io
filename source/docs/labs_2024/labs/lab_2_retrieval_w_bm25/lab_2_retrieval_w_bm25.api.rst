@@ -1,11 +1,11 @@
-lab\_2 package
-==============
+lab\_2\_retrieval\_w\_bm25 package
+==================================
 
 Submodules
 ----------
 
 
-.. automodule:: stubs.labs.lab_2_retrieval_w_bm25.main
+.. automodule:: lab_2_retrieval_w_bm25.main
    :members:
    :undoc-members:
    :show-inheritance:

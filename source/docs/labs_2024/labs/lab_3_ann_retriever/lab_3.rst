@@ -7,7 +7,7 @@
     :titlesonly:
     :caption: Full API
 
-    lab_3.api.rst
+    lab_3_ann_retriever.api.rst
 
 
 Дано
@@ -91,7 +91,7 @@ collections, itertools, а также сторонние модули.**
 Первый и ключевой шаг для работы с данными текстами и их
 представлением в виде векторов — их токенизация.
 Подготовить тексты к векторизации поможет класс
-:py:class:`stubs.labs.lab_3_ann_retriever.main.Tokenizer`,
+:py:class:`lab_3_ann_retriever.main.Tokenizer`,
 который Вы реализуете в ходе выполнения первого шага.
 
 Этот класс ответственен за манипуляции с текстами:
@@ -105,7 +105,7 @@ collections, itertools, а также сторонние модули.**
 
 При инициализации экземпляра класса в ``start.py`` стоит подать в качестве аргумента
 стоп-слова, которые загружены через функцию
-:py:func:`stubs.labs.lab_3_ann_retriever.start.open_files`.
+:py:func:`lab_3_ann_retriever.start.open_files`.
 
 Пример инициализации экземпляра:
 
@@ -118,14 +118,14 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.Tokenizer._remove_stop_words`,
+:py:meth:`lab_3_ann_retriever.main.Tokenizer._remove_stop_words`,
 который позволяет удалять стоп-слова из списка токенов документа.
 
 Например, пусть на вход дан текст, который был предварительно разбит на токены:
 ``['мой', 'кот', 'вектор', 'по', 'утрам', 'приносит', 'мне', 'тапочки',
 'а', 'по', 'вечерам', 'мы', 'гуляем', 'с', 'ним', 'на', 'шлейке', 'во',
 'дворе', 'вектор', 'забавный', 'и', 'храбрый', 'он', 'не', 'боится', 'собак']``.
-Тогда метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Tokenizer._remove_stop_words`
+Тогда метод :py:meth:`lab_3_ann_retriever.main.Tokenizer._remove_stop_words`
 вернёт следующий список строк: ``['кот', 'вектор', 'утрам', 'приносит', 'тапочки',
 'вечерам', 'гуляем', 'шлейке', 'дворе', 'вектор', 'забавный', 'храбрый', 'боится',
 'собак']``.
@@ -139,7 +139,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 1.2. Токенизировать документ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Tokenizer.tokenize`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.Tokenizer.tokenize`,
 который позволяет разбить текст на токены (слова). Текст должен быть приведён
 к нижнему регистру и очищен от знаков препинания и цифр.
 То есть если на вход методу передаётся текст ``"Мой кот Вектор по утрам приносит
@@ -156,13 +156,13 @@ collections, itertools, а также сторонние модули.**
     tokenized_doc = tokenizer.tokenize(doc)
 
 .. note:: Данный метод обязательно должен вызывать метод
-          :py:meth:`stubs.labs.lab_3_ann_retriever.main.Tokenizer._remove_stop_words`,
+          :py:meth:`lab_3_ann_retriever.main.Tokenizer._remove_stop_words`,
           который Вы реализовали на Шаге 1.1.
 
 Шаг 1.3. Токенизировать документы
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Tokenizer.tokenize_documents`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.Tokenizer.tokenize_documents`,
 который отвечает за токенизацию списка текстов.
 
 Например, если на вход методу будет подан список документов:
@@ -191,7 +191,7 @@ collections, itertools, а также сторонние модули.**
     tokenized_docs = tokenizer.tokenize_documents(docs)
 
 .. note:: Данный метод обязательно должен вызывать метод
-          :py:meth:`stubs.labs.lab_3_ann_retriever.main.Tokenizer.tokenize`,
+          :py:meth:`lab_3_ann_retriever.main.Tokenizer.tokenize`,
           реализованный Вами на Шаге 1.2.
 
 Шаг 1.4. Продемонстрировать результаты в ``start.py``
@@ -201,16 +201,16 @@ collections, itertools, а также сторонние модули.**
 
 Продемонстрируйте результат токенизации документов ``documents``
 в функции ``main()`` модуля ``start.py`` с помощью экземпляра класса
-:py:class:`stubs.labs.lab_3_ann_retriever.main.Tokenizer`.
+:py:class:`lab_3_ann_retriever.main.Tokenizer`.
 Используйте стоп-слова из списка ``stopwords``, возвращаемого функцией
-:py:func:`stubs.labs.lab_3_ann_retriever.start.open_files` в модуле ``start.py``.
+:py:func:`lab_3_ann_retriever.start.open_files` в модуле ``start.py``.
 
 Шаг 2. Объявить сущность по созданию векторного представления документа
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Векторное представление текста подразумевает перевод данного
 текста в набор чисел (вектор). В данной лабораторной работе за
-их вид отвечает тип :py:class:`stubs.labs.lab_3_ann_retriever.main.Vector`,
+их вид отвечает тип :py:class:`lab_3_ann_retriever.main.Vector`,
 являющийся кортежем чисел с плавающей точкой.
 
 Существует множество подходов к векторизации,
@@ -283,7 +283,7 @@ collections, itertools, а также сторонние модули.**
      - 0.0
 
 На Шагах 2-2.3 Вам предстоит реализовать класс
-:py:class:`stubs.labs.lab_3_ann_retriever.main.Vectorizer`,
+:py:class:`lab_3_ann_retriever.main.Vectorizer`,
 вычисляющий векторы для данных документов на основе ``TF-IDF``.
 В этом классе есть следующие атрибуты:
 
@@ -310,7 +310,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 На данном шаге Вам нужно реализовать метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.Vectorizer.build`, который заполнит атрибуты
+:py:meth:`lab_3_ann_retriever.main.Vectorizer.build`, который заполнит атрибуты
 ``self._idf_values``, ``self._vocabulary`` и ``self._token2ind``.
 То есть если на вход методу подаются списки токенов коллекции документов
 из Шага 1.3, то после выполнения метода атрибуты экземпляра класса будут
@@ -345,7 +345,7 @@ collections, itertools, а также сторонние модули.**
   'тапочки': 37, 'утрам': 38, 'храбрый': 39, 'шлейке': 40, 'это': 41}``
 
 .. important:: Для вычисления значений ``IDF`` для всей коллекции используйте
-               функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.calculate_idf`.
+               функцию :py:func:`lab_2_retrieval_w_bm25.main.calculate_idf`.
 
 Метод должен возвращать логическое значение ``True``, если атрибуты
 были успешно заполнены и не содержат значений ``None``, иначе ``False``.
@@ -361,14 +361,14 @@ collections, itertools, а также сторонние модули.**
 Шаг 2.2. Посчитать TF-IDF для документа
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf`,
 который вычисляет ``TF-IDF`` и создаёт вектор документа.
 Для того чтобы сразу учесть неизменяемость размерности вектора, создайте
 вектор из нулей длины списка ``self._vocabulary``, который далее заполните
 значениями ``TF-IDF``.
 
 .. important:: Для вычисления метрики ``TF`` для токенов документа
-               используйте функцию :py:func:`stubs.labs.lab_2_retrieval_w_bm25.main.calculate_tf`.
+               используйте функцию :py:func:`lab_2_retrieval_w_bm25.main.calculate_tf`.
 
 Для каждого токена документа вычислите ``TF-IDF`` и заполните значение
 исходного нулевого вектора по индексу токена в ``self._vocabulary``.
@@ -384,11 +384,11 @@ collections, itertools, а также сторонние модули.**
 Шаг 2.3. Векторизовать документ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Vectorizer.vectorize`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.Vectorizer.vectorize`,
 который возвращает векторное представления документа.
 
 .. important:: Метод должен вызывать защищённый метод
-               :py:meth:`stubs.labs.lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf`.
+               :py:meth:`lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf`.
 
 Вызов данного метода может выглядеть следующим образом:
 
@@ -416,7 +416,7 @@ collections, itertools, а также сторонние модули.**
   векторе запроса и векторе коллекции.
 
 Реализуйте функцию
-:py:func:`stubs.labs.lab_3_ann_retriever.main.calculate_distance`
+:py:func:`lab_3_ann_retriever.main.calculate_distance`
 которая вычисляет Евклидово расстояния по формуле от вектора запроса до
 каждого из векторов документов на входе.
 
@@ -456,7 +456,7 @@ collections, itertools, а также сторонние модули.**
    векторами коллекции.
 
 Для исполнения алгоритма K-ближайших соседей реализуйте класс
-:py:class:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine`,
+:py:class:`lab_3_ann_retriever.main.BasicSearchEngine`,
 который по запросу выдаёт k ближайших по векторам документов.
 В этом классе есть следующие атрибуты:
 
@@ -482,7 +482,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 На этом Шаге реализуйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._index_document`,
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._index_document`,
 который использует токенайзер и векторайзер для создания вектора документа.
 
 .. hint:: Токенизируйте документ на входе через метод атрибута ``self._tokenizer.tokenize``,
@@ -497,7 +497,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь реализуйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine.index_documents`,
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine.index_documents`,
 который должен заполнять атрибуты класса.
 Сохраните документы из коллекции в атрибуте ``self._documents``.
 Также для каждого документа коллекции создайте вектор и
@@ -512,18 +512,18 @@ collections, itertools, а также сторонние модули.**
     knn_retriever.index_documents(documents)
 
 .. important:: Этот метод обязательно должен вызывать метод
-               :py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._index_document`.
+               :py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._index_document`.
 
 Шаг 4.3. Найти k ближайших соседей
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь Вам нужно реализовать второй шаг алгоритма K-ближайших соседей (KNN)
-в методе :py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn`,
+в методе :py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn`,
 то есть выбрать k документов из коллекции, Евклидово расстояние от которых
 до запроса наименьшее. Отсортируйте получившийся список по возрастанию расстояния.
 
 .. important:: В данном методе обязательно должна быть использована функция
-               :py:func:`stubs.labs.lab_3_ann_retriever.main.calculate_distance`.
+               :py:func:`lab_3_ann_retriever.main.calculate_distance`.
 
 Если использовать в качестве документа запроса нулевой текст коллекции примеров,
 а количество соседей поставить равным 4, то мы получим
@@ -535,11 +535,11 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь реализуйте поиск ближайших соседей по запросу с помощью метода
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine.retrieve_relevant_documents`.
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine.retrieve_relevant_documents`.
 На вход подаётся строка запроса и количество соседей,
 которое мы хотим получить. Токенизируйте и векторизуйте запрос,
 а затем с помощью метода
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn`
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn`
 отыщите наиболее релевантные запросу документы. Важно вернуть пару расстояния и
 самого текста документа, а не его вектора.
 
@@ -566,8 +566,8 @@ collections, itertools, а также сторонние модули.**
 Помимо создания вектора для токенизированного текста нам также может понадобиться
 получить токены для вектора, который не сохранён в атрибуте
 ``self._vectorizer._documents``, но построен в нужном нам пространстве.
-Расширьте класс :py:class:`stubs.labs.lab_3_ann_retriever.main.Vectorizer` методом
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.Vectorizer.vector2tokens`.
+Расширьте класс :py:class:`lab_3_ann_retriever.main.Vectorizer` методом
+:py:meth:`lab_3_ann_retriever.main.Vectorizer.vector2tokens`.
 
 Данный метод отвечает за возвращение тех токенов, которые присутствовали в
 токенизированном представлении данного вектора до применения векторизации.
@@ -593,13 +593,13 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь реализуйте дополнительный метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized`,
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized`,
 который будет полезен для поиска самого релевантного документа для запроса,
 который изначально представлен как вектор.
 
 .. important:: Для того чтобы найти единственный наиболее релевантный документ
                среди документов коллекции, используйте метод
-               :py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn`.
+               :py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn`.
 
 Для того же вектора нулевого текста метод поиска выдаст результат:
 ``"Векторы используются для поиска релевантного документа. Давайте научимся,
@@ -619,8 +619,8 @@ collections, itertools, а также сторонние модули.**
 .. important:: Выполнение Шагов 2-5 соответствует 6 баллам.
 
 Продемонстрируйте работу методов
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.Vectorizer.vector2tokens`
-и :py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized`
+:py:meth:`lab_3_ann_retriever.main.Vectorizer.vector2tokens`
+и :py:meth:`lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized`
 в модуле ``start.py``.
 
 Используйте секретное содержимое любого файла из папки ``assets/secrets``.
@@ -719,7 +719,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Начнём построение дерева с узла. Инициализируйте класс
-:py:class:`stubs.labs.lab_3_ann_retriever.main.Node`, который отвечает за узел дерева.
+:py:class:`lab_3_ann_retriever.main.Node`, который отвечает за узел дерева.
 В нём есть следующие атрибуты:
 
 - ``self.vector`` — точка (вектор), находящаяся в узле;
@@ -739,7 +739,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь создадим само дерево. Реализуйте класс
-:py:class:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree`,
+:py:class:`lab_3_ann_retriever.main.NaiveKDTree`,
 который отвечает за создание дерева и поиск через него ближайшего вектора.
 В этом классе есть один атрибут - ``self._root``. Это начальное состояние
 дерева, которое на момент инициализации содержит специальное значение ``None``,
@@ -755,7 +755,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree.build`,
+:py:meth:`lab_3_ann_retriever.main.NaiveKDTree.build`,
 который отвечает за деление пространства по точкам и сохранение
 дерева в атрибут класса.
 
@@ -852,7 +852,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 6.4. Вычислить расстояние до ближайшей точки
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree._find_closest`
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.NaiveKDTree._find_closest`
 для поиска ближайшей точки узла дерева к точке запроса. В рамках простого алгоритма Вам
 понадобится идти по дереву от корня до одного из листов, каждый раз выбирая то
 подпространство, в котором находился бы вектор запроса, если добавить его в наше пространство.
@@ -867,7 +867,7 @@ collections, itertools, а также сторонние модули.**
 1. Удалите текущую пару узла и глубины.
 2. Проверьте, что узел не является листом. Если узел является листом,
    то мы нашли ответ. Посчитайте расстояние до листа с помощью функции
-   :py:func:`stubs.labs.lab_3_ann_retriever.main.calculate_distance`,
+   :py:func:`lab_3_ann_retriever.main.calculate_distance`,
    считающей Евклидово расстояние между векторами.
 3. Определите ось деления на подпространства.
 4. Добавьте ближайшее подпространство в список.
@@ -892,12 +892,12 @@ collections, itertools, а также сторонние модули.**
 Шаг 6.5. Вернуть ближайшую точку
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree.query`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.NaiveKDTree.query`,
 который отвечает за получение списка точек, которые вычислены как
 ближайшие `k` точек для запроса.
 
 Для этого используйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree._find_closest`.
+:py:meth:`lab_3_ann_retriever.main.NaiveKDTree._find_closest`.
 После выполнения метода у Вас будет список из единственной пары
 расстояний и узлов.
 
@@ -914,12 +914,12 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 На данном Шаге Вам нужно реализовать класс
-:py:class:`stubs.labs.lab_3_ann_retriever.main.SearchEngine`,
+:py:class:`lab_3_ann_retriever.main.SearchEngine`,
 ответственный за поиск релевантного документа по запросу с помощью
 простого К-мерного дерева.
 
 Это класс, который наследуется от класса
-:py:class:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine`, то есть
+:py:class:`lab_3_ann_retriever.main.BasicSearchEngine`, то есть
 использует его атрибуты и методы и дополняет их.
 Помимо атрибутов класса ``BasicSearchEngine``, данный класс должен
 иметь атрибут ``self._tree`` — экземпляр класса ``NaiveKDTree``, который создаётся
@@ -939,7 +939,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 На этом Шаге переопределите метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.SearchEngine.index_documents`,
+:py:meth:`lab_3_ann_retriever.main.SearchEngine.index_documents`,
 который до этого объявлялся в классе-родителе.
 Продублируйте основной функционал метода и добавьте в него построение
 дерева для документов через метод ``self._tree.build``.
@@ -955,12 +955,12 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Наконец, Вам понадобится переопределить метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.SearchEngine.retrieve_relevant_documents`,
+:py:meth:`lab_3_ann_retriever.main.SearchEngine.retrieve_relevant_documents`,
 ответственный за возвращение наиболее релевантных запросу документов.
 
 Обработайте запрос и переведите его в векторное представление, чтобы использовать
 его вектор для поиска ближайших соседей из дерева. Для поиска используйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree.query`. По полученным векторам
+:py:meth:`lab_3_ann_retriever.main.NaiveKDTree.query`. По полученным векторам
 ближайших точек определите конкретные документов из коллекции, которым они соответствуют.
 
 Вернёмся к примеру запроса ``"Мои кот и собака не дружат!"`` и представим, что
@@ -997,10 +997,10 @@ collections, itertools, а также сторонние модули.**
 
 Улучшим алгоритм поиска документов. В Шаге 6 Вы осуществляли поиск
 единственного документа, сейчас Вам нужно реализовать класс
-:py:class:`stubs.labs.lab_3_ann_retriever.main.KDTree`, который
-наследуется от класса :py:class:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree`
+:py:class:`lab_3_ann_retriever.main.KDTree`, который
+наследуется от класса :py:class:`lab_3_ann_retriever.main.NaiveKDTree`
 и переопределяет метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree._find_closest`
+:py:meth:`lab_3_ann_retriever.main.NaiveKDTree._find_closest`
 для более точного поиска множества документов.
 
 Рассмотрим пример двумерного пространства для простоты:
@@ -1014,7 +1014,7 @@ collections, itertools, а также сторонние модули.**
 точку как ближайшую к запросу. Но, как мы видим, оранжевая точка находится ближе,
 хоть и лежит в другом подпространстве. Постараемся учесть это в новой реализации.
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.KDTree._find_closest`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.KDTree._find_closest`,
 для поиска ``k`` ближайших к точке запроса точек дерева. Для этого Вам понадобится
 пройтись практически по всем точкам дерева и найти те, которые находятся близко
 к точке запроса.
@@ -1025,7 +1025,7 @@ collections, itertools, а также сторонние модули.**
 
 1. Вычислите расстояние между вектором запроса и узлом дерева.
 
-.. hint:: Используйте функцию :py:func:`stubs.labs.lab_3_ann_retriever.main.calculate_distance`,
+.. hint:: Используйте функцию :py:func:`lab_3_ann_retriever.main.calculate_distance`,
           считающую Евклидово расстояние между точками.
 
 2. Сохраните текущего лучшего соседа в список.
@@ -1096,14 +1096,14 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 На данном шаге Вам нужно реализовать класс
-:py:class:`stubs.labs.lab_3_ann_retriever.main.AdvancedSearchEngine`,
+:py:class:`lab_3_ann_retriever.main.AdvancedSearchEngine`,
 ответственный за поиск релевантного документа по запросу с
 помощью улучшенного К-мерного дерева.
 Этот класс наследуется от класса
-:py:class:`stubs.labs.lab_3_ann_retriever.main.SearchEngine`, то есть
+:py:class:`lab_3_ann_retriever.main.SearchEngine`, то есть
 использует его атрибуты и методы, а также добавляет новые.
 
-:py:class:`stubs.labs.lab_3_ann_retriever.main.AdvancedSearchEngine` использует атрибуты
+:py:class:`lab_3_ann_retriever.main.AdvancedSearchEngine` использует атрибуты
 ``SearchEngine``, но переопределяет значение атрибута ``self._tree`` на экземпляр
 класса ``KDTree``, который создаётся при инициализации.
 
@@ -1132,7 +1132,7 @@ collections, itertools, а также сторонние модули.**
 Хранение разреженных векторов неудобно: нули занимают много места в памяти,
 поэтому чаще всего их стараются хранить в формате словаря.
 
-Реализуйте функцию :py:func:`stubs.labs.lab_3_ann_retriever.main.save_vector`,
+Реализуйте функцию :py:func:`lab_3_ann_retriever.main.save_vector`,
 которая создаёт словарь формата
 ``{индекс токена вектора : ненулевое значение}``, а затем сохраняет
 полученный словарь вектора как состояние вектора.
@@ -1155,7 +1155,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 10.2. Загрузить состояние вектора
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Теперь реализуйте функцию :py:func:`stubs.labs.lab_3_ann_retriever.main.load_vector`,
+Теперь реализуйте функцию :py:func:`lab_3_ann_retriever.main.load_vector`,
 которая отвечает за возвращение состояния в формат разреженного вектора.
 Так, функция должна преобразовать состояние
 ``{"len": 7, "elements": {1: -0.007, 4: 0.5}}``
@@ -1172,7 +1172,7 @@ collections, itertools, а также сторонние модули.**
 
 Также важно научиться сохранять и загружать состояние векторайзера.
 Для этого расширьте класс ``Vectorizer`` методом
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.Vectorizer.save`,
+:py:meth:`lab_3_ann_retriever.main.Vectorizer.save`,
 который сохраняет состояние векторайзера в файл.
 Состояние обязательно должно содержать значения атрибутов
 ``self._idf_values``, ``self._vocabulary`` и ``self._token2ind``
@@ -1192,7 +1192,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 11.1. Загрузить состояние класса Vectorizer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Vectorizer.load`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.Vectorizer.load`,
 который выполняет обратную предыдущему методу функцию.
 Заполните атрибуты ``self._idf_values``, ``self._vocabulary`` и
 ``self._token2ind`` значениями из файла.
@@ -1201,7 +1201,7 @@ collections, itertools, а также сторонние модули.**
 были успешно загружены, иначе ``False``.
 
 .. note:: Данный метод заменяет заполнение экземпляра класса через метод
-          :py:meth:`stubs.labs.lab_3_ann_retriever.main.Vectorizer.build`.
+          :py:meth:`lab_3_ann_retriever.main.Vectorizer.build`.
 
 Пример использования метода:
 
@@ -1214,22 +1214,22 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._dump_documents` для
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._dump_documents` для
 сохранения в состояние атрибутов ``self._documents`` и ``self._document_vectors``
 класса поиска в виде словаря с ключами ``"documents"`` и ``"document_vectors"``.
 Помните, что векторы разреженные, поэтому их хранение нужно оптимизировать.
 Для оптимизации сохранения векторов используйте функцию
-:py:func:`stubs.labs.lab_3_ann_retriever.main.save_vector`.
+:py:func:`lab_3_ann_retriever.main.save_vector`.
 
 Шаг 12.1. Сохранить состояние BasicSearchEngine
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine.save`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.BasicSearchEngine.save`,
 который выполняет два действия:
 
 1. Создаёт словарь с ключом ``"engine"`` и значением в виде словаря,
    который возвращается при вызове метода
-   :py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._dump_documents`.
+   :py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._dump_documents`.
 2. Сохраняет полученный словарь в файл.
 
 Пример состояния сохранён в файле ``"./assets/states/engine_state_example.json"``,
@@ -1244,9 +1244,9 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь проведите обратную операцию. Реализуйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._load_documents`,
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._load_documents`,
 который сохраняет в атрибут ``self._documents`` значение состояния
-и с помощью функции :py:func:`stubs.labs.lab_3_ann_retriever.main.load_vector`
+и с помощью функции :py:func:`lab_3_ann_retriever.main.load_vector`
 заполняет атрибут ``self._document_vectors`` разреженными векторами.
 
 Метод должен возвращать логическое значение ``True``, если атрибуты
@@ -1256,10 +1256,10 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine.load`,
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine.load`,
 который читает состояние из файла и заполняет атрибуты
 класса через вызов метода
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._load_documents`.
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._load_documents`.
 
 Пример использования метода класса:
 
@@ -1271,24 +1271,24 @@ collections, itertools, а также сторонние модули.**
 Шаг 13. Сохранить узел дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Node.save`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.Node.save`,
 который возвращает словарь со следующими парами ключей и значений:
 
 1. ``"vector" : неразреженный вектор``.
 
-      1. Используйте функцию :py:func:`stubs.labs.lab_3_ann_retriever.main.save_vector`
+      1. Используйте функцию :py:func:`lab_3_ann_retriever.main.save_vector`
          для представления вектора узла в неразреженном виде.
 
 2. ``"payload" : self.payload``.
 3. ``"left_node" : сохранённый узел``.
 
-      1. Используйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Node.save`
+      1. Используйте метод :py:meth:`lab_3_ann_retriever.main.Node.save`
          для левого узла-ребёнка, если он существует,
          иначе используйте значение ``None``.
 
 4. ``"right_node" : сохранённый узел``.
 
-      1. Используйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Node.save`
+      1. Используйте метод :py:meth:`lab_3_ann_retriever.main.Node.save`
          для правого узла-ребёнка, если он существует, иначе используйте
          значение ``None``.
 
@@ -1298,16 +1298,16 @@ collections, itertools, а также сторонние модули.**
 Шаг 13.1. Загрузить узел дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Теперь реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Node.load`,
+Теперь реализуйте метод :py:meth:`lab_3_ann_retriever.main.Node.load`,
 который рекурсивно загружает состояние узла дерева.
 Заполните атрибуты экземпляра класса соответствующими значениями из
 состояния.
 
 .. important:: Не забудьте привести вектор в разреженный вид с помощью функции
-               :py:func:`stubs.labs.lab_3_ann_retriever.main.load_vector`.
+               :py:func:`lab_3_ann_retriever.main.load_vector`.
 
 Для детей узла сначала создайте экземпляр класса ``Node``, а затем
-используйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.Node.load`
+используйте метод :py:meth:`lab_3_ann_retriever.main.Node.load`
 для рекурсивной загрузки узла-ребёнка.
 
 Метод должен возвращать логическое значение ``True``, если атрибуты
@@ -1316,10 +1316,10 @@ collections, itertools, а также сторонние модули.**
 Шаг 14. Сохранить состояние дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree.save`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.NaiveKDTree.save`,
 который возвращает состояние дерева в виде словаря c ключом ``"root"``.
 В качестве значения используйте сохранённый корневой узел дерева,
-полученный с помощью метода :py:meth:`stubs.labs.lab_3_ann_retriever.main.Node.save`
+полученный с помощью метода :py:meth:`lab_3_ann_retriever.main.Node.save`
 корневого узла.
 
 Пример сохранённого состояния дерева можно найти в файле
@@ -1329,9 +1329,9 @@ collections, itertools, а также сторонние модули.**
 Шаг 14.1. Загрузить состояние дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree.load`,
+Реализуйте метод :py:meth:`lab_3_ann_retriever.main.NaiveKDTree.load`,
 который отвечает за присваивание атрибуту корневого узла экземпляра класса
-``Node`` и последующий вызов метода :py:meth:`stubs.labs.lab_3_ann_retriever.main.Node.load`.
+``Node`` и последующий вызов метода :py:meth:`lab_3_ann_retriever.main.Node.load`.
 
 Метод должен возвращать логическое значение ``True``, если атрибуты
 были успешно сохранены, иначе ``False``.
@@ -1341,7 +1341,7 @@ collections, itertools, а также сторонние модули.**
 
 Наконец, нужно сохранить состояние классов для поиска документов.
 Для этого реализуйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.SearchEngine.save`
+:py:meth:`lab_3_ann_retriever.main.SearchEngine.save`
 
 Состояние представляет собой словарь формата:
 
@@ -1356,11 +1356,11 @@ collections, itertools, а также сторонние модули.**
     }
 
 В качестве ``tree_state`` используйте результат сохранения дерева
-с помощью метода :py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree.save`
+с помощью метода :py:meth:`lab_3_ann_retriever.main.NaiveKDTree.save`
 для дерева, созданного при инициализации экземпляра класса.
 Заполните значения ключей ``"documents"`` и ``"vector_documents"``
 с помощью вызова метода родительского класса
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.BasicSearchEngine._dump_documents`.
+:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._dump_documents`.
 
 Пример сохранённого состояния можно найти в файле
 ``"./assets/states/engine_state_example.json"``.
@@ -1369,14 +1369,14 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`stubs.labs.lab_3_ann_retriever.main.SearchEngine.load`,
+:py:meth:`lab_3_ann_retriever.main.SearchEngine.load`,
 который отвечает за выполнение следующего алгоритма:
 
 1. Чтение ``json`` файла по строке пути.
 2. Заполнение атрибутов ``self._documents`` и ``self._document_vectors``
    через метод ``self._load_documents``.
 3. Заполнение атрибута ``self._tree`` через метод дерева
-   :py:meth:`stubs.labs.lab_3_ann_retriever.main.NaiveKDTree.load`.
+   :py:meth:`lab_3_ann_retriever.main.NaiveKDTree.load`.
 
 Напомним, что по смыслу наследования все методы родителей будут также
 работать у наследников, то есть данный метод будет и у класса

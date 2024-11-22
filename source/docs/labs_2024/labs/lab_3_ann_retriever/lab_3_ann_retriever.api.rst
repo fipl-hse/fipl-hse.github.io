@@ -1,18 +1,18 @@
-lab\_3 package
-==============
+lab\_3\_ann\_retriever package
+==============================
 
 Submodules
 ----------
 
 
-.. automodule:: stubs.labs.lab_3_ann_retriever.main
+.. automodule:: lab_3_ann_retriever.main
    :members:
    :undoc-members:
    :show-inheritance:
    :private-members:
    :special-members: __init__, __str__
 
-.. automodule:: stubs.labs.lab_3_ann_retriever.start
+.. automodule:: lab_3_ann_retriever.start
    :members:
    :undoc-members:
    :show-inheritance:

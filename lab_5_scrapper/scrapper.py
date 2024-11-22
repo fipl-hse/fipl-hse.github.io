@@ -9,8 +9,8 @@ from typing import Pattern, Union
 import requests
 from bs4 import BeautifulSoup
 
-from stubs.core_utils.ctlr.article.article import Article
-from stubs.core_utils.ctlr.config_dto import ConfigDTO
+from core_utils.ctlr.article.article import Article
+from core_utils.ctlr.config_dto import ConfigDTO
 
 
 class Config:

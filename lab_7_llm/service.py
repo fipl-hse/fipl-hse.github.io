@@ -2,13 +2,12 @@
 Web service for model inference.
 """
 # pylint: disable=too-few-public-methods, undefined-variable, unused-import, assignment-from-no-return, duplicate-code
-from pathlib import Path
 
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from pydantic.dataclasses import dataclass
 
-from stubs.labs.lab_7_llm.main import LLMPipeline
+from lab_7_llm.main import LLMPipeline
 
 
 def init_application() -> tuple[FastAPI, LLMPipeline]:
