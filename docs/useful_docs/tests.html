@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Working with tests: locally and in CI &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Github Actions" href="actions_ru.html" />
+    <link rel="prev" title="Обновление форка" href="fork_update.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../llm_2023/general_info.html">Общая информация</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../llm_2023/labs/index.html">Laboratory works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../llm_2023/task_cards/index.html">Task cards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../llm_2023/lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Полезные материалы</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_guide_ru.html">Подготовка к прохождению курса</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fork_update.html">Обновление форка</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Working with tests: locally and in CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="actions_ru.html">Github Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html">Frequently asked questions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Полезные материалы</a></li>
+      <li class="breadcrumb-item active">Working with tests: locally and in CI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/useful_docs/tests.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="working-with-tests-locally-and-in-ci">
+<span id="running-tests-label"></span><h1>Working with tests: locally and in CI<a class="headerlink" href="#working-with-tests-locally-and-in-ci" title="Link to this heading"></a></h1>
+<section id="running-tests-locally-with-pycharm">
+<h2>Running tests locally with PyCharm<a class="headerlink" href="#running-tests-locally-with-pycharm" title="Link to this heading"></a></h2>
+<p>To configure tests locally you need to perform several steps:</p>
+<ol class="arabic">
+<li><p>Install tests dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_qa.txt
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Ensure you have activated your environment
+if you have such by running <code class="docutils literal notranslate"><span class="pre">.\venv\Scripts\activate</span></code>
+(Windows) or <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv\bin\activate</span></code> (macOS).</p>
+</div>
+<ol class="arabic" start="2">
+<li><p>Create a new configuration:</p>
+<img alt="../../_images/pycharm_create_configuration1.jpg" src="../../_images/pycharm_create_configuration1.jpg" />
+</li>
+<li><p>Choose <code class="docutils literal notranslate"><span class="pre">pytest</span></code> as a target:</p>
+<img alt="../../_images/pycharm_choose_pytest_template1.jpg" src="../../_images/pycharm_choose_pytest_template1.jpg" />
+</li>
+<li><p>Fill <code class="docutils literal notranslate"><span class="pre">pytest</span></code> configuration and click <code class="docutils literal notranslate"><span class="pre">OK</span></code>:</p>
+<img alt="../../_images/pycharm_fill_pytest_configuration1.jpg" src="../../_images/pycharm_fill_pytest_configuration1.jpg" />
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> configuration:</p>
+<img alt="../../_images/pycharm_run_pytest1.jpg" src="../../_images/pycharm_run_pytest1.jpg" />
+<p>This should run all the tests in the repository. You can inspect them
+by clicking through a list at the bottom of a screen.</p>
+<img alt="../../_images/pycharm_tests_report1.png" src="../../_images/pycharm_tests_report1.png" />
+</li>
+<li><p>As you have some tests failing, you want to debug them. Then, first,
+you need to limit a scope of running tests and the mark level you
+want to get for an assignment. For example, you might want to run
+checks for a crawler configuration. Then you need to return to
+configuration menu and pass additional parameters, like
+<code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">stage_2_1_crawler_config_check</span></code>.</p>
+<img alt="../../_images/pycharm_control_tests_scope1.jpg" src="../../_images/pycharm_control_tests_scope1.jpg" />
+<p>You can choose any of the labels that are described in
+<code class="docutils literal notranslate"><span class="pre">../pyproject.toml</span></code> and combine with a mark.
+For example, running the aforementioned check for configuration
+for a mark 8 will look like
+<code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">&quot;mark8</span> <span class="pre">and</span> <span class="pre">stage_2_1_crawler_config_check&quot;</span></code>.</p>
+</li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To running all tests for first assignment for mark 8:
+<code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">&quot;mark8</span> <span class="pre">and</span> <span class="pre">(stage_2_1_crawler_config_check</span> <span class="pre">or</span> <span class="pre">stage_2_2_crawler_check</span> <span class="pre">or</span> <span class="pre">stage_2_3_HTML_parser_check</span> <span class="pre">or</span> <span class="pre">stage_2_4_dataset_volume_check</span> <span class="pre">or</span> <span class="pre">stage_2_5_dataset_validation)&quot;</span></code></p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>When you want to debug a test, instead of running them, put
+a breakpoint at the potentially vulnerable place of code and execute
+debugging by clicking a ‘bug’ button.</p>
+</div>
+</section>
+<section id="running-tests-in-command-line">
+<h2>Running tests in command-line<a class="headerlink" href="#running-tests-in-command-line" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Install dependencies (assuming you have activated the environment
+from the previous step):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_qa.txt
+</pre></div>
+</div>
+</li>
+<li><p>Run the tests for the given mark. You can select any level:
+<code class="docutils literal notranslate"><span class="pre">mark4</span></code>, <code class="docutils literal notranslate"><span class="pre">mark6</span></code>, <code class="docutils literal notranslate"><span class="pre">mark8</span></code>, <code class="docutils literal notranslate"><span class="pre">mark10</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-m<span class="w"> </span>mark8
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="running-tests-in-ci">
+<h2>Running tests in CI<a class="headerlink" href="#running-tests-in-ci" title="Link to this heading"></a></h2>
+<p>Tests will never run until you create a Pull Request.</p>
+<p>The very first check happens exactly when you create a pull request.
+After that, each time you push changes in your fork, CI check will be
+automatically started, normally within a minute or two. To see the
+results, navigate to your PR and click either the particular step in the
+report at the end of a page, or click <strong>Checks</strong> in the toolbar.</p>
+<img alt="../../_images/ci_report1.png" src="../../_images/ci_report1.png" />
+<img alt="../../_images/ci_tab1.png" src="../../_images/ci_tab1.png" />
+<p>Inspect each step by clicking through the list to the left.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fork_update.html" class="btn btn-neutral float-left" title="Обновление форка" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="actions_ru.html" class="btn btn-neutral float-right" title="Github Actions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
