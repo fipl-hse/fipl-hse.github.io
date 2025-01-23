@@ -170,6 +170,9 @@ and import them into ``start.py``.
           in the ``settings.json`` file. The higher the desired mark, the more
           number of tests run when checking your Pull Request.
 
+.. note:: You cannot use the pipeline abstraction from the transformers library
+          in this laboratory work.
+
 Stage 1. Introduce importer abstraction: ``RawDataImporter``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -563,7 +566,7 @@ which has the following internal attributes:
     * ``self._metrics`` - a field of
       :py:class:`core_utils.llm.metrics.Metrics` abstraction
       with suitable metric;
-    * ``self._data_path`` - a string with the path to the ``predictions.csv`` file.
+    * ``self._data_path`` - a string with the path to the ``dist/predictions.csv`` file.
 
 See the intended instantiation:
 
@@ -571,7 +574,7 @@ See the intended instantiation:
 
     evaluator = TaskEvaluator(predictions_path, settings.parameters.metrics)
 
-where ``predictions_path`` is a string with the path to the ``predictions.csv`` file,
+where ``predictions_path`` is a string with the path to the ``dist/predictions.csv`` file,
 ``settings.parameters.metrics`` is the name of the suitable metric
 written in ``settings.json`` file.
 
@@ -606,7 +609,7 @@ in the ``main()`` function of the ``start.py`` module.
 .. important:: Set parameter ``batch_size`` = 64.
 
 .. note:: After dataset inference you have to save
-          you predictions to ``predictions.csv`` file in ``start.py``.
+          you predictions to ``dist/predictions.csv`` file in ``start.py``.
 
 Stage 6. Implement Model as a Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
