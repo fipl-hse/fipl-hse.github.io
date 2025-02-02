@@ -58,9 +58,14 @@ for named entity recognition task has its specifics:
       the labels of the first tokens of each word. Use the ``word_ids`` method of the
       tokenizer to determine the word boundaries.
 
-.. note:: For example, if the model predicts the following labels ``[0, 0, 0, 1]``
-          for a sequence of tokens ``['VI', '##CT', '##OR', '##Y']`` that make up one word ``VICTORY``,
-          then only the label of the first token, namely ``0``, is included in the final result.
+.. note:: For example, there is a sample ``['CRICKET', '-', 'LEICESTERSHIRE', 'TAKE', 'OVER', 'AT', 'TOP', '.']``
+          which is tokenized to ``['[CLS]', 'CR', '##IC', '##KE', '##T', '-', 'L', '##EI', '##CE',
+          '##ST', '##ER', '##S', '##H', '##IR', '##E', 'T', '##A', '##KE', 'O', '##VE', '##R', 'AT', 'TO', '##P',
+          '[SEP]']``. In this case, each token corresponds to the following predictions
+          ``[[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]``.
+          Only the labels for the first token of each word need to be included in the final result,
+          namely ``[[0, 0, 0, 1, 0, 0, 0, 0, 0]]``. Thus, if the model predicted label ``1`` for the first token
+          of the word ``LEICESTERSHIRE``, then the final result for this word will include ``1``.
 
 Metrics
 -------
