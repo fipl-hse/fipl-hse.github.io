@@ -96,7 +96,7 @@ Technical solution
 | <https://fastapi.tiangolo.com/>`__ |                                        |      |
 +------------------------------------+----------------------------------------+------+
 
-.. important:: ``torch`` module needs to be installed using
+.. important:: ``torch`` module version 2.1.2 needs to be installed using
                ``--extra-index-url https://download.pytorch.org/whl/cpu``
                in ``requirements.txt`` file.
 
