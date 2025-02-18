@@ -97,6 +97,13 @@ Datasets
       4. Delete empty rows in dataset.
       5. Reset indexes.
 
+Supervised Fine-Tuning (SFT) Parameters
+---------------------------------------
+
+.. note:: Set the parameter ``learning_rate=1e-2`` for the
+          `cointegrated/rubert-tiny-bilingual-nli <huggingface.co/cointegrated/rubert-tiny-bilingual-nli>`__
+          model as SFT parameter.
+
 Metrics
 -------
 
