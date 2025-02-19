@@ -113,6 +113,11 @@ Method should return a dictionary with the ``input_ids``, ``attention_mask`` and
 ``labels`` for current sample as keys. Such return values provide the necessary
 information to feed into the model, ensuring the correct fine-tuning process.
 
+.. important:: It is necessary to have such keys (``input_ids``,
+               ``attention_mask`` and ``labels``) of the returned dictionary, since
+               the ``transformers`` library has built-in data processing mechanisms
+               that expect exactly these names.
+
 .. important:: For Seq2Seq models, it is necessary to tokenize not only
                sample from the source column, but also from the target column.
 
@@ -147,7 +152,8 @@ batches for tuning.
                limit the full ``pd.DataFrame`` you got
                from ``RawDataPreprocessor`` to the number of samples, calculating it for
                training using the batch and the number of training steps. Take the next
-               samples after the ones you used for inference.
+               samples after the ones you used for inference, namely starting with
+               sample ``10``.
 
 See the intended instantiation:
 
@@ -181,9 +187,14 @@ which allows to retrieve an item from the dataset by index.
 PyTorch ``DataLoader`` calls this method to retrieve data for each batch.
 Implementing this method allows you to define how the data is retrieved
 from the dataset and how it is structured.
-It should return a tuple containing items
-from columns with text to be retrieved.
-Depending on the task, the number of columns may vary.
+It should return a dictionary that contains the result of tokenizing
+one sample from the dataset by index.
+
+.. note:: For example, if the data at index 0 contains the sample
+          ``i feel bitchy but not defeated yet``, then
+          :py:meth:`lab_8_sft.main.TokenizedTaskDataset.__getitem__`
+          method will output the following value: ``{'input_ids': tensor([...]),
+          'attention_mask': tensor([...]), 'labels': 3}``
 
 Stage 5. Introduce SFT Pipeline: ``SFTPipeline``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -258,8 +269,9 @@ So, the pipeline should include the following stages:
 
 Set the following parameters:
 
-   * **Inference parameters**: ``num_samples=10``, ``max_length=120`` and ``batch_size=3``.
-   * **SFT parameters**: ``max_fine_tuning_steps=50``.
+   * **Inference parameters**: ``num_samples=10``, ``max_length=120`` and ``batch_size=64``.
+   * **SFT parameters**: ``batch_size=3``, ``max_length=120``, ``max_fine_tuning_steps=50``
+     and ``learning_rate=1e-3``.
 
 .. important:: You can find all needed specific values for parameters for your
                combination of model and dataset choosing appropriate task:
