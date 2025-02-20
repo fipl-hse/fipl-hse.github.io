@@ -1,7 +1,15 @@
-.. _lab_8/README:
+.. _lab-8-label:
 
 Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models
 ======================================================================
+
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+    :caption: Full API
+
+    lab_8.api.rst
+    core_utils.api.rst
 
 Implementation tactics
 ----------------------
@@ -100,7 +108,7 @@ Since the data is presented as text, it must be tokenized (i.e.
 converted into a numeric representation) to prepare it for transfer
 to the model for fine-tuning.
 
-Implement :py:func:`lab_8_sft.main._tokenize_sample` function, which tokenizes the
+Implement :py:func:`lab_8_sft.main.tokenize_sample` function, which tokenizes the
 sample and truncates it to its maximum length.
 
 Set the following parameters for tokenizer:
@@ -140,7 +148,7 @@ which has one internal attribute:
     * ``self._data`` - ``pd.DataFrame`` with preprocessed data.
 
 Fill the attribute ``self._data`` with tokenized samples from the data.
-Use the function :py:func:`lab_8_sft.main._tokenize_sample`.
+Use the function :py:func:`lab_8_sft.main.tokenize_sample`.
 
 So, this class allows to combine ``pd.DataFrame`` and PyTorch ``Dataset``,
 tokenize text in the required format for the model,
