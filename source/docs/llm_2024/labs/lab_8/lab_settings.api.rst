@@ -1,17 +1,13 @@
-lab\_8 package
-==============
+lab\_settings package
+=====================
 
 Submodules
 ----------
 
 
-.. automodule:: lab_8_sft.main
+.. automodule:: config.lab_settings
    :members:
    :undoc-members:
    :show-inheritance:
    :private-members:
    :special-members: __init__, __str__, __len__, __getitem__, __iter__
-
-.. automodule:: lab_8_sft.service
-   :members:
-   :undoc-members:
