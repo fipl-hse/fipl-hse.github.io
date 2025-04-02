@@ -2,6 +2,7 @@
 """
 Crawler implementation.
 """
+
 import datetime
 import pathlib
 from typing import Pattern, Union
@@ -114,6 +115,7 @@ class Crawler:
     Crawler implementation.
     """
 
+    #: Url pattern
     url_pattern: Union[Pattern, str]
 
     def __init__(self, config: Config) -> None:
