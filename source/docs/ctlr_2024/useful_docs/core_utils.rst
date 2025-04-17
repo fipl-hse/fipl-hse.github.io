@@ -27,25 +27,25 @@ The ``config_dto.py`` module defines a
 This abstraction is responsible for indicating what fields must be passed as
 a configuration settings along with what their types must be.
 
-They match the fields of the ``scrapper_config.json`` configuration file.
-For more details on what each of the parameters presents, refer to :ref:`scrapper-label`.
+They match the fields of the ``scraper_config.json`` configuration file.
+For more details on what each of the parameters presents, refer to :ref:`scraper-label`.
 
 .. note:: During implementation of Lab 5, make sure to return
           a ``ConfigDTO`` instance from the
-          :py:func:`stubs.labs.lab_5_scrapper.scrapper.Config._extract_config_content` method.
+          :py:func:`stubs.labs.lab_5_scraper.scraper.Config._extract_config_content` method.
 
 Module with constants
 ---------------------
 
 ``constants.py`` module defines the following constant values:
 
--  ``PROJECT_ROOT``: a path to ``2023-2-level-ctlr`` folder,
+-  ``PROJECT_ROOT``: a path to ``2024-2-level-ctlr`` folder,
    which the root of the current project;
--  ``ASSETS_PATH``: a path to ``2023-2-level-ctlr/tmp/article`` folder,
+-  ``ASSETS_PATH``: a path to ``2024-2-level-ctlr/tmp/article`` folder,
    where all the collected articles must be stored;
--  ``CRAWLER_CONFIG_PATH``: a path to ``lab_5_scrapper/scrapper_config.json``
-   file with configuration parameters for scrapper;
--  ``PROJECT_CONFIG_PATH``: a path to ``2023-2-level-ctlr`` folder
+-  ``CRAWLER_CONFIG_PATH``: a path to ``lab_5_scraper/scraper_config.json``
+   file with configuration parameters for scraper;
+-  ``PROJECT_CONFIG_PATH``: a path to ``2024-2-level-ctlr`` folder
    configuration file (*this is an admin utils related item and
    is not intended for you to interact with it*);
 -  ``NUM_ARTICLES_UPPER_LIMIT``: a maximum number for articles to be

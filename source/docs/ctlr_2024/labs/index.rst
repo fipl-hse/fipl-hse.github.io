@@ -27,4 +27,4 @@ click on the object/class name.
     :maxdepth: 2
     :titlesonly:
 
-    lab_5_scrapper/lab_5.rst
+    lab_5_scraper/lab_5.rst

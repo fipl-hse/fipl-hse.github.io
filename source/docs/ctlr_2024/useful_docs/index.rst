@@ -11,7 +11,7 @@ Useful Materials
     tests.rst
     DEVELOPER.rst
     run_in_terminal.rst
-    dynamic_scrapping.rst
+    dynamic_scraping.rst
     core_utils.rst
     article.rst
     ud_format.rst
