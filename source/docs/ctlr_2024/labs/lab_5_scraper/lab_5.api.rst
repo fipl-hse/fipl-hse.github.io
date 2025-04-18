@@ -1,10 +1,10 @@
-lab\_5\_scrapper package
+lab\_5\_scraper package
 ========================
 
 Submodules
 ----------
 
-.. automodule:: lab_5_scrapper.scrapper
+.. automodule:: lab_5_scraper.scraper
    :members:
    :undoc-members:
    :show-inheritance:

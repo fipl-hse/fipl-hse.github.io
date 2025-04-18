@@ -234,7 +234,7 @@ def prepare_environment(base_path: Union[pathlib.Path, str]) -> None:
 
 def main() -> None:
     """
-    Entrypoint for scrapper module.
+    Entrypoint for scraper module.
     """
 
 
