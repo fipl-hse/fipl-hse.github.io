@@ -1,11 +1,12 @@
 """
 Interface definitions for text processing pipelines.
 """
+
 # pylint: disable=too-few-public-methods, unused-argument
 from dataclasses import dataclass
 from typing import Protocol
 
-from core_utils.ctlr.article.article import Article
+from core_utils.article.article import Article
 
 
 class PipelineProtocol(Protocol):
@@ -19,18 +20,10 @@ class PipelineProtocol(Protocol):
         """
 
 
-class HasConLLUStr(Protocol):
+class UDPipeDocument(Protocol):
     """
-    Utility subclass to mimic UDPipe result.
+    Utility class to mimic UDPipe Doc.
     """
-    conll_str: str
-
-
-class UDPipeResultProtocol(Protocol):
-    """
-    Utility class to mimic UDPipe result.
-    """
-    _: HasConLLUStr
 
 
 class StanzaDocument(Protocol):
@@ -39,10 +32,41 @@ class StanzaDocument(Protocol):
     """
 
 
-class CoNLLUDocument(Protocol):
+class CoNLLUDocument(UDPipeDocument, StanzaDocument, Protocol):
     """
-    Utility class to mimic UDPipe Doc.
+    Utility class to mimic analyzer document classes.
     """
+
+
+@dataclass
+class ConLLUWord:
+    """
+    Interface definition for word class of unified analyzer document.
+    """
+
+    id: str
+    upos: str
+    head: str
+    deprel: str
+    text: str
+
+
+@dataclass
+class ConLLUSentence:
+    """
+    Interface definition for sentence class of unified analyzer document.
+    """
+
+    words: list[ConLLUWord]
+
+
+@dataclass
+class UnifiedCoNLLUDocument:
+    """
+    Interface definition for sentence class of unified analyzer document.
+    """
+
+    sentences: list[ConLLUSentence]
 
 
 class AbstractCoNLLUAnalyzer(Protocol):
@@ -55,13 +79,13 @@ class AbstractCoNLLUAnalyzer(Protocol):
         Process given document.
 
         Args:
-            docs (list[StanzaDocument]): Collection of original Documents.
+            docs (list[StanzaDocument]): Collection of original documents.
 
         Returns:
             list[StanzaDocument]: Collection of resulting documents.
         """
 
-    def __call__(self, text: str) -> UDPipeResultProtocol:
+    def __call__(self, text: str) -> UDPipeDocument:
         """
         Run analyzer as a function.
 
@@ -69,7 +93,7 @@ class AbstractCoNLLUAnalyzer(Protocol):
             text (str): Raw document content.
 
         Returns:
-            UDPipeResultProtocol: Output document.
+            UDPipeDocument: Output document.
         """
 
 
@@ -77,6 +101,7 @@ class LibraryWrapper(Protocol):
     """
     Interface definition for text analyzers.
     """
+
     _analyzer: AbstractCoNLLUAnalyzer
 
     def _bootstrap(self) -> AbstractCoNLLUAnalyzer:
@@ -87,7 +112,7 @@ class LibraryWrapper(Protocol):
             AbstractCoNLLUAnalyzer: Instance of analyzer.
         """
 
-    def analyze(self, texts: list[str]) -> list[StanzaDocument | str]:
+    def analyze(self, texts: list[str]) -> list[CoNLLUDocument | str]:
         """
         Analyze given texts.
 
@@ -95,7 +120,7 @@ class LibraryWrapper(Protocol):
             texts (list[str]): Texts to analyze.
 
         Returns:
-            list[StanzaDocument | str]: Collection of processed documents.
+            list[CoNLLUDocument | str]: Collection of processed documents.
         """
 
     def to_conllu(self, article: Article) -> None:
@@ -116,8 +141,17 @@ class LibraryWrapper(Protocol):
         Returns:
             CoNLLUDocument: Document ready for parsing
         """
-        print(f'from_conllu should be implemented for {self.__class__.__name__}!')
-        raise NotImplementedError
+
+    def get_document(self, doc: CoNLLUDocument) -> UnifiedCoNLLUDocument:
+        """
+        Present ConLLU document's sentence tokens as a unified structure.
+
+        Args:
+            doc (CoNLLUDocument): ConLLU document from analyzer.
+
+        Returns:
+            UnifiedCoNLLUDocument: Unified document of token features within document sentences
+        """
 
 
 @dataclass
@@ -125,6 +159,7 @@ class TreeNode:
     """
     Interface definition for node in the graph.
     """
+
     upos: str
     text: str
-    children: list['TreeNode']
+    children: list["TreeNode"]

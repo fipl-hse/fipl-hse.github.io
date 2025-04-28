@@ -1,6 +1,7 @@
 """
 Article implementation.
 """
+
 # pylint: disable=no-name-in-module
 
 import datetime
@@ -37,12 +38,12 @@ def get_article_id_from_filepath(path: pathlib.Path) -> int:
     Returns:
         int: Article id
     """
-    return int(path.stem.split('_')[0])
+    return int(path.stem.split("_")[0])
 
 
 def split_by_sentence(text: str) -> list[str]:
     """
-    Split the given text by sentence separators.
+    Splits the given text by sentence separators.
 
     Args:
         text (str): raw text to split
@@ -51,9 +52,12 @@ def split_by_sentence(text: str) -> list[str]:
         list[str]: List of sentences
     """
     pattern = r"(?<!\w\.\w.)(?<![А-Я][а-я]\.)((?<=\.|\?|!)|(?<=\?\"|!\"))\s(?=[А-Я])"
-    text = re.sub(r'[\n|\t]+', '. ', text)
-    sentences = [sentence for sentence in re.split(pattern, text) if sentence.replace(' ', '')
-                 and len(sentence) > 10]
+    text = re.sub(r"[\n|\t]+", ". ", text)
+    sentences = [
+        sentence
+        for sentence in re.split(pattern, text)
+        if sentence.replace(" ", "") and len(sentence) > 10
+    ]
     return sentences
 
 
@@ -61,15 +65,17 @@ class ArtifactType(enum.Enum):
     """
     Types of artifacts that can be created by text processing pipelines.
     """
-    CLEANED = 'cleaned'
-    UDPIPE_CONLLU = 'udpipe_conllu'
-    STANZA_CONLLU = 'stanza_conllu'
+
+    CLEANED = "cleaned"
+    UDPIPE_CONLLU = "udpipe_conllu"
+    STANZA_CONLLU = "stanza_conllu"
 
 
 class Article:
     """
     Article class implementation.
     """
+
     #: A date
     date: datetime.datetime | None
 
@@ -78,7 +84,7 @@ class Article:
 
     def __init__(self, url: str | None, article_id: int) -> None:
         """
-        Initialize an instance of Article class.
+        Initialize an instance of Article.
 
         Args:
             url (str | None): Site url
@@ -87,15 +93,15 @@ class Article:
         self.url = url
         self.article_id = article_id
 
-        self.title = ''
+        self.title = ""
         self.date = None
         self.author = []
         self.topics = []
-        self.text = ''
+        self.text = ""
         self.pos_frequencies = {}
         self._conllu_sentences = []
         self.pattern_matches = {}
-        self._conllu_info = ''
+        self._conllu_info = ""
 
     def set_pos_info(self, pos_freq: dict) -> None:
         """
@@ -123,14 +129,14 @@ class Article:
             dict: Meta params
         """
         return {
-            'id': self.article_id,
-            'url': self.url,
-            'title': self.title,
-            'date': self._date_to_text() or None,
-            'author': self.author,
-            'topics': self.topics,
-            'pos_frequencies': self.pos_frequencies,
-            'pattern_matches': self.pattern_matches
+            "id": self.article_id,
+            "url": self.url,
+            "title": self.title,
+            "date": self._date_to_text() or None,
+            "author": self.author,
+            "topics": self.topics,
+            "pos_frequencies": self.pos_frequencies,
+            "pattern_matches": self.pattern_matches,
         }
 
     def get_raw_text(self) -> str:
@@ -152,8 +158,12 @@ class Article:
         Returns:
             str: A text in the CONLL-U format
         """
-        return '\n'.join([sentence.get_conllu_text(include_morphological_tags) for sentence in
-                          self._conllu_sentences])
+        return "\n".join(
+            [
+                sentence.get_conllu_text(include_morphological_tags)
+                for sentence in self._conllu_sentences
+            ]
+        )
 
     def set_conllu_info(self, info: str) -> None:
         """
@@ -180,7 +190,7 @@ class Article:
         Returns:
             str: Cleaned text.
         """
-        return self.text.lower().translate(str.maketrans('', '', string.punctuation))
+        return self.text.lower().translate(str.maketrans("", "", string.punctuation))
 
     def _date_to_text(self) -> str:
         """
@@ -189,7 +199,7 @@ class Article:
         Returns:
             str: Datetime object
         """
-        return self.date.strftime("%Y-%m-%d %H:%M:%S") if self.date else ''
+        return self.date.strftime("%Y-%m-%d %H:%M:%S") if self.date else ""
 
     def get_raw_text_path(self) -> pathlib.Path:
         """
@@ -221,10 +231,9 @@ class Article:
         Returns:
             pathlib.Path: Path to Article instance
         """
-        conllu = kind in (ArtifactType.UDPIPE_CONLLU,
-                          ArtifactType.STANZA_CONLLU)
+        conllu = kind in (ArtifactType.UDPIPE_CONLLU, ArtifactType.STANZA_CONLLU)
 
-        extension = '.conllu' if conllu else '.txt'
+        extension = ".conllu" if conllu else ".txt"
         article_name = f"{self.article_id}_{kind.value}{extension}"
 
         return ASSETS_PATH / article_name

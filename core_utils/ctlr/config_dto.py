@@ -8,6 +8,7 @@ class ConfigDTO:
     """
     Type annotations for configurations.
     """
+
     #: List of seed urls
     seed_urls: list[str]
 
@@ -29,15 +30,16 @@ class ConfigDTO:
     #: Require headless mode or not
     headless_mode: bool
 
-    def __init__(self,
-                 seed_urls: list[str],
-                 total_articles_to_find_and_parse: int,
-                 headers: dict[str, str],
-                 encoding: str,
-                 timeout: int,
-                 should_verify_certificate: bool,
-                 headless_mode: bool
-                 ) -> None:
+    def __init__(
+        self,
+        seed_urls: list[str],
+        total_articles_to_find_and_parse: int,
+        headers: dict[str, str],
+        encoding: str,
+        timeout: int,
+        should_verify_certificate: bool,
+        headless_mode: bool,
+    ) -> None:
         """
         Initializes an instance of the ConfigDTO class.
 

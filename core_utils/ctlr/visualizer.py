@@ -1,6 +1,7 @@
 """
 Visualizer module for visualizing PosFrequencyPipeline results.
 """
+
 from pathlib import Path
 from typing import Callable
 
@@ -8,18 +9,18 @@ try:
     import matplotlib
     import matplotlib.pyplot as plt
 
-    matplotlib.use('agg')
+    matplotlib.use("agg")
 except ImportError:  # pragma: no cover
-    print('No libraries installed. Failed to import.')
+    print("No libraries installed. Failed to import.")
 
 try:
     import networkx as nx
     from networkx import DiGraph
 except ImportError:  # pragma: no cover
     DiGraph = None  # type: ignore
-    print('No libraries installed. Failed to import.')
+    print("No libraries installed. Failed to import.")
 
-from core_utils.ctlr.article.article import Article
+from core_utils.article.article import Article
 
 
 def visualize(article: Article, path_to_save: Path) -> None:
@@ -36,14 +37,18 @@ def visualize(article: Article, path_to_save: Path) -> None:
     get_occurrences: Callable = lambda x: statistics[x]
     sorted_tags = sorted(statistics, key=get_occurrences, reverse=True)
     pos_tags = list(range(number_of_tags))
-    colors = ('b', 'g', 'r', 'c')
+    colors = ("b", "g", "r", "c")
 
     figure = plt.figure()
     axis = figure.add_subplot(1, 1, 1)
     for i in range(0, number_of_tags):
-        axis.bar(pos_tags[i], sorted_frequencies[i],
-                 align='center', width=0.5,
-                 color=colors[i % len(colors)])
+        axis.bar(
+            pos_tags[i],
+            sorted_frequencies[i],
+            align="center",
+            width=0.5,
+            color=colors[i % len(colors)],
+        )
 
     axis.set_xticks(pos_tags)
     axis.set_xticklabels(sorted_tags)
@@ -78,7 +83,7 @@ def show_graph(graph: DiGraph, graph_path: str) -> None:
             "edge_color": "powderblue",
             "node_size": 400,
             "width": 2,
-        }
+        },
     )
-    plt.savefig(graph_path, format='png')
+    plt.savefig(graph_path, format="png")
     plt.close()
