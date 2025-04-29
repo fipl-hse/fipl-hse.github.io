@@ -1,13 +1,18 @@
 """
 I/O operations for Article.
 """
+
 import json
 import pathlib
 from pathlib import Path
 from typing import Optional, Union
 
-from core_utils.ctlr.article.article import (Article, ArtifactType, date_from_meta,
-                                             get_article_id_from_filepath)
+from core_utils.ctlr.article.article import (
+    Article,
+    ArtifactType,
+    date_from_meta,
+    get_article_id_from_filepath,
+)
 
 
 def to_raw(article: Article) -> None:
@@ -17,12 +22,11 @@ def to_raw(article: Article) -> None:
     Args:
         article (Article): Article instance
     """
-    with open(article.get_raw_text_path(), 'w', encoding='utf-8') as file:
+    with open(article.get_raw_text_path(), "w", encoding="utf-8") as file:
         file.write(article.text)
 
 
-def from_raw(path: Union[pathlib.Path, str],
-             article: Optional[Article] = None) -> Article:
+def from_raw(path: Union[pathlib.Path, str], article: Optional[Article] = None) -> Article:
     """
     Load raw text and create an Article with it.
 
@@ -35,13 +39,10 @@ def from_raw(path: Union[pathlib.Path, str],
     """
     article_id = get_article_id_from_filepath(Path(path))
 
-    with open(file=path,
-              mode='r',
-              encoding='utf-8') as article_file:
+    with open(file=path, mode="r", encoding="utf-8") as article_file:
         text = article_file.read()
 
-    article = article if article else Article(url=None,
-                                              article_id=article_id)
+    article = article if article else Article(url=None, article_id=article_id)
     article.text = text
     return article
 
@@ -53,7 +54,7 @@ def to_cleaned(article: Article) -> None:
     Args:
         article (Article): Article instance
     """
-    with open(article.get_file_path(ArtifactType.CLEANED), 'w', encoding='utf-8') as file:
+    with open(article.get_file_path(ArtifactType.CLEANED), "w", encoding="utf-8") as file:
         file.write(article.get_cleaned_text())
 
 
@@ -64,16 +65,13 @@ def to_meta(article: Article) -> None:
     Args:
         article (Article): Article instance
     """
-    with open(article.get_meta_file_path(), 'w', encoding='utf-8') as meta_file:
-        json.dump(article.get_meta(),
-                  meta_file,
-                  indent=4,
-                  ensure_ascii=False,
-                  separators=(',', ': '))
+    with open(article.get_meta_file_path(), "w", encoding="utf-8") as meta_file:
+        json.dump(
+            article.get_meta(), meta_file, indent=4, ensure_ascii=False, separators=(",", ": ")
+        )
 
 
-def from_meta(path: Union[pathlib.Path, str],
-              article: Optional[Article] = None) -> Article:
+def from_meta(path: Union[pathlib.Path, str], article: Optional[Article] = None) -> Article:
     """
     Load meta.json file into the Article abstraction.
 
@@ -84,20 +82,21 @@ def from_meta(path: Union[pathlib.Path, str],
     Returns:
         Article: Article instance
     """
-    with open(path, encoding='utf-8') as meta_file:
+    with open(path, encoding="utf-8") as meta_file:
         meta = json.load(meta_file)
 
-    article = article if article else \
-        Article(url=meta.get('url', None), article_id=meta.get('id', 0))
+    article = (
+        article if article else Article(url=meta.get("url", None), article_id=meta.get("id", 0))
+    )
 
-    article.article_id = meta.get('id', 0)
-    article.url = meta.get('url', None)
-    article.title = meta.get('title', '')
-    article.date = date_from_meta(meta.get('date', None))
-    article.author = meta.get('author', None)
-    article.topics = meta.get('topics', None)
-    article.pos_frequencies = meta.get('pos_frequencies', None)
+    article.article_id = meta.get("id", 0)
+    article.url = meta.get("url", None)
+    article.title = meta.get("title", "")
+    article.date = date_from_meta(meta.get("date", None))
+    article.author = meta.get("author", None)
+    article.topics = meta.get("topics", None)
+    article.pos_frequencies = meta.get("pos_frequencies", None)
 
     # intentionally leave it empty
-    article.text = ''
+    article.text = ""
     return article
