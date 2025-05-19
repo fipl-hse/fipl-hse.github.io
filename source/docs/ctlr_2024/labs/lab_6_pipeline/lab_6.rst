@@ -240,8 +240,8 @@ Stage 0. Prerequisites
    the code you write.
 
 .. important:: Do not change modules external to your code, for example
-               ``core_utils/article/article.py``, consider them as not available
-               for installation. If you see a way to improve external modules,
+               ``core_utils/article/article.py``, consider them as available
+               only via installation. If you see a way to improve external modules,
                propose them in a separate PR - mentors will review them separately
                and give you bonuses as any improvements are appreciated.
 
@@ -292,7 +292,7 @@ method.
 .. note:: Remember to use ``pathlib`` module in order
           to operate paths.
 
-.. note:: Call this method during initialization.
+.. note:: Call this method during CorpusManager initialization.
 
 When dataset is valid, method returns ``None``. Otherwise:
 
@@ -601,7 +601,7 @@ maybe, provide us with better understanding of the text.
 
 This is a sample result we are going to obtain:
 
-.. figure:: ../docs/images/sample_visualization.png
+.. figure:: ../../_static/lab_6_pipeline/sample_visualization.png
    :alt: sample_visualization.png
 
 Stage 4.1 Extend ``UDPipeAnalyzer`` with CoNLL-U parsing functionality
@@ -614,7 +614,8 @@ you are required to implement method
 Their responsibility is the opposite of that of
 :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu` method: it
 accepts article instance, derives the name of the file where their UD properties are stored,
-and converts contents to the ``UDPipeDocument`` via ``spacy_conll.parser``.
+and converts contents to the :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer`
+via ``spacy_conll.parser``.
 
 .. note:: Note that ``UDPipeDocument``, similarly to ``AbstractCoNLLUAnalyzer``,
           is a protocol that is used to mimic the UDPipe document class of the
@@ -719,7 +720,7 @@ During instantiation it must accept an instance of ``CorpusManager``,
 instance of an analyzer and a tuple of POS tags for required syntactic pattern.
 
 In this laboratory work we are interested in exploring
-verb control noun with preposition models, that is why there would be
+"verb-preposition-noun dependency" models, that is why there would be
 the following instantiation:
 
 .. code:: python
@@ -752,7 +753,7 @@ of each sentence in the article which we will subsequently search for.
 
 Example of the graph for the sentence: Я учусь в университете.
 
-   .. figure:: ../docs/images/sample_sentence_graph.png
+   .. figure:: ../../_static/lab_6_pipeline/sample_sentence_graph.png
       :alt: sentence graph sample
 
 In order to make a graph of syntactic dependencies for each sentence in the article,
@@ -799,7 +800,7 @@ and we want to make an ideal graph for our pattern.
 
 Example of the ideal graph for our syntactic pattern:
 
-   .. figure:: ../docs/images/sample_ideal_graph.png
+   .. figure:: ../../_static/lab_6_pipeline/sample_ideal_graph.png
       :alt: ideal graph sample
 
 After that, we are searching for the subgraphs in our graph
