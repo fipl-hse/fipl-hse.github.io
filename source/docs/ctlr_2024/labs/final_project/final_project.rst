@@ -157,4 +157,4 @@ The presentation is to be delivered at the exam.
 .. attention::
 
     The mark for the exam you will receive as a result has a coefficient of 0.9.
-    The remaining 10% of your exam mark is based on your work with ``НейроКряБот``.
+    The remaining 10% of your exam mark is based on your work with NeuroKryaBot.
