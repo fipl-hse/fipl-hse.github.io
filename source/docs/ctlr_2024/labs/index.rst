@@ -29,3 +29,4 @@ click on the object/class name.
 
     lab_5_scraper/lab_5.rst
     lab_6_pipeline/lab_6.rst
+    final_project/final_project.rst
