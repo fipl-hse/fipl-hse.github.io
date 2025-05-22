@@ -13,15 +13,15 @@ Start your implementation with creating Pull Request (PR).
 .. note::
 
     There is a Pull Request (PR) with a correctly formatted name:
-    ``Final Project, <GROUP NUMBER> <MATERIAL> - <UNIVERSITY GROUP NAME>``.
+    ``Final Project, Team <GROUP NUMBER> <MATERIAL> - <UNIVERSITY GROUP NAME>``.
 
-    Example: ``Final Project, Seven Mandelstamm - 23FPL2``.
+    Example: ``Final Project, Team 7 Mandelstamm - 23FPL2``.
 
 Stage 1. Put the files for processing to the folder.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You are provided with different corpora of `.txt` files. The corpus of
-your respective team should be loaded to the folder ``final_project/assets``.
+your respective team should be loaded to the folder ``final_project/assets/folder_name``.
 
 Each team is to work with corresponding folder:
 
