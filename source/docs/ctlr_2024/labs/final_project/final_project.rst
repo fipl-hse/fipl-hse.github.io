@@ -31,9 +31,10 @@ Each team is to work with corresponding folder:
 - 23FPL1 team 4 - bunin
 - 23FPL1 team 5 - cvetaeva
 - 23FPL2 team 1 - mandelstamm
-- 23FPL2 team 2  - moritz
-- 23FPL2 team 3  - pasternak
-- 23FPL2 team 4  - silverage
+- 23FPL2 team 2 - moritz
+- 23FPL2 team 3 - pasternak
+- 23FPL2 team 4 - silverage
+- 23FPL2 team 5 - cerny
 
 
 Stage 2. Processing data.
