@@ -1,0 +1,29 @@
+fipl\-hse.github.io.lab\_7\_llm package
+=======================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_7\_llm.main module
+-------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_7_llm.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fipl\-hse.github.io.lab\_7\_llm.service module
+----------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_7_llm.service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_7_llm
+   :members:
+   :undoc-members:
+   :show-inheritance:
