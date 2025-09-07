@@ -17,12 +17,12 @@
 3. Check docstrings for errors:
    ```bash
    export PYTHONPATH=$(pwd):$PYTHONPATH
-   python tools/docstring_linter/check_docstrings.main.py
+   python tools/docstring_linter/check_docstrings.py
    ```
 4. Build the website with:
    ```bash
    export PYTHONPATH=$(pwd):$PYTHONPATH
-   python tools/docs_generator/build_documentation.main.py
+   python tools/docs_generator/build_documentation.py
    ```
 
 ### Copy the Built Website

@@ -42,10 +42,10 @@ intersphinx_mapping = {
 }
 
 nitpick_ignore = [
-    ('main.py:class', 'spacy.tokens.token.Token'),
-    ('main.py:class', 'spacy.tokens.Token'),
-    ('main.py:class', 'stanza.models.common.doc.Document'),
-    ('main.py:class', 'DiGraph'),
+    ('py:class', 'spacy.tokens.token.Token'),
+    ('py:class', 'spacy.tokens.Token'),
+    ('py:class', 'stanza.models.common.doc.Document'),
+    ('py:class', 'DiGraph'),
 ]
 
 templates_path = ['_templates']
