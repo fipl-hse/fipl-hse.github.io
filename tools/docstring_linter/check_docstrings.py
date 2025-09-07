@@ -36,7 +36,7 @@ def check_docstrings(source_code_root: Path,
     for lab_name in labs_list:
         lab_errors = ''
         lab_path = source_code_root.joinpath(lab_name)
-        main_path = lab_path.joinpath('main.py')
+        main_path = lab_path.joinpath('main.main.py')
 
         print(f'\nChecking {main_path}')
         darglint_args = [

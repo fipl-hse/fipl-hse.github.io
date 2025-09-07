@@ -32,7 +32,7 @@ jobs:
 #      - name: Check Docstrings
 #        run: |
 #          export PYTHONPATH=$(pwd):$PYTHONPATH
-#          python3 tools/docstring_linter/check_docstrings.py
+#          python3 tools/docstring_linter/check_docstrings.main.py
 #
 #      - name: Upload check log
 #        if: ${{ always() }}

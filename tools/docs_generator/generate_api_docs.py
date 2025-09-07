@@ -49,7 +49,7 @@ def generate_api_docs(source_code_root: Path,
         if overwrite:
             args.insert(-1, '-f')
 
-        excluded_paths = (lab_path.joinpath('tests'), lab_path.joinpath('assets'), lab_path.joinpath('start.py'))
+        excluded_paths = (lab_path.joinpath('tests'), lab_path.joinpath('assets'), lab_path.joinpath('start.main.py'))
         args.extend(excluded_paths)
 
         args = prepare_args_for_shell(args)

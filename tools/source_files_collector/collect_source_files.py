@@ -83,7 +83,7 @@ def collect_source_files(repository: str,
 
 if __name__ == '__main__':
     # Example usage:
-    # python collect_source_files.py \
+    # python collect_source_files.main.py \
     # --repository "https://github.com/fipl-hse/2023-2-level-labs.git" \
     # --files-to-collect-path ../../config/files_to_collect.txt \
     # --destination ../../labs
