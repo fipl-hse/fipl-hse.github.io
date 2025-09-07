@@ -1,11 +1,11 @@
-lab\_1\_classify\_by\_unigrams package
+lab\_1\_keywords\_tfidf package
 ======================================
 
 Submodules
 ----------
 
 
-.. automodule:: lab_1_classify_by_unigrams.main
+.. automodule:: lab_1_keywords_tfidf.main
    :members:
    :undoc-members:
    :show-inheritance:
