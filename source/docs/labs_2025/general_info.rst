@@ -19,8 +19,8 @@
 План лабораторных работ
 -----------------------
 
-1. `Определение языка текста на основе частотного
-   словаря <https://github.com/fipl-hse/2025-2-level-labs/tree/main/lab_1_classify_by_unigrams>`__
+1. `Выделение ключевых слов с помощью частотного
+   словаря <https://github.com/fipl-hse/2025-2-level-labs/tree/main/lab_1_keywords_tfidf>`__
 
    1. Дедлайн: TBD
 
