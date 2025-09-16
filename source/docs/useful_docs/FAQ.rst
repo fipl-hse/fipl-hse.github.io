@@ -133,14 +133,14 @@ More about `incompatible re-definitions
 More about `perks of mypy-style static typing
 <https://mypy.readthedocs.io/en/stable/faq.html#why-have-both-dynamic-and-static-typing>`__.
 
-5. During working in PyCharm, interpreter cannot be found
+5. During working in Visual Studio Code interpreter cannot be found
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In many cases the issue turns out to be wrong opening of the PyCharm.
+In many cases the issue turns out to be wrong opening of the Visual Studio Code.
 Make sure that you open the whole ``202X-2-level-labs`` as a project,
 not just the folder with a particular lab.
 
-More details on correct PyCharm opening can be found :ref:`starting-guide-ru-label`.
+More details on correct Visual Studio Code opening can be found :ref:`starting-guide-ru-label`.
 
 Running tests
 -------------
