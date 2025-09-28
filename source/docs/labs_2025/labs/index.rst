@@ -28,3 +28,4 @@
     :titlesonly:
 
     lab_1_keywords_tfidf/lab_1.rst
+    lab_2_spellcheck/lab_2.rst
