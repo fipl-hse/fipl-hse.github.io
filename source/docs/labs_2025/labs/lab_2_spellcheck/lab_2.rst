@@ -464,13 +464,13 @@ collections, itertools, а также сторонние модули.**
    \begin{cases}
        j, & \text{если } i = 0 \quad (\text{вставка всех символов строки } b)\\
        i, & \text{если } j = 0 \quad (\text{удаление всех символов строки } a)\\
-       \text{lev}[i-1][j-1], & \text{если } a[i-1] = b[j-1] \quad (cost = 0})\\
+       \text{lev}[i-1][j-1], & \text{если } a[i-1] = b[j-1] \quad (\text{cost = 0})\\
        \min
        \begin{cases}
            \text{lev}[i-1][j] + 1, \\
            \text{lev}[i][j-1] + 1, \\
            \text{lev}[i-1][j-1] + cost
-       \end{cases}, & \text{иначе (cost = 1)}
+       \end{cases} & \text{иначе cost = 1}
    \end{cases}
 
 где:
