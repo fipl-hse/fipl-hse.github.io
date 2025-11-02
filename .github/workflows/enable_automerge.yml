@@ -39,13 +39,6 @@ jobs:
           checkName: Build Documentation
           ref: ${{ steps.pr-info.outputs.sha || github.sha }}
       
-      - name: Generate GitHub App Token
-        uses: tibdex/github-app-token@v2
-        id: generate-token
-        with:
-          app_id: ${{ secrets.GH_APP_ID }}
-          private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-      
       - name: Automerge
         if: steps.wait-for-checks.outputs.conclusion == 'success'
         run: |
@@ -54,4 +47,4 @@ jobs:
             --auto \
             --delete-branch
         env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          GH_TOKEN: ${{ secrets.AUTOMERGE_TOKEN }}
