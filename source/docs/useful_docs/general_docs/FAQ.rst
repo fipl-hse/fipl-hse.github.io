@@ -1,49 +1,51 @@
 .. _faq-label:
 
-Frequently asked questions
-==========================
+Часто задаваемые вопросы
+========================
 
 .. contents:: Content:
    :depth: 2
 
-Labs
-----
 
-1. Argument 1 to "get_top_n" has incompatible type "Dict[str, int]"; expected "Dict[str, Union[int, float]]" [arg-type]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Лабораторные работы
+-------------------
 
-This problem frequently occurs in ``lab_1_keywords_tfidf`` and is easily fixed.
+1. Ошибка Argument 1 to "get_top_n" has incompatible type "Dict[str, int]"; expected "Dict[str, Union[int, float]]" [arg-type]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Typically, this remark is followed by 2 notes:
+Это проблема часто встречается в лабораторной работе ``lab_1_keywords_tfidf`` и легко решаема.
+
+Обычно, за этой ошибкой следуют следующие примечания:
 
 * ``note: "Dict" is invariant -- see [link]``
 * ``note: Consider using "Mapping" instead, which is covariant in the value type``
 
-Although error message may not seem to be particularly clear, it is
-rather simple to fix it. To solve the problem it is enough to carefully
-follow the task description. In task description, students are required
-to demonstrate ``get_top_n`` using two dictionaries: the one with
-``TF-IDF`` scores and the one with chi-values. Both of those
-dictionaries contain ``float`` data as values, and such usage does not
-cause any problems.
+Чтобы решить проблемы, достаточно внимательно изучить описание задачи.
+Там написано, что студентам нужно продемонстрировать использование
+``get_top_n`` с двумя типами словарей: словарём, содержащим значения ``TF-IDF``,
+и словарём, содержащим значения хи-квадрата. Оба эти словаря содежат значения
+типа ``float``.
 
-Issues begin when one decides to use ``get_top_n`` on frequency
-dictionary, which is **not** required in task description. Frequency
-dictionaries have integer values which does not match very well with the
-``get_top_n`` typing in this particular lab. This is why it leads to
-``MyPy`` complaining.
+Проблема возникает, если использовать ``get_top_n`` на словаре частот,
+что **не** требуется в описании. Частотный словарь содержит целочисленные
+значения, которые не сочетаются с типами функции, и это вызывает ошибки
+в ``MyPy``.
 
-To fix this problem, only use ``get_top_n`` on dictionaries with
-``float`` values.
+Чтобы решить проблему, используйте ``get_top_n`` только со словарями с типом
+значений ``float``.
 
-2. Cannot find implementation or library stub for module named "main" [import]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Похожие проблемы часто возникают из-за того, как ``MyPy`` интерпретирует типы.
+Обычно для их решения достаточно сделать дополнительную проверку значений
+перед передачей аргуметов в фунции. 
 
-Let’s say the structure of your project looks like this:
+2. Ошибка импорта Cannot find implementation or library stub for module named "main" [import]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Предположим, что структура Вашег проекта выглядит так:
 
 .. code:: text
 
-   +-- 2023-2-level-labs
+   +-- 2025-2-level-labs
        +-- config
        +-- docs
        +-- lab_1_keywords_tfidf
@@ -51,65 +53,71 @@ Let’s say the structure of your project looks like this:
            +-- tests
            +-- main.py
            +-- start.py
-           +-- target_score.txt
-           +-- README.md
+           +-- settings.json
+           +-- README.rst
        +-- seminars
    ...
 
-You want to import functions from ``main.py``. To do that, remember that
-the checking program looks at your code from the root folder, meaning
-that for it the correct name of the ``main.py`` would be the following:
-``lab_1_keywords_tfidf/main.py``
+Вы хотите импортировать функции из файла ``main.py`` в файл ``start.py``.
+Чтобы сделать это, вспомните, что программа смотрит на Ваш код из корневой
+папки. Это значит, что на самом деле Ваш файл ``main.py`` имеет путь
+``lab_1_keywords_tfidf/main.py``.
 
-This is why to import functions from ``main.py`` in your ``start.py``
-you need to put it the following way:
-
-.. code:: text
-
-   from lab_1_keywords_tfidf.main import <functions you want to import>
-
-3. Argument 1 to <function name> Has incompatible type "Optional[<certain type>]"; expected "[<certain type>]"
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-In some of the laboratory works there is a requirement to check input
-data. In other words, apart from main logic of the function, one should
-verify that all input arguments are of the expected type, and, for
-example, return ``None`` otherwise. This is precisely why this ``MyPy``
-warning is raised: if in a sequence of two functions the former one can
-return ``None`` as an indicator of corrupt data, and the latter one does
-not expect ``None`` among correct input values, there is a risk of
-passing data that is obviously incorrect.
-
-To avoid this ``MyPy`` remark, it is necessary to check whether the
-returned value is not ``None`` before proceeding to feed it to the
-second function.
-
-For example, let’s say we have the following two functions. The first
-one unites two lists, and the second one sums all the elements in the
-list.
+Поэтому Вам нужно импортировать функции из ``main.py`` в ``start.py``
+следующим образом:
 
 .. code:: py
 
-   def function1(arg1: list[int], arg2: list[int]) -> Optional[list[int]]:
+   from lab_1_keywords_tfidf.main import <functions you want to import>
+
+
+3. Ошибка Argument 1 to <function name> Has incompatible type "Optional[<certain type>]"; expected "[<certain type>]"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+В некоторых лабораторных работах существует необходимость проверять
+входные значения. В других словах, помимо логики функции, Вы должны
+удостовериться, что все передаваемые аргументы действительно являются
+правильных типов.
+
+Обычно это происходит когда мы используем несколько функций подрят
+из-за того, что ``MyPy`` не хочет, чтобы, например, во вторую по счёту
+функцию попало специальное значение ``None``, так как оно часто используется
+как индикатор наличия неправильных значений. ``MyPy`` видит, что значение
+может быть ``None`` и не хочет потенциально передавать его в следующую
+функцию — оно уже неправильное.
+
+Чтобы избежать ошибок в ``MyPy``, следовать сделать дополнительную проверку
+на ``None`` перед передачей значения в следующую функцию.
+
+Например, у Вас есть две функции, представленные ниже.
+Первая объединяет два списка в один,
+а вторая суммирует все элементы одного списка.
+
+.. code:: py
+
+   def function1(arg1: list[int], arg2: list[int]) -> list[int] | None:
        if not arg1 or not arg2:
            return None
        return arg1 + arg2
        
-   def function2(arg: list[int]) -> Optional[int]:
+   def function2(arg: list[int]) -> int | None:
        if not arg:
            return None
        return sum(arg)
 
-We want to use these functions sequentially: firstly we want to unite
-two lists, and then find its sum. This is an incorrect way to do that:
+Мы хотим использовать их по-порядку: сначала объединить два листа,
+а затем найти сумму всех элементов. Неудачным вариантом будет сделать
+следующее:
 
 .. code:: py
 
    united_list = function1(list1, list2)
    elements_sum = function2(united_list)
 
-``function1`` can return ``None``, and we must not pass it to
-``function2``. Correct way to check it:
+``function1`` может вернуть ``None``, и нам не следует передавать такое
+значение в ``function2``. 
+
+Правильнее будет сделать дополнительную проверку:
 
 .. code:: py
 
@@ -117,20 +125,24 @@ two lists, and then find its sum. This is an incorrect way to do that:
    if united_list:
        elements_sum = function2(united_list)
 
-4. Incompatible types in assignment (expression has type X, variable has type Y)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Python is a dynamically typed programming language, meaning that during
-execution of a program in Python same variables can be assigned values
-of different types. Although it is not prohibited in the language, it
-may still be not the best practice. Reusing variables in such a way can
-make your code more vulnerable as there would be a higher probability of
-making a mistake that is hard to track. This is why ``MyPy`` highlights
-such variables: maintaining consistency of typing throughout value
-re-assigning should solve this problem.
-More about `incompatible re-definitions
+4. Ошибка Incompatible types in assignment (expression has type X, variable has type Y)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Python — динамический язык программирования. Это означает, что при
+запуске программ переменные могут принимать значения разных типов.
+Хотя это не запрещено в языке, это не самая лучшая практика.
+
+Переиспользование переменных таким образом может сделать код более
+уязвимым, потому как увеличивается вероятность сделать ошибку, которую
+сложно будет потом найти. Поэтому ``MyPy`` подсвечивает такие переменные.
+
+Можно избавиться от противоречия типов через переназначение типов:
+
+Больше о `несовместимых переопределениях здесь
 <https://mypy.readthedocs.io/en/stable/common_issues.html#redefinitions-with-incompatible-types>`__.
-More about `perks of mypy-style static typing
+
+Больше об `особенностях стиля назначения типов MyPy здесь
 <https://mypy.readthedocs.io/en/stable/faq.html#why-have-both-dynamic-and-static-typing>`__.
 
 5. During working in Visual Studio Code, interpreter cannot be found
@@ -178,7 +190,7 @@ you changed them. To do so, execute in Visual Studio Code terminal:
 You should have two repositories: `origin` and `upstream`, one of which
 is your fork and the other one is the main repository.
 
-.. image:: ../../useful_docs/_static/FAQ/git_remote.jpg
+.. image:: _static/FAQ/git_remote.jpg
 
 If you don't have an upstream repository, execute:
 

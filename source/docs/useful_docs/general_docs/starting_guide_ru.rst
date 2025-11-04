@@ -19,7 +19,7 @@
 1. Скачайте установочный файл для своей системы
    с `официального сайта <https://www.python.org/downloads/>`__.
 
-   .. image:: ../../useful_docs/_static/starting_guide/download_python.png
+   .. image:: _static/starting_guide/download_python.png
 
 .. important:: Для скачивания нажмите кнопку ``Download Python 3.XX.XX``.
                Версия Python должна быть = 3.12!
@@ -45,7 +45,7 @@
 1. Скачайте установочный файл для своей системы с `официального
    сайта <https://git-scm.com>`__:
 
-   .. image:: ../../useful_docs/_static/starting_guide/git_main_page.png
+   .. image:: _static/starting_guide/git_main_page.png
 
 .. important:: Для скачивания нажмите кнопку ``Download for <название ОС>``.
 
@@ -69,7 +69,7 @@
 1. Скачайте установочный файл для своей системы с `официального
    сайта <https://code.visualstudio.com/download>`__:
 
-   .. image:: ../../useful_docs/_static/starting_guide/vscode_download.png
+   .. image:: _static/starting_guide/vscode_download.png
 
 2. Запустите установочный файл и следуйте указаниям по установке.
 3. Проверьте корректность установки:
@@ -78,7 +78,7 @@
 
    2. Вы должны увидеть похожий интерфейс:
 
-      .. image:: ../../useful_docs/_static/starting_guide/vscode_project_selection.png
+      .. image:: _static/starting_guide/vscode_project_selection.png
 
 Регистрация на платформе GitHub
 -------------------------------
@@ -88,7 +88,7 @@
 1. Откройте `главную страницу платформы <https://github.com>`__.
 2. В верхнем правом углу нажмите кнопку ``Sign up``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_sign_up.png
+   .. image:: _static/starting_guide/github_sign_up.png
 
 3. Пройдите регистрацию.
 
@@ -107,11 +107,11 @@
 1. Откройте сайт репозитория, который Вам прислал преподаватель.
 2. В верхнем правом углу нажмите кнопку ``Fork``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_forking.png
+   .. image:: _static/starting_guide/github_forking.png
 
 3. На открывшейся странице нажмите кнопку ``Create Fork``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_forking_2.png
+   .. image:: _static/starting_guide/github_forking_2.png
 
 4. Форк создан. Обратите внимание на ссылку в адресной строке браузера:
    она будет содержать **имя Вашего GitHub пользователя** и название
@@ -119,7 +119,7 @@
 
    -  ``https://github.com/<имя-Вашего-пользователя>/202X-2-level-labs``
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_forking_3.png
+   .. image:: _static/starting_guide/github_forking_3.png
 
 Добавления менторов в коллабораторы
 -----------------------------------
@@ -134,7 +134,7 @@
 
 1. Откройте сайт форка, который Вы создали на шаге `Создание форка репозитория`_.
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_forking_3.png
+   .. image:: _static/starting_guide/github_forking_3.png
 
 .. important:: Обратите внимание на ссылку в адресной строке браузера:
                она будет содержать **имя Вашего GitHub пользователя**
@@ -142,28 +142,28 @@
 
 2. Нажмите кнопку ``Settings``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_settings.png
+   .. image:: _static/starting_guide/github_settings.png
 
 3. Слева выберите вкладку ``Collaborators``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_collaborators_tab.png
+   .. image:: _static/starting_guide/github_collaborators_tab.png
 
 4. Нажмите кнопку ``Add people``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_add_collaborators.png
+   .. image:: _static/starting_guide/github_add_collaborators.png
 
 5. В открывшемся окне введите имя GitHub пользователя ментора и выберите
    его из списка:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_select_collaborator.png
+   .. image:: _static/starting_guide/github_select_collaborator.png
 
 6. Нажмите кнопку ``Add <имя-пользователя> to this repository``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_add_collaborator_finish.png
+   .. image:: _static/starting_guide/github_add_collaborator_finish.png
 
 7. Вы отправили запрос ментору на добавления в коллабораторы:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_add_collaborator_pending.png
+   .. image:: _static/starting_guide/github_add_collaborator_pending.png
 
 .. important:: После данного шага **обязательно напишите добавленному
                ментору**, чтобы он мог принять запрос.
@@ -179,7 +179,7 @@
 1. Откройте сайт Вашего форка, который Вы создали на предыдущем шаге.
 2. Нажмите кнопку ``Code``, выберите ``HTTPS`` и нажмите кнопку копирования:
 
-   .. image:: ../../useful_docs/_static/starting_guide/cloning_repository.png
+   .. image:: _static/starting_guide/cloning_repository.png
 
 3. Откройте терминал и перейдите в удобную папку:
 
@@ -207,12 +207,12 @@ Visual Studio Code, выполните следующие шаги:
 
 1. Откройте Visual Studio Code и нажмите кнопку ``Open``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_opening_project.png
+   .. image:: _static/starting_guide/vs_opening_project.png
 
 2. В открывшемся окне выберите папку с форком, который Вы склонировали
    на шаге `Клонирование форка репозитория для локальной работы`_:
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_selecting_folder.png
+   .. image:: _static/starting_guide/vs_selecting_folder.png
 
 .. note:: На скриншоте выше показано, что форк был склонирован в
           папку ``Desktop (Рабочий стол)``.
@@ -223,21 +223,21 @@ Visual Studio Code, выполните следующие шаги:
 
 3. В открывшемся окне нажмите кнопку ``Yes, I trust the authors``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_trust_authors.png
+   .. image:: _static/starting_guide/vs_trust_authors.png
 
 4. Проект создан, слева Вы можете увидеть файлы проекта:
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_initial_project_setup.png
+   .. image:: _static/starting_guide/vs_initial_project_setup.png
 
 4. С помощью значка настроек |settingsIcon| в левом нижнем углу
    или сочетанием клавиш ``Ctrl + Shift + P`` откройте командную панель:
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_command_palette.png
+   .. image:: _static/starting_guide/vs_command_palette.png
 
 5. Для создания виртуального окружения введите ``Python: Create Environment``,
    после выберите ``Venv``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_choose_venv.png
+   .. image:: _static/starting_guide/vs_choose_venv.png
 
 6. Введите путь к нужному интерпретатору.
 
@@ -316,18 +316,18 @@ Git - система контроля версий, которая позвол�
    нажатием кнопки Terminal -> New Terminal в верхней панели
    или сочетанием клавиш ``Ctrl + ```:
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_open_terminal_0.png
+   .. image:: _static/starting_guide/vs_open_terminal_0.png
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_open_terminal.png
+   .. image:: _static/starting_guide/vs_open_terminal.png
 
 2. В терминале выполните команду
    ``git add <путь-до-лабораторной-работы>/main.py``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/git_add.png
+   .. image:: _static/starting_guide/git_add.png
 
 3. В терминале выполните команду ``git commit -m "message"``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/git_commit.png
+   .. image:: _static/starting_guide/git_commit.png
 
 .. note:: В качестве ``message`` рекомендуется использовать краткое
           описание тех изменений, которые Вы сделали. Этот текст будет
@@ -350,20 +350,20 @@ Git - система контроля версий, которая позвол�
    нажатием кнопки Terminal -> New Terminal в верхней панели
    или сочетанием клавиш ``Ctrl + ```:
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_open_terminal_0.png
+   .. image:: _static/starting_guide/vs_open_terminal_0.png
 
-   .. image:: ../../useful_docs/_static/starting_guide/vs_open_terminal.png
+   .. image:: _static/starting_guide/vs_open_terminal.png
 
 2. В терминале выполните команду ``git pull``.
 
 3. В терминале выполните команду ``git push``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/git_push.png
+   .. image:: _static/starting_guide/git_push.png
 
 4. Откройте главную страницу Вашего форка.
    Вы увидите сделанный *commit* и сообщение, которое Вы написали:
 
-   .. image:: ../../useful_docs/_static/starting_guide/fork_updated.png
+   .. image:: _static/starting_guide/fork_updated.png
 
 Больше информации о командах, описанных выше, можно найти в `официальной
 документации по Git <https://git-scm.com/docs>`__.
@@ -379,28 +379,28 @@ Git - система контроля версий, которая позвол�
 
 2. Выберите вкладку Pull Requests:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_pull_request_highlighted.png
+   .. image:: _static/starting_guide/github_pull_request_highlighted.png
 
 3. Нажмите кнопку ``New pull request``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_new_pull_request.png
+   .. image:: _static/starting_guide/github_new_pull_request.png
 
 4. Нажмите кнопку ``compare across forks``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_compare_across_forks.png
+   .. image:: _static/starting_guide/github_compare_across_forks.png
 
 5. Нажмите ``head repository`` и из списка выберите Ваш форк (он будет
    содержать имя Вашего пользователя):
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_choose_fork.png
+   .. image:: _static/starting_guide/github_choose_fork.png
 
 6. Нажмите кнопку ``Create pull request``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_create_pull_request_final_step.png
+   .. image:: _static/starting_guide/github_create_pull_request_final_step.png
 
 7. Введите название для Pull Request:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_name_pull_request.png
+   .. image:: _static/starting_guide/github_name_pull_request.png
 
 .. important:: Имя PR должно соответствовать следующему шаблону:
                ``Laboratory work #X, Name Surname - 2XFPLX``.
@@ -408,11 +408,11 @@ Git - система контроля версий, которая позвол�
 8. Нажмите ``Assignees`` и из списка выберите ментора, который указан в
    таблице успеваемости:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_assignees.png
+   .. image:: _static/starting_guide/github_assignees.png
 
 9. Нажмите кнопку ``Create pull request``:
 
-   .. image:: ../../useful_docs/_static/starting_guide/github_create_pull_request_done.png
+   .. image:: _static/starting_guide/github_create_pull_request_done.png
 
 .. note:: Pull Request появится в списке PR, который находится на
           странице из шага №2.
@@ -442,4 +442,4 @@ Git - система контроля версий, которая позвол�
    MacOS <https://support.apple.com/ru-ru/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac>`__
 
 
-.. |settingsIcon| image:: ../../useful_docs/_static/starting_guide/settingsIcon.svg
+.. |settingsIcon| image:: _static/starting_guide/settingsIcon.svg

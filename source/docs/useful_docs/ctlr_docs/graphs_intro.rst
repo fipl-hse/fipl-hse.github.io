@@ -14,7 +14,7 @@ nodes and the edges are lines or arcs that connect any two nodes in the graph.
 .. note:: Formally a Graph is composed of a set of vertices (V)
           and a set of edges (E). The graph is thus denoted by G(V, E).
 
-.. figure:: ../_static_ctlr/graphs_intro/graph_nodes_edges.png
+.. figure:: _static/graphs_intro/graph_nodes_edges.png
    :alt: graph_nodes_edges
 
 Two edges are said to be **incident** if they share a common vertex.
@@ -27,14 +27,14 @@ Types of graphs
 In other words, the edge connecting vertex A to vertex B is the same
 as the edge connecting vertex B to vertex A.
 
-.. figure:: ../_static_ctlr/graphs_intro/undirected_graph.png
+.. figure:: _static/graphs_intro/undirected_graph.png
    :alt: undirected_graph
 
 Alternatively, in the **directed graph** edges do have direction.
 So, the edge connecting vertex A to vertex B
 is different from the edge connecting vertex B to vertex A.
 
-.. figure:: ../_static_ctlr/graphs_intro/directed_graph.png
+.. figure:: _static/graphs_intro/directed_graph.png
    :alt: directed_graph
 
 
@@ -43,7 +43,7 @@ Graph traversal
 
 **Graph traversal** is the process of visiting each node in a tree exactly once in a specific order.
 
-.. figure:: ../_static_ctlr/graphs_intro/graph_traversal.png
+.. figure:: _static/graphs_intro/graph_traversal.png
    :alt: graph_traversal
 
 Graph isomorphism
@@ -53,5 +53,5 @@ Two graphs G and G' are isomorphic if there is a one to one
 correspondence between their vertices and
 between their edges such that the incidence relationship is preserved.
 
-.. figure:: ../_static_ctlr/graphs_intro/isomorphic_graphs.png
+.. figure:: _static/graphs_intro/isomorphic_graphs.png
    :alt: isomorphic_graphs

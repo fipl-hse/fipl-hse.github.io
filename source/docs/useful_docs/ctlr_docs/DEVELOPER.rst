@@ -19,7 +19,7 @@ To set ``PYTHONPATH`` on a windows machine follow the below steps:
    **Advanced system settings** option. In the next window, select the
    **Advanced** tab and select **Environment Variables**.
 
-   .. figure:: ../_static_ctlr/developer/properties.png
+   .. figure:: _static/developer/properties.png
       :alt: properties
 
 4. In the **User Variables** menu, find a variable named **Path**. Then
@@ -29,7 +29,7 @@ To set ``PYTHONPATH`` on a windows machine follow the below steps:
       click **New**. Then in the variable name form type ``PYTHONPATH``
       and paste your Python path into the variable value field.
 
-      .. figure:: ../_static_ctlr/developer/new_pythonpath.png
+      .. figure:: _static/developer/new_pythonpath.png
          :alt: new python path
 
 5. Go back to the ``python.exe`` folder and open the **Scripts** folder.
@@ -39,7 +39,7 @@ To set ``PYTHONPATH`` on a windows machine follow the below steps:
    to ``python.exe`` and paste the path to the **Scripts** folder. Click
    OK.
 
-   .. figure:: ../_static_ctlr/developer/creating_pythonpath.png
+   .. figure:: _static/developer/creating_pythonpath.png
       :alt: creating python path
 
 To see if Python is added to the Windows PATH, open a terminal and type

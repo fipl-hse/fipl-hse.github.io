@@ -1,114 +1,156 @@
 .. _running-tests-label:
 
-Working with tests: locally and in CI
-=====================================
+.. contents:: Content:
+   :depth: 2
 
-Running tests locally with Visual Studio Code
----------------------------------------------
 
-To configure tests locally you need to perform several steps:
+Запуск тестов: локально и в CI
+==============================
 
-1. Install tests dependencies:
+Настройка тестов в среде разработки Visual Studio Code
+------------------------------------------------------
+
+Чтобы настроить тесты локально, Вам потребуется выполнить следующие
+шаги:
+
+1. Установите зависимости для тестов:
 
    .. code:: bash
 
       python -m pip install -r requirements_qa.txt
 
-.. important:: Ensure you have activated your environment
-               if you have such by running ``.\venv\Scripts\activate``
-               (Windows) or ``source venv\bin\activate`` (macOS).
+.. important:: Удостоверьтесь, что у Вас активировано виртуальное окружение.
+               Это делается через запуск команд ``.\venv\Scripts\activate``
+               (Windows) или ``source venv\bin\activate`` (macOS) в терминале.
 
-2. Create a new configuration:
+2. Создайте новую конфигурацию:
 
-   To create a new configuration open the Testing tab on the side
-   bar of Visual Studio Code and press the `Configure Python Tests`
-   button.
+   Чтобы создать новую конфигурацию, откройте вкладку `Testing`
+   на левой панели Visual Studio Code и нажмите кнопку
+   `Configure Python Tests` button.
 
-   .. image:: ../../useful_docs/_static/tests/vscode_testing_tab.jpg
+   .. image:: _static/tests/vscode_testing_tab.jpg
 
-   Alternatively, you can open configuration settings via command bar.
-   Use `Ctrl + Shift + P` keyboard shortcut to open it and type in
-   `Python: Configure Tests`.
+   Иначе Вы можете открыть настройки конфигурации через командную строку
+   Visual Studio Code.
+   Используйте сочетание клавиш `Ctrl + Shift + P`, чтобы открыть
+   командную строку. Наберите `Python: Configure Tests` в строке и
+   выберите данную опцию в списке команд.
 
    .. image:: _static/tests/vscode_command_bar.jpg
 
-3. Choose ``pytest`` as a target:
+   Теперь Вы можете начать конфигурацию самих тестов.
+
+3. Выберите опцию ``pytest``:
 
    .. image:: _static/tests/vscode_tests_configuration_step_1.jpg
 
-4. Choose the directory to run all tests. You can use root directory to run all
-   tests or a specific lab.
+4. Выберите папку для запуска тестов:
+   
+   Вы можете использовать корневую папку проекта
+   или папку нужной Вам лабораторной работы.
 
    .. image:: _static/tests/vscode_tests_configuration_step_2.jpg
 
-   When you are done, the `settings.json` file for the tests will be opened
-   and all the tests will be displayed on the `Testing` tab of the
-   Visual Studio Code.
-
-   .. image:: _static/tests/vscode_configured_tests.jpg
-
-   To run the test, press the run button, as indicated in the screenshot above.
-
-6. As you have some tests failing, you want to run them separately. You can press
-   a run button next to a test you want to run in the tests files specifically
-   or in the `Testing` tab.
-
-   .. image:: _static/tests/vscode_running_tests.jpg
+   После выбора Visual Studio Code откроет файл `settings.json`
+   с параметрами конфигурации, а все тесты будут расположены на вкладке
+   `Testing`.
 
 
-7. When you want to debug a test, execute debugging by clicking a run button
-   with a bug on it on a test you want to run in the `Testing` tab or make a
-   right click on the testing button in the test file itself and choose the
-   `Debug Test` option.
+Запуск тестов
+-------------
 
-   .. image:: _static/tests/vscode_debugging.jpg
+Чтобы запустить все тесты, нажмите кнопку `Run Tests`, как показано
+на скриншоте ниже.
 
-   To debug you should put a breakpoint in your code or in the test itself.
-   Breakpoints are red dots that you can put at the potentially vulnerable place of code.
-   The execution stops at breakpoints and you can debug your code from these lines.
+.. image:: _static/tests/vscode_configured_tests.jpg
+   
+Иногда Вам может понадобиться запустить не все тесты, а выборочно
+некоторый конкретный тест, папку с тестами или файл с тестами.
+Вы можете сделать это, нажав кнопку `Run Test` рядом
+рядом с названием теста (или файла/папки с несколькими тестами),
+который Вы хотите запустить, на вкладке `Testing`. Также это можно сделать
+в самом файле с тестами, нажав на крестик/галочку (кнопку `Run Test`)
+на строке инициализации теста, как показано на скриншоте ниже.
 
-   .. image:: _static/tests/breakpoints.jpg
+.. image:: _static/tests/vscode_running_tests.jpg
 
 
-Running tests in command-line
------------------------------
+Режим отладки (debugging)
+-------------------------
 
-1. Install dependencies (assuming you have activated the environment
-   from the previous step):
+Если Вы хотите найти ошибки в коде, Вам понадобится запустить нужный тест
+в режиме отладки. 
+Для этого Вы можете нажать на кнопку `Debug Test` с силуэтом жука рядом
+с тестом на вкладке `Testing` или нажать правой кнопкой мыши на кнопку
+`Run Test` в самом файле с тестом и выбрать опцию `Debug Test`.
 
-   .. code:: bash
+.. image:: _static/tests/vscode_debugging.jpg
 
-      python -m pip install -r requirements_qa.txt
+Чтобы начать процесс отладки, Вам понадобится поставить точку останова
+(breakpoint) в Вашем коде или в самом тесте. Точки останова — это специальные
+маркеры, которые Вы можете поставить на потенциально уязвимые строчки кода.
+При запуске теста в режиме отладки программа приостановится на указанной
+строчке, и Вы сможете посмотреть на текущее состояние переменных, а также
+пошагово посмотреть, как работает код.
 
-2. Run the tests for the given mark. You can select any level:
-   ``mark4``, ``mark6``, ``mark8``, ``mark10``:
+.. image:: _static/tests/breakpoints.jpg
 
-   .. code:: bash
 
-      python -m pytest -m mark8
+Запуск тестов в терминале
+-------------------------
 
-   To run tests for a specific laboratory work you can add the directory name
-   after `pytest` command. The full terminal output should look like that:
+.. important:: Удостоверьтесь, что у Вас активировано виртуальное окружение.
+               и установлены зависимости.
 
-   .. image:: _static/tests/running_from_command_line.jpg
+Команда для запуска всех тестов выглядит так:
 
-   .. hint:: Note that if you activated virtual environment and installed
-            requirements properly, you can use `pytest` without calling
-            `python -m` first.
+.. code:: bash
 
-Running tests in CI
--------------------
+   python -m pytest
 
-Tests will never run until you create a Pull Request.
+Чтобы запускать тесты на определённую оценку, используйте маркеры
+``mark4``, ``mark6``, ``mark8`` или ``mark10``. Например, так:
 
-The very first check happens exactly when you create a pull request.
-After that, each time you push changes in your fork, CI check will be
-automatically started, normally within a minute or two. To see the
-results, navigate to your PR and click either the particular step in the
-report at the end of a page, or click **Checks** in the toolbar.
+.. code:: bash
+
+   python -m pytest -m mark8
+
+Чтобы запускать тесты определённой лабораторной работы, добавьте
+название папки после команды `pytest`. 
+
+Например, вот так выглядит команда и полный вывод для запуска
+тестов первой лабораторной работы на оценку 4:
+
+.. image:: _static/tests/running_from_command_line.jpg
+
+.. hint:: Если Вы активировали виртуальное окружение и установили
+          необходимые зависимости, Вы можете использовать `pytest`
+          без вызова `python`.
+
+
+Запуск тестов в CI
+------------------
+
+Запуск тестов и других проверок в CI происходит в открытом
+Вами Пулл Реквесте.
+
+В самый первый раз проверки запускаются в тот момент, когда Вы
+открываете Пулл Реквест. После этого проверки запускаются только тогда,
+когда вы делаете `push` изменений в Ваш форк. Проверки CI запускаются
+автоматически, обычно через минуту. 
+
+Чтобы посмотреть результаты проверок, зайдите в Ваш Пулл Реквест,
+нажмите на кнопку `details` интересующей Вас проверки, а затем на
+интересующий Вас шаг проверки.
+
+Вы можете также посмотреть проверки через вкладку `Checks` в Вашем
+Пулл Реквесте.
 
 .. image:: _static/tests/ci_report.png
 
 .. image:: _static/tests/ci_tab.png
 
-Inspect each step by clicking through the list to the left.
+Если проверки в CI не запускаются, удостоверьтесь, что Вы приняли
+приглашение в группу на GitHub. Обычно их высылают организованно в
+начале курса.

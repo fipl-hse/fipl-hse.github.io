@@ -1,6 +1,6 @@
-================
-Useful Materials
-================
+==============================================================================
+Useful Materials for Technical Track of Computer Tools for Linguistic Research
+==============================================================================
 
 .. toctree::
     :maxdepth: 1
