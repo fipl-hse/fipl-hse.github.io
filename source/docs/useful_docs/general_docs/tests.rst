@@ -24,7 +24,7 @@ To configure tests locally you need to perform several steps:
    bar of Visual Studio Code and press the `Configure Python Tests`
    button.
 
-   .. image:: _static/tests/vscode_testing_tab.jpg
+   .. image:: ../../useful_docs/_static/tests/vscode_testing_tab.jpg
 
    Alternatively, you can open configuration settings via command bar.
    Use `Ctrl + Shift + P` keyboard shortcut to open it and type in

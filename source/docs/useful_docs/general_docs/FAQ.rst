@@ -178,7 +178,7 @@ you changed them. To do so, execute in Visual Studio Code terminal:
 You should have two repositories: `origin` and `upstream`, one of which
 is your fork and the other one is the main repository.
 
-.. image:: _static/FAQ/git_remote.jpg
+.. image:: ../../useful_docs/_static/FAQ/git_remote.jpg
 
 If you don't have an upstream repository, execute:
 
