@@ -15,4 +15,4 @@ at the National Research University Higher School of Economics - Nizhny Novgorod
     labs/index.rst
     task_cards/index.rst
     lectures_content_ru.rst
-    ../useful_docs/index.rst
+    ../../docs/useful_docs/general_docs/index.rst
