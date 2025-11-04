@@ -7,8 +7,8 @@ Working with tests: locally and in CI
    :depth: 2
 
 
-Running tests locally with Visual Studio Code
----------------------------------------------
+Tests configuration in Visual Studio Code
+-----------------------------------------
 To configure tests locally you need to perform several steps:
 
 1. Install tests dependencies:
@@ -50,54 +50,62 @@ To configure tests locally you need to perform several steps:
 
    .. image:: _static/tests/vscode_configured_tests.jpg
 
-   To run the test, press the run button, as indicated in the screenshot above.
+Running tests in Visual Studio Code
+-----------------------------------
+  
+To run the test, press the run button, as indicated in the screenshot above.
 
-6. As you have some tests failing, you want to run them separately. You can press
-   a run button next to a test you want to run in the tests files specifically
-   or in the `Testing` tab.
+As you have some tests failing, you want to run them separately. You can press
+a run button next to a test you want to run in the tests files specifically
+or in the `Testing` tab.
 
-   .. image:: _static/tests/vscode_running_tests.jpg
+.. image:: _static/tests/vscode_running_tests.jpg
 
+Debugging
+---------
 
-7. When you want to debug a test, execute debugging by clicking a run button
-   with a bug on it on a test you want to run in the `Testing` tab or make a
-   right click on the testing button in the test file itself and choose the
-   `Debug Test` option.
+When you want to debug a test, execute debugging by clicking a run button
+with a bug on it on a test you want to run in the `Testing` tab or make a
+right click on the testing button in the test file itself and choose the
+`Debug Test` option.
 
-   .. image:: _static/tests/vscode_debugging.jpg
+.. image:: _static/tests/vscode_debugging.jpg
 
-   To debug you should put a breakpoint in your code or in the test itself.
-   Breakpoints are red dots that you can put at the potentially vulnerable place of code.
-   The execution stops at breakpoints and you can debug your code from these lines.
+To debug you should put a breakpoint in your code or in the test itself.
+Breakpoints are red dots that you can put at the potentially vulnerable place of code.
+The execution stops at breakpoints and you can debug your code from these lines.
 
-   .. image:: _static/tests/breakpoints.jpg
+.. image:: _static/tests/breakpoints.jpg
 
+Running tests in terminal
+-------------------------
 
-Running tests in command-line
------------------------------
+.. important:: Ensure you have activated your environment
+               and installed all required dependencies.
 
-1. Install dependencies (assuming you have activated the environment
-   from the previous step):
+To run all tests, execute the following command in the terminal:
 
-   .. code:: bash
+.. code:: bash
 
-      python -m pip install -r requirements_qa.txt
+   python -m pytest
 
-2. Run the tests for the given mark. You can select any level:
-   ``mark4``, ``mark6``, ``mark8``, ``mark10``:
+You can also run tests for any of the allowed marks:
+``mark4``, ``mark6``, ``mark8`` or ``mark10``.
 
-   .. code:: bash
+.. code:: bash
 
-      python -m pytest -m mark8
+   python -m pytest -m mark8
 
-   To run tests for a specific laboratory work you can add the directory name
-   after `pytest` command. The full terminal output should look like that:
+To run tests for a specific laboratory work you can add the directory name
+after `pytest` command. For example, if you want to run tests for
+`lab_1_keywords_tfidf` and mark 4, the full command and the full terminal
+output should look like this:
 
-   .. image:: _static/tests/running_from_command_line.jpg
+.. image:: _static/tests/running_from_command_line.jpg
 
-   .. hint:: Note that if you activated virtual environment and installed
-            requirements properly, you can use `pytest` without calling
-            `python -m` first.
+.. hint:: Note that if you activated virtual environment and installed
+          requirements properly, you can use `pytest` without calling
+          `python` first.
 
 Running tests in CI
 -------------------
