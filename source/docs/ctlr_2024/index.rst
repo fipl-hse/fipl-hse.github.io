@@ -15,4 +15,4 @@ at the National Research University Higher School of Economics - Nizhny Novgorod
     general_info.rst
     labs/index.rst
     lectures_content.rst
-    useful_docs/index.rst
+    ../../docs/useful_docs/ctlr_docs/index.rst

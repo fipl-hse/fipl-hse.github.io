@@ -11,28 +11,28 @@ To add changes to your fork from the main repository, follow these steps:
 
 2. Click ``Code``, select ``HTTPS`` and click the copy button.
 
-   .. figure:: ../_static/fork_update/copy_original_repo_url.png
+   .. figure:: _static/fork_update/copy_original_repo_url.png
       :alt: copy repo url
 
 3. Open terminal in PyCharm development environment.
 
-   .. figure:: ../_static/starting_guide/pycharm_open_terminal.png
+   .. figure:: _static/starting_guide/pycharm_open_terminal.png
       :alt: open terminal
 
 4. Run ``git remote add upstream <link-to-main-repository>``.
 
-   .. image:: ../_static/fork_update/add_upstream.png
+   .. image:: _static/fork_update/add_upstream.png
 
 5. Run ``git fetch upstream``.
 
-   .. image:: ../_static/fork_update/fetch_upstream.png
+   .. image:: _static/fork_update/fetch_upstream.png
 
 .. important:: Please note that the link in the screenshot
                above points to the parent repository.
 
 6. Run ``git merge upstream/main --no-edit``.
 
-   .. image:: ../_static/fork_update/merge_upstream.png
+   .. image:: _static/fork_update/merge_upstream.png
 
 .. note:: Depending on the number of changes, the output of the
           command will be different.

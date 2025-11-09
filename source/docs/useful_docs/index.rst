@@ -1,13 +1,13 @@
 ==================
-Полезные материалы
+Полезные Материалы
 ==================
+
+Здесь Вы найдёте все вспомогательные материалы для курсов
+программы "Фундаментальная и прикладная лингвистика" НИУ ВШЭ — Нижний Новгород.
 
 .. toctree::
     :maxdepth: 1
     :titlesonly:
 
-    starting_guide_ru.rst
-    fork_update.rst
-    tests.rst
-    actions_ru.rst
-    FAQ.rst
+    general_docs/index.rst
+    ctlr_docs/index.rst

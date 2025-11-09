@@ -31,12 +31,12 @@ To fork a repository on the Github, follow these steps:
 1. Open the repository site that your lecturer has sent you.
 2. In the upper right corner click ``Fork``.
 
-   .. figure:: ../_static/starting_guide/github_forking_1.png
+   .. figure:: _static/starting_guide/github_forking_1.png
       :alt: forking_1
 
 3. Click ``Create Fork``.
 
-   .. figure:: ../_static/starting_guide/github_forking_2.png
+   .. figure:: _static/starting_guide/github_forking_2.png
       :alt: forking_2
 
 You have forked a repository! Pay attention to the link in the address
@@ -62,17 +62,17 @@ To do this, follow these steps:
 
 2. Click ``Settings``.
 
-.. figure:: ../_static/starting_guide/github_settings.png
+.. figure:: _static/starting_guide/github_settings.png
    :alt: settings
 
 3. Select ``Collaborators`` from the left menu.
 
-   .. figure:: ../_static/starting_guide/github_collaborators_tub.png
+   .. figure:: _static/starting_guide/github_collaborators_tub.png
       :alt: add collaborator tub
 
 4. Click ``Add people``.
 
-   .. figure:: ../_static/starting_guide/github_add_collaborator.png
+   .. figure:: _static/starting_guide/github_add_collaborator.png
       :alt: add collaborator
 
 5. Enter `Dmitry Uraev <https://github.com/dmitry-uraev>`__ and `Marina
@@ -80,7 +80,7 @@ To do this, follow these steps:
    it from the list, and click
    ``Add <github-username> to this repository``.
 
-   .. figure:: ../_static/starting_guide/github_add_collaborator_finish.png
+   .. figure:: _static/starting_guide/github_add_collaborator_finish.png
       :alt: add collaborator finish
 
 You have sent `Dmitry Uraev <https://github.com/dmitry-uraev>`__ and
@@ -96,7 +96,7 @@ To clone a fork to work locally, follow these steps:
 1. Open your fork’s website.
 2. Click ``Code``, select ``HTTPS`` and click the copy button.
 
-   .. figure:: ../_static/starting_guide/cloning_repository.png
+   .. figure:: _static/starting_guide/cloning_repository.png
       :alt: cloning repository
 
 3. Open a terminal and navigate to a convenient folder.
@@ -121,7 +121,7 @@ your fork, follow these steps:
 
 1. Open PyCharm and click ``Open``.
 
-   .. figure:: ../_static/starting_guide/openning_project.png
+   .. figure:: _static/starting_guide/openning_project.png
       :alt: openning project
 
 2. Select the folder with the fork that you cloned in the `Clone a fork
@@ -136,7 +136,7 @@ your fork, follow these steps:
       < 3.10, then click ``Python 3.X`` and select a newer version from
       the drop-down list.
 
-.. figure:: ../_static/starting_guide/setting_interpreter.png
+.. figure:: _static/starting_guide/setting_interpreter.png
    :alt: setting interpreter
 
 You have created a project!
@@ -172,7 +172,7 @@ To commit the changes, follow these steps:
 
 1. Open a terminal in the PyCharm development environment.
 
-   .. figure:: ../_static/starting_guide/pycharm_open_terminal.png
+   .. figure:: _static/starting_guide/pycharm_open_terminal.png
       :alt: pycharm open terminal
 
 2. Run ``git add <path-to-file-with-changes>``. For example,
@@ -194,7 +194,7 @@ steps:
 
 1. Open a terminal in the PyCharm development environment.
 
-   .. figure:: ../_static/starting_guide/pycharm_open_terminal.png
+   .. figure:: _static/starting_guide/pycharm_open_terminal.png
       :alt: open_terminal
 
 2. Run ``git pull``.
@@ -224,28 +224,28 @@ changes and validate. To do this, follow these steps:
 
 2. Select ``Pull Requests``.
 
-   .. figure:: ../_static/starting_guide/github_pull_request_highlighted.png
+   .. figure:: _static/starting_guide/github_pull_request_highlighted.png
       :alt: pull_request_highlighted
 
 3. Click ``New pull request``.
 
-   .. figure:: ../_static/starting_guide/github_new_pull_request.png
+   .. figure:: _static/starting_guide/github_new_pull_request.png
       :alt: new_pull_request
 
 4. Click ``compare across forks``.
 
-   .. figure:: ../_static/starting_guide/github_compare_across_forks.png
+   .. figure:: _static/starting_guide/github_compare_across_forks.png
       :alt: compare_across_forks
 
 5. Click ``head repository`` and select your fork from the list (it
    contains your GitHub username).
 
-   .. figure:: ../_static/starting_guide/github_choose_fork.png
+   .. figure:: _static/starting_guide/github_choose_fork.png
       :alt: choose_fork
 
 6. Click ``Create pull request``.
 
-   .. figure:: ../_static/starting_guide/github_create_pull_request_final_step.png
+   .. figure:: _static/starting_guide/github_create_pull_request_final_step.png
       :alt: create_pull_request
 
 7. Enter a name for the Pull Request.
@@ -256,14 +256,14 @@ changes and validate. To do this, follow these steps:
    2. **NB**: The Pull Request name for **Lab 6** must match the
       pattern: ``Pipeline, Name Surname - 2XFPLX``.
 
-      .. figure:: ../_static/starting_guide/github_name_pull_request.png
+      .. figure:: _static/starting_guide/github_name_pull_request.png
          :alt: name pull request
 
 8. Click ``Assignees`` and select your mentor from the list.
 
    1. **NB**: You can find your mentor in **the progress sheet**.
 
-      .. figure:: ../_static/starting_guide/github_assignees.png
+      .. figure:: _static/starting_guide/github_assignees.png
          :alt: assignees
 
 9. Click ``Create pull request``.
