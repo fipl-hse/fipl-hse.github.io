@@ -30,3 +30,4 @@
     lab_1_keywords_tfidf/lab_1.rst
     lab_2_spellcheck/lab_2.rst
     lab_3_generate_by_ngrams/lab_3.rst
+    lab_4_auto_completion/lab_4.rst
