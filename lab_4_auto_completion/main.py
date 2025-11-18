@@ -395,29 +395,17 @@ class DynamicNgramLMTrie(NGramTrieLanguageModel):
             dict[int, float] | None: Possible next tokens with their probabilities.
         """
 
-    def _assign_child(
-        self, parent: TrieNode, node: int | None, freq: float | None = None
-    ) -> TrieNode | None:
+    def _assign_child(self, parent: TrieNode, node_name: int, freq: float = 0.0) -> TrieNode:
         """
-        Find an existing child node with the given value or create it if absent.
-        Optionally update its frequency.
+        Return an existing child with name of node or create a new one.
 
         Args:
-            parent (TrieNode): The parent node whose children are searched or updated.
-            node (int | None): The value stored in the child node to find or create.
-            freq (float | None, optional): Frequency value to assign to the child.
+            parent (TrieNode): A sequence to match beginning of N-grams for continuation.
+            node_name (int): Name of TrieNode to find a child.
+            freq (float, optional): Frequency of child TrieNode.
 
         Returns:
-            TrieNode | None: The child node corresponding to the specified value.
-        """
-
-    def _copy_tree(self, from_root: TrieNode, to_root: TrieNode) -> None:
-        """
-        Copy the entire structure of the source trie into the destination trie.
-
-        Args:
-            from_root (TrieNode): Root node of the source subtree to copy from.
-            to_root (TrieNode): Root node of the destination subtree to copy into.
+            TrieNode: Existing or new TrieNode.
         """
 
     def _merge(self) -> None:
@@ -425,13 +413,12 @@ class DynamicNgramLMTrie(NGramTrieLanguageModel):
         Merge all built N-gram trie models into a single unified trie.
         """
 
-    def _merge_tree_level(self, from_root: TrieNode, to_root: TrieNode) -> None:
+    def _insert_trie(self, source_root: TrieNode) -> None:
         """
-        Merge a subtree rooted at `from_root` into the subtree rooted at `to_root`.
+        Insert all nodes of source root trie into our main root.
 
         Args:
-            from_root (TrieNode): Root node of the source subtree to be merged.
-            to_root (TrieNode): Root node of the destination subtree to merge into.
+            source_root (TrieNode): Source root to insert tree
         """
 
 
