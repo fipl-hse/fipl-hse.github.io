@@ -47,7 +47,7 @@
 В базовой реализации префиксное дерево состоит из набора связанных узлов, каждый из которых
 соответствует определенному символу:
 
-.. figure:: assets/basic_tree.png
+.. figure:: ../../_static/lab_4/basic_tree.png
    :alt:
    :width: 50%
    :align: center
@@ -233,7 +233,7 @@
 UML-диаграмма классов
 ---------------------
 
-.. image:: assets/description.png
+.. image:: ../../_static/lab_4/description.png
    :alt: Диаграмма классов лабораторной работы №4
    :width: 100%
    :align: center
@@ -577,7 +577,7 @@ collections, itertools, а также сторонние модули.**
                          # дочерних узлов
 
 
-.. figure:: assets/add_child.png
+.. figure:: ../../_static/lab_4/add_child.png
    :alt:
    :width: 50%
    :align: center
@@ -651,7 +651,7 @@ collections, itertools, а также сторонние модули.**
 
 На первом этапе мы создаем дочерний узел корневого узла со значением `1`:
 
-.. figure:: assets/1st_step.png
+.. figure:: ../../_static/lab_4/1st_step.png
    :alt:
    :width: 50%
    :align: center
@@ -659,7 +659,7 @@ collections, itertools, а также сторонние модули.**
 Далее переходим в только что созданный узел. Поскольку наша входная последовательность `1, 2`
 добавлена еще не полностью, создаем дочерний узел текущего узла:
 
-.. figure:: assets/2nd_step.png
+.. figure:: ../../_static/lab_4/2nd_step.png
    :alt:
    :width: 50%
    :align: center
