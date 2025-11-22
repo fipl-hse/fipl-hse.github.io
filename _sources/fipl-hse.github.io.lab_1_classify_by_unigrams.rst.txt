@@ -1,0 +1,21 @@
+fipl\-hse.github.io.lab\_1\_classify\_by\_unigrams package
+==========================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_1\_classify\_by\_unigrams.main module
+--------------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_1_classify_by_unigrams.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_1_classify_by_unigrams
+   :members:
+   :undoc-members:
+   :show-inheritance:
