@@ -843,18 +843,19 @@ collections, itertools, а также сторонние модули.**
    файле содержится письмо студентов Хогвартса.
 2. Выполните чтения файла и найдите место, которое было сожжено.
 3. По указанному ниже размеру N-gram извлеките контекст для генерации сожженного текста.
-4. Сгенерируйте текст с помощью алгоритма Beam
-   Search :py:class:`lab_3_generate_by_ngrams.main.BeamSearcher`.
+4. Сгенерируйте текст с помощью NGramTrieLanguageModel
+   из :py:class:`lab_4_auto_completion.main.NGramTrieLanguageModel` и
+   алгоритма Beam Search :py:class:`lab_3_generate_by_ngrams.main.BeamSearcher`.
 5. Вставьте сгенерированный текст на место пропуска в исходном письме.
 6. Отправьте письмо своему ментору.
 
 Используя следующую информацию для генерации:
 
-* Секрет 1: `n_gram_size = 15`, `beam_width = 3`, `seq_len = 100`
-* Секрет 2: `n_gram_size = 10`, `beam_width = 4`, `seq_len = 120`
-* Секрет 3: `n_gram_size = 17`, `beam_width = 3`, `seq_len = 130`
-* Секрет 4: `n_gram_size = 18`, `beam_width = 3`, `seq_len = 128`
-* Секрет 5: `n_gram_size = 7`, `beam_width = 3`, `seq_len = 155`
+* Секрет 1: `n_gram_size = 2`, `beam_width = 7`, `seq_len = 9`
+* Секрет 2: `n_gram_size = 3`, `beam_width = 3`, `seq_len = 4`
+* Секрет 3: `n_gram_size = 2`, `beam_width = 2`, `seq_len = 10`
+* Секрет 4: `n_gram_size = 2`, `beam_width = 2`, `seq_len = 5`
+* Секрет 5: `n_gram_size = 2`, `beam_width = 2`, `seq_len = 25`
 
 .. important:: Количество бонусов ограничено.
                Один студент может отгадать не более одной загадки.
