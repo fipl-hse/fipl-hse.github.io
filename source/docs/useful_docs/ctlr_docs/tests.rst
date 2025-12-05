@@ -1,5 +1,8 @@
 .. _ctlr-tests-label:
 
+.. contents:: Contents:
+   :depth: 2
+
 Working with tests: locally and in CI
 =====================================
 

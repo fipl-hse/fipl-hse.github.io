@@ -1,5 +1,8 @@
 .. _run-in-terminal-label:
 
+.. contents:: Contents:
+   :depth: 2
+
 Run Python Programs in Terminal
 ===============================
 
@@ -63,7 +66,7 @@ Running programs with custom modules
 Now, try to run your scraper:
 
 1. Go to your project’s folder
-   ``cd C:\Users\user\Documents\2024-2-level-ctlr-admin``.
+   ``cd C:\Users\user\Documents\20XX-2-level-ctlr``.
 2. Run scraper ``python lab_5_scraper/scraper.py``.
 
 You get error:
@@ -75,7 +78,7 @@ You get error:
          from core_utils.constants import ASSETS_PATH
    ModuleNotFoundError: No module named 'core_utils'
 
-Why? When we run the same from our PyCharm, it works like a charm! What
+Why? When we run the same from our Integrated Development Environment, it works like a charm! What
 is wrong with terminal run? ``core_utils`` is exactly here, in our
 current directory!
 
