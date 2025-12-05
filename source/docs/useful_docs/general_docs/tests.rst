@@ -1,7 +1,7 @@
 .. _running-tests-label:
 
 .. contents:: Содержание:
-   :depth: 1
+   :depth: 2
 
 
 Запуск тестов: локально и в CI

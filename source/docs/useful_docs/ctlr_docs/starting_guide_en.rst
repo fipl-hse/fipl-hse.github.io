@@ -1,5 +1,8 @@
 .. _starting-guide-en-label:
 
+.. contents:: Contents:
+   :depth: 2
+
 Starting guide
 ==============
 
