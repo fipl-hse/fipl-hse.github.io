@@ -9,5 +9,5 @@
     starting_guide_ru.rst
     fork_update.rst
     tests.rst
-    actions_ru.rst
+    run_in_terminal_ru.rst
     FAQ.rst
