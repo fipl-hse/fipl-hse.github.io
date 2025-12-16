@@ -85,7 +85,7 @@
 | 24.11.2025  | Области видимости.         | Полиморфизм.                                                                                               |
 |             |                            | `Листинг <https://github.com/fipl-hse/2025-2-level-labs/tree/main/seminars/listing_12_polymorphism.py>`__. |
 +-------------+----------------------------+------------------------------------------------------------------------------------------------------------+
-| 01.11.2025  | Функции II.                | Исключения.                                                                                                |
+| 01.12.2025  | Функции II.                | Исключения.                                                                                                |
 |             |                            | `Листинг <https://github.com/fipl-hse/2025-2-level-labs/tree/main/seminars/listing_13_exceptions.py>`__.   |
 +-------------+----------------------------+------------------------------------------------------------------------------------------------------------+
 | 08.12.2025  | Принципы SOLID.            | Сдача лабораторной работы №4.                                                                              |
@@ -170,6 +170,15 @@
 -------
 
 1. `Таблица успеваемости <https://docs.google.com/spreadsheets/d/1aa5XVjz62MJa7K8jMkH4u56BE9A9-jp1WrDjYKZRols>`__
-2. :ref:`starting-guide-ru-label`
-3. :ref:`running-tests-label`
-4. :ref:`faq-label`
+2. `Сайт дисциплины <https://fipl-hse.github.io/docs/labs_2025/#>`__ с описанием лабораторных работ и
+   полезными материалами
+3. Инструкция по подготовке к прохождению курса
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/starting_guide_ru.html>`__
+4. Инструкция по запуску тестов
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/tests.html>`__
+5. Инструкция по запуску ``.py`` файлов в терминале
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/run_in_terminal_ru.html>`__
+6. Инструкция по обновлению форка
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/fork_update.html>`__
+7. Ответы на часто задаваемые вопросы
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/FAQ.html>`__
