@@ -1,0 +1,21 @@
+fipl\-hse.github.io.lab\_3\_generate\_by\_ngrams package
+========================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_3\_generate\_by\_ngrams.main module
+------------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_3_generate_by_ngrams.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_3_generate_by_ngrams
+   :members:
+   :undoc-members:
+   :show-inheritance:
