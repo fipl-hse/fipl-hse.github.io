@@ -14,3 +14,4 @@
     docs/ctlr_2024/index.rst
     docs/llm_2023/index.rst
     docs/llm_2024/index.rst
+    docs/llm_2025/index.rst
