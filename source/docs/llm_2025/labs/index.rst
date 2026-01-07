@@ -27,5 +27,5 @@ click on the object/class name.
     :maxdepth: 2
     :titlesonly:
 
-   ..  lab_7/lab_7.rst
+    lab_7/lab_7.rst
    ..  lab_8/lab_8.rst
