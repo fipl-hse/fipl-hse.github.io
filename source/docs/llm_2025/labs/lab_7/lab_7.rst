@@ -1,4 +1,4 @@
-.. _lab-7-label:
+.. _lab_7_llm/README:
 
 Laboratory work №7. Large Language Models no. 1
 ===============================================
@@ -8,8 +8,8 @@ Laboratory work №7. Large Language Models no. 1
     :titlesonly:
     :caption: Full API
 
-    lab_7.api.rst
-    core_utils.api.rst
+    lab_7_llm.api.rst
+    ../core_utils/llm/core_utils_llm.api.rst
 
 **Python competencies required to complete this tutorial:**
     * working with Transformers models;
@@ -33,7 +33,7 @@ Motivation and purpose
 ----------------------
 
 In this laboratory work we will be introduced to Large Language Models
-and learn how to apply them to solve different tasks.
+and how to apply them to solve different tasks.
 
 **Large Language Model (LLM)** - is a deep-learning algorithm that
 can perform a variety of Natural Language Processing tasks.
@@ -394,8 +394,8 @@ Stage 3.3. Retrieve data
 Implement :py:attr:`lab_7_llm.main.TaskDataset.data` property
 which allows to access the preprocessed ``pd.DataFrame``.
 
-Stage 4. Introduce model pipeline abstraction: ``LLMPipeline``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Stage 4. Introduce model pipeline abstraction: :py:class:`lab_7_llm.main.LLMPipeline`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now we are ready to run our model.
 
@@ -422,11 +422,12 @@ which has the following internal attributes:
           You can find out which class you need to use
           through the ``architectures`` parameter of the model ``config`` object.
 
-See the intended instantiation:
+See the example instantiation (this is an example, but you need to obtain
+it with ``from ... import ...``):
 
 .. code:: py
 
-    pipeline = LLMPipeline(settings.parameters.model, dataset, max_length, batch_size, device)
+    pipeline = lab_7_llm.main.LLMPipeline(settings.parameters.model, dataset, max_length, batch_size, device)
 
 where ``settings.parameters.model`` is the name of the model
 written in ``settings.json`` and ``dataset`` is an instance of ``TaskDataset`` abstraction.
@@ -495,7 +496,7 @@ Stage 4.3. Demonstrate the result in ``start.py``
 Demonstrate model properties analysis and dataset sample inference
 in the ``main()`` function of the ``start.py`` module.
 
-As parameters for initialization ``LLMPipeline`` abstraction,
+As parameters for initialization of :py:meth:`lab_7_llm.main.LLMPipeline.infer_dataset` abstraction,
 use:
 
     * ``batch_size`` = 1;
@@ -566,7 +567,7 @@ which has the following internal attributes:
     * ``self._metrics`` - a field of
       :py:class:`core_utils.llm.metrics.Metrics` abstraction
       with suitable metric;
-    * ``self._data_path`` - a string with the path to the ``dist/predictions.csv`` file.
+    * ``self._data_path`` - a string with the path to the ``predictions.csv`` file.
 
 See the intended instantiation:
 
@@ -574,7 +575,7 @@ See the intended instantiation:
 
     evaluator = TaskEvaluator(predictions_path, settings.parameters.metrics)
 
-where ``predictions_path`` is a string with the path to the ``dist/predictions.csv`` file,
+where ``predictions_path`` is a string with the path to the ``predictions.csv`` file,
 ``settings.parameters.metrics`` is the name of the suitable metric
 written in ``settings.json`` file.
 
@@ -683,7 +684,7 @@ so that the query can be correctly processed.
 
 So, an example of start page might look like this:
 
-.. image:: ../../_static/site.png
+.. image:: assets/site.png
 
 And now we are ready to implement
 :py:meth:`lab_7_llm.service.root` method
@@ -729,4 +730,5 @@ Demonstrate work of your service by running a server
 implemented in ``service.py`` module and obtaining one sample inference result.
 
 .. note:: You can run you server using ``uvicorn PATH:app --reload`` command,
-          where ``PATH`` is a path to ``service.py`` module.
+          where ``PATH`` is a path to ``service.py`` module. Just replace slashes in path with dots.
+          Refer to the appropriate seminar listing for an example.
