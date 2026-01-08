@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starting guide &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Fork update" href="fork_update.html" />
+    <link rel="prev" title="Useful Materials for Technical Track of Computer Tools for Linguistic Research" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Полезные Материалы</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Starting guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fork_update.html">Fork update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html">Working with tests: locally and in CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEVELOPER.html">Configuring Python for course development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="run_in_terminal.html">Run Python Programs in Terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic_scraping.html">How to scrape dynamic web sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_utils.html">Core utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="article.html">Article package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ud_format.html">Working with UD format and <code class="docutils literal notranslate"><span class="pre">CoNLL-U</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="UD_intro.html">Introduction to UD format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphs_intro.html">Introduction to graph data structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dataset.html">Dataset requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Полезные Материалы</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+      <li class="breadcrumb-item active">Starting guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/useful_docs/ctlr_docs/starting_guide_en.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <nav class="contents" id="contents" role="doc-toc">
+<span id="starting-guide-en-label"></span><p class="topic-title">Contents:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#starting-guide" id="id1">Starting guide</a></p>
+<ul>
+<li><p><a class="reference internal" href="#check-you-have-everything-you-need" id="id2">Check you have everything you need</a></p></li>
+<li><p><a class="reference internal" href="#fork-the-repository" id="id3">Fork the repository</a></p></li>
+<li><p><a class="reference internal" href="#add-collaborators" id="id4">Add collaborators</a></p></li>
+<li><p><a class="reference internal" href="#clone-a-fork-of-the-repository-to-work-locally" id="id5">Clone a fork of the repository to work locally</a></p></li>
+<li><p><a class="reference internal" href="#create-a-project-in-pycharm-development-environment" id="id6">Create a project in PyCharm development environment</a></p></li>
+<li><p><a class="reference internal" href="#modify-source-code-and-push-changes-to-remote-fork" id="id7">Modify source code and push changes to remote fork</a></p></li>
+<li><p><a class="reference internal" href="#create-a-pull-request" id="id8">Create a Pull Request</a></p></li>
+<li><p><a class="reference internal" href="#continue-working" id="id9">Continue working</a></p></li>
+<li><p><a class="reference internal" href="#open-a-terminal" id="id10">Open a terminal</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="starting-guide">
+<h1><a class="toc-backref" href="#id11" role="doc-backlink">Starting guide</a><a class="headerlink" href="#starting-guide" title="Link to this heading"></a></h1>
+<p>Before starting the “Computer Tools for Linguistic Research” course,
+each student needs to take a few steps that will prepare the necessary
+tools for further work.</p>
+<nav class="contents" id="content">
+<p class="topic-title">Content:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#starting-guide" id="id11">Starting guide</a></p>
+<ul>
+<li><p><a class="reference internal" href="#check-you-have-everything-you-need" id="id12">Check you have everything you need</a></p></li>
+<li><p><a class="reference internal" href="#fork-the-repository" id="id13">Fork the repository</a></p></li>
+<li><p><a class="reference internal" href="#add-collaborators" id="id14">Add collaborators</a></p></li>
+<li><p><a class="reference internal" href="#clone-a-fork-of-the-repository-to-work-locally" id="id15">Clone a fork of the repository to work locally</a></p></li>
+<li><p><a class="reference internal" href="#create-a-project-in-pycharm-development-environment" id="id16">Create a project in PyCharm development environment</a></p></li>
+<li><p><a class="reference internal" href="#modify-source-code-and-push-changes-to-remote-fork" id="id17">Modify source code and push changes to remote fork</a></p></li>
+<li><p><a class="reference internal" href="#create-a-pull-request" id="id18">Create a Pull Request</a></p></li>
+<li><p><a class="reference internal" href="#continue-working" id="id19">Continue working</a></p></li>
+<li><p><a class="reference internal" href="#open-a-terminal" id="id20">Open a terminal</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="check-you-have-everything-you-need">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Check you have everything you need</a><a class="headerlink" href="#check-you-have-everything-you-need" title="Link to this heading"></a></h2>
+<p>We assume that after completing the <strong>“Programming for Linguists”</strong>
+course, you have:</p>
+<ul class="simple">
+<li><p>Python interpreter</p></li>
+<li><p>Git version control system</p></li>
+<li><p>PyCharm development environment</p></li>
+<li><p>GitHub account</p></li>
+</ul>
+<p>If you do not have any of these, go back to steps 1-5 from <a class="reference internal" href="../general_docs/starting_guide_ru.html#starting-guide-ru-label"><span class="std std-ref">Подготовка к прохождению курса</span></a>.</p>
+</section>
+<section id="fork-the-repository">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Fork the repository</a><a class="headerlink" href="#fork-the-repository" title="Link to this heading"></a></h2>
+<p>To fork a repository on the Github, follow these steps:</p>
+<ol class="arabic">
+<li><p>Open the repository site that your lecturer has sent you.</p></li>
+<li><p>In the upper right corner click <code class="docutils literal notranslate"><span class="pre">Fork</span></code>.</p>
+<figure class="align-default">
+<img alt="forking_1" src="../../../_images/github_forking_1.png" />
+</figure>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Fork</span></code>.</p>
+<figure class="align-default">
+<img alt="forking_2" src="../../../_images/github_forking_2.png" />
+</figure>
+</li>
+</ol>
+<p>You have forked a repository! Pay attention to the link in the address
+bar of the browser: it should contain your Github username and the name
+of the repository: <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;your-username&gt;/202X-2-level-ctlr</span></code>.</p>
+</section>
+<section id="add-collaborators">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Add collaborators</a><a class="headerlink" href="#add-collaborators" title="Link to this heading"></a></h2>
+<p>Only you can make changes to your fork. However, during the course,
+<a class="reference external" href="https://github.com/dmitry-uraev">Dmitry Uraev</a> and <a class="reference external" href="https://github.com/marina-kaz">Marina
+Kazyulina</a> will need to make changes
+to your fork: add changes from the main fork, resolve conflicts, etc.
+You should add them to <strong>collaborators</strong>, so they have such an
+opportunity.</p>
+<p>To do this, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Open the fork site you created in the <a class="reference external" href="#creating-fork">Fork the repository</a> step.</p>
+<ol class="arabic simple">
+<li><p><strong>NB</strong>: Pay attention to the link in the address bar of the browser:
+it should contain your Github username and the name of the repository.</p></li>
+</ol>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Settings</span></code>.</p></li>
+</ol>
+<figure class="align-default">
+<img alt="settings" src="../../../_images/github_settings.png" />
+</figure>
+<ol class="arabic" start="3">
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Collaborators</span></code> from the left menu.</p>
+<figure class="align-default">
+<img alt="add collaborator tub" src="../../../_images/github_collaborators_tub.png" />
+</figure>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">people</span></code>.</p>
+<figure class="align-default">
+<img alt="add collaborator" src="../../../_images/github_add_collaborator.png" />
+</figure>
+</li>
+<li><p>Enter <a class="reference external" href="https://github.com/dmitry-uraev">Dmitry Uraev</a> and <a class="reference external" href="https://github.com/marina-kaz">Marina
+Kazyulina</a> GitHub username, select
+it from the list, and click
+<code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">&lt;github-username&gt;</span> <span class="pre">to</span> <span class="pre">this</span> <span class="pre">repository</span></code>.</p>
+<figure class="align-default">
+<img alt="add collaborator finish" src="../../../_images/github_add_collaborator_finish.png" />
+</figure>
+</li>
+</ol>
+<p>You have sent <a class="reference external" href="https://github.com/dmitry-uraev">Dmitry Uraev</a> and
+<a class="reference external" href="https://github.com/marina-kaz">Marina Kazyulina</a> a request to be
+added to the collaborators! Write to them so they can accept your
+request.</p>
+</section>
+<section id="clone-a-fork-of-the-repository-to-work-locally">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Clone a fork of the repository to work locally</a><a class="headerlink" href="#clone-a-fork-of-the-repository-to-work-locally" title="Link to this heading"></a></h2>
+<p>To clone a fork to work locally, follow these steps:</p>
+<ol class="arabic">
+<li><p>Open your fork’s website.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Code</span></code>, select <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> and click the copy button.</p>
+<figure class="align-default">
+<img alt="cloning repository" src="../../../_images/cloning_repository.png" />
+</figure>
+</li>
+<li><p>Open a terminal and navigate to a convenient folder.</p>
+<ol class="arabic simple">
+<li><p>To move from folder to folder in the terminal, use the command
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&lt;folder-name&gt;</span></code></p></li>
+<li><p>If you do not know how to open a terminal,
+go to the <a class="reference internal" href="#open-a-terminal">Open a terminal</a> step.</p></li>
+</ol>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;link-to-your-fork&gt;</span></code> to clone the repository. For
+example,
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/vitazaytseva/2022-2-level-ctlr.git</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>NB</strong>: If asked for a password, enter your <strong>Personal Access
+Token</strong>.</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="create-a-project-in-pycharm-development-environment">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Create a project in PyCharm development environment</a><a class="headerlink" href="#create-a-project-in-pycharm-development-environment" title="Link to this heading"></a></h2>
+<p>To create a project in the PyCharm development environment to work with
+your fork, follow these steps:</p>
+<ol class="arabic">
+<li><p>Open PyCharm and click <code class="docutils literal notranslate"><span class="pre">Open</span></code>.</p>
+<figure class="align-default">
+<img alt="openning project" src="../../../_images/openning_project.png" />
+</figure>
+</li>
+<li><p>Select the folder with the fork that you cloned in the <a class="reference internal" href="#clone-a-fork-of-the-repository-to-work-locally">Clone a fork
+of the repository to work locally</a> step and click <code class="docutils literal notranslate"><span class="pre">Open</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>NB</strong>: You need to select the folder with the fork called
+<code class="docutils literal notranslate"><span class="pre">202X-2-level-ctlr</span></code>, not the folder with a specific lab.</p></li>
+</ol>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">OK</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>NB</strong>: If in the <code class="docutils literal notranslate"><span class="pre">Base</span> <span class="pre">Interpreter</span></code> field the Python version is
+&lt; 3.10, then click <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.X</span></code> and select a newer version from
+the drop-down list.</p></li>
+</ol>
+</li>
+</ol>
+<figure class="align-default">
+<img alt="setting interpreter" src="../../../_images/setting_interpreter.png" />
+</figure>
+<p>You have created a project!</p>
+</section>
+<section id="modify-source-code-and-push-changes-to-remote-fork">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Modify source code and push changes to remote fork</a><a class="headerlink" href="#modify-source-code-and-push-changes-to-remote-fork" title="Link to this heading"></a></h2>
+<p>You will work on different files in each lab folder.
+The process looks like this:</p>
+<ol class="arabic simple">
+<li><p>You change the source code in the file.</p></li>
+<li><p>You commit changes using the <code class="docutils literal notranslate"><span class="pre">git</span></code> version control system.</p></li>
+<li><p>You push changes to a remote fork.</p></li>
+</ol>
+<section id="change-the-source-code">
+<span id="changing-code-en"></span><h3>Change the source code<a class="headerlink" href="#change-the-source-code" title="Link to this heading"></a></h3>
+<p>By default, functions do not have implementations - only <code class="docutils literal notranslate"><span class="pre">pass</span></code> in the
+function body. Your task is to implement functions according to the
+provided lab description.</p>
+</section>
+<section id="commit-changes">
+<span id="committing-changes-en"></span><h3>Commit changes<a class="headerlink" href="#commit-changes" title="Link to this heading"></a></h3>
+<p><strong>Git</strong> is a version control system that allows developers to save and
+track changes to project files at once.</p>
+<p>To commit the changes, follow these steps:</p>
+<ol class="arabic">
+<li><p>Open a terminal in the PyCharm development environment.</p>
+<figure class="align-default">
+<img alt="pycharm open terminal" src="../../../_images/pycharm_open_terminal.png" />
+</figure>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">&lt;path-to-file-with-changes&gt;</span></code>. For example,
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">lab_5_scraper/scraper.py</span></code>.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;message&quot;</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>NB</strong>: It is recommended to use a brief description of the
+changes you made as <code class="docutils literal notranslate"><span class="pre">message</span></code>. This text will be public.</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="push-changes-to-remote-fork">
+<span id="pushing-changes-en"></span><h3>Push changes to remote fork<a class="headerlink" href="#push-changes-to-remote-fork" title="Link to this heading"></a></h3>
+<p>After the previous step the changes are in a committed state. They are
+stored only in your system. To send them to a remote fork, follow these
+steps:</p>
+<ol class="arabic">
+<li><p>Open a terminal in the PyCharm development environment.</p>
+<figure class="align-default">
+<img alt="open_terminal" src="../../../_images/pycharm_open_terminal.png" />
+</figure>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>NB</strong>: If asked for a password, enter your <strong>Personal Access
+Token</strong>.</p></li>
+</ol>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>NB</strong>: If asked for a password, enter your <strong>Personal Access
+Token</strong>.</p></li>
+</ol>
+</li>
+<li><p>Open the main page of your remote fork.</p>
+<ol class="arabic simple">
+<li><p><strong>NB</strong>: You will see the <em>commit</em> and the <em>message</em> you wrote.</p></li>
+</ol>
+</li>
+</ol>
+<p>More information about the commands described above can be found in <a class="reference external" href="https://git-scm.com/docs">the
+official Git documentation</a>.</p>
+</section>
+</section>
+<section id="create-a-pull-request">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Create a Pull Request</a><a class="headerlink" href="#create-a-pull-request" title="Link to this heading"></a></h2>
+<p>You need to create a Pull Request on GitHub, so mentors can review your
+changes and validate. To do this, follow these steps:</p>
+<ol class="arabic">
+<li><p>Open the repository site that your lecturer sent you.</p></li>
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">Pull</span> <span class="pre">Requests</span></code>.</p>
+<figure class="align-default">
+<img alt="pull_request_highlighted" src="../../../_images/github_pull_request_highlighted.png" />
+</figure>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">pull</span> <span class="pre">request</span></code>.</p>
+<figure class="align-default">
+<img alt="new_pull_request" src="../../../_images/github_new_pull_request.png" />
+</figure>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">compare</span> <span class="pre">across</span> <span class="pre">forks</span></code>.</p>
+<figure class="align-default">
+<img alt="compare_across_forks" src="../../../_images/github_compare_across_forks.png" />
+</figure>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">repository</span></code> and select your fork from the list (it
+contains your GitHub username).</p>
+<figure class="align-default">
+<img alt="choose_fork" src="../../../_images/github_choose_fork.png" />
+</figure>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">pull</span> <span class="pre">request</span></code>.</p>
+<figure class="align-default">
+<img alt="create_pull_request" src="../../../_images/github_create_pull_request_final_step.png" />
+</figure>
+</li>
+<li><p>Enter a name for the Pull Request.</p>
+<ol class="arabic">
+<li><p><strong>NB</strong>: The Pull Request name for <strong>Lab 5</strong> must match the
+pattern: <code class="docutils literal notranslate"><span class="pre">Scraper,</span> <span class="pre">Name</span> <span class="pre">Surname</span> <span class="pre">-</span> <span class="pre">2XFPLX</span></code>.</p></li>
+<li><p><strong>NB</strong>: The Pull Request name for <strong>Lab 6</strong> must match the
+pattern: <code class="docutils literal notranslate"><span class="pre">Pipeline,</span> <span class="pre">Name</span> <span class="pre">Surname</span> <span class="pre">-</span> <span class="pre">2XFPLX</span></code>.</p>
+<figure class="align-default">
+<img alt="name pull request" src="../../../_images/github_name_pull_request.png" />
+</figure>
+</li>
+</ol>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Assignees</span></code> and select your mentor from the list.</p>
+<ol class="arabic">
+<li><p><strong>NB</strong>: You can find your mentor in <strong>the progress sheet</strong>.</p>
+<figure class="align-default">
+<img alt="assignees" src="../../../_images/github_assignees.png" />
+</figure>
+</li>
+</ol>
+</li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">pull</span> <span class="pre">request</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>NB</strong>: Your Pull Request will appear in the Pull Requests.</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="continue-working">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Continue working</a><a class="headerlink" href="#continue-working" title="Link to this heading"></a></h2>
+<p>Your work consists in repeating the following steps:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#changing-code-en"><span class="std std-ref">You change the source code</span></a>.</p></li>
+<li><p><a class="reference internal" href="#committing-changes-en"><span class="std std-ref">You commit the changes</span></a>.</p></li>
+<li><p><a class="reference internal" href="#pushing-changes-en"><span class="std std-ref">You push changes to a remote fork</span></a>.</p>
+<ol class="arabic simple">
+<li><p>They will automatically be updated in the Pull Request you
+created.</p></li>
+</ol>
+</li>
+<li><p>The mentor reviews your code and leaves comments.</p></li>
+<li><p>You correct the source code according to the comments.</p></li>
+<li><p>See step #2.</p></li>
+</ol>
+</section>
+<section id="open-a-terminal">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Open a terminal</a><a class="headerlink" href="#open-a-terminal" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.microsoft.com/ru-ru/powershell/scripting/windows-powershell/starting-windows-powershell?view=powershell-7.2">Instruction for
+Windows</a></p></li>
+<li><p><a class="reference external" href="https://support.apple.com/ru-ru/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac">Instruction for
+macOS</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Useful Materials for Technical Track of Computer Tools for Linguistic Research" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fork_update.html" class="btn btn-neutral float-right" title="Fork update" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
