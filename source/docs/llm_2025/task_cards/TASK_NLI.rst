@@ -13,7 +13,7 @@ Models
 | huggingface.co/cointegrated/rubert-base-cased-nli-threeway>`__    |      |
 +-------------------------------------------------------------------+------+
 | `cointegrated/rubert-tiny-bilingual-nli                           | RU   |
-| <face.co/cointegrated/rubert-tiny-bilingual-nli>`__               |      |
+| <huggingface.co/cointegrated/rubert-tiny-bilingual-nli>`__        |      |
 +-------------------------------------------------------------------+------+
 | `cross-encoder/qnli-distilroberta-base                            | EN   |
 | <https://huggingface.co/cross-encoder/qnli-distilroberta-base>`__ |      |
@@ -35,7 +35,7 @@ Datasets
       1. Select ``dev`` split.
       2. Filter the dataset by the column ``source`` with the value ``mnli``.
 
-         1. This step you should implement in :py:meth:`stubs.labs.lab_7_llm.main.RawDataImporter.obtain`.
+         1. This step you should implement in :py:meth:`lab_7_llm.main.RawDataImporter.obtain`.
 
       3. Leave only columns ``premise_ru``, ``hypothesis_ru`` and ``label``.
       4. Rename column ``premise_ru`` to ``premise``.
@@ -57,6 +57,14 @@ Datasets
       3. Delete duplicates in dataset.
       4. Delete empty rows in dataset.
       5. Reset indexes.
+
+.. note::
+
+   When obtaining this dataset, pass the following parameters to the call of
+   ``load_dataset``:
+
+   - ``revision="refs/convert/parquet"``
+   - ``data_files={"train": f"{self._hf_name}/validation/*.parquet"}``
 
 3. `XNLI <https://huggingface.co/datasets/xnli>`__
 
