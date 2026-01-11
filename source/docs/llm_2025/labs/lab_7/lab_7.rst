@@ -96,9 +96,13 @@ Technical solution
 | <https://fastapi.tiangolo.com/>`__ |                                        |      |
 +------------------------------------+----------------------------------------+------+
 
-.. important:: ``torch`` module version 2.1.2 needs to be installed using
-               ``--extra-index-url https://download.pytorch.org/whl/cpu``
-               in ``requirements.txt`` file.
+.. important::
+
+    - ``torch`` module version 2.9.1 needs to be installed using
+      ``--extra-index-url https://download.pytorch.org/whl/cpu``
+      in ``requirements.txt`` file.
+
+    - ``transformers`` module version 4.50.3 needs to be installed.
 
 Configuring model
 -----------------
@@ -119,6 +123,14 @@ and it is placed on the same level as ``main.py``.
 +----------------------------+------------------------------------------------+--------------+
 |``target_score``            |Desired mark for laboratory work                | ``int``      |
 +----------------------------+------------------------------------------------+--------------+
+
+To initialize settings, import Path from ``pathlib`` and LabSettings
+``from config.lab_settings``. See the intended settings instantiation:
+
+.. code:: py
+
+   current_path = Path(__file__).parent
+   settings = LabSettings(current_path / "settings.json")
 
 Assessment criteria
 -------------------
@@ -394,8 +406,8 @@ Stage 3.3. Retrieve data
 Implement :py:attr:`lab_7_llm.main.TaskDataset.data` property
 which allows to access the preprocessed ``pd.DataFrame``.
 
-Stage 4. Introduce model pipeline abstraction: ``LLMPipeline``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Stage 4. Introduce model pipeline abstraction: :py:class:`lab_7_llm.main.LLMPipeline`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now we are ready to run our model.
 
@@ -422,11 +434,12 @@ which has the following internal attributes:
           You can find out which class you need to use
           through the ``architectures`` parameter of the model ``config`` object.
 
-See the intended instantiation:
+See the example instantiation (this is an example, but you need to obtain
+it with ``from ... import ...``):
 
 .. code:: py
 
-    pipeline = LLMPipeline(settings.parameters.model, dataset, max_length, batch_size, device)
+    pipeline = lab_7_llm.main.LLMPipeline(settings.parameters.model, dataset, max_length, batch_size, device)
 
 where ``settings.parameters.model`` is the name of the model
 written in ``settings.json`` and ``dataset`` is an instance of ``TaskDataset`` abstraction.
@@ -495,7 +508,7 @@ Stage 4.3. Demonstrate the result in ``start.py``
 Demonstrate model properties analysis and dataset sample inference
 in the ``main()`` function of the ``start.py`` module.
 
-As parameters for initialization ``LLMPipeline`` abstraction,
+As parameters for initialization of :py:meth:`lab_7_llm.main.LLMPipeline.infer_dataset` abstraction,
 use:
 
     * ``batch_size`` = 1;
@@ -566,7 +579,7 @@ which has the following internal attributes:
     * ``self._metrics`` - a field of
       :py:class:`core_utils.llm.metrics.Metrics` abstraction
       with suitable metric;
-    * ``self._data_path`` - a string with the path to the ``dist/predictions.csv`` file.
+    * ``self._data_path`` - a string with the path to the ``predictions.csv`` file.
 
 See the intended instantiation:
 
@@ -574,7 +587,7 @@ See the intended instantiation:
 
     evaluator = TaskEvaluator(predictions_path, settings.parameters.metrics)
 
-where ``predictions_path`` is a string with the path to the ``dist/predictions.csv`` file,
+where ``predictions_path`` is a string with the path to the ``predictions.csv`` file,
 ``settings.parameters.metrics`` is the name of the suitable metric
 written in ``settings.json`` file.
 
@@ -729,4 +742,5 @@ Demonstrate work of your service by running a server
 implemented in ``service.py`` module and obtaining one sample inference result.
 
 .. note:: You can run you server using ``uvicorn PATH:app --reload`` command,
-          where ``PATH`` is a path to ``service.py`` module.
+          where ``PATH`` is a path to ``service.py`` module. Just replace slashes in path with dots.
+          Refer to the appropriate seminar listing for an example.

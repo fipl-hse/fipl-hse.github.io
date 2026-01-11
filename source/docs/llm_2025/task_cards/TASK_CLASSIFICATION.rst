@@ -54,6 +54,13 @@ Datasets
       3. Rename column ``comment_text`` to ``source``.
       4. Reset indexes.
 
+.. note::
+
+   When obtaining this dataset, pass the following parameters to the call of
+   ``load_dataset``:
+
+   - ``revision="refs/convert/parquet"``
+
 2. `seara/ru_go_emotions <https://huggingface.co/datasets/seara/ru_go_emotions>`__
 
    1. **Lang**: RU
@@ -151,8 +158,17 @@ Datasets
       4. Rename column ``content`` to ``source``.
       5. Map ``target`` with class labels.
 
-.. note:: In combination with a multiclass model ``blanchefort/rubert-base-cased-sentiment-rusentiment``
-          it is necessary to bring the ``neutral`` class to the ``negative`` class at the prediction stage.
+.. note::
+
+   When obtaining this dataset, pass the following parameters to the call of
+   ``load_dataset``:
+
+   - ``revision="refs/convert/parquet"``
+
+.. note::
+
+   In combination with a multiclass model ``blanchefort/rubert-base-cased-sentiment-rusentiment``
+   it is necessary to bring the ``neutral`` class to the ``negative`` class at the prediction stage.
 
 9. `tatiana-merz/cyrillic_turkic_langs <https://huggingface.co/datasets/tatiana-merz/cyrillic_turkic_langs>`__
 
@@ -224,7 +240,6 @@ Datasets
       2. Rename column ``toxic`` to ``target``.
       3. Rename column ``comment`` to ``source``.
       4. Reset indexes.
-
 
 Supervised Fine-Tuning (SFT) Parameters
 ---------------------------------------
