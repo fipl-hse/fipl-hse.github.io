@@ -1,4 +1,4 @@
-.. _lab_7_llm/README:
+.. _lab-7-label:
 
 Laboratory work №7. Large Language Models no. 1
 ===============================================
@@ -8,8 +8,8 @@ Laboratory work №7. Large Language Models no. 1
     :titlesonly:
     :caption: Full API
 
-    lab_7_llm.api.rst
-    ../core_utils/llm/core_utils_llm.api.rst
+    lab_7.api.rst
+    core_utils.api.rst
 
 **Python competencies required to complete this tutorial:**
     * working with Transformers models;
