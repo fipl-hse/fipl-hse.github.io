@@ -1,21 +1,11 @@
 """
-Neural machine translation module.
+Laboratory work.
+
+Working with Large Language Models.
 """
-# pylint: disable=too-few-public-methods, undefined-variable, too-many-arguments
-from pathlib import Path
+
+# pylint: disable=too-few-public-methods, undefined-variable, too-many-arguments, super-init-not-called
 from typing import Iterable, Sequence
-
-import pandas as pd
-import torch
-from pandas import DataFrame
-from torch.utils.data import Dataset
-
-from core_utils.llm.llm_pipeline import AbstractLLMPipeline
-from core_utils.llm.metrics import Metrics
-from core_utils.llm.raw_data_importer import AbstractRawDataImporter
-from core_utils.llm.raw_data_preprocessor import AbstractRawDataPreprocessor
-from core_utils.llm.task_evaluator import AbstractTaskEvaluator
-from core_utils.llm.time_decorator import report_time
 
 
 class RawDataImporter(AbstractRawDataImporter):
@@ -104,7 +94,7 @@ class LLMPipeline(AbstractLLMPipeline):
         self, model_name: str, dataset: TaskDataset, max_length: int, batch_size: int, device: str
     ) -> None:
         """
-        Initialize an instance of LLMPipeline.
+        Initialize an instance.
 
         Args:
             model_name (str): The name of the pre-trained model
@@ -170,11 +160,10 @@ class TaskEvaluator(AbstractTaskEvaluator):
             metrics (Iterable[Metrics]): List of metrics to check
         """
 
-    @report_time
-    def run(self) -> dict | None:
+    def run(self) -> dict:
         """
         Evaluate the predictions against the references using the specified metric.
 
         Returns:
-            dict | None: A dictionary containing information about the calculated metric
+            dict: A dictionary containing information about the calculated metric
         """
