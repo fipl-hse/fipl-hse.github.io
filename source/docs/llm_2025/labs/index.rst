@@ -28,4 +28,3 @@ click on the object/class name.
     :titlesonly:
 
     lab_7/lab_7.rst
-   ..  lab_8/lab_8.rst
