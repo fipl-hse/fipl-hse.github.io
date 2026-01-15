@@ -125,7 +125,7 @@ and it is placed on the same level as ``main.py``.
 +----------------------------+------------------------------------------------+--------------+
 
 To initialize settings, import Path from ``pathlib`` and LabSettings
-``from config.lab_settings``. See the intended settings instantiation:
+``from core_utils.project.lab_settings``. See the intended settings instantiation:
 
 .. code:: py
 
