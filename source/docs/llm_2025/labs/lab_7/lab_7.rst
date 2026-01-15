@@ -1,4 +1,4 @@
-.. _lab-7-label:
+.. _lab_7_llm/README:
 
 Laboratory work №7. Large Language Models no. 1
 ===============================================
@@ -8,11 +8,12 @@ Laboratory work №7. Large Language Models no. 1
     :titlesonly:
     :caption: Full API
 
-    lab_7.api.rst
-    core_utils.api.rst
+    lab_7_llm.api.rst
+    ../core_utils/llm/core_utils_llm.api.rst
+    ../core_utils/project/core_utils_project.api.rst
 
 **Python competencies required to complete this tutorial:**
-    * working with Transformers models;
+    * working with Transformers Test;
     * working with HuggingFace datasets;
     * estimating result using metric;
     * making server for the chosen task using FastAPI.
@@ -125,7 +126,7 @@ and it is placed on the same level as ``main.py``.
 +----------------------------+------------------------------------------------+--------------+
 
 To initialize settings, import Path from ``pathlib`` and LabSettings
-``from config.lab_settings``. See the intended settings instantiation:
+``from core_utils.project.lab_settings``. See the intended settings instantiation:
 
 .. code:: py
 
@@ -696,7 +697,7 @@ so that the query can be correctly processed.
 
 So, an example of start page might look like this:
 
-.. image:: ../../_static/site.png
+.. image:: assets/site.png
 
 And now we are ready to implement
 :py:meth:`lab_7_llm.service.root` method
