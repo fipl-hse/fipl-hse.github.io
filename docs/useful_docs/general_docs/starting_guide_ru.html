@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Подготовка к прохождению курса &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Обновление форка" href="fork_update.html" />
+    <link rel="prev" title="Полезные материалы для курсов на русском языке" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Полезные Материалы</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Полезные материалы для курсов на русском языке</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Подготовка к прохождению курса</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fork_update.html">Обновление форка</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html">Запуск тестов: локально и в CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="run_in_terminal_ru.html">Запуск Python программ в терминале</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html">Часто задаваемые вопросы</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ctlr_docs/index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Полезные Материалы</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Полезные материалы для курсов на русском языке</a></li>
+      <li class="breadcrumb-item active">Подготовка к прохождению курса</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/useful_docs/general_docs/starting_guide_ru.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="starting-guide-ru-label">
+<span id="id1"></span><h1><a class="toc-backref" href="#id13" role="doc-backlink">Подготовка к прохождению курса</a><a class="headerlink" href="#starting-guide-ru-label" title="Link to this heading"></a></h1>
+<p>Перед началом прохождения курса “Программирование для лингвистов”
+каждому студенту необходимо сделать несколько шагов, которые подготовят
+необходимые инструменты к дальнейшей работе.</p>
+<nav class="contents" id="id2">
+<p class="topic-title">Содержание:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#starting-guide-ru-label" id="id13">Подготовка к прохождению курса</a></p>
+<ul>
+<li><p><a class="reference internal" href="#python" id="id14">Установка интерпретатора языка программирования Python</a></p></li>
+<li><p><a class="reference internal" href="#git" id="id15">Установка системы контроля версий Git</a></p></li>
+<li><p><a class="reference internal" href="#visual-studio-code" id="id16">Установка среды разработки Visual Studio Code</a></p></li>
+<li><p><a class="reference internal" href="#github" id="id17">Регистрация на платформе GitHub</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id18">Создание форка репозитория</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id19">Добавления менторов в коллабораторы</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id20">Клонирование форка репозитория для локальной работы</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id21">Создание проекта в среде разработки Visual Studio Code</a></p></li>
+<li><p><a class="reference internal" href="#working-pipeline" id="id22">Изменение исходного кода и отправка изменений в удалённый форк</a></p></li>
+<li><p><a class="reference internal" href="#pull-request" id="id23">Создание Pull Request</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id24">Продолжение работы</a></p></li>
+<li><p><a class="reference internal" href="#id12" id="id25">Как открыть терминал</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="python">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Установка интерпретатора языка программирования Python</a><a class="headerlink" href="#python" title="Link to this heading"></a></h2>
+<p>Чтобы установить интерпретатор языка программирования Python на свой
+компьютер, выполните следующие шаги:</p>
+<ol class="arabic">
+<li><p>Скачайте установочный файл для своей системы
+с <a class="reference external" href="https://www.python.org/downloads/">официального сайта</a>.</p>
+<img alt="../../../_images/download_python.png" src="../../../_images/download_python.png" />
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Для скачивания нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">3.XX.XX</span></code>.
+Версия Python должна быть = 3.12!</p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Запустите установочный файл и следуйте указаниям по установке.</p></li>
+<li><p>Проверьте корректность установки:</p>
+<ol class="arabic simple">
+<li><p>Откройте терминал и выполните следующую команду:</p>
+<ul class="simple">
+<li><p>Mac: <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">--version</span></code></p></li>
+<li><p>Windows: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code></p></li>
+</ul>
+</li>
+<li><p>Вы должны увидеть строку, похожую на следующую: <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.12.11</span></code></p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если Вы не знаете, как открыть терминал,
+перейдите на шаг <a class="reference internal" href="#id12">Как открыть терминал</a>.</p>
+</div>
+</section>
+<section id="git">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Установка системы контроля версий Git</a><a class="headerlink" href="#git" title="Link to this heading"></a></h2>
+<p>Чтобы установить систему контроля версий Git, выполните следующие шаги:</p>
+<ol class="arabic">
+<li><p>Скачайте установочный файл для своей системы с <a class="reference external" href="https://git-scm.com">официального
+сайта</a>:</p>
+<img alt="../../../_images/git_main_page.png" src="../../../_images/git_main_page.png" />
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Для скачивания нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">for</span> <span class="pre">&lt;название</span> <span class="pre">ОС&gt;</span></code>.</p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Запустите установочный файл и следуйте указаниям по установке</p></li>
+<li><p>Проверьте корректность установки:</p>
+<ol class="arabic simple">
+<li><p>Откройте терминал и выполните следующую команду:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span></code></p></li>
+</ul>
+</li>
+<li><p>Вы должны увидеть строку, похожую на следующую: <code class="docutils literal notranslate"><span class="pre">usage:</span> <span class="pre">git</span> <span class="pre">...</span></code></p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если Вы не знаете, как открыть терминал,
+перейдите на шаг <a class="reference internal" href="#id12">Как открыть терминал</a>.</p>
+</div>
+</section>
+<section id="visual-studio-code">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Установка среды разработки Visual Studio Code</a><a class="headerlink" href="#visual-studio-code" title="Link to this heading"></a></h2>
+<p>Чтобы установить среду разработки Visual Studio Code, выполните следующие шаги:</p>
+<ol class="arabic">
+<li><p>Скачайте установочный файл для своей системы с <a class="reference external" href="https://code.visualstudio.com/download">официального
+сайта</a>:</p>
+<img alt="../../../_images/vscode_download.png" src="../../../_images/vscode_download.png" />
+</li>
+<li><p>Запустите установочный файл и следуйте указаниям по установке.</p></li>
+<li><p>Проверьте корректность установки:</p>
+<ol class="arabic">
+<li><p>Откройте Visual Studio Code из меню приложений.</p></li>
+<li><p>Вы должны увидеть похожий интерфейс:</p>
+<img alt="../../../_images/vscode_project_selection.png" src="../../../_images/vscode_project_selection.png" />
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="github">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Регистрация на платформе GitHub</a><a class="headerlink" href="#github" title="Link to this heading"></a></h2>
+<p>Чтобы зарегистрироваться на платформе GitHub, выполните следующие шаги:</p>
+<ol class="arabic">
+<li><p>Откройте <a class="reference external" href="https://github.com">главную страницу платформы</a>.</p></li>
+<li><p>В верхнем правом углу нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Sign</span> <span class="pre">up</span></code>:</p>
+<img alt="../../../_images/github_sign_up.png" src="../../../_images/github_sign_up.png" />
+</li>
+<li><p>Пройдите регистрацию.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Рекомендуется использовать личную почту, чтобы после
+окончания учёбы не пришлось менять почту с учебной на личную.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Рекомендуется (но не обязательно) в качестве логина
+использовать фамилию и имя. Пример: <code class="docutils literal notranslate"><span class="pre">AndreiKashchikhin</span></code>.</p>
+</div>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Создание форка репозитория</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>Чтобы создать форк репозитория на платформе GitHub, выполните следующие
+шаги:</p>
+<ol class="arabic">
+<li><p>Откройте сайт репозитория, который Вам прислал преподаватель.</p></li>
+<li><p>В верхнем правом углу нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Fork</span></code>:</p>
+<img alt="../../../_images/github_forking.png" src="../../../_images/github_forking.png" />
+</li>
+<li><p>На открывшейся странице нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Fork</span></code>:</p>
+<img alt="../../../_images/github_forking_21.png" src="../../../_images/github_forking_21.png" />
+</li>
+<li><p>Форк создан. Обратите внимание на ссылку в адресной строке браузера:
+она будет содержать <strong>имя Вашего GitHub пользователя</strong> и название
+репозитория:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;имя-Вашего-пользователя&gt;/202X-2-level-labs</span></code></p></li>
+</ul>
+<img alt="../../../_images/github_forking_3.png" src="../../../_images/github_forking_3.png" />
+</li>
+</ol>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Добавления менторов в коллабораторы</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>В Ваш форк можете вносить изменения только Вы. В процессе прохождения
+курса может возникнуть ситуация, когда ментору будет необходимо внести
+изменения в Ваш форк (добавить изменения из основного форка, разрешить
+конфликты и т.д.).</p>
+<p>Чтобы у менторов была возможность вносить изменения в Ваш форк, их нужно
+добавить в <em>коллабораторы</em>. Для этого выполните следующие шаги:</p>
+<ol class="arabic">
+<li><p>Откройте сайт форка, который Вы создали на шаге <a class="reference internal" href="#id3">Создание форка репозитория</a>.</p>
+<img alt="../../../_images/github_forking_3.png" src="../../../_images/github_forking_3.png" />
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Обратите внимание на ссылку в адресной строке браузера:
+она будет содержать <strong>имя Вашего GitHub пользователя</strong>
+и название репозитория.</p>
+</div>
+<ol class="arabic" start="2">
+<li><p>Нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Settings</span></code>:</p>
+<img alt="../../../_images/github_settings1.png" src="../../../_images/github_settings1.png" />
+</li>
+<li><p>Слева выберите вкладку <code class="docutils literal notranslate"><span class="pre">Collaborators</span></code>:</p>
+<img alt="../../../_images/github_collaborators_tab.png" src="../../../_images/github_collaborators_tab.png" />
+</li>
+<li><p>Нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">people</span></code>:</p>
+<img alt="../../../_images/github_add_collaborators.png" src="../../../_images/github_add_collaborators.png" />
+</li>
+<li><p>В открывшемся окне введите имя GitHub пользователя ментора и выберите
+его из списка:</p>
+<img alt="../../../_images/github_select_collaborator.png" src="../../../_images/github_select_collaborator.png" />
+</li>
+<li><p>Нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">&lt;имя-пользователя&gt;</span> <span class="pre">to</span> <span class="pre">this</span> <span class="pre">repository</span></code>:</p>
+<img alt="../../../_images/github_add_collaborator_finish1.png" src="../../../_images/github_add_collaborator_finish1.png" />
+</li>
+<li><p>Вы отправили запрос ментору на добавления в коллабораторы:</p>
+<img alt="../../../_images/github_add_collaborator_pending.png" src="../../../_images/github_add_collaborator_pending.png" />
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>После данного шага <strong>обязательно напишите добавленному
+ментору</strong>, чтобы он мог принять запрос.</p>
+</div>
+<ol class="arabic simple" start="8">
+<li><p>Проделайте шаги 4-7 для <strong>всех менторов курса</strong>.
+Точный список менторов уточняйте у преподавателей.</p></li>
+</ol>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Клонирование форка репозитория для локальной работы</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>Чтобы склонировать форк на Вашу систему, выполните следующие шаги:</p>
+<ol class="arabic">
+<li><p>Откройте сайт Вашего форка, который Вы создали на предыдущем шаге.</p></li>
+<li><p>Нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Code</span></code>, выберите <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> и нажмите кнопку копирования:</p>
+<img alt="../../../_images/cloning_repository1.png" src="../../../_images/cloning_repository1.png" />
+</li>
+<li><p>Откройте терминал и перейдите в удобную папку:</p>
+<ul class="simple">
+<li><p>Чтобы переходить из папки в папку в терминале, используйте команду
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&lt;название-папки&gt;</span></code>.</p>
+<ul>
+<li><p>Пример: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">work</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Выполните следующую команду для клонирования репозитория:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;ссылка-на-ваш-форк&gt;</span></code></p>
+<ul>
+<li><p>Пример: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/sofianurtdinova/2023-2-level-labs</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Ссылку на форк Вы скопировали ранее на шаге №2.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если Вы не знаете, как открыть терминал,
+перейдите на шаг <a class="reference internal" href="#id12">Как открыть терминал</a>.</p>
+</div>
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Создание проекта в среде разработки Visual Studio Code</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>Чтобы создать проект и работать с Вашим форком в среде разработки
+Visual Studio Code, выполните следующие шаги:</p>
+<ol class="arabic">
+<li><p>Откройте Visual Studio Code и нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Open</span></code>:</p>
+<img alt="../../../_images/vs_opening_project.png" src="../../../_images/vs_opening_project.png" />
+</li>
+<li><p>В открывшемся окне выберите папку с форком, который Вы склонировали
+на шаге <a class="reference internal" href="#id5">Клонирование форка репозитория для локальной работы</a>:</p>
+<img alt="../../../_images/vs_selecting_folder.png" src="../../../_images/vs_selecting_folder.png" />
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>На скриншоте выше показано, что форк был склонирован в
+папку <code class="docutils literal notranslate"><span class="pre">Desktop</span> <span class="pre">(Рабочий</span> <span class="pre">стол)</span></code>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Нужно выбрать именно <strong>папку с форком</strong>, имеющую
+название <code class="docutils literal notranslate"><span class="pre">202X-2-level-labs</span></code>, а не папку с конкретной
+лабораторной работой.</p>
+</div>
+<ol class="arabic" start="3">
+<li><p>В открывшемся окне нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Yes,</span> <span class="pre">I</span> <span class="pre">trust</span> <span class="pre">the</span> <span class="pre">authors</span></code>:</p>
+<img alt="../../../_images/vs_trust_authors.png" src="../../../_images/vs_trust_authors.png" />
+</li>
+<li><p>Проект создан, слева Вы можете увидеть файлы проекта:</p>
+<img alt="../../../_images/vs_initial_project_setup.png" src="../../../_images/vs_initial_project_setup.png" />
+</li>
+</ol>
+<ol class="arabic" start="4">
+<li><p>С помощью значка настроек <img alt="settingsIcon" src="../../../_images/settingsIcon.svg" /> в левом нижнем углу
+или сочетанием клавиш <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">P</span></code> откройте командную панель:</p>
+<img alt="../../../_images/vs_command_palette.png" src="../../../_images/vs_command_palette.png" />
+</li>
+<li><p>Для создания виртуального окружения введите <code class="docutils literal notranslate"><span class="pre">Python:</span> <span class="pre">Create</span> <span class="pre">Environment</span></code>,
+после выберите <code class="docutils literal notranslate"><span class="pre">Venv</span></code>:</p>
+<img alt="../../../_images/vs_choose_venv.png" src="../../../_images/vs_choose_venv.png" />
+</li>
+<li><p>Введите путь к нужному интерпретатору.</p></li>
+<li><p>Для активации виртуального окружения откройте терминал
+в среде разработки Visual Studio Code
+нажатием кнопки Terminal -&gt; New Terminal в верхней панели
+или сочетанием клавиш <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">`</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+</pre></div>
+</div>
+<p>Вы готовы приступить к работе.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Для эффективной работы с Python следует установить
+расширение Python. Перейдите во вкладку Extensions в левой
+боковой панели (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+X</span></code>).
+Введите id расширения в поисковую строку.
+Нужное нам - <cite>ms-python.python</cite> .
+Нажмите Install.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>В Visual Studio Code изменения в файлах не сохраняются автоматически,
+но доступно автосохранение файлов.
+Чтобы его включить, выберите в левом верхнем углу
+File -&gt; Auto Save. Для
+выбора режима необходимо настраивать автосохранение.
+Для этого нажмите сочетание клавиш <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">,</span></code>
+или значок настроек в левом нижнем углу <img alt="settingsIcon" src="../../../_images/settingsIcon.svg" /> -&gt; Settings -&gt; в поисковой
+строке вбейте <cite>Auto save</cite>,
+после чего выберите один из доступных режимов.
+Подробнее о них можно почитать в <a class="reference external" href="https://code.visualstudio.com/docs/editing/codebasics#_save-auto-save">официальной
+документации Visual Studio Code</a></p>
+</div>
+</section>
+<section id="working-pipeline">
+<span id="id7"></span><h2><a class="toc-backref" href="#id22" role="doc-backlink">Изменение исходного кода и отправка изменений в удалённый форк</a><a class="headerlink" href="#working-pipeline" title="Link to this heading"></a></h2>
+<p>Основную работу Вы будете вести в файле <code class="docutils literal notranslate"><span class="pre">main.py</span></code> в папке с каждой
+лабораторной работой.</p>
+<p>Процесс выглядит следующим образом:</p>
+<ol class="arabic simple">
+<li><p>Вы изменяете исходный код в файле <code class="docutils literal notranslate"><span class="pre">main.py</span></code>.</p></li>
+<li><p>Вы фиксируете изменения с помощью системы контроля версий <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p></li>
+<li><p>Вы отправляете изменения в удалённый форк.</p></li>
+</ol>
+<p>Далее будет пример этого процесса.</p>
+<section id="changing-code">
+<span id="id8"></span><h3>Изменение исходного кода<a class="headerlink" href="#changing-code" title="Link to this heading"></a></h3>
+<p>По умолчанию функции не имеют внутри себя реализации - только <code class="docutils literal notranslate"><span class="pre">pass</span></code> в
+теле функции. Ваша задача - реализовать функцию по предоставленному описанию
+лабораторной работы.</p>
+</section>
+<section id="committing-changes">
+<span id="id9"></span><h3>Фиксация изменений с помощью системы контроля версий <code class="docutils literal notranslate"><span class="pre">git</span></code><a class="headerlink" href="#committing-changes" title="Link to this heading"></a></h3>
+<p>Git - система контроля версий, которая позволяет сразу нескольким
+разработчикам сохранять и отслеживать изменения в файлах проекта.</p>
+<p>Сейчас мы зафиксируем изменения, сделанные на предыдущем шаге в файле
+<code class="docutils literal notranslate"><span class="pre">main.py</span></code>. Чтобы это сделать, выполните следующие шаги:</p>
+<ol class="arabic">
+<li><p>Откройте терминал в среде разработки Visual Studio Code
+нажатием кнопки Terminal -&gt; New Terminal в верхней панели
+или сочетанием клавиш <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">`</span></code>:</p>
+<img alt="../../../_images/vs_open_terminal_0.png" src="../../../_images/vs_open_terminal_0.png" />
+<img alt="../../../_images/vs_open_terminal.png" src="../../../_images/vs_open_terminal.png" />
+</li>
+<li><p>В терминале выполните команду
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">&lt;путь-до-лабораторной-работы&gt;/main.py</span></code>:</p>
+<img alt="../../../_images/git_add.png" src="../../../_images/git_add.png" />
+</li>
+<li><p>В терминале выполните команду <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;message&quot;</span></code>:</p>
+<img alt="../../../_images/git_commit.png" src="../../../_images/git_commit.png" />
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В качестве <code class="docutils literal notranslate"><span class="pre">message</span></code> рекомендуется использовать краткое
+описание тех изменений, которые Вы сделали. Этот текст будет
+публично доступен!</p>
+</div>
+<p>Больше информации о командах, описанных выше, можно найти в <a class="reference external" href="https://git-scm.com/docs">официальной
+документации по Git</a>.</p>
+</section>
+<section id="pushing-changes">
+<span id="id10"></span><h3>Отправка изменений в удалённый форк<a class="headerlink" href="#pushing-changes" title="Link to this heading"></a></h3>
+<p>После предыдущего шага изменения находятся в состоянии зафиксированных.
+Они сохранены только у Вас в системе. Чтобы отправить их в удалённый
+(находящийся на платформе GitHub) форк, созданный ранее, выполните
+следующие шаги:</p>
+<ol class="arabic">
+<li><p>Откройте терминал в среде разработки Visual Studio Code
+нажатием кнопки Terminal -&gt; New Terminal в верхней панели
+или сочетанием клавиш <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">`</span></code>:</p>
+<img alt="../../../_images/vs_open_terminal_0.png" src="../../../_images/vs_open_terminal_0.png" />
+<img alt="../../../_images/vs_open_terminal.png" src="../../../_images/vs_open_terminal.png" />
+</li>
+<li><p>В терминале выполните команду <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>.</p></li>
+<li><p>В терминале выполните команду <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>:</p>
+<img alt="../../../_images/git_push.png" src="../../../_images/git_push.png" />
+</li>
+<li><p>Откройте главную страницу Вашего форка.
+Вы увидите сделанный <em>commit</em> и сообщение, которое Вы написали:</p>
+<img alt="../../../_images/fork_updated.png" src="../../../_images/fork_updated.png" />
+</li>
+</ol>
+<p>Больше информации о командах, описанных выше, можно найти в <a class="reference external" href="https://git-scm.com/docs">официальной
+документации по Git</a>.</p>
+</section>
+</section>
+<section id="pull-request">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Создание Pull Request</a><a class="headerlink" href="#pull-request" title="Link to this heading"></a></h2>
+<p>Чтобы менторы смогли увидеть Ваши изменения и сделать проверку, Вам
+нужно создать Pull Request на платформе GitHub.
+Для этого выполните следующие шаги:</p>
+<ol class="arabic">
+<li><p>Откройте сайт репозитория, который Вам прислал преподаватель.</p></li>
+<li><p>Выберите вкладку Pull Requests:</p>
+<img alt="../../../_images/github_pull_request_highlighted1.png" src="../../../_images/github_pull_request_highlighted1.png" />
+</li>
+<li><p>Нажмите кнопку <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">pull</span> <span class="pre">request</span></code>:</p>
+<img alt="../../../_images/github_new_pull_request1.png" src="../../../_images/github_new_pull_request1.png" />
+</li>
+<li><p>Нажмите кнопку <code class="docutils literal notranslate"><span class="pre">compare</span> <span class="pre">across</span> <span class="pre">forks</span></code>:</p>
+<img alt="../../../_images/github_compare_across_forks1.png" src="../../../_images/github_compare_across_forks1.png" />
+</li>
+<li><p>Нажмите <code class="docutils literal notranslate"><span class="pre">head</span> <span class="pre">repository</span></code> и из списка выберите Ваш форк (он будет
+содержать имя Вашего пользователя):</p>
+<img alt="../../../_images/github_choose_fork1.png" src="../../../_images/github_choose_fork1.png" />
+</li>
+<li><p>Нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">pull</span> <span class="pre">request</span></code>:</p>
+<img alt="../../../_images/github_create_pull_request_final_step1.png" src="../../../_images/github_create_pull_request_final_step1.png" />
+</li>
+<li><p>Введите название для Pull Request:</p>
+<img alt="../../../_images/github_name_pull_request1.png" src="../../../_images/github_name_pull_request1.png" />
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Имя PR должно соответствовать следующему шаблону:
+<code class="docutils literal notranslate"><span class="pre">Laboratory</span> <span class="pre">work</span> <span class="pre">#X,</span> <span class="pre">Name</span> <span class="pre">Surname</span> <span class="pre">-</span> <span class="pre">2XFPLX</span></code>.</p>
+</div>
+<ol class="arabic" start="8">
+<li><p>Нажмите <code class="docutils literal notranslate"><span class="pre">Assignees</span></code> и из списка выберите ментора, который указан в
+таблице успеваемости:</p>
+<img alt="../../../_images/github_assignees1.png" src="../../../_images/github_assignees1.png" />
+</li>
+<li><p>Нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">pull</span> <span class="pre">request</span></code>:</p>
+<img alt="../../../_images/github_create_pull_request_done.png" src="../../../_images/github_create_pull_request_done.png" />
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pull Request появится в списке PR, который находится на
+странице из шага №2.</p>
+</div>
+</section>
+<section id="id11">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">Продолжение работы</a><a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<p>Продолжение работы заключается в повторении нескольких шагов:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#changing-code"><span class="std std-ref">Вы изменяете исходный код</span></a>.</p></li>
+<li><p><a class="reference internal" href="#committing-changes"><span class="std std-ref">Вы фиксируете изменения</span></a>.</p></li>
+<li><p><a class="reference internal" href="#pushing-changes"><span class="std std-ref">Вы отправляете изменения в удалённый форк</span></a>.</p>
+<ul class="simple">
+<li><p>Они автоматически будут обновляться и в Pull Request, который Вы
+создали</p></li>
+</ul>
+</li>
+<li><p>Ментор проверяет Ваш код и оставляет комментарии.</p></li>
+<li><p>Вы исправляете исходный код согласно комментариям.</p></li>
+<li><p>См. шаг №2.</p></li>
+</ol>
+</section>
+<section id="id12">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">Как открыть терминал</a><a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://docs.microsoft.com/ru-ru/powershell/scripting/windows-powershell/starting-windows-powershell?view=powershell-7.2">Инструкция для
+Windows</a></p></li>
+<li><p><a class="reference external" href="https://support.apple.com/ru-ru/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac">Инструкция для
+MacOS</a></p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Полезные материалы для курсов на русском языке" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fork_update.html" class="btn btn-neutral float-right" title="Обновление форка" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

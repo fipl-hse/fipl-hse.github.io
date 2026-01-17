@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа №2. Кодирование текста с помощью алгоритма BPE &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_2_tokenize_by_bpe package" href="lab_2_tokenize_by_bpe.api.html" />
+    <link rel="prev" title="lab_1_classify_by_unigrams package" href="../lab_1_classify_by_unigrams/lab_1_classify_by_unigrams.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2023/2024)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_1_classify_by_unigrams/lab_1.html">Лабораторная работа №1. Определение языка текста на основе частотного словаря</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Лабораторная работа №2. Кодирование текста с помощью алгоритма BPE</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_2_tokenize_by_bpe.api.html">lab_2_tokenize_by_bpe package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3.html">Лабораторная работа №3. Генерация текста с помощью n-грамм</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_4_fill_words_by_ngrams/lab_4.html">Лабораторная работа №4. Заполнение текста с помощью n-грамм</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+      <li class="breadcrumb-item active">Лабораторная работа №2. Кодирование текста с помощью алгоритма BPE</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/labs_2023/labs/lab_2_tokenize_by_bpe/lab_2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o2-bpe">
+<h1>Лабораторная работа №2. Кодирование текста с помощью алгоритма BPE<a class="headerlink" href="#o2-bpe" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_2_tokenize_by_bpe.api.html">lab_2_tokenize_by_bpe package</a></li>
+</ul>
+</div>
+<section id="id1">
+<h2>Дано<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Текст на русском языке (<code class="docutils literal notranslate"><span class="pre">assets/text.txt</span></code>), который
+загружен и сохранен в переменную <code class="docutils literal notranslate"><span class="pre">text</span></code> в <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Секретный зашифрованный текст.</p></li>
+<li><p>Обученный на большом корпусе текстов словарь
+токенов <code class="docutils literal notranslate"><span class="pre">assets/vocab.json</span></code>.</p></li>
+<li><p>Нейросетевая языковая модель <code class="docutils literal notranslate"><span class="pre">assets/nmt_demo&gt;</span></code> (пример
+обращения - <code class="docutils literal notranslate"><span class="pre">assets/nmt_demo/main.py&gt;</span></code>)</p></li>
+</ol>
+<p>В ходе выполнения лабораторной работы Вы научитесь
+предобрабатывать текст при помощи алгоритма <a class="reference external" href="https://en.wikipedia.org/wiki/Byte_pair_encoding">Byte-Pair
+Encoding</a> таким
+образом, чтобы суметь получить предсказания от нейросетевой
+лингвистической модели и оценить ее работу.</p>
+</section>
+<section id="id2">
+<h2>Терминология<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>В данной лабораторной работе мы будем оперировать следующими понятиями:</p>
+<dl class="simple glossary">
+<dt id="term-Vocabulary">Vocabulary (словарь токенов)<a class="headerlink" href="#term-Vocabulary" title="Link to this term"></a></dt><dd><p>Словарь, устанавливающий однозначное соответствие
+между токенами и идентификаторами токенов.</p>
+</dd>
+<dt id="term-4">Идентификатор токена<a class="headerlink" href="#term-4" title="Link to this term"></a></dt><dd><p>Целочисленное значение, однозначно указывающее на определенный токен.</p>
+</dd>
+<dt id="term-1">Предобработанное слово<a class="headerlink" href="#term-1" title="Link to this term"></a></dt><dd><p>Слово, разбитое на токены.</p>
+</dd>
+<dt id="term-0">Слово<a class="headerlink" href="#term-0" title="Link to this term"></a></dt><dd><p>Последовательность символов между пробельными символами.</p>
+</dd>
+<dt id="term-3">Токен<a class="headerlink" href="#term-3" title="Link to this term"></a></dt><dd><p>Часть, выделяемая в слове.</p>
+</dd>
+<dt id="term-2">Частота слова<a class="headerlink" href="#term-2" title="Link to this term"></a></dt><dd><p>Количество вхождений слова в текст.</p>
+</dd>
+</dl>
+</section>
+<section id="bpe-byte-pair-encoding">
+<h2>Описание алгоритма BPE (Byte-Pair Encoding)<a class="headerlink" href="#bpe-byte-pair-encoding" title="Link to this heading"></a></h2>
+<p>Целью автоматической обработки естественного языка (Natural Language
+Processing, NLP) является формализация языка таким образом, чтобы
+сохранить его смысловое наполнение. Ключевую роль в такой обработке
+играет токенизация и кодирование текста. Благодаря этому становится
+возможным использование формальных языковых моделей, которые не способны
+работать с текстовыми данными в первоначальном виде, но широко
+используются для выявления скрытых закономерностей в числовых данных.</p>
+<p>В качестве самого простого способа токенизировать текст можно
+рассмотреть разбиение текста на слова. Однако у такого подхода есть
+существенные минусы:</p>
+<ol class="arabic simple">
+<li><p>Размер словаря (vocabulary), множества всех уникальных токенов,
+в таком случае получается достаточно большим.</p></li>
+<li><p>Даже при таком очень большом словаре нередко
+приходится сталкиваться с проблемой
+<a class="reference external" href="https://blog.marketmuse.com/glossary/out-of-vocabulary-oov-definition/">Out-of-Vocabulary</a>
+слов.</p></li>
+</ol>
+<p>Это не позволяет сделать обработку универсальной и масштабируемой
+на большое количество дискурсов.</p>
+<p>По этой причине сегодня существует множество техник кодирования текста
+по частям слов. Одной из них является <strong>Byte-Pair Encoding</strong>, с которой вам
+и предстоит поработать в рамках данной лабораторной работы.</p>
+<p>Данный алгоритм был предложен в 1994 Филиппом Гейджем в статье <a class="reference external" href="http://www.pennelynn.com/Documents/CUJ/HTML/94HTML/19940045.HTM">“Новый
+метод сжатия
+данных”</a>.
+Идея алгоритма сводится к замене самых частотных пар символов другим
+символом, при этом объем используемой памяти снижается в два раза.</p>
+<p>В контексте токенизации текста BPE представляет собой итеративное
+слияние наиболее частых пар последовательных токенов в тексте (или
+корпусе текстов) до тех пор, пока не будет достигнут определенный размер
+словаря.</p>
+<p>Для лучшего понимания рассмотрим пример применения этого алгоритма.
+Допустим, нам дан следующий текст:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;It&#39;s far, farther, farthest and old, older, oldest&quot;</span>
+</pre></div>
+</div>
+<p>Разобьем текст на слова по пробельным символам и посимвольно
+токенизируем каждое слово:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Каждое слово заканчивается специальным токеном
+<code class="docutils literal notranslate"><span class="pre">'&lt;/s&gt;'</span></code>, который обозначает конец слова.</p>
+</div>
+<p>Составим таблицу частотности пар токенов. Нас интересуют те токены,
+которые идут друг за другом:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">):</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Обратите внимание, что мы не рассматриваем пары токенов, которые встречаются
+на границе слов. Поэтому у нас нет пар, начинающихся с <code class="docutils literal notranslate"><span class="pre">'&lt;/s&gt;'</span></code>.</p>
+<p>Теперь нужно выбрать самую часто встречающуюся пару. В нашем
+примере это пара токенов <code class="docutils literal notranslate"><span class="pre">(',',</span> <span class="pre">'&lt;/s&gt;')</span></code>.
+Давайте объединим ее в один токен:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Далее мы пересчитываем встречаемость пар токенов, соединяем самую частую
+пару и повторяем процесс до тех пор, пока не достигнем нужного размера
+словаря.</p>
+<p>Итогом работы алгоритма должно стать следующее разбиение:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;far&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;far&#39;</span><span class="p">,</span> <span class="s1">&#39;th&#39;</span><span class="p">,</span> <span class="s1">&#39;er&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;far&#39;</span><span class="p">,</span> <span class="s1">&#39;th&#39;</span><span class="p">,</span> <span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;old&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;old&#39;</span><span class="p">,</span> <span class="s1">&#39;er&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;old&#39;</span><span class="p">,</span> <span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Предполагается, что таким образом удается выделить из текста значимые
+последовательности: это могут быть корни слов либо другие широко
+употребляемые морфемы. Так, в нашем примере нам удалось выделить два
+корня (<code class="docutils literal notranslate"><span class="pre">far</span></code> и <code class="docutils literal notranslate"><span class="pre">old</span></code>), а также суффиксы сравнительной и превосходной
+степени <code class="docutils literal notranslate"><span class="pre">er</span></code> и <code class="docutils literal notranslate"><span class="pre">est</span></code>.</p>
+<p>Иногда в алгоритме вместо специального токена конца слова используется
+токен, который обозначает, напротив, начало слова. В настоящей лабораторной
+нам доведется столкнуться и с тем, и с другим.</p>
+<p>Давайте пошагово рассмотрим реализацию такого алгоритма:</p>
+<ol class="arabic simple">
+<li><p>Создать частотный словарь корпуса, который отражает
+количество вхождений каждого из слов.</p></li>
+<li><p>Токенизировать слова (на первой итерации -
+разделить слова на символы).</p></li>
+<li><p>Составить частотный словарь пар токенов, которые следуют
+друг за другом в рамках одного слова.</p></li>
+<li><p>Сформировать новый токен из самой часто встречающейся пары.</p></li>
+<li><p>Повторить шаги 2-4 до тех пор, пока
+не будет достигнуто желаемое количество токенов.</p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>Что надо сделать<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>Шаг 0. Начать работу над лабораторной (вместе с преподавателем на практике)<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Измените файлы <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и <code class="docutils literal notranslate"><span class="pre">start.py</span></code></p></li>
+<li><p>Закоммитьте изменения и создайте новый Pull request</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Код, выполняющий все требуемые действия, должен быть написан в
+функции <code class="docutils literal notranslate"><span class="pre">main</span></code> в модуле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</div>
+<p>Для этого реализуйте функции в модуле <code class="docutils literal notranslate"><span class="pre">main.py</span></code>
+и импортируйте их в <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.
+Вызов функции в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В рамках данной лабораторной работы <strong>нельзя использовать
+сторонние модули, а также стандартные модули collections и itertools</strong>.</p>
+<p>Обратите внимание, что в файле <code class="docutils literal notranslate"><span class="pre">target_score.txt</span></code> необходимо выставить
+желаемую оценку: 4, 6, 8 или 10. Чем выше желаемая оценка, тем большее
+количество тестов запускается при проверке вашего Pull Request.</p>
+</section>
+<section id="id5">
+<h3>Шаг 1. Токенизировать одно слово<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Начнем с предобработки слов. Для этого реализуйте функцию
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.prepare_word" title="lab_2_tokenize_by_bpe.main.prepare_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.prepare_word()</span></code></a>.</p>
+<p>Функция не должна удалять из строки специальные символы или приводить
+текст к нижнему регистру. В случае, если какой-либо из специальных токенов,
+который обозначает начало и конец слова, представлен значением <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+то добавлять его в кортеж не требуется.</p>
+<p>Например, строка <code class="docutils literal notranslate"><span class="pre">&quot;It's&quot;</span></code> должна быть обработана следующим образом:
+<code class="docutils literal notranslate"><span class="pre">('I',</span> <span class="pre">'t',</span> <span class="pre">&quot;'&quot;,</span> <span class="pre">'s',</span> <span class="pre">'&lt;/s&gt;')</span></code>, где <code class="docutils literal notranslate"><span class="pre">'&lt;/s&gt;'</span></code> - токен, который
+обозначает конец слова. В качестве токена, который обозначает
+начало слова, было передано <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</section>
+<section id="id6">
+<h3>Шаг 2. Сформировать частотный словарь<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шага 2 соответствует 4 баллам.</p>
+</div>
+<p>Далее нужно собрать частотный словарь, ключами которого выступают
+предобработанные слова, а значениями - количество вхождений слов в
+текст. В рамках данной лабораторной работы будем придерживаться мнения,
+что граница слова - это любой пробельный символ.</p>
+<p>Например, из текста
+<code class="docutils literal notranslate"><span class="pre">&quot;It's</span> <span class="pre">far,</span> <span class="pre">farther,</span> <span class="pre">farthest</span> <span class="pre">and</span> <span class="pre">old,</span> <span class="pre">older,</span> <span class="pre">oldest&quot;</span></code> должен
+получиться словарь следующего вида:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.collect_frequencies" title="lab_2_tokenize_by_bpe.main.collect_frequencies"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.collect_frequencies()</span></code></a>.
+При этом токен начала слова может быть представлен <code class="docutils literal notranslate"><span class="pre">None</span></code>, а токен конца - нет.
+Функция обязательно должна вызывать функцию
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.prepare_word" title="lab_2_tokenize_by_bpe.main.prepare_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.prepare_word()</span></code></a>.</p>
+<p>Продемонстрируйте составление частотного словаря в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code>
+модуля <code class="docutils literal notranslate"><span class="pre">start.py</span></code>, используя текст на русском языке (переменная
+<code class="docutils literal notranslate"><span class="pre">text</span></code>). В качестве токена конца слова используйте строку
+<code class="docutils literal notranslate"><span class="pre">&lt;/s&gt;</span></code>. Токен начала слова не используйте, то есть передайте в его
+качестве <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</section>
+<section id="id7">
+<h3>Шаг 3. Посчитать количество вхождений каждой из пар токенов<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>Чтобы сформировать новые токены, нужно выделить самые часто
+встречающиеся сочетания уже существующих токенов. Для этого нужно
+сформировать частотный словарь, в котором в качестве ключей используются
+пары существующих токенов (то есть пока что только пары символов), а
+значениями - количество случаев, когда эти символы следуют друг за
+другом в пределах одного слова.</p>
+<p>Так, для примера из предыдущего шага частотный словарь сочетания токенов
+имеет следующий вид:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">):</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Обратите внимание, что для пары порядок токенов критичен.
+Кроме этого, сочетания токенов на стыке слов не образуют пару,
+поэтому в нашем словаре пар нет сочетаний, которые начинаются с токена конца
+слова.</p>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.count_tokens_pairs" title="lab_2_tokenize_by_bpe.main.count_tokens_pairs"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.count_tokens_pairs()</span></code></a>.</p>
+</section>
+<section id="id8">
+<h3>Шаг 4. Сформировать новый токен<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>Словарь частотности сочетаний токенов позволяет нам выбрать, из чего
+можно сформировать новый токен.</p>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.merge_tokens" title="lab_2_tokenize_by_bpe.main.merge_tokens"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.merge_tokens()</span></code></a>.
+Она обновляет частотный словарь слов, заменяя в ключах пары токенов,
+из которых сформирован новый токен, на этот самый новый объединенный токен.</p>
+<p>Так, если в частотном словаре слов из предыдущего шага объединить пару
+токенов <code class="docutils literal notranslate"><span class="pre">(',',</span> <span class="pre">'&lt;/s&gt;')</span></code> в новый токен, то словарь должен измениться
+следующим образом:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;,&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">(</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">):</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>Шаг 5. Обучить токенизатор<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шага 5 соответствует 6 баллам.</p>
+</div>
+<p>Теперь у нас есть все компоненты для того, чтобы обучить наш токенизатор
+и сформировать необходимое количество новых токенов.
+Для этого реализуйте функцию <a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.train" title="lab_2_tokenize_by_bpe.main.train"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.train()</span></code></a>.</p>
+<p>Чтобы сформировать новый токен, нужно выбирать самую часто
+встречающуюся пару токенов. В случае, если несколько пар встречаются
+одинаково часто, нужно выбрать ту, которая даст более длинный
+токен. Если и это не даст однозначного ответа, то необходимо выбрать ту
+пару, которая дает лексикографически меньший токен.</p>
+<p>Например, для пар <code class="docutils literal notranslate"><span class="pre">{('a',</span> <span class="pre">'b'):</span> <span class="pre">3,</span> <span class="pre">('b',</span> <span class="pre">'cd'):</span> <span class="pre">3,</span> <span class="pre">('b',</span> <span class="pre">'ca'):</span> <span class="pre">3}</span></code>
+нужно сформировать токен <code class="docutils literal notranslate"><span class="pre">'bca'</span></code>, так как этот токен длиннее токена
+<code class="docutils literal notranslate"><span class="pre">'ab'</span></code> и лексикографически меньше токена <code class="docutils literal notranslate"><span class="pre">'bcd'</span></code>.</p>
+<p>Обратите внимание, что если доступных для слияния пар токенов не
+осталось, то обучение должно прекратиться, даже если необходимое
+количество токенов не было достигнуто.</p>
+<p>Продемонстрируйте обучение токенизатора на материале текста из
+переменной <code class="docutils literal notranslate"><span class="pre">text</span></code> в модуле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Используйте 100 слияний в
+качестве критерия остановки обучения.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Подумайте, можно ли установить связь между оптимальным
+количеством слияний и количеством вхождений в частотный словарь слов?</p>
+</div>
+</section>
+<section id="id10">
+<h3>Шаг 6. Присвоить токенам идентификатор<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>Известно, что формальные модели, включая лингвистические модели, не
+способны обрабатывать буквенные данные, поэтому необходимо для каждой
+текстовой последовательности сформировать числовой вектор. Для этого
+нужно присвоить каждому из получившихся токенов и символов в них
+определенный числовой идентификатор.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>При присваивании идентификатора не нужно
+учитывать повторяющиеся токены и символы.</p>
+</div>
+<p>Отсортируйте токены по длине в порядке убывания.
+Токены, имеющие одинаковую длину, должны быть
+отсортированы лексикографически в порядке возрастания.
+Присвойте данной последовательности идентификаторы от 0 до n-1,
+где n - количество токенов.</p>
+<p>Например, из набора токенов
+<code class="docutils literal notranslate"><span class="pre">['far',</span> <span class="pre">'old',</span> <span class="pre">'th',</span> <span class="pre">'er',</span> <span class="pre">'est',</span> <span class="pre">'&lt;/s&gt;',</span> <span class="pre">'a',</span> <span class="pre">'n',</span> <span class="pre">'d']</span></code> должен
+получиться следующий словарь:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;&lt;unk&gt;&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;est&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;far&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;old&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;er&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;th&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Для этого реализуйте функцию <a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.get_vocabulary" title="lab_2_tokenize_by_bpe.main.get_vocabulary"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.get_vocabulary()</span></code></a>.
+В возвращаемом словаре должны присутствовать специальные токены:</p>
+<ul class="simple">
+<li><p>токен конца слова (при наличии);</p></li>
+<li><p>токен начала слова (при наличии);</p></li>
+<li><p>неизвестный токен.</p></li>
+</ul>
+<p>Присвоение идентификатора данным токенам производится
+так же после сортировки вместе с остальными токенами.</p>
+</section>
+<section id="id11">
+<h3>Шаг 7. Декодировать текст<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шага 7 соответствует 8 баллам.</p>
+</div>
+<p>Теперь, когда у нас есть выделенные токены и присвоенные им числовые
+идентификаторы, мы можем декодировать любую последовательность.</p>
+<p>Для этого реализуйте функцию <a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.decode" title="lab_2_tokenize_by_bpe.main.decode"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.decode()</span></code></a>.
+Обратите внимание, что в возвращаемой строке не
+должно быть токенов, которые обозначают конец слова.
+Вместо них должно быть то, что мы в рамках текущей работы
+считаем границей слова, то есть пробельный символ.</p>
+<p>Так, при использовании словаря из предыдущего шага, последовательность
+<code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">6,</span> <span class="pre">1,</span> <span class="pre">4]</span></code> должна быть раскодирована как <code class="docutils literal notranslate"><span class="pre">'farthest</span> <span class="pre">'</span></code>.</p>
+<p>Создайте словарь вида <code class="docutils literal notranslate"><span class="pre">&lt;токен:</span> <span class="pre">числовой</span> <span class="pre">идентификатор&gt;</span></code>, используя
+<code class="docutils literal notranslate"><span class="pre">'&lt;unk&gt;'</span></code> в качестве токена, который обозначает неизвестную
+последовательность. Затем продемонстрируйте работу декодера, прочитав и
+декодировав секретное содержимое любого файла из папки
+<code class="docutils literal notranslate"><span class="pre">assets/secrets</span></code> в модуле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В данных файлах есть инструкция о получении бонуса к оценке.
+При этом, <strong>количество бонусов ограничено</strong>.
+Один студент может отгадать не более одной загадки.
+Поэтому только первые 5 студентов, которые справятся с заданием,
+смогут получить бонус. Решение о применении бонуса принимается
+ментором и не подлежит оспариванию. Студент получит бонус, только
+если на момент выполнения задания в его форке опубликован
+актуальный код, который позволяет воспроизвести результат.</p>
+</div>
+</section>
+<section id="id12">
+<h3>Шаг 8. Закодировать одно слово<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>Кодирование текста, в отличие от декодирования, является более сложным
+процессом и подразумевает предварительную токенизацию текста.</p>
+<p>На текущем шаге Вам нужно реализовать
+функцию <a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.tokenize_word" title="lab_2_tokenize_by_bpe.main.tokenize_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.tokenize_word()</span></code></a>.
+Обратите внимание, что при токенизации слова необходимо в первую очередь
+выбирать более длинные токены.</p>
+<p>Например, мы токенизируем слово <code class="docutils literal notranslate"><span class="pre">('w',</span> <span class="pre">'o',</span> <span class="pre">'r',</span> <span class="pre">'d',</span> <span class="pre">'&lt;/s&gt;')</span></code>
+и получаем следующий словарь токенов:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&lt;unk&gt;&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;wo&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;ord&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">:</span> <span class="mi">7</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>При корректной реализации слово должно быть токенизировано следующим
+образом: <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">6,</span> <span class="pre">7]</span></code>. Варианты <code class="docutils literal notranslate"><span class="pre">[5,</span> <span class="pre">3,</span> <span class="pre">4]</span></code> и <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code>
+являются неправильными: токен <code class="docutils literal notranslate"><span class="pre">ord</span></code> длиннее токенов <code class="docutils literal notranslate"><span class="pre">wo</span></code> и тем более
+<code class="docutils literal notranslate"><span class="pre">w</span></code>, <code class="docutils literal notranslate"><span class="pre">o</span></code>, <code class="docutils literal notranslate"><span class="pre">r</span></code> и <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p>
+<p>В случае, если есть несколько подходящих самых длинных токенов, следует
+использовать тот токен, который меньше лексикографически. В случае, если
+встречается последовательность, которую нельзя заменить ни на один из
+известных токенов, она заменяется на специальный неизвестный токен. Это
+позволит без ошибок обрабатывать тексты, в которых есть, например,
+вставки на других языках.</p>
+</section>
+<section id="id13">
+<h3>Шаг 9. Загрузить словарь<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<p>В дальнейшем нам предстоит работать с нейросетевой языковой моделью,
+обученной на задачу перевода с русского языка на английский. Для этого
+нужно использовать специальный словарь токенов, обученный на
+большом объеме текстов и расположенный в файле <code class="docutils literal notranslate"><span class="pre">assets/vocab.json</span></code>.</p>
+<p>На данном шаге мы научимся считывать такие словари из файлов с
+расширением <code class="docutils literal notranslate"><span class="pre">.json</span></code>. Для этого реализуйте функицю
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.load_vocabulary" title="lab_2_tokenize_by_bpe.main.load_vocabulary"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.load_vocabulary()</span></code></a>.</p>
+<p>Мы уже встречались с файлами такого формата в предыдущих лабораторных
+работах. Больше узнать об этом формате можно
+<a class="reference external" href="https://ru.wikipedia.org/wiki/JSON">здесь</a>.
+Для работы с такими файлами используется библиотека
+<a class="reference external" href="https://pythonworld.ru/moduli/modul-json.html">json</a>.</p>
+</section>
+<section id="id14">
+<h3>Шаг 10. Закодировать текст<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<p>Чтобы формальная модель поняла наш запрос, нужно его закодировать.
+Для этого реализуйте функцию <a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.encode" title="lab_2_tokenize_by_bpe.main.encode"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.encode()</span></code></a>.
+Она обязательно должна вызывать функции
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.prepare_word" title="lab_2_tokenize_by_bpe.main.prepare_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.prepare_word()</span></code></a> и
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.tokenize_word" title="lab_2_tokenize_by_bpe.main.tokenize_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.tokenize_word()</span></code></a>.</p>
+</section>
+<section id="n">
+<h3>Шаг 11. Выделить n-граммы<a class="headerlink" href="#n" title="Link to this heading"></a></h3>
+<p>Теперь мы готовы перейти к тому, чтобы научиться оценивать качество
+перевода. Для сравнения полученных предсказаний с истинным ответом,
+нужно научиться рассчитывать метрику <a class="reference external" href="https://en.wikipedia.org/wiki/BLEU">BLEU (bilingual evaluation
+understudy)</a>.</p>
+<p>Эта метрика часто используется для оценки предсказаний в задаче
+машинного перевода текста. Она представляет собой геометрическое среднее
+метрик
+<a class="reference external" href="https://en.wikipedia.org/wiki/Precision_and_recall">Precision</a>,
+посчитанных для n-грамм различного порядка.</p>
+<p>В течение следующих нескольких шагов мы реализуем подсчет метрики BLEU.
+Для начала нужно реализовать функцию для выделения n-грамм из
+последовательности <a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.collect_ngrams" title="lab_2_tokenize_by_bpe.main.collect_ngrams"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.collect_ngrams()</span></code></a>.</p>
+<p>N-граммами называют такую подпоследовательность,
+которая включает в себя ровно n последовательных элементов. Например, из
+буквенной последовательности <code class="docutils literal notranslate"><span class="pre">мыть</span></code> можно выделить четыре униграммы
+(<code class="docutils literal notranslate"><span class="pre">м</span></code>, <code class="docutils literal notranslate"><span class="pre">ы</span></code>, <code class="docutils literal notranslate"><span class="pre">т</span></code>, <code class="docutils literal notranslate"><span class="pre">ь</span></code>), три биграммы (<code class="docutils literal notranslate"><span class="pre">мы</span></code>, <code class="docutils literal notranslate"><span class="pre">ыт</span></code>, <code class="docutils literal notranslate"><span class="pre">ть</span></code>), две
+триграммы (<code class="docutils literal notranslate"><span class="pre">мыт</span></code>, <code class="docutils literal notranslate"><span class="pre">ыть</span></code>) и, наконец, одну 4-грамму (<code class="docutils literal notranslate"><span class="pre">мыть</span></code>).</p>
+<p>Например, при вызове функции с последовательностью <code class="docutils literal notranslate"><span class="pre">мыть</span></code> и порядком
+3, мы ожидаем получить результат <code class="docutils literal notranslate"><span class="pre">[('м',</span> <span class="pre">'ы',</span> <span class="pre">'т'),</span> <span class="pre">('ы',</span> <span class="pre">'т',</span> <span class="pre">'ь')]</span></code>.</p>
+</section>
+<section id="precision">
+<h3>Шаг 12. Вычислить метрику Precision<a class="headerlink" href="#precision" title="Link to this heading"></a></h3>
+<p>В общем случае значение метрики Precision обозначает, сколько
+положительных предсказаний модели оказались действительно
+положительными. В нашем случае можно сформулировать это более конкретно:
+какая доля истинных значений попала в предсказания модели.</p>
+<p>Иными словами, чем больше предсказанных n-грамм действительно
+присутствуют в истинной последовательности, тем выше значение Precision.</p>
+<p>Для вычисления метрики Precision реализуйте функцию
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.calculate_precision" title="lab_2_tokenize_by_bpe.main.calculate_precision"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.calculate_precision()</span></code></a>.</p>
+<p>Рассмотрим пример. Пусть истинными значениями является
+<code class="docutils literal notranslate"><span class="pre">[('м',),</span> <span class="pre">('ы',),</span> <span class="pre">('т',),</span> <span class="pre">('ь',)]</span></code>, а предсказанными -
+<code class="docutils literal notranslate"><span class="pre">[('м',),</span> <span class="pre">('ы',),</span> <span class="pre">('т',),</span> <span class="pre">('ь',),</span> <span class="pre">('c',),</span> <span class="pre">('я',)]</span></code>. Тогда совпадающими
+значениями будут следующие 4 элемента:
+<code class="docutils literal notranslate"><span class="pre">[('м',),</span> <span class="pre">('ы',),</span> <span class="pre">('т',),</span> <span class="pre">('ь',)]</span></code>. Так как всего нам дано 6
+предсказанных значений Precision, то доля совпадающих элементов, равна
+<span class="math notranslate nohighlight">\(\frac{4}{6}=0.(6)\)</span>.</p>
+</section>
+<section id="id15">
+<h3>Шаг 13. Вычислить среднее геометрическое<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<p>До расчета метрики BLEU нам остался всего один шаг, и это подсчет
+среднего <a class="reference external" href="https://ru.wikipedia.org/wiki/Среднее_геометрическое">геометрического
+значения</a>.
+Для этого реализуйте функцию
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.geo_mean" title="lab_2_tokenize_by_bpe.main.geo_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.geo_mean()</span></code></a>.</p>
+<p>Рассчитывать среднее значение мы будем для метрик Precision,
+которые посчитаны для n-грамм различного порядка, от 1 до <span class="math notranslate nohighlight">\(order_{max}\)</span>,
+где <span class="math notranslate nohighlight">\(order_{max}\)</span> - максимальный порядок рассматриваемых n-грамм.</p>
+<p>Рассчитать значение можно по следующей формуле:</p>
+<div class="math notranslate nohighlight">
+\[Mean_{geometric} = \frac{1}{order_{max}} \times \sum_{i=1}^{order_{max}}ln(Precision_{i})\]</div>
+<p>Здесь <span class="math notranslate nohighlight">\(Precision_{i}\)</span> обозначает значение метрики Precision для
+n-грамм порядка <span class="math notranslate nohighlight">\(i\)</span>, причем <span class="math notranslate nohighlight">\(i\)</span> принимает значения от 1 до
+<span class="math notranslate nohighlight">\(order_max\)</span>.</p>
+</section>
+<section id="bleu">
+<h3>Шаг 14. Вычислить метрику BLEU<a class="headerlink" href="#bleu" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шага 14 соответствует 10 баллам.</p>
+</div>
+<p>Наконец, мы готовы рассчитать метрику BLEU, которая отражает
+близость предсказанного значения истинному.
+Для этого реализуйте функцию
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.calculate_bleu" title="lab_2_tokenize_by_bpe.main.calculate_bleu"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.calculate_bleu()</span></code></a>,
+которая обязательно вызывает функции
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.collect_ngrams" title="lab_2_tokenize_by_bpe.main.collect_ngrams"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.collect_ngrams()</span></code></a>,
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.calculate_precision" title="lab_2_tokenize_by_bpe.main.calculate_precision"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.calculate_precision()</span></code></a> и
+<a class="reference internal" href="lab_2_tokenize_by_bpe.api.html#lab_2_tokenize_by_bpe.main.geo_mean" title="lab_2_tokenize_by_bpe.main.geo_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_tokenize_by_bpe.main.geo_mean()</span></code></a>.</p>
+<p>Функция должна:</p>
+<ol class="arabic simple">
+<li><p>Выделить n-граммы из предоставленных последовательностей
+всех порядков от 1 до обозначенного максимального.</p></li>
+<li><p>Посчитать Precision для выделенных n-грамм каждого порядка.</p></li>
+<li><p>Вычислить среднее геометрическое полученных значений метрики
+и вернуть это значение, предварительно умножив на 100.</p></li>
+</ol>
+<p>Продемонстрируйте оценку работы языковой модели
+<code class="docutils literal notranslate"><span class="pre">Helsinki-NLP/opus-mt-ru-en</span></code> в задаче машинного перевода в
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Информацию об этой языковой модели можно получить
+<a class="reference external" href="https://huggingface.co/Helsinki-NLP/opus-mt-ru-en">здесь</a>. Пример
+работы с данной языковой моделью вы можете увидеть в
+<code class="docutils literal notranslate"><span class="pre">assets/nmt_demo/main.py</span></code>.</p>
+<p>Вам не нужно импортировать модель и генерировать предсказания, это
+уже сделано за вас. Текст, который использовали для получения предсказания,
+расположен в файле <code class="docutils literal notranslate"><span class="pre">assets/for_translation_ru_raw.txt</span></code>.
+Закодируйте его при помощи специального обученного
+словаря <code class="docutils literal notranslate"><span class="pre">assets/vocab.json</span></code>. При кодировании в качестве токена начала
+слова используйте <code class="docutils literal notranslate"><span class="pre">\u2581</span></code>, а в качестве неизвестного токена - <code class="docutils literal notranslate"><span class="pre">&lt;unk&gt;</span></code>.
+Токен конца слова использовать не нужно (т.е. передайте <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p>
+<p>Чтобы убедиться, что файл удалось закодировать верным образом,
+можно сравнить его с закодированной версией текста из файла
+<code class="docutils literal notranslate"><span class="pre">assets/for_translation_ru_encoded.txt</span></code>.
+Закодированные предсказания модели (то есть предсказания в том виде, в
+котором их вернула модель) можно найти в файле
+<code class="docutils literal notranslate"><span class="pre">assets/for_translation_en_encoded.txt</span></code>.
+Необходимо декодировать их, используя реализованные вами функции, и
+сравнить получившийся текст с эталонным переводом из файла
+<code class="docutils literal notranslate"><span class="pre">assets/for_translation_en_raw.txt</span></code>.
+При декодировании токен конца слова следует передать как <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Сравнение следует производить по метрике BLEU. После декодирования и
+перед сравнением нужно очистить текст от токена начала слова
+(<code class="docutils literal notranslate"><span class="pre">\u2581</span></code>), заменив его на пробел.</p>
+</section>
+</section>
+<section id="id16">
+<h2>Полезные ссылки<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.pennelynn.com/Documents/CUJ/HTML/94HTML/19940045.HTM">Оригинальная статья о BPE
+алгоритме</a></p></li>
+<li><p><a class="reference external" href="https://ru.wikipedia.org/wiki/JSON">Описание формата хранения данных JSON</a>
+и <a class="reference external" href="https://pythonworld.ru/moduli/modul-json.html">документация библиотеки</a>
+для работы с такими файлами</p></li>
+<li><p><a class="reference external" href="https://huggingface.co/Helsinki-NLP/opus-mt-ru-en">Описание нейросетевой модели</a>,
+чьи предсказания были использованы в настоящей
+работе</p></li>
+<li><p><a class="reference external" href="https://aclanthology.org/P02-1040.pdf">Оригинальная статья о BLEU
+метрике</a>, используемой для
+оценки качества машинного перевода</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_1_classify_by_unigrams/lab_1_classify_by_unigrams.api.html" class="btn btn-neutral float-left" title="lab_1_classify_by_unigrams package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_2_tokenize_by_bpe.api.html" class="btn btn-neutral float-right" title="lab_2_tokenize_by_bpe package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
