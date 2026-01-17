@@ -292,7 +292,7 @@ Set the following parameters:
                    * :ref:`summarization-label`
 
 .. important:: To infer the fine-tuned model you need to save it to
-               :py:attr:`config.lab_settings.SFTParams.finetuned_model_path`
+               :py:attr:`core_utils.project.lab_settings.SFTParams.finetuned_model_path`
 
 .. note:: After model inference you have to save
           you predictions to ``dist/predictions.csv`` file in ``start.py``.
