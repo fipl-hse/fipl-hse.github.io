@@ -57,7 +57,7 @@ Datasets CLOSED QA
 3. `HuggingFaceH4/no_robots <https://huggingface.co/datasets/HuggingFaceH4/no_robots>`__
 
    1. **Lang**: EN
-   2. **Rows**: 260
+   2. **Rows**: 245
    3. **Preprocess**:
 
       1. Select ``train`` split.
