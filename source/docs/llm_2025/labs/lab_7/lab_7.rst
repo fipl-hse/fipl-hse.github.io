@@ -1,4 +1,4 @@
-.. _lab-7-label:
+.. _lab_7_llm/README:
 
 Laboratory work №7. Large Language Models no. 1
 ===============================================
@@ -8,12 +8,13 @@ Laboratory work №7. Large Language Models no. 1
     :titlesonly:
     :caption: Full API
 
-    lab_7.api.rst
-    core_utils.api.rst
+    lab_7_llm.api.rst
+    ../core_utils/llm/core_utils_llm.api.rst
+    ../core_utils/project/core_utils_project.api.rst
 
 **Python competencies required to complete this tutorial:**
     * working with Transformers models;
-    * working with HuggingFace datasets;
+    * working with HuggingFace Test;
     * estimating result using metric;
     * making server for the chosen task using FastAPI.
 
@@ -24,7 +25,7 @@ Laboratory work №7. Large Language Models no. 1
     3. Preprocessing dataset.
     4. Retrieving model properties.
     5. Get prediction for one sample from dataset.
-    6. Get predictions for the whole dataset.
+    6. Get Test for the whole dataset.
     7. Saving predictions.
     8. Estimating results with metric.
     9. Implementing server.
@@ -515,7 +516,6 @@ use:
     * ``max_length`` = 120;
     * ``device`` = 'cpu'.
 
-.. note:: For generation closed QA task use ``max_length`` = 512.
 
 Stage 4.4. Infer dataset
 """"""""""""""""""""""""
@@ -696,7 +696,7 @@ so that the query can be correctly processed.
 
 So, an example of start page might look like this:
 
-.. image:: ../../_static/site.png
+.. image:: assets/site.png
 
 And now we are ready to implement
 :py:meth:`lab_7_llm.service.root` method
