@@ -20,7 +20,7 @@ Laboratory work №7. Large Language Models no. 1
 
 **Model pipeline contains the following steps:**
 
-    1. Downloading the chosen dataset from Test.
+    1. Downloading the chosen dataset from Test Test.
     2. Retrieving dataset's properties.
     3. Preprocessing dataset.
     4. Retrieving model properties.
