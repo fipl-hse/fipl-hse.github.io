@@ -123,9 +123,10 @@ Datasets
    3. **Preprocess**:
 
       1. Select ``test`` split.
-      2. Rename column ``label`` to ``target``.
-      3. Rename column ``text`` to ``source``.
-      4. Reset indexes.
+      2. Drop duplicates.
+      3. Rename column ``label`` to ``target``.
+      4. Rename column ``text`` to ``source``.
+      5. Reset indexes.
 
 6. `dair-ai/emotion <https://huggingface.co/datasets/dair-ai/emotion>`__
 
