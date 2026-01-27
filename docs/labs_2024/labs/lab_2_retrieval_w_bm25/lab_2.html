@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа №2. Оценка релевантности документов с помощью BM25 &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_2_retrieval_w_bm25 package" href="lab_2_retrieval_w_bm25.api.html" />
+    <link rel="prev" title="lab_1_classify_by_unigrams package" href="../lab_1_classify_by_unigrams/lab_1_classify_by_unigrams.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2024/2025)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_1_classify_by_unigrams/lab_1.html">Лабораторная работа №1. Определение языка текста на основе частотного словаря</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Лабораторная работа №2. Оценка релевантности документов с помощью BM25</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_2_retrieval_w_bm25.api.html">lab_2_retrieval_w_bm25 package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_3_ann_retriever/lab_3.html">Лабораторная работа №3. Получение релевантных документов на основе векторного поиска</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_4_retrieval_w_clustering/lab_4.html">Лабораторная работа №4. Векторный поиск на основе кластеризации</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+      <li class="breadcrumb-item active">Лабораторная работа №2. Оценка релевантности документов с помощью BM25</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/labs_2024/labs/lab_2_retrieval_w_bm25/lab_2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o2-bm25">
+<h1>Лабораторная работа №2. Оценка релевантности документов с помощью BM25<a class="headerlink" href="#o2-bm25" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_2_retrieval_w_bm25.api.html">lab_2_retrieval_w_bm25 package</a></li>
+</ul>
+</div>
+<section id="id1">
+<h2>Дано<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Коллекция из десяти текстов сказок на английском языке,
+хранящаяся в папке <code class="docutils literal notranslate"><span class="pre">assets</span></code>.</p>
+<p>В рамках данной лабораторной работы мы будем оценивать релевантность документов
+с помощью метрики <code class="docutils literal notranslate"><span class="pre">BM25</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">BM25</span></code> - это вероятностная модель оценки релевантности,
+используемая в информационном поиске и ранжировании документов.</p>
+<p>При выполнении поискового запроса наша цель — найти документы,
+которые наиболее точно соответствуют этому запросу.
+<code class="docutils literal notranslate"><span class="pre">BM25</span></code> позволяет вычислить степень релевантности каждого документа,
+что дает возможность их отранжировать и выделить те, которые бы максимально
+соответствовали нашим ожиданиям.</p>
+</section>
+<section id="id2">
+<h2>Что надо сделать<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>Шаг 0. Начать работу над лабораторной (вместе с преподавателем на практике)<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Создайте форк репозитория.</p></li>
+<li><p>Установите необходимые инструменты для работы.</p></li>
+<li><p>Измените файлы <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Закоммитьте изменения и создайте Pull request.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> вы должны написать код, сортирующий
+данные сказки по релевантности запросу.</p>
+</div>
+<p>Для этого реализуйте функции в модуле <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и импортируйте их в
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Весь код, выполняющий лабораторную работу, должен быть
+выполнен в функции <code class="docutils literal notranslate"><span class="pre">main</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Вызов функции в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В рамках данной лабораторной работы <strong>нельзя использовать модули
+collections, itertools, а также сторонние модули.</strong></p>
+<p>Обратите внимание, что желаемую оценку необходимо указать в файле
+<code class="docutils literal notranslate"><span class="pre">settings.json</span></code> в поле <code class="docutils literal notranslate"><span class="pre">target_score</span></code>. Возможные значения: 0, 4, 6, 8, 10.
+Чем большее значение выставлено, тем больше тестов будет запущено.</p>
+</section>
+<section id="id4">
+<h3>Шаг 1. Токенизировать текст<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Вам дана коллекция из 10 документов,
+которые уже прочитаны из файлов и хранятся в виде списка, где каждый документ представлен как одна строка,
+в переменной <code class="docutils literal notranslate"><span class="pre">documents</span></code>.</p>
+<p>Для того, чтобы разбить текст на токены,
+реализуйте функцию <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.tokenize" title="lab_2_retrieval_w_bm25.main.tokenize"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.tokenize()</span></code></a>.</p>
+<p>Рассмотрим работу этой и следующих функций на примере начальных предложений
+трёх детских историй, которые впоследствии мы хотим рекомендовать по запросам пользователей.</p>
+<p>Оригинальный текст: <code class="docutils literal notranslate"><span class="pre">&quot;There</span> <span class="pre">was</span> <span class="pre">a</span> <span class="pre">boy,</span> <span class="pre">who</span> <span class="pre">was</span> <span class="pre">a</span> <span class="pre">wizard.</span> <span class="pre">He</span> <span class="pre">used</span> <span class="pre">his</span> <span class="pre">wand</span> <span class="pre">to</span> <span class="pre">do</span> <span class="pre">spells.</span>
+<span class="pre">He</span> <span class="pre">was</span> <span class="pre">studying</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">magic</span> <span class="pre">school.</span> <span class="pre">His</span> <span class="pre">best</span> <span class="pre">friend</span> <span class="pre">was</span> <span class="pre">a</span> <span class="pre">wizard</span> <span class="pre">too.&quot;</span></code>
+Результат токенизации: <code class="docutils literal notranslate"><span class="pre">['there',</span> <span class="pre">'was',</span> <span class="pre">'a',</span> <span class="pre">'boy',</span> <span class="pre">'who',</span> <span class="pre">'was',</span> <span class="pre">'a',</span> <span class="pre">'wizard',</span> <span class="pre">'he',</span> <span class="pre">'used',</span> <span class="pre">'his',</span>
+<span class="pre">'wand',</span> <span class="pre">'to',</span> <span class="pre">'do',</span> <span class="pre">'spells',</span> <span class="pre">'he',</span> <span class="pre">'was',</span> <span class="pre">'studying',</span> <span class="pre">'in',</span> <span class="pre">'a',</span> <span class="pre">'magic',</span> <span class="pre">'school',</span>
+<span class="pre">'his',</span> <span class="pre">'best',</span> <span class="pre">'friend',</span> <span class="pre">'was',</span> <span class="pre">'a',</span> <span class="pre">'wizard',</span> <span class="pre">'too']</span></code></p>
+<p>Оригинальный текст: <code class="docutils literal notranslate"><span class="pre">&quot;Steven</span> <span class="pre">was</span> <span class="pre">a</span> <span class="pre">boy</span> <span class="pre">who</span> <span class="pre">loved</span> <span class="pre">pets.</span> <span class="pre">He</span> <span class="pre">had</span> <span class="pre">a</span> <span class="pre">cat,</span> <span class="pre">two</span> <span class="pre">dogs</span> <span class="pre">and</span> <span class="pre">three</span> <span class="pre">parrots.</span>
+<span class="pre">Every</span> <span class="pre">morning</span> <span class="pre">he</span> <span class="pre">did</span> <span class="pre">not</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">go</span> <span class="pre">to</span> <span class="pre">school,</span> <span class="pre">because</span> <span class="pre">he</span> <span class="pre">had</span> <span class="pre">to</span> <span class="pre">leave</span> <span class="pre">his</span> <span class="pre">pets</span> <span class="pre">at</span> <span class="pre">home.&quot;</span></code>
+Результат токенизации: <code class="docutils literal notranslate"><span class="pre">['steven',</span> <span class="pre">'was',</span> <span class="pre">'a',</span> <span class="pre">'boy',</span> <span class="pre">'who',</span> <span class="pre">'loved',</span> <span class="pre">'pets',</span> <span class="pre">'he',</span> <span class="pre">'had',</span> <span class="pre">'a',</span> <span class="pre">'cat',</span> <span class="pre">'two',</span>
+<span class="pre">'dogs',</span> <span class="pre">'and',</span> <span class="pre">'three',</span> <span class="pre">'parrots',</span> <span class="pre">'every',</span> <span class="pre">'morning',</span> <span class="pre">'he',</span>&#160; <span class="pre">'did',</span> <span class="pre">'not',</span> <span class="pre">'want',</span> <span class="pre">'to',</span>
+<span class="pre">'go',</span> <span class="pre">'to',</span> <span class="pre">'school',</span> <span class="pre">'because',</span> <span class="pre">'he',</span> <span class="pre">'had',</span> <span class="pre">'to',</span> <span class="pre">'leave',</span> <span class="pre">'his',</span> <span class="pre">'pets',</span> <span class="pre">'at',</span> <span class="pre">'home']</span></code></p>
+<p>Оригинальный текст: <code class="docutils literal notranslate"><span class="pre">&quot;A</span> <span class="pre">dragon</span> <span class="pre">and</span> <span class="pre">a</span> <span class="pre">princess</span> <span class="pre">had</span> <span class="pre">a</span> <span class="pre">picnic</span> <span class="pre">date</span> <span class="pre">at</span> <span class="pre">the</span> <span class="pre">top</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">hill.</span>
+<span class="pre">They</span> <span class="pre">rarely</span> <span class="pre">leaved</span> <span class="pre">the</span> <span class="pre">tower,</span> <span class="pre">but</span> <span class="pre">the</span> <span class="pre">summer</span> <span class="pre">weather</span> <span class="pre">was</span> <span class="pre">just</span> <span class="pre">perfect</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">hill</span> <span class="pre">picnic.&quot;</span></code>
+Результат токенизации: <code class="docutils literal notranslate"><span class="pre">['a',</span> <span class="pre">'dragon',</span> <span class="pre">'and',</span> <span class="pre">'a',</span> <span class="pre">'princess',</span> <span class="pre">'had',</span> <span class="pre">'a',</span> <span class="pre">'picnic',</span> <span class="pre">'date',</span> <span class="pre">'at',</span> <span class="pre">'the',</span>
+<span class="pre">'top',</span> <span class="pre">'of',</span> <span class="pre">'the',</span> <span class="pre">'hill',</span> <span class="pre">'they',</span> <span class="pre">'rarely',</span> <span class="pre">'leaved',</span> <span class="pre">'the',</span> <span class="pre">'tower',</span> <span class="pre">'but',</span> <span class="pre">'the',</span>
+<span class="pre">'summer',</span> <span class="pre">'weather',</span> <span class="pre">'was',</span> <span class="pre">'just',</span> <span class="pre">'perfect',</span> <span class="pre">'for',</span> <span class="pre">'the',</span> <span class="pre">'hill',</span> <span class="pre">'picnic']</span></code></p>
+<p>Таким образом, после выполнения этого шага каждый документ должен представлять
+собой список токенов.</p>
+</section>
+<section id="id5">
+<h3>Шаг 2. Удалить стоп-слова<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-2 соответствует 4 баллам.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Стоп-слова</span></code> - это лексические единицы, которые не несут
+значимой информации. В рамках данной лабораторной работы в качестве
+стоп-слов нужно использовать следующий англоязычный перечень, предложенный
+в библиотеке для обработки естественного языка - <a class="reference external" href="https://www.nltk.org/">NLTK</a>.</p>
+<p>Стоп-слова находятся в файле <code class="docutils literal notranslate"><span class="pre">stopwords.txt</span></code> в папке <code class="docutils literal notranslate"><span class="pre">assets</span></code>
+и уже импортированы в <code class="docutils literal notranslate"><span class="pre">start.py</span></code> для дальнейшей работы в виде списка.</p>
+<p>Чтобы удалить стоп-слова из токенизированного текста,
+реализуйте функцию
+<a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.remove_stopwords" title="lab_2_retrieval_w_bm25.main.remove_stopwords"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.remove_stopwords()</span></code></a>,</p>
+<p>Удалив стоп-слова из наших трёх документов, мы получим следующие списки. Они значительно меньше,
+так как в них остались только самые значимые слова.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">['boy',</span> <span class="pre">'wizard',</span> <span class="pre">'used',</span> <span class="pre">'wand',</span> <span class="pre">'spells',</span> <span class="pre">'studying',</span> <span class="pre">'magic',</span> <span class="pre">'school',</span> <span class="pre">'best',</span>
+<span class="pre">'friend',</span> <span class="pre">'wizard']</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">['steven',</span> <span class="pre">'boy',</span> <span class="pre">'loved',</span> <span class="pre">'pets',</span> <span class="pre">'cat',</span> <span class="pre">'two',</span> <span class="pre">'dogs',</span> <span class="pre">'three',</span> <span class="pre">'parrots',</span> <span class="pre">'every',</span>
+<span class="pre">'morning',</span> <span class="pre">'want',</span> <span class="pre">'go',</span> <span class="pre">'school',</span> <span class="pre">'leave',</span> <span class="pre">'pets',</span> <span class="pre">'home']</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">['dragon',</span> <span class="pre">'princess',</span> <span class="pre">'picnic',</span> <span class="pre">'date',</span> <span class="pre">'top',</span> <span class="pre">'hill',</span> <span class="pre">'rarely',</span> <span class="pre">'leaved',</span> <span class="pre">'tower',</span> <span class="pre">'summer',</span>
+<span class="pre">'weather',</span> <span class="pre">'perfect',</span> <span class="pre">'hill',</span> <span class="pre">'picnic']</span></code></p></li>
+</ul>
+<p>Продемонстрируйте удаление стоп-слов из текстов на
+английском языке в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Список текстов на английском языке
+сохранен в переменную <code class="docutils literal notranslate"><span class="pre">documents</span></code>.</p>
+</section>
+<section id="id6">
+<h3>Шаг 3. Получить список уникальных слов<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>В дальнейшем для осуществления оценки релевантности документов поисковому запросу,
+необходимо будет использовать уникальные слова, встречающиеся в коллекции текстов.</p>
+<p>Для того чтобы создать список уникальных слов из всех документов,
+реализуйте функцию
+<a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.build_vocabulary" title="lab_2_retrieval_w_bm25.main.build_vocabulary"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.build_vocabulary()</span></code></a>.</p>
+<p>Из трёх документов детских историй после выкидывания стоп-слов, например,
+мы можем получить список следующих уникальных токенов:
+<code class="docutils literal notranslate"><span class="pre">['school',</span> <span class="pre">'tower',</span> <span class="pre">'go',</span> <span class="pre">'used',</span> <span class="pre">'magic',</span> <span class="pre">'perfect',</span> <span class="pre">'cat',</span> <span class="pre">'dogs',</span> <span class="pre">'best',</span> <span class="pre">'top',</span> <span class="pre">'studying',</span>
+<span class="pre">'pets',</span> <span class="pre">'leave',</span> <span class="pre">'parrots',</span> <span class="pre">'morning',</span> <span class="pre">'hill',</span> <span class="pre">'loved',</span> <span class="pre">'picnic',</span> <span class="pre">'rarely',</span> <span class="pre">'boy',</span> <span class="pre">'every',</span>
+<span class="pre">'weather',</span> <span class="pre">'steven',</span> <span class="pre">'two',</span> <span class="pre">'three',</span> <span class="pre">'spells',</span> <span class="pre">'wizard',</span> <span class="pre">'home',</span> <span class="pre">'leaved',</span> <span class="pre">'date',</span> <span class="pre">'friend',</span>
+<span class="pre">'dragon',</span> <span class="pre">'sad',</span> <span class="pre">'princess',</span> <span class="pre">'wand',</span> <span class="pre">'summer']</span></code></p>
+</section>
+<section id="term-frequency">
+<h3>Шаг 4. Посчитать Term Frequency<a class="headerlink" href="#term-frequency" title="Link to this heading"></a></h3>
+<p>В рамках данной лабораторной работы в качестве базового способа оценки
+релевантности текста поисковому запросу будет использован <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>
+(<a class="reference external" href="https://ru.wikipedia.org/wiki/TF-IDF">Term frequency–inverse document frequency</a>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> - это статистический показатель оценки важности слова в контексте документа,
+являющегося частью коллекции документов или корпуса. Например:</p>
+<ul class="simple">
+<li><p>Высокий <code class="docutils literal notranslate"><span class="pre">TF</span></code> и высокий <code class="docutils literal notranslate"><span class="pre">IDF</span></code>: слово часто встречается в определенном документе,
+но редко в корпусе. В таком случае слово является важным
+в контексте определенного документа и значимым для его понимания;</p></li>
+<li><p>Высокий <code class="docutils literal notranslate"><span class="pre">TF</span></code>, но низкий <code class="docutils literal notranslate"><span class="pre">IDF</span></code>: слово часто встречается как в определенном документе,
+так и во всем корпусе. В таком случае слово, вероятно, не обладает уникальностью,
+имеет более общую семантику
+и не значимо в контексте определенного документа;</p></li>
+<li><p>Низкий <code class="docutils literal notranslate"><span class="pre">TF</span></code>, но высокий <code class="docutils literal notranslate"><span class="pre">IDF</span></code>: слово редко встречается как в определенном документе,
+так и во всем корпусе. В таком случае слово, вероятно, представляет собой термин
+или редко встречающееся понятие;</p></li>
+<li><p>Низкий <code class="docutils literal notranslate"><span class="pre">TF</span></code> и низкий <code class="docutils literal notranslate"><span class="pre">IDF</span></code>: слово редко встречается в определенном документе,
+но часто в корпусе. В таком случае слово не является важным для определенного документа и, вероятно,
+является общеупотребительным.</p></li>
+</ul>
+<p>Метрика <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> имеет две составные части и рассчитывается по формуле
+<span class="math notranslate nohighlight">\(TF\_IDF = TF \cdot IDF\)</span>, где:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TF</span></code> - частота слова в конкретном документе;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IDF</span></code> - обратная частота документа.</p></li>
+</ul>
+<p>Значение первой составной части метрики - <code class="docutils literal notranslate"><span class="pre">TF</span> <span class="pre">(Term</span> <span class="pre">Frequency)</span></code> -
+рассчитывается по формуле
+<span class="math notranslate nohighlight">\(TF = \frac{n_t}{|D|}\)</span>, где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n_t\)</span> - количество вхождений токена <span class="math notranslate nohighlight">\(t\)</span> в документ;</p></li>
+<li><p><span class="math notranslate nohighlight">\(|D|\)</span> - длина документа.</p></li>
+</ul>
+<p>Для того чтобы посчитать частоту слова в документе,
+реализуйте функцию <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.calculate_tf" title="lab_2_retrieval_w_bm25.main.calculate_tf"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.calculate_tf()</span></code></a>.
+Таким образом, каждый документ из коллекции будет иметь свой словарь с <code class="docutils literal notranslate"><span class="pre">TF</span></code>
+значениями для каждого уникального слова.</p>
+<p>Для трёх историй частотные словари будут выглядеть так:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'school':</span> <span class="pre">0.09,</span> <span class="pre">'hill':</span> <span class="pre">0.0,</span> <span class="pre">'perfect':</span> <span class="pre">0.0,</span> <span class="pre">'want':</span> <span class="pre">0.0,</span> <span class="pre">'boy':</span> <span class="pre">0.09,</span> <span class="pre">'best':</span> <span class="pre">0.09,</span>
+<span class="pre">'top':</span> <span class="pre">0.0,</span> <span class="pre">'three':</span> <span class="pre">0.0,</span> <span class="pre">'parrots':</span> <span class="pre">0.0,</span> <span class="pre">'wand':</span> <span class="pre">0.09,</span> <span class="pre">'summer':</span> <span class="pre">0.0,</span> <span class="pre">'tower':</span> <span class="pre">0.0,</span> <span class="pre">'cat':</span> <span class="pre">0.0,</span>
+<span class="pre">'dragon':</span> <span class="pre">0.0,</span> <span class="pre">'date':</span> <span class="pre">0.0,</span> <span class="pre">'morning':</span> <span class="pre">0.0,</span> <span class="pre">'used':</span> <span class="pre">0.09,</span> <span class="pre">'wizard':</span> <span class="pre">0.18,</span> <span class="pre">'rarely':</span> <span class="pre">0.0,</span>
+<span class="pre">'every':</span> <span class="pre">0.0,</span> <span class="pre">'home':</span> <span class="pre">0.0,</span> <span class="pre">'studying':</span> <span class="pre">0.09,</span> <span class="pre">'friend':</span> <span class="pre">0.09,</span> <span class="pre">'picnic':</span> <span class="pre">0.0,</span> <span class="pre">'steven':</span> <span class="pre">0.0,</span>
+<span class="pre">'loved':</span> <span class="pre">0.0,</span> <span class="pre">'weather':</span> <span class="pre">0.0,</span> <span class="pre">'pets':</span> <span class="pre">0.0,</span> <span class="pre">'go':</span> <span class="pre">0.0,</span> <span class="pre">'two':</span> <span class="pre">0.0,</span> <span class="pre">'spells':</span> <span class="pre">0.09,</span> <span class="pre">'leaved':</span> <span class="pre">0.0,</span>
+<span class="pre">'leave':</span> <span class="pre">0.0,</span> <span class="pre">'dogs':</span> <span class="pre">0.0,</span> <span class="pre">'magic':</span> <span class="pre">0.09,</span> <span class="pre">'princess':</span> <span class="pre">0.0}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'school':</span> <span class="pre">0.059,</span> <span class="pre">'hill':</span> <span class="pre">0.0,</span> <span class="pre">'perfect':</span> <span class="pre">0.0,</span> <span class="pre">'want':</span> <span class="pre">0.059,</span> <span class="pre">'boy':</span> <span class="pre">0.059,</span> <span class="pre">'best':</span> <span class="pre">0.0,</span>
+<span class="pre">'top':</span> <span class="pre">0.0,</span> <span class="pre">'three':</span> <span class="pre">0.059,</span> <span class="pre">'parrots':</span> <span class="pre">0.059,</span> <span class="pre">'wand':</span> <span class="pre">0.0,</span> <span class="pre">'summer':</span> <span class="pre">0.0,</span> <span class="pre">'tower':</span> <span class="pre">0.0,</span>
+<span class="pre">'cat':</span> <span class="pre">0.059,</span> <span class="pre">'dragon':</span> <span class="pre">0.0,</span> <span class="pre">'date':</span> <span class="pre">0.0,</span> <span class="pre">'morning':</span> <span class="pre">0.059,</span> <span class="pre">'used':</span> <span class="pre">0.0,</span> <span class="pre">'wizard':</span> <span class="pre">0.0,</span>
+<span class="pre">'rarely':</span> <span class="pre">0.0,</span> <span class="pre">'every':</span> <span class="pre">0.059,</span> <span class="pre">'home':</span> <span class="pre">0.059,</span> <span class="pre">'studying':</span> <span class="pre">0.0,</span> <span class="pre">'friend':</span> <span class="pre">0.0,</span> <span class="pre">'picnic':</span> <span class="pre">0.0,</span>
+<span class="pre">'steven':</span> <span class="pre">0.059,</span> <span class="pre">'loved':</span> <span class="pre">0.059,</span> <span class="pre">'weather':</span> <span class="pre">0.0,</span> <span class="pre">'pets':</span> <span class="pre">0.118,</span> <span class="pre">'go':</span> <span class="pre">0.059,</span> <span class="pre">'two':</span> <span class="pre">0.059,</span>
+<span class="pre">'spells':</span> <span class="pre">0.0,</span> <span class="pre">'leaved':</span> <span class="pre">0.0,</span> <span class="pre">'leave':</span> <span class="pre">0.059,</span> <span class="pre">'dogs':</span> <span class="pre">0.059,</span> <span class="pre">'magic':</span> <span class="pre">0.0,</span> <span class="pre">'princess':</span> <span class="pre">0.0}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'school':</span> <span class="pre">0.0,</span> <span class="pre">'hill':</span> <span class="pre">0.143,</span> <span class="pre">'perfect':</span> <span class="pre">0.07,</span> <span class="pre">'want':</span> <span class="pre">0.0,</span> <span class="pre">'boy':</span> <span class="pre">0.0,</span> <span class="pre">'best':</span> <span class="pre">0.0,</span>
+<span class="pre">'top':</span> <span class="pre">0.07,</span> <span class="pre">'three':</span> <span class="pre">0.0,</span> <span class="pre">'parrots':</span> <span class="pre">0.0,</span> <span class="pre">'wand':</span> <span class="pre">0.0,</span> <span class="pre">'summer':</span> <span class="pre">0.07,</span> <span class="pre">'tower':</span> <span class="pre">0.07,</span>
+<span class="pre">'cat':</span> <span class="pre">0.0,</span> <span class="pre">'dragon':</span> <span class="pre">0.07,</span> <span class="pre">'date':</span> <span class="pre">0.07,</span> <span class="pre">'morning':</span> <span class="pre">0.0,</span> <span class="pre">'used':</span> <span class="pre">0.0,</span> <span class="pre">'wizard':</span> <span class="pre">0.0,</span>
+<span class="pre">'rarely':</span> <span class="pre">0.07,</span> <span class="pre">'every':</span> <span class="pre">0.0,</span> <span class="pre">'home':</span> <span class="pre">0.0,</span> <span class="pre">'studying':</span> <span class="pre">0.0,</span> <span class="pre">'friend':</span> <span class="pre">0.0,</span> <span class="pre">'picnic':</span> <span class="pre">0.143,</span>
+<span class="pre">'steven':</span> <span class="pre">0.0,</span> <span class="pre">'loved':</span> <span class="pre">0.0,</span> <span class="pre">'weather':</span> <span class="pre">0.07,</span> <span class="pre">'pets':</span> <span class="pre">0.0,</span> <span class="pre">'go':</span> <span class="pre">0.0,</span> <span class="pre">'two':</span> <span class="pre">0.0,</span> <span class="pre">'spells':</span> <span class="pre">0.0,</span>
+<span class="pre">'leaved':</span> <span class="pre">0.07,</span> <span class="pre">'leave':</span> <span class="pre">0.0,</span> <span class="pre">'dogs':</span> <span class="pre">0.0,</span> <span class="pre">'magic':</span> <span class="pre">0.0,</span> <span class="pre">'princess':</span> <span class="pre">0.07}</span></code></p></li>
+</ul>
+<p>Как видно, они содержат все уникальные токены, но отличные от нуля значения только у тех токенов,
+которые были в конкретном тексте.</p>
+</section>
+<section id="inverse-document-frequency">
+<h3>Шаг 5. Посчитать Inverse Document Frequency<a class="headerlink" href="#inverse-document-frequency" title="Link to this heading"></a></h3>
+<p>Второй составной частью метрики <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> является <code class="docutils literal notranslate"><span class="pre">Inverse</span> <span class="pre">Term</span> <span class="pre">Frequency</span> <span class="pre">(IDF)</span></code>
+- обратная частота документа. В рамках данной лабораторной работы мы будем использовать
+вариант этой метрики со сглаживанием.</p>
+<p>Значение <code class="docutils literal notranslate"><span class="pre">IDF</span></code> рассчитывается по формуле
+<span class="math notranslate nohighlight">\(IDF = ln(\frac{N - \sum^{m}_{j=1}n_j + 0.5}{\sum^{m}_{j=1}n_j + 0.5})\)</span>, где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(N\)</span> - количество документов;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum^{m}_{j=1}n_j\)</span> - количество документов, в которых содержится интересующее слово.</p></li>
+</ul>
+<p>Для того чтобы посчитать обратную частоту документа,
+реализуйте функцию <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.calculate_idf" title="lab_2_retrieval_w_bm25.main.calculate_idf"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.calculate_idf()</span></code></a>.
+Таким образом, у всей коллекции документов будет общий словарь с <code class="docutils literal notranslate"><span class="pre">IDF</span></code>
+значениями для каждого уникального слова.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Для подсчета логарифма необходимо использовать метод <code class="docutils literal notranslate"><span class="pre">log</span></code> из модуля <code class="docutils literal notranslate"><span class="pre">math</span></code> (<a class="reference external" href="https://docs.python.org/3/library/math.html">https://docs.python.org/3/library/math.html</a>).</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">IDF</span></code>-словарь для детских историй после вычисления будет выглядеть так:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'parrots':</span> <span class="pre">0.51,</span> <span class="pre">'school':</span> <span class="pre">-0.51,</span> <span class="pre">'want':</span> <span class="pre">0.51,</span> <span class="pre">'princess':</span> <span class="pre">0.51,</span> <span class="pre">'wand':</span> <span class="pre">0.51,</span>
+<span class="pre">'loved':</span> <span class="pre">0.51,</span> <span class="pre">'leaved':</span> <span class="pre">0.51,</span> <span class="pre">'studying':</span> <span class="pre">0.51,</span> <span class="pre">'dragon':</span> <span class="pre">0.51,</span> <span class="pre">'friend':</span> <span class="pre">0.51,</span>
+<span class="pre">'leave':</span> <span class="pre">0.51,</span> <span class="pre">'cat':</span> <span class="pre">0.51,</span> <span class="pre">'pets':</span> <span class="pre">0.51,</span> <span class="pre">'two':</span> <span class="pre">0.51,</span> <span class="pre">'steven':</span> <span class="pre">0.51,</span> <span class="pre">'spells':</span> <span class="pre">0.51,</span>
+<span class="pre">'date':</span> <span class="pre">0.51,</span> <span class="pre">'boy':</span> <span class="pre">-0.51,</span> <span class="pre">'tower':</span> <span class="pre">0.51,</span> <span class="pre">'picnic':</span> <span class="pre">0.51,</span> <span class="pre">'go':</span> <span class="pre">0.51,</span> <span class="pre">'best':</span> <span class="pre">0.51,</span>
+<span class="pre">'three':</span> <span class="pre">0.51,</span> <span class="pre">'every':</span> <span class="pre">0.51,</span> <span class="pre">'home':</span> <span class="pre">0.51,</span> <span class="pre">'dogs':</span> <span class="pre">0.51,</span> <span class="pre">'morning':</span> <span class="pre">0.51,</span> <span class="pre">'top':</span> <span class="pre">0.51,</span>
+<span class="pre">'weather':</span> <span class="pre">0.51,</span> <span class="pre">'perfect':</span> <span class="pre">0.51,</span> <span class="pre">'summer':</span> <span class="pre">0.51,</span> <span class="pre">'rarely':</span> <span class="pre">0.51,</span> <span class="pre">'magic':</span> <span class="pre">0.51,</span>
+<span class="pre">'wizard':</span> <span class="pre">0.51,</span> <span class="pre">'used':</span> <span class="pre">0.51,</span> <span class="pre">'hill':</span> <span class="pre">0.51}</span></code></p></li>
+</ul>
+</section>
+<section id="tf-idf">
+<h3>Шаг 6. Посчитать TF-IDF<a class="headerlink" href="#tf-idf" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-6 соответствует 6 баллам.</p>
+</div>
+<p>Для того, чтобы для каждого уникального слова в коллекции документов
+получить значение метрики <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>, реализуйте функцию
+<a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.calculate_tf_idf" title="lab_2_retrieval_w_bm25.main.calculate_tf_idf"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.calculate_tf_idf()</span></code></a>.</p>
+<p>Напоминаем, метрика <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> имеет следующую формулу:
+<span class="math notranslate nohighlight">\(TF\_IDF = TF \cdot IDF\)</span>.</p>
+<p>После вычисления <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> для текстов про мальчика-волшебника,
+Стивена и пикник должны получиться следующие словари:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'loved':</span> <span class="pre">0.0,</span> <span class="pre">'studying':</span> <span class="pre">0.046,</span> <span class="pre">'every':</span> <span class="pre">0.0,</span> <span class="pre">'top':</span> <span class="pre">0.0,</span> <span class="pre">'wizard':</span> <span class="pre">0.09,</span> <span class="pre">'want':</span> <span class="pre">0.0,</span>
+<span class="pre">'weather':</span> <span class="pre">0.0,</span> <span class="pre">'tower':</span> <span class="pre">0.0,</span> <span class="pre">'summer':</span> <span class="pre">0.0,</span> <span class="pre">'dogs':</span> <span class="pre">0.0,</span> <span class="pre">'cat':</span> <span class="pre">0.0,</span> <span class="pre">'best':</span> <span class="pre">0.046,</span>
+<span class="pre">'two':</span> <span class="pre">0.0,</span> <span class="pre">'wand':</span> <span class="pre">0.046,</span> <span class="pre">'friend':</span> <span class="pre">0.046,</span> <span class="pre">'leaved':</span> <span class="pre">0.0,</span> <span class="pre">'boy':</span> <span class="pre">-0.046,</span> <span class="pre">'home':</span> <span class="pre">0.0,</span>
+<span class="pre">'princess':</span> <span class="pre">0.0,</span> <span class="pre">'dragon':</span> <span class="pre">0.0,</span> <span class="pre">'three':</span> <span class="pre">0.0,</span> <span class="pre">'go':</span> <span class="pre">0.0,</span> <span class="pre">'leave':</span> <span class="pre">0.0,</span> <span class="pre">'date':</span> <span class="pre">0.0,</span>
+<span class="pre">'school':</span> <span class="pre">-0.046,</span> <span class="pre">'magic':</span> <span class="pre">0.046,</span> <span class="pre">'rarely':</span> <span class="pre">0.0,</span> <span class="pre">'parrots':</span> <span class="pre">0.0,</span> <span class="pre">'morning':</span> <span class="pre">0.0,</span>
+<span class="pre">'perfect':</span> <span class="pre">0.0,</span> <span class="pre">'pets':</span> <span class="pre">0.0,</span> <span class="pre">'spells':</span> <span class="pre">0.046,</span> <span class="pre">'hill':</span> <span class="pre">0.0,</span> <span class="pre">'steven':</span> <span class="pre">0.0,</span> <span class="pre">'picnic':</span> <span class="pre">0.0,</span>
+<span class="pre">'used':</span> <span class="pre">0.046}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'loved':</span> <span class="pre">0.03,</span> <span class="pre">'studying':</span> <span class="pre">0.0,</span> <span class="pre">'every':</span> <span class="pre">0.03,</span> <span class="pre">'top':</span> <span class="pre">0.0,</span> <span class="pre">'wizard':</span> <span class="pre">0.0,</span> <span class="pre">'want':</span> <span class="pre">0.03,</span>
+<span class="pre">'weather':</span> <span class="pre">0.0,</span> <span class="pre">'tower':</span> <span class="pre">0.0,</span> <span class="pre">'summer':</span> <span class="pre">0.0,</span> <span class="pre">'dogs':</span> <span class="pre">0.03,</span> <span class="pre">'cat':</span> <span class="pre">0.03,</span> <span class="pre">'best':</span> <span class="pre">0.0,</span>
+<span class="pre">'two':</span> <span class="pre">0.03,</span> <span class="pre">'wand':</span> <span class="pre">0.0,</span> <span class="pre">'friend':</span> <span class="pre">0.0,</span> <span class="pre">'leaved':</span> <span class="pre">0.0,</span> <span class="pre">'boy':</span> <span class="pre">-0.03,</span> <span class="pre">'home':</span> <span class="pre">0.03,</span>
+<span class="pre">'princess':</span> <span class="pre">0.0,</span> <span class="pre">'dragon':</span> <span class="pre">0.0,</span> <span class="pre">'three':</span> <span class="pre">0.03,</span> <span class="pre">'go':</span> <span class="pre">0.03,</span> <span class="pre">'leave':</span> <span class="pre">0.03,</span> <span class="pre">'date':</span> <span class="pre">0.0,</span>
+<span class="pre">'school':</span> <span class="pre">-0.03,</span> <span class="pre">'magic':</span> <span class="pre">0.0,</span> <span class="pre">'rarely':</span> <span class="pre">0.0,</span> <span class="pre">'parrots':</span> <span class="pre">0.03,</span> <span class="pre">'morning':</span> <span class="pre">0.03,</span>
+<span class="pre">'perfect':</span> <span class="pre">0.0,</span> <span class="pre">'pets':</span> <span class="pre">0.06,</span> <span class="pre">'spells':</span> <span class="pre">0.0,</span> <span class="pre">'hill':</span> <span class="pre">0.0,</span> <span class="pre">'steven':</span> <span class="pre">0.03,</span> <span class="pre">'picnic':</span> <span class="pre">0.0,</span>
+<span class="pre">'used':</span> <span class="pre">0.0}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'loved':</span> <span class="pre">0.0,</span> <span class="pre">'studying':</span> <span class="pre">0.0,</span> <span class="pre">'every':</span> <span class="pre">0.0,</span> <span class="pre">'top':</span> <span class="pre">0.036,</span> <span class="pre">'wizard':</span> <span class="pre">0.0,</span> <span class="pre">'want':</span> <span class="pre">0.0,</span>
+<span class="pre">'weather':</span> <span class="pre">0.036,</span> <span class="pre">'tower':</span> <span class="pre">0.036,</span> <span class="pre">'summer':</span> <span class="pre">0.036,</span> <span class="pre">'dogs':</span> <span class="pre">0.0,</span> <span class="pre">'cat':</span> <span class="pre">0.0,</span> <span class="pre">'best':</span> <span class="pre">0.0,</span>
+<span class="pre">'two':</span> <span class="pre">0.0,</span> <span class="pre">'wand':</span> <span class="pre">0.0,</span> <span class="pre">'friend':</span> <span class="pre">0.0,</span> <span class="pre">'leaved':</span> <span class="pre">0.036,</span> <span class="pre">'boy':</span> <span class="pre">-0.0,</span> <span class="pre">'home':</span> <span class="pre">0.0,</span>
+<span class="pre">'princess':</span> <span class="pre">0.036,</span> <span class="pre">'dragon':</span> <span class="pre">0.036,</span> <span class="pre">'three':</span> <span class="pre">0.0,</span> <span class="pre">'go':</span> <span class="pre">0.0,</span> <span class="pre">'leave':</span> <span class="pre">0.0,</span> <span class="pre">'date':</span> <span class="pre">0.036,</span>
+<span class="pre">'school':</span> <span class="pre">-0.0,</span> <span class="pre">'magic':</span> <span class="pre">0.0,</span> <span class="pre">'rarely':</span> <span class="pre">0.036,</span> <span class="pre">'parrots':</span> <span class="pre">0.0,</span> <span class="pre">'morning':</span> <span class="pre">0.0,</span>
+<span class="pre">'perfect':</span> <span class="pre">0.036,</span> <span class="pre">'pets':</span> <span class="pre">0.0,</span> <span class="pre">'spells':</span> <span class="pre">0.0,</span> <span class="pre">'hill':</span> <span class="pre">0.073,</span> <span class="pre">'steven':</span> <span class="pre">0.0,</span> <span class="pre">'picnic':</span> <span class="pre">0.073,</span>
+<span class="pre">'used':</span> <span class="pre">0.0}</span></code></p></li>
+</ul>
+<p>Продемонстрируйте подсчет метрики <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> для всех уникальных слов в коллекции текстов,
+хранящейся в переменной <code class="docutils literal notranslate"><span class="pre">documents</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>. В результате у вас должен
+получиться список из 10 словарей со значениями <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> для каждого текста в коллекции.</p>
+</section>
+<section id="bm25">
+<h3>Шаг 7. Посчитать BM25<a class="headerlink" href="#bm25" title="Link to this heading"></a></h3>
+<p>Целью данной лабораторной работы является оценка релевантности документов с помощью
+метрики <code class="docutils literal notranslate"><span class="pre">BM25</span></code> (<a class="reference external" href="https://ru.wikipedia.org/wiki/Okapi_BM25">Best Matching 25</a>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">BM25</span></code> - это вероятностная модель оценки релевантности,
+используемая в информационном поиске и ранжировании документов.
+Осуществляя поисковый запрос, мы хотим найти документы, которые бы наиболее соответствовали ему.
+Чем выше показатель релевантности документа,
+тем больше вероятность того, что документ содержит корректный ответ на наш запрос.
+Метрика <code class="docutils literal notranslate"><span class="pre">BM25</span></code> является продолжением классической модели <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> и учитывает не только частоту слова,
+но и длину документа, что позволяет более точно оценивать значимость слова в контексте документа.</p>
+<p>Метрика <code class="docutils literal notranslate"><span class="pre">BM25</span></code> так же, как и <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> имеет две составные части и рассчитывается по формуле
+<span class="math notranslate nohighlight">\(BM25(q, D) = \sum_{i=1}^{n} IDF(q_i) \cdot \frac{n_t \cdot (k_1 + 1)}{n_t + k_1 \cdot (1 - b + b \cdot \frac{|D|}{avgdl})}\)</span>, где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n_t\)</span> - количество вхождений токена <span class="math notranslate nohighlight">\(t\)</span> в документ <span class="math notranslate nohighlight">\(D\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(|D|\)</span> - длина документа;</p></li>
+<li><p><span class="math notranslate nohighlight">\(avgdl\)</span> - средняя длина документа в коллекции;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_1\)</span> и <span class="math notranslate nohighlight">\(b\)</span> - параметры, регулирующие влияние частоты слова и длины документа.
+Параметр <span class="math notranslate nohighlight">\(k_1\)</span> может изменяться в пределах [1.2, 2.0], параметр <span class="math notranslate nohighlight">\(b\)</span> может
+изменяться в пределах [0, 1].</p></li>
+</ul>
+<p>Как вы можете видеть, при подсчете <code class="docutils literal notranslate"><span class="pre">BM25</span></code> используется <code class="docutils literal notranslate"><span class="pre">IDF</span></code>,
+которую мы получили в ходе подсчета метрики <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> для каждого слова.</p>
+<p>Для того чтобы рассчитать метрику <code class="docutils literal notranslate"><span class="pre">BM25</span></code> для заданного документа относительно всей коллекции,
+реализуйте функцию <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.calculate_bm25" title="lab_2_retrieval_w_bm25.main.calculate_bm25"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.calculate_bm25()</span></code></a>.</p>
+<p>После подсчёта <code class="docutils literal notranslate"><span class="pre">BM25</span></code> для каждого из текстов коллекции должны получиться словари.
+Детские истории имеют следующие:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'wizard':</span> <span class="pre">0.784,</span> <span class="pre">'go':</span> <span class="pre">0.0,</span> <span class="pre">'weather':</span> <span class="pre">0.0,</span> <span class="pre">'morning':</span> <span class="pre">0.0,</span> <span class="pre">'rarely':</span> <span class="pre">0.0,</span>
+<span class="pre">'best':</span> <span class="pre">0.565,</span> <span class="pre">'date':</span> <span class="pre">0.0,</span> <span class="pre">'perfect':</span> <span class="pre">0.0,</span> <span class="pre">'used':</span> <span class="pre">0.565,</span> <span class="pre">'wand':</span> <span class="pre">0.565,</span> <span class="pre">'boy':</span> <span class="pre">-0.565,</span>
+<span class="pre">'cat':</span> <span class="pre">0.0,</span> <span class="pre">'spells':</span> <span class="pre">0.565,</span> <span class="pre">'studying':</span> <span class="pre">0.565,</span> <span class="pre">'home':</span> <span class="pre">0.0,</span> <span class="pre">'dogs':</span> <span class="pre">0.0,</span> <span class="pre">'leave':</span> <span class="pre">0.0,</span>
+<span class="pre">'hill':</span> <span class="pre">0.0,</span> <span class="pre">'princess':</span> <span class="pre">0.0,</span> <span class="pre">'steven':</span> <span class="pre">0.0,</span> <span class="pre">'friend':</span> <span class="pre">0.565,</span> <span class="pre">'picnic':</span> <span class="pre">0.0,</span>
+<span class="pre">'three':</span> <span class="pre">0.0,</span> <span class="pre">'loved':</span> <span class="pre">0.0,</span> <span class="pre">'want':</span> <span class="pre">0.0,</span> <span class="pre">'parrots':</span> <span class="pre">0.0,</span> <span class="pre">'tower':</span> <span class="pre">0.0,</span> <span class="pre">'leaved':</span> <span class="pre">0.0,</span>
+<span class="pre">'dragon':</span> <span class="pre">0.0,</span> <span class="pre">'two':</span> <span class="pre">0.0,</span> <span class="pre">'summer':</span> <span class="pre">0.0,</span> <span class="pre">'school':</span> <span class="pre">-0.565,</span> <span class="pre">'magic':</span> <span class="pre">0.565,</span> <span class="pre">'every':</span> <span class="pre">0.0,</span>
+<span class="pre">'pets':</span> <span class="pre">0.0,</span> <span class="pre">'top':</span> <span class="pre">0.0}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'wizard':</span> <span class="pre">0.0,</span> <span class="pre">'go':</span> <span class="pre">0.466,</span> <span class="pre">'weather':</span> <span class="pre">0.0,</span> <span class="pre">'morning':</span> <span class="pre">0.466,</span> <span class="pre">'rarely':</span> <span class="pre">0.0,</span>
+<span class="pre">'best':</span> <span class="pre">0.0,</span> <span class="pre">'date':</span> <span class="pre">0.0,</span> <span class="pre">'perfect':</span> <span class="pre">0.0,</span> <span class="pre">'used':</span> <span class="pre">0.0,</span> <span class="pre">'wand':</span> <span class="pre">0.0,</span> <span class="pre">'boy':</span> <span class="pre">-0.466,</span>
+<span class="pre">'cat':</span> <span class="pre">0.466,</span> <span class="pre">'spells':</span> <span class="pre">0.0,</span> <span class="pre">'studying':</span> <span class="pre">0.0,</span> <span class="pre">'home':</span> <span class="pre">0.466,</span> <span class="pre">'dogs':</span> <span class="pre">0.466,</span>
+<span class="pre">'leave':</span> <span class="pre">0.466,</span> <span class="pre">'hill':</span> <span class="pre">0.0,</span> <span class="pre">'princess':</span> <span class="pre">0.0,</span> <span class="pre">'steven':</span> <span class="pre">0.466,</span> <span class="pre">'friend':</span> <span class="pre">0.0,</span>
+<span class="pre">'picnic':</span> <span class="pre">0.0,</span> <span class="pre">'three':</span> <span class="pre">0.466,</span> <span class="pre">'loved':</span> <span class="pre">0.466,</span> <span class="pre">'want':</span> <span class="pre">0.466,</span> <span class="pre">'parrots':</span> <span class="pre">0.466,</span>
+<span class="pre">'tower':</span> <span class="pre">0.0,</span> <span class="pre">'leaved':</span> <span class="pre">0.0,</span> <span class="pre">'dragon':</span> <span class="pre">0.0,</span> <span class="pre">'two':</span> <span class="pre">0.466,</span> <span class="pre">'summer':</span> <span class="pre">0.0,</span>
+<span class="pre">'school':</span> <span class="pre">-0.466,</span> <span class="pre">'magic':</span> <span class="pre">0.0,</span> <span class="pre">'every':</span> <span class="pre">0.466,</span> <span class="pre">'pets':</span> <span class="pre">0.683,</span> <span class="pre">'top':</span> <span class="pre">0.0}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'wizard':</span> <span class="pre">0.0,</span> <span class="pre">'go':</span> <span class="pre">0.0,</span> <span class="pre">'weather':</span> <span class="pre">0.51,</span> <span class="pre">'morning':</span> <span class="pre">0.0,</span> <span class="pre">'rarely':</span> <span class="pre">0.51,</span>
+<span class="pre">'best':</span> <span class="pre">0.0,</span> <span class="pre">'date':</span> <span class="pre">0.51,</span> <span class="pre">'perfect':</span> <span class="pre">0.51,</span> <span class="pre">'used':</span> <span class="pre">0.0,</span> <span class="pre">'wand':</span> <span class="pre">0.0,</span> <span class="pre">'boy':</span> <span class="pre">-0.0,</span>
+<span class="pre">'cat':</span> <span class="pre">0.0,</span> <span class="pre">'spells':</span> <span class="pre">0.0,</span> <span class="pre">'studying':</span> <span class="pre">0.0,</span> <span class="pre">'home':</span> <span class="pre">0.0,</span> <span class="pre">'dogs':</span> <span class="pre">0.0,</span> <span class="pre">'leave':</span> <span class="pre">0.0,</span>
+<span class="pre">'hill':</span> <span class="pre">0.73,</span> <span class="pre">'princess':</span> <span class="pre">0.51,</span> <span class="pre">'steven':</span> <span class="pre">0.0,</span> <span class="pre">'friend':</span> <span class="pre">0.0,</span> <span class="pre">'picnic':</span> <span class="pre">0.73,</span>
+<span class="pre">'three':</span> <span class="pre">0.0,</span> <span class="pre">'loved':</span> <span class="pre">0.0,</span> <span class="pre">'want':</span> <span class="pre">0.0,</span> <span class="pre">'parrots':</span> <span class="pre">0.0,</span> <span class="pre">'tower':</span> <span class="pre">0.51,</span> <span class="pre">'leaved':</span> <span class="pre">0.51,</span>
+<span class="pre">'dragon':</span> <span class="pre">0.51,</span> <span class="pre">'two':</span> <span class="pre">0.0,</span> <span class="pre">'summer':</span> <span class="pre">0.51,</span> <span class="pre">'school':</span> <span class="pre">-0.0,</span> <span class="pre">'magic':</span> <span class="pre">0.0,</span> <span class="pre">'every':</span> <span class="pre">0.0,</span>
+<span class="pre">'pets':</span> <span class="pre">0.0,</span> <span class="pre">'top':</span> <span class="pre">0.51}</span></code></p></li>
+</ul>
+<p>Продемонстрируйте подсчет метрики <code class="docutils literal notranslate"><span class="pre">BM25</span></code> для всех уникальных слов в коллекции текстов,
+хранящейся в переменной <code class="docutils literal notranslate"><span class="pre">documents</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>. В результате у вас должен
+получиться список из 10 словарей со значениями <code class="docutils literal notranslate"><span class="pre">BM25</span></code> для каждого текста в коллекции.
+Используйте значения <code class="docutils literal notranslate"><span class="pre">k1</span> <span class="pre">=</span> <span class="pre">1.5</span></code> и <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">0.75</span></code> в качестве параметров для алгоритма <code class="docutils literal notranslate"><span class="pre">BM25</span></code>.</p>
+</section>
+<section id="id7">
+<h3>Шаг 8. Отранжировать документы по определенному поисковому запросу<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-8 соответствует 8 баллам.</p>
+</div>
+<p>В результате использования метрик оценки релевантности документов какому-либо
+поисковому запросу, мы хотим получить список рангов соответствия документов
+запросу. Для этого для каждого слова в поисковом запросе необходимо получить
+метрику релевантности в контексте рассматриваемого документа. Затем метрики
+необходимо суммировать, а документы нужно отсортировать по убыванию суммарных оценок.</p>
+<p>Для того, чтобы отранжировать документы по убыванию релевантности
+(то есть по убыванию значений метрики), реализуйте функцию
+<a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.rank_documents" title="lab_2_retrieval_w_bm25.main.rank_documents"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.rank_documents()</span></code></a>.</p>
+<p>Так, например, у нас есть три документа: [0, 1, 2] — текст про мальчика-волшебника,
+текст про Стивена и его питомцев и текст про пикник принцессы и дракона.</p>
+<p>Пусть пользователь направил запрос нашей базе детских историй:
+<code class="docutils literal notranslate"><span class="pre">&quot;&quot;A</span> <span class="pre">story</span> <span class="pre">about</span> <span class="pre">a</span> <span class="pre">wizard</span> <span class="pre">boy</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">tower!&quot;</span></code>
+с желанием получить какую-нибудь книжку, соответствующую его предпочтениям в литературе.</p>
+<p>Реализация функции <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.rank_documents" title="lab_2_retrieval_w_bm25.main.rank_documents"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.rank_documents()</span></code></a> должна уметь
+получить запрос <code class="docutils literal notranslate"><span class="pre">query</span></code> и осуществить его предобработку с помощью функций
+<a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.tokenize" title="lab_2_retrieval_w_bm25.main.tokenize"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.tokenize()</span></code></a>
+и <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.remove_stopwords" title="lab_2_retrieval_w_bm25.main.remove_stopwords"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.remove_stopwords()</span></code></a>.</p>
+<p>Получив токены запроса, функция должна обратиться к коллекции словарей метрики (<code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>
+или <code class="docutils literal notranslate"><span class="pre">BM25</span></code>, в зависимости от того, что подаётся функции на вход) и посчитать суммарное
+значение метрики для токенов запроса в конкретном документе коллекции. Затем тексты должны
+быть отсортированы по этим значениям.</p>
+<p>Тогда для запроса пользователя у нас может получиться два списка значений:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>: [(0, 0.0464), (2, 0.0365), (1, -0.0300)]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BM25</span></code>: [(2, 0.5108), (0, 0.2184), (1, -0.4659)]</p></li>
+</ul>
+<p>Как видно, в зависимости от способа определения (метрики) первая (нулевая по индексу)
+или третья (индекс [2]) истории обе могут наиболее подходить запросу
+<code class="docutils literal notranslate"><span class="pre">&quot;A</span> <span class="pre">story</span> <span class="pre">about</span> <span class="pre">a</span> <span class="pre">wizard</span> <span class="pre">boy</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">tower!&quot;</span></code>
+Но обе метрики показывают, что история про Стивена и его питомцев не подойдёт пользователю.</p>
+<p>Отранжируйте тексты из коллекции документов для запроса <code class="docutils literal notranslate"><span class="pre">'Which</span> <span class="pre">fairy</span> <span class="pre">tale</span> <span class="pre">has</span> <span class="pre">Fairy</span> <span class="pre">Queen?'</span></code>
+с использованием метрик <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> и <code class="docutils literal notranslate"><span class="pre">BM25</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> и сравните результат.
+Используйте значения <code class="docutils literal notranslate"><span class="pre">k1</span> <span class="pre">=</span> <span class="pre">1.5</span></code> и <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">0.75</span></code> в качестве параметров для алгоритма <code class="docutils literal notranslate"><span class="pre">BM25</span></code>.</p>
+</section>
+<section id="id8">
+<h3>Шаг 9. Посчитать оптимизированный BM25<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>При работе с большой коллекцией текстов подсчет метрики <code class="docutils literal notranslate"><span class="pre">BM25</span></code> для запроса
+может быть вычислительно неэффективным. Для того, чтобы решить данную проблему, можно
+воспользоваться оптимизированной версией алгоритма <code class="docutils literal notranslate"><span class="pre">BM25</span></code>.</p>
+<p>Ее ключевая особенность
+состоит в том, что вместо того, чтобы подсчитывать <code class="docutils literal notranslate"><span class="pre">BM25</span></code> для каждого слова в запросе,
+мы можем пропускать те слова, чье значение метрики <code class="docutils literal notranslate"><span class="pre">IDF</span></code> меньше определенного порога <code class="docutils literal notranslate"><span class="pre">alpha</span></code>.
+Данная модификация позволяет значительно увеличить скорость работы алгоритма.</p>
+<p>Модифицированная метрика <code class="docutils literal notranslate"><span class="pre">BM25</span></code> рассчитывается по формуле
+<span class="math notranslate nohighlight">\(BM25(q, D) = \sum_{i=1}^{n} IDF(q_i) \cdot \frac{n_t \cdot (k_1 + 1)}{n_t + k_1 \cdot (1 - b + b \cdot \frac{|D|}{avgdl})}\)</span>, где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n_t\)</span> - количество вхождений токена <span class="math notranslate nohighlight">\(t\)</span> в документ <span class="math notranslate nohighlight">\(D\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(|D|\)</span> - длина документа;</p></li>
+<li><p><span class="math notranslate nohighlight">\(avgdl\)</span> - средняя длина документа в коллекции;</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_1\)</span> и <span class="math notranslate nohighlight">\(b\)</span> - параметры, регулирующие влияние частоты слова и длины документа.
+Параметр <span class="math notranslate nohighlight">\(k_1\)</span> может изменяться в пределах [1.2, 2.0], параметр <span class="math notranslate nohighlight">\(b\)</span> может
+изменяться в пределах [0, 1].</p></li>
+</ul>
+<p>Для того, чтобы посчитать значение оптимизированной метрики <code class="docutils literal notranslate"><span class="pre">BM25</span></code>, реализуйте
+функцию <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff" title="lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff()</span></code></a>.</p>
+<p>Значения <code class="docutils literal notranslate"><span class="pre">BM25</span></code> с модификацией слегка отличаются от значений обычной метрики, что можно
+увидеть и среди значений для наших детских историй.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{'top':</span> <span class="pre">0.0,</span> <span class="pre">'two':</span> <span class="pre">0.0,</span> <span class="pre">'leave':</span> <span class="pre">0.0,</span> <span class="pre">'rarely':</span> <span class="pre">0.0,</span> <span class="pre">'spells':</span> <span class="pre">0.565,</span> <span class="pre">'weather':</span> <span class="pre">0.0,</span>
+<span class="pre">'wizard':</span> <span class="pre">0.784,</span> <span class="pre">'want':</span> <span class="pre">0.0,</span> <span class="pre">'dragon':</span> <span class="pre">0.0,</span> <span class="pre">'magic':</span> <span class="pre">0.565,</span> <span class="pre">'perfect':</span> <span class="pre">0.0,</span> <span class="pre">'dogs':</span> <span class="pre">0.0,</span>
+<span class="pre">'three':</span> <span class="pre">0.0,</span> <span class="pre">'go':</span> <span class="pre">0.0,</span> <span class="pre">'best':</span> <span class="pre">0.565,</span> <span class="pre">'summer':</span> <span class="pre">0.0,</span> <span class="pre">'parrots':</span> <span class="pre">0.0,</span> <span class="pre">'picnic':</span> <span class="pre">0.0,</span>
+<span class="pre">'princess':</span> <span class="pre">0.0,</span> <span class="pre">'morning':</span> <span class="pre">0.0,</span> <span class="pre">'every':</span> <span class="pre">0.0,</span> <span class="pre">'hill':</span> <span class="pre">0.0,</span> <span class="pre">'date':</span> <span class="pre">0.0,</span> <span class="pre">'wand':</span> <span class="pre">0.565,</span>
+<span class="pre">'friend':</span> <span class="pre">0.565,</span> <span class="pre">'leaved':</span> <span class="pre">0.0,</span> <span class="pre">'studying':</span> <span class="pre">0.565,</span> <span class="pre">'tower':</span> <span class="pre">0.0,</span> <span class="pre">'home':</span> <span class="pre">0.0,</span> <span class="pre">'cat':</span> <span class="pre">0.0,</span>
+<span class="pre">'loved':</span> <span class="pre">0.0,</span> <span class="pre">'steven':</span> <span class="pre">0.0,</span> <span class="pre">'pets':</span> <span class="pre">0.0,</span> <span class="pre">'used':</span> <span class="pre">0.565}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'top':</span> <span class="pre">0.0,</span> <span class="pre">'two':</span> <span class="pre">0.466,</span> <span class="pre">'leave':</span> <span class="pre">0.466,</span> <span class="pre">'rarely':</span> <span class="pre">0.0,</span> <span class="pre">'spells':</span> <span class="pre">0.0,</span> <span class="pre">'weather':</span> <span class="pre">0.0,</span>
+<span class="pre">'wizard':</span> <span class="pre">0.0,</span> <span class="pre">'want':</span> <span class="pre">0.466,</span> <span class="pre">'dragon':</span> <span class="pre">0.0,</span> <span class="pre">'magic':</span> <span class="pre">0.0,</span> <span class="pre">'perfect':</span> <span class="pre">0.0,</span> <span class="pre">'dogs':</span> <span class="pre">0.466,</span>
+<span class="pre">'three':</span> <span class="pre">0.466,</span> <span class="pre">'go':</span> <span class="pre">0.466,</span> <span class="pre">'best':</span> <span class="pre">0.0,</span> <span class="pre">'summer':</span> <span class="pre">0.0,</span> <span class="pre">'parrots':</span> <span class="pre">0.466,</span> <span class="pre">'picnic':</span> <span class="pre">0.0,</span>
+<span class="pre">'princess':</span> <span class="pre">0.0,</span> <span class="pre">'morning':</span> <span class="pre">0.466,</span> <span class="pre">'every':</span> <span class="pre">0.466,</span> <span class="pre">'hill':</span> <span class="pre">0.0,</span> <span class="pre">'date':</span> <span class="pre">0.0,</span> <span class="pre">'wand':</span> <span class="pre">0.0,</span>
+<span class="pre">'friend':</span> <span class="pre">0.0,</span> <span class="pre">'leaved':</span> <span class="pre">0.0,</span> <span class="pre">'studying':</span> <span class="pre">0.0,</span> <span class="pre">'tower':</span> <span class="pre">0.0,</span> <span class="pre">'home':</span> <span class="pre">0.466,</span> <span class="pre">'cat':</span> <span class="pre">0.466,</span>
+<span class="pre">'loved':</span> <span class="pre">0.466,</span> <span class="pre">'steven':</span> <span class="pre">0.466,</span> <span class="pre">'pets':</span> <span class="pre">0.683,</span> <span class="pre">'used':</span> <span class="pre">0.0}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{'top':</span> <span class="pre">0.511,</span> <span class="pre">'two':</span> <span class="pre">0.0,</span> <span class="pre">'leave':</span> <span class="pre">0.0,</span> <span class="pre">'rarely':</span> <span class="pre">0.511,</span> <span class="pre">'spells':</span> <span class="pre">0.0,</span> <span class="pre">'weather':</span> <span class="pre">0.511,</span>
+<span class="pre">'wizard':</span> <span class="pre">0.0,</span> <span class="pre">'want':</span> <span class="pre">0.0,</span> <span class="pre">'dragon':</span> <span class="pre">0.511,</span> <span class="pre">'magic':</span> <span class="pre">0.0,</span> <span class="pre">'perfect':</span> <span class="pre">0.511,</span> <span class="pre">'dogs':</span> <span class="pre">0.0,</span>
+<span class="pre">'three':</span> <span class="pre">0.0,</span> <span class="pre">'go':</span> <span class="pre">0.0,</span> <span class="pre">'best':</span> <span class="pre">0.0,</span> <span class="pre">'summer':</span> <span class="pre">0.511,</span> <span class="pre">'parrots':</span> <span class="pre">0.0,</span> <span class="pre">'picnic':</span> <span class="pre">0.73,</span>
+<span class="pre">'princess':</span> <span class="pre">0.511,</span> <span class="pre">'morning':</span> <span class="pre">0.0,</span> <span class="pre">'every':</span> <span class="pre">0.0,</span> <span class="pre">'hill':</span> <span class="pre">0.73,</span> <span class="pre">'date':</span> <span class="pre">0.511,</span> <span class="pre">'wand':</span> <span class="pre">0.0,</span>
+<span class="pre">'friend':</span> <span class="pre">0.0,</span> <span class="pre">'leaved':</span> <span class="pre">0.511,</span> <span class="pre">'studying':</span> <span class="pre">0.0,</span> <span class="pre">'tower':</span> <span class="pre">0.511,</span> <span class="pre">'home':</span> <span class="pre">0.0,</span> <span class="pre">'cat':</span> <span class="pre">0.0,</span>
+<span class="pre">'loved':</span> <span class="pre">0.0,</span> <span class="pre">'steven':</span> <span class="pre">0.0,</span> <span class="pre">'pets':</span> <span class="pre">0.0,</span> <span class="pre">'used':</span> <span class="pre">0.0}</span></code></p></li>
+</ul>
+<p>Можно заметить, что в новых словарях меньше токенов. Поищите, какие отсутствуют,
+и подумайте, почему.</p>
+<p>Если отранжировать значения оптимизированной метрики <code class="docutils literal notranslate"><span class="pre">BM25</span></code> для всё того же запроса
+<code class="docutils literal notranslate"><span class="pre">&quot;A</span> <span class="pre">story</span> <span class="pre">about</span> <span class="pre">a</span> <span class="pre">wizard</span> <span class="pre">boy</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">tower!&quot;</span></code>, то мы получим [(0, 0.7837), (2, 0.5108), (1, 0.0)]
+— история про волшебника подходит больше всего.</p>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> рассчитайте значение оптимизированной метрики <code class="docutils literal notranslate"><span class="pre">BM25</span></code> для каждого
+уникального слова в коллекции. В качестве параметров используйте значения <code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0.2</span></code>,
+<code class="docutils literal notranslate"><span class="pre">k1</span> <span class="pre">=</span> <span class="pre">1.5</span></code> и <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">0.75</span></code></p>
+</section>
+<section id="id9">
+<h3>Шаг 10. Сохранить значения метрик<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>При использовании больших коллекций текстов каждый раз подсчитывать значения метрик
+может быть не только неудобно, но и вычислительно затратно, поэтому необходимо
+научиться сохранять их.</p>
+<p>Для того, чтобы сохранить полученные значения метрик в <code class="docutils literal notranslate"><span class="pre">json</span></code> файл, реализуйте
+функцию <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.save_index" title="lab_2_retrieval_w_bm25.main.save_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.save_index()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Для сохранения данных в <code class="docutils literal notranslate"><span class="pre">json</span></code> файл вам может потребоваться метод <a class="reference external" href="https://www.geeksforgeeks.org/json-dump-in-python/">dump</a>, который в качестве аргументов принимает Python объект, который вы хотите сохранить в <code class="docutils literal notranslate"><span class="pre">json</span></code>, файловый объект, в который будут сохранены данные, и отступ - целое число, определяющее количество пробелов для отступа.</p>
+</div>
+<p>Пример корректного сохранения
+вы можете найти в папке <code class="docutils literal notranslate"><span class="pre">tests/assets/saved_metrics_example.json</span></code>.</p>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> продемонстрируйте сохранение в файл <code class="docutils literal notranslate"><span class="pre">assets/metrics.json</span></code>
+метрик, полученных с использованием
+эффективного алгоритма <code class="docutils literal notranslate"><span class="pre">BM25</span></code> для всех текстов в коллекции.</p>
+</section>
+<section id="id10">
+<h3>Шаг 11. Загрузить значения метрик<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>На предыдущем шаге мы уже научились сохранять полученные для каждого слова значения метрики
+в файл, однако важно также научиться корректно загружать их из него.</p>
+<p>Для того, чтобы загрузить полученные значения метрик, реализуйте
+функцию <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.load_index" title="lab_2_retrieval_w_bm25.main.load_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.load_index()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Для загрузки данных из <code class="docutils literal notranslate"><span class="pre">json</span></code> файла вам может потребоваться метод <a class="reference external" href="https://www.geeksforgeeks.org/json-load-in-python/">load</a>, который в качестве аргумента принимает объект <code class="docutils literal notranslate"><span class="pre">json</span></code> файла, из которого считываются данные.</p>
+</div>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> продемонстрируйте загрузку из файла метрик, полученных с
+использованием эффективного алгоритма <code class="docutils literal notranslate"><span class="pre">BM25</span></code>. Далее, используя загруженные значения,
+отранжируйте документы по запросу <code class="docutils literal notranslate"><span class="pre">'Which</span> <span class="pre">fairy</span> <span class="pre">tale</span> <span class="pre">has</span> <span class="pre">Fairy</span> <span class="pre">Queen?'</span></code>.</p>
+</section>
+<section id="id11">
+<h3>Шаг 12. Посчитать ранговую корреляцию Спирмена<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-12 соответствует 10 баллам.</p>
+</div>
+<p>Ранее мы уже отранжировали документы по убыванию релевантности
+с использованием показателей <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> и <code class="docutils literal notranslate"><span class="pre">BM25</span></code> и вручную сравнивали между собой
+полученные результаты.</p>
+<p>Однако вместо того, чтобы вручную сравнивать списки рангов, можно воспользоваться
+<code class="docutils literal notranslate"><span class="pre">ранговой</span> <span class="pre">корреляцией</span> <span class="pre">Спирмена</span></code> (<a class="reference external" href="https://wiki.loginom.ru/articles/rank-correlation-spearman.html">Тест ранговой корреляции Спирмена</a>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">Коэффициент</span> <span class="pre">ранговой</span> <span class="pre">корреляции</span> <span class="pre">Спирмена</span></code> - это показатель, позволяющий оценить,
+насколько сильно два набора данных связаны между собой.
+Этот коэффициент измеряет степень монотонной зависимости между
+ранжированными переменными и варьируется от -1 до 1:</p>
+<ul class="simple">
+<li><p>Значения близкие к 1 указывают на сильную положительную корреляцию;</p></li>
+<li><p>Значения близкие к -1 указывают на сильную отрицательную корреляцию;</p></li>
+<li><p>Значения близкие к 0 указывают на отсутствие корреляции.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Коэффициент</span> <span class="pre">ранговой</span> <span class="pre">корреляции</span> <span class="pre">Спирмена</span></code> рассчитывается по формуле
+<span class="math notranslate nohighlight">\(Spearman's = 1 - \frac{6\sum d^2_i}{n(n^2 - 1)}\)</span>, где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d^2_i\)</span> - разность рангов для <span class="math notranslate nohighlight">\(i\)</span>-го элемента;</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> - количество наблюдений;</p></li>
+</ul>
+<p>Для того чтобы рассчитать ранговую корреляцию Спирмена между полученным
+списков рангов и “золотым стандартом”,
+реализуйте функцию <a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.calculate_spearman" title="lab_2_retrieval_w_bm25.main.calculate_spearman"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.calculate_spearman()</span></code></a>.</p>
+<p>В итоге для коллекции из трёх детских историй при рассчитывании рангов для <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>,
+обычного <code class="docutils literal notranslate"><span class="pre">BM25</span></code> и эффективного <code class="docutils literal notranslate"><span class="pre">BM25</span></code>, получаются следующие документы в порядке
+уменьшения релевантности:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>: [0, 2, 1]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BM25</span></code>: [2, 0, 1]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BM25</span> <span class="pre">CUTOFF</span></code>: [0, 2, 1]</p></li>
+</ul>
+<p>Коэффициент ранговой корреляции показывает, что пары <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> и <code class="docutils literal notranslate"><span class="pre">BM25</span></code>, <code class="docutils literal notranslate"><span class="pre">BM25</span></code>
+и <code class="docutils literal notranslate"><span class="pre">BM25</span> <span class="pre">CUTOFF</span></code> имеют среднюю положительную корреляцию 0.5, в то время как пара
+<code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> и <code class="docutils literal notranslate"><span class="pre">BM25</span> <span class="pre">CUTOFF</span></code> имеет коэффициент Спирмена равный 1, так как они идентичны.</p>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> отранжируйте тексты из коллекции документов для запроса
+<code class="docutils literal notranslate"><span class="pre">'Which</span> <span class="pre">fairy</span> <span class="pre">tale</span> <span class="pre">has</span> <span class="pre">Fairy</span> <span class="pre">Queen?'</span></code>
+с использованием эффективного алгоритма <code class="docutils literal notranslate"><span class="pre">BM25</span></code>, которому в качестве порога передается
+значение аргумента <code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0.2</span></code>, а также параметры <code class="docutils literal notranslate"><span class="pre">k1</span> <span class="pre">=</span> <span class="pre">1.5</span></code> и <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">0.75</span></code>.
+Далее в <code class="docutils literal notranslate"><span class="pre">start.py</span></code> продемонстрируйте подсчет <code class="docutils literal notranslate"><span class="pre">ранговой</span> <span class="pre">корреляции</span> <span class="pre">Спирмена</span></code>
+между рангами, полученными с использованием <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>, <code class="docutils literal notranslate"><span class="pre">BM25</span></code> и оптимизированного <code class="docutils literal notranslate"><span class="pre">BM25</span></code>
+и золотым стандартом.
+Золотой стандарт представляет собой список из 10 рангов, полученных в результате вызова функции
+<a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.rank_documents" title="lab_2_retrieval_w_bm25.main.rank_documents"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.rank_documents()</span></code></a> на значениях, полученных с использованием
+оптимизированной метрики <code class="docutils literal notranslate"><span class="pre">BM25</span></code> (<a class="reference internal" href="lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff" title="lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.calculate_bm25_with_cutoff()</span></code></a>).
+При корректном выполнении лабораторной работы золотой стандарт должен быть следующим:
+<code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">7,</span> <span class="pre">5,</span> <span class="pre">0,</span> <span class="pre">9,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8]</span></code>.</p>
+</section>
+</section>
+<section id="id12">
+<h2>Полезные ссылки<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ru.wikipedia.org/wiki/TF-IDF">TF-IDF</a></p></li>
+<li><p><a class="reference external" href="https://ru.wikipedia.org/wiki/Okapi_BM25">BM25</a></p></li>
+<li><p><a class="reference external" href="https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf">Более подробно про BM25</a></p></li>
+<li><p><a class="reference external" href="https://wiki.loginom.ru/articles/rank-correlation-spearman.html">Ранговая корреляция Спирмена</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_1_classify_by_unigrams/lab_1_classify_by_unigrams.api.html" class="btn btn-neutral float-left" title="lab_1_classify_by_unigrams package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_2_retrieval_w_bm25.api.html" class="btn btn-neutral float-right" title="lab_2_retrieval_w_bm25 package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
