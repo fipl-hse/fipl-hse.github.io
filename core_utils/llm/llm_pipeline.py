@@ -17,19 +17,21 @@ try:
 except ImportError:
     print('Library "torch" not installed. Failed to import.')
     Dataset = None  # type: ignore
+    Tensor = None  # type: ignore
 
 
 class HFModelLike(Protocol):
     """
     Protocol definition of HF models.
     """
+
     def __call__(self, *args: tuple, return_dict: bool = False, **kwargs: dict) -> Any:
         """
         Placeholder to claim HF models are callable.
 
         Args:
             args (tuple): Arbitrary positional arguments
-            return_dict (bool): Special argument for QA models
+            return_dict (bool, optional): Special argument for QA models. Defaults to False.
             kwargs (dict): Arbitrary named arguments
 
         Returns:
@@ -56,8 +58,14 @@ class AbstractLLMPipeline(ABC):
     #: Model
     _model: HFModelLike | None
 
-    def __init__(self, model_name: str, dataset: Dataset, max_length: int,
-                 batch_size: int, device: str = 'cpu') -> None:
+    def __init__(
+        self,
+        model_name: str,
+        dataset: Dataset,
+        max_length: int,
+        batch_size: int,
+        device: str = "cpu",
+    ) -> None:
         """
         Initialize an instance of AbstractLLMPipeline.
 
@@ -66,7 +74,7 @@ class AbstractLLMPipeline(ABC):
             dataset (torch.utils.data.dataset.Dataset): The dataset used.
             max_length (int): The maximum length of generated sequence.
             batch_size (int): The size of the batch inside DataLoader.
-            device (str): The device for inference.
+            device (str, optional): The device for inference. Defaults to "cpu".
         """
         self._model_name = model_name
         self._model = None

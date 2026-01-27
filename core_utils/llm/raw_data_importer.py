@@ -1,6 +1,7 @@
 """
 Module with description of abstract data importer.
 """
+
 # pylint: disable=duplicate-code
 from abc import ABC, abstractmethod
 from pathlib import Path
