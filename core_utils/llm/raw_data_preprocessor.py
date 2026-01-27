@@ -18,13 +18,14 @@ class ColumnNames(Enum):
     """
     Column names for preprocessed DataFrame.
     """
-    SOURCE = 'source'
-    TARGET = 'target'
-    PREDICTION = 'predictions'
-    QUESTION = 'question'
-    CONTEXT = 'context'
-    PREMISE = 'premise'
-    HYPOTHESIS = 'hypothesis'
+
+    SOURCE = "source"
+    TARGET = "target"
+    PREDICTION = "predictions"
+    QUESTION = "question"
+    CONTEXT = "context"
+    PREMISE = "premise"
+    HYPOTHESIS = "hypothesis"
 
     def __str__(self) -> Any:
         """
@@ -40,6 +41,7 @@ class AbstractRawDataPreprocessor(ABC):
     """
     Abstract Raw Data Preprocessor.
     """
+
     #: Preprocessed dataset in a table format
     _data: DataFrame | None
 
