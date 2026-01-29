@@ -4,7 +4,6 @@ lab\_7 package
 Submodules
 ----------
 
-
 .. automodule:: lab_7_llm.main
    :members:
    :undoc-members:

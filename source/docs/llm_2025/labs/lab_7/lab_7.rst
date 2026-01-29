@@ -515,7 +515,6 @@ use:
     * ``max_length`` = 120;
     * ``device`` = 'cpu'.
 
-.. note:: For generation closed QA task use ``max_length`` = 512.
 
 Stage 4.4. Infer dataset
 """"""""""""""""""""""""

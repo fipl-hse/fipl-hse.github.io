@@ -9,6 +9,8 @@ def init_application() -> tuple:
     """
     Initialize core application.
 
+    Run: uvicorn lab_7_llm.service:app --reload
+
     Returns:
         tuple: tuple of two objects, instance of FastAPI server and LLMPipeline pipeline.
     """
