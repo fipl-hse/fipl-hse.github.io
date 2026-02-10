@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Machine Translation &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Summarization" href="TASK_SUMMARIZATION.html" />
+    <link rel="prev" title="NLI" href="TASK_NLI.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general_info.html">Общая информация</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../labs/index.html">Laboratory works</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Task cards</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="TASK_CLASSIFICATION.html">Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TASK_GENERATION.html">Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TASK_NER.html">NER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TASK_NLI.html">NLI</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Neural Machine Translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TASK_SUMMARIZATION.html">Summarization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Task cards</a></li>
+      <li class="breadcrumb-item active">Neural Machine Translation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/llm_2024/task_cards/TASK_NMT.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="neural-machine-translation">
+<span id="nmt-label"></span><h1>Neural Machine Translation<a class="headerlink" href="#neural-machine-translation" title="Link to this heading"></a></h1>
+<section id="models">
+<h2>Models<a class="headerlink" href="#models" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Lang</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://huggingface.co/Helsinki-NLP/opus-mt-en-fr">Helsinki-NLP/opus-mt-en-fr</a></p></td>
+<td><p>EN</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/t5-small">t5-small</a></p></td>
+<td><p>EN</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://huggingface.co/Helsinki-NLP/opus-mt-ru-en">Helsinki-NLP/opus-mt-ru-en</a></p></td>
+<td><p>RU</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/Helsinki-NLP/opus-mt-ru-es">Helsinki-NLP/opus-mt-ru-es</a></p></td>
+<td><p>RU</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="datasets">
+<h2>Datasets<a class="headerlink" href="#datasets" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://huggingface.co/datasets/enimai/MuST-C-fr">enimai/MuST-C-fr</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: EN</p></li>
+<li><p><strong>Rows</strong>: 2630</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">en</span></code> to <code class="docutils literal notranslate"><span class="pre">source</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">fr</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+<li><p>Delete duplicates in dataset.</p></li>
+<li><p>Reset indexes.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/RocioUrquijo/en_de">RocioUrquijo/en_de</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: EN</p></li>
+<li><p><strong>Rows</strong>: 700</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">en</span></code> to <code class="docutils literal notranslate"><span class="pre">source</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">de</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+<li><p>Delete duplicates in dataset.</p></li>
+<li><p>Add prefix <em>Translate from English to German:</em>  for each <code class="docutils literal notranslate"><span class="pre">source</span></code> row.</p></li>
+<li><p>Reset indexes.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/shreevigneshs/iwslt-2023-en-ru-train-val-split-0.2">shreevigneshs/iwslt-2023-en-ru-train-val-split-0.2</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: RU</p></li>
+<li><p><strong>Rows</strong>: 600</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Drop columns <code class="docutils literal notranslate"><span class="pre">ru_annotated</span></code>, <code class="docutils literal notranslate"><span class="pre">styles</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">ru</span></code> to <code class="docutils literal notranslate"><span class="pre">source</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">en</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+<li><p>Reset indexes.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/nuvocare/Ted2020_en_es_fr_de_it_ca_pl_ru_nl">nuvocare/Ted2020_en_es_fr_de_it_ca_pl_ru_nl</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: RU</p></li>
+<li><p><strong>Rows</strong>: 7210</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Drop columns <code class="docutils literal notranslate"><span class="pre">de</span></code>, <code class="docutils literal notranslate"><span class="pre">en</span></code>, <code class="docutils literal notranslate"><span class="pre">fr</span></code>, <code class="docutils literal notranslate"><span class="pre">it</span></code>, <code class="docutils literal notranslate"><span class="pre">nl</span></code>, <code class="docutils literal notranslate"><span class="pre">pl</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">ru</span></code> to <code class="docutils literal notranslate"><span class="pre">source</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">es</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+<li><p>Delete empty rows in dataset.</p></li>
+<li><p>Delete duplicates in dataset.</p></li>
+<li><p>Reset indexes.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="supervised-fine-tuning-sft-parameters">
+<h2>Supervised Fine-Tuning (SFT) Parameters<a class="headerlink" href="#supervised-fine-tuning-sft-parameters" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Set the parameter
+<code class="docutils literal notranslate"><span class="pre">target_modules=[&quot;k_proj&quot;,</span> <span class="pre">&quot;v_proj&quot;,</span> <span class="pre">&quot;q_proj&quot;,</span> <span class="pre">&quot;out_proj&quot;]</span></code> for the
+<a class="reference external" href="https://huggingface.co/Helsinki-NLP/opus-mt-en-fr">Helsinki-NLP/opus-mt-en-fr</a>,
+<a class="reference external" href="https://huggingface.co/Helsinki-NLP/opus-mt-ru-en">Helsinki-NLP/opus-mt-ru-en</a>,
+<a class="reference external" href="https://huggingface.co/Helsinki-NLP/opus-mt-ru-es">Helsinki-NLP/opus-mt-ru-es</a>
+models.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Set the parameter <code class="docutils literal notranslate"><span class="pre">learning_rate=1e-4</span></code> for the
+<a class="reference external" href="https://huggingface.co/Helsinki-NLP/opus-mt-ru-es">Helsinki-NLP/opus-mt-ru-es</a>
+model as SFT parameter.</p>
+</div>
+</section>
+<section id="metrics">
+<h2>Metrics<a class="headerlink" href="#metrics" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>BLEU</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="TASK_NLI.html" class="btn btn-neutral float-left" title="NLI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="TASK_SUMMARIZATION.html" class="btn btn-neutral float-right" title="Summarization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

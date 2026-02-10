@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа №4. Система генерации текста на основе префиксного дерева &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_4_auto_completion package" href="lab_4_auto_completion.api.html" />
+    <link rel="prev" title="lab_3_generate_by_ngrams package" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2025/2026)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_1_keywords_tfidf/lab_1.html">Лабораторная работа №1. Выделение ключевых слов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_2_spellcheck/lab_2.html">Лабораторная работа №2. Исправление опечаток на основе редакционного расстояния</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3.html">Лабораторная работа №3. Генерация текста с помощью n-грамм</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Лабораторная работа №4. Система генерации текста на основе префиксного дерева</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_4_auto_completion.api.html">lab_4_auto_completion package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+      <li class="breadcrumb-item active">Лабораторная работа №4. Система генерации текста на основе префиксного дерева</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/labs_2025/labs/lab_4_auto_completion/lab_4.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o4">
+<h1>Лабораторная работа №4. Система генерации текста на основе префиксного дерева<a class="headerlink" href="#o4" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_4_auto_completion.api.html">lab_4_auto_completion package</a></li>
+</ul>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Описание лабораторных работ и другие полезные материалы
+доступны на
+<a class="reference external" href="https://fipl-hse.github.io/docs/labs_2025/">сайте дисциплины</a></p>
+</div>
+<section id="id1">
+<h2>Дано<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Текст на английском языке (<code class="docutils literal notranslate"><span class="pre">./assets/hp_letters.txt</span></code>),
+который загружен и сохранен в переменную <code class="docutils literal notranslate"><span class="pre">hp_letters</span></code> в <code class="docutils literal notranslate"><span class="pre">start.py</span></code></p></li>
+</ol>
+<ol class="arabic simple">
+<li><p>Текст на английском языке (<code class="docutils literal notranslate"><span class="pre">./assets/ussr_letters.txt</span></code>),
+который загружен и сохранен в переменную <code class="docutils literal notranslate"><span class="pre">ussr_letters</span></code> в <code class="docutils literal notranslate"><span class="pre">start.py</span></code></p></li>
+</ol>
+<p>В рамках предыдущей лабораторной работы вы выполнили задачу построения корпуса n-грамм и генерации
+текста на основе их частотности. Напомним, что для хранения последовательностей слов вы использовали
+словарь. Однако, на практике такой формат хранения может быть неэффективным. Например, как вы могли
+заметить, многие n-граммы имеют общие начальные последовательности, которые в словаре хранятся избыточное
+количество раз.</p>
+<p><strong>Проиллюстрируем проблему</strong>: представим, что в нашем корпусе есть 1000 n-грамм, которые начинаются
+со слов “я люблю”. Получается, что в итоговом словаре-хранилище будут 1000 раз записаны эти два
+слова, что задействует избыточный объем памяти.</p>
+<p>Префиксное дерево решает эту проблему. Его структура позволяет хранить общие префиксы n-грамм только
+один раз, что значительно экономит память. В заключительной, четвертой лабораторной работе вам
+предстоит реализовать эту структуру данных и адаптировать под нее алгоритм генерации текста. Второе
+важное отличие от предыдущей работы заключается в том, что теперь вам предстоит обрабатывать текст
+на уровне слов, а не отдельных букв.</p>
+</section>
+<section id="id2">
+<h2>Структура префиксного дерева<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>В базовой реализации префиксное дерево состоит из набора связанных узлов, каждый из которых
+соответствует определенному символу:</p>
+<figure class="align-center" id="id52">
+<a class="reference internal image-reference" href="../../../../_images/basic_tree.png"><img alt="" src="../../../../_images/basic_tree.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text">Структура префиксного дерева для данных последовательностей слов.</span><a class="headerlink" href="#id52" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Как видно из картинки, все 4 n-граммы имеют минимальную общую начальную последовательность
+<strong>i love</strong>, и в случае, если бы мы использовали для их хранения словарь, этот “префикс”
+хранился бы 4 раза. В дереве же он сохраняется лишь единожды, что существенно снижает нагрузку
+на память при большом объеме данных. Подробнее про префиксные деревья вы можете прочитать
+<a class="reference external" href="https://ru.wikipedia.org/wiki/Префиксное_дерево">здесь</a>.</p>
+<p>Каждый узел хранит в себе:</p>
+<ul class="simple">
+<li><p>Соответствующий <strong>символ</strong></p></li>
+<li><p>Ссылки на <strong>дочерние узлы</strong></p></li>
+</ul>
+<p>Предположим, что у нас есть корпус закодированных слов
+<cite>1, 2, 3, 4, 1, 2, 5, 6, 7, 1, 2, 3, 8, 9, 1, 2, 5, 10, 11, 1, 2, 3, 4, 12</cite> и длина n-грамм - 3, тогда у нас
+будет следующий набор n-грамм:</p>
+<ol class="arabic simple">
+<li><p>(1,2,3) - 3 раза</p></li>
+<li><p>(1,2,5) - 2 раза</p></li>
+<li><p>(2,3,4) - 2 раза</p></li>
+<li><p>(2,3,8) - 1 раз</p></li>
+<li><p>(2,5,6) - 1 раз</p></li>
+<li><p>(2,5,10) - 1 раз</p></li>
+<li><p>(3,4,1) - 1 раз</p></li>
+<li><p>(3,4,12) - 1 раз</p></li>
+<li><p>(3,8,9) - 1 раз</p></li>
+<li><p>(4,1,2) - 1 раз</p></li>
+<li><p>(5,6,7) - 1 раз</p></li>
+<li><p>(5,10,11) - 1 раз</p></li>
+<li><p>(6,7,1) - 1 раз</p></li>
+<li><p>(7,1,2) - 1 раз</p></li>
+<li><p>(8,9,1) - 1 раз</p></li>
+<li><p>(9,1,2) - 1 раз</p></li>
+<li><p>(10,11,1) - 1 раз</p></li>
+<li><p>(11,1,2) - 1 раз</p></li>
+</ol>
+<p>Дерево этих n-грамм будет выглядеть так (корневой узел должен хранить в себе
+значение <cite>None</cite>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>root: [None | 0.0]
+    │
+    ├── [1 | 0.0] → Начало триграмм (1,2,3), (1,2,5)
+    │   │
+    │   └── [2 | 0.0]
+    │       │
+    │       ├── [3 | 0.14]  → (1,2,3)
+    │       │
+    │       └── [5 | 0.09]  → (1,2,5)
+    │
+    │
+    ├── [2 | 0.0] → Начало триграмм (2,3,4), (2,3,8), (2,5,6), (2,5,10)
+    │   │
+    │   ├── [3 | 0.0]
+    │   │   │
+    │   │   ├── [4 | 0.09]  → (2,3,4)
+    │   │   │
+    │   │   └── [8 | 0.05]  → (2,3,8)
+    │   │
+    │   └── [5 | 0.0]
+    │       │
+    │       ├── [6 | 0.05]  → (2,5,6)
+    │       │
+    │       └── [10 | 0.05] → (2,5,10)
+    │
+    │
+    ├── [3 | 0.0] → Начало триграмм (3,4,1), (3,4,12), (3,8,9)
+    │   │
+    │   ├── [4 | 0.0]
+    │   │   │
+    │   │   └── [1 | 0.05]  → (3,4,1)
+    │   │   │
+    │   │   └── [12 | 0.05]  → (3,4,12)
+    │   │
+    │   └── [8 | 0.0]
+    │       │
+    │       └── [9 | 0.05]  → (3,8,9)
+    │
+    │
+    ├── [4 | 0.0] → Начало триграммы (4,1,2)
+    │   │
+    │   └── [1 | 0.0]
+    │       │
+    │       └── [2 | 0.05]  → (4,1,2)
+    │
+    │
+    ├── [5 | 0.0] → Начало триграммы (5,6,7), (5,10,11)
+    │   │
+    │   ├── [6 | 0.0]
+    │   │   │
+    │   │   └── [7 | 0.05]  → (5,6,7)
+    │   │
+    │   └── [10 | 0.0]
+    │       │
+    │       └── [11 | 0.05] → (5,10,11)
+    │
+    │
+    ├── [6 | 0.0] → Начало триграммы (6,7,1)
+    │    │
+    │    └── [7 | 0.0]
+    │        │
+    │        └── [1 | 0.05]  → (6,7,1)
+    │
+    │
+    ├── [7 | 0.0] → Начало триграммы (7,1,2)
+    │    │
+    │    └── [1 | 0.0]
+    │        │
+    │        └── [2 | 0.05]  → (7,1,2)
+    │
+    │
+    ├── [8 | 0.0] → Начало триграммы (8,9,1)
+    │    │
+    │    └── [9 | 0.0]
+    │         │
+    │         └── [1 | 0.05]  → (8,9,1)
+    │
+    │
+    ├── [9 | 0.0] → Начало триграммы (9,1,2)
+    │    │
+    │    └── [1 | 0.0]
+    │         │
+    │         └── [2 | 0.05]  → (9,1,2)
+    │
+    │
+    └── [10 | 0.0] → Начало триграммы (10,11,1)
+    │    │
+    │    └── [11 | 0.0]
+    │         │
+    │         └── [1 | 0.05]  → (10,11,1)
+    │
+    │
+    └── [11 | 0.0] → Начало триграммы (11,1,2)
+    │    │
+    │    └── [1 | 0.0]
+    │         │
+    │         └── [2 | 0.05]  → (11,1,2)
+</pre></div>
+</div>
+<p>Как видно, каждый узел, являющийся концом n-граммы, хранит в себе относительную частоту
+данной n-граммы по отношению ко всему корпусу n-грамм.
+В конечном итоге программа должна автоматически дополнять изначальный промпт
+(начальную последовательность символов) до текста заданной длины посредством
+использования префиксного дерева.</p>
+<p>В данной лабораторной работе генерация текста будет происходить следующим образом:</p>
+<ol class="arabic simple">
+<li><p>Алгоритм начинается с заданного промпта (начальной последовательности символов)</p></li>
+<li><p>Из промпта берется контекст - последние (N-1) символов, где N - размер n-граммы</p></li>
+<li><p>В префиксном дереве находится узел, соответствующий этому контексту</p></li>
+<li><p>Среди всех дочерних узлов текущего контекста выбирается узел с наибольшей вероятностью</p></li>
+<li><p>Символ, соответствующий выбранному узлу, добавляется к сгенерированной последовательности</p></li>
+<li><p>Контекст обновляется: удаляется символ слева, добавляется новый в правую часть</p></li>
+<li><p>Шаги 3-6 повторяются до достижения нужной длины текста</p></li>
+</ol>
+<p>Для примера посмотрим на дерево выше и представим, что у нас есть закодированный промпт <cite>[1, 2]</cite>,
+и мы хотим сгенерировать текст длиной 3 символа. Возьмем в качестве параметра размер n-грамм,
+равный двум. Таким образом, контекст будет содержать последние <span class="math notranslate nohighlight">\(2 - 1\)</span> слов из начальной
+последовательности, а именно <cite>[2]</cite>. После этого среди всех дочерних узлов текущего контекста
+выбирается наиболее вероятный. В нашем случае это узел со значением <cite>3</cite>. Значение этого узла
+добавляется в конец последовательности, после чего контекст обновляется с <cite>[2]</cite> до <cite>[3]</cite>.
+Мы достигли заданной длины текста, работа алгоритма завершается.
+Мы получили закодированный текст <cite>[1, 2, 3]</cite>.</p>
+<p>Визуально процесс выше можно представить так:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Промпт:    [1, 2]
+Генерация первого символа:    [2] → 3 (самый вероятный символ)
+Итог:    [1, 2, 3]
+</pre></div>
+</div>
+<p>Это краткий обзор того, что вам предстоит сделать в рамках текущей работы, ознакомьтесь с ним и
+следуйте инструкциям ниже, чтобы реализовать полный алгоритм построения префиксного дерева и
+генерации текста посредством его использования.</p>
+</section>
+<section id="uml">
+<h2>UML-диаграмма классов<a class="headerlink" href="#uml" title="Link to this heading"></a></h2>
+<a class="reference internal image-reference" href="../../../../_images/description.png"><img alt="Диаграмма классов лабораторной работы №4" class="align-center" src="../../../../_images/description.png" style="width: 100%;" /></a>
+</section>
+<section id="id4">
+<h2>Что надо сделать<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="id5">
+<h3>Шаг 0. Начать работу над лабораторной (вместе с преподавателем на практике)<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Создайте форк репозитория.</p></li>
+<li><p>Установите необходимые инструменты для работы.</p></li>
+<li><p>Измените файлы <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Закоммитьте изменения и создайте Pull request.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> вы должны написать код
+для построения и использования префиксного дерева.</p>
+</div>
+<p>Для этого реализуйте функции в модуле <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и импортируйте их в
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Весь код, выполняющий операции с деревом, должен быть
+выполнен в функции <code class="docutils literal notranslate"><span class="pre">main</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Вызов функции в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В рамках данной лабораторной работы <strong>нельзя использовать модули
+collections, itertools, а также сторонние модули.</strong></p>
+</section>
+<section id="id6">
+<h3>Шаг 1. Творческое задание (будет анонсировано преподавателем на лекции)<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шага 1 соответствует 4 баллам.</p>
+</div>
+</section>
+<section id="id7">
+<h3>Шаг 2. Создать пользовательские исключения<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>Перед началом работы со структурой префиксного дерева и его составляющими вам
+необходимо реализовать несколько пользовательских исключений. Создание пользовательских
+исключений направлено на то, чтобы сделать код более читаемым и ясным. Например,
+вместо возврата <cite>None</cite> при ошибках в функциях можно создать для каждого типа ошибки
+собственное исключение, которое сразу укажет на место и тип ошибки, что существенно
+упрощает работу по отладке кода.</p>
+<p>Для создания пользовательского исключения вам нужно создать новый класс, который
+наследуется от базового класса <cite>Exception</cite>. Внутри данного класса может находиться
+дополнительная логика обработки исключения или просто докстринг.
+В нашем случае второго варианта достаточно. Пример класса пользовательского исключения
+может выглядеть так:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span><span class="w"> </span><span class="nc">CustomException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="linenos">2</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">3</span><span class="sd">    Exception raised when something fails due to something</span>
+<span class="linenos">4</span><span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>В данной лабораторной работе вам необходимо создать следующие исключения:</p>
+<ol class="arabic simple">
+<li><p><strong>TriePrefixNotFoundError</strong> — поднимается, когда требуемый для перехода префикс отсутствует
+в дереве;</p></li>
+<li><p><strong>EncodingError</strong> — поднимается при сбое кодирования текста из-за неправильного ввода или
+ошибки обработки;</p></li>
+<li><p><strong>DecodingError</strong> — поднимается при сбое декодирования текста из-за неправильного ввода или
+ошибки обработки;</p></li>
+<li><p><strong>IncorrectNgramError</strong> — поднимается при попытке использовать неподходящий размер n-грамм;</p></li>
+<li><p><strong>MergeTreesError</strong> — поднимается в случае, когда невозможно совершить слияние деревьев.</p></li>
+</ol>
+</section>
+<section id="id8">
+<h3>Шаг 3. Определить класс для обработки слов<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>В прошлой лабораторной работе вы уже реализовывали класс для обработки текста, теперь
+вам необходимо создать на его основе новый класс для работы со словами и предложениями,
+а не с отдельными буквами.</p>
+<p>Ваша задача - создать класс <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor" title="lab_4_auto_completion.main.WordProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor</span></code></a>,
+являющийся наследником класса <a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor" title="lab_3_generate_by_ngrams.main.TextProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor</span></code></a>,
+который выполняет полный цикл обработки текста на уровне слов с сохранением структуры предложений.</p>
+<p><strong>Ключевое отличие</strong>: в родительском классе использовался разделитель <strong>слов</strong> под названием
+<code class="docutils literal notranslate"><span class="pre">end_of_word_token</span></code>. Теперь, в дочернем классе, мы работаем не просто со словами, а с предложениями,
+поэтому в качестве разделителя вводится новый атрибут: <code class="docutils literal notranslate"><span class="pre">end_of_sentence_token</span></code>.</p>
+<p><strong>Важно</strong>: функционально эти токены очень похожи — они оба являются специальными символами,
+разделяющими элементы текста. Разница лишь в том, на каком уровне (слов или предложений)
+они применяются.</p>
+<p>Учитывая все вышесказанное, вам необходимо переиспользовать логику родительского класса, но с новым,
+более подходящим названием токена. Реализуйте инициализатор класса: помимо объявления самого внутреннего
+атрибута <code class="docutils literal notranslate"><span class="pre">end_of_sentence_token</span></code> инициализация должна включать еще и конструктор родительского класса, который
+в качестве параметра <code class="docutils literal notranslate"><span class="pre">end_of_word_token</span></code> принимает атрибут <code class="docutils literal notranslate"><span class="pre">end_of_sentence_token</span></code>.</p>
+</section>
+<section id="id9">
+<h3>Шаг 3.1. Реализовать метод для токенизации текста<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>Переопределите метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor._tokenize" title="lab_4_auto_completion.main.WordProcessor._tokenize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor._tokenize()</span></code></a>, который,
+в отличие от одноименного метода родительского класса, разбивает текст на предложения, а не
+отдельные слова.</p>
+<p>Метод работает следующим образом:</p>
+<ol class="arabic simple">
+<li><p>Исходный текст разделяется на предложения</p></li>
+<li><p>Каждое предложение обрабатывается следующим образом:</p>
+<ol class="arabic simple">
+<li><p>Предложение приводится к нижнему регистру</p></li>
+<li><p>Предложение разбивается на слова по пробелам</p></li>
+<li><p>Каждое слово очищается от небуквенных символов</p></li>
+<li><p>Очищенное слово добавляется в результирующий массив</p></li>
+<li><p>После последнего слова предложения добавляется <cite>end_of_sentence_token</cite></p></li>
+</ol>
+</li>
+</ol>
+<p>3. Шаг 2 происходит до того момента, пока не будут обработаны все предложения, переданные во
+входной аргумент <cite>text</cite>.</p>
+<p>Предположим, что на вход метода подано предложение <cite>Hello World! How are you?</cite>. На выходе у нас
+должен получиться кортеж, содержащий все обработанные предложения, в нашем случае
+<cite>(“hello”, “world”, “&lt;EOS&gt;”, “how”, “are”, “you”, “&lt;EOS&gt;”)</cite>.</p>
+<p>Обратите внимание: для разделения предложений в данной работе используется именно
+<cite>end_of_sentence_token</cite>, который в предыдущей лабораторной отвечал за разделение слов. Это сделано
+для того, чтобы не создавать в дочернем классе дополнительный атрибут, цель использования
+которого совпадает с целью атрибута родительского класса.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В случае, если на вход метода подается неправильное значение или результирующий массив
+отсутствует, метод должен поднимать исключение <cite>EncodingError</cite>.</p>
+</div>
+</section>
+<section id="id10">
+<h3>Шаг 3.2. Реализовать метод для вставки слов в хранилище<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>Переопределите метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor._put" title="lab_4_auto_completion.main.WordProcessor._put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor._put()</span></code></a>. Одноименный метод
+родительского класса добавлял только буквы в хранилище. Теперь же этот метод должен добавлять
+слова в хранилище <cite>_storage</cite>.</p>
+<p>Предположим, что метод получает на вход последовательно символы <cite>hello</cite>, <cite>world</cite>, <cite>hello</cite>,
+<cite>beautiful</cite>. Изначально хранилище содержит в себе только <cite>end_of_sentence_token</cite>. По мере
+вставки слов хранилище будет изменяться следующим образом:</p>
+<ol class="arabic simple">
+<li><p><cite>_storage = {‘&lt;EOS&gt;’: 0, ‘hello’: 1}</cite> после вставки первого слова</p></li>
+<li><p><cite>_storage = {‘&lt;EOS&gt;’: 0, ‘hello’: 1, ‘world’: 2}</cite> после вставки второго слова</p></li>
+<li><p><cite>_storage = {‘&lt;EOS&gt;’: 0, ‘hello’: 1, ‘world’: 2}</cite> - ничего не происходит, слово <cite>hello</cite> уже есть</p></li>
+<li><p><cite>_storage = {‘&lt;EOS&gt;’: 0, ‘hello’: 1, ‘world’: 2, ‘beautiful’: 3}</cite> - после вставки последнего
+слова</p></li>
+</ol>
+</section>
+<section id="id11">
+<h3>Шаг 3.3. Реализовать метод для кодирования предложений<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor.encode_sentences" title="lab_4_auto_completion.main.WordProcessor.encode_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor.encode_sentences()</span></code></a>, который
+используется для кодирования текста на уровне предложений.</p>
+<p>Метод работает следующим образом:</p>
+<ol class="arabic simple">
+<li><p>Входной текст разбивается на предложения, которые приводятся к нижнему регистру</p></li>
+<li><p>Все непустые предложения обрабатываются следующим образом:</p>
+<ol class="arabic simple">
+<li><p>Каждое предложение разбивается на слова, которые очищаются от небуквенных символов</p></li>
+<li><p>Слова добавляются в хранилище посредством метода
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor._put" title="lab_4_auto_completion.main.WordProcessor._put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor._put()</span></code></a>, после чего идентификатор каждого
+слова добавляется в список, который хранит данные о текущем предложении</p></li>
+<li><p>В конец предложения должен быть добавлен <code class="docutils literal notranslate"><span class="pre">end_of_sentence_token</span></code>, после чего все текущее
+предложение должно быть добавлено в список всех закодированных предложений</p></li>
+</ol>
+</li>
+</ol>
+<p>Обратите внимание, что метод должен возвращать объект типа <cite>tuple</cite> - массив всех закодированных
+предложений.</p>
+<p>Для примера возьмем текст, уже использованный ранее: <cite>Hello World! How are you?</cite>. Этот текст после
+обработки виде будет выглядеть следующим образом: <cite>[“hello world”, “how are you”]</cite>. После полной
+обработки методом <cite>encode_sentences</cite> результат будет выглядеть так: <cite>((1, 2, 0), (3, 4, 5, 0))</cite>.</p>
+</section>
+<section id="id12">
+<h3>Шаг 3.4. Реализовать метод для обработки декодированного текста<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>Переопределите метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor._postprocess_decoded_text" title="lab_4_auto_completion.main.WordProcessor._postprocess_decoded_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor._postprocess_decoded_text()</span></code></a>,
+который принимает на вход последовательность элементов, хранящуюся в кортеже <cite>decoded_corpus</cite>, и
+возвращает строковое представление данной последовательности. Так, все входные
+последовательности из кортежа объединяются в список строк, разделителем которых является
+<cite>end_of_sentence_token</cite>. Соответственно, каждой строке соответствует одно предложение.
+После этого все предложения должны объединиться через точку с пробелом, и первая буква каждого
+предложения должна стать заглавной.</p>
+<p>Например, метод получает на вход кортеж <cite>(“hello”, “world”, “&lt;EOS&gt;”, “how”, “are”, “you”, “&lt;EOS&gt;”)</cite>.
+Результирующий массив будет выглядеть так: <cite>[“hello world”, “how are you”]</cite>, а после
+финального преобразования будет возвращено значение <cite>“Hello world. How are you.”</cite>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В случае, если на вход метода подается неправильное значение или результирующий список
+строк отсутствует, метод должен поднимать исключение <cite>DecodingError</cite>.</p>
+</div>
+<p>После этого шага ваш класс для обработки текста готов. Теперь необходимо реализовать
+структуру префиксного дерева - непосредственную основу для будущего хранилища n-грамм.</p>
+</section>
+<section id="id13">
+<h3>Шаг 4. Определить сущность узла префиксного дерева<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<p>Каждое префиксное дерево состоит из узлов, связанных друг с другом.
+Узел представляет собой сущность, в которой хранится
+следующая информация:</p>
+<ol class="arabic simple">
+<li><p>Непосредственно элемент, соответствующий данному узлу (в нашем случае
+закодированное слово)</p></li>
+<li><p>Ссылки на все дочерние узлы</p></li>
+</ol>
+<p>В узлах дерева может храниться и другая информация, необходимая для конкретной
+задачи. Позже вы увидите, что в нашем случае является необходимым хранить частоту
+каждого слова, в противном случае было бы невозможно выбрать наилучших кандидатов для
+дополнения.</p>
+</section>
+<section id="id14">
+<h3>Шаг 4.1. Объявить сущность узла префиксного дерева<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<p>Реализуйте инициализатор класса <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode" title="lab_4_auto_completion.main.TrieNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode</span></code></a>.
+Класс имеет 3 атрибута: 1 приватный и 2 защищенных:</p>
+<ol class="arabic simple">
+<li><p><strong>__name</strong> - элемент, соответствующий данному узлу (обратите внимание, что в нашем случае тип
+элемента - целое число, так как далее вам предстоит закодировать слова в виде строк в числа)</p></li>
+<li><p><strong>_value</strong> — позже в нем мы будем хранить относительную частоту
+соответствующей n-граммы в корпусе. По умолчанию частота равна <code class="docutils literal notranslate"><span class="pre">0.0</span></code>. Значение может быть
+обновлено позже методом <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.set_value" title="lab_4_auto_completion.main.TrieNode.set_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.set_value()</span></code></a>.</p></li>
+<li><p><strong>_children</strong> - список всех дочерних узлов</p></li>
+</ol>
+<p>Все эти атрибуты должны быть объявлены при инициализации. На момент инициализации список
+дочерних узлов должен быть пуст.</p>
+</section>
+<section id="id15">
+<h3>Шаг 4.2. Реализовать метод, возвращающий элемент, хранящийся в данном узле<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_name" title="lab_4_auto_completion.main.TrieNode.get_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_name()</span></code></a>, который
+должен возвращать название элемента, который хранится в узле. Такие методы называются
+<strong>геттерами</strong>. Геттеры обеспечивают один из основных принципов ООП - инкапсуляцию,
+позволяя внешнему коду получать информацию о конфигурации узла без прямого доступа к
+внутренним атрибутам класса. Подробнее про <strong>геттеры</strong> и связанные с ними <strong>сеттеры</strong>
+вы можете прочитать <a class="reference external" href="https://pythonpip.ru/osnovy/gettery-settery-python">в этом месте</a>.</p>
+</section>
+<section id="n">
+<h3>Шаг 4.3. Реализовать метод, возвращающий относительную частоту n-граммы<a class="headerlink" href="#n" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_value" title="lab_4_auto_completion.main.TrieNode.get_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_value()</span></code></a>, который должен
+возвращать значение относительной частоты n-граммы, хранящейся в узле.</p>
+</section>
+<section id="id17">
+<h3>Шаг 4.4. Реализовать метод, устанавливающий значение частоты n-граммы<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.set_value" title="lab_4_auto_completion.main.TrieNode.set_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.set_value()</span></code></a>, который должен
+устанавливать в поле относительной частоты n-граммы значение, переданное в аргументе
+<cite>new_value</cite>. Данный метод является примером <strong>сеттера</strong>.</p>
+</section>
+<section id="id18">
+<h3>Шаг 4.5. Реализовать метод, возвращающий дочерние узлы<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_children" title="lab_4_auto_completion.main.TrieNode.get_children"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_children()</span></code></a>. На вход данного
+метода может подаваться значение аргумента <cite>item</cite>, по умолчанию оно равняется <cite>None</cite>. В случае,
+если значение аргумента не заполнено, метод должен вернуть кортеж <strong>всех</strong> дочерних узлов.
+В случае, если значение аргумента <cite>item</cite> явно указано, должен возвращаться кортеж только из тех
+дочерних узлов, значение которых равняется значению <cite>item</cite>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Данный метод должен использовать созданный вами на прошлом шаге метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_name" title="lab_4_auto_completion.main.TrieNode.get_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_name()</span></code></a> для нахождения
+значения дочерних узлов</p>
+</div>
+</section>
+<section id="id19">
+<h3>Шаг 4.6. Переопределить служебный метод для проверки наличия дочерних узлов<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<p>Переопределите служебный метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.__bool__" title="lab_4_auto_completion.main.TrieNode.__bool__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.__bool__()</span></code></a>.
+Метод должен вернуть <cite>True</cite> в случае, если узел имеет дочерние узлы.</p>
+<p>По умолчанию Python считает объект <cite>True</cite>, если он не является:</p>
+<ol class="arabic simple">
+<li><p><cite>None</cite>, <cite>False</cite></p></li>
+<li><p>числом <cite>0</cite> или <cite>0.0</cite></p></li>
+<li><p>пустой коллекцией (<cite>[]</cite>, <cite>{}</cite>, <cite>()</cite>, <cite>“”</cite>, <cite>set()</cite>)</p></li>
+</ol>
+<p>Класс <cite>TrieNode</cite> по умолчанию всегда возвращает <cite>True</cite>, поскольку не попадает под эти условия.
+Однако в контексте префиксного дерева логичнее связывать булево значение с наличием у узла
+дочерних узлов.</p>
+<p>Предположим, у нас есть узел:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">without_children</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">(</span><span class="n">__name</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">_value</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">_children</span><span class="o">=</span><span class="p">[])</span>
+<span class="linenos"> 2</span><span class="n">with_children</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">(</span><span class="n">__name</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">_value</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">_children</span><span class="o">=</span><span class="p">[</span><span class="n">TrieNode</span><span class="p">(</span><span class="n">__name</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">_value</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">_children</span><span class="o">=</span><span class="p">[])])</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">def</span><span class="w"> </span><span class="nf">check</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">TrieNode</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># Без переопределенного метода __bool__</span>
+<span class="linenos"> 8</span><span class="n">check</span><span class="p">(</span><span class="n">without_children</span><span class="p">)</span> <span class="c1"># Вернет True</span>
+<span class="linenos"> 9</span><span class="n">check</span><span class="p">(</span><span class="n">with_children</span><span class="p">)</span> <span class="c1"># Тоже вернет True</span>
+<span class="linenos">10</span><span class="c1"># С переопределенным методом</span>
+<span class="linenos">11</span><span class="n">check</span><span class="p">(</span><span class="n">without_children</span><span class="p">)</span> <span class="c1"># Вернет False, так как дочерних узлов нет</span>
+<span class="linenos">12</span><span class="n">check</span><span class="p">(</span><span class="n">with_children</span><span class="p">)</span> <span class="c1"># Вернет True, так как есть дочерние узлы</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h3>Шаг 4.7. Реализовать метод, возвращающий результат проверки на наличие дочерних узлов<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.has_children" title="lab_4_auto_completion.main.TrieNode.has_children"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.has_children()</span></code></a>, который должен
+возвращать результат работы переопределенного метода
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.__bool__" title="lab_4_auto_completion.main.TrieNode.__bool__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.__bool__()</span></code></a>: возвращать <cite>True</cite>, если у узла есть
+дочерние узлы, и <cite>False</cite> в обратном случае.</p>
+</section>
+<section id="id21">
+<h3>Шаг 4.8. Реализовать метод для добавления дочернего узла<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.add_child" title="lab_4_auto_completion.main.TrieNode.add_child"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.add_child()</span></code></a>. Метод принимает
+на вход значение <cite>item</cite>, после чего вставляет в массив дочерних узлов
+объект класса <cite>TrieNode</cite> с этим значением, работа метода должна выглядеть так:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">node</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">(</span><span class="n">__name</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">_value</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span> <span class="n">_children</span><span class="o">=</span><span class="p">[])</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">node</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Внутри метода создается объект TrieNode со значением 2 и добавляется в список</span>
+<span class="linenos">4</span>                     <span class="c1"># дочерних узлов</span>
+<span class="linenos">5</span><span class="n">node</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c1"># Внутри метода создается объект TrieNode со значением 7 и добавляется в список</span>
+<span class="linenos">6</span>                     <span class="c1"># дочерних узлов</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id53">
+<a class="reference internal image-reference" href="../../../../_images/add_child.png"><img alt="" src="../../../../_images/add_child.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text">В результате данной операции дерево будет иметь такую структуру</span><a class="headerlink" href="#id53" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id22">
+<h3>Шаг 4.9. Переопределить служебный метод, возвращающий значение узла<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<p>Переопределите служебный метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.__str__" title="lab_4_auto_completion.main.TrieNode.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.__str__()</span></code></a>, который
+должен возвращать строковое представление узла в формате
+<cite>“TrieNode(name=XXX, value=XXX)”</cite>.</p>
+<p>Работа метода может выглядеть так:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">node</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">(</span><span class="n">__name</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">_value</span><span class="o">=</span><span class="mf">0.42</span><span class="p">,</span> <span class="n">_children</span><span class="o">=</span><span class="p">[])</span>
+<span class="linenos">2</span><span class="n">root</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">(</span><span class="n">__name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_value</span><span class="o">=</span><span class="mf">0.16</span><span class="p">,</span> <span class="n">_children</span><span class="o">=</span><span class="p">[])</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="nb">str</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="c1"># Выведет &quot;TrieNode(name=5, value=0.42)&quot;</span>
+<span class="linenos">5</span><span class="nb">str</span><span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="c1"># Выведет &quot;TrieNode(name=None, value=0.16)&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h3>Шаг 5.1. Объявить сущность для построения базового префиксного дерева<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<p>Теперь, после создания сущности узла дерева, перейдем к реализации абстракции самого префиксного
+дерева. Создайте класс <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie" title="lab_4_auto_completion.main.PrefixTrie"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie</span></code></a>.
+Описание внутреннего атрибута: <cite>self._root</cite> - корневой узел, объект класса <cite>TrieNode</cite>.</p>
+</section>
+<section id="id24">
+<h3>Шаг 5.2. Реализовать алгоритм вставки последовательности в префиксное дерево<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<p>На данном этапе вам необходимо реализовать метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie._insert" title="lab_4_auto_completion.main.PrefixTrie._insert"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie._insert()</span></code></a>, который выполняет операцию вставки
+заданной последовательности <cite>sequence</cite> в дерево.</p>
+<p>Работа метода выглядит следующим образом:</p>
+<ol class="arabic simple">
+<li><p>Задается переменная - текущий узел, для которого мы будем искать дочерние узлы. На начальном
+этапе текущим узлом является корневой узел</p></li>
+<li><p>Если элемента заданной последовательности нет в списке дочерних узлов текущего узла, то надо
+создать его, а иначе - сделать его текущим и искать следующий элемент заданной последовательности
+для нового текущего узла</p></li>
+<li><p>Алгоритм продолжается до тех пор, пока не будет произведен обход всей заданной последовательности</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Для поиска дочерних узлов и создания нужного дочернего узла метод должен использовать
+реализованные вами ранее методы <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_children" title="lab_4_auto_completion.main.TrieNode.get_children"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_children()</span></code></a>
+и <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.add_child" title="lab_4_auto_completion.main.TrieNode.add_child"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.add_child()</span></code></a>.</p>
+</div>
+<p>Предположим, у нас есть дерево, состоящее только из корневого узла, и нам надо добавить в него
+последовательность <cite>(1, 2)</cite>.</p>
+<p>Первый элемент последовательности - <cite>1</cite>, мы не нашли его в списке дочерних узлов корневого узла,
+поэтому создаем для корневого узла новый дочерний узел, хранящий значение <cite>1</cite>, и переходим в
+этот узел.</p>
+<p>Следующее значение префикса - <cite>2</cite>, оно отсутствует среди дочерних узлов текущего узла (нашего
+только что созданного узла со значением <cite>1</cite>), создаем для текущего узла новый дочерний узел со
+значением <cite>2</cite>. В случае, если бы, например, в изначальном дереве помимо корневого узла
+уже был бы его дочерний узел со значение <cite>1</cite>, то мы бы сразу перешли в него, и осталось бы
+добавить только узел со значением <cite>2</cite>, являющийся дочерним для узла со значением <cite>1</cite>.</p>
+<p>Визуализация данного алгоритма выглядит следующим образом:</p>
+<p>На первом этапе мы создаем дочерний узел корневого узла со значением <cite>1</cite>:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../../_images/1st_step.png"><img alt="" src="../../../../_images/1st_step.png" style="width: 50%;" /></a>
+</figure>
+<p>Далее переходим в только что созданный узел. Поскольку наша входная последовательность <cite>1, 2</cite>
+добавлена еще не полностью, создаем дочерний узел текущего узла:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../../../_images/2nd_step.png"><img alt="" src="../../../../_images/2nd_step.png" style="width: 50%;" /></a>
+</figure>
+</section>
+<section id="id25">
+<h3>Шаг 5.3. Реализовать операцию очистки всего префиксного дерева<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie.clean" title="lab_4_auto_completion.main.PrefixTrie.clean"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie.clean()</span></code></a>, задача которого - очистить
+все префиксное дерево, сделав его пустым. Метод выполняет данную задачу посредством того, что создает
+новый корневой узел, в результате чего все предыдущие данные удаляются.</p>
+</section>
+<section id="id26">
+<h3>Шаг 5.4. Реализовать операцию поиска по префиксу<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<p>Одна из базовых операций, связанных с префиксным деревом -
+поиск по префиксу. Для выполнения этой операции реализуйте метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie.get_prefix" title="lab_4_auto_completion.main.PrefixTrie.get_prefix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie.get_prefix()</span></code></a>.</p>
+<p>Работа метода происходит следующим образом:</p>
+<ol class="arabic simple">
+<li><p>Задается переменная - текущий узел, для которого мы будем искать дочерние узлы. На начальном
+этапе текущим узлом является корневой узел</p></li>
+<li><p>После этого для текущего узла находится дочерний узел, значение которого соответствует текущему
+элементу префикса, начиная с первого</p></li>
+<li><p>Если такой узел не найден, должно быть поднято исключение <cite>TriePrefixNotFoundError</cite>, в обратном
+же случае найденный дочерний узел должен стать текущим</p></li>
+</ol>
+<p>После обработки всех элементов префикса должен возвращаться конечный узел.</p>
+<p><strong>Ключевой момент</strong>: этот метод возвращает именно <strong>узел</strong>,
+соответствующий концу префикса, что позволяет продолжить работу с поддеревом.</p>
+<p>Возьмем для примера часть дерева, которое было полностью показано в начале документа:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>root: [None]
+    │
+    ├── [1] → Начало триграмм (1,2,3), (1,2,5)
+    │   │
+    │   └── [2]
+    │       │
+    │       ├── [3]  → (1,2,3)
+    │       │
+    │       └── [5]  → (1,2,5)
+    │
+    │
+    ├── [2] → Начало триграмм (2,3,4), (2,3,8), (2,5,6), (2,5,10)
+    │   │
+    │   ├── [3]
+    │   │   │
+    │   │   ├── [4]  → (2,3,4)
+    │   │   │
+    │   │   └── [8]  → (2,3,8)
+    │   │
+    │   └── [5]
+    │       │
+    │       ├── [6]  → (2,5,6)
+    │       │
+    │       └── [10] → (2,5,10)
+</pre></div>
+</div>
+<p>Вот как будет выглядеть результат работы данного метода для этого дерева:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">trie</span> <span class="o">=</span> <span class="n">PrefixTrie</span><span class="p">()</span> <span class="c1"># Предположим, что все нужные узлы уже были добавлены в дерево</span>
+<span class="linenos">2</span><span class="n">trie</span><span class="o">.</span><span class="n">get_prefix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="c1"># Вернет TrieNode(__name=8, _value=0.17)</span>
+<span class="linenos">3</span><span class="n">trie</span><span class="o">.</span><span class="n">get_prefix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># Вернет TrieNode(__name=2, _value=0.17)</span>
+</pre></div>
+</div>
+</section>
+<section id="id27">
+<h3>Шаг 5.5. Найти все возможные продолжения для заданного префикса<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie.suggest" title="lab_4_auto_completion.main.PrefixTrie.suggest"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie.suggest()</span></code></a>, задача которого -
+вернуть все возможные последовательности, которые начинаются с данного префикса.</p>
+<p>Алгоритм работы данного метода следующий:</p>
+<ol class="arabic simple">
+<li><p>При помощи метода <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie.get_prefix" title="lab_4_auto_completion.main.PrefixTrie.get_prefix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie.get_prefix()</span></code></a> производится
+поиск узла, соответствующего данному префиксу, переданному в аргументе <cite>prefix</cite></p></li>
+<li><p>Если узел не найден, возвращается пустой массив</p></li>
+<li><p>В остальных случаях происходит поиск всех возможных продолжений последовательности
+от найденного узла, в течение которого каждый следующий элемент добавляется к
+текущей последовательности до того момента, пока не будут достигнуты конечные узлы всех
+поддеревьев</p></li>
+</ol>
+<p>Таким образом, метод находит все возможные продолжения заданного начала последовательности и
+создает готовые последовательности с этими продолжениями.</p>
+<p>Для стандартизации вывода готовые последовательности возвращаются в порядке возрастания
+значений идентификаторов узлов.</p>
+<p>Предположим, что у нас есть следующее дерево:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>root: [None]
+    │
+    ├── [1]
+    │   │
+    │   ├── [2]
+    │   │   │
+    │   │   ├── [3]  → (1,2,3)
+    │   │   │
+    │   │   └── [4]  → (1,2,4)
+    │   │
+    │   └── [5]
+    │       │
+    │       ├── [6]  → (1,5,6)
+    │
+    ├── [7]
+    │   │
+    │   ├── [8]  → (7, 8)
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">PrefixTrie</span><span class="o">.</span><span class="n">suggest</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1"># Вернет результат [(1, 2, 3), (1, 2, 4)]</span>
+<span class="linenos">2</span><span class="n">PrefixTrie</span><span class="o">.</span><span class="n">suggest</span><span class="p">((</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># Вернет результат [(1, 2, 3), (1, 2, 4), (1, 5, 6)]</span>
+<span class="linenos">3</span><span class="n">PrefixTrie</span><span class="o">.</span><span class="n">suggest</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="c1"># Вернет результат [(7, 8)]</span>
+</pre></div>
+</div>
+</section>
+<section id="id28">
+<h3>Шаг 5.6. Реализовать алгоритм построения префиксного дерева<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<p>Финальным шагом на оценку 6 является реализация алгоритма для построения префиксного дерева.
+Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie.fill" title="lab_4_auto_completion.main.PrefixTrie.fill"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie.fill()</span></code></a>, который
+сначала производит операцию очистки дерева, а после для каждого элемента
+в заданном корпусе выполняет операцию вставки этого элемента в дерево при помощи метода
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie._insert" title="lab_4_auto_completion.main.PrefixTrie._insert"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie._insert()</span></code></a>, реализованного вами в шаге 5.2. Таким образом
+данный метод используется для построения полного дерева из входного набора символов. Так, если
+в примере выше (в шаге 5.3) мы два раза вызывали метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie._insert" title="lab_4_auto_completion.main.PrefixTrie._insert"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie._insert()</span></code></a> для вставки каждого символа, один вызов метода
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie.fill" title="lab_4_auto_completion.main.PrefixTrie.fill"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie.fill()</span></code></a> приведет к созданию всего дерева.</p>
+</section>
+<section id="start-py">
+<h3>Шаг 6. Продемонстрировать результаты в <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#start-py" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-6 соответствует 6 баллам.</p>
+</div>
+<p>Продемонстрируйте результат обновленной обработки текста и построения префиксного дерева
+в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> модуля <code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Текст писем про Гарри Поттера должен быть
+закодирован посредством метода <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor.encode_sentences" title="lab_4_auto_completion.main.WordProcessor.encode_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor.encode_sentences()</span></code></a>,
+после чего передан на вход метода <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie.fill" title="lab_4_auto_completion.main.PrefixTrie.fill"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie.fill()</span></code></a> для
+построения дерева. Далее при помощи метода <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.PrefixTrie.suggest" title="lab_4_auto_completion.main.PrefixTrie.suggest"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.PrefixTrie.suggest()</span></code></a>
+необходимо найти все продолжения для префикса со значением <cite>2</cite> и вывести на экран первую из
+предложенных последовательностей в <strong>декодированном</strong> виде.</p>
+<p><strong>Бонусное задание</strong></p>
+<ol class="arabic simple">
+<li><p>Выберите любой файл из папки <code class="docutils literal notranslate"><span class="pre">assets/secrets</span></code>. В каждом таком
+файле содержится письмо студентов Хогвартса.</p></li>
+<li><p>Выполните чтения файла и найдите место, которое было сожжено.</p></li>
+<li><p>По указанному ниже размеру N-gram извлеките контекст для генерации сожженного текста.</p></li>
+<li><p>Сгенерируйте текст с помощью
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor" title="lab_4_auto_completion.main.WordProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor</span></code></a>,
+<code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code>
+из <a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel</span></code></a> и
+алгоритма Beam Search <a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearcher" title="lab_3_generate_by_ngrams.main.BeamSearcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearcher</span></code></a>.</p></li>
+<li><p>Вставьте сгенерированный текст на место пропуска в исходном письме.</p></li>
+<li><p>Отправьте письмо своему ментору.</p></li>
+</ol>
+<p>Используя следующую информацию для генерации:</p>
+<ul class="simple">
+<li><p>Секрет 1: <cite>n_gram_size = 3</cite>, <cite>beam_width = 7</cite>, <cite>seq_len = 10</cite></p></li>
+<li><p>Секрет 2: <cite>n_gram_size = 3</cite>, <cite>beam_width = 5</cite>, <cite>seq_len = 15</cite></p></li>
+<li><p>Секрет 3: <cite>n_gram_size = 4</cite>, <cite>beam_width = 6</cite>, <cite>seq_len = 10</cite></p></li>
+<li><p>Секрет 4: <cite>n_gram_size = 2</cite>, <cite>beam_width = 7</cite>, <cite>seq_len = 10</cite></p></li>
+<li><p>Секрет 5: <cite>n_gram_size = 4</cite>, <cite>beam_width = 3</cite>, <cite>seq_len = 25</cite></p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Количество бонусов ограничено.
+Один студент может отгадать не более одной загадки.
+Поэтому только первые 5 студентов, которые справятся с заданием,
+смогут получить бонус. Решение о применении бонуса принимается
+ментором и не подлежит оспариванию. Студент получит бонус, только
+если на момент выполнения задания в его форке опубликован
+актуальный код, который позволяет воспроизвести результат.</p>
+</div>
+</section>
+<section id="n-ngramtrielanguagemodel">
+<h3>Шаг 7. Реализовать языковую модель на основе n-граммного дерева с помощью NGramTrieLanguageModel<a class="headerlink" href="#n-ngramtrielanguagemodel" title="Link to this heading"></a></h3>
+<p>Чтобы использовать n-граммное дерево для генерации текста, необходимо объединить
+структуру данных с логикой обработки корпуса и предсказания следующих токенов.
+Класс <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel" title="lab_4_auto_completion.main.NGramTrieLanguageModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel</span></code></a>
+инкапсулирует эту логику: он строит дерево из корпуса, вычисляет относительные частоты всех n-грамм
+и предоставляет методы для получения вероятных продолжений заданного контекста.</p>
+</section>
+<section id="ngramtrielanguagemodel">
+<h3>Шаг 7.1. Инициализировать класс NGramTrieLanguageModel<a class="headerlink" href="#ngramtrielanguagemodel" title="Link to this heading"></a></h3>
+<p>Класс <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel" title="lab_4_auto_completion.main.NGramTrieLanguageModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel</span></code></a> должен быть инициализирован
+двумя параметрами (т.е. аргументами):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">encoded_corpus</span></code> — кортеж закодированных предложений (или <cite>None</cite> при создании пустой модели),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code> — целое положительное число, задающее размер окна для построения n-грамм.</p></li>
+</ul>
+<p>Внутри инициализатора:</p>
+<ol class="arabic simple">
+<li><p>Вызывается <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel.__init__(self,</span> <span class="pre">encoded_corpus,</span> <span class="pre">n_gram_size)</span></code>,
+чтобы установить атрибуты <code class="docutils literal notranslate"><span class="pre">_encoded_corpus</span></code> и <code class="docutils literal notranslate"><span class="pre">_n_gram_size</span></code>.</p></li>
+<li><p>Корневой узел <cite>_root</cite> инициализируется как экземпляр
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode" title="lab_4_auto_completion.main.TrieNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode</span></code></a> (без аргументов,
+с частотой по умолчанию <cite>0.0</cite>).</p></li>
+</ol>
+<p>Класс <code class="docutils literal notranslate"><span class="pre">NGramTrieLanguageModel</span></code> использует существующий класс <code class="docutils literal notranslate"><span class="pre">TrieNode</span></code>,
+который уже поддерживает хранение частоты через атрибут <code class="docutils literal notranslate"><span class="pre">_value</span></code>
+и методы <code class="docutils literal notranslate"><span class="pre">get_value()</span></code> и <code class="docutils literal notranslate"><span class="pre">set_value()</span></code>.</p>
+</section>
+<section id="id29">
+<h3>Шаг 7.2. Реализовать метод получения размера n-граммы<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size" title="lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size()</span></code></a>.
+Он возвращает значение размера n-граммы, заданное при создании экземпляра.</p>
+</section>
+<section id="id30">
+<h3>Шаг 7.3. Реализовать вспомогательные методы для поиска и сбора частот<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<p>Чтобы модель могла предлагать наиболее вероятные продолжения заданного контекста,
+ей необходимо уметь находить нужный узел в дереве и собирать информацию о возможных
+следующих токенах. Эти задачи реализуются с помощью трёх вспомогательных методов:</p>
+<ul>
+<li><p><a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.get_node_by_prefix" title="lab_4_auto_completion.main.NGramTrieLanguageModel.get_node_by_prefix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.get_node_by_prefix()</span></code></a> — возвращает
+узел, соответствующий префиксу <code class="docutils literal notranslate"><span class="pre">prefix</span></code>, вызывая унаследованный метод
+<code class="docutils literal notranslate"><span class="pre">self.get_prefix(prefix)</span></code>,</p></li>
+<li><p><a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies" title="lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies()</span></code></a> — собирает
+и возвращает словарь вида <code class="docutils literal notranslate"><span class="pre">{токен:</span> <span class="pre">частота}</span></code>, где:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>токен</strong> — значение <code class="docutils literal notranslate"><span class="pre">name</span></code> дочернего узла (используйте метод <code class="docutils literal notranslate"><span class="pre">get_name()</span></code>),</p></li>
+<li><p><strong>частота</strong> — значение <code class="docutils literal notranslate"><span class="pre">_value</span></code> дочернего узла (используйте метод <code class="docutils literal notranslate"><span class="pre">get_value()</span></code>),</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens" title="lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens()</span></code></a> — находит
+узел по <code class="docutils literal notranslate"><span class="pre">start_sequence</span></code> (для справки (не нужно вычислять в методе):
+по срезу последних <code class="docutils literal notranslate"><span class="pre">n_gram_size</span> <span class="pre">-</span> <span class="pre">1</span></code> токенов из входной последовательности
+<code class="docutils literal notranslate"><span class="pre">sequence</span></code>) с помощью унаследованного метода <code class="docutils literal notranslate"><span class="pre">self.get_prefix(prefix)</span></code>,
+проверяет наличие детей:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Если детей нет — возвращается пустой словарь.</p></li>
+<li><p>Если дети есть — вызывается метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies" title="lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies()</span></code></a>
+и возвращает результат.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="id31">
+<h3>Шаг 7.4. Реализовать метод сбора всех n-грамм из дерева<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams" title="lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams()</span></code></a>.
+Он должен делать следующее:</p>
+<ol class="arabic simple">
+<li><p>Обход дерева, начиная с корня <code class="docutils literal notranslate"><span class="pre">self._root</span></code>.</p></li>
+<li><p>Сбор всех последовательностей токенов длиной <code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code>.</p></li>
+<li><p>Возврат списка всех полных n-грамм, хранящихся в дереве.</p></li>
+</ol>
+<p>Например, возвращаемое значение может выглядеть так:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">33</span><span class="p">),</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">41</span><span class="p">),</span> <span class="p">(</span><span class="mi">33</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Каждая n-грамма представлена как кортеж целых чисел, где числа — это ID токенов.</p>
+</section>
+<section id="id32">
+<h3>Шаг 7.5. Вычислить и присвоить относительные частоты n-граммам<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies" title="lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies()</span></code></a>.
+Он принимает на вход <strong>кортеж полных n-грамм</strong> (например, <code class="docutils literal notranslate"><span class="pre">((1,</span> <span class="pre">2,</span> <span class="pre">3),</span> <span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">4),</span> <span class="pre">...)</span></code>),
+извлечённых из дерева методом
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams" title="lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams()</span></code></a>.</p>
+<p>Алгоритм работы:</p>
+<ol class="arabic simple">
+<li><p>Подсчитывается <strong>абсолютная частота</strong> каждой уникальной n-граммы в переданном списке.</p></li>
+<li><p>Вычисляется <strong>общее количество n-грамм</strong> (длина входного кортежа).</p></li>
+<li><p>Для каждой n-граммы вычисляется её <strong>относительная частота</strong> как:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\text{частота} =
+\frac{\text{абсолютное количество вхождений n-граммы}}
+{\text{общее количество n-грамм}}\]</div>
+<ol class="arabic simple" start="4">
+<li><p>Эта частота присваивается <strong>последнему узлу</strong> соответствующей n-граммы в дереве
+через метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.set_value" title="lab_4_auto_completion.main.TrieNode.set_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.set_value()</span></code></a>.
+Узел находится вызовом <code class="docutils literal notranslate"><span class="pre">self.get_prefix(ngram)</span></code>.</p></li>
+</ol>
+<p>Таким образом, <strong>в каждом листовом узле</strong>, соответствующем завершению полной n-граммы,
+хранится её <strong>глобальная относительная частота</strong> в корпусе.</p>
+<p>Эти частоты используются методом
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token" title="lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token()</span></code></a>
+для выбора наиболее вероятного продолжения:
+среди дочерних узлов заданного контекста выбирается тот, у которого частота выше.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Листовыми узлами называют узлы без дочерних элементов. В данной реализации
+все полные n-граммы завершаются именно в листовых узлах, так как дерево
+содержит только последовательности длины <code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code>.</p>
+</div>
+</section>
+<section id="id33">
+<h3>Шаг 7.6. Реализовать метод построения дерева<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.build" title="lab_4_auto_completion.main.NGramTrieLanguageModel.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.build()</span></code></a>. Он
+строит модель префиксного дерева из корпуса. Дерево должно:</p>
+<ul class="simple">
+<li><p>Строиться на основе <strong>скользящего окна</strong> фиксированного размера <code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code></p></li>
+<li><p>Хранить только <strong>полные n-граммы</strong> (длиной ровно <code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code>)</p></li>
+<li><p>После построения автоматически вычислять <strong>относительные частоты</strong> всех n-грамм
+и сохранять их в узлах, соответствующих последним токенам полных n-грамм
+(которые в данной реализации совпадают с листовыми узлами, так как дерево строится
+только из последовательностей длины <code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code>).</p></li>
+</ul>
+<p>Если создание дерева прошло успешно, возвращается <code class="docutils literal notranslate"><span class="pre">0</span></code>. В противном случае <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Скользящее окно длины <code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code> — это способ извлечения всех
+подпоследовательностей фиксированной длины из последовательности токенов
+так, что при этом окно сдвигается на один токен при каждом новом шаге — без пропусков.</p>
+<p>Например, пусть у вас есть последовательность токенов (10, 20, 30, 40, 50)
+и n_gram_size = 3. Тогда <strong>скользящее окно</strong> длины 3 с шагом 1 даст следующие n-граммы:</p>
+<ul class="simple">
+<li><p>(10, 20, 30) — окно на позициях 0, 1 и 2</p></li>
+<li><p>(20, 30, 40) — сдвинули окно на 1 вправо → позиции с первой по третью</p></li>
+<li><p>(30, 40, 50) — снова сдвиг на 1 → позиции 2, 3 и 4</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В начале каждого вызова метода
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.build" title="lab_4_auto_completion.main.NGramTrieLanguageModel.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.build()</span></code></a>
+необходимо обнулять дерево, то есть нужно повторно (как в методе
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.__init__" title="lab_4_auto_completion.main.NGramTrieLanguageModel.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.__init__()</span></code></a>) инициализировать
+атрибут <code class="docutils literal notranslate"><span class="pre">self._root</span></code>. Это требуется для того, чтобы метод работал именно
+с текущим корпусом.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В рамках этого метода после формирования всех n-грамм
+с помощью скользящего окна и их вставки в дерево
+обязательно последовательно вызываются два метода:
+сначала <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams" title="lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams()</span></code></a>,
+чтобы получить полный список n-грамм, хранящихся в дереве, а затем
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies" title="lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies()</span></code></a>,
+которому передаётся этот список для вычисления и присвоения частот.</p>
+</div>
+</section>
+<section id="id34">
+<h3>Шаг 7.7. Реализовать метод расширения модели и обновления частот<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.update" title="lab_4_auto_completion.main.NGramTrieLanguageModel.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.update()</span></code></a>. Он
+должен расширять существующую модель новыми n-граммами из дополнительного корпуса
+и пересчитывать частоты на основе объединённого корпуса.</p>
+<p>В рамках метода обязательно использовать атрибут <code class="docutils literal notranslate"><span class="pre">self._encoded_corpus</span></code>. Он хранит
+текущий закодированный корпус в виде кортежа
+последовательностей токенов (предложений). При вызове метода
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.update" title="lab_4_auto_completion.main.NGramTrieLanguageModel.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.update()</span></code></a>:</p>
+<ul class="simple">
+<li><p>Если <code class="docutils literal notranslate"><span class="pre">self._encoded_corpus</span></code> равен <code class="docutils literal notranslate"><span class="pre">None</span></code> или пуст, он инициализируется как переданный
+новый корпус (<code class="docutils literal notranslate"><span class="pre">new_corpus</span></code>).</p></li>
+<li><p>Если <code class="docutils literal notranslate"><span class="pre">self._encoded_corpus</span></code> уже содержит данные, к нему добавляется новый корпус.</p></li>
+</ul>
+<p>После обновления значения <code class="docutils literal notranslate"><span class="pre">self._encoded_corpus</span></code> необходимо вызвать
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.build" title="lab_4_auto_completion.main.NGramTrieLanguageModel.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.build()</span></code></a>,
+чтобы полностью перестроить дерево и заново вычислить относительные частоты
+на основе всего объединённого корпуса.</p>
+</section>
+<section id="id35">
+<h3>Шаг 7.8. Реализовать метод генерации возможных следующих токенов<a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<p>Ключевая функция языковой модели — предсказание наиболее вероятных продолжений
+заданной последовательности. Эту задачу решает метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token" title="lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token()</span></code></a>.</p>
+<p>Метод принимает на вход произвольную последовательность токенов и:</p>
+<ol class="arabic">
+<li><p>Если входной аргумент не является непустым кортежем, метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p>Если длина входной последовательности меньше <code class="docutils literal notranslate"><span class="pre">n_gram_size</span> <span class="pre">-</span> <span class="pre">1</span></code>, метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>
+(недостаточно контекста для предсказания).</p></li>
+<li><p>Если всё в порядке, метод извлекает последние <code class="docutils literal notranslate"><span class="pre">n_gram_size</span> <span class="pre">-</span> <span class="pre">1</span></code> токенов как <strong>контекст</strong>.</p></li>
+<li><p>Далее метод вызывает
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens" title="lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens()</span></code></a>,
+передавая ему этот контекст (внутри
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens" title="lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens()</span></code></a>
+выполняется поиск узла, соответствующего контексту):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Если контекст <strong>не найден в дереве</strong>, выбрасывается исключение
+<code class="docutils literal notranslate"><span class="pre">TriePrefixNotFoundError</span></code>, и метод возвращает <strong>пустой словарь</strong> <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p></li>
+<li><p>Если контекст найден,
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens" title="lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens()</span></code></a>
+собирает все дочерние узлы и возвращает
+словарь вида <code class="docutils literal notranslate"><span class="pre">{токен:</span> <span class="pre">частота}</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="id36">
+<h3>Шаг 7.9. Переопределить строковое представление модели<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<p>Переопределите метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.__str__" title="lab_4_auto_completion.main.NGramTrieLanguageModel.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.__str__()</span></code></a>.
+Строка должна возвращаться в формате <code class="docutils literal notranslate"><span class="pre">NGramTrieLanguageModel(X)</span></code>, где <code class="docutils literal notranslate"><span class="pre">X</span></code> — значение
+атрибута <code class="docutils literal notranslate"><span class="pre">self._n_gram_size</span></code>, заданное при инициализации модели. Например, если модель создана
+при n_gram_size=3, то вызов <code class="docutils literal notranslate"><span class="pre">str(model)</span></code> должен вернуть строку
+<code class="docutils literal notranslate"><span class="pre">NGramTrieLanguageModel(3)</span></code>.</p>
+</section>
+<section id="id37">
+<h3>Шаг 8. Продемонстрировать результаты в <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-8 соответствует 8 баллам.</p>
+</div>
+<p>Продемонстрируйте результат в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> модуля <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+<ol class="arabic">
+<li><p>Постройте модель на основе корпуса <code class="docutils literal notranslate"><span class="pre">assets/hp_letters.txt</span></code>. Для этого:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Загрузите текст с помощью <code class="docutils literal notranslate"><span class="pre">WordProcessor</span></code>,</p></li>
+<li><p>Закодируйте его в последовательности токенов с помощью
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor.encode_sentences" title="lab_4_auto_completion.main.WordProcessor.encode_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor.encode_sentences()</span></code></a>,</p></li>
+<li><p>Создайте экземпляр <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel" title="lab_4_auto_completion.main.NGramTrieLanguageModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel</span></code></a>
+с параметрами <code class="docutils literal notranslate"><span class="pre">encoded_corpus</span></code> и подходящим значением <code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code> (например, 5),</p></li>
+<li><p>Вызовите метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.build" title="lab_4_auto_completion.main.NGramTrieLanguageModel.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.build()</span></code></a>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Добавьте второй корпус <code class="docutils literal notranslate"><span class="pre">assets/ussr_letters.txt</span></code> через метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.update" title="lab_4_auto_completion.main.NGramTrieLanguageModel.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.update()</span></code></a>,
+чтобы расширить контекстную базу.</p></li>
+<li><p>Продемонстрируйте генерацию текста. Для этого создайте экземпляры
+генераторов из лабораторной работы 3:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.GreedyTextGenerator" title="lab_3_generate_by_ngrams.main.GreedyTextGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.GreedyTextGenerator</span></code></a> (жадный выбор),</p></li>
+<li><p><a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearchTextGenerator" title="lab_3_generate_by_ngrams.main.BeamSearchTextGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearchTextGenerator</span></code></a> (beam search).</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Оба генератора принимают в качестве аргументов
+вашу модель (<code class="docutils literal notranslate"><span class="pre">NGramTrieLanguageModel</span></code>) и <code class="docutils literal notranslate"><span class="pre">WordProcessor</span></code>.</p>
+</div>
+<p>Далее вызовите метод <a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.GreedyTextGenerator.run" title="lab_3_generate_by_ngrams.main.GreedyTextGenerator.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.GreedyTextGenerator.run()</span></code></a>
+и выведите результат для каждого генератора <strong>до</strong> и <strong>после</strong> вызова
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.update" title="lab_4_auto_completion.main.NGramTrieLanguageModel.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.update()</span></code></a>.</p>
+<ol class="arabic" start="4">
+<li><p><strong>Сравните качество генерации</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Проанализируйте, как изменяется сгенерированный текст <strong>до и после объединения корпусов</strong>.</p></li>
+<li><p>Сравните результаты <strong>жадного алгоритма</strong> и <strong>beam search</strong>:
+какой из них даёт более связный, разнообразный или интересный текст?</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="id38">
+<h3>Шаг 9. Обучить динамическую модель префиксного дерева<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<p>Теперь, когда Вы научились успешно использовать модель префиксного дерева на основе n-грамм,
+Вам предстоит усовершенствовать её. Для этого Вам нужно
+реализовать и обучить модель динамического дерева.</p>
+<p>В отличии от предыдущей модели префиксного дерева на основе n-грамм, динамическая модель
+подразумевает использование целых предложений, а не просто n-грамм нужной длины.
+Внутри динамической модели рассматриваются все возможные длины n-грамм
+(от 2 до некоторого лимитного значения), и на основе каждой из этих длин строится модель.
+Все эти модели затем могут использоваться
+при дальнейшей генерации, чтобы улучшить качество результата.</p>
+<p>Идея состоит в том, что когда мы обучаем только одну модель и используем её, мы никогда
+не застанем случаи, когда при другой длине n-грамм может попасться более вероятная
+последовательность для генерации. Использование динамической модели решит эту проблему.</p>
+<p>Чтобы реализовать динамическую модель, Вам предстоит выполнить слияние деревьев на основе
+всех рассматриваемых n-грамм. Слияние — это процесс, при котором деревья
+объединяются в одно большое дерево. Таким образом в рамках одной структуры
+для поиска токенов будут доступны все вариации модели с разными n-граммами.</p>
+</section>
+<section id="id39">
+<h3>Шаг 9.1. Инициализировать динамическую модель префиксного дерева<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<p>Реализуйте инициализацию класса <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie" title="lab_4_auto_completion.main.DynamicNgramLMTrie"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie</span></code></a>,
+наследующегося от <code class="docutils literal notranslate"><span class="pre">NGramTrieLanguageModel</span></code>.</p>
+<p>Данный класс имеют следующие атрибуты:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_root</span></code>— корневой узел дерева в его изначальном (пустом) состоянии;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_encoded_corpus</span></code> - закодированные данные, на основе которых генерируется текст;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_current_n_gram_size</span></code> — текущий размер рассматриваемых n-грамм,
+на момент инициализации равный <cite>0</cite>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_max_ngrams_size</span></code> — наибольшее вероятное значение n-грамм для рассмотрения.
+В качестве него берётся значение <code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code>, передаваемое при инициализации
+экземпляра класса. По умолчанию оно равно <cite>3</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_models</span></code> — словарь, содержащий пары значений <code class="docutils literal notranslate"><span class="pre">длина</span> <span class="pre">n-грамм:</span> <span class="pre">модель</span></code>, где
+хранятся все экземпляры моделей, обученных на нужной длине n-грамм.
+При инициализации в атрибуте хранится пустой словарь.</p></li>
+</ul>
+</section>
+<section id="id40">
+<h3>Шаг 9.2. Подготовить деревья к слиянию<a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<p>Как уже было сказано, потенциальное преимущество в использовании динамической
+модели дерева на основе n-грамм состоит в том, чтобы не упускать наиболее
+вероятные случаи генерации n-грамм, которые встречаются при разной их длине.</p>
+<p>Для того, чтобы использовать все эти модели вместе, совершим слияние деревьев
+в одно большое, динамическое.</p>
+<p>Для выполнения слияния деревьев в динамическое Вам понадобится обрабатывать
+существующие n-граммные деревья и уметь копировать данные из одного дерева
+в другое. Те узел или дерево, которые копируются, назовём копируемые;
+те узел или дерево, в которые производится копирование, назовём принимающие.</p>
+<p>Для того, чтобы выполнить слияние, Вам потребуется оперировать корневыми
+узлами деревьев.</p>
+<p>Дополните <code class="docutils literal notranslate"><span class="pre">NGramTrieLanguageModel</span></code> геттером
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.get_root" title="lab_4_auto_completion.main.NGramTrieLanguageModel.get_root"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.get_root()</span></code></a>,
+который возвращает корневой узел дерева.</p>
+</section>
+<section id="id41">
+<h3>Шаг 9.3. Реализовать вспомогательный метод для копирования дочернего узла<a class="headerlink" href="#id41" title="Link to this heading"></a></h3>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child" title="lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child()</span></code></a>,
+который отвечает за получение дочернего узла с именем <code class="docutils literal notranslate"><span class="pre">node_name</span></code> или создание
+нового узла, если он отсутствует в родительском дереве.</p>
+<p>Метод используется при слиянии деревьев и обеспечивает
+корректное формирование структуры поддеревьев.</p>
+<p>Перед выполнением поиска необходимо проверить корректность параметра <code class="docutils literal notranslate"><span class="pre">node_name</span></code>:
+значение должно быть целым числом и не меньше нуля.
+В противном случае требуется поднять исключение <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> с соответствующим сообщением.</p>
+<p>При наличии у родительского узла <code class="docutils literal notranslate"><span class="pre">parent</span></code> ребёнка с именем <code class="docutils literal notranslate"><span class="pre">node_name</span></code>
+необходимо вернуть существующий узел.
+Если передано значение <code class="docutils literal notranslate"><span class="pre">freq</span></code> и оно отлично от <code class="docutils literal notranslate"><span class="pre">0.0</span></code>, обновите частоту у найденного узла.</p>
+<p>Если узел с таким именем отсутствует — создайте его, после чего извлеките созданный узел через
+и установите ему значение <code class="docutils literal notranslate"><span class="pre">freq</span></code>, если оно передано.</p>
+<p>Метод должен возвращать найденный или созданный дочерний узел.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В результате работы этого метода аргумент <code class="docutils literal notranslate"><span class="pre">parent</span></code> может измениться,
+и эти изменения будут доступны вне метода, несмотря на то, что мы не
+возвращаем его. Этот факт позволит нам в дальнейшем
+заполнить динамическое дерево, не переопределяя каждый из его изменяемых
+узлов вручную.
+Почему это работает без возвращения переменных?
+Обратите внимание, что любой <code class="docutils literal notranslate"><span class="pre">TrieNode</span></code>, в том
+числе и корневой, содержит в себе информацию об
+узлах детей в виде списка. Подумайте, какое свойство
+списков в Python влияет на возможность заполнять их
+без переопределения.</p>
+</div>
+</section>
+<section id="id42">
+<h3>Шаг 9.4. Скопировать дерево<a class="headerlink" href="#id42" title="Link to this heading"></a></h3>
+<p>Для объединения нескольких n-граммных деревьев в одно динамическое
+необходимо уметь поочерёдно «вклеивать» структуры меньших деревьев
+в общее результирующее.
+В простейшем случае это означает перенос всех потомков корневого узла
+копируемого дерева в динамическое дерева, соблюдая исходную
+иерархию и частоты.</p>
+<p>Реализуйте защищённый метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie" title="lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie()</span></code></a>,
+который принимает на вход корневой узел копируемого дерева и вставляет
+все его поддеревья в динамическое дереве.</p>
+<p>Метод должен работать <strong>итеративно</strong>, используя стек.
+Каждый элемент стека содержит пару узлов: корень поддерева источника и
+соответствующий узел-приёмник в динамическом дереве.</p>
+<p>Для каждого дочернего узла копируемого дерева нужно найти место в
+динамическом дереве, куда будет интегрироваться нужное поддерево.</p>
+<p>Каждая итерация должна завершаться добавлением новой пары в стек:
+текущего дочернего узла и узла, найденного среди дочерних узлов узла-приёмника.</p>
+<p>Таким образом, метод полностью копирует структуру дерева источника в дерево назначения,
+сохраняя корректную частотную информацию и структуру предшествующих n-грамм.
+В результате работы алгоритма в атрибут <code class="docutils literal notranslate"><span class="pre">_root</span></code> будет интегрировано копируемое дерево.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>На данном шаге необходимо использовать следующие методы:
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_name" title="lab_4_auto_completion.main.TrieNode.get_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_name()</span></code></a>,
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_value" title="lab_4_auto_completion.main.TrieNode.get_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_value()</span></code></a>,
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_children" title="lab_4_auto_completion.main.TrieNode.get_children"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_children()</span></code></a> и
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child" title="lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child()</span></code></a>.</p>
+</div>
+</section>
+<section id="id43">
+<h3>Шаг 9.5. Выполнить слияние деревьев<a class="headerlink" href="#id43" title="Link to this heading"></a></h3>
+<p>После того как Вы построили отдельные n-граммные модели для всех размеров
+от <code class="docutils literal notranslate"><span class="pre">2</span></code> до максимального <code class="docutils literal notranslate"><span class="pre">N</span></code>, необходимо объединить их в единую структуру —
+динамическое n-граммное дерево.</p>
+<p>Реализуйте защищённый метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie._merge" title="lab_4_auto_completion.main.DynamicNgramLMTrie._merge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie._merge()</span></code></a>,
+который отвечает за последовательное добавление всех построенных деревьев
+в одно итоговое.</p>
+<p>В процессе работы метода следует инициализировать новый корневой узел
+и последовательно интегрировать в него все деревья из <code class="docutils literal notranslate"><span class="pre">_models</span></code>
+(в порядке возрастания размеров n-грамм) с использованием метода
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie" title="lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie()</span></code></a>.</p>
+<p>В результате работы метода атрибут <code class="docutils literal notranslate"><span class="pre">_root</span></code> заполняется структурой, в которую
+интегрированы все n-граммные деревья.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если атрибут <code class="docutils literal notranslate"><span class="pre">_models</span></code> на момент вызова метода является пустым,
+то есть не содержит моделей, поднимите исключение
+<strong>MergeTreesError</strong>.</p>
+</div>
+</section>
+<section id="id44">
+<h3>Шаг 9.6. Построить новое дерево на основе всех длин n-грамм<a class="headerlink" href="#id44" title="Link to this heading"></a></h3>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie.build" title="lab_4_auto_completion.main.DynamicNgramLMTrie.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie.build()</span></code></a>,
+который отвечает за построение <cite>(N - 1)</cite> моделей и их слияние
+в одно большое дерево. <cite>N</cite> здесь — максимальное количество n-грамм.</p>
+<p>Для каждого создаваемой модели обязательным является построение дерева с помощью
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.build" title="lab_4_auto_completion.main.NGramTrieLanguageModel.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.build()</span></code></a>.</p>
+<p>Все модели после создания должны сохраняться в словарь <code class="docutils literal notranslate"><span class="pre">_models</span></code>.</p>
+<p>После заполнения <code class="docutils literal notranslate"><span class="pre">_models</span></code> совершите слияние моделей с помощью метода
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie._merge" title="lab_4_auto_completion.main.DynamicNgramLMTrie._merge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie._merge()</span></code></a>.</p>
+<p>Если построение моделей и их слияние прошло успешно, метод должен возвращать
+<cite>0</cite>, иначе <cite>1</cite>.</p>
+</section>
+<section id="backoff">
+<h3>Шаг 10. Создать <strong>BackOff</strong> генератор для динамического дерева<a class="headerlink" href="#backoff" title="Link to this heading"></a></h3>
+<p>В лабораторной работе №3 Вы познакомились с алгоритмом <strong>BackOff</strong> для генерации текста.
+В отличии от Beam Search, он опирается на выбор наиболее вероятного продолжения
+последовательности из нескольких моделей одновременно, и это делает его более
+устойчивым. Подробнее в лабораторной №3 и <a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_backoff">других источниках.</a></p>
+<p>Данный алгоритм — самый подходящий для работы со структурой динамического дерева,
+поэтому именно его Вам и предлагается использовать.</p>
+</section>
+<section id="dynamicbackoffgenerator">
+<h3>Шаг 10.1. Инициализировать <code class="docutils literal notranslate"><span class="pre">DynamicBackOffGenerator</span></code><a class="headerlink" href="#dynamicbackoffgenerator" title="Link to this heading"></a></h3>
+<p>При инициализации класса на вход подаются экземпляры
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie" title="lab_4_auto_completion.main.DynamicNgramLMTrie"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie</span></code></a>
+и <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor" title="lab_4_auto_completion.main.WordProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor</span></code></a>.</p>
+<p>Используйте <code class="docutils literal notranslate"><span class="pre">DynamicNgramLMTrie</span></code> в качестве требуемых моделей.</p>
+<p>Помимо атрибутов наследуемого класса, <code class="docutils literal notranslate"><span class="pre">DynamicBackOffGenerator</span></code>
+имеет защищённый атрибут <code class="docutils literal notranslate"><span class="pre">_dynamic_trie</span></code>, с которым, для удобства,
+и будет проводиться основная работа.</p>
+</section>
+<section id="id45">
+<h3>Шаг 10.2. Задать текущий размер n-грамм<a class="headerlink" href="#id45" title="Link to this heading"></a></h3>
+<p>Для успешного выбора и генерации следующего токена важно знать, на какой из размеров
+n-грамм, поддерживаемых динамическим деревом, мы смотрим в конкретный момент.</p>
+<p>Расширьте функционал динамического дерева сеттером
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size" title="lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size()</span></code></a>,
+который задаёт текущий максимальный размер n-грамм для генерации.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В случае, если в метод передаётся некорректное значение аргумента
+или размер заданной n-граммы менее <cite>2</cite> или более значения
+атрибута <cite>_max_ngram_size</cite>, поднимите исключение <strong>IncorrectNgramError</strong></p>
+</div>
+</section>
+<section id="id46">
+<h3>Шаг 10.3. Продолжить последовательность<a class="headerlink" href="#id46" title="Link to this heading"></a></h3>
+<p>Расширьте <code class="docutils literal notranslate"><span class="pre">NGramTrieLanguageModel</span></code> методом
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token" title="lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token()</span></code></a>.</p>
+<p>Данный метод принимает на вход последовательность закодированных токенов.
+Метод отрезает из последовательности всё, кроме контекста, по которому необходимо
+определить вероятность каждого из потенциальных следующих токенов.
+Контекст составляет N-1 последних элементов последовательности. N в данном
+случае — текущий размер n-грамм. Если входная последовательность меньше по размеру,
+чем размер n-граммы, то за максимальный контекст примите длину последовательности.</p>
+<p>От Вас требуется найти в дереве (начиная с дочерних узлов корня динамического дерева)
+узлы, соответствующие значениям каждого из токенов контекста.</p>
+<p>Задача алгоритма — по ветвлениям дерева дойти до того узла, который является
+последним членом контекста, и все родители которого последовательно
+составляют остальной контекст.</p>
+<p>Если ни один дочерний узел не найден на любом из этапов, поиск прекращается,
+и возвращается пустой словарь.</p>
+<p>Для последнего найденного узла контекста следует рассмотреть каждого из его
+детей — это будут кандидаты для продолжения последовательности. Запишите их в
+итоговый словарь. В качестве ключей словаря используйте идентификатор узла, а в
+качестве значений используйте значения частот, хранящиеся в узлах. Если в узле
+не сохранены значения частот, такой узел следует пропустить.</p>
+<p>В результате, у Вас должен получиться словарь из идентификаторов узлов и частот.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если введенная последовательность не является кортежем или кортеж пустой,
+возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>На данном шаге необходимо использовать следующие методы:
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_children" title="lab_4_auto_completion.main.TrieNode.get_children"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_children()</span></code></a>,
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_name" title="lab_4_auto_completion.main.TrieNode.get_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_name()</span></code></a> и
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.TrieNode.get_value" title="lab_4_auto_completion.main.TrieNode.get_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.TrieNode.get_value()</span></code></a>.</p>
+</div>
+</section>
+<section id="id47">
+<h3>Шаг 10.4. Получить следующий токен из динамического дерева<a class="headerlink" href="#id47" title="Link to this heading"></a></h3>
+<p>Переопределите метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token" title="lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token()</span></code></a>,
+который возвращает словарь, ключами которого являются буквы-кандидаты, а значениями
+вероятности буквы кандидата.</p>
+<p>Вам необходимо:</p>
+<ol class="arabic simple">
+<li><p>Выбрать максимальный размер n-грамм. Если длина входящей последовательности
+меньше максимального размера n-грамм в дереве, нужно принять максимальный
+размер n-грамм за длину входящей последовательности.</p></li>
+<li><p>Отсортировать размеры N–грамм в порядке убывания;</p></li>
+<li><p>Задать текущую длину n-грамм для дерева;</p></li>
+<li><p>Получить все токены-кандидаты для генерации в виде словаря;</p></li>
+<li><p>В случае, если токенов-кандидатов для заданной длины n-грамм нет или вызываемый
+метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>, необходимо перейти к N–грамме меньшего размера
+и вернуться на шаг 3.</p></li>
+</ol>
+<p>В данном методе необходимо использовать методы
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size" title="lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size()</span></code></a>,
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size" title="lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size()</span></code></a> и
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token" title="lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подается некорректное значение аргумента (кортеж пустой),
+то метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Если список размеров N–грамм пустой, то метод также возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="id48">
+<h3>Шаг 10.5. Сгенерировать последовательность<a class="headerlink" href="#id48" title="Link to this heading"></a></h3>
+<p>Переопределите метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicBackOffGenerator.run" title="lab_4_auto_completion.main.DynamicBackOffGenerator.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicBackOffGenerator.run()</span></code></a></p>
+<p>На данном шаге Вам следует:</p>
+<ol class="arabic simple">
+<li><p>Закодировать заданную последовательность (промпт)</p></li>
+<li><p>Получить все буквы-кандидаты для генерации. Используйте уже реализованный метод
+класса <code class="docutils literal notranslate"><span class="pre">DynamicBackOffGenerator</span></code>;</p></li>
+<li><p>Жадно выбирать кандидата с наибольшей вероятностью и добавить его к последовательности;</p></li>
+<li><p>Повторять шаги 2 и 3 до тех пор, пока не получим заданную длину последовательности;</p></li>
+<li><p>Декодировать полученную последовательность.</p></li>
+</ol>
+<p>В случае, если буквы-кандидаты не были найдены, то генерация прекращается.</p>
+<p>Метод возвращает сгенерированный текст в виде строки.</p>
+<p>В данном методе необходимо использовать методы
+<a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.encode" title="lab_3_generate_by_ngrams.main.TextProcessor.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.encode()</span></code></a> и
+<a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.decode" title="lab_3_generate_by_ngrams.main.TextProcessor.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.decode()</span></code></a>,
+наследуемые через <code class="docutils literal notranslate"><span class="pre">WordProcessor</span></code>
+а также метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token" title="lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (количество букв для
+генерации не является целым числом или число отрицательное, а также
+промпт не является строкой или строка пустая), то метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="id49">
+<h3>Шаг 11. Сохранить модель<a class="headerlink" href="#id49" title="Link to this heading"></a></h3>
+<p>Часто, чтобы не строить модель заново каждый раз, полезно сохранять текущее
+состояние её параметров и переиспользовать их при повторном вызове или
+инициализации. В нашем случае такими параметрами является вся структура
+динамического дерева.</p>
+<p>Реализуйте функцию <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.save" title="lab_4_auto_completion.main.save"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.save()</span></code></a>, которая
+отвечает за сохранение структуры дерева в файл, путь до которого указывается
+при вызове функции.</p>
+<p>Дерево должно быть выгружено в формате JSON. Подробнее структуру того, как
+должен выглядеть полученный файл, вы можете найти в
+<a class="reference external" href="https://github.com/fipl-hse/2025-2-level-labs/tree/main/lab_4_auto_completion/tests/assets/saved_trie.json">примере.</a></p>
+</section>
+<section id="id50">
+<h3>Шаг 12. Загрузить модель<a class="headerlink" href="#id50" title="Link to this heading"></a></h3>
+<p>Сохранённую модель затем следует уметь загрузить обратно для дальнейшего
+использования.</p>
+<p>Реализуйте функцию <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.load" title="lab_4_auto_completion.main.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.load()</span></code></a>, которая отвечает
+за загрузку дерева обратно в экземпляр класса
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie" title="lab_4_auto_completion.main.DynamicNgramLMTrie"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie</span></code></a>.</p>
+</section>
+<section id="id51">
+<h3>Шаг 13. Продемонстрировать результаты в <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#id51" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-13 соответствует 10 баллам.</p>
+</div>
+<ol class="arabic">
+<li><p><strong>Постройте модель на основе корпуса assets/hp_letters.txt</strong>. Для этого:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Загрузите текст с помощью <code class="docutils literal notranslate"><span class="pre">WordProcessor</span></code>,</p></li>
+<li><p>Закодируйте его в последовательности токенов с помощью
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.WordProcessor.encode_sentences" title="lab_4_auto_completion.main.WordProcessor.encode_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.WordProcessor.encode_sentences()</span></code></a>,</p></li>
+<li><p>Создайте экземпляр <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie" title="lab_4_auto_completion.main.DynamicNgramLMTrie"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie</span></code></a>
+с параметрами <code class="docutils literal notranslate"><span class="pre">encoded_corpus</span></code> и подходящим значением <code class="docutils literal notranslate"><span class="pre">n_gram_size</span></code> (например, 5),</p></li>
+<li><p>Вызовите метод <a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicNgramLMTrie.build" title="lab_4_auto_completion.main.DynamicNgramLMTrie.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicNgramLMTrie.build()</span></code></a>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Продемонстрируйте сохранение и загрузку модели</strong>.</p></li>
+<li><p><strong>Продемонстрируйте генерацию текста</strong>. Для этого создайте экземпляр
+динамического генератора
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.DynamicBackOffGenerator" title="lab_4_auto_completion.main.DynamicBackOffGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.DynamicBackOffGenerator</span></code></a>.
+Запустите генерацию со следующими параметрами: промпт — “Ivanov” и
+длина генерируемого продолжения — 50.</p></li>
+<li><p><strong>Добавьте второй корпус assets/ussr_letters.txt</strong> через метод
+<a class="reference internal" href="lab_4_auto_completion.api.html#lab_4_auto_completion.main.NGramTrieLanguageModel.update" title="lab_4_auto_completion.main.NGramTrieLanguageModel.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_auto_completion.main.NGramTrieLanguageModel.update()</span></code></a>,
+чтобы расширить контекстную базу.</p></li>
+<li><p><strong>Продемонстрируйте генерацию текста</strong> на обновлённом дереве с теми же параметрами.</p></li>
+<li><p><strong>Сравните качество генерации</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Проанализируйте, как изменяется сгенерированный текст <strong>до и после объединения корпусов</strong>.</p></li>
+<li><p>Сравните результаты <strong>жадного алгоритма</strong>, <strong>Beam Search</strong> и
+<strong>BackOff</strong> c динамическим деревом:
+какой из них даёт более связный, разнообразный или интересный текст?</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html" class="btn btn-neutral float-left" title="lab_3_generate_by_ngrams package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_4_auto_completion.api.html" class="btn btn-neutral float-right" title="lab_4_auto_completion package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
