@@ -271,7 +271,7 @@ Supervised Fine-Tuning (SFT) Parameters
      as its SFT parameters.
 
    - Set the parameters ``problem_type="single_label_classification"``,
-     ``num_labels=5``, ``ignore_mismatched_sizes=True``
+     ``num_labels=2``, ``ignore_mismatched_sizes=True``
      for the `OxAISH-AL-LLM/wiki_toxic dataset <https://hugging
      face.co/datasets/OxAISH-AL-LLM/wiki_toxic/viewer/default/validation>`__ when
      initializing `cointegrated/rubert-tiny-toxicity
