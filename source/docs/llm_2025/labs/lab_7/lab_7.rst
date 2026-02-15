@@ -16,7 +16,7 @@ Laboratory work №7. Large Language Models no. 1
     * working with Transformers models;
     * working with HuggingFace datasets;
     * estimating result using metric;
-    * making server for the chosen task using TEST.
+    * making server for the chosen task using FastAPI.
 
 **Model pipeline contains the following steps:**
 
