@@ -29,7 +29,7 @@
    на левой панели Visual Studio Code и нажмите кнопку
    `Configure Python Tests` button.
 
-   .. image:: _static/tests/vscode_testing_tab.png
+   .. image:: ../images/tests/vscode_testing_tab.png
 
    Иначе Вы можете открыть настройки конфигурации через командную строку
    Visual Studio Code.
@@ -37,20 +37,20 @@
    командную строку. Наберите `Python: Configure Tests` в строке и
    выберите данную опцию в списке команд.
 
-   .. image:: _static/tests/vscode_command_bar.png
+   .. image:: ../images/tests/vscode_command_bar.png
 
    Теперь Вы можете начать конфигурацию самих тестов.
 
 3. Выберите опцию ``pytest``:
 
-   .. image:: _static/tests/vscode_tests_configuration_step_1.png
+   .. image:: ../images/tests/vscode_tests_configuration_step_1.png
 
 4. Выберите папку для запуска тестов:
 
    Вы можете использовать корневую папку проекта
    или папку нужной Вам лабораторной работы.
 
-   .. image:: _static/tests/vscode_tests_configuration_step_2.png
+   .. image:: ../images/tests/vscode_tests_configuration_step_2.png
 
    После выбора Visual Studio Code откроет файл `settings.json`
    с параметрами конфигурации, а все тесты будут расположены на вкладке
@@ -63,7 +63,7 @@
 Чтобы запустить все тесты, нажмите кнопку `Run Tests`, как показано
 на скриншоте ниже.
 
-.. image:: _static/tests/vscode_configured_tests.png
+.. image:: ../images/tests/vscode_configured_tests.png
 
 Иногда Вам может понадобиться запустить не все тесты, а выборочно
 некоторый конкретный тест, папку с тестами или файл с тестами.
@@ -73,7 +73,7 @@
 в самом файле с тестами, нажав на крестик/галочку (кнопку `Run Test`)
 на строке инициализации теста, как показано на скриншоте ниже.
 
-.. image:: _static/tests/vscode_running_tests.png
+.. image:: ../images/tests/vscode_running_tests.png
 
 
 Режим отладки (debugging)
@@ -85,7 +85,7 @@
 с тестом на вкладке `Testing` или нажать правой кнопкой мыши на кнопку
 `Run Test` в самом файле с тестом и выбрать опцию `Debug Test`.
 
-.. image:: _static/tests/vscode_debugging.png
+.. image:: ../images/tests/vscode_debugging.png
 
 Чтобы начать процесс отладки, Вам понадобится поставить точку останова
 (breakpoint) в Вашем коде или в самом тесте. Точки останова — это специальные
@@ -94,7 +94,7 @@
 строчке, и Вы сможете посмотреть на текущее состояние переменных, а также
 пошагово посмотреть, как работает код.
 
-.. image:: _static/tests/breakpoints.png
+.. image:: ../images/tests/breakpoints.png
 
 
 Запуск тестов в терминале
@@ -122,7 +122,7 @@
 Например, вот так выглядит команда и полный вывод для запуска
 тестов первой лабораторной работы на оценку 4:
 
-.. image:: _static/tests/running_from_command_line.png
+.. image:: ../images/tests/running_from_command_line.png
 
 .. hint:: Если Вы активировали виртуальное окружение и установили
           необходимые зависимости, Вы можете использовать `pytest`
@@ -135,7 +135,7 @@
 На предыдущих шагах Вы научились запускать тесты через терминал и по кнопке
 на вкладке ``Testing``.
 
-.. image:: _static/tests/cursor_over_the_start_button.png
+.. image:: ../images/tests/cursor_over_the_start_button.png
 
 Изначально при нажатии кнопки запуска тестов рядом с названием лабораторной
 работы запускаются все тесты, независимо от оценки (и от лабораторной работы,
@@ -180,9 +180,9 @@
 Вы можете также посмотреть проверки через вкладку `Checks` в Вашем
 Пулл Реквесте.
 
-.. image:: _static/tests/ci_report.png
+.. image:: ../images/tests/ci_report.png
 
-.. image:: _static/tests/ci_tab.png
+.. image:: ../images/tests/ci_tab.png
 
 Если проверки в CI не запускаются, удостоверьтесь, что Вы приняли
 приглашение в группу на GitHub. Обычно их высылают организованно в

@@ -14,7 +14,7 @@
 2. Нажмите кнопку ``Code``, выберите ``HTTPS`` и нажмите кнопку
    копирования:
 
-   .. image:: _static/fork_update/copy_original_repo_url.png
+   .. image:: ../images/fork_update/copy_original_repo_url.png
 
 3. Откройте терминал в среде разработки Visual Studio Code:
 
@@ -24,18 +24,18 @@
 4. В терминале выполните команду
    ``git remote add upstream <ссылка-на-основной-репозиторий>``:
 
-   .. image:: _static/fork_update/add_upstream.png
+   .. image:: ../images/fork_update/add_upstream.png
 
 5. В терминале выполните команду ``git fetch upstream``:
 
-   .. image:: _static/fork_update/fetch_upstream.png
+   .. image:: ../images/fork_update/fetch_upstream.png
 
 .. important:: Обратите внимание, что ссылка на скриншоте выше указывает
                на родительский репозиторий.
 
 6. В терминале выполните команду ``git merge upstream/main --no-edit``:
 
-   .. image:: _static/fork_update/merge_upstream.png
+   .. image:: ../images/fork_update/merge_upstream.png
 
 .. note:: В зависимости от количества изменений вывод команды может
           отличаться от того, что на скриншоте выше.
