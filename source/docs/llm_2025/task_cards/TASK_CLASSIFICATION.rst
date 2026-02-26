@@ -278,9 +278,10 @@ Supervised Fine-Tuning (SFT) Parameters
      initializing `cointegrated/rubert-tiny-toxicity
      <https://huggingface.co/cointegrated/rubert-tiny-toxicity>`__ model instance.
 
-   - Set the parameters ``target_modules=["key"], fine_tuning_steps=150``
-     to the model `tatiana-merz/turkic-cyrillic-classifier
+   - Set the parameters ``fine_tuning_steps=150``, ``target_modules=["key"]`` for the
+     `tatiana-merz/turkic-cyrillic-classifier
      <https://huggingface.co/tatiana-merz/turkic-cyrillic-classifier>`__
+     model as SFT parameters.
 
 Metrics
 -------
