@@ -1,0 +1,29 @@
+fipl\-hse.github.io.config package
+==================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.config.constants module
+-------------------------------------------
+
+.. automodule:: fipl-hse.github.io.config.constants
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fipl\-hse.github.io.config.project\_config module
+-------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.config.project_config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.config
+   :members:
+   :undoc-members:
+   :show-inheritance:

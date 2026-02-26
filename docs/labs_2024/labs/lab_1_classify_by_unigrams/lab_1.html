@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа №1. Определение языка текста на основе частотного словаря &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_1_classify_by_unigrams package" href="lab_1_classify_by_unigrams.api.html" />
+    <link rel="prev" title="Лабораторные работы" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2024/2025)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Лабораторная работа №1. Определение языка текста на основе частотного словаря</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_1_classify_by_unigrams.api.html">lab_1_classify_by_unigrams package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_2_retrieval_w_bm25/lab_2.html">Лабораторная работа №2. Оценка релевантности документов с помощью BM25</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_3_ann_retriever/lab_3.html">Лабораторная работа №3. Получение релевантных документов на основе векторного поиска</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_4_retrieval_w_clustering/lab_4.html">Лабораторная работа №4. Векторный поиск на основе кластеризации</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+      <li class="breadcrumb-item active">Лабораторная работа №1. Определение языка текста на основе частотного словаря</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/labs_2024/labs/lab_1_classify_by_unigrams/lab_1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o1">
+<h1>Лабораторная работа №1. Определение языка текста на основе частотного словаря<a class="headerlink" href="#o1" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_1_classify_by_unigrams.api.html">lab_1_classify_by_unigrams package</a></li>
+</ul>
+</div>
+<section id="id1">
+<h2>Дано<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Три текста на английском (<code class="docutils literal notranslate"><span class="pre">assets/texts/en.txt</span></code>),
+немецком (<code class="docutils literal notranslate"><span class="pre">assets/texts/de.txt</span></code>) и
+неизвестном (<code class="docutils literal notranslate"><span class="pre">assets/texts/unknown.txt</span></code>) языках.</p></li>
+<li><p>Языковые профили немецкого, английского,
+испанского, французского, итальянского, русского
+и турецкого языков (<code class="docutils literal notranslate"><span class="pre">assets/profiles</span></code>).
+Необходимо определить, на каком языке написан неизвестный текст,
+анализируя встречаемость букв в каждом из языков.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>Что надо сделать<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>Шаг 0. Начать работу над лабораторной (вместе с преподавателем на практике)<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Создайте форк репозитория.</p></li>
+<li><p>Установите необходимые инструменты для работы.</p></li>
+<li><p>Измените файлы <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Закоммитьте изменения и создайте Pull request.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> вы должны написать код, определяющий
+язык неизвестного текста.</p>
+</div>
+<p>Для этого реализуйте функции в модуле <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и импортируйте их в
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Весь код, выполняющий детектирование языка, должен быть
+выполнен в функции <code class="docutils literal notranslate"><span class="pre">main</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Вызов функции в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В рамках данной лабораторной работы <strong>нельзя использовать модули
+collections, itertools, а также сторонние модули.</strong></p>
+<p>Обратите внимание, что желаемую оценку необходимо указать в файле
+<code class="docutils literal notranslate"><span class="pre">settings.json</span></code> в поле <code class="docutils literal notranslate"><span class="pre">target_score</span></code>. Возможные значения: 0, 4, 6, 8, 10.
+Чем большее значение выставлено, тем больше тестов будет запущено.</p>
+</section>
+<section id="id4">
+<h3>Шаг 1. Токенизировать текст<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шага 1 соответствует 4 баллам.</p>
+</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.tokenize" title="lab_1_classify_by_unigrams.main.tokenize"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.tokenize()</span></code></a>.</p>
+<p>Например, строка <code class="docutils literal notranslate"><span class="pre">'Hey!</span> <span class="pre">How</span> <span class="pre">are</span> <span class="pre">you?'</span></code> должна быть токенизирована
+следующим образом:
+<code class="docutils literal notranslate"><span class="pre">['h',</span> <span class="pre">'e',</span> <span class="pre">'y',</span> <span class="pre">'h',</span> <span class="pre">'o',</span> <span class="pre">'w',</span> <span class="pre">'a',</span> <span class="pre">'r',</span> <span class="pre">'e',</span> <span class="pre">'y',</span> <span class="pre">'o',</span> <span class="pre">'u']</span></code>.</p>
+<p>Продемонстрируйте выделяемые токены из текста на английском языке в
+файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Текст на английском языке сохранен в переменную
+<code class="docutils literal notranslate"><span class="pre">en_text</span></code>.</p>
+</section>
+<section id="id5">
+<h3>Шаг 2. Получить частотный словарь по заданному тексту<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.calculate_frequencies" title="lab_1_classify_by_unigrams.main.calculate_frequencies"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.calculate_frequencies()</span></code></a>.</p>
+<p>Под относительной частотой подразумевается отношение количества
+вхождений токена к общему числу токенов.</p>
+<p>Так, из последовательности токенов
+<code class="docutils literal notranslate"><span class="pre">['h',</span> <span class="pre">'e',</span> <span class="pre">'y',</span> <span class="pre">'h',</span> <span class="pre">'o',</span> <span class="pre">'w',</span> <span class="pre">'a',</span> <span class="pre">'r',</span> <span class="pre">'e',</span> <span class="pre">'y',</span> <span class="pre">'o',</span> <span class="pre">'u']</span></code>
+должен получиться следующий словарь частот:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;h&#39;</span><span class="p">:</span> <span class="mf">0.16666666666666666</span><span class="p">,</span>
+ <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mf">0.16666666666666666</span><span class="p">,</span>
+ <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.16666666666666666</span><span class="p">,</span>
+ <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="mf">0.16666666666666666</span><span class="p">,</span>
+ <span class="s1">&#39;w&#39;</span><span class="p">:</span> <span class="mf">0.08333333333333333</span><span class="p">,</span>
+ <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mf">0.08333333333333333</span><span class="p">,</span>
+ <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mf">0.08333333333333333</span><span class="p">,</span>
+ <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="mf">0.08333333333333333</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>Шаг 3. Создать профиль конкретного языка<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-3 соответствует 6 баллам.</p>
+</div>
+<p><strong>Профиль языка</strong> – это структура с информацией о конкретном языке. В
+настоящей лабораторной работе профиль языка состоит из названия языка и
+частотного словаря.</p>
+<p>В дальнейших лабораторных работах вы будете работать с другими языковыми
+профилями. Пример языковых профилей вы можете найти в
+<a class="reference external" href="https://github.com/shuyo/language-detection">следующем проекте</a>.
+Несмотря на то что данные профили содержат информацию о n-граммах,
+с которыми мы познакомимся позднее, структура этих профилей аналогична.</p>
+<p>Пример языкового профиля, который требуется в настоящей лабораторной
+работе:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;en&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;freq&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;g&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;t&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Здесь ключу <code class="docutils literal notranslate"><span class="pre">&quot;freq&quot;</span></code> соответствует частотный словарь, ключу <code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code>
+– название языка.</p>
+<p>В данной лабораторной работе языковой профиль <strong>обязательно</strong>
+представляет собой словарь, который содержит два ключа – <code class="docutils literal notranslate"><span class="pre">&quot;freq&quot;</span></code> и
+<code class="docutils literal notranslate"><span class="pre">&quot;name&quot;</span></code>.</p>
+<p>Для создания профиля языка реализуйте функцию
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.create_language_profile" title="lab_1_classify_by_unigrams.main.create_language_profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.create_language_profile()</span></code></a>.</p>
+<p>Используйте функцию <a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.tokenize" title="lab_1_classify_by_unigrams.main.tokenize"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.tokenize()</span></code></a>
+для токенизации и функцию
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.calculate_frequencies" title="lab_1_classify_by_unigrams.main.calculate_frequencies"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.calculate_frequencies()</span></code></a>
+для получения частотного словаря.</p>
+<p>Продемонстрируйте создание языкового профиля для английского языка в
+файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</section>
+<section id="mse">
+<h3>Шаг 4. Рассчитать метрику <code class="docutils literal notranslate"><span class="pre">MSE</span></code><a class="headerlink" href="#mse" title="Link to this heading"></a></h3>
+<p>В дальнейшем для определения близости двух языковых профилей нам
+понадобится метрика среднеквадратичной ошибки (<code class="docutils literal notranslate"><span class="pre">MSE</span></code>, <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_squared_error">Mean Squared
+Error</a>). Для начала
+рассмотрим эту метрику безотносительно применения к задаче детекции
+языка.</p>
+<p>Значение <code class="docutils literal notranslate"><span class="pre">MSE</span></code> рассчитывается по формуле
+<span class="math notranslate nohighlight">\(MSE = \frac{\sum (y_{i} - p_{i})^{2}}{n}\)</span>, где:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code> - истинное значение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span></code> - предсказанное значение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code> - количество значений.</p></li>
+</ul>
+<p>Обратите внимание, что количество истинных значений <code class="docutils literal notranslate"><span class="pre">y</span></code>
+и количество предсказанных значений <code class="docutils literal notranslate"><span class="pre">p</span></code> совпадает и равно <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<p>Таким образом, метрика <code class="docutils literal notranslate"><span class="pre">MSE</span></code> - не что иное, как среднее квадратов
+разности между истинными значениями и предсказанными значениями. Чем это
+значение меньше, тем ближе предсказанные значения к истинным.</p>
+<p>Для того чтобы рассчитать метрику <code class="docutils literal notranslate"><span class="pre">MSE</span></code>,
+реализуйте функцию <a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.calculate_mse" title="lab_1_classify_by_unigrams.main.calculate_mse"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.calculate_mse()</span></code></a>.</p>
+</section>
+<section id="id7">
+<h3>Шаг 5. Сравнить два языковых профиля<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>Чтобы сравнить языковые профили необходимо рассчитать значение метрики
+<code class="docutils literal notranslate"><span class="pre">MSE</span></code>, которая определяет различие между двумя языками.</p>
+<p>Для этого нужно выделить все токены, встречающиеся в двух языковых
+профилях, а также сопоставить им частотность в каждом из языков. Иными
+словами, мы находим объединение множества токенов в первом языке со
+множеством токенов во втором языке. Далее, для каждого из токенов
+находим его встречаемость в каждом из множеств.</p>
+<p>Для примера рассмотрим два языковых профиля:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">profile_1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;lang1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">profile_2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;lang2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>В данных профилях встречаются следующие символы: <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>.
+При этом в профиле первого языка их встречаемость равна
+<code class="docutils literal notranslate"><span class="pre">[0.5,</span> <span class="pre">0.5,</span> <span class="pre">0]</span></code>, а в профиле второго языка - <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0.5,</span> <span class="pre">0.5]</span></code>.</p>
+<p>Приняв встречаемость символов в первом языке за истинные значения и
+встречаемость символов во втором языке за предсказанные, мы можем
+рассчитать разницу профилей по метрике <code class="docutils literal notranslate"><span class="pre">MSE</span></code>. Ее значение будет равно
+<code class="docutils literal notranslate"><span class="pre">0.167</span></code> (с округлением до третьего знака).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Что изменится, если сделать наоборот и принять за истинные
+значения встречаемость токенов во втором языке и за предсказанные -
+в первом? Почему?</p>
+</div>
+<p>Реализуйте функцию сравнения двух языковых профилей
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.compare_profiles" title="lab_1_classify_by_unigrams.main.compare_profiles"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.compare_profiles()</span></code></a>.
+Для расчета метрики <code class="docutils literal notranslate"><span class="pre">MSE</span></code> нужно обратиться к функции
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.calculate_mse" title="lab_1_classify_by_unigrams.main.calculate_mse"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.calculate_mse()</span></code></a>.</p>
+</section>
+<section id="id8">
+<h3>Шаг 6. Определить язык неизвестного текста<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-6 соответствует 8 баллам.</p>
+</div>
+<p>Чтобы определить язык неизвестного текста,
+реализуйте функцию <a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.detect_language" title="lab_1_classify_by_unigrams.main.detect_language"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.detect_language()</span></code></a>.</p>
+<p>Она устанавливает язык текста на основе метрики <code class="docutils literal notranslate"><span class="pre">MSE</span></code> и
+возвращает название языка с ее наименьшим значением. Название языка
+находится в языковом профиле. Если у двух языков одинаковое значение
+метрики, отсортируйте названия языков в алфавитном порядке и возьмите
+первое.</p>
+<p>Для нахождения метрики <code class="docutils literal notranslate"><span class="pre">MSE</span></code> нужно использовать функцию
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.compare_profiles" title="lab_1_classify_by_unigrams.main.compare_profiles"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.compare_profiles()</span></code></a>.</p>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> определите, к какому языку ближе текст на
+неизвестном языке: к английскому или к немецкому. Текст на немецком
+языке сохранен в переменной <code class="docutils literal notranslate"><span class="pre">de_text</span></code>. Текст на неизвестном языке
+сохранен в переменной <code class="docutils literal notranslate"><span class="pre">unknown_text</span></code>.</p>
+</section>
+<section id="id9">
+<h3>Шаг 7. Загрузить языковой профиль<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>Для определения языка может быть недостаточно двух языковых профилей. На
+самом деле в данной задаче может использоваться произвольное количество
+языковых профилей (например, 6).</p>
+<p>Для дальнейшей работы нам потребуется возможность загружать языковой
+профиль из файла с расширением <code class="docutils literal notranslate"><span class="pre">json</span></code>. Узнать больше об этом типе
+файлов можно <a class="reference external" href="https://en.wikipedia.org/wiki/JSON">здесь</a>.</p>
+<p>В папке <code class="docutils literal notranslate"><span class="pre">assets</span></code> для вас сохранены несколько языковых
+профилей. Для корректной работы необходимо сформировать путь к каждому
+из них в формате <code class="docutils literal notranslate"><span class="pre">assets/profiles/&lt;filename&gt;.json</span></code>. Например, путь к
+испанскому языковому профилю должен выглядеть так:
+<code class="docutils literal notranslate"><span class="pre">assets/profiles/es.json</span></code>. Сохраните
+список таких путей в переменную в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+<p>Для чтения и сохранения такого типа файлов часто используется
+стандартный модуль <code class="docutils literal notranslate"><span class="pre">json</span></code>. Изучить его документацию можно по
+<a class="reference external" href="https://docs.python.org/3/library/json.html">ссылке</a>.</p>
+<p>Реализуйте функцию чтения языкового профиля из файла
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.load_profile" title="lab_1_classify_by_unigrams.main.load_profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.load_profile()</span></code></a>.
+При этом функция должна только читать файл,
+никакой дополнительной обработки не подразумевается.</p>
+<p>Пример вызова функции:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">language_profile</span> <span class="o">=</span> <span class="n">load_profile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h3>Шаг 8. Обработать языковой профиль<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>Языковые профили могут выглядеть по-разному. Вы можете заметить, что
+в папке <code class="docutils literal notranslate"><span class="pre">assets</span></code> они имеют особый формат:
+в них содержатся токены не только из одного символа, но и из нескольких,
+а также присутствует дополнительный ключ <code class="docutils literal notranslate"><span class="pre">n_words</span></code>.</p>
+<p>На данном шаге Вам нужно привести языковой профиль к нашему единому формату.
+Для этого реализуйте функцию
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.preprocess_profile" title="lab_1_classify_by_unigrams.main.preprocess_profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.preprocess_profile()</span></code></a>,</p>
+<p>Напоминаем, что языковой профиль должен содержать
+только два ключа: <code class="docutils literal notranslate"><span class="pre">name</span></code> и <code class="docutils literal notranslate"><span class="pre">freq</span></code>. По ключу <code class="docutils literal notranslate"><span class="pre">freq</span></code> содержится
+частотный словарь, ключами которого выступают униграммы в нижнем
+регистре, а значениями - относительная встречаемость токена.</p>
+<p>Например, у нас есть следующий необработанный языковой профиль:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">profile_raw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;lang1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;ab&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;4c&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">&#39;c&amp;&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;abc&#39;</span><span class="p">:</span> <span class="mi">7</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;n_words&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Для приведения языкового профиля к нужному формату нужно:</p>
+<ol class="arabic simple">
+<li><p>Выбрать униграммы, состоящие из букв, из
+представленного набора токенов (ключ <code class="docutils literal notranslate"><span class="pre">freq</span></code>).</p></li>
+<li><p>Привести их к нижнему регистру.</p></li>
+<li><p>Посчитать их относительную частоту.</p></li>
+</ol>
+<p>Поле <code class="docutils literal notranslate"><span class="pre">n_words</span></code> содержит в себе список из трех
+чисел, которые обозначают количество униграмм, биграмм и триграмм,
+соответственно. Для подсчета относительной частоты токенов используйте
+первое из трех чисел поля <code class="docutils literal notranslate"><span class="pre">n_words</span></code>, при этом ключа <code class="docutils literal notranslate"><span class="pre">n_words</span></code> в
+обработанном профиле быть не должно. Ключ <code class="docutils literal notranslate"><span class="pre">name</span></code>
+дополнительно обрабатывать не нужно.</p>
+<p>Таким образом, для примера выше должен получится следующий
+обработанный языковой профиль:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">profile_raw</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;lang1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mf">0.33333333333</span><span class="p">,</span>
+        <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mf">0.66666666666</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Пример вызова функции:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">processed_profile</span> <span class="o">=</span> <span class="n">preprocess_profile</span><span class="p">(</span><span class="n">profile_raw</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3>Шаг 9. Собрать языковые профили<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>Поскольку нам предстоит сравнить целый ряд языковых профилей,
+нужно загрузить и предобработать сразу несколько профилей.</p>
+<p>Для этого реализуйте функцию
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.collect_profiles" title="lab_1_classify_by_unigrams.main.collect_profiles"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.collect_profiles()</span></code></a>,
+которая должна вызывать <a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.load_profile" title="lab_1_classify_by_unigrams.main.load_profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.load_profile()</span></code></a>
+и <a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.preprocess_profile" title="lab_1_classify_by_unigrams.main.preprocess_profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.preprocess_profile()</span></code></a>.</p>
+<p>Пример вызова функции:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">collected_profiles</span> <span class="o">=</span> <span class="n">collect_profiles</span><span class="p">(</span><span class="n">paths_to_profiles</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h3>Шаг 10. Определить язык неизвестного текста<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>Теперь мы готовы определить язык неизвестного текста, рассматривая сразу
+несколько возможных вариантов.</p>
+<p>Для этого реализуйте функцию
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.detect_language_advanced" title="lab_1_classify_by_unigrams.main.detect_language_advanced"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.detect_language_advanced()</span></code></a>.
+Она возвращает отсортированный список кортежей вида
+<code class="docutils literal notranslate"><span class="pre">[('lang1',</span> <span class="pre">score),</span> <span class="pre">('lang2',</span> <span class="pre">score)]</span></code>, где первым элементом кортежа
+выступает название языка, а вторым - значение <code class="docutils literal notranslate"><span class="pre">MSE</span></code>. Длина списка
+соответствует количеству переданных профилей известных языков.
+Сортировка предполагается от меньшего значения метрики к большему. Языки
+с совпадающим значением <code class="docutils literal notranslate"><span class="pre">MSE</span></code> нужно упорядочить
+лексикографически.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Почему в данной задаче лучше сортировать от меньшего к
+большему, а не наоборот?</p>
+</div>
+</section>
+<section id="id13">
+<h3>Шаг 11. Сформировать отчет<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-11 соответствует 10 баллам.</p>
+</div>
+<p>Теперь, когда мы можем сравнить целый ряд языков, нужно
+сформировать понятный отчет.</p>
+<p>Для этого реализуйте функцию
+<a class="reference internal" href="lab_1_classify_by_unigrams.api.html#lab_1_classify_by_unigrams.main.print_report" title="lab_1_classify_by_unigrams.main.print_report"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams.main.print_report()</span></code></a>,
+которая выводит отчет в следующей форме:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">lang1</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">MSE</span> <span class="o">&lt;</span><span class="n">score</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">lang2</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">MSE</span> <span class="o">&lt;</span><span class="n">score</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Обратите внимание, что <code class="docutils literal notranslate"><span class="pre">score</span></code> необходимо округлить до пяти знаков
+после запятой. Например, если был получен результат
+<code class="docutils literal notranslate"><span class="pre">[('en',</span> <span class="pre">0.00013213),</span> <span class="pre">('de',</span> <span class="pre">0.00016231),</span> <span class="pre">('fr',</span> <span class="pre">0.00010123)]</span></code>, то при
+вызове функции в консоль будет выведен следующий отчет:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">en</span><span class="p">:</span> <span class="n">MSE</span> <span class="mf">0.00013</span>
+<span class="n">de</span><span class="p">:</span> <span class="n">MSE</span> <span class="mf">0.00016</span>
+<span class="n">fr</span><span class="p">:</span> <span class="n">MSE</span> <span class="mf">0.0001</span>
+</pre></div>
+</div>
+<p>Для округления можно использовать форматирование строки:
+<code class="docutils literal notranslate"><span class="pre">f'{score:.5f}'</span></code>.</p>
+<p>Продемонстрируйте детекцию неизвестного языка путём сравнения с
+языковыми профилями английского, французского, итальянского, русского,
+испанского и турецкого языков в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Для вывода отчета в
+консоль вызовите функцию <code class="docutils literal notranslate"><span class="pre">print_report</span></code>.</p>
+</section>
+</section>
+<section id="id14">
+<h2>Полезные ссылки<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/shuyo/language-detection">Коллекция языковых
+профилей</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Mean_squared_error">Описание метрики Mean Squared
+Error</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/JSON">Описание формата JavaScript Object
+Notation</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/json.html">Описание стандартной библиотеки
+json</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Лабораторные работы" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_1_classify_by_unigrams.api.html" class="btn btn-neutral float-right" title="lab_1_classify_by_unigrams package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

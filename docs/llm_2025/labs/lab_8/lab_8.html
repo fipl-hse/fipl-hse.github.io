@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_8 package" href="lab_8.api.html" />
+    <link rel="prev" title="core_utils package" href="../lab_7/core_utils.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Hello, LLM! для 4-го курса ФПЛ (2025/2026)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Laboratory works</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_7/lab_7.html">Laboratory work №7. Large Language Models no. 1</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_8.api.html">lab_8 package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_utils.api.html">core_utils package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lab_settings.api.html">lab_settings package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../task_cards/index.html">Task cards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Laboratory works</a></li>
+      <li class="breadcrumb-item active">Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/llm_2025/labs/lab_8/lab_8.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="laboratory-work-o8-supervised-fine-tuning-sft-large-language-models">
+<span id="lab-8-label"></span><h1>Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models<a class="headerlink" href="#laboratory-work-o8-supervised-fine-tuning-sft-large-language-models" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_8.api.html">lab_8 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_utils.api.html">core_utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab_settings.api.html">lab_settings package</a></li>
+</ul>
+</div>
+<section id="implementation-tactics">
+<h2>Implementation tactics<a class="headerlink" href="#implementation-tactics" title="Link to this heading"></a></h2>
+<section id="stage-0-start-working-with-laboratory-work">
+<h3>Stage 0. Start working with laboratory work<a class="headerlink" href="#stage-0-start-working-with-laboratory-work" title="Link to this heading"></a></h3>
+<p>Start your implementation by selecting a new combination of model and dataset you are going
+to use for <strong>fine-tuning</strong>. You can find all available combinations
+in the <a class="reference external" href="https://docs.google.com/spreadsheets/d/1UEEylqXeSjtFyUtPzyEMiFhhdCukmmuIG4d1ne0y_mU/edit?usp=drivesdk">table</a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For laboratory work №8, you need to select another task, namely, if
+there was a generation (Generation, Summarization, NMT) task,
+then you need to select classification (Detection, NLI) and vice versa.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You have to open new Pull Request to implement Laboratory Work №8.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All logic for instantiating and using needed abstractions
+should be implemented in a <code class="docutils literal notranslate"><span class="pre">main()</span></code> function of a <code class="docutils literal notranslate"><span class="pre">start.py</span></code> module.</p>
+</div>
+<p>To do this, implement the class methods and functions in the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> module in <code class="docutils literal notranslate"><span class="pre">lab_8_sft</span></code> folder
+and import them into <code class="docutils literal notranslate"><span class="pre">start.py</span></code> module in <code class="docutils literal notranslate"><span class="pre">lab_8_sft</span></code> folder.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You need to set the desired mark: 4, 6, 8 or 10 in the <code class="docutils literal notranslate"><span class="pre">target_score</span></code> field
+in the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file. The higher the desired mark, the more
+number of tests run when checking your Pull Request.</p>
+</div>
+<dl class="simple">
+<dt><strong>Python competencies required to complete this tutorial:</strong></dt><dd><ul class="simple">
+<li><p>working with Transformers models;</p></li>
+<li><p>working with HuggingFace datasets;</p></li>
+<li><p>working with LoRA PEFT method;</p></li>
+<li><p>estimating result using metric;</p></li>
+<li><p>making server for the chosen task using FastAPI.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="motivation-and-purpose">
+<h2>Motivation and purpose<a class="headerlink" href="#motivation-and-purpose" title="Link to this heading"></a></h2>
+<p>In this laboratory work, we will explore both inference and fine-tuning of Large Language
+Models (LLMs), with a particular focus on <strong>Supervised Fine-Tuning (SFT)</strong> using
+<strong>Parameter-Efficient Fine-Tuning (PEFT)</strong> techniques, specifically <strong>LoRA (Low-Rank Adaptation)</strong>.</p>
+<p>As previously discussed, the lifecycle of LLMs consists of several phases, with two
+key stages being:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Training</strong> - the phase in which the model learns from a large labeled dataset,
+adjusting its internal parameters (weights and biases) to recognize patterns and
+relationships in the data. Training requires extensive computational resources and
+vast amounts of data.</p></li>
+<li><p><strong>Inference</strong> - the phase in which the pre-trained model is used to generate predictions
+on new, unseen data without further modifications to its internal parameters. Inference
+is computationally less expensive and focuses on efficient, real-time responses.</p></li>
+</ol>
+</div></blockquote>
+<p>However, in many real-world applications, pre-trained models do not always generalize well to
+specific domains or tasks. To bridge this gap, fine-tuning is employed. Fine-tuning allows us
+to adapt a general LLM to a specialized task by continuing its training on a smaller,
+task-specific dataset.</p>
+<p>Full fine-tuning of LLMs is computationally expensive, requiring access to large-scale
+hardware resources. Parameter-Efficient Fine-Tuning (PEFT) methods, such as <a class="reference external" href="https://huggingface.co/docs/diffusers/training/lora">LoRA (Low-Rank Adaptation)</a>,
+provide an alternative approach by modifying only a small subset of the model’s parameters, making the
+process more memory- and compute-efficient. LoRA achieves this by introducing low-rank adaptation
+matrices to the model’s pre-trained layers, significantly reducing the number of trainable parameters
+while still maintaining high performance.</p>
+<p><strong>The primary purpose</strong> of this laboratory work is to:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Understand the difference between inference and fine-tuning in LLMs.</p></li>
+<li><p>Learn how to fine-tune LLMs efficiently using LoRA within the PEFT framework.</p></li>
+<li><p>Apply fine-tuned models to various NLP tasks such as Generation,
+Summarization, Classification, and Machine Translation.</p></li>
+<li><p>Compare the performance of a pre-trained model versus a fine-tuned model on specific tasks.</p></li>
+</ul>
+</div></blockquote>
+<p>By the end of this laboratory work, you will gain practical experience in applying
+LoRA-based fine-tuning to adapt LLMs for specific tasks while optimizing for efficiency.</p>
+<section id="stage-1-infer-one-sample-from-dataset-and-demonstrate-the-result">
+<h3>Stage 1. Infer one sample from dataset and demonstrate the result<a class="headerlink" href="#stage-1-infer-one-sample-from-dataset-and-demonstrate-the-result" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 1 - 4.3</strong> from <span class="xref std std-ref">lab_7_llm/README</span> are required to get the mark <strong>4</strong>.</p>
+</div>
+</section>
+<section id="stage-2-inference-of-model-and-demonstrate-the-result">
+<h3>Stage 2. Inference of model and demonstrate the result<a class="headerlink" href="#stage-2-inference-of-model-and-demonstrate-the-result" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 4.4 - 5.2</strong> from <span class="xref std std-ref">lab_7_llm/README</span> are required to get the mark <strong>6</strong>.</p>
+</div>
+<section id="stage-3-tokenize-one-sample-from-dataset">
+<h4>Stage 3. Tokenize one sample from dataset<a class="headerlink" href="#stage-3-tokenize-one-sample-from-dataset" title="Link to this heading"></a></h4>
+<p>Before fine-tuning a model, it is important to properly prepare the data.
+Since the data is presented as text, it must be tokenized (i.e.
+converted into a numeric representation) to prepare it for transfer
+to the model for fine-tuning.</p>
+<p>Implement <code class="xref py py-func docutils literal notranslate"><span class="pre">lab_8_sft.main.tokenize_sample()</span></code> function, which tokenizes the
+sample and truncates it to its maximum length.</p>
+<p>Set the following parameters for tokenizer:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">padding=&quot;max_length&quot;</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">truncation=True</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length=120</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<p>Method should return a dictionary with the <code class="docutils literal notranslate"><span class="pre">input_ids</span></code>, <code class="docutils literal notranslate"><span class="pre">attention_mask</span></code> and
+<code class="docutils literal notranslate"><span class="pre">labels</span></code> for current sample as keys. Such return values provide the necessary
+information to feed into the model, ensuring the correct fine-tuning process.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>It is necessary to have such keys (<code class="docutils literal notranslate"><span class="pre">input_ids</span></code>,
+<code class="docutils literal notranslate"><span class="pre">attention_mask</span></code> and <code class="docutils literal notranslate"><span class="pre">labels</span></code>) of the returned dictionary, since
+the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> library has built-in data processing mechanisms
+that expect exactly these names.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For Seq2Seq models, it is necessary to tokenize not only
+sample from the source column, but also from the target column.</p>
+</div>
+</section>
+</section>
+<section id="stage-4-introduce-dataset-abstraction-tokenizedtaskdataset">
+<h3>Stage 4. Introduce dataset abstraction: <code class="docutils literal notranslate"><span class="pre">TokenizedTaskDataset</span></code><a class="headerlink" href="#stage-4-introduce-dataset-abstraction-tokenizedtaskdataset" title="Link to this heading"></a></h3>
+<p>As in the previous laboratory work to interact with the model we will use PyTorch
+<a class="reference external" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset">Dataset</a> abstraction.
+We convert <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> to <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and override some methods, because in the next step
+we will use Transformers <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> abstraction, which uses PyTorch <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> internally
+to efficiently load the data into the model’s memory,
+process it in batches and pass it to the model.</p>
+<p>Implement <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_8_sft.main.TokenizedTaskDataset</span></code> abstraction, which allows to
+prepare data for fine-tuning.</p>
+<p>This class inherits from <code class="docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code> abstraction,
+which has one internal attribute:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._data</span></code> - <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> with preprocessed data.</p></li>
+</ul>
+</div></blockquote>
+<p>Fill the attribute <code class="docutils literal notranslate"><span class="pre">self._data</span></code> with tokenized samples from the data.
+Use the function <code class="xref py py-func docutils literal notranslate"><span class="pre">lab_8_sft.main.tokenize_sample()</span></code>.</p>
+<p>So, this class allows to combine <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> and PyTorch <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>,
+tokenize text in the required format for the model,
+ensure efficient data loading during fine-tuning and allows <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> to load data in
+batches for tuning.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When instantiating <code class="docutils literal notranslate"><span class="pre">TokenizedTaskDataset</span></code>
+abstraction in <code class="docutils literal notranslate"><span class="pre">start.py</span></code> module,
+limit the full <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> you got
+from <code class="docutils literal notranslate"><span class="pre">RawDataPreprocessor</span></code> to the number of samples, calculating it for
+training using the batch and the number of training steps. Take the next
+samples after the ones you used for inference, namely starting with
+sample <code class="docutils literal notranslate"><span class="pre">10</span></code>.</p>
+</div>
+<p>See the intended instantiation:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">num_samples</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">fine_tune_samples</span> <span class="o">=</span> <span class="n">batch</span> <span class="o">*</span> <span class="n">fine_tuning_steps</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">TokenizedTaskDataset</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span>
+        <span class="n">num_samples</span> <span class="p">:</span> <span class="n">num_samples</span> <span class="o">+</span> <span class="n">fine_tune_samples</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">preprocessor.data</span></code> is the property of the <code class="docutils literal notranslate"><span class="pre">RawDataPreprocessor</span></code> class.</p>
+<section id="stage-4-1-get-the-dataset-length">
+<h4>Stage 4.1. Get the dataset length<a class="headerlink" href="#stage-4-1-get-the-dataset-length" title="Link to this heading"></a></h4>
+<p>In the next two steps, we will override some methods
+that will allow us to further tune the model.</p>
+<p>Implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_8_sft.main.TokenizedTaskDataset.__len__()</span></code> method
+which allows to get the number of items in dataset.
+PyTorch <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> uses this method
+to determine the total number of batches.</p>
+</section>
+<section id="stage-4-2-retrieve-an-item-from-the-dataset">
+<h4>Stage 4.2. Retrieve an item from the dataset<a class="headerlink" href="#stage-4-2-retrieve-an-item-from-the-dataset" title="Link to this heading"></a></h4>
+<p>Implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_8_sft.main.TokenizedTaskDataset.__getitem__()</span></code> method
+which allows to retrieve an item from the dataset by index.</p>
+<p>PyTorch <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> calls this method to retrieve data for each batch.
+Implementing this method allows you to define how the data is retrieved
+from the dataset and how it is structured.
+It should return a dictionary that contains the result of tokenizing
+one sample from the dataset by index.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For example, if the data at index 0 contains the sample
+<code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">feel</span> <span class="pre">bitchy</span> <span class="pre">but</span> <span class="pre">not</span> <span class="pre">defeated</span> <span class="pre">yet</span></code>, then
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_8_sft.main.TokenizedTaskDataset.__getitem__()</span></code>
+method will output the following value: <code class="docutils literal notranslate"><span class="pre">{'input_ids':</span> <span class="pre">tensor([...]),</span>
+<span class="pre">'attention_mask':</span> <span class="pre">tensor([...]),</span> <span class="pre">'labels':</span> <span class="pre">3}</span></code></p>
+</div>
+</section>
+</section>
+<section id="stage-5-introduce-sft-pipeline-sftpipeline">
+<h3>Stage 5. Introduce SFT Pipeline: <code class="docutils literal notranslate"><span class="pre">SFTPipeline</span></code><a class="headerlink" href="#stage-5-introduce-sft-pipeline-sftpipeline" title="Link to this heading"></a></h3>
+<p>To fine-tune the selected model, you need to implement the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_8_sft.main.SFTPipeline</span></code> abstraction.</p>
+<p>This class inherits from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.llm.sft_pipeline.AbstractSFTPipeline</span></code>,
+which provides a structure for initializing a model and performing fine-tuning.</p>
+<p>The class has the following internal attributes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._lora_config</span></code> – configuration for LoRA;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._model</span></code> – a pre-trained model.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When configuring <code class="docutils literal notranslate"><span class="pre">LoRAConfig</span></code>, set the following parameters:
+<code class="docutils literal notranslate"><span class="pre">r=8</span></code>, <code class="docutils literal notranslate"><span class="pre">lora_alpha=8</span></code>, <code class="docutils literal notranslate"><span class="pre">lora_dropout=0.1</span></code> and <code class="docutils literal notranslate"><span class="pre">target_module</span></code> from SFT parameters.</p>
+</div>
+<p>See the intended instantiation:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">SFTPipeline</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">sft_params</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">settings.parameters.model</span></code> is the name of the pre-trained model;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code> is an instance of <code class="docutils literal notranslate"><span class="pre">TaskDataset</span></code> abstraction;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sft_params</span></code> contains the fine-tuning parameters.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="stage-5-1-model-fine-tuning">
+<h3>Stage 5.1. Model fine-tuning<a class="headerlink" href="#stage-5-1-model-fine-tuning" title="Link to this heading"></a></h3>
+<p>Implement method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_8_sft.main.SFTPipeline.run()</span></code>,
+which allows to fine-tune a pre-trained model using the LoRA method.</p>
+<p>Before starting fine-tuning, set up the training parameters using the
+<a class="reference external" href="https://huggingface.co/docs/transformers/main_classes/trainer#transformers.TrainingArguments">TrainingArguments</a>.
+Define parameters such as <code class="docutils literal notranslate"><span class="pre">max_steps</span></code>, <code class="docutils literal notranslate"><span class="pre">per_device_train_batch_size</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>,
+<code class="docutils literal notranslate"><span class="pre">save_strategy</span></code>, <code class="docutils literal notranslate"><span class="pre">use_cpu</span></code>, <code class="docutils literal notranslate"><span class="pre">load_best_model_at_end</span></code> to control the training and
+optimization process.</p>
+<p>To train the model, use <a class="reference external" href="https://huggingface.co/docs/transformers/main_classes/trainer">Trainer</a>,
+which takes the model, training arguments, and dataset as input.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Initialize the model with LoRA adapters using <code class="docutils literal notranslate"><span class="pre">get_peft_model()</span></code>
+from <a class="reference external" href="https://huggingface.co/docs/peft/index#peft">PEFT</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">peft</span></code> module version 0.17.1 needs to be installed.</p></li>
+</ul>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>After fine-tuning process merge LoRA-adapted weights and then
+save the fine-tuned model to the specified output directory, the path to which
+you can get from <code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.llm.sft_pipeline.AbstractSFTPipeline</span></code>
+class.</p>
+</div>
+<section id="stage-5-2-demonstrate-the-result-in-start-py">
+<h4>Stage 5.2. Demonstrate the result in <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#stage-5-2-demonstrate-the-result-in-start-py" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 3 - 5.2</strong> are required to get the mark <strong>8</strong>.</p>
+</div>
+<p>Demonstrate fine-tuning process and fine-tuned model performance evaluation
+in the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function of the <code class="docutils literal notranslate"><span class="pre">start.py</span></code> module.</p>
+<p>So, the pipeline should include the following stages:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>preparation of the dataset for fine-tuning;</p></li>
+<li><p>fine-tuning of the model;</p></li>
+<li><p>analysis of the fine-tuned model;</p></li>
+<li><p>inference of the fine-tuned model;</p></li>
+<li><p>evaluation of the quality of the fine-tuned model.</p></li>
+</ol>
+</div></blockquote>
+<p>Set the following parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Inference parameters</strong>: <code class="docutils literal notranslate"><span class="pre">num_samples=100</span></code>, <code class="docutils literal notranslate"><span class="pre">max_length=120</span></code> and <code class="docutils literal notranslate"><span class="pre">batch_size=64</span></code>.</p></li>
+<li><p><strong>SFT parameters</strong>: <code class="docutils literal notranslate"><span class="pre">batch_size=3</span></code>, <code class="docutils literal notranslate"><span class="pre">max_length=120</span></code>, <code class="docutils literal notranslate"><span class="pre">max_fine_tuning_steps=50</span></code>
+and <code class="docutils literal notranslate"><span class="pre">learning_rate=1e-3</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You can find all needed specific values for parameters for your
+combination of model and dataset choosing appropriate task:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="../../task_cards/TASK_CLASSIFICATION.html#classification-label"><span class="std std-ref">Classification</span></a></p></li>
+<li><p><a class="reference internal" href="../../task_cards/TASK_GENERATION.html#generation-label"><span class="std std-ref">Generation</span></a></p></li>
+<li><p><a class="reference internal" href="../../task_cards/TASK_NLI.html#nli-label"><span class="std std-ref">NLI</span></a></p></li>
+<li><p><a class="reference internal" href="../../task_cards/TASK_NMT.html#nmt-label"><span class="std std-ref">Neural Machine Translation</span></a></p></li>
+<li><p><a class="reference internal" href="../../task_cards/TASK_SUMMARIZATION.html#summarization-label"><span class="std std-ref">Summarization</span></a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>To infer the fine-tuned model you need to save it to
+<a class="reference internal" href="lab_settings.api.html#core_utils.project.lab_settings.SFTParams.finetuned_model_path" title="core_utils.project.lab_settings.SFTParams.finetuned_model_path"><code class="xref py py-attr docutils literal notranslate"><span class="pre">core_utils.project.lab_settings.SFTParams.finetuned_model_path</span></code></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After model inference you have to save
+you predictions to <code class="docutils literal notranslate"><span class="pre">dist/predictions.csv</span></code> file in <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</div>
+</section>
+<section id="stage-6-implement-model-as-a-service-and-demonstrate-the-result">
+<h4>Stage 6. Implement model as a service and demonstrate the result<a class="headerlink" href="#stage-6-implement-model-as-a-service-and-demonstrate-the-result" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 6</strong> from <a class="reference internal" href="../lab_7/lab_7.html#lab-7-label"><span class="std std-ref">Laboratory work №7. Large Language Models no. 1</span></a> are required to get the mark <strong>10</strong>.</p>
+</div>
+<p>An example of start page might look like this:</p>
+<img alt="../../../../_images/site2.png" src="../../../../_images/site2.png" />
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You need to add a checkbox that is responsible
+for which model’s result will be output as an answer. If the
+<code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">base</span> <span class="pre">model</span></code> option is enabled, use a
+pretrained model, otherwise use a fine-tuned one.</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_7/core_utils.api.html" class="btn btn-neutral float-left" title="core_utils package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_8.api.html" class="btn btn-neutral float-right" title="lab_8 package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

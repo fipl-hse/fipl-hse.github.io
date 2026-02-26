@@ -1,0 +1,21 @@
+fipl\-hse.github.io.final\_project package
+==========================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.final\_project.main module
+----------------------------------------------
+
+.. automodule:: fipl-hse.github.io.final_project.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.final_project
+   :members:
+   :undoc-members:
+   :show-inheritance:

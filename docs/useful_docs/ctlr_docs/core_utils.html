@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Core utils &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="core_utils package" href="core_utils.api.html" />
+    <link rel="prev" title="How to scrape dynamic web sources" href="dynamic_scraping.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Полезные Материалы</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_guide_en.html">Starting guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fork_update.html">Fork update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html">Working with tests: locally and in CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEVELOPER.html">Configuring Python for course development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="run_in_terminal.html">Run Python Programs in Terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic_scraping.html">How to scrape dynamic web sources</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Core utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core_utils.api.html">core_utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="article.html">Article package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ud_format.html">Working with UD format and <code class="docutils literal notranslate"><span class="pre">CoNLL-U</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="UD_intro.html">Introduction to UD format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphs_intro.html">Introduction to graph data structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dataset.html">Dataset requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Полезные Материалы</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+      <li class="breadcrumb-item active">Core utils</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/useful_docs/ctlr_docs/core_utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="core-utils">
+<h1>Core utils<a class="headerlink" href="#core-utils" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core_utils.api.html">core_utils package</a></li>
+</ul>
+</div>
+<p>Core utils package contains auxiliary materials to help you implement
+your laboratory works. We are going to over each of its parts
+to guide you when and how to use it.</p>
+<section id="article-package">
+<h2>Article package<a class="headerlink" href="#article-package" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">article</span></code> package is responsible for handling the articles you
+have collected from your website. You are going to use it for both
+Lab 5 and Lab 6. See exhaustive guide for <a class="reference internal" href="article.html#ctlr-article-label"><span class="std std-ref">Article package</span></a>.</p>
+</section>
+<section id="configurations-dto">
+<h2>Configurations DTO<a class="headerlink" href="#configurations-dto" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">config_dto.py</span></code> module defines a
+<a class="reference internal" href="core_utils.api.html#core_utils.ctlr.config_dto.ConfigDTO" title="core_utils.ctlr.config_dto.ConfigDTO"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.config_dto.ConfigDTO</span></code></a> abstraction.
+This abstraction is responsible for indicating what fields must be passed as
+a configuration settings along with what their types must be.</p>
+<p>They match the fields of the <code class="docutils literal notranslate"><span class="pre">scraper_config.json</span></code> configuration file.
+For more details on what each of the parameters presents, refer to <a class="reference internal" href="../../ctlr_2024/labs/lab_5_scraper/lab_5.html#scraper-label"><span class="std std-ref">Laboratory work №5. Retrieve raw data from World Wide Web</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>During implementation of Lab 5, make sure to return
+a <code class="docutils literal notranslate"><span class="pre">ConfigDTO</span></code> instance from the
+<code class="xref py py-func docutils literal notranslate"><span class="pre">stubs.labs.lab_5_scraper.scraper.Config._extract_config_content()</span></code> method.</p>
+</div>
+</section>
+<section id="module-with-constants">
+<h2>Module with constants<a class="headerlink" href="#module-with-constants" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">constants.py</span></code> module defines the following constant values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PROJECT_ROOT</span></code>: a path to <code class="docutils literal notranslate"><span class="pre">2024-2-level-ctlr</span></code> folder,
+which the root of the current project;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASSETS_PATH</span></code>: a path to <code class="docutils literal notranslate"><span class="pre">2024-2-level-ctlr/tmp/article</span></code> folder,
+where all the collected articles must be stored;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CRAWLER_CONFIG_PATH</span></code>: a path to <code class="docutils literal notranslate"><span class="pre">lab_5_scraper/scraper_config.json</span></code>
+file with configuration parameters for scraper;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PROJECT_CONFIG_PATH</span></code>: a path to <code class="docutils literal notranslate"><span class="pre">2024-2-level-ctlr</span></code> folder
+configuration file (<em>this is an admin utils related item and
+is not intended for you to interact with it</em>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NUM_ARTICLES_UPPER_LIMIT</span></code>: a maximum number for articles to be
+collected, anything above this number must be considered invalid;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TIMEOUT_LOWER_LIMIT</span></code>: a minimum number of seconds for a timeout,
+anything below this number must be considered invalid;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TIMEOUT_UPPER_LIMIT</span></code>: a maximum number of seconds for a timeout,
+anything above this number must be considered invalid.</p></li>
+</ul>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Can you tell why the folder for articles is located in the
+directory with the name <code class="docutils literal notranslate"><span class="pre">tmp</span></code>?</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure to import these constants from the <code class="docutils literal notranslate"><span class="pre">constants.py</span></code> module
+and use them whenever you need to specify a path or boundary values
+(for example, when validating configuration values).</p>
+</div>
+</section>
+<section id="pipeline-module">
+<h2>Pipeline module<a class="headerlink" href="#pipeline-module" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">pipeline.py</span></code> module defines the supporting abstractions for working on Lab 6.
+You may notice that most of the abstractions are protocols.
+The <strong>protocol</strong> is a set of methods or attributes that an object must have
+in order to be considered compatible with that protocol.
+It influences the code implicitly and, if necessary, organizes a check
+for the presence of methods or attributes in the corresponding classes.</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.AbstractCoNLLUAnalyzer</span></code> protocol unites all the different
+types of analyzer instances used, UDPipe and Stanza models. It does not impose a special interface
+but simply indicates that this object is responsible for analyzing the language material.</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.StanzaDocument</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.CoNLLUDocument</span></code>
+protocols are utility classes that mimic Stanza and UDPipe documents respectively.
+Linguistic data retrieval models process texts and return
+CoNLL-U formatted markup as instances of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.StanzaDocument</span></code>.
+At the same time <code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.CoNLLUDocument</span></code>
+object contains information from <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> file.</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.LibraryWrapper</span></code> defines a specific
+set of methods and attributes to be present across all model wrappers:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_analyzer</span></code> attribute</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_bootstrap</span></code> method</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">analyze</span></code> method</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">to_conllu</span></code> method</p></li>
+</ul>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.PipelineProtocol</span></code> defines
+an interface for pipelines: they must have a <code class="docutils literal notranslate"><span class="pre">run</span></code> method.</p>
+<p>Dataclass <code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.TreeNode</span></code> stores
+information about the node of syntactic tree:</p>
+<ul class="simple">
+<li><p>POS tag</p></li>
+<li><p>text</p></li>
+<li><p>dependent children</p></li>
+</ul>
+</section>
+<section id="visualizer-module">
+<h2>Visualizer module<a class="headerlink" href="#visualizer-module" title="Link to this heading"></a></h2>
+<p>As one of the tasks for mark 8 you are expected to perform an
+analysis of distribution of part-of-speech tags in the processed
+collected articles. This is where <code class="docutils literal notranslate"><span class="pre">visualizer.py</span></code> module comes into play.
+Its <code class="xref py py-func docutils literal notranslate"><span class="pre">core_utils.ctlr.visualizer.visualize()</span></code> function takes an
+<code class="docutils literal notranslate"><span class="pre">Article</span></code> instance along with a path and creates a bar chart depicting
+POS distribution in the specified location.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">core_utils.ctlr.visualizer.visualize()</span></code> function
+must be called during the execution of
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">stubs.labs.lab_6_pipeline.pipeline.POSFrequencyPipeline.run()</span></code> method,
+but before that, make sure you have already filled the
+<code class="docutils literal notranslate"><span class="pre">pos_frequencies</span></code> field of the corresponding meta file.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The name of the resulting image must have the same id as
+the article analysed.</p>
+</div>
+</section>
+<section id="tests-package">
+<h2>Tests package<a class="headerlink" href="#tests-package" title="Link to this heading"></a></h2>
+<p>To make sure that the provided materials work as intended, they are
+thoroughly tested. The <code class="docutils literal notranslate"><span class="pre">tests</span></code> package
+contains a number of unit-tests for <code class="docutils literal notranslate"><span class="pre">article</span></code> package,
+<code class="docutils literal notranslate"><span class="pre">config_dto.py</span></code> module, and <code class="docutils literal notranslate"><span class="pre">visualizer.py</span></code> module.</p>
+<p>During work on Lab 5 and Lab 6, you do not need to
+interact with these tests. However, you should suspect that the provided
+modules behave unexpectedly, examination of these tests may help catch
+the bug. Any suggestion on improvements of core utils is encouraged and
+rewarded.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dynamic_scraping.html" class="btn btn-neutral float-left" title="How to scrape dynamic web sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_utils.api.html" class="btn btn-neutral float-right" title="core_utils package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

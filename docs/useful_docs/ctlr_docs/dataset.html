@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dataset requirements &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Frequently asked questions" href="faq.html" />
+    <link rel="prev" title="Introduction to graph data structure" href="graphs_intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Полезные Материалы</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_guide_en.html">Starting guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fork_update.html">Fork update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html">Working with tests: locally and in CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEVELOPER.html">Configuring Python for course development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="run_in_terminal.html">Run Python Programs in Terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic_scraping.html">How to scrape dynamic web sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_utils.html">Core utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="article.html">Article package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ud_format.html">Working with UD format and <code class="docutils literal notranslate"><span class="pre">CoNLL-U</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="UD_intro.html">Introduction to UD format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphs_intro.html">Introduction to graph data structure</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Dataset requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Полезные Материалы</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+      <li class="breadcrumb-item active">Dataset requirements</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/useful_docs/ctlr_docs/dataset.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dataset-requirements">
+<span id="dataset-label"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Dataset requirements</a><a class="headerlink" href="#dataset-requirements" title="Link to this heading"></a></h1>
+<p>For effective analysis of the collected articles, it is necessary to
+organize the data in a consistent way. The description of the structure
+and each of the elements of the dataset is provided below.</p>
+<nav class="contents" id="content">
+<p class="topic-title">Content:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#dataset-requirements" id="id1">Dataset requirements</a></p>
+<ul>
+<li><p><a class="reference internal" href="#structure" id="id2">Structure</a></p></li>
+<li><p><a class="reference internal" href="#raw-texts" id="id3">Raw texts</a></p></li>
+<li><p><a class="reference internal" href="#processed-texts" id="id4">Processed texts</a></p></li>
+<li><p><a class="reference internal" href="#meta-information" id="id5">Meta information</a></p></li>
+<li><p><a class="reference internal" href="#volume" id="id6">Volume</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="structure">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Structure</a><a class="headerlink" href="#structure" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-- 2024-2-level-ctlr
+    +-- tmp
+        +-- articles
+            +-- articles
+                +-- 1_raw.txt &lt;- the raw text of the article with the ID as the name
+                +-- 1_meta.json &lt;- the meta-information of the article
+                +-- 1_cleaned.txt &lt;- lowercased text with no punctuation
+                +-- 1_udpipe_conllu.conllu &lt;- processed text in the UD format (by UDPipe model)
+                +-- 1_stanza_conllu.conllu &lt;- processed text in the UD format (by Stanza model)
+                +-- 1_image.png &lt;- POS frequencies bar chart
+                +-- 2_raw.txt
+                +-- 2_meta.json
+                +-- 2_cleaned.txt
+                +-- 2_udpipe_conllu.conllu
+                +-- 2_stanza_conllu.conllu
+                +-- 2_image.png
+                +-- ...
+                +-- 100_raw.txt
+                +-- 100_meta.json
+                +-- 100_cleaned.txt
+                +-- 100_udpipe_conllu.conllu
+                +-- 100_stanza_conllu.conllu
+                +-- 100_image.png
+</pre></div>
+</div>
+</section>
+<section id="raw-texts">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Raw texts</a><a class="headerlink" href="#raw-texts" title="Link to this heading"></a></h2>
+<p>Raw articles texts are stored in <code class="docutils literal notranslate"><span class="pre">N_raw.txt</span></code> files where <code class="docutils literal notranslate"><span class="pre">N</span></code>
+corresponds to the index of the article. The text is not preprocessed in
+any way.</p>
+<p>Example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Красивая - мама красиво, училась в ПДД и ЖКУ по адресу Львовская 10 лет с почтой test .
+</pre></div>
+</div>
+</section>
+<section id="processed-texts">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Processed texts</a><a class="headerlink" href="#processed-texts" title="Link to this heading"></a></h2>
+<p>Ideally, the dataset consists of three processed texts examples:</p>
+<ul class="simple">
+<li><p>cleaned text</p></li>
+<li><p>morphological and syntactic annotation from UDPipe model</p></li>
+<li><p>morphological and syntactic annotation from Stanza model</p></li>
+</ul>
+<section id="cleaned-text">
+<h3>Cleaned text<a class="headerlink" href="#cleaned-text" title="Link to this heading"></a></h3>
+<p>Cleaned texts are stored in <code class="docutils literal notranslate"><span class="pre">N_cleaned.txt</span></code> files where <code class="docutils literal notranslate"><span class="pre">N</span></code>
+corresponds to the index of the article.</p>
+<p>Cleaned text is lowercased and does not include any punctuation.
+Word forms are the same as in the raw text.</p>
+<p>Example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>красивая мама красиво училась в пдд и жку по адресу львовская 10 лет с почтой test
+</pre></div>
+</div>
+</section>
+<section id="morphological-and-syntactic-annotation-from-udpipe-and-stanza-models">
+<h3>Morphological and syntactic annotation from UDPipe and Stanza models<a class="headerlink" href="#morphological-and-syntactic-annotation-from-udpipe-and-stanza-models" title="Link to this heading"></a></h3>
+<p>Texts with morphological and syntactic annotation
+from UDPipe and Stanza models are stored in <code class="docutils literal notranslate"><span class="pre">N_udpipe_conllu.conllu</span></code>
+and <code class="docutils literal notranslate"><span class="pre">N_stanza_conllu.conllu</span></code> files respectively
+where <code class="docutils literal notranslate"><span class="pre">N</span></code> corresponds to the index of the article.</p>
+<p>The files contain the following information about the tags: <code class="docutils literal notranslate"><span class="pre">ID</span></code>,
+<code class="docutils literal notranslate"><span class="pre">FORM</span></code>, <code class="docutils literal notranslate"><span class="pre">LEMMA</span></code>, <code class="docutils literal notranslate"><span class="pre">UPOS</span></code>, <code class="docutils literal notranslate"><span class="pre">XPOS</span></code>, <code class="docutils literal notranslate"><span class="pre">FEATS</span></code>, <code class="docutils literal notranslate"><span class="pre">HEAD</span></code>, <code class="docutils literal notranslate"><span class="pre">DEPREL</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DEPS</span></code>, and <code class="docutils literal notranslate"><span class="pre">MISC</span></code>.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Read more about the structure of such files
+in <a class="reference internal" href="ud_format.html#ud-format-label"><span class="std std-ref">Working with UD format and CoNLL-U</span></a> and look at the example files
+for <a class="reference external" href="https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/reference_score_six_test.conllu">UDPipe model</a>
+and <a class="reference external" href="https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/reference_score_eight_test.conllu">Stanza model</a>.</p>
+</div>
+</section>
+</section>
+<section id="meta-information">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Meta information</a><a class="headerlink" href="#meta-information" title="Link to this heading"></a></h2>
+<p>Meta information is stored in files with <code class="docutils literal notranslate"><span class="pre">N_meta.json</span></code> names where
+<code class="docutils literal notranslate"><span class="pre">N</span></code> corresponds to the index of the article.</p>
+<p>Meta-information includes:</p>
+<ol class="arabic simple">
+<li><p>Article id (it must match the id of the file)</p></li>
+<li><p>Article URL</p></li>
+<li><p>Article title</p></li>
+<li><p>Article date</p></li>
+<li><p>Article author</p></li>
+<li><p>Article topics</p></li>
+<li><p>Article POS frequencies (Lab 6 for mark 8)</p></li>
+<li><p>Article pattern matches (Lab 6 for mark 10)</p></li>
+</ol>
+<p>Example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://www.nn.ru/text/style/2023/03/11/72125285/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;«Вы актер или батюшка?» Простой рабочий одевается как Пушкин и ходит так на оборонный завод&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-03-11 17:30:00&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;Дарья Манохина&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;topics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;Стиль и красота&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;pos_frequencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">    </span><span class="nt">&quot;pattern_matches&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="volume">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Volume</a><a class="headerlink" href="#volume" title="Link to this heading"></a></h2>
+<p>Aim at collecting not less than <code class="docutils literal notranslate"><span class="pre">100</span></code> articles from your chosen web source.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="graphs_intro.html" class="btn btn-neutral float-left" title="Introduction to graph data structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="faq.html" class="btn btn-neutral float-right" title="Frequently asked questions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

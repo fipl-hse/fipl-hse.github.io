@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to UD format &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Introduction to graph data structure" href="graphs_intro.html" />
+    <link rel="prev" title="Working with UD format and CoNLL-U" href="ud_format.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Полезные Материалы</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_guide_en.html">Starting guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fork_update.html">Fork update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html">Working with tests: locally and in CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEVELOPER.html">Configuring Python for course development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="run_in_terminal.html">Run Python Programs in Terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic_scraping.html">How to scrape dynamic web sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_utils.html">Core utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="article.html">Article package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ud_format.html">Working with UD format and <code class="docutils literal notranslate"><span class="pre">CoNLL-U</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction to UD format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphs_intro.html">Introduction to graph data structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dataset.html">Dataset requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Полезные Материалы</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+      <li class="breadcrumb-item active">Introduction to UD format</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/useful_docs/ctlr_docs/UD_intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction-to-ud-format">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Introduction to UD format</a><a class="headerlink" href="#introduction-to-ud-format" title="Link to this heading"></a></h1>
+<nav class="contents" id="content">
+<p class="topic-title">Content:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction-to-ud-format" id="id1">Introduction to UD format</a></p>
+<ul>
+<li><p><a class="reference internal" href="#universal-dependencies" id="id2">Universal dependencies</a></p></li>
+<li><p><a class="reference internal" href="#conll-u-annotation" id="id3">CoNLL-U annotation</a></p></li>
+<li><p><a class="reference internal" href="#udpipe" id="id4">UDPipe</a></p></li>
+<li><p><a class="reference internal" href="#python-frameworks" id="id5">Python frameworks</a></p></li>
+<li><p><a class="reference internal" href="#more-information" id="id6">More information</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="universal-dependencies">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Universal dependencies</a><a class="headerlink" href="#universal-dependencies" title="Link to this heading"></a></h2>
+<p><strong>Universal Dependencies (UD)</strong> is a project that is developing
+cross-linguistically consistent treebank annotation for many languages.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Treebank</strong> is a database of sentences which are annotated with
+syntactic information, often in the form of a tree.</p>
+</div>
+<p>In universal dependencies paradigm, a language is represented as a
+graph, meaning that all words are related to each other in a some
+hierarchical form, and that is what dependency grammar is about.</p>
+<figure class="align-default">
+<img alt="sentence_as_graph" src="../../../_images/sentence_as_graph.png" />
+</figure>
+<p>In such terms, a syntactic structure of a sentence is decoded using
+solely words and <strong>directed binary grammatical relations</strong>. The
+relations in a dependency structure capture the head-dependent
+relationship among the words in a sentence</p>
+</section>
+<section id="conll-u-annotation">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">CoNLL-U annotation</a><a class="headerlink" href="#conll-u-annotation" title="Link to this heading"></a></h2>
+<p><strong>CoNLL-U</strong> (Conference on Natural Language Learning - Universal
+Dependencies) format is a specific file format for representing
+syntactic annotations in the Universal Dependencies framework.</p>
+<p>It describes both syntactic and morphological features for each word.</p>
+<p>Here is an excerpt from the official description:</p>
+<blockquote>
+<div><p>Sentences consist of one or more word lines, and word lines contain
+the following fields:</p>
+<ul class="simple">
+<li><p><strong>ID</strong>: Word index, integer starting at 1 for each new sentence;</p></li>
+<li><p><strong>FORM</strong>: Word form or punctuation symbol;</p></li>
+<li><p><strong>LEMMA</strong>: Lemma or stem of word form;</p></li>
+<li><p><strong>UPOS</strong>: Universal part-of-speech tag;</p></li>
+<li><p><strong>XPOS</strong>: Optional language-specific (or treebank-specific)
+part-of-speech / morphological tag; underscore if not available;</p></li>
+<li><p><strong>FEATS</strong>: List of morphological features from the universal feature
+inventory or from a defined language-specific extension; underscore
+if not available;</p></li>
+<li><p><strong>HEAD</strong>: Head of the current word, which is either a value of ID or
+zero (0);</p></li>
+<li><p><strong>DEPREL</strong>: Universal dependency relation to the HEAD (root if HEAD
+= 0) or a defined language-specific subtype of one;</p></li>
+<li><p><strong>DEPS</strong>: Enhanced dependency graph in the form of a list of
+head-deprel pairs;</p></li>
+<li><p><strong>MISC</strong>: Any other annotation.</p></li>
+</ul>
+</div></blockquote>
+<p>So, for the following text <em>“Медведь спит под деревом.”</em> the annotated
+file will look like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># text = Медведь спит под деревом.
+1   Медведь    медведь   NOUN    _   Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing   0   ROOT    _   _
+2   спит    спать   VERB    _   Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin   1   acl:relcl   _   _
+3   под под ADP _   _   _   4   case    _   _
+4   деревом дерево  NOUN    _   Animacy=Inan|Case=Ins|Gender=Neut|Number=Sing    2   obl _   SpaceAfter=No
+5   .   .   PUNCT   _   _   1   punct   _   _
+</pre></div>
+</div>
+<p>Here, each line corresponds to a word/token in the sentence and columns
+represent various annotations for each word/token.</p>
+<p>The first column is the word index, the second column is the word form,
+the third column is the lemma (base form) of the word, the fourth column
+is the part-of-speech (POS) tag.</p>
+<p>Other columns may represent additional morphological features, syntactic
+dependencies, and so on.</p>
+</section>
+<section id="udpipe">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">UDPipe</a><a class="headerlink" href="#udpipe" title="Link to this heading"></a></h2>
+<p>UDPipe is a trainable pipeline for tokenization, tagging, lemmatization
+and dependency parsing of CoNLL-U files. UDPipe is language-agnostic and
+can be trained given annotated data in CoNLL-U format.</p>
+<p>So, the obtained CoNLL-U annotation might be different depending on the
+UDPipe model used to process text. As of now, there are 5 models trained
+on the Russian language treebanks.</p>
+<figure class="align-default">
+<img alt="udpipe_models_russian" src="../../../_images/udpipe_models_russian.png" />
+</figure>
+<p>To view more details about the models and examine statistics refer to
+the <a class="reference external" href="https://universaldependencies.org/">official UD website</a>.</p>
+<p>In our work, we will be using pre-downloaded UDPipe model based on
+<a class="reference external" href="https://universaldependencies.org/treebanks/ru_syntagrus/index.html">SynTagRus
+treebank</a>.
+You can find it in the releases
+<a class="reference external" href="https://github.com/fipl-hse/2024-2-level-ctlr-admin/releases/tag/v1.0.0">here</a>.</p>
+</section>
+<section id="python-frameworks">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Python frameworks</a><a class="headerlink" href="#python-frameworks" title="Link to this heading"></a></h2>
+<p>There are numerous frameworks that allow working with UDPipe models via
+Python.</p>
+<p>The very first one is the <a class="reference external" href="https://github.com/ufal/udpipe">official UDPipe
+library</a> from Institute of Formal and
+Applied Linguistics. However, due to its low-level implementation and
+lack of documentation, in our work we will be working with the
+<a class="reference external" href="https://spacy.io/universe/project/spacy-udpipe">spacy-udpipe</a>
+library, which is a friendlier wrapper over the original <code class="docutils literal notranslate"><span class="pre">udpipe</span></code>
+module that allows combining <code class="docutils literal notranslate"><span class="pre">spacy</span></code> interface with UD parsing
+solutions.</p>
+</section>
+<section id="more-information">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">More information</a><a class="headerlink" href="#more-information" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://web.stanford.edu/~jurafsky/slp3/18.pdf">Lecture from Stanford university on Universal
+Dependencies</a></p></li>
+<li><p><a class="reference external" href="https://universaldependencies.org/format.html">CoNLL-U format
+description</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ud_format.html" class="btn btn-neutral float-left" title="Working with UD format and CoNLL-U" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="graphs_intro.html" class="btn btn-neutral float-right" title="Introduction to graph data structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

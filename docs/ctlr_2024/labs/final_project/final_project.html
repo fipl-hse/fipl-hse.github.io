@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Final project. Analyze and correct UD annotation &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Short summary of lectures" href="../../lectures_content.html" />
+    <link rel="prev" title="lab_6_pipeline package" href="../lab_6_pipeline/lab_6.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Laboratory works</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_5_scraper/lab_5.html">Laboratory work №5. Retrieve raw data from World Wide Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_6_pipeline/lab_6.html">Laboratory work №6. Process raw data</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Final project. Analyze and correct UD annotation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content.html">Short summary of lectures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/ctlr_docs/index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Laboratory works</a></li>
+      <li class="breadcrumb-item active">Final project. Analyze and correct UD annotation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/ctlr_2024/labs/final_project/final_project.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="final-project-analyze-and-correct-ud-annotation">
+<h1>Final project. Analyze and correct UD annotation<a class="headerlink" href="#final-project-analyze-and-correct-ud-annotation" title="Link to this heading"></a></h1>
+<p>Final project is dedicated to using <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code>
+to process a corpus of texts and correcting mistakes that might be present in the
+retrieved UD linguistic annotation.</p>
+<section id="stage-0-create-pr">
+<h2>Stage 0. Create PR<a class="headerlink" href="#stage-0-create-pr" title="Link to this heading"></a></h2>
+<p>Start your implementation with creating Pull Request (PR).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is a Pull Request (PR) with a correctly formatted name:
+<code class="docutils literal notranslate"><span class="pre">[PROJECT]</span> <span class="pre">Final</span> <span class="pre">Project,</span> <span class="pre">Team</span> <span class="pre">&lt;GROUP</span> <span class="pre">NUMBER&gt;</span> <span class="pre">&lt;MATERIAL&gt;</span> <span class="pre">-</span> <span class="pre">&lt;UNIVERSITY</span> <span class="pre">GROUP</span> <span class="pre">NAME&gt;</span></code>.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">[PROJECT]</span> <span class="pre">Final</span> <span class="pre">Project,</span> <span class="pre">Team</span> <span class="pre">7</span> <span class="pre">Mandelstamm</span> <span class="pre">-</span> <span class="pre">23FPL2</span></code>.</p>
+</div>
+</section>
+<section id="stage-1-put-the-files-for-processing-to-the-folder">
+<h2>Stage 1. Put the files for processing to the folder.<a class="headerlink" href="#stage-1-put-the-files-for-processing-to-the-folder" title="Link to this heading"></a></h2>
+<p>You are provided with different corpora of <cite>.txt</cite> files. The corpus of
+your respective team should be loaded to the folder <code class="docutils literal notranslate"><span class="pre">final_project/assets/folder_name</span></code>.</p>
+<p>Each team is to work with corresponding folder:</p>
+<ul class="simple">
+<li><p>23FPL1 team 1 - axmatova</p></li>
+<li><p>23FPL1 team 2 - balmont</p></li>
+<li><p>23FPL1 team 3 - blok</p></li>
+<li><p>23FPL1 team 4 - bunin</p></li>
+<li><p>23FPL1 team 5 - cvetaeva</p></li>
+<li><p>23FPL2 team 1 - mandelstamm</p></li>
+<li><p>23FPL2 team 2 - moritz</p></li>
+<li><p>23FPL2 team 3 - pasternak</p></li>
+<li><p>23FPL2 team 4 - silverage</p></li>
+<li><p>23FPL2 team 5 - cerny</p></li>
+</ul>
+</section>
+<section id="stage-2-processing-data">
+<h2>Stage 2. Processing data.<a class="headerlink" href="#stage-2-processing-data" title="Link to this heading"></a></h2>
+<p>The task is to process a corpus of texts, get <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> file and correct the mistakes
+that could appear in the created file.</p>
+<section id="stage-2-1-create-conllu-file-for-the-corpus">
+<h3>Stage 2.1. Create <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> file for the corpus<a class="headerlink" href="#stage-2-1-create-conllu-file-for-the-corpus" title="Link to this heading"></a></h3>
+<p>The needed logic for data processing should  be written in <code class="docutils literal notranslate"><span class="pre">final_project/main.py</span></code> file.
+Firstly, all the <cite>.txt</cite> files from <code class="docutils literal notranslate"><span class="pre">final_project/assets</span></code> are to be joint into one <cite>.txt</cite>
+file and then processed using <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code>
+into a single <code class="docutils literal notranslate"><span class="pre">auto_annotated.conllu</span></code> file.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Running <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file should result in creation of
+<code class="docutils literal notranslate"><span class="pre">auto_annotated.conllu</span></code> in folder <code class="docutils literal notranslate"><span class="pre">final_project/dist</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember to use <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module in order
+to operate paths.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is mandatory to use the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code>.</p>
+</div>
+</section>
+<section id="stage-2-2-correct-morphological-annotation-manually">
+<h3>Stage 2.2. Correct morphological annotation manually<a class="headerlink" href="#stage-2-2-correct-morphological-annotation-manually" title="Link to this heading"></a></h3>
+<p>The resulting file is to be opened in text editor and then copied to an
+<cite>.xlsx</cite> file. To work with the file, you will need the following columns in the table:
+token number - token - lemma - part of speech - morphological characteristics.
+Please, delete all the remaining columns provided by UDPipe and add three new columns:
+<code class="docutils literal notranslate"><span class="pre">comments</span> <span class="pre">to</span> <span class="pre">POS</span> <span class="pre">tags</span></code>, <code class="docutils literal notranslate"><span class="pre">comments</span> <span class="pre">to</span> <span class="pre">characteristics</span></code> and <code class="docutils literal notranslate"><span class="pre">comments</span> <span class="pre">to</span> <span class="pre">tokens</span></code>.</p>
+<p>Using the .conllu file you are supposed to make up the word frequency dictionary.
+Once it is ready, you are welcome to work with the least popular word forms to find
+the mistakes in tokenization made by UDPipe. If any of the word forms turn out to
+be words joint with punctuation marks or words divided into tokens, you are supposed
+to correct the mistakes in the .conllu file and write comments in the
+<code class="docutils literal notranslate"><span class="pre">comments</span> <span class="pre">to</span> <span class="pre">tokens</span></code> column in the <cite>.xlsx</cite> file.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Your <cite>.xlsx</cite> file or frequency list may be uploaded to the
+<code class="docutils literal notranslate"><span class="pre">final_project/data/table_work</span></code> if you wish, but this folder will not appear
+in your fork after pushing the commit.</p>
+</div>
+<p>Next comes checking the table for mistakes in morphological annotation made by UDPipe.
+Whenever you come across any mistakes in either POS tags or characteristics, you are
+welcome to fill in the corresponding column with the comment in the <cite>.xlsx</cite> file and
+make corrections in the <cite>.conllu</cite> file. When making judgements as to the mistakes in
+morphological annotation, you are welcome to use the following sources:</p>
+<ol class="arabic simple">
+<li><p>UD POS tags: <a class="reference external" href="https://universaldependencies.org/u/pos/all.html">https://universaldependencies.org/u/pos/all.html</a></p></li>
+<li><p>UD POS features: <a class="reference external" href="https://universaldependencies.org/u/feat/index.html">https://universaldependencies.org/u/feat/index.html</a></p></li>
+<li><p>UD Russian POS tags and features: <a class="reference external" href="https://universaldependencies.org/treebanks/ru_gsd/index.html">https://universaldependencies.org/treebanks/ru_gsd/index.html</a></p></li>
+<li><p>Dictionaries of the Russian language containing morphological information</p></li>
+</ol>
+<p>Please do not forget to refer to the sources you use in the comments.
+You are supposed to stop working with the <cite>.conllu</cite> and  <cite>.xlsx</cite> files
+and send them to Margarita Andreevna together with the frequency dictionary in the .xlsx format by June, 16.</p>
+<p>Margarita Andreevna will check your annotations and suggest improvements, if any.</p>
+</section>
+<section id="stage-2-3-upload-corrected-conllu-file">
+<h3>Stage 2.3. Upload corrected <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> file.<a class="headerlink" href="#stage-2-3-upload-corrected-conllu-file" title="Link to this heading"></a></h3>
+<p>After you correct all mistakes in automatically annotated <cite>.conllu</cite>, you should
+upload the final corrected <cite>.conllu</cite> file to the folder <code class="docutils literal notranslate"><span class="pre">final_project/dist</span></code>
+under the name <code class="docutils literal notranslate"><span class="pre">final.conllu</span></code>.</p>
+</section>
+</section>
+<section id="stage-3-pass-the-checks">
+<h2>Stage 3. Pass the checks.<a class="headerlink" href="#stage-3-pass-the-checks" title="Link to this heading"></a></h2>
+<p>To get extra point for the exam, your markup should pass all the checks.</p>
+<p>Correctness of the <cite>.conllu</cite> file will be checked with a script taken from the repository
+with code from the Technical Track: <code class="docutils literal notranslate"><span class="pre">admin_utils/final_project/checker.py</span></code></p>
+<p>You can also use it to check the <cite>.conllu</cite> file locally.</p>
+<p>Note that this script can be run from PyCharm terminal or PowerShell
+from a root of the project, like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>admin_utils/final_project/checker.py<span class="w"> </span>final_project/dist/auto_annotated.conllu
+</pre></div>
+</div>
+<p>Your forks should contain this script already, so pull and use, otherwise,
+write to the chat and ask assistants.</p>
+</section>
+<section id="stage-4-preparing-exam-presentation">
+<h2>Stage 4. Preparing exam presentation.<a class="headerlink" href="#stage-4-preparing-exam-presentation" title="Link to this heading"></a></h2>
+<p>Meanwhile, your task will be to prepare an exam presentation,
+which should include a report on the mistakes in tokenization and morphological
+annotation you came across - both a quantitative and qualitative
+(typology of mistakes, possible reasons for them, etc.) analysis.</p>
+<p>Time limit of the presentation - <strong>7 minutes</strong>.</p>
+<p>The presentation is to be delivered at the exam.
+<strong>Assessment criteria</strong>:</p>
+<ul class="simple">
+<li><p>the proportion of identified mistakes;</p></li>
+<li><p>the quality of their analysis in the comments section of the table and the presentation;</p></li>
+<li><p>the precision of corrections in the .conllu file;</p></li>
+<li><p>adherence to the time limit;</p></li>
+<li><p>the quality of the oral presentation (memorization of the text, fluency,
+and intelligibility of speech);</p></li>
+<li><p>the quality of the computer presentation;</p></li>
+<li><p>the quality of answers to follow-up questions.</p></li>
+</ul>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The mark for the exam you will receive as a result has a coefficient of 0.9.
+The remaining 10% of your exam mark is based on your work with NeuroKryaBot.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_6_pipeline/lab_6.api.html" class="btn btn-neutral float-left" title="lab_6_pipeline package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../lectures_content.html" class="btn btn-neutral float-right" title="Short summary of lectures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

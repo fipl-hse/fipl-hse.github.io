@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Запуск тестов: локально и в CI &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Запуск Python программ в терминале" href="run_in_terminal_ru.html" />
+    <link rel="prev" title="Обновление форка" href="fork_update.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Полезные Материалы</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Полезные материалы для курсов на русском языке</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_guide_ru.html">Подготовка к прохождению курса</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fork_update.html">Обновление форка</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Запуск тестов: локально и в CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="run_in_terminal_ru.html">Запуск Python программ в терминале</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html">Часто задаваемые вопросы</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ctlr_docs/index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Полезные Материалы</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Полезные материалы для курсов на русском языке</a></li>
+      <li class="breadcrumb-item active">Запуск тестов: локально и в CI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/useful_docs/general_docs/tests.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <nav class="contents" id="id1" role="doc-toc">
+<span id="running-tests-label"></span><p class="topic-title">Содержание:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#ci" id="id6">Запуск тестов: локально и в CI</a></p>
+<ul>
+<li><p><a class="reference internal" href="#visual-studio-code" id="id7">Настройка тестов в среде разработки Visual Studio Code</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id8">Запуск тестов</a></p></li>
+<li><p><a class="reference internal" href="#debugging" id="id9">Режим отладки (debugging)</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id10">Запуск тестов в терминале</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id11">Запуск тестов по кнопке в Visual Studio Code</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id12">Запуск тестов в CI</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="ci">
+<h1><a class="toc-backref" href="#id6" role="doc-backlink">Запуск тестов: локально и в CI</a><a class="headerlink" href="#ci" title="Link to this heading"></a></h1>
+<section id="visual-studio-code">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Настройка тестов в среде разработки Visual Studio Code</a><a class="headerlink" href="#visual-studio-code" title="Link to this heading"></a></h2>
+<p>Чтобы настроить тесты локально, Вам потребуется выполнить следующие
+шаги:</p>
+<ol class="arabic">
+<li><p>Установите зависимости для тестов:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_qa.txt
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Удостоверьтесь, что у Вас активировано виртуальное окружение.
+Это делается через запуск команд <code class="docutils literal notranslate"><span class="pre">.\venv\Scripts\activate</span></code>
+(Windows) или <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv\bin\activate</span></code> (macOS) в терминале.</p>
+</div>
+<ol class="arabic" start="2">
+<li><p>Создайте новую конфигурацию:</p>
+<p>Чтобы создать новую конфигурацию, откройте вкладку <cite>Testing</cite>
+на левой панели Visual Studio Code и нажмите кнопку
+<cite>Configure Python Tests</cite> button.</p>
+<img alt="../../../_images/vscode_testing_tab1.png" src="../../../_images/vscode_testing_tab1.png" />
+<p>Иначе Вы можете открыть настройки конфигурации через командную строку
+Visual Studio Code.
+Используйте сочетание клавиш <cite>Ctrl + Shift + P</cite>, чтобы открыть
+командную строку. Наберите <cite>Python: Configure Tests</cite> в строке и
+выберите данную опцию в списке команд.</p>
+<img alt="../../../_images/vscode_command_bar1.png" src="../../../_images/vscode_command_bar1.png" />
+<p>Теперь Вы можете начать конфигурацию самих тестов.</p>
+</li>
+<li><p>Выберите опцию <code class="docutils literal notranslate"><span class="pre">pytest</span></code>:</p>
+<img alt="../../../_images/vscode_tests_configuration_step_11.png" src="../../../_images/vscode_tests_configuration_step_11.png" />
+</li>
+<li><p>Выберите папку для запуска тестов:</p>
+<p>Вы можете использовать корневую папку проекта
+или папку нужной Вам лабораторной работы.</p>
+<img alt="../../../_images/vscode_tests_configuration_step_21.png" src="../../../_images/vscode_tests_configuration_step_21.png" />
+<p>После выбора Visual Studio Code откроет файл <cite>settings.json</cite>
+с параметрами конфигурации, а все тесты будут расположены на вкладке
+<cite>Testing</cite>.</p>
+</li>
+</ol>
+</section>
+<section id="id2">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Запуск тестов</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Чтобы запустить все тесты, нажмите кнопку <cite>Run Tests</cite>, как показано
+на скриншоте ниже.</p>
+<img alt="../../../_images/vscode_configured_tests1.png" src="../../../_images/vscode_configured_tests1.png" />
+<p>Иногда Вам может понадобиться запустить не все тесты, а выборочно
+некоторый конкретный тест, папку с тестами или файл с тестами.
+Вы можете сделать это, нажав кнопку <cite>Run Test</cite> рядом
+рядом с названием теста (или файла/папки с несколькими тестами),
+который Вы хотите запустить, на вкладке <cite>Testing</cite>. Также это можно сделать
+в самом файле с тестами, нажав на крестик/галочку (кнопку <cite>Run Test</cite>)
+на строке инициализации теста, как показано на скриншоте ниже.</p>
+<img alt="../../../_images/vscode_running_tests1.png" src="../../../_images/vscode_running_tests1.png" />
+</section>
+<section id="debugging">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Режим отладки (debugging)</a><a class="headerlink" href="#debugging" title="Link to this heading"></a></h2>
+<p>Если Вы хотите найти ошибки в коде, Вам понадобится запустить нужный тест
+в режиме отладки.
+Для этого Вы можете нажать на кнопку <cite>Debug Test</cite> с силуэтом жука рядом
+с тестом на вкладке <cite>Testing</cite> или нажать правой кнопкой мыши на кнопку
+<cite>Run Test</cite> в самом файле с тестом и выбрать опцию <cite>Debug Test</cite>.</p>
+<img alt="../../../_images/vscode_debugging1.png" src="../../../_images/vscode_debugging1.png" />
+<p>Чтобы начать процесс отладки, Вам понадобится поставить точку останова
+(breakpoint) в Вашем коде или в самом тесте. Точки останова — это специальные
+маркеры, которые Вы можете поставить на потенциально уязвимые строчки кода.
+При запуске теста в режиме отладки программа приостановится на указанной
+строчке, и Вы сможете посмотреть на текущее состояние переменных, а также
+пошагово посмотреть, как работает код.</p>
+<img alt="../../../_images/breakpoints1.png" src="../../../_images/breakpoints1.png" />
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Запуск тестов в терминале</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Удостоверьтесь, что у Вас активировано виртуальное окружение.
+и установлены зависимости.</p>
+</div>
+<p>Команда для запуска всех тестов выглядит так:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>Чтобы запускать тесты на определённую оценку, используйте маркеры
+<code class="docutils literal notranslate"><span class="pre">mark4</span></code>, <code class="docutils literal notranslate"><span class="pre">mark6</span></code>, <code class="docutils literal notranslate"><span class="pre">mark8</span></code> или <code class="docutils literal notranslate"><span class="pre">mark10</span></code>. Например, так:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>-m<span class="w"> </span>mark8
+</pre></div>
+</div>
+<p>Чтобы запускать тесты определённой лабораторной работы, добавьте
+название папки после команды <cite>pytest</cite>.</p>
+<p>Например, вот так выглядит команда и полный вывод для запуска
+тестов первой лабораторной работы на оценку 4:</p>
+<img alt="../../../_images/running_from_command_line1.png" src="../../../_images/running_from_command_line1.png" />
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Если Вы активировали виртуальное окружение и установили
+необходимые зависимости, Вы можете использовать <cite>pytest</cite>
+без вызова <cite>python</cite>.</p>
+</div>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Запуск тестов по кнопке в Visual Studio Code</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>На предыдущих шагах Вы научились запускать тесты через терминал и по кнопке
+на вкладке <code class="docutils literal notranslate"><span class="pre">Testing</span></code>.</p>
+<img alt="../../../_images/cursor_over_the_start_button1.png" src="../../../_images/cursor_over_the_start_button1.png" />
+<p>Изначально при нажатии кнопки запуска тестов рядом с названием лабораторной
+работы запускаются все тесты, независимо от оценки (и от лабораторной работы,
+если Вы указывали корневую папку при конфигурации). Чтобы запустить их
+на определённую оценку (и для определённой лабораторной работы),
+откройте файл <code class="docutils literal notranslate"><span class="pre">.vscode\settings.json</span></code> и измените значение ключа
+<strong>python.testing.pytestArgs</strong>. По умолчанию, там будет стоять <code class="docutils literal notranslate"><span class="pre">&quot;.&quot;</span></code>
+или лабораторная работа, указанная при конфигурации.
+Вместо этого Вы можете выставить там нужную лабораторную работу
+вместе с флагом <code class="docutils literal notranslate"><span class="pre">&quot;-m&quot;</span></code> и желаемую оценку
+(<code class="docutils literal notranslate"><span class="pre">mark4</span></code>, <code class="docutils literal notranslate"><span class="pre">mark6</span></code>, <code class="docutils literal notranslate"><span class="pre">mark8</span></code> или <code class="docutils literal notranslate"><span class="pre">mark10</span></code>).</p>
+<p>Например, данный файл может выглядеть следующим образом:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+ <span class="s2">&quot;python.testing.pytestArgs&quot;</span><span class="p">:</span> <span class="p">[</span>
+     <span class="s2">&quot;lab_4_auto_completion&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;-m&quot;</span><span class="p">,</span> <span class="s2">&quot;mark10&quot;</span>
+ <span class="p">],</span>
+ <span class="s2">&quot;python.testing.unittestEnabled&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+ <span class="s2">&quot;python.testing.pytestEnabled&quot;</span><span class="p">:</span> <span class="n">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Запуск тестов в CI</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>Запуск тестов и других проверок в CI происходит в открытом
+Вами Пулл Реквесте.</p>
+<p>В самый первый раз проверки запускаются в тот момент, когда Вы
+открываете Пулл Реквест. После этого проверки запускаются только тогда,
+когда вы делаете <cite>push</cite> изменений в Ваш форк. Проверки CI запускаются
+автоматически, обычно через минуту.</p>
+<p>Чтобы посмотреть результаты проверок, зайдите в Ваш Пулл Реквест,
+нажмите на кнопку <cite>details</cite> интересующей Вас проверки, а затем на
+интересующий Вас шаг проверки.</p>
+<p>Вы можете также посмотреть проверки через вкладку <cite>Checks</cite> в Вашем
+Пулл Реквесте.</p>
+<img alt="../../../_images/ci_report1.png" src="../../../_images/ci_report1.png" />
+<img alt="../../../_images/ci_tab1.png" src="../../../_images/ci_tab1.png" />
+<p>Если проверки в CI не запускаются, удостоверьтесь, что Вы приняли
+приглашение в группу на GitHub. Обычно их высылают организованно в
+начале курса.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fork_update.html" class="btn btn-neutral float-left" title="Обновление форка" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="run_in_terminal_ru.html" class="btn btn-neutral float-right" title="Запуск Python программ в терминале" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+fipl\-hse.github.io.lab\_3\_ann\_retriever package
+==================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_3\_ann\_retriever.main module
+------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_3_ann_retriever.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fipl\-hse.github.io.lab\_3\_ann\_retriever.start module
+-------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_3_ann_retriever.start
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_3_ann_retriever
+   :members:
+   :undoc-members:
+   :show-inheritance:

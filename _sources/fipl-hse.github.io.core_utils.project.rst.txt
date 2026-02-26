@@ -1,0 +1,21 @@
+fipl\-hse.github.io.core\_utils.project package
+===============================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.core\_utils.project.lab\_settings module
+------------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.core_utils.project.lab_settings
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.core_utils.project
+   :members:
+   :undoc-members:
+   :show-inheritance:

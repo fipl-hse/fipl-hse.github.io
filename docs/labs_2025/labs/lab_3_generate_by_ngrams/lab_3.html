@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа №3. Генерация текста с помощью n-грамм &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_3_generate_by_ngrams package" href="lab_3_generate_by_ngrams.api.html" />
+    <link rel="prev" title="lab_2_spellcheck package" href="../lab_2_spellcheck/lab_2_spellcheck.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2025/2026)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_1_keywords_tfidf/lab_1.html">Лабораторная работа №1. Выделение ключевых слов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_2_spellcheck/lab_2.html">Лабораторная работа №2. Исправление опечаток на основе редакционного расстояния</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Лабораторная работа №3. Генерация текста с помощью n-грамм</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_3_generate_by_ngrams.api.html">lab_3_generate_by_ngrams package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_4_auto_completion/lab_4.html">Лабораторная работа №4. Система генерации текста на основе префиксного дерева</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+      <li class="breadcrumb-item active">Лабораторная работа №3. Генерация текста с помощью n-грамм</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/labs_2025/labs/lab_3_generate_by_ngrams/lab_3.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o3-n">
+<h1>Лабораторная работа №3. Генерация текста с помощью n-грамм<a class="headerlink" href="#o3-n" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_3_generate_by_ngrams.api.html">lab_3_generate_by_ngrams package</a></li>
+</ul>
+</div>
+<section id="id1">
+<h2>Дано<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Текст на английском языке (<code class="docutils literal notranslate"><span class="pre">assets/Harry_Potter.txt</span></code>),
+который загружен и сохранен в переменную <code class="docutils literal notranslate"><span class="pre">text</span></code> в <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Языковой профиль английского языка (<code class="docutils literal notranslate"><span class="pre">assets/en_own.json</span></code>).</p></li>
+</ol>
+<p><strong>Генерация текста</strong> — одна из прикладных задач обработки естественного языка
+(Natural Language Processing, NLP). На данный момент существует
+много больших языковых моделей, которые могут генерировать тексты,
+близкие к написанным человеком.</p>
+<p>Задача генерации текста реализует возможность языковой модели
+на основе исходного текста предсказывать последующее слово и генерировать осмысленный
+текст.</p>
+<p>Существуют различные алгоритмы, позволяющие генерировать последовательности. По ходу
+выполнения лабораторной работы Вы познакомитесь с тремя алгоритмами:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Greedy_algorithm">Greedy Algorithm</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Beam_search">Beam Search Algorithm</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_backoff">BackOff Algorithm</a></p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>Терминология<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>В рамках лабораторной работы Вы будете работать с n-граммами.</p>
+<dl class="simple glossary">
+<dt id="term-N">N-граммы<a class="headerlink" href="#term-N" title="Link to this term"></a></dt><dd><p>Последовательность из n элементов, включенная в другую
+последовательность.</p>
+</dd>
+</dl>
+<p>В настоящей лабораторной мы будем работать с n-граммами,
+состоящими из закодированных токенов текста.</p>
+<p>Допустим, у нас есть следующий закодированный текст:
+<code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0)</span></code></p>
+<p>Каждое число в этой последовательности однозначно соответствует какому-либо токену.
+Тогда биграммы (n-граммы размера 2) имеют следующий вид:
+<code class="docutils literal notranslate"><span class="pre">((1,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">3),</span> <span class="pre">(3,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">4),</span> <span class="pre">(4,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">5),</span>
+<span class="pre">(5,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">7),</span> <span class="pre">(7,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">3),</span> <span class="pre">(3,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">4),</span> <span class="pre">(4,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">0),</span>
+<span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">5),</span> <span class="pre">(5,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">7),</span> <span class="pre">(7,</span> <span class="pre">0))</span></code>;</p>
+<p>Иными словами, это все подпоследовательности длины 2, которые можно извлечь из этого текста.</p>
+<p>Триграммы (N-граммы размера 3) имеют следующий вид:
+<code class="docutils literal notranslate"><span class="pre">((1,</span> <span class="pre">2,</span> <span class="pre">3),</span> <span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">0),</span> <span class="pre">(3,</span> <span class="pre">0,</span> <span class="pre">4),</span> <span class="pre">(0,</span> <span class="pre">4,</span> <span class="pre">1),</span> <span class="pre">(4,</span> <span class="pre">1,</span> <span class="pre">0),</span> <span class="pre">(1,</span> <span class="pre">0,</span> <span class="pre">2),</span>
+<span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">5),</span> <span class="pre">(2,</span> <span class="pre">5,</span> <span class="pre">6),</span> <span class="pre">(5,</span> <span class="pre">6,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6,</span> <span class="pre">7),</span> <span class="pre">(6,</span> <span class="pre">7,</span> <span class="pre">0),</span> <span class="pre">(7,</span> <span class="pre">0,</span> <span class="pre">2),</span> <span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">3),</span>
+<span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">0),</span> <span class="pre">(3,</span> <span class="pre">0,</span> <span class="pre">4),</span> <span class="pre">(0,</span> <span class="pre">4,</span> <span class="pre">1),</span> <span class="pre">(4,</span> <span class="pre">1,</span> <span class="pre">0),</span> <span class="pre">(1,</span> <span class="pre">0,</span> <span class="pre">2),</span> <span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">5),</span> <span class="pre">(2,</span> <span class="pre">5,</span> <span class="pre">6),</span>
+<span class="pre">(5,</span> <span class="pre">6,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6,</span> <span class="pre">7),</span> <span class="pre">(6,</span> <span class="pre">7,</span> <span class="pre">0))</span></code></p>
+</section>
+<section id="id3">
+<h2>Что необходимо сделать<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>Шаг 0. Начать работу над лабораторной (вместе с преподавателем на практике)<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Измените файлы <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Закоммитьте изменения и создайте новый Pull Request.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Код, выполняющий все требуемые действия, должен быть написан в
+функции <code class="docutils literal notranslate"><span class="pre">main</span></code> в модуле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</div>
+<p>Для этого реализуйте функции в модуле <code class="docutils literal notranslate"><span class="pre">main.py</span></code>
+и импортируйте их в <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.
+Вызов функции в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В рамках данной лабораторной работы <strong>нельзя использовать
+сторонние модули, а также стандартные модули collections и itertools</strong>.</p>
+<p>Обратите внимание, что в файле <code class="docutils literal notranslate"><span class="pre">target_score.txt</span></code> необходимо выставить
+желаемую оценку: 4, 6, 8 или 10. Чем выше желаемая оценка, тем большее
+количество тестов запускается при проверке вашего Pull Request.</p>
+</section>
+<section id="id5">
+<h3>Шаг 1. Объявить сущность по обработке текста, кодированию и декодированию<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Для работы с текстом в первую очередь необходимо научиться предобрабатывать сырые
+текстовые данные. В этом нам поможет класс
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor" title="lab_3_generate_by_ngrams.main.TextProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor</span></code></a>, который Вы реализуете в
+ходе выполнения первого шага. В зону ответственности данного класса входят любые
+манипуляции с текстом, включая его очистку, токенизацию, кодирование и декодирование.
+Данный этап работы является ключевым, так как благодаря нему становится возможным
+использование языковых моделей, которые выявляют закономерности только в числовых данных.</p>
+<p>Класс имеет следующие внутренние атрибуты:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._end_of_word_token</span></code> - это специальный символ <code class="docutils literal notranslate"><span class="pre">_</span></code>, обозначающий конец
+слова при посимвольной токенизации;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._storage</span></code> - словарь для хранения буквы-токена и ее идентификатора,
+который на данном этапе должен быть заполнен специальным символом и его
+идентификатором равным <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Оба эти атрибута являются защищенными, то есть обращение к ним за
+пределами методов этого класса не предполагается.</p>
+</div>
+<section id="id6">
+<h4>Шаг 1.1. Токенизировать заданную последовательность<a class="headerlink" href="#id6" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor._tokenize" title="lab_3_generate_by_ngrams.main.TextProcessor._tokenize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor._tokenize()</span></code></a>,
+который позволяет разбить текст на токены.
+Текст должен быть приведен к нижнему регистру и очищен от знаков препинания и цифр.
+Токеном в данном случае является один буквенный символ.
+В качестве разделителя между словами используется <code class="docutils literal notranslate"><span class="pre">end_of_word_token</span></code>.</p>
+<p>Метод разбивает текст на токены, вставляя после каждого слова специальный токен
+конца слова <code class="docutils literal notranslate"><span class="pre">end_of_word_token</span></code>, который сохранен в соответствующем атрибуте экземпляра
+класса. Границей слова в данной работе выступает любой пробельный символ или их сочетание.</p>
+<p>Если слово состоит полностью из цифр и знаков препинания, то вставлять токен конца
+слова после него не нужно. Иными словами, в токенизированной последовательности не
+должно быть двух токенов конца слова подряд.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Разделитель добавляется после последнего слова, если текст заканчивается
+пробелом или знаком препинания. В противном случае, разделитель после последнего
+слова не добавляется.</p>
+</div>
+<p>Например, строка <code class="docutils literal notranslate"><span class="pre">'She</span> <span class="pre">is</span> <span class="pre">happy.</span> <span class="pre">He</span> <span class="pre">is</span> <span class="pre">happy.'</span></code> должна быть
+токенизирована следующим образом:
+<code class="docutils literal notranslate"><span class="pre">('s',</span> <span class="pre">'h',</span> <span class="pre">'e',</span> <span class="pre">'_',</span> <span class="pre">'i',</span> <span class="pre">'s',</span> <span class="pre">'_',</span> <span class="pre">'h',</span> <span class="pre">'a',</span> <span class="pre">'p',</span> <span class="pre">'p',</span> <span class="pre">'y',</span> <span class="pre">'_',</span>
+<span class="pre">'h',</span> <span class="pre">'e',</span> <span class="pre">'_',</span> <span class="pre">'i',</span> <span class="pre">'s',</span> <span class="pre">'_',</span> <span class="pre">'h',</span> <span class="pre">'a',</span> <span class="pre">'p',</span> <span class="pre">'p',</span> <span class="pre">'y',</span> <span class="pre">'_')</span></code>,</p>
+<p>Строка <code class="docutils literal notranslate"><span class="pre">'She</span> <span class="pre">is</span> <span class="pre">happy.</span> <span class="pre">He</span> <span class="pre">is</span> <span class="pre">happy'</span></code> токенизируется так:
+<code class="docutils literal notranslate"><span class="pre">('s',</span> <span class="pre">'h',</span> <span class="pre">'e',</span> <span class="pre">'_',</span> <span class="pre">'i',</span> <span class="pre">'s',</span> <span class="pre">'_',</span> <span class="pre">'h',</span> <span class="pre">'a',</span> <span class="pre">'p',</span> <span class="pre">'p',</span> <span class="pre">'y',</span> <span class="pre">'_',</span>
+<span class="pre">'h',</span> <span class="pre">'e',</span> <span class="pre">'_',</span> <span class="pre">'i',</span> <span class="pre">'s',</span> <span class="pre">'_',</span> <span class="pre">'h',</span> <span class="pre">'a',</span> <span class="pre">'p',</span> <span class="pre">'p',</span> <span class="pre">'y')</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подается аргумент неправильного типа, то есть не
+строка, или строка пустая, или если при токенизации не было найдено
+ни одной буквы, то возвращается значение <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="id7">
+<h4>Шаг 1.2. Добавить букву в хранилище<a class="headerlink" href="#id7" title="Link to this heading"></a></h4>
+<p>На этом шаге Вам нужно каждой букве из заданного текста
+присвоить некоторый уникальный идентификатор.
+Это необходимо для того, чтобы работать не со строками напрямую,
+а с числами, которые их представляют.</p>
+<p>Для этого реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor._put" title="lab_3_generate_by_ngrams.main.TextProcessor._put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor._put()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Идентификатор</strong> - значение, которое однозначно указывает
+на токен и равно длине <code class="docutils literal notranslate"><span class="pre">_storage</span></code> (атрибут объекта данного
+класса) на момент добавления буквы. Идентификатор специального
+символа <code class="docutils literal notranslate"><span class="pre">_</span></code> принимает значение <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+</div>
+<p><strong>Правила корректного заполнения хранилища</strong>:</p>
+<ul class="simple">
+<li><p>Идентификаторы уникальны и однозначно указывают на токен (например, при добавлении
+нового токена можно использовать длину хранилища <cite>_storage</cite>).</p></li>
+<li><p>Для одной и той же буквы существует ровно один идентификатор;</p></li>
+<li><p>Одинаковых идентификаторов у двух разных букв быть не может;</p></li>
+<li><p>Если буква уже существовала в хранилище, идентификатор остается прежним;</p></li>
+<li><p>Идентификатор специального символа <cite>_</cite> должен принимать значение <cite>0</cite>.</p></li>
+</ul>
+<p>Например, если на вход подается буква <code class="docutils literal notranslate"><span class="pre">'s'</span></code>, то хранилище будет
+выглядеть следующим образом - <code class="docutils literal notranslate"><span class="pre">{'_':</span> <span class="pre">0,</span> <span class="pre">'s':</span> <span class="pre">1}</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подается некорректное значение (аргумент
+неправильного типа, то есть не строка, или длина строки отлична от 1),
+возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Данный метод является защищенным - его использование за пределами
+методов класса не предполагается.</p>
+</div>
+</section>
+<section id="id8">
+<h4>Шаг 1.3. Получить идентификатор буквы<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<p>Для успешного кодирования текста Вам необходимо научиться получать
+идентификатор для каждой буквы из токенизированного текста.</p>
+<p>Для этого реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.get_id" title="lab_3_generate_by_ngrams.main.TextProcessor.get_id"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.get_id()</span></code></a>.</p>
+<p>Например, в хранилище вида <code class="docutils literal notranslate"><span class="pre">{'_':</span> <span class="pre">0,</span> <span class="pre">'s':</span> <span class="pre">1}</span></code> для <code class="docutils literal notranslate"><span class="pre">'s'</span></code>
+метод вернет идентификатор <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подается некорректное значение аргумента
+(то есть тип аргумента не строка), или буква отсутствует
+в хранилище, возвращается None.</p>
+</div>
+</section>
+<section id="id9">
+<h4>Шаг 1.4. Получить букву по идентификатору<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<p>Теперь сделаем обратный процесс.
+Для декодирования, реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.get_token" title="lab_3_generate_by_ngrams.main.TextProcessor.get_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.get_token()</span></code></a>,
+который получает букву по заданному идентификатору.</p>
+<p>Например, в хранилище вида <code class="docutils literal notranslate"><span class="pre">{'_':</span> <span class="pre">0,</span> <span class="pre">'s':</span> <span class="pre">1}</span></code> для идентификатора
+<code class="docutils literal notranslate"><span class="pre">1</span></code> метод вернет <code class="docutils literal notranslate"><span class="pre">'s'</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подается неизвестный (отсутствует в хранилище)
+или некорректный (не соответствует типу данных
+<code class="docutils literal notranslate"><span class="pre">int</span></code>) идентификатор, возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="id10">
+<h4>Шаг 1.5. Закодировать текст<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.encode" title="lab_3_generate_by_ngrams.main.TextProcessor.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.encode()</span></code></a>,
+который кодирует текст. Он обязательно должен вызывать методы
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor._tokenize" title="lab_3_generate_by_ngrams.main.TextProcessor._tokenize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor._tokenize()</span></code></a>,
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor._put" title="lab_3_generate_by_ngrams.main.TextProcessor._put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor._put()</span></code></a> и
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.get_id" title="lab_3_generate_by_ngrams.main.TextProcessor.get_id"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.get_id()</span></code></a>.</p>
+<p>Например, возьмем текст <code class="docutils literal notranslate"><span class="pre">&quot;She</span> <span class="pre">is</span> <span class="pre">happy.</span> <span class="pre">He</span> <span class="pre">is</span> <span class="pre">happy.&quot;</span></code> и
+заполним по нему хранилище:
+<code class="docutils literal notranslate"><span class="pre">{'_':</span> <span class="pre">0,</span> <span class="pre">'s':</span> <span class="pre">1,</span> <span class="pre">'h':</span> <span class="pre">2,</span> <span class="pre">'e':</span> <span class="pre">3,</span> <span class="pre">'i':</span> <span class="pre">4,</span> <span class="pre">'a':</span> <span class="pre">5,</span> <span class="pre">'p':</span> <span class="pre">6,</span> <span class="pre">'y':</span> <span class="pre">7}</span></code>.
+В результате кодирования текста выше должен получиться кортеж,
+в котором каждый элемент соответствует идентификатору
+буквы из хранилища <code class="docutils literal notranslate"><span class="pre">_storage</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">encoded_corpus</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+                  <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (текст не является
+строкой или строка пустая), возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>. Если какой-либо
+из методов, который вызывается в данном методе, возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+метод также должен вернуть <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="id11">
+<h4>Шаг 1.6. Декодировать текст в токенизированную последовательность<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<p>Теперь, когда у нас есть выделенные токены и присвоенные им числовые
+идентификаторы, мы можем декодировать любую последовательность.</p>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor._decode" title="lab_3_generate_by_ngrams.main.TextProcessor._decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor._decode()</span></code></a>,
+который позволяет преобразовать закодированный текст в кортеж,
+состоящий из буквенных и специальных символов.
+Метод обязательно должен вызывать
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.get_token" title="lab_3_generate_by_ngrams.main.TextProcessor.get_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.get_token()</span></code></a>.</p>
+<p>Например, для закодированного корпуса
+<code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0)</span></code>
+у вас должен получиться кортеж следующего вида:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">decoded_corpus</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (аргумент не является
+кортежем или кортеж пустой), если токенизированный текст или идентификатор
+буквы принимают значение <code class="docutils literal notranslate"><span class="pre">None</span></code>, то метод возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Данный метод является защищенным - его использование за пределами
+методов класса не предполагается.</p>
+</div>
+</section>
+<section id="id12">
+<h4>Шаг 1.7. Декодировать текст в строковый формат<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text" title="lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text()</span></code></a>,
+который позволяет перейти от токенизированного текста в формате
+кортежа к тексту в строковом формате.</p>
+<p>При этом на выходе строка должна соответствовать следующим требованиям:</p>
+<ol class="arabic simple">
+<li><p>Строка должна начинаться с заглавной буквы.</p></li>
+<li><p>В конце строки ставится <code class="docutils literal notranslate"><span class="pre">.</span></code>.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Специальные токены конца слова должны быть конвертированы в пробелы.
+При этом пробел после последнего слова в тексте ставить не нужно.</p>
+</div>
+<p>Например, для декодированного на предыдущем шаге корпуса
+<code class="docutils literal notranslate"><span class="pre">('s',</span> <span class="pre">'h',</span> <span class="pre">'e',</span> <span class="pre">'_',</span> <span class="pre">'i',</span> <span class="pre">'s',</span> <span class="pre">'_',</span> <span class="pre">'h',</span> <span class="pre">'a',</span> <span class="pre">'p',</span> <span class="pre">'p',</span> <span class="pre">'y',</span> <span class="pre">'_',</span>
+<span class="pre">'h',</span> <span class="pre">'e',</span> <span class="pre">'_',</span> <span class="pre">'i',</span> <span class="pre">'s',</span> <span class="pre">'_',</span> <span class="pre">'h',</span> <span class="pre">'a',</span> <span class="pre">'p',</span> <span class="pre">'p',</span> <span class="pre">'y',</span> <span class="pre">'_')</span></code>
+должен получиться следующий текст: <code class="docutils literal notranslate"><span class="pre">She</span> <span class="pre">is</span> <span class="pre">happy</span> <span class="pre">he</span> <span class="pre">is</span> <span class="pre">happy.</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (токенизированный
+текст не является кортежем или кортеж пустой), возвращается
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Данный метод является защищенным - его использование за пределами
+методов класса не предполагается.</p>
+</div>
+</section>
+<section id="id13">
+<h4>Шаг 1.8. Декодировать текст<a class="headerlink" href="#id13" title="Link to this heading"></a></h4>
+<p>Наконец, применим полную логику перехода от закодированного текста к декодированному.</p>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.decode" title="lab_3_generate_by_ngrams.main.TextProcessor.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.decode()</span></code></a>,
+который преобразует закодированный текст - кортеж с
+идентификаторами - в текст в виде строки.</p>
+<p>Метод обязательно должен вызывать методы
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor._decode" title="lab_3_generate_by_ngrams.main.TextProcessor._decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor._decode()</span></code></a> и
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text" title="lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text()</span></code></a>.</p>
+<p>Например, для закодированного корпуса
+<code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0)</span></code>
+у вас должен получиться следующий текст: <code class="docutils literal notranslate"><span class="pre">She</span> <span class="pre">is</span> <span class="pre">happy</span> <span class="pre">he</span> <span class="pre">is</span> <span class="pre">happy.</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (закодированный
+текст не является кортежем или отсутствует), возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Если какой-либо из использованных методов возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+необходимо так же вернуть <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<p>Данный метод является публичным и инкапсулирует в себе внутреннюю логику
+обработки текста.</p>
+</section>
+<section id="id14">
+<h4>Шаг 1.9. Получить специальный токен<a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<p>В данном классе атрибут <code class="docutils literal notranslate"><span class="pre">self._end_of_word_token</span></code> является защищенным:
+мы не хотим допустить его изменения пользователем.
+Однако узнать, какой именно токен используется для разделения слов, все-таки
+иногда необходимо.</p>
+<p>Для этого реализуем метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.get_end_of_word_token" title="lab_3_generate_by_ngrams.main.TextProcessor.get_end_of_word_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.get_end_of_word_token()</span></code></a>,
+который возвращает значение внутреннего атрибута <code class="docutils literal notranslate"><span class="pre">self._end_of_word_token</span></code>.</p>
+</section>
+<section id="start-py">
+<h4>Шаг 1.10. Продемонстрировать результаты в <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#start-py" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шага 1 соответствует 4 баллам.</p>
+</div>
+<p>Продемонстрируйте результат кодирования и декодирования
+в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> модуля <code class="docutils literal notranslate"><span class="pre">start.py</span></code>, используя текст на
+английском языке (переменная <code class="docutils literal notranslate"><span class="pre">text</span></code>).
+В качестве специального токена конца слова используйте строку <code class="docutils literal notranslate"><span class="pre">'_'</span></code>.</p>
+</section>
+</section>
+<section id="n">
+<h3>Шаг 2. Создать структуру для хранения и обработки n-грамм<a class="headerlink" href="#n" title="Link to this heading"></a></h3>
+<p>Теперь у Вас есть все, чтобы создать свою простейшую языковую модель на основе
+n-грамм для решения задачи генерации текста.</p>
+<p>Класс <a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel</span></code></a>
+позволяет собрать n-граммы из заданного закодированного текста и
+сгенерировать следующую букву последовательности.</p>
+<p>Допустим, у нас есть закодированный текст, который выглядит
+следующим образом: <code class="docutils literal notranslate"><span class="pre">text</span> <span class="pre">=</span> <span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0,</span>
+<span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0)</span></code>.</p>
+<p>Если нам необходимо заполнить <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code> с <code class="docutils literal notranslate"><span class="pre">N=2</span></code>,
+то мы получим следующие биграммы: <code class="docutils literal notranslate"><span class="pre">((1,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">3),</span> <span class="pre">(3,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">4),</span>
+<span class="pre">(4,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">5),</span> <span class="pre">(5,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">7),</span> <span class="pre">(7,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">2),</span>
+<span class="pre">(2,</span> <span class="pre">3),</span> <span class="pre">(3,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">4),</span> <span class="pre">(4,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">5),</span> <span class="pre">(5,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6),</span>
+<span class="pre">(6,</span> <span class="pre">7),</span> <span class="pre">(7,</span> <span class="pre">0))</span></code>.
+Если <code class="docutils literal notranslate"><span class="pre">N=3</span></code>, то мы получим следующие триграммы:
+<code class="docutils literal notranslate"><span class="pre">((1,</span> <span class="pre">2,</span> <span class="pre">3),</span> <span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">0),</span> <span class="pre">(3,</span> <span class="pre">0,</span> <span class="pre">4),</span> <span class="pre">(0,</span> <span class="pre">4,</span> <span class="pre">1),</span> <span class="pre">(4,</span> <span class="pre">1,</span> <span class="pre">0),</span> <span class="pre">(1,</span> <span class="pre">0,</span> <span class="pre">2),</span>
+<span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">5),</span> <span class="pre">(2,</span> <span class="pre">5,</span> <span class="pre">6),</span> <span class="pre">(5,</span> <span class="pre">6,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6,</span> <span class="pre">7),</span> <span class="pre">(6,</span> <span class="pre">7,</span> <span class="pre">0),</span> <span class="pre">(7,</span> <span class="pre">0,</span> <span class="pre">2),</span>
+<span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">3),</span> <span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">0),</span> <span class="pre">(3,</span> <span class="pre">0,</span> <span class="pre">4),</span> <span class="pre">(0,</span> <span class="pre">4,</span> <span class="pre">1),</span> <span class="pre">(4,</span> <span class="pre">1,</span> <span class="pre">0),</span> <span class="pre">(1,</span> <span class="pre">0,</span> <span class="pre">2),</span>
+<span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">5),</span> <span class="pre">(2,</span> <span class="pre">5,</span> <span class="pre">6),</span> <span class="pre">(5,</span> <span class="pre">6,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6,</span> <span class="pre">7),</span> <span class="pre">(6,</span> <span class="pre">7,</span> <span class="pre">0))</span></code>.</p>
+<section id="id15">
+<h4>Шаг 2.1. Объявить сущность языковой модели<a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
+<p>Перейдем к реализации абстракции, которая хранит в себе языковое представление
+в виде n-грамм и на их основе предсказывает следующий токен.</p>
+<p>Создайте класс <a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel</span></code></a>.</p>
+<p>Описание внутренних атрибутов:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._encoded_corpus</span></code> - закодированный текст;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._n_gram_size</span></code> - размер n–грамм, который в данном случае должен принимать
+значения от 2 до 5;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._n_gram_frequencies</span></code> - частотный словарь n–грамм, в котором ключами выступают
+n-граммы, а значениями - вероятность появления последнего токена данной n-граммы в контексте,
+задаваемом n-граммой.</p></li>
+</ul>
+<p>На момент инициализации атрибут <code class="docutils literal notranslate"><span class="pre">self._n_gram_frequencies`</span></code> является пустым словарем,
+его заполнение произойдет далее.</p>
+</section>
+<section id="id16">
+<h4>Шаг 2.2. Извлечь n-граммы из закодированного корпуса<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
+<p>Как уже упоминалось, каждый экземпляр класса <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code> содержит языковое
+представление в виде n-грамм. Для этого нам необходимо извлечь из корпуса n-граммы
+заданного размера.</p>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams" title="lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams()</span></code></a>,
+который извлекает из закодированного корпуса n-граммы, размер которых
+указан в атрибуте <code class="docutils literal notranslate"><span class="pre">self._n_gram_size</span></code>.</p>
+<p>Например, для закодированного корпуса
+<code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0)</span></code>
+при <code class="docutils literal notranslate"><span class="pre">n_gram_size</span> <span class="pre">=</span> <span class="pre">2</span></code> метод должен вернуть следующий кортеж:
+<code class="docutils literal notranslate"><span class="pre">((1,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">3),</span> <span class="pre">(3,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">4),</span> <span class="pre">(4,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">5),</span> <span class="pre">(5,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6),</span>
+<span class="pre">(6,</span> <span class="pre">7),</span> <span class="pre">(7,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">3),</span> <span class="pre">(3,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">4),</span> <span class="pre">(4,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">5),</span>
+<span class="pre">(5,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">7),</span> <span class="pre">(7,</span> <span class="pre">0))</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (корпус не является
+кортежем или кортеж пустой), возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Данный метод является защищенным - его использование за пределами
+методов класса не предполагается.</p>
+</div>
+</section>
+<section id="id17">
+<h4>Шаг 2.3. Создать частотный словарь n-грамм<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.build" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.build()</span></code></a>,
+который заполняет атрибут <code class="docutils literal notranslate"><span class="pre">self._n_gram_frequencies</span></code>, где ключом
+является n-грамма, а значением - вероятность появления последнего токена данной
+n-граммы в контексте.
+Метод обязательно должен вызывать
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams" title="lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams()</span></code></a>.</p>
+<p>В данной работе вам необходимо научиться считать вероятность появления последнего токена
+с учетом некоторого контекста.</p>
+<p>Давайте посмотрим на общий вид вычисления данной вероятности:</p>
+<div class="math notranslate nohighlight">
+\[{P(w_{n}|w_{n−N+1}...w_{n−1})} = \frac{P(w_{n},w_{n−N+1}...w_{n−1})}{P(w_{n−N+1}...w_{n−1})}\]</div>
+<p>Для понимания указанной формулы необходимо знать, что такое условная вероятность.</p>
+<p><em>Условная вероятность</em> <span class="math notranslate nohighlight">\({P(w_{n}|w_{n−N+1}...w_{n−1})}\)</span> – вероятность наступления одного
+события (в данном случае события <span class="math notranslate nohighlight">\(P(w_{n})\)</span>) при условии, что другое событие (то есть
+событие <span class="math notranslate nohighlight">\(P(w_{n−N+1}...w_{n−1})\)</span>) уже произошло.</p>
+<p>В данном случае:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code> - длина заданной последовательности;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> - размер n-грамм.</p></li>
+</ul>
+<p>Предположим, что у нас есть последовательность <code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">3,</span> <span class="pre">2,</span> <span class="pre">1,</span> <span class="pre">7)</span></code> и мы хотим узнать вероятность
+того, что следующий токен <code class="docutils literal notranslate"><span class="pre">(5)</span></code>. Тогда контекст для заданной последовательности при <code class="docutils literal notranslate"><span class="pre">N=3</span></code> имеет
+следующий вид: <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">7)</span></code>.</p>
+<p>Необходимо найти <span class="math notranslate nohighlight">\({P((5)|(1, 7))}\)</span>.</p>
+<p>Как мы можем оценить данную вероятность?</p>
+<p>Оценка максимального правдоподобия (MLE) - метод, который позволяет оценить вероятность.
+Мы получаем оценку для параметров модели n-грамм, нормализуя значения
+из корпуса, чтобы они находились в диапазоне от 0 до 1.</p>
+<p>Таким образом, в общем виде формула расчёта вероятности выглядит следующим образом:</p>
+<div class="math notranslate nohighlight">
+\[{P(w_{n}|w_{n−1})} = \frac{С(w_{n−1},w_{n})}{С(w_{n−1})}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(С(w_{n−1},w_{n})\)</span> - количество вхождений n-граммы, то есть её абсолютная частота;</p></li>
+<li><p><span class="math notranslate nohighlight">\(С(w_{n−1})\)</span> - сколько раз в корпусе встречаются n-граммы, имеющие такое
+же начало, то есть такие же первые N-1 символов.</p></li>
+</ul>
+<p>То есть, чтобы вычислить вероятность токена <code class="docutils literal notranslate"><span class="pre">(5)</span></code> с учетом предыдущего
+контекста <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">7)</span></code>, необходимо вычислить количество триграмм <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">7,</span> <span class="pre">5)</span></code> и нормализовать
+по сумме всех триграмм, которые также начинаются с контекста <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">7)</span></code>.</p>
+<div class="math notranslate nohighlight">
+\[{P((5)|(1, 7))} = \frac{С((1, 7, 5))}{С((1, 7))}\]</div>
+<p>Например, дан следующий набор триграмм:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">n_grams</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>
+     <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+     <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Тогда, для триграммы <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">5)</span></code> значение <span class="math notranslate nohighlight">\(P(w_{1},w_{2})\)</span> равно <code class="docutils literal notranslate"><span class="pre">2</span></code>,
+так как данная n-грамма встретилась только один раз в кортеже со всеми n-граммами.
+Значение <span class="math notranslate nohighlight">\(P(w_{1})\)</span> равно <code class="docutils literal notranslate"><span class="pre">3</span></code>, так как именно столько раз n-грамма
+<code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">2)</span></code>, имеющая такое же начало, встретилась среди всех n-грамм,
+содержащих первые N-1 символов.</p>
+<p>Следовательно, для n-граммы <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">5)</span></code> частотный словарь будет заполнен
+следующем образом:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">frequencies</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">0.6666666666666666</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Например, для закодированного корпуса
+<code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">0)</span></code>
+при <code class="docutils literal notranslate"><span class="pre">n_gram_size</span> <span class="pre">=</span> <span class="pre">3</span></code> должен получиться частотный словарь вида:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">frequencies</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">0.6666666666666666</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">0.3333333333333333</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если метод принимает на вход закодированный текст не в виде кортежа или
+если кортеж пустой, а также, если некорректно извлекаются n-граммы,
+то возвращается <code class="docutils literal notranslate"><span class="pre">1</span></code>, если происходит корректное заполнение частотного
+словаря, метод возвращает <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+</div>
+<p>Продемонстрируйте результат работы данного метода в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> модуля
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</section>
+<section id="id18">
+<h4>Шаг 2.4. Получить размер n-грамм<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
+<p>В данном классе атрибут <code class="docutils literal notranslate"><span class="pre">self._n_gram_size</span></code> является защищенным:
+мы не хотим допустить его изменения в процессе использования внешним пользователем.
+Однако все-таки иногда необходимо узнать размер N-грамм.</p>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size()</span></code></a>,
+который возвращает значение внутреннего атрибута <code class="docutils literal notranslate"><span class="pre">self._n_gram_size</span></code>.</p>
+</section>
+<section id="id19">
+<h4>Шаг 2.5. Сгенерировать следующий токен<a class="headerlink" href="#id19" title="Link to this heading"></a></h4>
+<p>Для генерации текста Вам необходимо научиться по заданному
+контексту определять следующую букву в последовательности.</p>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token()</span></code></a>.</p>
+<p>Данный метод принимает на вход последовательность закодированных токенов.
+Метод отсекает контекст, по которому необходимо определить вероятность каждого из потенциальных
+следующих токенов, то есть N-1 последних элементов последовательности. N в данном случае - размер
+n-грамм, хранимых моделью.</p>
+<p>Например, для n-граммы <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0)</span></code>, контекстом является <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">0)</span></code>.</p>
+<p>Ваша задача, используя частотный словарь и извлеченный контекст, выделить все n-граммы,
+начинающиеся с данного контекста.
+Последние элементы выделенных n-грамм и будут токенами, которые могут продолжить данную
+последовательность.
+Метод возвращает словарь, ключами которого являются буквы, а
+значениями - частоты n-грамм, из которых данная буква была выявлена по контексту.</p>
+<p>Например, метод принимает на вход следующую последовательность: <code class="docutils literal notranslate"><span class="pre">(7,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6)</span></code>.
+Для данной последовательности при <code class="docutils literal notranslate"><span class="pre">n_gram_size</span> <span class="pre">=</span> <span class="pre">3</span></code> контекстом является
+<code class="docutils literal notranslate"><span class="pre">(6,</span> <span class="pre">6)</span></code>.</p>
+<p>Пусть мы имеем частотный словарь следующего вида:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">frequencies</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">0.6666666666666666</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">0.3333333333333333</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Тогда, у нас есть только одна n-грамма, а именно <code class="docutils literal notranslate"><span class="pre">(6,</span> <span class="pre">6,</span> <span class="pre">7)</span></code>, с частотой
+<code class="docutils literal notranslate"><span class="pre">1.0</span></code>, в которой присутствует контекст <code class="docutils literal notranslate"><span class="pre">(6,</span> <span class="pre">6)</span></code>.</p>
+<p>Метод должен вернуть следующий словарь: <code class="docutils literal notranslate"><span class="pre">{7:</span> <span class="pre">1.0}</span></code>,
+в котором ключ - буква, найденная по контексту <code class="docutils literal notranslate"><span class="pre">(6,</span> <span class="pre">6)</span></code>, а
+значение - частота n-граммы <code class="docutils literal notranslate"><span class="pre">(6,</span> <span class="pre">6,</span> <span class="pre">7)</span></code>.</p>
+<p>В словаре таких пар ключ-значение может быть несколько,
+поэтому необходимо произвести двойную сортировку пар: по значению и по ключу
+в порядке убывания.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если введенная последовательность не является кортежем, кортеж пустой или
+неправильная длина последовательности (длина последовательности меньше, чем
+длина контекста), возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="id20">
+<h3>Шаг 3. Создать жадный генератор текста<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<section id="id21">
+<h4>Шаг 3.1. Объявить сущность генератора<a class="headerlink" href="#id21" title="Link to this heading"></a></h4>
+<p>Теперь мы полностью готовы к реализации генерации текста.
+Начнем с самого простого принципа генерации.</p>
+<p><strong>Жадный алгоритм</strong> - это алгоритм генерации, в котором
+следующим токеном всегда выбирается наиболее вероятный элемент,
+предполагая, что конечное решение также будет наиболее вероятный.</p>
+<p>Для того, чтобы сгенерировать последовательности заданной длины,
+создайте класс <a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.GreedyTextGenerator" title="lab_3_generate_by_ngrams.main.GreedyTextGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.GreedyTextGenerator</span></code></a>.</p>
+<p>Описание внутренних атрибутов:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._model</span></code> - экземпляр класса <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._text_processor</span></code> - экземпляр класса <code class="docutils literal notranslate"><span class="pre">TextProcessor</span></code>.</p></li>
+</ul>
+</section>
+<section id="id22">
+<h4>Шаг 3.2. Сгенерировать последовательность<a class="headerlink" href="#id22" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.GreedyTextGenerator.run" title="lab_3_generate_by_ngrams.main.GreedyTextGenerator.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.GreedyTextGenerator.run()</span></code></a>,
+который генерирует последовательность указанной длины.</p>
+<p>Прежде чем создать жадный алгоритм генерации, необходимо сделать несколько
+подготовительных преобразований:</p>
+<ul class="simple">
+<li><p>Закодировать заданную последовательность (<code class="docutils literal notranslate"><span class="pre">prompt</span></code>). Для этого используйте экземпляр
+класса <code class="docutils literal notranslate"><span class="pre">TextProcessor</span></code>, который хранится в соответствующем атрибуте;</p></li>
+<li><p>Получить из языковой модели контекст для генерации.
+Напоминаем, что длина контекста зависит от размера n-грамм.</p></li>
+</ul>
+<p>Алгоритм создания жадного генератора:</p>
+<ol class="arabic simple">
+<li><p>Получить все буквы-кандидаты по контексту. Используйте уже реализованный метод
+класса <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code>.</p></li>
+<li><p>Сгенерировать указанное количество букв, каждый раз выбирая
+кандидата с наибольшей частотой из словаря и добавляя его к последовательности.</p></li>
+</ol>
+<p>Следует учесть, что:</p>
+<ol class="arabic simple">
+<li><p>В случае, если буквы-кандидаты не были найдены, то генерация прекращается,
+чтобы избежать процесса зацикливания.</p></li>
+<li><p>С добавлением новой буквы к исходной последовательности,
+контекст изменяется, так как меняется последовательность.</p></li>
+</ol>
+<p>Метод возвращает сгенерированный текст в виде строки.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (длина последовательности
+не типа <code class="docutils literal notranslate"><span class="pre">int</span></code>, заданная последовательность не является
+строкой или последовательность пустая), если вызываемые методы возвращают
+значение <code class="docutils literal notranslate"><span class="pre">None</span></code>, метод возвращает значение <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<p>В данном методе необходимо использовать методы
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.encode" title="lab_3_generate_by_ngrams.main.TextProcessor.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.encode()</span></code></a> и
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.decode" title="lab_3_generate_by_ngrams.main.TextProcessor.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.decode()</span></code></a>,
+а также методы
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size()</span></code></a> и
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token()</span></code></a>.</p>
+<p>Например, при следующих значениях:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">seq_len</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;She is&#39;</span>
+</pre></div>
+</div>
+<p>метод возвращает следующий результат <code class="docutils literal notranslate"><span class="pre">'She</span> <span class="pre">is</span> <span class="pre">happy.'</span></code>.</p>
+</section>
+<section id="id23">
+<h4>Шаг 3.3. Продемонстрировать результаты в <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#id23" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 2 и 3 соответствует 6 баллам.</p>
+</div>
+<p>Продемонстрируйте результат работы жадного алгоритма генерации текста
+в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> модуля <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.
+Попробуйте в качестве затравки использовать ‘Vernon’.
+Пусть размер n-грамм будет равен 7, а длина последовательности - 51 .</p>
+</section>
+</section>
+<section id="beam-search">
+<h3>Шаг 4. Создание алгоритма Beam Search<a class="headerlink" href="#beam-search" title="Link to this heading"></a></h3>
+<p>На данном этапе мы предлагаем Вам реализовать генератор,
+используя алгоритм лучевого поиска.</p>
+<p>На данном этапе мы предлагаем Вам реализовать генератор, используя алгоритм лучевого
+поиска.
+Принципиальное отличие данного алгоритма от жадного заключается в том, что в случае
+с жадным алгоритмом выбор на каждом шаге самого вероятного продолжения последовательности
+в конечном итоге не гарантирует получение оптимальной последовательности, в то время, как
+лучевой поиск строит дерево поиска. На каждом уровне дерева алгоритм генерирует
+все возможные варианты продолжения последовательности, сортируя их в порядке
+убывания вероятности. Для того чтобы не происходило сильное ветвление дерева,
+на каждом уровне выбирается заранее определенное количество наиболее вероятных
+вариантов, которое называется <strong>шириной луча</strong>. Далее разворачиваются только эти
+состояния. При ширине луча <code class="docutils literal notranslate"><span class="pre">1</span></code> лучевой поиск идентичен жадному поиску.</p>
+<p>Вы спросите, почему мы не генерируем все возможные варианты продолжения
+последовательности, чтобы затем выбирать наилучшую? Ответ: подобный алгоритм
+является очень дорогим с точки зрения вычислительных ресурсов.
+Именно поэтому алгоритм Beam Search с шириной луча - компромисс.</p>
+<p>Рассмотрим работу алгоритма лучевого поиска на примере.
+Допустим, нам дана следующая закодированная последовательность, которую необходимо
+продолжить:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">encoded_prompt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>частотный словарь n-грамм при <code class="docutils literal notranslate"><span class="pre">n_gram_size</span> <span class="pre">=</span> <span class="pre">3</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">frequencies</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">0.6666666666666666</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">0.3333333333333333</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>и значение ширины луча: <code class="docutils literal notranslate"><span class="pre">beam</span> <span class="pre">width</span> <span class="pre">=</span> <span class="pre">3</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Сначала языковая модель выявляет контекст из закодированной последовательности,
+который в данном случае имеет следующий вид: <code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">1)</span></code>.</p></li>
+<li><p>В соответствии с частотным словарем, есть только одна буква-кандидат (удовлетворяет
+заданному значению ширины луча) для продолжения контекста <code class="docutils literal notranslate"><span class="pre">0</span></code> с частотой
+встречаемости n–граммы <code class="docutils literal notranslate"><span class="pre">0.08695652173913043</span></code>.</p></li>
+<li><p>Таким образом, у нас получается только один вариант продолжения последовательности
+(дерево ветвится только на одно состояние, что удовлетворяет заданному значению ширины луча)
+с вероятностью, которая в нашем случае считается, как разность вероятности исходной
+последовательности и логарифмированной частоты n–граммы:
+<code class="docutils literal notranslate"><span class="pre">{(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0):</span> <span class="pre">2.4423470353692043}</span></code>.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Изначальная вероятность последовательности (в данном примере
+последовательностью является <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1)</span></code>) принимает значение
+<code class="docutils literal notranslate"><span class="pre">0.0</span></code>.</p>
+</div>
+<p>Теперь нам снова необходимо получить контекст с помощью языковой модели из обновленной
+закодированной последовательности, который в данном случае имеет следующий вид: <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">0)</span></code>.</p>
+<p>Далее шаги 2 и 3 повторяются до тех пор, пока не будет достигнута желаемая
+длина последовательности.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Обратите внимание, что на шагах 2 и 3 количество рассматриваемых для дальнейшей
+генерации букв-кандидатов и вариантов продолжения последовательности не должно
+превышать значение ширины луча.</p>
+</div>
+<section id="id24">
+<h4>Шаг 4.1. Объявить сущность генератора<a class="headerlink" href="#id24" title="Link to this heading"></a></h4>
+<p>Теперь Ваша задача - написать алгоритм лучевого поиска.
+Для этого создайте класс <a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearcher" title="lab_3_generate_by_ngrams.main.BeamSearcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearcher</span></code></a>.</p>
+<p>Описание внутренних атрибутов класса:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._beam_width</span></code> - ширина луча, заполняется значением аргумента <code class="docutils literal notranslate"><span class="pre">beam_width</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._model</span></code> - экземпляр класса <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code>, заполняется значением
+аргумента <code class="docutils literal notranslate"><span class="pre">language_model</span></code>.</p></li>
+</ul>
+</section>
+<section id="id25">
+<h4>Шаг 4.2. Получить буквы-кандидаты для генерации<a class="headerlink" href="#id25" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token" title="lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token()</span></code></a>,
+который позволит Вам получать следующую букву для генерации и вероятность
+появления этого токена в заданном контексте.
+Данный метод обязательно должен вызывать метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Помните, что количество возвращаемых букв-кандидатов не должно
+превышать значение ширины луча.</p>
+</div>
+<p>Например, если метод получает на вход следующую последовательность:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">sequence</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>контекстом для которой является кортеж <code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">1)</span></code>,
+и частотный словарь, который хранит
+следующие значения при <code class="docutils literal notranslate"><span class="pre">n_gram_size</span> <span class="pre">=</span> <span class="pre">3</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">frequencies</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">0.6666666666666666</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mf">1.0</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">0.3333333333333333</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>то метод возвращает: <code class="docutils literal notranslate"><span class="pre">[(0,</span> <span class="pre">1.0)]</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если аргументы имеют некорректный тип данных, на вход подается пустая
+последовательность или метод <code class="docutils literal notranslate"><span class="pre">generate_next_token</span></code> возвращает
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, то данный метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>. В случае, если словарь с буквами
+для генерации пустой, то метод возвращает пустой список.</p>
+</div>
+</section>
+<section id="id26">
+<h4>Шаг 4.3. Получить варианты итоговых последовательностей<a class="headerlink" href="#id26" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence" title="lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence()</span></code></a>,
+который позволяет получить варианты продолжения последовательностей.</p>
+<p>В данном методе необходимо заполнить существующий словарь итоговых
+последовательностей-кандидатов новыми последовательностями, которые состоят
+из текущей последовательности и нового токена.</p>
+<p>Для каждой новой последовательности в словаре необходимо посчитать ее вероятность
+следующим образом: разность вероятности текущей последовательности (то есть
+последовательности, которую мы расширяем новой буквой) и логарифмированной частоты
+буквы-кандидата.</p>
+<p>Почему нам необходимо логарифмировать частоту встречаемости буквы?</p>
+<p>В данном случае нам необходимо получить вероятность события, что текущая последовательность
+продолжается конкретным токеном.
+Вероятность последовательности вычисляется как произведение вероятности появления
+каждого из токенов, составляющих последовательность. Но, так как вероятность текущей
+последовательности и вероятность появления буквы в этом контексте изменяются в диапазоне
+от <code class="docutils literal notranslate"><span class="pre">0</span></code> до <code class="docutils literal notranslate"><span class="pre">1</span></code>, при перемножении вероятности N–грамм становятся настолько маленькими,
+что перестают быть отличимы от нуля. Подробнее Вы можете прочитать об этом
+<a class="reference external" href="https://en.wikipedia.org/wiki/Arithmetic_underflow">тут</a>).
+Чтобы избежать этого, необходимо применить логарифмирование. Логарифм преобразует результат
+из произведения в сумму, что значительно упрощает дальнейший анализ.
+Результаты не являются численно стабильными, они имеют тенденцию либо быстро сходиться к
+нулю, либо к бесконечности, в зависимости от того, принимает ли вероятность значение меньше
+или больше <code class="docutils literal notranslate"><span class="pre">1</span></code>.
+Более того, логарифм инверсирует порядок, то есть <code class="docutils literal notranslate"><span class="pre">(log(0.2)</span> <span class="pre">&gt;</span> <span class="pre">log(0.8))</span></code>,
+поэтому при вычислении вероятности последовательности с новым токеном необходимо вычесть из
+вероятности текущей последовательности логарифм вероятности появления нового токена в данном
+контексте.</p>
+<p>Например, если мы хотим продолжить последовательность <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2)</span></code>,
+вероятность которой равна <code class="docutils literal notranslate"><span class="pre">0.0</span></code> (так как это исходная последовательность),
+токеном <code class="docutils literal notranslate"><span class="pre">5</span></code> с вероятностью <code class="docutils literal notranslate"><span class="pre">0.6666666666666666</span></code>, то вероятность появления
+последовательности <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">0,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">5)</span></code> рассчитывается следующим
+образом: <code class="docutils literal notranslate"><span class="pre">0.0</span> <span class="pre">-</span> <span class="pre">log(0.6666666666666666)</span></code>, то есть <code class="docutils literal notranslate"><span class="pre">0.40546510810816444</span></code>.</p>
+<p>Следует учесть, что:</p>
+<ul class="simple">
+<li><p>Словарь с итоговыми последовательностями-кандидатами изменяется внутри метода,
+являясь одновременно и входным, и выходным значением. Хорошим тоном является создание
+функции, которая не изменяет объекты за ее пределами, а так как словарь - изменяемый тип
+данных, манипуляции с ним отразятся на объекте за пределами функции. Подумайте, как можно
+избежать побочного эффекта в данном случае;</p></li>
+<li><p>В словарях с последовательностями-кандидатами необходимо удалять элемент
+с текущей последовательностью (то есть с последовательностью до расширения), так как
+мы уже расширили её и вероятность её расширенных версий будет выше.</p></li>
+</ul>
+<p>Метод возвращает словарь из новых последовательностей-кандидатов и вероятностью
+встречаемости.</p>
+<p>Например, метод принимает на вход следующие значения аргументов:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">sequence</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">next_tokens</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.6666666666666666</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.3333333333333333</span><span class="p">)]</span>
+<span class="n">sequence_candidates</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mf">0.0</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>и выводит следующий словарь с последовательностями-кандидатами:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">sequence_candidates</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">0.40546510810816444</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">1.0986122886681098</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если аргументы имеют некорректный тип данных, на вход подаются пустые
+аргументы, длина списков букв-кандидатов превышает значение ширины луча
+или последовательность, которую мы хотим продолжить, отсутствует в
+последовательностях-кандидатах, то метод возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="id27">
+<h4>Шаг 4.4. Удалить последовательности, которые не соответствуют значению ширины луча<a class="headerlink" href="#id27" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates" title="lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates()</span></code></a>,
+который фильтрует недостаточно вероятные последовательности.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Помните, что количество итоговых последовательностей
+не должно превышать значение ширины луча.</p>
+</div>
+<p>Метод принимает на вход последовательность кандидатов <code class="docutils literal notranslate"><span class="pre">sequence_candidates</span></code> в виде словаря,
+ключом которого является последовательность, а значением - вероятность встречаемости данной
+последовательности.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В случае, если подаются некорректные значения (последовательность не является
+словарем или последовательность пустая), возвращаемое значение <cite>None</cite>.</p>
+</div>
+<p>Если значения корректные, то необходимо:</p>
+<ol class="arabic simple">
+<li><p>Найдите топ-N наиболее вероятных последовательностей. Если несколько последовательностей
+имеют одинаковую вероятность, то выбор нужно делать на основе значений ключей, которые
+сортируются в порядке убывания;</p></li>
+<li><p>Исключите те, которые не вошли в топ-N наиболее вероятных, где
+N ширина луча.</p></li>
+</ol>
+<p>Метод возвращает словарь, ключами которого являются последовательности, которые
+входят в топ-N наиболее вероятных, а значениями - их вероятность.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В силу применения логарифма, наиболее вероятными последовательностями
+являются те, у которых соответствующее значение ниже.</p>
+</div>
+<p>Количество топ-N последовательностей определяется параметром <cite>beam_width</cite>.</p>
+<p>Например, на вход подается следующая последовательность кандидатов:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">sequence_candidates</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">0.8109302162163289</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">1.5040773967762742</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">1.5040773967762742</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">2.1972245773362196</span><span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>после сортировки получаем следующий список последовательностей:</p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_sequences</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>кандидаты на удаление при <code class="docutils literal notranslate"><span class="pre">beam_width</span> <span class="pre">=</span> <span class="pre">3</span></code>:</p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">sequences_to_remove</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>В результате метод выведет следующий словарь:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">0.8109302162163289</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">1.5040773967762742</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mf">1.5040773967762742</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id28">
+<h3>Шаг 5. Создать генератор текста на основе алгоритма Beam Search<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<section id="id29">
+<h4>Шаг 5.1. Объявить сущность генератора<a class="headerlink" href="#id29" title="Link to this heading"></a></h4>
+<p>Теперь у Вас есть все, чтобы создать генератор.
+Для этого создайте класс
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearchTextGenerator" title="lab_3_generate_by_ngrams.main.BeamSearchTextGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearchTextGenerator</span></code></a>.</p>
+<p>Описание внутренних атрибутов класса:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._text_processor</span></code> - экземпляр класса <code class="docutils literal notranslate"><span class="pre">TextProcessor</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._beam_width</span></code> - ширина луча;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.beam_searchers</span></code> - экземпляр класса <code class="docutils literal notranslate"><span class="pre">BeamSearcher</span></code>. В качестве аргументов
+экземпляр класса принимает значение атрибута <code class="docutils literal notranslate"><span class="pre">self._beam_width</span></code> и языковую модель.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Экземпляры инициализируются в <code class="docutils literal notranslate"><span class="pre">__init__</span></code>.</p>
+</div>
+</section>
+<section id="id30">
+<h4>Шаг 5.2. Получить следующий токен<a class="headerlink" href="#id30" title="Link to this heading"></a></h4>
+<p>Ваша задача - создать генератор на основе алгоритма Beam Search.</p>
+<p>Для того чтобы получить следующую букву для генерации последовательности,
+необходимо вызвать метод для нулевого экземпляра класса <code class="docutils literal notranslate"><span class="pre">BeamSearcher</span></code>,
+который хранится в атрибуте <code class="docutils literal notranslate"><span class="pre">self.beam_searchers</span></code> данного класса.</p>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearchTextGenerator._get_next_token" title="lab_3_generate_by_ngrams.main.BeamSearchTextGenerator._get_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearchTextGenerator._get_next_token()</span></code></a>.
+Он обязательно должен использовать метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token" title="lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если аргумент имеет некорректный тип данных, то есть не
+является кортежем, или кортеж пустой, то метод возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Если используемые методы возвращают <code class="docutils literal notranslate"><span class="pre">None</span></code>, то метод также возвращает
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="id31">
+<h4>Шаг 5.3. Сгенерировать последовательность<a class="headerlink" href="#id31" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearchTextGenerator.run" title="lab_3_generate_by_ngrams.main.BeamSearchTextGenerator.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearchTextGenerator.run()</span></code></a>,
+который принимает на вход количество букв для генерации
+и начало последовательности в строковом виде. Данный метод позволяет получить
+готовый сгенерированный текст.</p>
+<p>Создание генератора:</p>
+<ol class="arabic simple">
+<li><p>Создайте словарь с последовательностями-кандидатами, ключом которого изначально
+является закодированное начало последовательности, а значением является частота
+закодированной последовательности, принимающая значение <code class="docutils literal notranslate"><span class="pre">0.0</span></code>;</p></li>
+<li><p>Получите топ-N (где N ширина луча) букв-кандидатов для продолжения текущей последовательности;</p></li>
+<li><p>Получите все варианты последовательностей для дальнейшей генерации. Используйте
+для реализации данного пункта экземпляр класса <code class="docutils literal notranslate"><span class="pre">BeamSearcher</span></code>;</p></li>
+<li><p>Фильтрация последовательностей, то есть удаление всех тех последовательностей, которые не
+входят в топ-N (где N ширина луча). Теперь это новые последовательности-кандидаты.
+Напоминаем, что наиболее вероятными последовательностями являются те, у которых соответствующее
+значение ниже.
+Используйте для реализации данного пункта экземпляр класса <code class="docutils literal notranslate"><span class="pre">BeamSearcher</span></code>;</p></li>
+<li><p>Повторяйте шаги 3-5 до тех пор, пока не будет достигнута желаемая длина сгенерированной
+последовательности.</p></li>
+<li><p>Выберите наилучшую из всех последовательностей. Помните, что максимальной вероятности
+соответствует минимальное значение;</p></li>
+<li><p>Декодируйте наилучшую последовательность в текст.</p></li>
+</ol>
+<p>В данном методе необходимо использовать методы
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.encode" title="lab_3_generate_by_ngrams.main.TextProcessor.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.encode()</span></code></a> и
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.decode" title="lab_3_generate_by_ngrams.main.TextProcessor.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.decode()</span></code></a>,
+а также методы
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token" title="lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token()</span></code></a>,
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence" title="lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence()</span></code></a> и
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates" title="lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (количество букв для
+генерации не является целым числом или значение является неположительным,
+а также последовательность не является строкой или строка пустая),
+то метод возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Если используемые методы возвращают <code class="docutils literal notranslate"><span class="pre">None</span></code>, то метод также возвращает
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<p>Например, метод принимает на вход длину генерируемой последовательности равную <code class="docutils literal notranslate"><span class="pre">1</span></code> и
+начало последовательности <code class="docutils literal notranslate"><span class="pre">'She</span> <span class="pre">i'</span></code>.</p>
+<p>Мы имеем частотный словарь для триграмм и значение ширины луча:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">frequencies</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="mf">0.05871075964533908</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mf">0.8804347826086957</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span> <span class="mf">0.059027777777777776</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mf">0.1562425113826983</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="mf">0.09019607843137255</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">):</span> <span class="mf">0.0016313213703099511</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="mf">0.33501078360891445</span><span class="p">,</span>
+     <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="mf">0.3055355859094177</span><span class="p">}</span>
+ <span class="n">beam_width</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Закодированная начальная последовательность имеет следующий вид: <code class="docutils literal notranslate"><span class="pre">(11,</span> <span class="pre">1,</span> <span class="pre">8,</span> <span class="pre">0,</span> <span class="pre">16)</span></code>.
+Следовательно, модель должна выявить следующий контекст: <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">16)</span></code>.</p>
+<p>Из частотного словаря получаем, что кандидат, чтобы продолжить последовательность у
+нас 4:
+<code class="docutils literal notranslate"><span class="pre">{9:</span> <span class="pre">0.33501078360891445,</span> <span class="pre">7:</span> <span class="pre">0.3055355859094177,</span> <span class="pre">0:</span> <span class="pre">0.1562425113826983,</span> <span class="pre">20:</span> <span class="pre">0.05871075964533908}</span></code>.
+Обратите внимание, что кандидаты отсортированы по ключу и по значению в порядке убывания.</p>
+<p>Однако количество букв-кандидатов не должно превышать значение ширины луча, равное в
+данном случае <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
+<p>Таким образом, кандидатом на удаление является <code class="docutils literal notranslate"><span class="pre">(20,</span> <span class="pre">0.05871075964533908)</span></code>.</p>
+<p>Мы получаем три возможные последовательности:</p>
+<p><code class="docutils literal notranslate"><span class="pre">{(11,</span> <span class="pre">1,</span> <span class="pre">8,</span> <span class="pre">0,</span> <span class="pre">16,</span> <span class="pre">9):</span> <span class="pre">1.093592557797797,</span> <span class="pre">(11,</span> <span class="pre">1,</span> <span class="pre">8,</span> <span class="pre">0,</span> <span class="pre">16,</span> <span class="pre">7):</span> <span class="pre">1.185689022999026,</span>
+<span class="pre">(11,</span> <span class="pre">1,</span> <span class="pre">8,</span> <span class="pre">0,</span> <span class="pre">16,</span> <span class="pre">0):</span> <span class="pre">1.8563459186648996}</span></code>.</p>
+<p>В данном случае число последовательностей не превышает значение ширины луча.</p>
+<p>Наилучшим кандидатом является последовательность с наименьшей вероятностью, а именно
+<code class="docutils literal notranslate"><span class="pre">(11,</span> <span class="pre">1,</span> <span class="pre">8,</span> <span class="pre">0,</span> <span class="pre">16,</span> <span class="pre">9)</span></code>.</p>
+<p>Метод возвращает следующий результат <code class="docutils literal notranslate"><span class="pre">'She</span> <span class="pre">in.'</span></code>.</p>
+</section>
+<section id="id32">
+<h4>Шаг 5.4. Продемонстрировать результаты в <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#id32" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 4 и 5 соответствует 8 баллам.</p>
+</div>
+<p>Продемонстрируйте результат работы алгоритма лучевого поиска
+в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> модуля <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.
+Попробуйте в качестве затравки использовать <code class="docutils literal notranslate"><span class="pre">'Vernon'</span></code>.
+Пусть размер n-грамм будет равен 7, а длина последовательности - 56.</p>
+</section>
+</section>
+<section id="id33">
+<h3>Шаг 6. Заполнить хранилище новыми n-граммами<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<p>Прежде чем приступить к созданию генератора текста на основе алгоритма
+BackOff, мы предлагаем Вам расширить хранилище с токенами и их идентификаторами
+новыми значениями, которые хранятся в виде словаря в файле с расширением <code class="docutils literal notranslate"><span class="pre">.json</span></code>.
+Реализация данного шага позволит Вам улучшить результат генерации, так как
+словарь составлен на большом текстовом материале.</p>
+<p>Вам необходимо расширить класс <code class="docutils literal notranslate"><span class="pre">TextProcessor</span></code> новым методом
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.fill_from_ngrams" title="lab_3_generate_by_ngrams.main.TextProcessor.fill_from_ngrams"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.fill_from_ngrams()</span></code></a>.</p>
+<p>Получая на вход словарь из файла с языковым профилем английского
+языка, вам необходимо:</p>
+<ol class="arabic simple">
+<li><p>Отобрать только те n-граммы, длина которых равна <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p>Если n-грамма является буквой, то необходимо этой буквой пополнить хранилище
+<code class="docutils literal notranslate"><span class="pre">_storage</span></code>.</p></li>
+</ol>
+<p>В данном методе необходимо использовать метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor._put" title="lab_3_generate_by_ngrams.main.TextProcessor._put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor._put()</span></code></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подается некорректное значение (аргумент
+неправильного типа, то есть не словарь, или словарь пустой),
+возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<p>Например, если метод принимает на вход следующий словарь:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">content</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="s2">&quot;freq&quot;</span><span class="p">:</span> <span class="p">{</span>
+             <span class="s2">&quot;h ap&quot;</span><span class="p">:</span> <span class="mi">8629</span><span class="p">,</span>
+             <span class="s2">&quot; ape&quot;</span><span class="p">:</span> <span class="mi">3042</span><span class="p">,</span>
+             <span class="s2">&quot;apex&quot;</span><span class="p">:</span> <span class="mi">624</span><span class="p">,</span>
+             <span class="s2">&quot;12 9&quot;</span><span class="p">:</span> <span class="mi">254</span><span class="p">,</span>
+             <span class="s2">&quot;en, &quot;</span><span class="p">:</span> <span class="mi">170</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>то в результате должно получиться хранилище, заполненное следующим образом:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">storage</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;_&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="self-n-gram-frequencies">
+<h3>Шаг 7. Установить значение атрибута <code class="docutils literal notranslate"><span class="pre">self._n_gram_frequencies</span></code><a class="headerlink" href="#self-n-gram-frequencies" title="Link to this heading"></a></h3>
+<p>Вам необходимо расширить класс <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code> новым методом
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams()</span></code></a>.</p>
+<p>Данный метод позволяет присвоить атрибуту <code class="docutils literal notranslate"><span class="pre">self._n_gram_frequencies</span></code>
+получаемое на вход значение.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подается некорректное значение (аргумент
+неправильного типа, то есть не словарь, или словарь пустой),
+возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="backoff">
+<h3>Шаг 8. Создать генератор текста на основе алгоритма BackOff<a class="headerlink" href="#backoff" title="Link to this heading"></a></h3>
+<p>Главное отличие данного алгоритма заключается в том, что мы получаем
+на вход не одну языковую модель, а сразу несколько и при генерации текста
+алгоритм сначала ищет букву-кандидата в наиболее специфичном контексте
+(то есть в самых больших N-граммах), и только если кандидатов нет, тогда
+алгоритм смещается к более общему контексту. Это позволяет сделать генерацию
+более устойчивой.</p>
+<section id="id34">
+<h4>Шаг 8.1. Объявить сущность по расширению языковой модели на основе n-грамм<a class="headerlink" href="#id34" title="Link to this heading"></a></h4>
+<p>Чем больший объем данных был использован для создания языковой модели,
+тем лучше она аппроксимирует вероятность появления каждого нового токена.
+Для Вас был собран словарь всевозможных N-грамм на основе <a class="reference external" href="https://www.corpusdata.org/iweb_samples.asp">Full-text corpus data</a>.
+Для того, чтобы начать с ним работать, необходимо реализовать функционал чтения и
+создания языковой модели на основе внешних словарей N-грамм.</p>
+<p>Создайте класс <a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModelReader" title="lab_3_generate_by_ngrams.main.NGramLanguageModelReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModelReader</span></code></a>.</p>
+<p>Описание внутренних атрибутов класса:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._json_path</span></code> - путь к файлу с расширением <code class="docutils literal notranslate"><span class="pre">.json</span></code>, который
+содержит языковой профиль английского языка (<code class="docutils literal notranslate"><span class="pre">en_own.json</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._eow_token</span></code> - специальный символ конца слова в формате строки;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._content</span></code> - содержимое файла с расширением <code class="docutils literal notranslate"><span class="pre">.json</span></code>. Для чтения
+и сохранения файлов данного типа используйте стандартный модуль <code class="docutils literal notranslate"><span class="pre">json</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._text_processor</span></code> - экземпляр класса <code class="docutils literal notranslate"><span class="pre">TextProcessor</span></code>.</p></li>
+</ul>
+<p>На данном шаге Вам также необходимо заполнить хранилище <code class="docutils literal notranslate"><span class="pre">_storage</span></code>, используя
+содержимое файла с расширением <code class="docutils literal notranslate"><span class="pre">.json</span></code>, которое хранится в атрибуте
+<code class="docutils literal notranslate"><span class="pre">self._content</span></code>.</p>
+<p>Хранилище <code class="docutils literal notranslate"><span class="pre">_storage</span></code> - атрибут экземпляра класса <code class="docutils literal notranslate"><span class="pre">TextProcessor</span></code>,
+который также необходимо инициализировать здесь, в <code class="docutils literal notranslate"><span class="pre">__init__</span></code>,
+передав ему в качестве аргумента специальный символ конца слова.</p>
+</section>
+<section id="ngramlanguagemodel">
+<h4>Шаг 8.1.1 Получить экземпляр класса <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code><a class="headerlink" href="#ngramlanguagemodel" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModelReader.load" title="lab_3_generate_by_ngrams.main.NGramLanguageModelReader.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModelReader.load()</span></code></a>.</p>
+<p>Данный метод обрабатывает прочитанный словарь, создает и заполняет содержимым модель.</p>
+<p>Во-первых, необходимо каждую n-грамму, полученную из файла <code class="docutils literal notranslate"><span class="pre">.json</span></code>,
+привести к определенному формату:</p>
+<ul class="simple">
+<li><p>Заменить пробельные символы на специальный символ конца слова;</p></li>
+<li><p>Выбрать только те токены в n-грамме,
+которые являются буквой или специальным символом;</p></li>
+<li><p>Привести к нижнему регистру.</p></li>
+</ul>
+<p>Если заданный размер n-грамм соотносится с длиной n-грамм из файла после
+предобработки, то необходимо кодировать n-грамму из языкового профиля.</p>
+<p>Если не удалось кодировать n-грамму из языкового профиля, то при дальнейшей
+работе она не используется.</p>
+<p>Создайте частотный словарь с n-граммами из файла и вероятностями
+появления последнего токена данной n-граммы в контексте, задаваемом n-граммой.
+Воспользуйтесь формулой условной вероятности:</p>
+<div class="math notranslate nohighlight">
+\[\frac{P(w_{1},w_{2})}{P(w_{1})}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(w_{1},w_{2})\)</span> - количество вхождений n-граммы, то есть её абсолютная частота;</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(w_{1})\)</span> - сколько раз в корпусе встречаются n-граммы, имеющие такое
+же начало, то есть такие же первые N-1 символов.</p></li>
+</ul>
+<p>Создайте экземпляр класса <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code> со следующими аргументами:</p>
+<ul class="simple">
+<li><p>Закодированный текст, который принимает значение <code class="docutils literal notranslate"><span class="pre">None</span></code>;</p></li>
+<li><p>Размер n-грамм.</p></li>
+</ul>
+<p>Установите значение защищенного атрибута <code class="docutils literal notranslate"><span class="pre">self._n_gram_frequencies</span></code> класса
+<code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подается некорректное значение размера n-грамм (значение
+не относится к типу <code class="docutils literal notranslate"><span class="pre">int</span></code>, аргумент не содержит никакого значения или
+размер N-грамм меньше 2), то метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<p>Метод возвращает языковую модель.</p>
+<p>Метод обязательно должен вызывать методы
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.get_id" title="lab_3_generate_by_ngrams.main.TextProcessor.get_id"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.get_id()</span></code></a> и
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams()</span></code></a>.</p>
+</section>
+<section id="textprocessor">
+<h4>Шаг 8.1.2 Получить экземпляр класса <code class="docutils literal notranslate"><span class="pre">TextProcessor</span></code><a class="headerlink" href="#textprocessor" title="Link to this heading"></a></h4>
+<p>В данном классе атрибут <code class="docutils literal notranslate"><span class="pre">self._text_processor</span></code> является защищенным:
+мы не хотим допустить его изменения в процессе использования внешним пользователем.
+Однако получить объект класса <code class="docutils literal notranslate"><span class="pre">TextProcessor</span></code>, все-таки
+иногда необходимо.</p>
+<p>Для этого реализуем метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModelReader.get_text_processor" title="lab_3_generate_by_ngrams.main.NGramLanguageModelReader.get_text_processor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModelReader.get_text_processor()</span></code></a>,
+который возвращает значение внутреннего атрибута <code class="docutils literal notranslate"><span class="pre">self._text_processor</span></code>.
+Метод не принимает никаких аргументов.</p>
+</section>
+<section id="id35">
+<h4>Шаг 8.2. Объявить сущность по созданию BackOff генератора<a class="headerlink" href="#id35" title="Link to this heading"></a></h4>
+<p>Теперь у Вас есть все, чтобы реализовать последний в рамках данной лабораторной
+алгоритм генерации текста, а именно алгоритм BackOff.</p>
+<p>Создайте класс <a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BackOffGenerator" title="lab_3_generate_by_ngrams.main.BackOffGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BackOffGenerator</span></code></a>.</p>
+<p>Описание внутренних атрибутов класса:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._language_models</span></code> - словарь, ключом которого является размер
+n–грамм, а значением - экземпляр класса <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code>. Экземпляр
+класса вы можете получить из списка <code class="docutils literal notranslate"><span class="pre">language_models</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._text_processor</span></code> - экземпляр класса <code class="docutils literal notranslate"><span class="pre">TextProcessor</span></code>.</p></li>
+</ul>
+</section>
+<section id="id36">
+<h4>Шаг 8.2.1 Получить буквы-кандидаты для генерации<a class="headerlink" href="#id36" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token" title="lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token()</span></code></a>,
+который возвращает словарь, ключами которого являются буквы-кандидаты, а значениями
+вероятности буквы кандидата.</p>
+<p>Вам необходимо:</p>
+<ol class="arabic simple">
+<li><p>Отсортировать размеры N–грамм в порядке убывания;</p></li>
+<li><p>Для каждой N–граммы получить экземпляр класса <code class="docutils literal notranslate"><span class="pre">NGramLanguageModel</span></code>;</p></li>
+<li><p>Получить все буквы-кандидаты для генерации в виде словаря;</p></li>
+<li><p>В случае, если букв-кандидатов для большей N–грамм нет, или вызываемый
+метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>, необходимо перейти к N–грамме меньшего размера
+и повторить шаги 2 и 3,</p></li>
+</ol>
+<p>В данном методе необходимо использовать методы
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size()</span></code></a> и
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token" title="lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подается некорректное значение аргумента (аргумент
+не является кортежем или кортеж пустой), то метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Если список размеров N–грамм пустой или вызываемые методы возвращают <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+то метод также возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Данный метод является защищенным - его использование за пределами
+методов класса не предполагается.</p>
+</div>
+</section>
+<section id="id37">
+<h4>Шаг 8.2.2 Генерация последовательности<a class="headerlink" href="#id37" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 6-8 соответствует 10 баллам.</p>
+</div>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BackOffGenerator.run" title="lab_3_generate_by_ngrams.main.BackOffGenerator.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BackOffGenerator.run()</span></code></a>.</p>
+<p>Метод заключает в себе логику генерации последовательности по заданному началу,
+принимает на вход длину последовательности для генерации
+и начало последовательности в строковом виде, возвращает итоговую последовательность
+в виде строки.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (количество букв для
+генерации не является целым числом, а также последовательность не является
+строкой или строка пустая), то метод возвращает <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+<p>На данном шаге Вам следует:</p>
+<ol class="arabic simple">
+<li><p>Закодировать заданную последовательность (<code class="docutils literal notranslate"><span class="pre">prompt</span></code>)</p></li>
+<li><p>Получить все буквы-кандидаты для генерации. Используйте уже реализованный метод
+класса <code class="docutils literal notranslate"><span class="pre">BackOffGenerator</span></code>;</p></li>
+<li><p>Жадно выбирать кандидата с наибольшей вероятностью и добавить его к последовательности;</p></li>
+<li><p>Повторять шаги 1 и 2 до тех пор, пока не получим заданную длину последовательности;</p></li>
+<li><p>Декодируем полученную последовательность.</p></li>
+</ol>
+<p>Следует учесть, что в случае, если буквы-кандидаты не были найдены для минимального
+доступного размера n–грамм, то генерация прекращается.</p>
+<p>Метод возвращает сгенерированный текст в виде строки.</p>
+<p>В данном методе необходимо использовать методы
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.encode" title="lab_3_generate_by_ngrams.main.TextProcessor.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.encode()</span></code></a> и
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor.decode" title="lab_3_generate_by_ngrams.main.TextProcessor.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.TextProcessor.decode()</span></code></a>,
+а также метод
+<a class="reference internal" href="lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token" title="lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход подаются некорректные значения (длина последовательности
+не типа <code class="docutils literal notranslate"><span class="pre">int</span></code>, заданная последовательность не является
+строкой или последовательность пустая), если вызываемые методы возвращают
+значение <code class="docutils literal notranslate"><span class="pre">None</span></code>, возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="id38">
+<h2>Полезные ссылки<a class="headerlink" href="#id38" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://web.stanford.edu/~jurafsky/slp3/3.pdf">N-gram Language Models</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=3m1lvN2fTtY">Видео с объяснением алгоритма Beam Search</a></p></li>
+<li><p><a class="reference external" href="https://www.researchgate.net/publication/257618443_Beam_search_algorithms_for_multilabel_learningv">Оригинальная статья о Beam Search алгоритме</a></p></li>
+<li><p><a class="reference external" href="https://ru.wikipedia.org/wiki/JSON">Описание формата хранения данных JSON</a>
+и <a class="reference external" href="https://pythonworld.ru/moduli/modul-json.html">документация библиотеки</a>
+для работы с такими файлами</p></li>
+<li><p><a class="reference external" href="https://www.simplilearn.com/tutorials/data-structure-tutorial/greedy-algorithm#example_of_greedy_algorithm">Видео и статья с объяснением жадного
+алгоритма</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_2_spellcheck/lab_2_spellcheck.api.html" class="btn btn-neutral float-left" title="lab_2_spellcheck package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_3_generate_by_ngrams.api.html" class="btn btn-neutral float-right" title="lab_3_generate_by_ngrams package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

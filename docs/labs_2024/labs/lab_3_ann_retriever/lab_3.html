@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа №3. Получение релевантных документов на основе векторного поиска &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_3_ann_retriever package" href="lab_3_ann_retriever.api.html" />
+    <link rel="prev" title="lab_2_retrieval_w_bm25 package" href="../lab_2_retrieval_w_bm25/lab_2_retrieval_w_bm25.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2024/2025)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_1_classify_by_unigrams/lab_1.html">Лабораторная работа №1. Определение языка текста на основе частотного словаря</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_2_retrieval_w_bm25/lab_2.html">Лабораторная работа №2. Оценка релевантности документов с помощью BM25</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Лабораторная работа №3. Получение релевантных документов на основе векторного поиска</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_3_ann_retriever.api.html">lab_3_ann_retriever package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_4_retrieval_w_clustering/lab_4.html">Лабораторная работа №4. Векторный поиск на основе кластеризации</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+      <li class="breadcrumb-item active">Лабораторная работа №3. Получение релевантных документов на основе векторного поиска</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/labs_2024/labs/lab_3_ann_retriever/lab_3.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o3">
+<h1>Лабораторная работа №3. Получение релевантных документов на основе векторного поиска<a class="headerlink" href="#o3" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_3_ann_retriever.api.html">lab_3_ann_retriever package</a></li>
+</ul>
+</div>
+<section id="id1">
+<h2>Дано<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Набор из 589 отрывков новостных статей на русском языке,
+хранящийся в папке <code class="docutils literal notranslate"><span class="pre">assets/articles</span></code>. Тексты уже импортированы
+в файл <code class="docutils literal notranslate"><span class="pre">start.py</span></code> в функции <code class="docutils literal notranslate"><span class="pre">open_files()</span></code>
+в переменную <code class="docutils literal notranslate"><span class="pre">documents</span></code> в виде списка.</p></li>
+<li><p>Список стоп-слов русского языка из библиотеки <code class="docutils literal notranslate"><span class="pre">NLTK</span></code>,
+хранящийся в файле <code class="docutils literal notranslate"><span class="pre">assets/stopwords.txt</span></code>. Стоп-слова уже импортированы
+в файл <code class="docutils literal notranslate"><span class="pre">start.py</span></code> в функции <code class="docutils literal notranslate"><span class="pre">open_files()</span></code>
+в переменную <code class="docutils literal notranslate"><span class="pre">stopwords</span></code> в виде списка.</p></li>
+</ol>
+<p>В рамках лабораторной работы №2 Вы осуществляли поиск релевантных документов через
+вычисление метрик TF-IDF, BM25 и оптимизированной метрики BM25.
+Существуют и другие, более сложные алгоритмы поиска релевантных документов.
+В ходе выполнения лабораторной работы №3 Вы познакомитесь с векторным поиском
+на основе метода KNN и структуры данных KDTree.</p>
+<p>Подход, рассматриваемый нами в предыдущей лабораторной, опирается на идею совпадения
+токенов в рамках какого-то количества текстов. Векторный подход же строится на идее,
+что тексты могут быть представлены в виде точек многомерного пространства. Чтобы
+задать координату документа, его представляют в виде набора чисел (вектора). Затем
+расстояние между двумя точками можно посчитать, и оно будет указывать на разность
+в семантике текстов.</p>
+<p>Чем же так хорош <a class="reference external" href="https://www.datastax.com/guides/what-is-vector-search">векторный поиск</a> ?</p>
+<ol class="arabic simple">
+<li><p>Он выдаёт релевантные документы с большей точностью, чем метод поиска через
+одинаковые токены.</p></li>
+<li><p>Векторы легче, и их не так затратно хранить и использовать,
+особенно на крупных коллекциях.</p></li>
+<li><p>Он позволяет оперировать понятием семантической близости текстов
+и вычислять её по формулам.</p></li>
+<li><p>Он работает не только для текстов, но и для изображений и аудио.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>Что надо сделать<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>Шаг 0. Начать работу над лабораторной (вместе с преподавателем на практике)<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Создайте форк репозитория.</p></li>
+<li><p>Установите необходимые инструменты для работы.</p></li>
+<li><p>Измените файлы <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Закоммитьте изменения и создайте Pull request.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> Вы должны написать код, сортирующий
+данные сказки по релевантности запросу.</p>
+</div>
+<p>Для этого реализуйте функции в модуле <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и импортируйте их в
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Весь код, выполняющий лабораторную работу, должен быть
+выполнен в функции <code class="docutils literal notranslate"><span class="pre">main</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Вызов функции в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В рамках данной лабораторной работы <strong>нельзя использовать модули
+collections, itertools, а также сторонние модули.</strong></p>
+<p>Обратите внимание, что желаемую оценку необходимо указать в файле
+<code class="docutils literal notranslate"><span class="pre">settings.json</span></code> в поле <code class="docutils literal notranslate"><span class="pre">target_score</span></code>. Возможные значения: 0, 4, 6, 8, 10.
+Чем большее значение выставлено, тем больше тестов будет запущено.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход в методы классов подаются аргументы неправильных типов,
+то возвращается значение <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="id4">
+<h3>Шаг 1. Объявить сущность по подготовке коллекции текстов к векторизации<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Первый и ключевой шаг для работы с данными текстами и их
+представлением в виде векторов — их токенизация.
+Подготовить тексты к векторизации поможет класс
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Tokenizer" title="lab_3_ann_retriever.main.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Tokenizer</span></code></a>,
+который Вы реализуете в ходе выполнения первого шага.</p>
+<p>Этот класс ответственен за манипуляции с текстами:
+очистку, токенизацию и удаление стоп-слов.
+Класс имеет один внутренний атрибут - <code class="docutils literal notranslate"><span class="pre">self._stop_words</span></code>.
+Это список стоп-слов, которые будут удалены из текста.
+Во время инициализации он заполняется значением аргумента, переданного в класс.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Это защищённый атрибут, то есть обращение к нему за
+пределами методов этого класса не предполагается.</p>
+</div>
+<p>При инициализации экземпляра класса в <code class="docutils literal notranslate"><span class="pre">start.py</span></code> стоит подать в качестве аргумента
+стоп-слова, которые загружены через функцию
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.start.open_files" title="lab_3_ann_retriever.start.open_files"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.start.open_files()</span></code></a>.</p>
+<p>Пример инициализации экземпляра:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">stopwords</span> <span class="o">=</span> <span class="n">open_files</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">stopwords</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>Шаг 1.1. Удалить стоп-слова из списка токенов<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Tokenizer._remove_stop_words" title="lab_3_ann_retriever.main.Tokenizer._remove_stop_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Tokenizer._remove_stop_words()</span></code></a>,
+который позволяет удалять стоп-слова из списка токенов документа.</p>
+<p>Например, пусть на вход дан текст, который был предварительно разбит на токены:
+<code class="docutils literal notranslate"><span class="pre">['мой',</span> <span class="pre">'кот',</span> <span class="pre">'вектор',</span> <span class="pre">'по',</span> <span class="pre">'утрам',</span> <span class="pre">'приносит',</span> <span class="pre">'мне',</span> <span class="pre">'тапочки',</span>
+<span class="pre">'а',</span> <span class="pre">'по',</span> <span class="pre">'вечерам',</span> <span class="pre">'мы',</span> <span class="pre">'гуляем',</span> <span class="pre">'с',</span> <span class="pre">'ним',</span> <span class="pre">'на',</span> <span class="pre">'шлейке',</span> <span class="pre">'во',</span>
+<span class="pre">'дворе',</span> <span class="pre">'вектор',</span> <span class="pre">'забавный',</span> <span class="pre">'и',</span> <span class="pre">'храбрый',</span> <span class="pre">'он',</span> <span class="pre">'не',</span> <span class="pre">'боится',</span> <span class="pre">'собак']</span></code>.
+Тогда метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Tokenizer._remove_stop_words" title="lab_3_ann_retriever.main.Tokenizer._remove_stop_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Tokenizer._remove_stop_words()</span></code></a>
+вернёт следующий список строк: <code class="docutils literal notranslate"><span class="pre">['кот',</span> <span class="pre">'вектор',</span> <span class="pre">'утрам',</span> <span class="pre">'приносит',</span> <span class="pre">'тапочки',</span>
+<span class="pre">'вечерам',</span> <span class="pre">'гуляем',</span> <span class="pre">'шлейке',</span> <span class="pre">'дворе',</span> <span class="pre">'вектор',</span> <span class="pre">'забавный',</span> <span class="pre">'храбрый',</span> <span class="pre">'боится',</span>
+<span class="pre">'собак']</span></code>.</p>
+<p>В качестве списка стоп-слов используйте список, сохранённый в атрибуте
+экземпляра класса <code class="docutils literal notranslate"><span class="pre">_stop_words</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Это защищённый метод, то есть обращение к нему за
+пределами других методов этого класса не предполагается.</p>
+</div>
+</section>
+<section id="id6">
+<h3>Шаг 1.2. Токенизировать документ<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Tokenizer.tokenize" title="lab_3_ann_retriever.main.Tokenizer.tokenize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Tokenizer.tokenize()</span></code></a>,
+который позволяет разбить текст на токены (слова). Текст должен быть приведён
+к нижнему регистру и очищен от знаков препинания и цифр.
+То есть если на вход методу передаётся текст <code class="docutils literal notranslate"><span class="pre">&quot;Мой</span> <span class="pre">кот</span> <span class="pre">Вектор</span> <span class="pre">по</span> <span class="pre">утрам</span> <span class="pre">приносит</span>
+<span class="pre">мне</span> <span class="pre">тапочки,</span> <span class="pre">а</span> <span class="pre">по</span> <span class="pre">вечерам</span> <span class="pre">мы</span> <span class="pre">гуляем</span> <span class="pre">с</span> <span class="pre">ним</span> <span class="pre">на</span> <span class="pre">шлейке</span> <span class="pre">во</span> <span class="pre">дворе.</span> <span class="pre">Вектор</span> <span class="pre">забавный</span>
+<span class="pre">и</span> <span class="pre">храбрый.</span> <span class="pre">Он</span> <span class="pre">не</span> <span class="pre">боится</span> <span class="pre">собак!&quot;</span></code>, то метод вернёт итоговый список строк:
+<code class="docutils literal notranslate"><span class="pre">['кот',</span> <span class="pre">'вектор',</span> <span class="pre">'утрам',</span> <span class="pre">'приносит',</span> <span class="pre">'тапочки',</span> <span class="pre">'вечерам',</span> <span class="pre">'гуляем',</span>
+<span class="pre">'шлейке',</span> <span class="pre">'дворе',</span> <span class="pre">'вектор',</span> <span class="pre">'забавный',</span> <span class="pre">'храбрый',</span> <span class="pre">'боится',</span> <span class="pre">'собак']</span></code>.</p>
+<p>Вызов данного метода может выглядеть следующим образом:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="s1">&#39;Мой кот Вектор...&#39;</span>
+<span class="n">tokenized_doc</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Данный метод обязательно должен вызывать метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Tokenizer._remove_stop_words" title="lab_3_ann_retriever.main.Tokenizer._remove_stop_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Tokenizer._remove_stop_words()</span></code></a>,
+который Вы реализовали на Шаге 1.1.</p>
+</div>
+</section>
+<section id="id7">
+<h3>Шаг 1.3. Токенизировать документы<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Tokenizer.tokenize_documents" title="lab_3_ann_retriever.main.Tokenizer.tokenize_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Tokenizer.tokenize_documents()</span></code></a>,
+который отвечает за токенизацию списка текстов.</p>
+<p>Например, если на вход методу будет подан список документов:
+<code class="docutils literal notranslate"><span class="pre">['Векторы</span> <span class="pre">используются</span> <span class="pre">для</span> <span class="pre">поиска</span> <span class="pre">релевантного</span> <span class="pre">документа.</span> <span class="pre">Давайте</span>
+<span class="pre">научимся,</span> <span class="pre">как</span> <span class="pre">их</span> <span class="pre">создавать</span> <span class="pre">и</span> <span class="pre">использовать!',</span> <span class="pre">'Мой</span> <span class="pre">кот</span> <span class="pre">Вектор</span> <span class="pre">по</span> <span class="pre">утрам</span>
+<span class="pre">приносит</span> <span class="pre">мне</span> <span class="pre">тапочки,</span> <span class="pre">а</span> <span class="pre">по</span> <span class="pre">вечерам</span> <span class="pre">мы</span> <span class="pre">гуляем</span> <span class="pre">с</span> <span class="pre">ним</span> <span class="pre">на</span> <span class="pre">шлейке</span> <span class="pre">во</span> <span class="pre">дворе.</span>
+<span class="pre">Вектор</span> <span class="pre">забавный</span> <span class="pre">и</span> <span class="pre">храбрый.</span> <span class="pre">Он</span> <span class="pre">не</span> <span class="pre">боится</span> <span class="pre">собак!',</span> <span class="pre">'Котёнок,</span> <span class="pre">которого</span> <span class="pre">мы</span>
+<span class="pre">нашли</span> <span class="pre">во</span> <span class="pre">дворе,</span> <span class="pre">очень</span> <span class="pre">забавный</span> <span class="pre">и</span> <span class="pre">пушистый.</span> <span class="pre">По</span> <span class="pre">утрам</span> <span class="pre">я</span> <span class="pre">играю</span> <span class="pre">с</span> <span class="pre">ним</span> <span class="pre">в</span>
+<span class="pre">догонялки</span> <span class="pre">перед</span> <span class="pre">работой.',</span> <span class="pre">'Моя</span> <span class="pre">собака</span> <span class="pre">думает,</span> <span class="pre">что</span> <span class="pre">её</span> <span class="pre">любимый</span> <span class="pre">плед</span> <span class="pre">—</span>
+<span class="pre">это</span> <span class="pre">кошка.</span> <span class="pre">Просто</span> <span class="pre">он</span> <span class="pre">очень</span> <span class="pre">пушистый</span> <span class="pre">и</span> <span class="pre">мягкий.</span> <span class="pre">Забавно</span> <span class="pre">наблюдать,</span> <span class="pre">как</span>
+<span class="pre">они</span> <span class="pre">спят</span> <span class="pre">вместе!']</span></code>, то результатом работы метода будет следующий
+список: <code class="docutils literal notranslate"><span class="pre">[['векторы',</span> <span class="pre">'используются',</span> <span class="pre">'поиска',</span> <span class="pre">'релевантного',</span>
+<span class="pre">'документа',</span> <span class="pre">'давайте',</span> <span class="pre">'научимся',</span> <span class="pre">'создавать',</span> <span class="pre">'использовать'],</span> <span class="pre">['кот',</span>
+<span class="pre">'вектор',</span> <span class="pre">'утрам',</span> <span class="pre">'приносит',</span> <span class="pre">'тапочки',</span> <span class="pre">'вечерам',</span> <span class="pre">'гуляем',</span> <span class="pre">'шлейке',</span>
+<span class="pre">'дворе',</span> <span class="pre">'вектор',</span> <span class="pre">'забавный',</span> <span class="pre">'храбрый',</span> <span class="pre">'боится',</span> <span class="pre">'собак'],</span> <span class="pre">['котёнок',</span>
+<span class="pre">'которого',</span> <span class="pre">'нашли',</span> <span class="pre">'дворе',</span> <span class="pre">'очень',</span> <span class="pre">'забавный',</span> <span class="pre">'пушистый',</span> <span class="pre">'утрам',</span>
+<span class="pre">'играю',</span> <span class="pre">'догонялки',</span> <span class="pre">'работой'],</span> <span class="pre">['собака',</span> <span class="pre">'думает',</span> <span class="pre">'любимый',</span>
+<span class="pre">'плед',</span> <span class="pre">'это',</span> <span class="pre">'кошка',</span> <span class="pre">'просто',</span> <span class="pre">'очень',</span> <span class="pre">'пушистый',</span> <span class="pre">'мягкий',</span>
+<span class="pre">'забавно',</span> <span class="pre">'наблюдать',</span> <span class="pre">'спят',</span> <span class="pre">'вместе']]</span></code>.</p>
+<p>Вызов данного метода может выглядеть следующим образом:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Векторы используются для...&#39;</span><span class="p">,</span> <span class="s1">&#39;Мой кот Вектор...&#39;</span><span class="p">]</span>
+<span class="n">tokenized_docs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Данный метод обязательно должен вызывать метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Tokenizer.tokenize" title="lab_3_ann_retriever.main.Tokenizer.tokenize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Tokenizer.tokenize()</span></code></a>,
+реализованный Вами на Шаге 1.2.</p>
+</div>
+</section>
+<section id="start-py">
+<h3>Шаг 1.4. Продемонстрировать результаты в <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#start-py" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шага 1 соответствует 4 баллам.</p>
+</div>
+<p>Продемонстрируйте результат токенизации документов <code class="docutils literal notranslate"><span class="pre">documents</span></code>
+в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> модуля <code class="docutils literal notranslate"><span class="pre">start.py</span></code> с помощью экземпляра класса
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Tokenizer" title="lab_3_ann_retriever.main.Tokenizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Tokenizer</span></code></a>.
+Используйте стоп-слова из списка <code class="docutils literal notranslate"><span class="pre">stopwords</span></code>, возвращаемого функцией
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.start.open_files" title="lab_3_ann_retriever.start.open_files"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.start.open_files()</span></code></a> в модуле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</section>
+<section id="id8">
+<h3>Шаг 2. Объявить сущность по созданию векторного представления документа<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>Векторное представление текста подразумевает перевод данного
+текста в набор чисел (вектор). В данной лабораторной работе за
+их вид отвечает тип <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vector" title="lab_3_ann_retriever.main.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vector</span></code></a>,
+являющийся кортежем чисел с плавающей точкой.</p>
+<p>Существует множество подходов к векторизации,
+но мы будем использовать уже знакомую нам метрику <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>
+(<a class="reference external" href="https://ru.wikipedia.org/wiki/TF-IDF">Term frequency–inverse document frequency</a>).
+Для начала зададим N-мерное пространство, которое представляет собой
+все уникальные токены коллекции. Каждому токену присваивается своя ось отсчёта (axis),
+по которой затем откладываются значения, в нашем случае TF-IDF для конкретного документа.
+Координаты получившейся точки и являются векторами.</p>
+<p>Представим, что у нас есть коллекция из трёх токенизированных документов:
+<code class="docutils literal notranslate"><span class="pre">[&quot;Котик&quot;,</span> <span class="pre">&quot;Вектор&quot;],</span> <span class="pre">[&quot;Котик&quot;],</span> <span class="pre">[&quot;Вектор&quot;]</span></code>. Так как коллекция содержит
+два уникальных токена, мы можем представить коллекцию как двухмерное пространство.
+На каждой оси откладывается значение метрики <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> для каждого документа.
+Эти значения получаются следующие:
+<code class="docutils literal notranslate"><span class="pre">[{'Вектор':</span> <span class="pre">-0.26,</span> <span class="pre">'Котик':</span> <span class="pre">-0.26},</span> <span class="pre">{'Вектор':</span> <span class="pre">0.0,</span> <span class="pre">'Котик':</span> <span class="pre">-0.51},</span>
+<span class="pre">{'Вектор':</span> <span class="pre">-0.51,</span> <span class="pre">'Котик':</span> <span class="pre">0.0}]</span></code>.
+На пересечении значений по осям находятся точки соответствующих документов.</p>
+<p>Важно, что размерность заданного пространства нельзя менять. Поэтому для документов,
+которые содержат токены, не входящие в изначальный список уникальных токенов коллекции,
+нельзя добавлять дополнительные значения.</p>
+<p>Возьмём два других токенизированных документа: <code class="docutils literal notranslate"><span class="pre">[[&quot;Котик&quot;,</span> <span class="pre">&quot;Вася&quot;],</span> <span class="pre">[&quot;Вася&quot;]]</span></code>.
+Мы не можем увеличить размерность нашего пространства и добавить токен <code class="docutils literal notranslate"><span class="pre">&quot;Вася&quot;</span></code>,
+поэтому мы будем рассматривать только токены известных нам осей и получим <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>:
+<code class="docutils literal notranslate"><span class="pre">[{'Вектор':</span> <span class="pre">0.0,</span> <span class="pre">'Котик':</span> <span class="pre">-0.26},</span> <span class="pre">{'Вектор':</span> <span class="pre">0.0,</span> <span class="pre">'Котик':</span> <span class="pre">0.0}]</span></code>.</p>
+<p>Визуализацию полученного пространства можно увидеть на следующей картинке:</p>
+<figure class="align-default">
+<img alt="../../../../_images/TF_IDF_vector_space_example.png" src="../../../../_images/TF_IDF_vector_space_example.png" />
+</figure>
+<p>Как видно, точка документа <code class="docutils literal notranslate"><span class="pre">&quot;Котик</span> <span class="pre">Вася&quot;</span></code> имеет только составляющую
+вектора по оси <code class="docutils literal notranslate"><span class="pre">&quot;Котик&quot;</span></code>, а точка документа <code class="docutils literal notranslate"><span class="pre">&quot;Вася&quot;</span></code> находится
+в начале координат, несмотря на то что документ непустой.
+Итоговые векторы документов коллекции будут выглядеть как <code class="docutils literal notranslate"><span class="pre">(-0.26,</span> <span class="pre">-0.26)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">-0.51)</span></code> и <code class="docutils literal notranslate"><span class="pre">(-0.51,</span> <span class="pre">0.0)</span></code>, а для двух дополнительных документов
+<code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">-0.26)</span></code> и <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0)</span></code>.</p>
+<p>Заметьте, что порядок значений токенов во всех векторах должен быть одинаковым,
+так как каждый индекс в векторе указывает на конкретную ось (axis), по
+которой находится значение, то есть на конкретный токен.
+По этой причине для визуализации векторного представления текстов чаще
+используют таблицы, а не диаграммы, ведь нарисовать многомерное пространство
+намного сложнее.</p>
+<p>Таким образом, наше итоговое пространство можно представить в виде таблицы:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Документ</p></th>
+<th class="head"><p>“Вектор”</p></th>
+<th class="head"><p>“Котик”</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>-0.26</p></td>
+<td><p>-0.26</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0.0</p></td>
+<td><p>-0.51</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>-0.51</p></td>
+<td><p>0.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.0</p></td>
+<td><p>-0.26</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+</tr>
+</tbody>
+</table>
+<p>На Шагах 2-2.3 Вам предстоит реализовать класс
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer" title="lab_3_ann_retriever.main.Vectorizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer</span></code></a>,
+вычисляющий векторы для данных документов на основе <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>.
+В этом классе есть следующие атрибуты:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._corpus</span></code> — коллекция токенизированных документов,
+которая подаётся на вход в векторайзер при инициализации экземпляра класса.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._idf_values</span></code> — словарь со значениями <code class="docutils literal notranslate"><span class="pre">IDF</span></code> для уникальных токенов из
+коллекции документов, который на данном этапе должен быть пустым.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._vocabulary</span></code> — отсортированный в алфавитном порядке список уникальных
+токенов из коллекции документов, который на этапе инициализации должен быть пустым.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._token2ind</span></code> — словарь для получения индекса токена в <code class="docutils literal notranslate"><span class="pre">self._vocabulary</span></code>,
+который на этапе инициализации должен быть пустым.</p></li>
+</ol>
+<p>Пример инициализации экземпляра класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">tokenized_docs</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;векторы&quot;</span><span class="p">,</span> <span class="s2">&quot;используются&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;кот&quot;</span><span class="p">,</span> <span class="s2">&quot;вектор&quot;</span><span class="p">]]</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">Vectorizer</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>В лабораторной работе №2 Вы уже рассчитывали <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>,
+поэтому здесь Вам пригодятся те функции, которые Вы реализовывали.</p>
+</div>
+</section>
+<section id="id9">
+<h3>Шаг 2.1. Заполнить векторайзер документами<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>На данном шаге Вам нужно реализовать метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer.build" title="lab_3_ann_retriever.main.Vectorizer.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer.build()</span></code></a>, который заполнит атрибуты
+<code class="docutils literal notranslate"><span class="pre">self._idf_values</span></code>, <code class="docutils literal notranslate"><span class="pre">self._vocabulary</span></code> и <code class="docutils literal notranslate"><span class="pre">self._token2ind</span></code>.
+То есть если на вход методу подаются списки токенов коллекции документов
+из Шага 1.3, то после выполнения метода атрибуты экземпляра класса будут
+иметь следующие значения:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._idf_values</span> <span class="pre">=</span> <span class="pre">{'боится':</span> <span class="pre">0.847,</span> <span class="pre">'вектор':</span> <span class="pre">0.847,</span> <span class="pre">'вектора':</span> <span class="pre">0.847,</span>
+<span class="pre">'вечерам':</span> <span class="pre">0.847,</span> <span class="pre">'вместе':</span> <span class="pre">0.847,</span> <span class="pre">'гуляем':</span> <span class="pre">0.847,</span> <span class="pre">'давайте':</span> <span class="pre">0.847,</span>
+<span class="pre">'дворе':</span> <span class="pre">0.0,</span> <span class="pre">'догонялки':</span> <span class="pre">0.847,</span> <span class="pre">'документа':</span> <span class="pre">0.847,</span> <span class="pre">'думает':</span> <span class="pre">0.847,</span>
+<span class="pre">'забавно':</span> <span class="pre">0.847,</span> <span class="pre">'забавный':</span> <span class="pre">0.0,</span> <span class="pre">'играю':</span> <span class="pre">0.847,</span> <span class="pre">'использовать':</span> <span class="pre">0.847,</span>
+<span class="pre">'используются':</span> <span class="pre">0.847,</span> <span class="pre">'кот':</span> <span class="pre">0.847,</span> <span class="pre">'которого':</span> <span class="pre">0.847,</span> <span class="pre">'котёнок':</span> <span class="pre">0.847,</span>
+<span class="pre">'кошка':</span> <span class="pre">0.847,</span> <span class="pre">'любимый':</span> <span class="pre">0.847,</span> <span class="pre">'мягкий':</span> <span class="pre">0.847,</span> <span class="pre">'наблюдать':</span> <span class="pre">0.847,</span>
+<span class="pre">'научимся':</span> <span class="pre">0.847,</span> <span class="pre">'нашли':</span> <span class="pre">0.847,</span> <span class="pre">'очень':</span> <span class="pre">0.0,</span> <span class="pre">'плед':</span> <span class="pre">0.847,</span>
+<span class="pre">'поиска':</span> <span class="pre">0.847,</span> <span class="pre">'приносит':</span> <span class="pre">0.847,</span> <span class="pre">'просто':</span> <span class="pre">0.847,</span> <span class="pre">'пушистый':</span> <span class="pre">0.0,</span>
+<span class="pre">'работой':</span> <span class="pre">0.847,</span> <span class="pre">'релевантного':</span> <span class="pre">0.847,</span> <span class="pre">'собак':</span> <span class="pre">0.847,</span> <span class="pre">'собака':</span> <span class="pre">0.847,</span>
+<span class="pre">'создавать':</span> <span class="pre">0.847,</span> <span class="pre">'спят':</span> <span class="pre">0.847,</span> <span class="pre">'тапочки':</span> <span class="pre">0.847,</span> <span class="pre">'утрам':</span> <span class="pre">0.0,</span>
+<span class="pre">'храбрый':</span> <span class="pre">0.847,</span> <span class="pre">'шлейке':</span> <span class="pre">0.847,</span> <span class="pre">'это':</span> <span class="pre">0.847}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._vocabulary</span> <span class="pre">=</span> <span class="pre">['боится',</span> <span class="pre">'вектор',</span> <span class="pre">'вектора',</span> <span class="pre">'вечерам',</span> <span class="pre">'вместе',</span>
+<span class="pre">'гуляем',</span> <span class="pre">'давайте',</span> <span class="pre">'дворе',</span> <span class="pre">'догонялки',</span> <span class="pre">'документа',</span> <span class="pre">'думает',</span> <span class="pre">'забавно',</span>
+<span class="pre">'забавный',</span> <span class="pre">'играю',</span> <span class="pre">'использовать',</span> <span class="pre">'используются',</span> <span class="pre">'кот',</span> <span class="pre">'которого',</span>
+<span class="pre">'котёнок',</span> <span class="pre">'кошка',</span> <span class="pre">'любимый',</span> <span class="pre">'мягкий',</span> <span class="pre">'наблюдать',</span> <span class="pre">'научимся',</span> <span class="pre">'нашли',</span>
+<span class="pre">'очень',</span> <span class="pre">'плед',</span> <span class="pre">'поиска',</span> <span class="pre">'приносит',</span> <span class="pre">'просто',</span> <span class="pre">'пушистый',</span> <span class="pre">'работой',</span>
+<span class="pre">'релевантного',</span> <span class="pre">'собак',</span> <span class="pre">'собака',</span> <span class="pre">'создавать',</span> <span class="pre">'спят',</span> <span class="pre">'тапочки',</span> <span class="pre">'утрам',</span>
+<span class="pre">'храбрый',</span> <span class="pre">'шлейке',</span> <span class="pre">'это']</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._token2ind</span> <span class="pre">=</span> <span class="pre">{'боится':</span> <span class="pre">0,</span> <span class="pre">'вектор':</span> <span class="pre">1,</span> <span class="pre">'вектора':</span> <span class="pre">2,</span> <span class="pre">'вечерам':</span> <span class="pre">3,</span>
+<span class="pre">'вместе':</span> <span class="pre">4,</span> <span class="pre">'гуляем':</span> <span class="pre">5,</span> <span class="pre">'давайте':</span> <span class="pre">6,</span> <span class="pre">'дворе':</span> <span class="pre">7,</span> <span class="pre">'догонялки':</span> <span class="pre">8,</span>
+<span class="pre">'документа':</span> <span class="pre">9,</span> <span class="pre">'думает':</span> <span class="pre">10,</span> <span class="pre">'забавно':</span> <span class="pre">11,</span> <span class="pre">'забавный':</span> <span class="pre">12,</span> <span class="pre">'играю':</span> <span class="pre">13,</span>
+<span class="pre">'использовать':</span> <span class="pre">14,</span> <span class="pre">'используются':</span> <span class="pre">15,</span> <span class="pre">'кот':</span> <span class="pre">16,</span> <span class="pre">'которого':</span> <span class="pre">17,</span>
+<span class="pre">'котёнок':</span> <span class="pre">18,</span> <span class="pre">'кошка':</span> <span class="pre">19,</span> <span class="pre">'любимый':</span> <span class="pre">20,</span> <span class="pre">'мягкий':</span> <span class="pre">21,</span> <span class="pre">'наблюдать':</span> <span class="pre">22,</span>
+<span class="pre">'научимся':</span> <span class="pre">23,</span> <span class="pre">'нашли':</span> <span class="pre">24,</span> <span class="pre">'очень':</span> <span class="pre">25,</span> <span class="pre">'плед':</span> <span class="pre">26,</span> <span class="pre">'поиска':</span> <span class="pre">27,</span>
+<span class="pre">'приносит':</span> <span class="pre">28,</span> <span class="pre">'просто':</span> <span class="pre">29,</span> <span class="pre">'пушистый':</span> <span class="pre">30,</span> <span class="pre">'работой':</span> <span class="pre">31,</span>
+<span class="pre">'релевантного':</span> <span class="pre">32,</span> <span class="pre">'собак':</span> <span class="pre">33,</span> <span class="pre">'собака':</span> <span class="pre">34,</span> <span class="pre">'создавать':</span> <span class="pre">35,</span> <span class="pre">'спят':</span> <span class="pre">36,</span>
+<span class="pre">'тапочки':</span> <span class="pre">37,</span> <span class="pre">'утрам':</span> <span class="pre">38,</span> <span class="pre">'храбрый':</span> <span class="pre">39,</span> <span class="pre">'шлейке':</span> <span class="pre">40,</span> <span class="pre">'это':</span> <span class="pre">41}</span></code></p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Для вычисления значений <code class="docutils literal notranslate"><span class="pre">IDF</span></code> для всей коллекции используйте
+функцию <a class="reference internal" href="../lab_2_retrieval_w_bm25/lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.calculate_idf" title="lab_2_retrieval_w_bm25.main.calculate_idf"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.calculate_idf()</span></code></a>.</p>
+</div>
+<p>Метод должен возвращать логическое значение <code class="docutils literal notranslate"><span class="pre">True</span></code>, если атрибуты
+были успешно заполнены и не содержат значений <code class="docutils literal notranslate"><span class="pre">None</span></code>, иначе <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>Вызов данного метода может выглядеть следующим образом:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">tokenized_docs</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;векторы&quot;</span><span class="p">,</span> <span class="s2">&quot;используются&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;кот&quot;</span><span class="p">,</span> <span class="s2">&quot;вектор&quot;</span><span class="p">]]</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">Vectorizer</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">)</span>
+<span class="n">vectorizer</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="tf-idf">
+<h3>Шаг 2.2. Посчитать TF-IDF для документа<a class="headerlink" href="#tf-idf" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf" title="lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf()</span></code></a>,
+который вычисляет <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> и создаёт вектор документа.
+Для того чтобы сразу учесть неизменяемость размерности вектора, создайте
+вектор из нулей длины списка <code class="docutils literal notranslate"><span class="pre">self._vocabulary</span></code>, который далее заполните
+значениями <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Для вычисления метрики <code class="docutils literal notranslate"><span class="pre">TF</span></code> для токенов документа
+используйте функцию <a class="reference internal" href="../lab_2_retrieval_w_bm25/lab_2_retrieval_w_bm25.api.html#lab_2_retrieval_w_bm25.main.calculate_tf" title="lab_2_retrieval_w_bm25.main.calculate_tf"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_retrieval_w_bm25.main.calculate_tf()</span></code></a>.</p>
+</div>
+<p>Для каждого токена документа вычислите <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> и заполните значение
+исходного нулевого вектора по индексу токена в <code class="docutils literal notranslate"><span class="pre">self._vocabulary</span></code>.
+В качестве <code class="docutils literal notranslate"><span class="pre">IDF</span></code> метрики используйте значения соответствующего атрибута.
+Напомним, что формула метрики выглядит следующим образом: <span class="math notranslate nohighlight">\(TF \cdot IDF\)</span></p>
+<p>Например, вектор уже знакомого нам текста про кота Вектора на списке
+уникальных токенов будет выглядеть так:
+<code class="docutils literal notranslate"><span class="pre">(0.061,</span> <span class="pre">0.121,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.0)</span></code>.</p>
+</section>
+<section id="id10">
+<h3>Шаг 2.3. Векторизовать документ<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer.vectorize" title="lab_3_ann_retriever.main.Vectorizer.vectorize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer.vectorize()</span></code></a>,
+который возвращает векторное представления документа.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Метод должен вызывать защищённый метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf" title="lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer._calculate_tf_idf()</span></code></a>.</p>
+</div>
+<p>Вызов данного метода может выглядеть следующим образом:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">tokenized_docs</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;векторы&quot;</span><span class="p">,</span> <span class="s2">&quot;используются&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;кот&quot;</span><span class="p">,</span> <span class="s2">&quot;вектор&quot;</span><span class="p">]]</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">Vectorizer</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">)</span>
+<span class="n">vectorizer</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3>Шаг 3. Посчитать Евклидово расстояние<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>Для дальнейшего использования векторов нам нужно вычислить расстояние
+между ними. Есть множество способов, как вычислить расстояние между соседствующими
+объектами, но мы остановимся на Евклидовом расстоянии.</p>
+<p>В общем виде Евклидово расстояние определяется как длина отрезка между
+двумя объектами в N-мерном пространстве. Тогда для нашего
+случая Евклидово расстояние будет вычисляться по формуле
+<span class="math notranslate nohighlight">\(\sqrt{\sum^{n}_{i=1}(q_i - v_i)^2}\)</span>, где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> — размерность вектора;</p></li>
+<li><p><span class="math notranslate nohighlight">\(i\)</span> — индекс значения в векторе;</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_i\)</span> и <span class="math notranslate nohighlight">\(v_i\)</span> — числовые значения по индексу <span class="math notranslate nohighlight">\(i\)</span> в
+векторе запроса и векторе коллекции.</p></li>
+</ul>
+<p>Реализуйте функцию
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.calculate_distance" title="lab_3_ann_retriever.main.calculate_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.calculate_distance()</span></code></a>
+которая вычисляет Евклидово расстояния по формуле от вектора запроса до
+каждого из векторов документов на входе.</p>
+<p>Посмотрим на 4 вектора нашей коллекции:
+<code class="docutils literal notranslate"><span class="pre">[(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span>
+<span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0),</span> <span class="pre">(0.061,</span> <span class="pre">0.121,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span>
+<span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.0),</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0),</span> <span class="pre">(0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061)]</span></code>.
+Если посчитать расстояние от вектора нулевого текста из нашей
+коллекции примеров (про использование векторов) до всех текстов коллекции,
+то мы получим следующие значения в порядке документов коллекции:
+<code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">0.357,</span> <span class="pre">0.34,</span> <span class="pre">0.352</span></code>.</p>
+</section>
+<section id="k">
+<h3>Шаг 4. Реализовать алгоритм поиска K-ближайших соседей<a class="headerlink" href="#k" title="Link to this heading"></a></h3>
+<p>Теперь, когда мы умеем создавать векторы и вычислять расстояние между ними,
+нам нужно научиться находить векторы коллекции, которые находятся на минимальном
+расстоянии от вектора запроса.
+Для этого мы реализуем алгоритм, который называется метод K-ближайших соседей
+(<a class="reference external" href="https://habr.com/ru/articles/801885/">KNN/K-Nearest Neighbours</a>).
+Это классический алгоритм, который используют для решения задачи классификации и
+регрессии. Мы будем применять его для поиска документов в векторном пространстве.</p>
+<p>Принцип работы KNN для векторного поиска достаточно прост:</p>
+<ol class="arabic simple">
+<li><p>Вычислить расстояние между вектором запроса и всеми векторами
+изначальной коллекции.</p></li>
+<li><p>Выбрать k документов с наименьшим расстоянием между вектором запроса и
+векторами коллекции.</p></li>
+</ol>
+<p>Для исполнения алгоритма K-ближайших соседей реализуйте класс
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine" title="lab_3_ann_retriever.main.BasicSearchEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine</span></code></a>,
+который по запросу выдаёт k ближайших по векторам документов.
+В этом классе есть следующие атрибуты:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._tokenizer</span></code> — экземпляр класса <code class="docutils literal notranslate"><span class="pre">Tokenizer</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._vectorizer</span></code> — экземпляр класса <code class="docutils literal notranslate"><span class="pre">Vectorizer</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._documents</span></code> — список документов (текстов) коллекции,
+который на момент инициализации должен быть пустой;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._document_vectors</span></code> — список векторов коллекции,
+который на данном этапе тоже должен быть пустой.</p></li>
+</ul>
+<p>Пример инициализации экземпляра класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">documents</span><span class="p">,</span> <span class="n">stopwords</span> <span class="o">=</span> <span class="n">open_files</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">stopwords</span><span class="p">)</span>
+<span class="n">tokenized_docs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">Vectorizer</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">)</span>
+<span class="n">vectorizer</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">knn_retriever</span> <span class="o">=</span> <span class="n">BasicSearchEngine</span><span class="p">(</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h3>Шаг 4.1. Векторизовать документ для поиска<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>На этом Шаге реализуйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._index_document" title="lab_3_ann_retriever.main.BasicSearchEngine._index_document"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._index_document()</span></code></a>,
+который использует токенайзер и векторайзер для создания вектора документа.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Токенизируйте документ на входе через метод атрибута <code class="docutils literal notranslate"><span class="pre">self._tokenizer.tokenize</span></code>,
+а затем постройте для документа вектор через метод <code class="docutils literal notranslate"><span class="pre">self._vectorizer.vectorize</span></code>.</p>
+</div>
+<p>Например, для документа про собаку на выходе получится вектор
+<code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061)</span></code>.</p>
+</section>
+<section id="id13">
+<h3>Шаг 4.2. Заполнить атрибуты класса несколькими документами<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<p>Теперь реализуйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine.index_documents" title="lab_3_ann_retriever.main.BasicSearchEngine.index_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine.index_documents()</span></code></a>,
+который должен заполнять атрибуты класса.
+Сохраните документы из коллекции в атрибуте <code class="docutils literal notranslate"><span class="pre">self._documents</span></code>.
+Также для каждого документа коллекции создайте вектор и
+сохраните его в атрибуте <code class="docutils literal notranslate"><span class="pre">self._document_vectors</span></code>.
+Метод должен возвращать <code class="docutils literal notranslate"><span class="pre">True</span></code>, если все тексты удалось векторизовать, иначе <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">documents</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Вектора используются для...&#39;</span><span class="p">,</span> <span class="s1">&#39;Мой кот Вектор...&#39;</span><span class="p">]</span>
+<span class="n">knn_retriever</span><span class="o">.</span><span class="n">index_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Этот метод обязательно должен вызывать метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._index_document" title="lab_3_ann_retriever.main.BasicSearchEngine._index_document"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._index_document()</span></code></a>.</p>
+</div>
+</section>
+<section id="id14">
+<h3>Шаг 4.3. Найти k ближайших соседей<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<p>Теперь Вам нужно реализовать второй шаг алгоритма K-ближайших соседей (KNN)
+в методе <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn" title="lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn()</span></code></a>,
+то есть выбрать k документов из коллекции, Евклидово расстояние от которых
+до запроса наименьшее. Отсортируйте получившийся список по возрастанию расстояния.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В данном методе обязательно должна быть использована функция
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.calculate_distance" title="lab_3_ann_retriever.main.calculate_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.calculate_distance()</span></code></a>.</p>
+</div>
+<p>Если использовать в качестве документа запроса нулевой текст коллекции примеров,
+а количество соседей поставить равным 4, то мы получим
+<code class="docutils literal notranslate"><span class="pre">[(0,</span> <span class="pre">0.0),</span> <span class="pre">(2,</span> <span class="pre">0.34),</span> <span class="pre">(3,</span> <span class="pre">0.352),</span> <span class="pre">(1,</span> <span class="pre">0.357)]</span></code>. Это индексы документов,
+которые лучше всего подходят запросу, и расстояния между их векторами и вектором запроса.
+Они соответствуют значениям, которые мы посчитали на Шаге 3.</p>
+</section>
+<section id="id15">
+<h3>Шаг 4.4. Получить список k документов по запросу<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<p>Теперь реализуйте поиск ближайших соседей по запросу с помощью метода
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine.retrieve_relevant_documents" title="lab_3_ann_retriever.main.BasicSearchEngine.retrieve_relevant_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine.retrieve_relevant_documents()</span></code></a>.
+На вход подаётся строка запроса и количество соседей,
+которое мы хотим получить. Токенизируйте и векторизуйте запрос,
+а затем с помощью метода
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn" title="lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn()</span></code></a>
+отыщите наиболее релевантные запросу документы. Важно вернуть пару расстояния и
+самого текста документа, а не его вектора.</p>
+<p>Например, у нас есть коллекция из четырёх документов, рассмотренных ранее
+в примерах, и запрос <code class="docutils literal notranslate"><span class="pre">&quot;Мои</span> <span class="pre">кот</span> <span class="pre">и</span> <span class="pre">собака</span> <span class="pre">не</span> <span class="pre">дружат!&quot;</span></code>. Из четырёх документов
+мы хотим найти 2 самых релевантных.
+При правильной реализации метода, он вернёт следующие значения:
+<code class="docutils literal notranslate"><span class="pre">[(0.329,</span> <span class="pre">&quot;Моя</span> <span class="pre">собака</span> <span class="pre">думает,</span> <span class="pre">что</span> <span class="pre">её</span> <span class="pre">любимый</span> <span class="pre">плед</span> <span class="pre">—</span> <span class="pre">это</span> <span class="pre">кошка.</span> <span class="pre">Просто</span> <span class="pre">он</span> <span class="pre">очень</span>
+<span class="pre">пушистый</span> <span class="pre">и</span> <span class="pre">мягкий.</span> <span class="pre">Забавно</span> <span class="pre">наблюдать,</span> <span class="pre">как</span> <span class="pre">они</span> <span class="pre">спят</span> <span class="pre">вместе!&quot;),</span> <span class="pre">(0.334,</span> <span class="pre">&quot;Мой</span> <span class="pre">кот</span>
+<span class="pre">Вектор</span> <span class="pre">по</span> <span class="pre">утрам</span> <span class="pre">приносит</span> <span class="pre">мне</span> <span class="pre">тапочки,</span> <span class="pre">а</span> <span class="pre">по</span> <span class="pre">вечерам</span> <span class="pre">мы</span> <span class="pre">гуляем</span> <span class="pre">с</span> <span class="pre">ним</span> <span class="pre">на</span> <span class="pre">шлейке</span> <span class="pre">во</span>
+<span class="pre">дворе.</span> <span class="pre">Вектор</span> <span class="pre">забавный</span> <span class="pre">и</span> <span class="pre">храбрый.</span> <span class="pre">Он</span> <span class="pre">не</span> <span class="pre">боится</span> <span class="pre">собак!&quot;)]</span></code>.</p>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">knn_retriever</span> <span class="o">=</span> <span class="n">BasicSearchEngine</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">)</span>
+<span class="n">knn_retriever</span><span class="o">.</span><span class="n">index_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+<span class="n">knn_retriever</span><span class="o">.</span><span class="n">retrieve_relevant_documents</span><span class="p">(</span><span class="s2">&quot;Мои кот и собака не дружат!&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h3>Шаг 5. Получить токены вектора<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<p>Помимо создания вектора для токенизированного текста нам также может понадобиться
+получить токены для вектора, который не сохранён в атрибуте
+<code class="docutils literal notranslate"><span class="pre">self._vectorizer._documents</span></code>, но построен в нужном нам пространстве.
+Расширьте класс <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer" title="lab_3_ann_retriever.main.Vectorizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer</span></code></a> методом
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer.vector2tokens" title="lab_3_ann_retriever.main.Vectorizer.vector2tokens"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer.vector2tokens()</span></code></a>.</p>
+<p>Данный метод отвечает за возвращение тех токенов, которые присутствовали в
+токенизированном представлении данного вектора до применения векторизации.
+Обязательно используйте атрибут <code class="docutils literal notranslate"><span class="pre">self._token2ind</span></code> для нахождения
+конкретных токенов. Верните полученные токены в алфавитном порядке.</p>
+<p>Так, для нулевого документа из коллекции примеров получится следующий
+список токенов: <code class="docutils literal notranslate"><span class="pre">['вектора',</span> <span class="pre">'давайте',</span> <span class="pre">'документа',</span> <span class="pre">'использовать',</span>
+<span class="pre">'используются',</span> <span class="pre">'научимся',</span> <span class="pre">'поиска',</span> <span class="pre">'релевантного',</span> <span class="pre">'создавать']</span></code>.
+Несмотря на отсутствие стоп-слов и невозможность понять, сколько раз
+тот или иной токен встречался в изначальном тексте, по такому списку
+можно примерно понять смысл изначального содержания.</p>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">Vectorizer</span><span class="p">(</span><span class="n">tokenized_documents</span><span class="p">)</span>
+<span class="n">vectorizer</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+<span class="n">vectorizer</span><span class="o">.</span><span class="n">vector2tokens</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.094</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="id17">
+<h3>Шаг 5.1. Найти самый релевантный документ по вектору<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<p>Теперь реализуйте дополнительный метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized" title="lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized()</span></code></a>,
+который будет полезен для поиска самого релевантного документа для запроса,
+который изначально представлен как вектор.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Для того чтобы найти единственный наиболее релевантный документ
+среди документов коллекции, используйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn" title="lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn()</span></code></a>.</p>
+</div>
+<p>Для того же вектора нулевого текста метод поиска выдаст результат:
+<code class="docutils literal notranslate"><span class="pre">&quot;Векторы</span> <span class="pre">используются</span> <span class="pre">для</span> <span class="pre">поиска</span> <span class="pre">релевантного</span> <span class="pre">документа.</span> <span class="pre">Давайте</span> <span class="pre">научимся,</span>
+<span class="pre">как</span> <span class="pre">их</span> <span class="pre">создавать</span> <span class="pre">и</span> <span class="pre">использовать!&quot;</span></code></p>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">knn_retriever</span> <span class="o">=</span> <span class="n">BasicSearchEngine</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">)</span>
+<span class="n">knn_retriever</span><span class="o">.</span><span class="n">index_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+<span class="n">knn_retriever</span><span class="o">.</span><span class="n">retrieve_vectorized</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.094</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h3>Шаг 5.2. Продемонстрировать результаты в <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 2-5 соответствует 6 баллам.</p>
+</div>
+<p>Продемонстрируйте работу методов
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer.vector2tokens" title="lab_3_ann_retriever.main.Vectorizer.vector2tokens"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer.vector2tokens()</span></code></a>
+и <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized" title="lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine.retrieve_vectorized()</span></code></a>
+в модуле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+<p>Используйте секретное содержимое любого файла из папки <code class="docutils literal notranslate"><span class="pre">assets/secrets</span></code>.
+В файлах содержатся 5 векторов, построенных в системе документов из
+папки <code class="docutils literal notranslate"><span class="pre">assets/articles</span></code>. Выполните следующие два шага:</p>
+<ol class="arabic simple">
+<li><p>По полученным из загадочного вектора токенам предположите, какой вопрос был
+зашифрован в изначальном тексте.</p></li>
+<li><p>Найдите документ, наиболее релевантный для вектора запроса, и ответьте на
+поставленный вопрос.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В полученных документах есть инструкция о получении бонуса к
+накопленной оценке за курс. При этом <strong>количество бонусов ограничено</strong>.
+Один студент может отгадать не более одной загадки.
+Поэтому только первые 5 студентов, которые справятся с заданием,
+смогут получить бонус. Решение о применении бонуса принимается
+ментором и не подлежит оспариванию. Студент получит бонус, только
+если на момент выполнения задания в его форке опубликован
+актуальный код, который позволяет воспроизвести результат.</p>
+</div>
+</section>
+<section id="id19">
+<h3>Шаг 6. Создать К-мерное дерево<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<p>Теперь мы рассмотрим структуру данных
+<a class="reference external" href="https://habr.com/ru/articles/312882/">KD-Tree (К-мерное дерево)</a>.</p>
+<p>Общая идея заключается в том, чтобы разбить многомерное пространство,
+в котором лежат векторы наших документов, на части по некоторому
+условию. Это позволит значительно сузить диапазон поиска ближайшего
+соседа, то есть самого релевантного документа.
+Он не настолько прост, как другие алгоритмы, но для достаточно
+крупного количества объектов его производительность оправдывает
+использование.</p>
+<p>Рассмотрим подробнее структуру дерева, которая должна получиться из нашей
+коллекции четырёх примеров при правильной реализации Шагов 6-7.
+На рисунке подписано, какие по индексу документы олицетворяет каждый блок.</p>
+<figure class="align-default">
+<img alt="../../../../_images/kdtree_example.png" src="../../../../_images/kdtree_example.png" />
+</figure>
+<p>Дерево состоит из узлов (nodes), которые представлены блоками на схеме.
+В узлах хранится информация о его узлах-детях (с которыми он соединён зелёной линией)
+и координаты точки пространства, которую данный узел олицетворяет.</p>
+<p>Самый верхний узел, относящийся к документу с индексом 3, называется корнем (root)
+дерева, а красные узлы, у которых нет собственных узлов-детей, называются листьями
+(leafs). Они по умолчанию заполняются специальными значениями <code class="docutils literal notranslate"><span class="pre">None</span></code>. У узлов, не
+являющихся листьями, должно быть по два узла-ребёнка.</p>
+<p>Корень дерева находится на нулевой глубине (depth), и каждый раз, когда мы спускаемся
+вниз к узлам-детям, мы прибавляем глубину. Так, документы 0 и 2 находятся на глубине 1,
+а документ 1 — на глубине 2. Глубина используется во время деления N-мерного пространства
+на подпространства.</p>
+<p>Так как концепция дерева основывается на делении многомерного пространства
+на подпространства, опишем процесс на примере уже знакомой нам двумерной плоскости с
+пятью точками.</p>
+<figure class="align-default">
+<img alt="../../../../_images/vector_space_division_example.png" src="../../../../_images/vector_space_division_example.png" />
+</figure>
+<p>Существует всё пространство - белая часть рисунка.
+Если в пространстве есть несколько точек, его нужно поделить на подпространства
+по некоторому правилу, пока не найдётся подпространство с единственной точкой.
+Деление происходит плоскостью, перпендикулярной одной из осей координат.</p>
+<p>Можно по-разному задавать условие разделения на подпространства. В нашем случае
+в качестве точки, по которой будет происходить разделение, мы будем брать медиану.
+Вычислять медианную точку будем следующим образом.
+Сначала в пространстве выбирается первая точка — корневой узел,
+по которой мы будем разбивать пространство в первый раз на две части. В нашем
+случае это точка текста «Котик», синяя, и линия деления (соответствующего
+цвета), которая будет перпендикулярно идти оси «Вектор».
+Зелёная и красные точки оказываются в левом подпространстве,
+а фиолетовая и оранжевая — в правом.</p>
+<p>Далее берётся одно из полученных подпространств — мы перемещаемся глубже на уровень,
+на глубину 1, в пространство более мелкого размера. Его также нужно разделить точкой
+по правилу. Эта и другие точки деления будут называться <strong>узлами</strong>.
+В левом подпространстве узлом будет зелёная точка, и деление будет происходить по
+значению оси «Котик». Тогда в правом подпространстве у данного узла будет ничего,
+то есть эквивалент <code class="docutils literal notranslate"><span class="pre">None</span></code>, а в левом будет красная точка, деление которой приведёт
+к двум пустым подпространствам.</p>
+<p>Деление и переход в более мелкие подпространства будет происходить до тех пор,
+пока в новом пространстве есть точки. Если после деления ни в одном из
+подпространств нет точек, которые ещё не были узлами, то этот узел является листом.</p>
+<p>В правом подпространстве узла-корня деление будет происходить по фиолетовой точке,
+по оси «Котик», затем её правое подпространство будет пустое, а левое будет содержать
+оранжевую точку, которая является листом. Тогда итоговое дерево такого пространства
+будет выглядеть примерно так:</p>
+<figure class="align-default">
+<img alt="../../../../_images/2d_tree_example.png" src="../../../../_images/2d_tree_example.png" />
+</figure>
+</section>
+<section id="id20">
+<h3>Шаг 6.1. Объявить сущность узла дерева<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<p>Начнём построение дерева с узла. Инициализируйте класс
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Node" title="lab_3_ann_retriever.main.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Node</span></code></a>, который отвечает за узел дерева.
+В нём есть следующие атрибуты:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self.vector</span></code> — точка (вектор), находящаяся в узле;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.left_node</span></code> — узел, который находится в левой половине пространства,
+делимого текущим узлом;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.right_node</span></code> — узел, который находится в правой половине пространства,
+делимого текущим узлом;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.payload</span></code> — номер узла, а также номер документа, который воплощает вектор.</p></li>
+</ul>
+<p>Пример инициализации экземпляра класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Node</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="naivekdtree">
+<h3>Шаг 6.2. Объявить сущность дерева NaiveKDTree<a class="headerlink" href="#naivekdtree" title="Link to this heading"></a></h3>
+<p>Теперь создадим само дерево. Реализуйте класс
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree" title="lab_3_ann_retriever.main.NaiveKDTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree</span></code></a>,
+который отвечает за создание дерева и поиск через него ближайшего вектора.
+В этом классе есть один атрибут - <code class="docutils literal notranslate"><span class="pre">self._root</span></code>. Это начальное состояние
+дерева, которое на момент инициализации содержит специальное значение <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+заглушку до непосредственного создания дерева.</p>
+<p>Пример инициализации экземпляра класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">naive_tree</span> <span class="o">=</span> <span class="n">NaiveKDTree</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id21">
+<h3>Шаг 6.3. Построить дерево<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree.build" title="lab_3_ann_retriever.main.NaiveKDTree.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree.build()</span></code></a>,
+который отвечает за деление пространства по точкам и сохранение
+дерева в атрибут класса.</p>
+<p>Создайте список, содержащий следующую информацию о состоянии пространства
+в изначальный момент:</p>
+<ol class="arabic simple">
+<li><p>Векторы для точек, находящихся в текущем пространстве, и их индексы.</p></li>
+<li><p>Глубина деления пространства (для корневой, изначальной позиции — 0).</p></li>
+<li><p>Узел-родитель (экземпляр класса <code class="docutils literal notranslate"><span class="pre">Node</span></code>, на нулевой глубине имеет
+пустой вектор и индекс <cite>-1</cite>).</p></li>
+<li><p>Показатель того, является ли текущее пространство левым подпространством
+для узла-родителя. Назовём корневой узел левым для простоты.</p></li>
+</ol>
+<p>До тех пор, пока в списке есть информация о пространствах,
+проделайте следующие шаги с каждым из них:</p>
+<ol class="arabic">
+<li><p>Удалите информацию о текущем пространстве из списка.</p></li>
+<li><p>Проверьте, что в текущем пространстве есть векторы.
+Если узлов нет, то ищите новые узлы в следующем пространстве.</p></li>
+<li><p>Определите ось деления на подпространства. Для этого выясните,
+по какой из осей (axis) координат производить деление на
+подпространства. Как Вы помните из Шагов 2 и 6, осями вектора являются
+его индексы и они соотносятся к токенами документов коллекции.</p>
+<p>Условимся, что номером оси для деления на подпространства будет значение,
+описываемое как остаток от деления <span class="math notranslate nohighlight">\(axis = depth \bmod dimensions\)</span>, где:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(depth\)</span> — глубина, на которой находится узел дерева, то есть
+целое число большее или равное нулю, увеличивающееся с каждым
+делением узла;</p></li>
+<li><p><span class="math notranslate nohighlight">\(dimensions\)</span> — размерность пространства (длина вектора документа).</p></li>
+</ul>
+</div></blockquote>
+<p>Для коллекции примеров на начальной стадии <code class="docutils literal notranslate"><span class="pre">depth</span> <span class="pre">=</span> <span class="pre">0</span></code>, так как начинаем мы
+с корня, а глубина корневого узла нулевая. <code class="docutils literal notranslate"><span class="pre">dimensions</span> <span class="pre">=</span> <span class="pre">42</span></code>, так как именно
+такая длина у одного вектора коллекции. Тогда осью деления будет ось номер <cite>0</cite>.</p>
+</li>
+<li><p>Отсортируйте векторы по значениям полученной оси в порядке возрастания.</p>
+<p>Вспомним, как выглядят наши вектора: <code class="docutils literal notranslate"><span class="pre">[(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">...),</span>
+<span class="pre">(0.061,</span> <span class="pre">0.121,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">...),</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">...),</span>
+<span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">...)]</span></code>.
+По нулевой оси у них значения <code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0</span></code>. Отсортируем
+точки в порядке возрастания. Если у точек одинаковые значения оси,
+оставим их в исходном порядке.
+В итоге получим новый список точек: <code class="docutils literal notranslate"><span class="pre">[(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">...),</span>
+<span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">...),</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">...),</span>
+<span class="pre">(0.061,</span> <span class="pre">0.121,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">...)]</span></code>.</p>
+</li>
+<li><p>Найдите медианную точку.</p>
+<p>Также нам понадобится условие деления на подпространства — это будет медиана.
+Все точки правее медианы будут относиться к правому подпространству,
+левее — к левому. Для отсортированных по оси точек индексом медианной точки
+будет результат целочисленного деления <span class="math notranslate nohighlight">\(median\_index = l // 2\)</span>, где
+<span class="math notranslate nohighlight">\(l\)</span> — количество точек.</p>
+<p>В случае коллекции примеров медианным индексом будет число <cite>2</cite>, и тогда
+медианная точка с этим индексом будет вектором <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,...)</span></code>.
+Именно эта точка будет узлом текущего пространства, по ней оно будет делиться
+на подпространства.</p>
+</li>
+<li><p>Сохраните узел текущей медианной точки.</p>
+<p>Создайте экземпляр узла для текущей медианной точки.
+Если у точки нет родителя, то есть узел-родитель имеет номер <cite>-1</cite>,
+сохраните текущий узел в атрибут <code class="docutils literal notranslate"><span class="pre">self._root</span></code>.
+Если же у точки есть родитель, сохраните текущий узел как правый или левый
+узел-ребёнок родителя в зависимости от показателя стороны подпространства.</p>
+</li>
+<li><p>Добавьте в список новые подпространства: левое и правое.</p>
+<p>В качестве новых векторов и индексов используйте значения для точек левее
+и правее точки с медианным индексом. В качестве узла-родителя используйте
+текущий узел медианы.</p>
+</li>
+<li><p>Повторяйте пункты 1-7 до тех пор, пока пространства для деления не
+закончатся.</p></li>
+</ol>
+<p>Этот метод должен возвращать <code class="docutils literal notranslate"><span class="pre">True</span></code> при успешном сохранении дерева в атрибут
+и <code class="docutils literal notranslate"><span class="pre">False</span></code> в других случаях.</p>
+<p>При правильном выполнении Шагов 6-6.3 на основе коллекции примеров,
+у Вас должно получиться уже знакомое дерево:</p>
+<figure class="align-default">
+<img alt="../../../../_images/kdtree_example.png" src="../../../../_images/kdtree_example.png" />
+</figure>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">vectors</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.094</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.061</span><span class="p">,</span> <span class="mf">0.121</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+<span class="n">naive_tree</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">vectors</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h3>Шаг 6.4. Вычислить расстояние до ближайшей точки<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree._find_closest" title="lab_3_ann_retriever.main.NaiveKDTree._find_closest"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree._find_closest()</span></code></a>
+для поиска ближайшей точки узла дерева к точке запроса. В рамках простого алгоритма Вам
+понадобится идти по дереву от корня до одного из листов, каждый раз выбирая то
+подпространство, в котором находился бы вектор запроса, если добавить его в наше пространство.
+Идея состоит в том, что чем глубже мы в дереве, тем точнее будет результат, ведь мы ищем на
+меньшем пространстве, и оно всегда ближе по текущим координатам. По итогу нам нужен вектор
+узла подпространства, в котором лежал бы вектор запроса.
+Позже мы рассмотрим, почему такой подход не всегда будет работать.</p>
+<p>Создайте список из единственной пары корневого узла дерева и глубины <cite>0</cite>.
+Для этого реализуйте следующий алгоритм:</p>
+<ol class="arabic">
+<li><p>Удалите текущую пару узла и глубины.</p></li>
+<li><p>Проверьте, что узел не является листом. Если узел является листом,
+то мы нашли ответ. Посчитайте расстояние до листа с помощью функции
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.calculate_distance" title="lab_3_ann_retriever.main.calculate_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.calculate_distance()</span></code></a>,
+считающей Евклидово расстояние между векторами.</p></li>
+<li><p>Определите ось деления на подпространства.</p></li>
+<li><p>Добавьте ближайшее подпространство в список.
+Для этого используем следующее правило: если <span class="math notranslate nohighlight">\(q[axis] &lt; v[axis]\)</span>,
+то левое подпространство ближайшее, иначе — правое.</p>
+<p>Добавьте в список существующих узлов пару
+<code class="docutils literal notranslate"><span class="pre">(узел</span> <span class="pre">ближайшего</span> <span class="pre">подпространства,</span> <span class="pre">текущая</span> <span class="pre">глубина</span> <span class="pre">+</span> <span class="pre">1)</span></code>.</p>
+</li>
+<li><p>Повторяйте шаги 1-4, пока в списке существует пара узел-глубина и Вы не достигли листа.</p></li>
+</ol>
+<p>Если считать расстояние от примера про использование векторов до всех других векторов
+коллекции примеров, то получим значение <code class="docutils literal notranslate"><span class="pre">[(0.0,</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0))]</span></code>.</p>
+<p>Как видно из рисунка, мы идём до ближайшего листа, который в нашем случае оказался самим
+вектором запроса.</p>
+<figure class="align-default">
+<img alt="../../../../_images/kdtree_example.png" src="../../../../_images/kdtree_example.png" />
+</figure>
+</section>
+<section id="id23">
+<h3>Шаг 6.5. Вернуть ближайшую точку<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree.query" title="lab_3_ann_retriever.main.NaiveKDTree.query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree.query()</span></code></a>,
+который отвечает за получение списка точек, которые вычислены как
+ближайшие <cite>k</cite> точек для запроса.</p>
+<p>Для этого используйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree._find_closest" title="lab_3_ann_retriever.main.NaiveKDTree._find_closest"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree._find_closest()</span></code></a>.
+После выполнения метода у Вас будет список из единственной пары
+расстояний и узлов.</p>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">naive_tree</span> <span class="o">=</span> <span class="n">NaiveTree</span><span class="p">()</span>
+<span class="n">naive_tree</span><span class="o">.</span><span class="n">build</span><span class="p">([(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.094</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.061</span><span class="p">,</span> <span class="mf">0.121</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)])</span>
+<span class="n">query_vector</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.094</span><span class="p">)</span>
+<span class="n">naive_tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h3>Шаг 7. Объявить сущность по получению релевантного документа с помощью NaiveKDTree<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<p>На данном Шаге Вам нужно реализовать класс
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.SearchEngine" title="lab_3_ann_retriever.main.SearchEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.SearchEngine</span></code></a>,
+ответственный за поиск релевантного документа по запросу с помощью
+простого К-мерного дерева.</p>
+<p>Это класс, который наследуется от класса
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine" title="lab_3_ann_retriever.main.BasicSearchEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine</span></code></a>, то есть
+использует его атрибуты и методы и дополняет их.
+Помимо атрибутов класса <code class="docutils literal notranslate"><span class="pre">BasicSearchEngine</span></code>, данный класс должен
+иметь атрибут <code class="docutils literal notranslate"><span class="pre">self._tree</span></code> — экземпляр класса <code class="docutils literal notranslate"><span class="pre">NaiveKDTree</span></code>, который создаётся
+при инициализации.</p>
+<p>Пример инициализации экземпляра класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">documents</span><span class="p">,</span> <span class="n">stopwords</span> <span class="o">=</span> <span class="n">open_files</span><span class="p">()</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">stopwords</span><span class="p">)</span>
+<span class="n">tokenized_docs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">Vectorizer</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">)</span>
+<span class="n">naive_kdtree_retriever</span> <span class="o">=</span> <span class="n">SearchEngine</span><span class="p">(</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="searchengine">
+<h3>Шаг 7.1. Заполнить атрибуты SearchEngine<a class="headerlink" href="#searchengine" title="Link to this heading"></a></h3>
+<p>На этом Шаге переопределите метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.SearchEngine.index_documents" title="lab_3_ann_retriever.main.SearchEngine.index_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.SearchEngine.index_documents()</span></code></a>,
+который до этого объявлялся в классе-родителе.
+Продублируйте основной функционал метода и добавьте в него построение
+дерева для документов через метод <code class="docutils literal notranslate"><span class="pre">self._tree.build</span></code>.</p>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">documents</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Векторы используются для...&#39;</span><span class="p">,</span> <span class="s1">&#39;Мой кот Вектор...&#39;</span><span class="p">]</span>
+<span class="n">naive_kdtree_retriever</span><span class="o">.</span><span class="n">index_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="k-k">
+<h3>Шаг 7.2. Получить k ближайших документов с помощью K-мерного дерева<a class="headerlink" href="#k-k" title="Link to this heading"></a></h3>
+<p>Наконец, Вам понадобится переопределить метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.SearchEngine.retrieve_relevant_documents" title="lab_3_ann_retriever.main.SearchEngine.retrieve_relevant_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.SearchEngine.retrieve_relevant_documents()</span></code></a>,
+ответственный за возвращение наиболее релевантных запросу документов.</p>
+<p>Обработайте запрос и переведите его в векторное представление, чтобы использовать
+его вектор для поиска ближайших соседей из дерева. Для поиска используйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree.query" title="lab_3_ann_retriever.main.NaiveKDTree.query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree.query()</span></code></a>. По полученным векторам
+ближайших точек определите конкретные документов из коллекции, которым они соответствуют.</p>
+<p>Вернёмся к примеру запроса <code class="docutils literal notranslate"><span class="pre">&quot;Мои</span> <span class="pre">кот</span> <span class="pre">и</span> <span class="pre">собака</span> <span class="pre">не</span> <span class="pre">дружат!&quot;</span></code> и представим, что
+из четырёх имеющихся документов мы хотим найти самый релевантный.
+Верно реализованный метод класса <code class="docutils literal notranslate"><span class="pre">SearchEngine</span></code> вернёт следующий список:
+<code class="docutils literal notranslate"><span class="pre">[(0.329,</span> <span class="pre">&quot;Моя</span> <span class="pre">собака</span> <span class="pre">думает,</span> <span class="pre">что</span> <span class="pre">ее</span> <span class="pre">любимый</span> <span class="pre">плед</span> <span class="pre">—</span> <span class="pre">это</span>
+<span class="pre">кошка.</span> <span class="pre">Просто</span> <span class="pre">он</span> <span class="pre">очень</span> <span class="pre">пушистый</span> <span class="pre">и</span> <span class="pre">мягкий.</span> <span class="pre">Забавно</span> <span class="pre">наблюдать,</span> <span class="pre">как</span> <span class="pre">они</span> <span class="pre">спят</span> <span class="pre">вместе!&quot;)]</span></code></p>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">naive_kdtree_retriever</span> <span class="o">=</span> <span class="n">SearchEngine</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">=</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">)</span>
+<span class="n">naive_kdtree_retriever</span><span class="o">.</span><span class="n">index_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+<span class="n">naive_kdtree_retriever</span><span class="o">.</span><span class="n">retrieve_relevant_documents</span><span class="p">(</span><span class="s2">&quot;Мои кот и собака не дружат!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h3>Шаг 7.3. Продемонстрировать результаты в <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 6-7 соответствует 8 баллам.</p>
+</div>
+<p>Продемонстрируйте результат поиска наиболее релевантного
+документа из коллекции новостей в переменной <code class="docutils literal notranslate"><span class="pre">documents</span></code> по запросу
+<code class="docutils literal notranslate"><span class="pre">&quot;Нижний</span> <span class="pre">Новгород&quot;</span></code> с помощью экземпляра класса
+<code class="docutils literal notranslate"><span class="pre">SearchEngine</span></code> в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> модуля <code class="docutils literal notranslate"><span class="pre">start.py</span></code></p>
+<p>Сравните с теми результатами, которые получаются при поиске с
+помощью <code class="docutils literal notranslate"><span class="pre">BasicSearchEngine</span></code> трёх наиболее релевантных документов.
+Подумайте, в чём разница между полученными документами, как эта разница отражает
+смысл различных алгоритмов поиска и какой алгоритм работает лучше?</p>
+</section>
+<section id="id26">
+<h3>Шаг 8. Объявить сущность дерева для поиска k документов<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<p>Улучшим алгоритм поиска документов. В Шаге 6 Вы осуществляли поиск
+единственного документа, сейчас Вам нужно реализовать класс
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.KDTree" title="lab_3_ann_retriever.main.KDTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.KDTree</span></code></a>, который
+наследуется от класса <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree" title="lab_3_ann_retriever.main.NaiveKDTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree</span></code></a>
+и переопределяет метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree._find_closest" title="lab_3_ann_retriever.main.NaiveKDTree._find_closest"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree._find_closest()</span></code></a>
+для более точного поиска множества документов.</p>
+<p>Рассмотрим пример двумерного пространства для простоты:</p>
+<figure class="align-default">
+<img alt="../../../../_images/search_in_2d_example.png" src="../../../../_images/search_in_2d_example.png" />
+</figure>
+<p>Пусть дана чёрная точка по координатам вектора запроса <code class="docutils literal notranslate"><span class="pre">(-0.1,</span> <span class="pre">-0.2)</span></code> —
+оси векторов идут в алфавитном порядке.
+Простой поиск, описанный в Шаге 6.4, будет искать то наименьшее подпространство,
+в котором находится координата запроса, и его узел. То есть в итоге выберет красную
+точку как ближайшую к запросу. Но, как мы видим, оранжевая точка находится ближе,
+хоть и лежит в другом подпространстве. Постараемся учесть это в новой реализации.</p>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.KDTree._find_closest" title="lab_3_ann_retriever.main.KDTree._find_closest"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.KDTree._find_closest()</span></code></a>,
+для поиска <code class="docutils literal notranslate"><span class="pre">k</span></code> ближайших к точке запроса точек дерева. Для этого Вам понадобится
+пройтись практически по всем точкам дерева и найти те, которые находятся близко
+к точке запроса.</p>
+<p>Создайте список ближайших узлов и список текущих пар узла и глубины.
+Изначально положите туда корневой узел дерева и его глубину <cite>0</cite>.
+Реализуйте следующий алгоритм:</p>
+<ol class="arabic simple">
+<li><p>Вычислите расстояние между вектором запроса и узлом дерева.</p></li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Используйте функцию <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.calculate_distance" title="lab_3_ann_retriever.main.calculate_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.calculate_distance()</span></code></a>,
+считающую Евклидово расстояние между точками.</p>
+</div>
+<ol class="arabic" start="2">
+<li><p>Сохраните текущего лучшего соседа в список.
+Проверьте, что в списке ближайших соседей меньше <code class="docutils literal notranslate"><span class="pre">k</span></code> значений или
+<span class="math notranslate nohighlight">\(Euclidean\_Distance(q, v) &lt; max(best)\)</span>, где</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Euclidean\_Distance(q, v)\)</span> — функция, высчитывающая Евклидово расстояния
+между вектором запроса <span class="math notranslate nohighlight">\(q\)</span> и вектором коллекции <span class="math notranslate nohighlight">\(v\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(max(best)\)</span> — функция поиска максимального расстояния среди элементов
+списка ближайших соседей <span class="math notranslate nohighlight">\(best\)</span>.</p></li>
+</ul>
+<p>Сохраните в список лучших ближайших соседей пару значений
+<code class="docutils literal notranslate"><span class="pre">(расстояние</span> <span class="pre">между</span> <span class="pre">точками,</span> <span class="pre">точка</span> <span class="pre">узла)</span></code>.
+Если количество пар превышает <code class="docutils literal notranslate"><span class="pre">k</span></code> после добавления новой пары, удалите ту пару,
+у которой наибольшее расстоянием до точки запроса.</p>
+</li>
+<li><p>Найдите ближнее и дальнее подпространства.
+Используйте следующее правило: если <span class="math notranslate nohighlight">\(q[axis] &lt; v[axis]\)</span>,
+то левое подпространство ближайшее, иначе — правое.
+<cite>axis</cite> определяется по формуле оси из Шага 6.3.</p></li>
+<li><p>Удалите текущую пару узла и глубины из списка узлов.</p></li>
+<li><p>Добавьте в список текущих узлов ближайший узел-ребёнок.
+Добавьте в список существующих узлов пару <code class="docutils literal notranslate"><span class="pre">(узел</span> <span class="pre">ближайшего</span> <span class="pre">подпространства,</span>
+<span class="pre">текущая</span> <span class="pre">глубина</span> <span class="pre">+</span> <span class="pre">1)</span></code>.</p></li>
+<li><p>Добавьте в список текущих узлов дальний узел-ребёнок согласно следующему условию.</p>
+<p>Бывает так, что оба подпространства могут иметь точки, близкие к точке запроса,
+как мы видели в примере с чёрной точкой. Но если проверять каждое дальнее подпространство,
+то скорость работы алгоритма <code class="docutils literal notranslate"><span class="pre">KDTree</span></code> сильно упадёт, так как будет выполняться много
+лишних операций.</p>
+<p>Обозначим условие, при котором дальнее подпространство заслуживает нашего внимания:
+если <span class="math notranslate nohighlight">\((q[axis] - v[axis]) ** 2 &lt; max(best)\)</span>, то дальнее подпространство стоит
+также посетить после посещения ближайшего. Добавьте в список существующих узлов
+пару <code class="docutils literal notranslate"><span class="pre">(узел</span> <span class="pre">дальнего</span> <span class="pre">подпространства,</span> <span class="pre">текущая</span> <span class="pre">глубина</span> <span class="pre">+</span> <span class="pre">1)</span></code>.</p>
+</li>
+<li><p>Повторяйте шаги 1-6, пока в списке существует пара узла и глубины.
+Если пар больше нет, то верните итоговый список лучших расстояний и их точек.</p></li>
+</ol>
+<p>После выполнения метода у Вас будет список из <code class="docutils literal notranslate"><span class="pre">k</span></code> пар расстояний и узлов,
+отсортированный в порядке возрастания расстояний.</p>
+<p>В качестве запроса возьмём вектор нулевого документа коллекции примеров и найдём 4 ближайших
+соседа. Так должен выглядеть итоговый список:
+<code class="docutils literal notranslate"><span class="pre">[(0.0,</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span>
+<span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.094,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)),</span> <span class="pre">(0.34,</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.077,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0)),</span> <span class="pre">(0.352,</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061)),</span> <span class="pre">(0.357,</span> <span class="pre">(0.061,</span> <span class="pre">0.121,</span>
+<span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span>
+<span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.0,</span> <span class="pre">0.061,</span> <span class="pre">0.061,</span> <span class="pre">0.0))]</span></code></p>
+<p>Пример инициализации экземпляра класса и использования его методов:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">()</span>
+<span class="n">vs</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.094</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.061</span><span class="p">,</span> <span class="mf">0.121</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)]</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span>
+<span class="n">query_vector</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.094</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query_vector</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="kdtree">
+<h3>Шаг 9. Объявить сущность по получению релевантных документов с помощью KDTree<a class="headerlink" href="#kdtree" title="Link to this heading"></a></h3>
+<p>На данном шаге Вам нужно реализовать класс
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.AdvancedSearchEngine" title="lab_3_ann_retriever.main.AdvancedSearchEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.AdvancedSearchEngine</span></code></a>,
+ответственный за поиск релевантного документа по запросу с
+помощью улучшенного К-мерного дерева.
+Этот класс наследуется от класса
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.SearchEngine" title="lab_3_ann_retriever.main.SearchEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.SearchEngine</span></code></a>, то есть
+использует его атрибуты и методы, а также добавляет новые.</p>
+<p><a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.AdvancedSearchEngine" title="lab_3_ann_retriever.main.AdvancedSearchEngine"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.AdvancedSearchEngine</span></code></a> использует атрибуты
+<code class="docutils literal notranslate"><span class="pre">SearchEngine</span></code>, но переопределяет значение атрибута <code class="docutils literal notranslate"><span class="pre">self._tree</span></code> на экземпляр
+класса <code class="docutils literal notranslate"><span class="pre">KDTree</span></code>, который создаётся при инициализации.</p>
+<p>Пример инициализации экземпляра класса и использования его методов:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">kdtree_retriever</span> <span class="o">=</span> <span class="n">AdvancedSearchEngine</span><span class="p">(</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+<span class="n">kdtree_retriever</span><span class="o">.</span><span class="n">index_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+<span class="n">kdtree_retriever</span><span class="o">.</span><span class="n">retrieve_relevant_documents</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id27">
+<h3>Шаг 10. Сохранять и загружать состояние экземпляров классов<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<p>Заполнение классов векторизации и поиска документов может быть долгим процессом
+при большом размере коллекции, поэтому нам важно иметь возможность загружать
+уже известные значения в экземпляр классов, чтобы не повторяться.
+Здесь и в дальнейших шагах используйте библиотеку для работы с текстовым
+форматом <code class="docutils literal notranslate"><span class="pre">json</span></code> для того, чтобы сохранять и загружать состояния классов.</p>
+</section>
+<section id="id28">
+<h3>Шаг 10.1 Сохранить разреженный вектор<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<p>Как можно заметить, векторы, которые получаются с помощью метрики <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code>,
+преимущественно состоят из нулей. Такие векторы называются разреженными.
+Хранение разреженных векторов неудобно: нули занимают много места в памяти,
+поэтому чаще всего их стараются хранить в формате словаря.</p>
+<p>Реализуйте функцию <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.save_vector" title="lab_3_ann_retriever.main.save_vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.save_vector()</span></code></a>,
+которая создаёт словарь формата
+<code class="docutils literal notranslate"><span class="pre">{индекс</span> <span class="pre">токена</span> <span class="pre">вектора</span> <span class="pre">:</span> <span class="pre">ненулевое</span> <span class="pre">значение}</span></code>, а затем сохраняет
+полученный словарь вектора как состояние вектора.</p>
+<p>Состояние вектора можно описать следующими элементами:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">len</span></code> — длина вектора.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elements</span></code> — словарь разреженного вектора.</p></li>
+</ol>
+<p>Пусть дан вектор <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">-0.007,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.5,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code>,
+тогда его состояние после применения функции будет выглядеть как
+<code class="docutils literal notranslate"><span class="pre">{&quot;len&quot;:</span> <span class="pre">7,</span> <span class="pre">&quot;elements&quot;:</span> <span class="pre">{1:</span> <span class="pre">-0.007,</span> <span class="pre">4:</span> <span class="pre">0.5}}</span></code>.</p>
+<p>Пример использования функции:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">save_vector</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.007</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="id29">
+<h3>Шаг 10.2. Загрузить состояние вектора<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<p>Теперь реализуйте функцию <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.load_vector" title="lab_3_ann_retriever.main.load_vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.load_vector()</span></code></a>,
+которая отвечает за возвращение состояния в формат разреженного вектора.
+Так, функция должна преобразовать состояние
+<code class="docutils literal notranslate"><span class="pre">{&quot;len&quot;:</span> <span class="pre">7,</span> <span class="pre">&quot;elements&quot;:</span> <span class="pre">{1:</span> <span class="pre">-0.007,</span> <span class="pre">4:</span> <span class="pre">0.5}}</span></code>
+обратно в вектор <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">-0.007,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.5,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code>.</p>
+<p>Пример использования функции:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">save_vector</span><span class="p">({</span><span class="s2">&quot;len&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;elements&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.007</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}})</span>
+</pre></div>
+</div>
+</section>
+<section id="vectorizer">
+<h3>Шаг 11. Сохранить состояние класса Vectorizer<a class="headerlink" href="#vectorizer" title="Link to this heading"></a></h3>
+<p>Также важно научиться сохранять и загружать состояние векторайзера.
+Для этого расширьте класс <code class="docutils literal notranslate"><span class="pre">Vectorizer</span></code> методом
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer.save" title="lab_3_ann_retriever.main.Vectorizer.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer.save()</span></code></a>,
+который сохраняет состояние векторайзера в файл.
+Состояние обязательно должно содержать значения атрибутов
+<code class="docutils literal notranslate"><span class="pre">self._idf_values</span></code>, <code class="docutils literal notranslate"><span class="pre">self._vocabulary</span></code> и <code class="docutils literal notranslate"><span class="pre">self._token2ind</span></code>
+и быть представлено словарём с ключами <code class="docutils literal notranslate"><span class="pre">idf_values</span></code>, <code class="docutils literal notranslate"><span class="pre">vocabulary</span></code>
+и <code class="docutils literal notranslate"><span class="pre">token2ind</span></code>.</p>
+<p>Метод должен возвращать логическое значение <code class="docutils literal notranslate"><span class="pre">True</span></code>, если состояние
+было успешно сохранено. Пример состояния сохранён в файле
+<code class="docutils literal notranslate"><span class="pre">&quot;./assets/states/vectorizer_state_example.json&quot;</span></code>.</p>
+<p>Пример использования метода:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">vectorizer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;assets/vectorizer_state.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id30">
+<h3>Шаг 11.1. Загрузить состояние класса Vectorizer<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer.load" title="lab_3_ann_retriever.main.Vectorizer.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer.load()</span></code></a>,
+который выполняет обратную предыдущему методу функцию.
+Заполните атрибуты <code class="docutils literal notranslate"><span class="pre">self._idf_values</span></code>, <code class="docutils literal notranslate"><span class="pre">self._vocabulary</span></code> и
+<code class="docutils literal notranslate"><span class="pre">self._token2ind</span></code> значениями из файла.</p>
+<p>Метод должен возвращать логическое значение <code class="docutils literal notranslate"><span class="pre">True</span></code>, если атрибуты
+были успешно загружены, иначе <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Данный метод заменяет заполнение экземпляра класса через метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Vectorizer.build" title="lab_3_ann_retriever.main.Vectorizer.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Vectorizer.build()</span></code></a>.</p>
+</div>
+<p>Пример использования метода:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">Vectorizer</span><span class="p">(</span><span class="n">tokenized_docs</span><span class="p">)</span>
+<span class="n">vectorizer</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;assets/vectorizer_state.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="basicsearchengine">
+<h3>Шаг 12. Сохранить документы и векторы BasicSearchEngine<a class="headerlink" href="#basicsearchengine" title="Link to this heading"></a></h3>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._dump_documents" title="lab_3_ann_retriever.main.BasicSearchEngine._dump_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._dump_documents()</span></code></a> для
+сохранения в состояние атрибутов <code class="docutils literal notranslate"><span class="pre">self._documents</span></code> и <code class="docutils literal notranslate"><span class="pre">self._document_vectors</span></code>
+класса поиска в виде словаря с ключами <code class="docutils literal notranslate"><span class="pre">&quot;documents&quot;</span></code> и <code class="docutils literal notranslate"><span class="pre">&quot;document_vectors&quot;</span></code>.
+Помните, что векторы разреженные, поэтому их хранение нужно оптимизировать.
+Для оптимизации сохранения векторов используйте функцию
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.save_vector" title="lab_3_ann_retriever.main.save_vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.save_vector()</span></code></a>.</p>
+</section>
+<section id="id31">
+<h3>Шаг 12.1. Сохранить состояние BasicSearchEngine<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine.save" title="lab_3_ann_retriever.main.BasicSearchEngine.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine.save()</span></code></a>,
+который выполняет два действия:</p>
+<ol class="arabic simple">
+<li><p>Создаёт словарь с ключом <code class="docutils literal notranslate"><span class="pre">&quot;engine&quot;</span></code> и значением в виде словаря,
+который возвращается при вызове метода
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._dump_documents" title="lab_3_ann_retriever.main.BasicSearchEngine._dump_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._dump_documents()</span></code></a>.</p></li>
+<li><p>Сохраняет полученный словарь в файл.</p></li>
+</ol>
+<p>Пример состояния сохранён в файле <code class="docutils literal notranslate"><span class="pre">&quot;./assets/states/engine_state_example.json&quot;</span></code>,
+документы и их векторы можно найти по соответствующим ключам <code class="docutils literal notranslate"><span class="pre">&quot;documents&quot;</span></code>
+и <code class="docutils literal notranslate"><span class="pre">&quot;document_vectors&quot;</span></code>.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">knn_retriever</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;assets/states/engine_state.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h3>Шаг 12.2. Загрузить документы и векторы BasicSearchEngine<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<p>Теперь проведите обратную операцию. Реализуйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._load_documents" title="lab_3_ann_retriever.main.BasicSearchEngine._load_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._load_documents()</span></code></a>,
+который сохраняет в атрибут <code class="docutils literal notranslate"><span class="pre">self._documents</span></code> значение состояния
+и с помощью функции <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.load_vector" title="lab_3_ann_retriever.main.load_vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.load_vector()</span></code></a>
+заполняет атрибут <code class="docutils literal notranslate"><span class="pre">self._document_vectors</span></code> разреженными векторами.</p>
+<p>Метод должен возвращать логическое значение <code class="docutils literal notranslate"><span class="pre">True</span></code>, если атрибуты
+были успешно сохранены, иначе <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</section>
+<section id="id33">
+<h3>Шаг 12.3. Загрузить состояние в BasicSearchEngine<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine.load" title="lab_3_ann_retriever.main.BasicSearchEngine.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine.load()</span></code></a>,
+который читает состояние из файла и заполняет атрибуты
+класса через вызов метода
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._load_documents" title="lab_3_ann_retriever.main.BasicSearchEngine._load_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._load_documents()</span></code></a>.</p>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">new_retriever</span> <span class="o">=</span> <span class="n">BasicSearchEngine</span><span class="p">(</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+<span class="n">new_retriever</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;assets/states/engine_state.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id34">
+<h3>Шаг 13. Сохранить узел дерева<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Node.save" title="lab_3_ann_retriever.main.Node.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Node.save()</span></code></a>,
+который возвращает словарь со следующими парами ключей и значений:</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;vector&quot;</span> <span class="pre">:</span> <span class="pre">неразреженный</span> <span class="pre">вектор</span></code>.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Используйте функцию <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.save_vector" title="lab_3_ann_retriever.main.save_vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.save_vector()</span></code></a>
+для представления вектора узла в неразреженном виде.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;payload&quot;</span> <span class="pre">:</span> <span class="pre">self.payload</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;left_node&quot;</span> <span class="pre">:</span> <span class="pre">сохранённый</span> <span class="pre">узел</span></code>.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Используйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Node.save" title="lab_3_ann_retriever.main.Node.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Node.save()</span></code></a>
+для левого узла-ребёнка, если он существует,
+иначе используйте значение <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;right_node&quot;</span> <span class="pre">:</span> <span class="pre">сохранённый</span> <span class="pre">узел</span></code>.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Используйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Node.save" title="lab_3_ann_retriever.main.Node.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Node.save()</span></code></a>
+для правого узла-ребёнка, если он существует, иначе используйте
+значение <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<p>Пример сохранённого состояния узла можно найти в файле
+<code class="docutils literal notranslate"><span class="pre">&quot;./assets/states/engine_state_example.json&quot;</span></code> по ключу <code class="docutils literal notranslate"><span class="pre">&quot;tree&quot;</span></code>.</p>
+</section>
+<section id="id35">
+<h3>Шаг 13.1. Загрузить узел дерева<a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<p>Теперь реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Node.load" title="lab_3_ann_retriever.main.Node.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Node.load()</span></code></a>,
+который рекурсивно загружает состояние узла дерева.
+Заполните атрибуты экземпляра класса соответствующими значениями из
+состояния.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Не забудьте привести вектор в разреженный вид с помощью функции
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.load_vector" title="lab_3_ann_retriever.main.load_vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.load_vector()</span></code></a>.</p>
+</div>
+<p>Для детей узла сначала создайте экземпляр класса <code class="docutils literal notranslate"><span class="pre">Node</span></code>, а затем
+используйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Node.load" title="lab_3_ann_retriever.main.Node.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Node.load()</span></code></a>
+для рекурсивной загрузки узла-ребёнка.</p>
+<p>Метод должен возвращать логическое значение <code class="docutils literal notranslate"><span class="pre">True</span></code>, если атрибуты
+были успешно сохранены, иначе <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</section>
+<section id="id36">
+<h3>Шаг 14. Сохранить состояние дерева<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree.save" title="lab_3_ann_retriever.main.NaiveKDTree.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree.save()</span></code></a>,
+который возвращает состояние дерева в виде словаря c ключом <code class="docutils literal notranslate"><span class="pre">&quot;root&quot;</span></code>.
+В качестве значения используйте сохранённый корневой узел дерева,
+полученный с помощью метода <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Node.save" title="lab_3_ann_retriever.main.Node.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Node.save()</span></code></a>
+корневого узла.</p>
+<p>Пример сохранённого состояния дерева можно найти в файле
+<code class="docutils literal notranslate"><span class="pre">&quot;./assets/states/engine_state_example.json&quot;</span></code> по
+соответствующему ключу.</p>
+</section>
+<section id="id37">
+<h3>Шаг 14.1. Загрузить состояние дерева<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<p>Реализуйте метод <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree.load" title="lab_3_ann_retriever.main.NaiveKDTree.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree.load()</span></code></a>,
+который отвечает за присваивание атрибуту корневого узла экземпляра класса
+<code class="docutils literal notranslate"><span class="pre">Node</span></code> и последующий вызов метода <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.Node.load" title="lab_3_ann_retriever.main.Node.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.Node.load()</span></code></a>.</p>
+<p>Метод должен возвращать логическое значение <code class="docutils literal notranslate"><span class="pre">True</span></code>, если атрибуты
+были успешно сохранены, иначе <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</section>
+<section id="id38">
+<h3>Шаг 15. Сохранить состояние SearchEngine<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<p>Наконец, нужно сохранить состояние классов для поиска документов.
+Для этого реализуйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.SearchEngine.save" title="lab_3_ann_retriever.main.SearchEngine.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.SearchEngine.save()</span></code></a></p>
+<p>Состояние представляет собой словарь формата:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;engine&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;tree&quot;</span><span class="p">:</span> <span class="n">tree_state</span><span class="p">,</span>
+        <span class="s2">&quot;documents&quot;</span><span class="p">:</span> <span class="n">documents</span><span class="p">,</span>
+        <span class="s2">&quot;vector_documents&quot;</span><span class="p">:</span> <span class="n">documents</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>В качестве <code class="docutils literal notranslate"><span class="pre">tree_state</span></code> используйте результат сохранения дерева
+с помощью метода <a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree.save" title="lab_3_ann_retriever.main.NaiveKDTree.save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree.save()</span></code></a>
+для дерева, созданного при инициализации экземпляра класса.
+Заполните значения ключей <code class="docutils literal notranslate"><span class="pre">&quot;documents&quot;</span></code> и <code class="docutils literal notranslate"><span class="pre">&quot;vector_documents&quot;</span></code>
+с помощью вызова метода родительского класса
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.BasicSearchEngine._dump_documents" title="lab_3_ann_retriever.main.BasicSearchEngine._dump_documents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.BasicSearchEngine._dump_documents()</span></code></a>.</p>
+<p>Пример сохранённого состояния можно найти в файле
+<code class="docutils literal notranslate"><span class="pre">&quot;./assets/states/engine_state_example.json&quot;</span></code>.</p>
+</section>
+<section id="id39">
+<h3>Шаг 15.1. Загрузить состояние в SearchEngine<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.SearchEngine.load" title="lab_3_ann_retriever.main.SearchEngine.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.SearchEngine.load()</span></code></a>,
+который отвечает за выполнение следующего алгоритма:</p>
+<ol class="arabic simple">
+<li><p>Чтение <code class="docutils literal notranslate"><span class="pre">json</span></code> файла по строке пути.</p></li>
+<li><p>Заполнение атрибутов <code class="docutils literal notranslate"><span class="pre">self._documents</span></code> и <code class="docutils literal notranslate"><span class="pre">self._document_vectors</span></code>
+через метод <code class="docutils literal notranslate"><span class="pre">self._load_documents</span></code>.</p></li>
+<li><p>Заполнение атрибута <code class="docutils literal notranslate"><span class="pre">self._tree</span></code> через метод дерева
+<a class="reference internal" href="lab_3_ann_retriever.api.html#lab_3_ann_retriever.main.NaiveKDTree.load" title="lab_3_ann_retriever.main.NaiveKDTree.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_3_ann_retriever.main.NaiveKDTree.load()</span></code></a>.</p></li>
+</ol>
+<p>Напомним, что по смыслу наследования все методы родителей будут также
+работать у наследников, то есть данный метод будет и у класса
+<code class="docutils literal notranslate"><span class="pre">AdvancedSearchEngine</span></code>, а заполнение дерева будет происходить и для
+класса <code class="docutils literal notranslate"><span class="pre">KDTree</span></code>, вне зависимости от того, какое дерево используется
+при инициализации класса поиска.</p>
+<p>Пример использования метода класса:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">new_kdtree_retriever</span> <span class="o">=</span> <span class="n">SearchEngine</span><span class="p">(</span><span class="n">vectorizer</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+<span class="n">new_kdtree_retriever</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;assets/states/engine_state.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id40">
+<h3>Шаг 16. Продемонстрируйте результат в модуле <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 8-16 соответствует 10 баллам.</p>
+</div>
+<p>Сохраните состояние <code class="docutils literal notranslate"><span class="pre">Vectorizer</span></code> в файл
+<code class="docutils literal notranslate"><span class="pre">assets/states/vectorizer_state.json</span></code>, затем создайте новый экземпляр
+класса <code class="docutils literal notranslate"><span class="pre">Vectorizer</span></code> и загрузите в него данные из предыдущего.
+После этого сохраните состояние <code class="docutils literal notranslate"><span class="pre">SearchEngine</span></code> в файл
+<code class="docutils literal notranslate"><span class="pre">assets/states/engine_state.json</span></code>, создайте экземпляр класса
+<code class="docutils literal notranslate"><span class="pre">AdvancedSearchEngine</span></code> и загрузите в него состояние из файла.</p>
+<p>Продемонстрируйте результат поиска трёх релевантных
+документов из коллекции новостей в переменной <code class="docutils literal notranslate"><span class="pre">documents</span></code> по запросу
+<code class="docutils literal notranslate"><span class="pre">&quot;Нижний</span> <span class="pre">Новгород&quot;</span></code> с помощью экземпляра класса
+<code class="docutils literal notranslate"><span class="pre">AdvancedSearchEngine</span></code> в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> модуля <code class="docutils literal notranslate"><span class="pre">start.py</span></code></p>
+<p>Сравните результаты с предыдущими попытками поиска
+с помощью <code class="docutils literal notranslate"><span class="pre">BasicSearchEngine</span></code> и <code class="docutils literal notranslate"><span class="pre">SearchEngine</span></code>.</p>
+<p>Сравните, насколько различается время поиска одного документа
+y <code class="docutils literal notranslate"><span class="pre">BasicSearchEngine</span></code> и <code class="docutils literal notranslate"><span class="pre">AdvancedSearchEngine</span></code>.
+Проведите эксперименты для коллекций из 10, 100 и 500 документов.</p>
+<p>Используйте функцию <code class="docutils literal notranslate"><span class="pre">time()</span></code> модуля <code class="docutils literal notranslate"><span class="pre">time</span></code>, возвращающую
+текущее время, чтобы измерить эффективность работы двух алгоритмов поиска.</p>
+</section>
+</section>
+<section id="id41">
+<h2>Полезные ссылки<a class="headerlink" href="#id41" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ru.wikipedia.org/wiki/TF-IDF">TF-IDF</a></p></li>
+<li><p><a class="reference external" href="https://www.datastax.com/guides/what-is-vector-search">Векторный поиск</a></p></li>
+<li><p><a class="reference external" href="https://habr.com/ru/articles/801885/">KNN</a></p></li>
+<li><p><a class="reference external" href="https://habr.com/ru/articles/312882/">KD-Tree</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_2_retrieval_w_bm25/lab_2_retrieval_w_bm25.api.html" class="btn btn-neutral float-left" title="lab_2_retrieval_w_bm25 package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_3_ann_retriever.api.html" class="btn btn-neutral float-right" title="lab_3_ann_retriever package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

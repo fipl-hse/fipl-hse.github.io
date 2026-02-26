@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lab_4_fill_words_by_ngrams package &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Краткий конспект лекций" href="../../lectures_content_ru.html" />
+    <link rel="prev" title="Лабораторная работа №4. Заполнение текста с помощью n-грамм" href="lab_4.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2023/2024)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_1_classify_by_unigrams/lab_1.html">Лабораторная работа №1. Определение языка текста на основе частотного словаря</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_2_tokenize_by_bpe/lab_2.html">Лабораторная работа №2. Кодирование текста с помощью алгоритма BPE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3.html">Лабораторная работа №3. Генерация текста с помощью n-грамм</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="lab_4.html">Лабораторная работа №4. Заполнение текста с помощью n-грамм</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">lab_4_fill_words_by_ngrams package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+          <li class="breadcrumb-item"><a href="lab_4.html">Лабораторная работа №4. Заполнение текста с помощью n-грамм</a></li>
+      <li class="breadcrumb-item active">lab_4_fill_words_by_ngrams package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/labs_2023/labs/lab_4_fill_words_by_ngrams/lab_4_fill_words_by_ngrams.api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lab-4-fill-words-by-ngrams-package">
+<h1>lab_4_fill_words_by_ngrams package<a class="headerlink" href="#lab-4-fill-words-by-ngrams-package" title="Link to this heading"></a></h1>
+<section id="module-lab_4_fill_words_by_ngrams.main">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-lab_4_fill_words_by_ngrams.main" title="Link to this heading"></a></h2>
+<p>Lab 4.</p>
+<p>Top-p sampling generation and filling gaps with ngrams</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.Examiner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lab_4_fill_words_by_ngrams.main.</span></span><span class="sig-name descname"><span class="pre">Examiner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.Examiner" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class that conducts an exam.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.Examiner._json_path">
+<span class="sig-name descname"><span class="pre">_json_path</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.Examiner._json_path" title="Link to this definition"></a></dt>
+<dd><p>Local path to assets file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.Examiner._questions_and_answers">
+<span class="sig-name descname"><span class="pre">_questions_and_answers</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.Examiner._questions_and_answers" title="Link to this definition"></a></dt>
+<dd><p>Dictionary in the form of {(question, position of the word to be filled), answer}</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.Examiner.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.Examiner.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an instance of Examiner.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Local path to assets file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.Examiner._load_from_json">
+<span class="sig-name descname"><span class="pre">_load_from_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.Examiner._load_from_json" title="Link to this definition"></a></dt>
+<dd><p>Load questions and answers from JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary in the form of {(question, position of the word to be filled), answer}</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>], <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – In case of inappropriate type of attribute _json_path,
+    or if attribute _json_path is empty,
+    or if attribute _json_path has inappropriate extension,
+    or if inappropriate type loaded data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.Examiner.assess_exam">
+<span class="sig-name descname"><span class="pre">assess_exam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">answers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.Examiner.assess_exam" title="Link to this definition"></a></dt>
+<dd><p>Assess an exam by counting accuracy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>answers</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Dictionary in the form of {question: answer}</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Accuracy score</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – In case of inappropriate type input argument or if input argument is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.Examiner.provide_questions">
+<span class="sig-name descname"><span class="pre">provide_questions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.Examiner.provide_questions" title="Link to this definition"></a></dt>
+<dd><p>Provide questions for an exam.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List in the form of [(question, position of the word to be filled)]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GenerationResultDTO">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lab_4_fill_words_by_ngrams.main.</span></span><span class="sig-name descname"><span class="pre">GenerationResultDTO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">perplexity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class that represents results of QualityChecker.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__text">
+<span class="sig-name descname"><span class="pre">__text</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__text" title="Link to this definition"></a></dt>
+<dd><p>Text that used to calculate perplexity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__perplexity">
+<span class="sig-name descname"><span class="pre">__perplexity</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__perplexity" title="Link to this definition"></a></dt>
+<dd><p>Calculated perplexity score</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__type">
+<span class="sig-name descname"><span class="pre">__type</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__type" title="Link to this definition"></a></dt>
+<dd><p>Numeric type of the generator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">perplexity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an instance of GenerationResultDTO.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The text used to calculate perplexity</p></li>
+<li><p><strong>perplexity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Calculated perplexity score</p></li>
+<li><p><strong>generation_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Numeric type of the generator for which perplexity was calculated</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__str__" title="Link to this definition"></a></dt>
+<dd><p>Prints report after quality check.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String with report</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_perplexity">
+<span class="sig-name descname"><span class="pre">get_perplexity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_perplexity" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a perplexity value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Perplexity value</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_text">
+<span class="sig-name descname"><span class="pre">get_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_text" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Text for which the perplexity was count</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_type">
+<span class="sig-name descname"><span class="pre">get_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_type" title="Link to this definition"></a></dt>
+<dd><p>Retrieve a numeric type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Numeric type of the generator</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lab_4_fill_words_by_ngrams.main.</span></span><span class="sig-name descname"><span class="pre">GeneratorRuleStudent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">language_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><span class="pre">NGramLanguageModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_processor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor"><span class="pre">WordProcessor</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Base class for students generators.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">language_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><span class="pre">NGramLanguageModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_processor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor"><span class="pre">WordProcessor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an instance of GeneratorRuleStudent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generator_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Numeric type of the generator</p></li>
+<li><p><strong>language_model</strong> (<a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><em>NGramLanguageModel</em></a>) – NGramLanguageModel instance to use for text generation</p></li>
+<li><p><strong>word_processor</strong> (<a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor"><em>WordProcessor</em></a>) – WordProcessor instance to handle text processing</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent._generator">
+<span class="sig-name descname"><span class="pre">_generator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.GreedyTextGenerator" title="lab_3_generate_by_ngrams.main.GreedyTextGenerator"><span class="pre">GreedyTextGenerator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.TopPGenerator" title="lab_4_fill_words_by_ngrams.main.TopPGenerator"><span class="pre">TopPGenerator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.BeamSearchTextGenerator" title="lab_3_generate_by_ngrams.main.BeamSearchTextGenerator"><span class="pre">BeamSearchTextGenerator</span></a></em><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent._generator" title="Link to this definition"></a></dt>
+<dd><p>Generator instance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent._generator_type">
+<span class="sig-name descname"><span class="pre">_generator_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></em><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent._generator_type" title="Link to this definition"></a></dt>
+<dd><p>Generator type</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.get_generator_type">
+<span class="sig-name descname"><span class="pre">get_generator_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.get_generator_type" title="Link to this definition"></a></dt>
+<dd><p>Retrieve generator type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Generator type</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.take_exam">
+<span class="sig-name descname"><span class="pre">take_exam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.take_exam" title="Link to this definition"></a></dt>
+<dd><p>Take an exam.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tasks</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a><em>]</em><em>]</em>) – List with questions in the form of [(question, position of the word to be filled)]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary in the form of {question: answer}</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – In case of inappropriate type input argument,
+    or if input argument is empty,
+    or if methods used return None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lab_4_fill_words_by_ngrams.main.</span></span><span class="sig-name descname"><span class="pre">GeneratorTypes</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class that represents types of generators.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorTypes.greedy">
+<span class="sig-name descname"><span class="pre">greedy</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorTypes.greedy" title="Link to this definition"></a></dt>
+<dd><p>Numeric type of Greedy generator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorTypes.top_p">
+<span class="sig-name descname"><span class="pre">top_p</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorTypes.top_p" title="Link to this definition"></a></dt>
+<dd><p>Numeric type of Top-P generator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorTypes.beam_search">
+<span class="sig-name descname"><span class="pre">beam_search</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorTypes.beam_search" title="Link to this definition"></a></dt>
+<dd><p>Numeric type of Beam Search generator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorTypes.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorTypes.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an instance of GeneratorTypes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.GeneratorTypes.get_conversion_generator_type">
+<span class="sig-name descname"><span class="pre">get_conversion_generator_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.GeneratorTypes.get_conversion_generator_type" title="Link to this definition"></a></dt>
+<dd><p>Retrieve string type of generator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>generator_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Numeric type of the generator</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Name of the generator.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.QualityChecker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lab_4_fill_words_by_ngrams.main.</span></span><span class="sig-name descname"><span class="pre">QualityChecker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">language_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><span class="pre">NGramLanguageModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_processor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor"><span class="pre">WordProcessor</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.QualityChecker" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Check the quality of different ways to generate sequence.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.QualityChecker._generators">
+<span class="sig-name descname"><span class="pre">_generators</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.QualityChecker._generators" title="Link to this definition"></a></dt>
+<dd><p>Dictionary with generators to check quality</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.QualityChecker._language_model">
+<span class="sig-name descname"><span class="pre">_language_model</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.QualityChecker._language_model" title="Link to this definition"></a></dt>
+<dd><p>NGramLanguageModel instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel">NGramLanguageModel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.QualityChecker._word_processor">
+<span class="sig-name descname"><span class="pre">_word_processor</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.QualityChecker._word_processor" title="Link to this definition"></a></dt>
+<dd><p>WordProcessor instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor">WordProcessor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.QualityChecker.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">language_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><span class="pre">NGramLanguageModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_processor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor"><span class="pre">WordProcessor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.QualityChecker.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an instance of QualityChecker.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generators</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a>) – Dictionary in the form of {numeric type: generator}</p></li>
+<li><p><strong>language_model</strong> (<a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><em>NGramLanguageModel</em></a>) – NGramLanguageModel instance to use for text generation</p></li>
+<li><p><strong>word_processor</strong> (<a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor"><em>WordProcessor</em></a>) – WordProcessor instance to handle text processing</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.QualityChecker._calculate_perplexity">
+<span class="sig-name descname"><span class="pre">_calculate_perplexity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generated_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.QualityChecker._calculate_perplexity" title="Link to this definition"></a></dt>
+<dd><p>Calculate perplexity for the text made by generator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>generated_text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Text made by generator</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Perplexity score for generated text</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – In case of inappropriate type input argument,
+    or if input argument is empty,
+    or if methods used return None,
+    or if nothing was generated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.QualityChecker.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO" title="lab_4_fill_words_by_ngrams.main.GenerationResultDTO"><span class="pre">GenerationResultDTO</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.QualityChecker.run" title="Link to this definition"></a></dt>
+<dd><p>Check the quality of generators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of tokens to generate</p></li>
+<li><p><strong>prompt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Beginning of the sequence</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of GenerationResultDTO instances in ascending order of perplexity score</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.GenerationResultDTO" title="lab_4_fill_words_by_ngrams.main.GenerationResultDTO">GenerationResultDTO</a>]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – In case of inappropriate type input arguments,
+    or if input arguments are empty,
+    or if sequence has inappropriate length,
+    or if methods used return None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.TopPGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lab_4_fill_words_by_ngrams.main.</span></span><span class="sig-name descname"><span class="pre">TopPGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">language_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><span class="pre">NGramLanguageModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_processor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor"><span class="pre">WordProcessor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.TopPGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Generator with top-p sampling strategy.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.TopPGenerator._model">
+<span class="sig-name descname"><span class="pre">_model</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.TopPGenerator._model" title="Link to this definition"></a></dt>
+<dd><p>NGramLanguageModel instance to use for text generation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel">NGramLanguageModel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.TopPGenerator._word_processor">
+<span class="sig-name descname"><span class="pre">_word_processor</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.TopPGenerator._word_processor" title="Link to this definition"></a></dt>
+<dd><p>WordProcessor instance to handle text processing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor">WordProcessor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.TopPGenerator._p_value">
+<span class="sig-name descname"><span class="pre">_p_value</span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.TopPGenerator._p_value" title="Link to this definition"></a></dt>
+<dd><p>Collective probability mass threshold for generation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.TopPGenerator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">language_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><span class="pre">NGramLanguageModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_processor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor"><span class="pre">WordProcessor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.TopPGenerator.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an instance of TopPGenerator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>language_model</strong> (<a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.NGramLanguageModel" title="lab_3_generate_by_ngrams.main.NGramLanguageModel"><em>NGramLanguageModel</em></a>) – NGramLanguageModel instance to use for text generation</p></li>
+<li><p><strong>word_processor</strong> (<a class="reference internal" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="lab_4_fill_words_by_ngrams.main.WordProcessor"><em>WordProcessor</em></a>) – WordProcessor instance to handle text processing</p></li>
+<li><p><strong>p_value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Collective probability mass threshold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.TopPGenerator.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.TopPGenerator.run" title="Link to this definition"></a></dt>
+<dd><p>Generate sequence with top-p sampling strategy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – Number of tokens to generate</p></li>
+<li><p><strong>prompt</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Beginning of the sequence</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Generated sequence</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – In case of inappropriate type input arguments,
+    or if input arguments are empty,
+    or if sequence has inappropriate length,
+    or if methods used return None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.WordProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lab_4_fill_words_by_ngrams.main.</span></span><span class="sig-name descname"><span class="pre">WordProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end_of_word_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.WordProcessor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../labs_2025/labs/lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html#lab_3_generate_by_ngrams.main.TextProcessor" title="lab_3_generate_by_ngrams.main.TextProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextProcessor</span></code></a></p>
+<p>Handle text tokenization, encoding and decoding.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.WordProcessor._postprocess_decoded_text">
+<span class="sig-name descname"><span class="pre">_postprocess_decoded_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decoded_corpus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.WordProcessor._postprocess_decoded_text" title="Link to this definition"></a></dt>
+<dd><p>Convert decoded sentence into the string sequence.</p>
+<p>Special symbols are replaced with spaces.
+The first word is capitalized, resulting sequence must end with a full stop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>decoded_corpus</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><em>...</em><em>]</em>) – Tuple of decoded tokens</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resulting text</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – In case of inappropriate type input argument or if input argument is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.WordProcessor._put">
+<span class="sig-name descname"><span class="pre">_put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.WordProcessor._put" title="Link to this definition"></a></dt>
+<dd><p>Put an element into the storage, assign a unique id to it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Element to put into storage</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – In case of inappropriate type input argument or if input argument is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_fill_words_by_ngrams.main.WordProcessor._tokenize">
+<span class="sig-name descname"><span class="pre">_tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lab_4_fill_words_by_ngrams.main.WordProcessor._tokenize" title="Link to this definition"></a></dt>
+<dd><p>Tokenize text into tokens, separating sentences with special token.</p>
+<p>Punctuation and digits are removed. EoW token is appended after the last word in sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Original text</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tokenized text</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, …]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – In case of inappropriate type input argument or if input argument is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lab_4.html" class="btn btn-neutral float-left" title="Лабораторная работа №4. Заполнение текста с помощью n-грамм" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../lectures_content_ru.html" class="btn btn-neutral float-right" title="Краткий конспект лекций" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

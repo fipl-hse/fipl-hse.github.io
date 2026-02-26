@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fork update &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Working with tests: locally and in CI" href="tests.html" />
+    <link rel="prev" title="Starting guide" href="starting_guide_en.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Полезные Материалы</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_guide_en.html">Starting guide</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Fork update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html">Working with tests: locally and in CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEVELOPER.html">Configuring Python for course development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="run_in_terminal.html">Run Python Programs in Terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic_scraping.html">How to scrape dynamic web sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_utils.html">Core utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="article.html">Article package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ud_format.html">Working with UD format and <code class="docutils literal notranslate"><span class="pre">CoNLL-U</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="UD_intro.html">Introduction to UD format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphs_intro.html">Introduction to graph data structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dataset.html">Dataset requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Полезные Материалы</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+      <li class="breadcrumb-item active">Fork update</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/useful_docs/ctlr_docs/fork_update.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fork-update">
+<h1>Fork update<a class="headerlink" href="#fork-update" title="Link to this heading"></a></h1>
+<p>During the course changes will be added to the main repository (changes
+in tests, bug fixes, etc.) - these changes will not automatically appear
+in your forks.</p>
+<p>To add changes to your fork from the main repository, follow these steps:</p>
+<ol class="arabic">
+<li><p>Open the repository site sent to you by your lecturer.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Code</span></code>, select <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> and click the copy button.</p>
+<figure class="align-default">
+<img alt="copy repo url" src="../../../_images/copy_original_repo_url.png" />
+</figure>
+</li>
+<li><p>Open terminal in PyCharm development environment.</p>
+<figure class="align-default">
+<img alt="open terminal" src="../../../_images/pycharm_open_terminal.png" />
+</figure>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span> <span class="pre">&lt;link-to-main-repository&gt;</span></code>.</p>
+<img alt="../../../_images/add_upstream.png" src="../../../_images/add_upstream.png" />
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">upstream</span></code>.</p>
+<img alt="../../../_images/fetch_upstream.png" src="../../../_images/fetch_upstream.png" />
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please note that the link in the screenshot
+above points to the parent repository.</p>
+</div>
+<ol class="arabic" start="6">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">upstream/main</span> <span class="pre">--no-edit</span></code>.</p>
+<img alt="../../../_images/merge_upstream.png" src="../../../_images/merge_upstream.png" />
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on the number of changes, the output of the
+command will be different.</p>
+</div>
+<p>This command will result in the latest changes from
+the main repository appearing in your local fork.</p>
+<p>More information about the commands described above can be found
+in the <a class="reference external" href="https://git-scm.com/docs">official Git documentation</a>.</p>
+<section id="fork-update-using-a-comment-in-a-pull-request">
+<h2>Fork update using a comment in a Pull Request<a class="headerlink" href="#fork-update-using-a-comment-in-a-pull-request" title="Link to this heading"></a></h2>
+<p>Fork can be in several states in relation to the <code class="docutils literal notranslate"><span class="pre">upstream</span></code> repository:</p>
+<ol class="arabic">
+<li><p>Fork and <code class="docutils literal notranslate"><span class="pre">upstream</span></code> are aligned by states.</p></li>
+<li><p>There are new changes in <code class="docutils literal notranslate"><span class="pre">upstream</span></code> that are not yet in the fork:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>For example, when adding fixes to existing files.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>There were new changes in <code class="docutils literal notranslate"><span class="pre">upstream</span></code> that were not yet in the fork +
+there were changes in the fork that conflict with changes from <code class="docutils literal notranslate"><span class="pre">upstream</span></code>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>For example, when one of the laboratory works was added
+to the <code class="docutils literal notranslate"><span class="pre">upstream</span></code> as an exemplary.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<p>For <strong>cases 2 and 3</strong>, automatic update mechanisms are provided via a comment in the Pull Request.</p>
+<p>For <strong>case 2</strong>:</p>
+<ol class="arabic">
+<li><p>The update occurs using a comment containing the substring <code class="docutils literal notranslate"><span class="pre">/update:get_new</span></code></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The fork will contain changes from the <code class="docutils literal notranslate"><span class="pre">upstream</span></code> repository.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<p><strong>Case 3</strong> is divided into two scenarios based on the need to save
+the student’s laboratory work in the fork:</p>
+<ol class="arabic">
+<li><p>If it is necessary to keep the version of the laboratory work from the fork,
+then the update occurs using a comment containing the substring <code class="docutils literal notranslate"><span class="pre">/update:keep_fork</span></code>:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>The fork will contain changes from <code class="docutils literal notranslate"><span class="pre">upstream</span></code> that do not affect the <code class="docutils literal notranslate"><span class="pre">main.py</span></code>
+and <code class="docutils literal notranslate"><span class="pre">start.py</span></code> files for laboratory work:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">main.py</span></code> and <code class="docutils literal notranslate"><span class="pre">start.py</span></code> files will be saved as they are in the fork.</p></li>
+<li><p>All other conflicts will be resolved in favor of <code class="docutils literal notranslate"><span class="pre">upstream</span></code> changes.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>If it is necessary to upload a version of laboratory work from <code class="docutils literal notranslate"><span class="pre">upstream</span></code> to the fork,
+then the update occurs using a comment containing the substring <code class="docutils literal notranslate"><span class="pre">/update:keep_upstream</span></code></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The fork will be aligned with the <code class="docutils literal notranslate"><span class="pre">upstream</span></code>.</p></li>
+<li><p>All conflicts will be resolved in favor of <code class="docutils literal notranslate"><span class="pre">upstream</span></code> changes.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="starting_guide_en.html" class="btn btn-neutral float-left" title="Starting guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tests.html" class="btn btn-neutral float-right" title="Working with tests: locally and in CI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

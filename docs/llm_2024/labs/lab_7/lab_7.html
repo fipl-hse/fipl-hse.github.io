@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratory work №7. Large Language Models no. 1 &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_7 package" href="lab_7.api.html" />
+    <link rel="prev" title="Laboratory works" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Laboratory works</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Laboratory work №7. Large Language Models no. 1</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_7.api.html">lab_7 package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_utils.api.html">core_utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_8/lab_8.html">Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../task_cards/index.html">Task cards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Laboratory works</a></li>
+      <li class="breadcrumb-item active">Laboratory work №7. Large Language Models no. 1</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/llm_2024/labs/lab_7/lab_7.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="laboratory-work-o7-large-language-models-no-1">
+<span id="lab-7-label"></span><h1>Laboratory work №7. Large Language Models no. 1<a class="headerlink" href="#laboratory-work-o7-large-language-models-no-1" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_7.api.html">lab_7 package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_utils.api.html">core_utils package</a></li>
+</ul>
+</div>
+<dl class="simple">
+<dt><strong>Python competencies required to complete this tutorial:</strong></dt><dd><ul class="simple">
+<li><p>working with Transformers models;</p></li>
+<li><p>working with HuggingFace datasets;</p></li>
+<li><p>estimating result using metric;</p></li>
+<li><p>making server for the chosen task using FastAPI.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Model pipeline contains the following steps:</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Downloading the chosen dataset from HuggingFace.</p></li>
+<li><p>Retrieving dataset’s properties.</p></li>
+<li><p>Preprocessing dataset.</p></li>
+<li><p>Retrieving model properties.</p></li>
+<li><p>Get prediction for one sample from dataset.</p></li>
+<li><p>Get predictions for the whole dataset.</p></li>
+<li><p>Saving predictions.</p></li>
+<li><p>Estimating results with metric.</p></li>
+<li><p>Implementing server.</p></li>
+</ol>
+</div></blockquote>
+<section id="motivation-and-purpose">
+<h2>Motivation and purpose<a class="headerlink" href="#motivation-and-purpose" title="Link to this heading"></a></h2>
+<p>In this laboratory work we will be introduced to Large Language Models
+and learn how to apply them to solve different tasks.</p>
+<p><strong>Large Language Model (LLM)</strong> - is a deep-learning algorithm that
+can perform a variety of Natural Language Processing tasks.</p>
+<p>The life cycle of LLM encompasses several distinct phases,
+from its inception to deployment and potential retraining.
+However, let’s look at the two main phases:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><strong>Training</strong> - phase when model learns from a labeled dataset,
+adjusting its internal parameters (weights and biases) based on
+the input data and corresponding target outputs. The ultimate goal
+of training is to enable the model to generalize well to unseen data,
+capturing underlying patterns and relationships within the training dataset.</p></li>
+<li><p><strong>Inference</strong> - phase that occurs after the model has been trained
+and is ready to make predictions on new, unseen data.
+During inference, the trained model takes input data and produces
+output predictions without further adjusting its internal parameters.</p></li>
+</ol>
+</div></blockquote>
+<p>Thus, <em>training</em> a model requires a huge corpus of text,
+usually hundreds of gigabytes of text collected from various sources.
+This process is complex, computationally intensive and time-consuming.
+At the same time, <em>inference</em> is less computationally intensive and
+its goal is to provide fast and efficient response to queries.</p>
+<p><strong>The primary purpose</strong> of this laboratory work is to learn
+how to apply LLMs to solve different tasks: Generation, Summarization, Classification,
+Natural Language Inference and Neural Machine Translation.
+We will not train models for the reasons outlined above,
+but rather we will make inferences.</p>
+</section>
+<section id="technical-solution">
+<h2>Technical solution<a class="headerlink" href="#technical-solution" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Mark</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://pandas.pydata.org/docs/index.html">pandas</a></p></td>
+<td><p>working with DataFrame</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/docs/datasets/index">datasets</a></p></td>
+<td><p>loading dataset from HuggingFace</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://pytorch.org/">torch</a></p></td>
+<td><p>machine learning framework</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/docs/transformers/index">transformers</a></p></td>
+<td><p>library providing easy
+APIs to work with models</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/TylerYep/torchinfo">torchinfo</a></p></td>
+<td><p>getting model properties</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/docs/evaluate/index">evaluate</a></p></td>
+<td><p>evaluating model performance</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://fastapi.tiangolo.com/">FastAPI</a></p></td>
+<td><p>implementing a WEB-service</p></td>
+<td><p>10</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><code class="docutils literal notranslate"><span class="pre">torch</span></code> module version 2.1.2 needs to be installed using
+<code class="docutils literal notranslate"><span class="pre">--extra-index-url</span> <span class="pre">https://download.pytorch.org/whl/cpu</span></code>
+in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file.</p>
+</div>
+</section>
+<section id="configuring-model">
+<h2>Configuring model<a class="headerlink" href="#configuring-model" title="Link to this heading"></a></h2>
+<p>Model behavior is fully defined by a configuration file that is called <code class="docutils literal notranslate"><span class="pre">settings.json</span></code>
+and it is placed on the same level as <code class="docutils literal notranslate"><span class="pre">main.py</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Config parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">parameters</span></code></p></td>
+<td><p>Set up parameters for laboratory work</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">parameters.model</span></code></p></td>
+<td><p>Name of the the chosen model</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">parameters.dataset</span></code></p></td>
+<td><p>Name of the dataset</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">parameters.metrics</span></code></p></td>
+<td><p>Name of the metrics used for the chosen task</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">target_score</span></code></p></td>
+<td><p>Desired mark for laboratory work</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="assessment-criteria">
+<h2>Assessment criteria<a class="headerlink" href="#assessment-criteria" title="Link to this heading"></a></h2>
+<p>You state your ambitions on the mark by editing <code class="docutils literal notranslate"><span class="pre">target_score</span></code> parameter in
+<code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file. Possible values are 4, 6, 8, and 10. For example, 6
+would mean that you have made tasks for mark 6 and request mentors to check
+if you can get it. See mark requirements and explanations below:</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>Desired mark <strong>4</strong>:</dt><dd><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <strong>5/10</strong>.</p></li>
+<li><p>The script downloads dataset and retrieves its properties.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Desired mark <strong>6</strong>:</dt><dd><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <strong>7/10</strong>.</p></li>
+<li><p>All requirements for the mark <strong>4</strong>.</p></li>
+<li><p>The script preprocesses dataset, retrieves model properties
+and infers model on one sample from dataset.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Desired mark <strong>8</strong>:</dt><dd><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <strong>10/10</strong>.</p></li>
+<li><p>All requirements for the mark <strong>6</strong>.</p></li>
+<li><p>The script infers model on the whole dataset and evaluates the model performance.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Desired mark <strong>10</strong>:</dt><dd><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <strong>10/10</strong>;</p></li>
+<li><p>All requirements for the mark <strong>8</strong>.</p></li>
+<li><p>Implement model as a service.</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="implementation-tactics">
+<h2>Implementation tactics<a class="headerlink" href="#implementation-tactics" title="Link to this heading"></a></h2>
+<section id="stage-0-start-working-on-the-laboratory-work">
+<h3>Stage 0. Start working on the laboratory work<a class="headerlink" href="#stage-0-start-working-on-the-laboratory-work" title="Link to this heading"></a></h3>
+<p>Start your implementation by selecting a model and dataset you are going to use.
+You can find all available combinations
+in the <a class="reference external" href="https://docs.google.com/spreadsheets/d/1_GTEa3RUkOqdZ82q1SrD7YkOeV3fr8APNcUAC6o0K4M/edit?usp=sharing">table</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All logic for instantiating and using needed abstractions
+should be implemented in a <code class="docutils literal notranslate"><span class="pre">main()</span></code> function of a <code class="docutils literal notranslate"><span class="pre">start.py</span></code> module.</p>
+</div>
+<p>To do this, implement the functions in the <code class="docutils literal notranslate"><span class="pre">main.py</span></code> module
+and import them into <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You need to set the desired mark: 4, 6, 8 or 10 in the <code class="docutils literal notranslate"><span class="pre">target_score</span></code> field
+in the <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file. The higher the desired mark, the more
+number of tests run when checking your Pull Request.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You cannot use the pipeline abstraction from the transformers library
+in this laboratory work.</p>
+</div>
+</section>
+<section id="stage-1-introduce-importer-abstraction-rawdataimporter">
+<h3>Stage 1. Introduce importer abstraction: <code class="docutils literal notranslate"><span class="pre">RawDataImporter</span></code><a class="headerlink" href="#stage-1-introduce-importer-abstraction-rawdataimporter" title="Link to this heading"></a></h3>
+<p>First of all, you need to import the chosen HuggingFace dataset.</p>
+<p>To download your dataset inside your program you need to implement
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_7_llm.main.RawDataImporter</span></code> abstraction.</p>
+<p>This class inherits from
+<a class="reference internal" href="../../../llm_2025/labs/lab_7/core_utils.api.html#core_utils.llm.raw_data_importer.AbstractRawDataImporter" title="core_utils.llm.raw_data_importer.AbstractRawDataImporter"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.llm.raw_data_importer.AbstractRawDataImporter</span></code></a> abstraction,
+which has the following internal attributes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._hf_name</span></code> - string with the name of the HuggingFace dataset;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._raw_data</span></code> - downloaded pd.DataFrame.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>To get data from <code class="docutils literal notranslate"><span class="pre">RawDataImporter</span></code> abstraction, use
+<a class="reference internal" href="../../../llm_2025/labs/lab_7/core_utils.api.html#core_utils.llm.raw_data_importer.AbstractRawDataImporter.raw_data" title="core_utils.llm.raw_data_importer.AbstractRawDataImporter.raw_data"><code class="xref py py-attr docutils literal notranslate"><span class="pre">core_utils.llm.raw_data_importer.AbstractRawDataImporter.raw_data</span></code></a> property.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Property is a method with a <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator
+that can be accessed like a field.</p>
+</div>
+<p>See the intended instantiation:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">importer</span> <span class="o">=</span> <span class="n">RawDataImporter</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">settings.parameters.dataset</span></code> is the name of the HuggingFace dataset
+written in <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file.</p>
+<section id="stage-1-1-download-dataset">
+<h4>Stage 1.1. Download dataset<a class="headerlink" href="#stage-1-1-download-dataset" title="Link to this heading"></a></h4>
+<p>Implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.RawDataImporter.obtain()</span></code> method
+which allows to download dataset and fill <code class="docutils literal notranslate"><span class="pre">self._raw_data</span></code> attribute.</p>
+<p>You have to use
+<a class="reference external" href="https://huggingface.co/docs/datasets/v2.15.0/en/package_reference/loading_methods#datasets.load_dataset">load_dataset()</a> function
+from <code class="docutils literal notranslate"><span class="pre">datasets</span></code> module.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In our laboratory work we are going to get predictions of the model,
+so you have to download <code class="docutils literal notranslate"><span class="pre">validation</span></code> or <code class="docutils literal notranslate"><span class="pre">test</span></code> split of the
+chosen dataset by filling the parameter <code class="docutils literal notranslate"><span class="pre">split</span></code> of
+the <code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code> function. Also for some datasets you need
+to select a specific subset. You can always find out
+if you need to do this in the appropriate task card.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If downloaded dataset is not <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>, method raises <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">obtain()</span></code> method has <code class="docutils literal notranslate"><span class="pre">&#64;report_time</span></code> decorator
+which you will also find in many other methods
+in this laboratory work. The purpose of this
+decorator is to log time spent on method execution.</p>
+</div>
+</section>
+</section>
+<section id="stage-2-introduce-preprocessor-abstraction-rawdatapreprocessor">
+<h3>Stage 2. Introduce preprocessor abstraction: <code class="docutils literal notranslate"><span class="pre">RawDataPreprocessor</span></code><a class="headerlink" href="#stage-2-introduce-preprocessor-abstraction-rawdatapreprocessor" title="Link to this heading"></a></h3>
+<p>Before putting the dataset into the model we have to analyze and preprocess it.</p>
+<p>To perform all needed preprocessing and analyze your dataset
+inside your program you need to implement
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_7_llm.main.RawDataPreprocessor</span></code> abstraction.</p>
+<p>This class inherits from
+<a class="reference internal" href="../../../llm_2025/labs/lab_7/core_utils.api.html#core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor" title="core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor</span></code></a> abstraction,
+which has the following internal attributes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._raw_data</span></code> - downloaded pd.DataFrame;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._data</span></code> - preprocessed pd.DataFrame.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>To get processed data from <code class="docutils literal notranslate"><span class="pre">RawDataPreprocessor</span></code> abstraction, use
+<a class="reference internal" href="../../../llm_2025/labs/lab_7/core_utils.api.html#core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor.data" title="core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor.data"><code class="xref py py-attr docutils literal notranslate"><span class="pre">core_utils.llm.raw_data_preprocessor.AbstractRawDataPreprocessor.data</span></code></a> property.</p>
+</div>
+<p>See the intended instantiation:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">RawDataPreprocessor</span><span class="p">(</span><span class="n">importer</span><span class="o">.</span><span class="n">raw_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">importer.raw_data</span></code> is the property of the <code class="docutils literal notranslate"><span class="pre">RawDataImporter</span></code> class.</p>
+<section id="stage-2-1-analyze-dataset-properties">
+<h4>Stage 2.1. Analyze dataset properties<a class="headerlink" href="#stage-2-1-analyze-dataset-properties" title="Link to this heading"></a></h4>
+<p>We will start with analyzing your <strong>raw</strong> dataset.
+In general, analyzing a dataset before loading it into the model
+allows you to understand its structure, data quality
+and identify potential problems such as missing values or outliers.
+This helps to better prepare your data, improve model performance
+and increase forecast accuracy.</p>
+<p>Implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.RawDataPreprocessor.analyze()</span></code>
+method which allows to analyze raw dataset.</p>
+<p>Method should return a dictionary with the following dataset properties.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dataset_number_of_samples</span></code></p></td>
+<td><p>Number of samples in dataset</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dataset_columns</span></code></p></td>
+<td><p>Number of columns in dataset</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dataset_duplicates</span></code></p></td>
+<td><p>Number of duplicates in dataset</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dataset_empty_rows</span></code></p></td>
+<td><p>Number of empty rows in dataset</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dataset_sample_min_len</span></code></p></td>
+<td><p>Minimal length of the dataset sample
+in <code class="docutils literal notranslate"><span class="pre">source</span></code> column(s)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dataset_sample_max_len</span></code></p></td>
+<td><p>Maximal length of the dataset sample
+in <code class="docutils literal notranslate"><span class="pre">source</span></code> column(s)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Why find the maximum and minimum dataset sample length?</strong>
+If you are working with text, knowing the maximum sample length
+allows you to determine the maximum length of text your model can handle.
+This is important for correctly defining model parameters,
+such as the maximum length of the input sequence.
+While a minimum sample length may indicate the presence
+of incomplete or incorrect data.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Before calculating minimal and maximal length of the dataset sample,
+drop empty rows in the dataset.</p>
+</div>
+</section>
+<section id="stage-2-2-demonstrate-the-result-in-start-py">
+<h4>Stage 2.2. Demonstrate the result in <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#stage-2-2-demonstrate-the-result-in-start-py" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 0 - 2.2</strong> are required to get the mark <strong>4</strong>.</p>
+</div>
+<p>Demonstrate your dataset analysis
+in the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function of the <code class="docutils literal notranslate"><span class="pre">start.py</span></code> module.</p>
+</section>
+<section id="stage-2-3-preprocess-dataset">
+<h4>Stage 2.3. Preprocess dataset<a class="headerlink" href="#stage-2-3-preprocess-dataset" title="Link to this heading"></a></h4>
+<p>Preprocessing the dataset before loading it into the model is an important step.
+Data cleaning, label coding and more contribute to the quality and efficiency of the model,
+allowing it to better extract patterns from the data.</p>
+<p>Implement method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.RawDataPreprocessor.transform()</span></code>
+which allows to preprocess dataset.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You can find all needed preprocessing for your
+combination of model and dataset choosing appropriate task:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="../../../llm_2025/task_cards/TASK_CLASSIFICATION.html#classification-label"><span class="std std-ref">Classification</span></a></p></li>
+<li><p><a class="reference internal" href="../../../llm_2025/task_cards/TASK_GENERATION.html#generation-label"><span class="std std-ref">Generation</span></a></p></li>
+<li><p><a class="reference internal" href="../../../llm_2025/task_cards/TASK_NLI.html#nli-label"><span class="std std-ref">NLI</span></a></p></li>
+<li><p><a class="reference internal" href="../../../llm_2025/task_cards/TASK_NMT.html#nmt-label"><span class="std std-ref">Neural Machine Translation</span></a></p></li>
+<li><p><a class="reference internal" href="../../../llm_2025/task_cards/TASK_SUMMARIZATION.html#summarization-label"><span class="std std-ref">Summarization</span></a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>According to preprocessing instructions in task cards,
+you should change column names. To do this use fields of the
+<a class="reference internal" href="../../../llm_2025/labs/lab_7/core_utils.api.html#core_utils.llm.raw_data_preprocessor.ColumnNames" title="core_utils.llm.raw_data_preprocessor.ColumnNames"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.llm.raw_data_preprocessor.ColumnNames</span></code></a> abstraction.</p>
+</div>
+<p>Save your preprocessed dataset to <code class="docutils literal notranslate"><span class="pre">self._data</span></code> attribute.</p>
+</section>
+</section>
+<section id="stage-3-introduce-dataset-abstraction-taskdataset">
+<h3>Stage 3. Introduce dataset abstraction: <code class="docutils literal notranslate"><span class="pre">TaskDataset</span></code><a class="headerlink" href="#stage-3-introduce-dataset-abstraction-taskdataset" title="Link to this heading"></a></h3>
+<p>To work with the model we will use PyTorch
+<a class="reference external" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset">Dataset</a> abstraction.
+We convert <code class="docutils literal notranslate"><span class="pre">pd.Dataframe</span></code> to <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, because in the next step
+we will use PyTorch <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> abstraction, which will allow us
+to efficiently load the data into the model’s memory,
+process it in batches and pass it to the model.</p>
+<p>Implement <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_7_llm.main.TaskDataset</span></code> abstraction
+to convert <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> to <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and override some methods.</p>
+<p>This class inherits from <code class="docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code> abstraction,
+which has one internal attribute:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._data</span></code> - <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> with preprocessed data.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When instantiating <code class="docutils literal notranslate"><span class="pre">TaskDataset</span></code>
+abstraction in <code class="docutils literal notranslate"><span class="pre">start.py</span></code> module,
+limit the full <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> you got
+from <code class="docutils literal notranslate"><span class="pre">RawDataPreprocessor</span></code> to the first 100 samples.</p>
+</div>
+<p>See the intended instantiation:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">TaskDataset</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">preprocessor.data</span></code> is the property of the <code class="docutils literal notranslate"><span class="pre">RawDataPreprocessor</span></code> class.</p>
+<section id="stage-3-1-get-the-dataset-length">
+<h4>Stage 3.1. Get the dataset length<a class="headerlink" href="#stage-3-1-get-the-dataset-length" title="Link to this heading"></a></h4>
+<p>In the next two steps, we will override some methods
+that will allow us to further work with PyTorch <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> abstraction.</p>
+<p>Implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.TaskDataset.__len__()</span></code> method
+which allows to get the number of items in dataset.
+PyTorch <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> uses this method
+to determine the total number of batches in an epoch.</p>
+</section>
+<section id="stage-3-2-retrieve-an-item-from-the-dataset">
+<h4>Stage 3.2. Retrieve an item from the dataset<a class="headerlink" href="#stage-3-2-retrieve-an-item-from-the-dataset" title="Link to this heading"></a></h4>
+<p>Implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.TaskDataset.__getitem__()</span></code> method
+which allows to retrieve an item from the dataset by index.</p>
+<p>PyTorch <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> calls this method to retrieve data for each batch.
+Implementing this method allows you to define how the data is retrieved
+from the dataset and how it is structured.
+It should return a tuple containing items
+from columns with text to be retrieved.
+Depending on the task, the number of columns may vary.</p>
+</section>
+<section id="stage-3-3-retrieve-data">
+<h4>Stage 3.3. Retrieve data<a class="headerlink" href="#stage-3-3-retrieve-data" title="Link to this heading"></a></h4>
+<p>Implement <code class="xref py py-attr docutils literal notranslate"><span class="pre">lab_7_llm.main.TaskDataset.data</span></code> property
+which allows to access the preprocessed <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>.</p>
+</section>
+</section>
+<section id="stage-4-introduce-model-pipeline-abstraction-llmpipeline">
+<h3>Stage 4. Introduce model pipeline abstraction: <code class="docutils literal notranslate"><span class="pre">LLMPipeline</span></code><a class="headerlink" href="#stage-4-introduce-model-pipeline-abstraction-llmpipeline" title="Link to this heading"></a></h3>
+<p>Now we are ready to run our model.</p>
+<p>To initialize our model, analyze its properties,
+infer model on the whole dataset and one sample from it you need to implement
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_7_llm.main.LLMPipeline</span></code> abstraction.</p>
+<p>This class inherits from
+<a class="reference internal" href="../../../llm_2025/labs/lab_7/core_utils.api.html#core_utils.llm.llm_pipeline.AbstractLLMPipeline" title="core_utils.llm.llm_pipeline.AbstractLLMPipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.llm.llm_pipeline.AbstractLLMPipeline</span></code></a> abstraction,
+which has the following internal attributes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._model_name</span></code> - a string with the model name;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._model</span></code> - the model instance;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._dataset</span></code> - <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> instance;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._device</span></code> - a string with a device type (<code class="docutils literal notranslate"><span class="pre">cpu</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._tokenizer</span></code> - the tokenizer instance suitable for your model;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._batch_size</span></code> - an integer with batch size;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._max_length</span></code> - an integer with maximum length of generated sequence.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When loading a model and tokenizer, you will import special
+<a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/auto">Auto Classes</a>.
+However, for some models and tokenizers you can use special classes
+that are based on the architecture of the pre-trained model.
+You can find out which class you need to use
+through the <code class="docutils literal notranslate"><span class="pre">architectures</span></code> parameter of the model <code class="docutils literal notranslate"><span class="pre">config</span></code> object.</p>
+</div>
+<p>See the intended instantiation:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">LLMPipeline</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">max_length</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">settings.parameters.model</span></code> is the name of the model
+written in <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset</span></code> is an instance of <code class="docutils literal notranslate"><span class="pre">TaskDataset</span></code> abstraction.</p>
+<section id="stage-4-1-analyze-model-properties">
+<h4>Stage 4.1. Analyze model properties<a class="headerlink" href="#stage-4-1-analyze-model-properties" title="Link to this heading"></a></h4>
+<p>Implement method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.LLMPipeline.analyze_model()</span></code>
+which allows to analyze model properties.</p>
+<p>Method should return a dictionary with the following model properties.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input_shape</span></code></p></td>
+<td><p>Represents the dimensions of the
+input data of the model.
+In our laboratory work it contains
+batch size and maximum context length
+of the model.
+For example, <code class="docutils literal notranslate"><span class="pre">&quot;input_shape&quot;:</span> <span class="pre">[1,</span> <span class="pre">512]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code>
+or
+<code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">embedding_size</span></code></p></td>
+<td><p>Embedding size of the model</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">output_shape</span></code></p></td>
+<td><p>Represents the dimensions of the
+output data of the model.
+For example,
+<code class="docutils literal notranslate"><span class="pre">&quot;output_shape&quot;:</span> <span class="pre">[1,</span> <span class="pre">512,</span> <span class="pre">59514</span> <span class="pre">]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">num_trainable_params</span></code></p></td>
+<td><p>Number of trainable parameters
+in the model</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vocab_size</span></code></p></td>
+<td><p>Vocabulary size of the model</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">size</span></code></p></td>
+<td><p>Number of parameters</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max_context_length</span></code></p></td>
+<td><p>Maximum context length of the model</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>To get the part of the model properties, you have to use
+<a class="reference external" href="https://github.com/TylerYep/torchinfo?tab=readme-ov-file#documentation">summary()</a>
+method from <code class="docutils literal notranslate"><span class="pre">torchinfo</span></code> module.
+This method returns an instance of <code class="docutils literal notranslate"><span class="pre">ModelStatistics</span></code> class.
+For this lab you will need the following fields from this class:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">input_size</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">summary_list</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trainable_params</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_param_bytes</span></code></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="stage-4-2-infer-one-sample-from-dataset">
+<h4>Stage 4.2. Infer one sample from dataset<a class="headerlink" href="#stage-4-2-infer-one-sample-from-dataset" title="Link to this heading"></a></h4>
+<p>Implement method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.LLMPipeline.infer_sample()</span></code>,
+which allows to infer one sample from dataset.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the model is not defined, method returns <strong>None</strong>.</p>
+</div>
+</section>
+<section id="stage-4-3-demonstrate-the-result-in-start-py">
+<h4>Stage 4.3. Demonstrate the result in <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#stage-4-3-demonstrate-the-result-in-start-py" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 2.3 - 4.3</strong> are required to get the mark <strong>6</strong>.</p>
+</div>
+<p>Demonstrate model properties analysis and dataset sample inference
+in the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function of the <code class="docutils literal notranslate"><span class="pre">start.py</span></code> module.</p>
+<p>As parameters for initialization <code class="docutils literal notranslate"><span class="pre">LLMPipeline</span></code> abstraction,
+use:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code> = 1;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_length</span></code> = 120;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code> = ‘cpu’.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For generation closed QA task use <code class="docutils literal notranslate"><span class="pre">max_length</span></code> = 512.</p>
+</div>
+</section>
+<section id="stage-4-4-infer-dataset">
+<h4>Stage 4.4. Infer dataset<a class="headerlink" href="#stage-4-4-infer-dataset" title="Link to this heading"></a></h4>
+<p>Implement method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.LLMPipeline.infer_dataset()</span></code>,
+which allows to infer the dataset.</p>
+<p>While iterating through dataset samples,
+use PyTorch <a class="reference external" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader">Dataloader</a>.
+It requires two parameters: <code class="docutils literal notranslate"><span class="pre">dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">batch_size</span></code>.</p>
+<p>The DataLoader class provides efficient data loading
+by allowing the user to load data in parallel using multiple CPU cores.
+This can significantly reduce the data loading time,
+especially for large datasets.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using tokenizer, set parameters
+<code class="docutils literal notranslate"><span class="pre">padding=True</span></code>, <code class="docutils literal notranslate"><span class="pre">truncation=True</span></code> to handle varying sequence lengths.</p>
+</div>
+<p>Method returns <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> with <code class="docutils literal notranslate"><span class="pre">target</span></code> and <code class="docutils literal notranslate"><span class="pre">predictions</span></code> columns.</p>
+</section>
+<section id="stage-4-5-infer-batch">
+<h4>Stage 4.5. Infer batch<a class="headerlink" href="#stage-4-5-infer-batch" title="Link to this heading"></a></h4>
+<p>LLMs typically work with datasets with thousands of samples.
+Consequently, iterating through these datasets one sample at a
+time proves highly inefficient, particularly when considering
+that each batch conceptually aligns with the inference on a single sample.</p>
+<p>Also, you may have already noticed that
+there is some duplication in methods
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.LLMPipeline.infer_sample()</span></code>
+and <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.LLMPipeline.infer_dataset()</span></code>.</p>
+<p>To be able to eliminate all aforementioned problems
+first you need to implement method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.LLMPipeline._infer_batch()</span></code>
+which allows to infer a single batch.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are going to be a few peculiarities
+when implementing method for generation closed QA task.
+You can find them in <a class="reference internal" href="../../../llm_2025/task_cards/TASK_GENERATION.html#generation-label"><span class="std std-ref">Generation</span></a>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You have to rewrite <code class="docutils literal notranslate"><span class="pre">infer_sample()</span></code> and <code class="docutils literal notranslate"><span class="pre">infer_dataset()</span></code> methods
+so that these methods use <code class="docutils literal notranslate"><span class="pre">_infer_batch()</span></code> method.</p>
+</div>
+</section>
+</section>
+<section id="stage-5-introduce-evaluation-abstraction-taskevaluator">
+<h3>Stage 5. Introduce evaluation abstraction: <code class="docutils literal notranslate"><span class="pre">TaskEvaluator</span></code><a class="headerlink" href="#stage-5-introduce-evaluation-abstraction-taskevaluator" title="Link to this heading"></a></h3>
+<p>Now we have our predictions and can evaluate obtained result.</p>
+<p>To be able to evaluate the performance of the model
+with appropriate metrics you need to implement
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_7_llm.main.TaskEvaluator</span></code> abstraction.</p>
+<p>This class inherits from
+<a class="reference internal" href="../../../llm_2025/labs/lab_7/core_utils.api.html#core_utils.llm.task_evaluator.AbstractTaskEvaluator" title="core_utils.llm.task_evaluator.AbstractTaskEvaluator"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.llm.task_evaluator.AbstractTaskEvaluator</span></code></a> abstraction,
+which has the following internal attributes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self._metrics</span></code> - a field of
+<a class="reference internal" href="../../../llm_2025/labs/lab_7/core_utils.api.html#core_utils.llm.metrics.Metrics" title="core_utils.llm.metrics.Metrics"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.llm.metrics.Metrics</span></code></a> abstraction
+with suitable metric;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self._data_path</span></code> - a string with the path to the <code class="docutils literal notranslate"><span class="pre">dist/predictions.csv</span></code> file.</p></li>
+</ul>
+</div></blockquote>
+<p>See the intended instantiation:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">TaskEvaluator</span><span class="p">(</span><span class="n">predictions_path</span><span class="p">,</span> <span class="n">settings</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">metrics</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">predictions_path</span></code> is a string with the path to the <code class="docutils literal notranslate"><span class="pre">dist/predictions.csv</span></code> file,
+<code class="docutils literal notranslate"><span class="pre">settings.parameters.metrics</span></code> is the name of the suitable metric
+written in <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file.</p>
+<section id="stage-5-1-evaluate-model-performance">
+<h4>Stage 5.1. Evaluate model performance<a class="headerlink" href="#stage-5-1-evaluate-model-performance" title="Link to this heading"></a></h4>
+<p>Implement method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.main.TaskEvaluator.run()</span></code>
+which allows to evaluate the predictions against the
+references using the specified metric.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To evaluate model performance using special metric you have to use
+<a class="reference external" href="https://huggingface.co/docs/evaluate/main/en/package_reference/loading_methods#evaluate.load">load()</a> method from <code class="docutils literal notranslate"><span class="pre">evaluate</span></code> module.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>There are some additional parameters for <strong>Summarization</strong> task
+which you can find in <a class="reference internal" href="../../../llm_2025/task_cards/TASK_SUMMARIZATION.html#summarization-label"><span class="std std-ref">Summarization</span></a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To compute the metrics you have to use
+<a class="reference external" href="https://huggingface.co/docs/datasets/v2.15.0/en/package_reference/main_classes#datasets.Metric.compute">compute()</a>
+method from <code class="docutils literal notranslate"><span class="pre">evaluate</span></code> module.</p>
+</div>
+</section>
+<section id="stage-5-2-demonstrate-the-result-in-start-py">
+<h4>Stage 5.2. Demonstrate the result in <code class="docutils literal notranslate"><span class="pre">start.py</span></code><a class="headerlink" href="#stage-5-2-demonstrate-the-result-in-start-py" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 4.4 - 5.2</strong> are required to get the mark <strong>8</strong>.</p>
+</div>
+<p>Demonstrate dataset inference and model performance evaluation
+in the <code class="docutils literal notranslate"><span class="pre">main()</span></code> function of the <code class="docutils literal notranslate"><span class="pre">start.py</span></code> module.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Set parameter <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> = 64.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After dataset inference you have to save
+you predictions to <code class="docutils literal notranslate"><span class="pre">dist/predictions.csv</span></code> file in <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="stage-6-implement-model-as-a-service">
+<h3>Stage 6. Implement Model as a Service<a class="headerlink" href="#stage-6-implement-model-as-a-service" title="Link to this heading"></a></h3>
+<p>The next step after making an LLM pipeline is the implementation
+of a <a class="reference external" href="https://fastapi.tiangolo.com/">FastAPI</a> service utilizing Transformers
+for the chosen task. Implementing a service allows
+to see how LLMs can be deployed and integrated into practical applications.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For example, if you have chosen the <strong>NMT</strong> task,
+your service should accept sentence in one language
+and return translated sentence.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All logic should be implemented in the following modules:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">service.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assets/index.html</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assets/main.js</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assets/styles.css</span></code></p></li>
+</ul>
+</div>
+<section id="stage-6-1-initialize-core-application">
+<h4>Stage 6.1. Initialize core application<a class="headerlink" href="#stage-6-1-initialize-core-application" title="Link to this heading"></a></h4>
+<p>Let’s start implementing the service with initialisation
+all needed instances for a pipeline and web-service.
+To do this, implement
+<a class="reference internal" href="../../../llm_2025/labs/lab_7/lab_7.api.html#lab_7_llm.service.init_application" title="lab_7_llm.service.init_application"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.service.init_application()</span></code></a> method.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Remember, you have to implement your service using
+<code class="docutils literal notranslate"><span class="pre">FastAPI</span></code> web framework.</p>
+</div>
+<p>To initialize the service, you need to create <code class="docutils literal notranslate"><span class="pre">FastAPI</span></code> instance
+and a handler for statistical files from <code class="docutils literal notranslate"><span class="pre">assets</span></code> directory
+where the implementation of the service interface will be stored.
+Also, as parameters for initialization a pipeline use
+values from <strong>Stage 4.3</strong> and <strong>Stage 5.2</strong>.</p>
+</section>
+<section id="stage-6-2-make-root-endpoint">
+<h4>Stage 6.2. Make root endpoint<a class="headerlink" href="#stage-6-2-make-root-endpoint" title="Link to this heading"></a></h4>
+<p><strong>Root endpoint</strong> is the base URL of your service,
+where start web page with user interface for the service will be located.</p>
+<p>Some important points about user interface implementation:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Your start page should be made using
+<a class="reference external" href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a>
+templating engine in <code class="docutils literal notranslate"><span class="pre">assets/index.html</span></code> file;</p></li>
+<li><p>The request from the HTML page must be performed
+using <a class="reference external" href="https://learn.javascript.ru/">JavaScript</a> in <code class="docutils literal notranslate"><span class="pre">assets/main.js</span></code> file.
+Then you will import it into <code class="docutils literal notranslate"><span class="pre">assets/index.html</span></code> file;</p></li>
+<li><p>CSS markup should be put in <code class="docutils literal notranslate"><span class="pre">assets/styles.css</span></code> file.</p></li>
+</ul>
+</div></blockquote>
+<p>Let’s look at the implementation of the request
+from the HTML page in a little more detail.
+The code of the request should be placed inside
+an event listener for the button click event.
+Specifically, you should call the asynchronous
+<a class="reference external" href="https://learn.javascript.ru/fetch">fetch()</a> method.</p>
+<p>Fill the <code class="docutils literal notranslate"><span class="pre">options</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">fetch()</span></code> method with properties:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span></code> - corresponding to the one in <code class="docutils literal notranslate"><span class="pre">FastAPI</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">headers</span></code> - appropriate for sending <code class="docutils literal notranslate"><span class="pre">JSON</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">body</span></code> - containing a <code class="docutils literal notranslate"><span class="pre">JSON</span></code> request as a string.</p></li>
+</ul>
+</div></blockquote>
+<p>The request’s <code class="docutils literal notranslate"><span class="pre">JSON</span></code> structure should match the
+expected format in your <code class="docutils literal notranslate"><span class="pre">FastAPI</span></code> service
+so that the query can be correctly processed.</p>
+<p>So, an example of start page might look like this:</p>
+<img alt="../../../../_images/site1.png" src="../../../../_images/site1.png" />
+<p>And now we are ready to implement
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.service.root()</span></code> method
+which allows to create a root endpoint of the service.
+The method should return an HTML page using <code class="docutils literal notranslate"><span class="pre">TemplateResponse</span></code>
+which renders an HTML page based on a specific template and passed data.
+Before that you need to create a template using
+<code class="docutils literal notranslate"><span class="pre">Jinja2Templates</span></code> with <code class="docutils literal notranslate"><span class="pre">assets</span></code> directory and
+call <a class="reference internal" href="../../../llm_2025/labs/lab_7/lab_7.api.html#lab_7_llm.service.init_application" title="lab_7_llm.service.init_application"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.service.init_application()</span></code></a> method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">&#64;app.get(&quot;/&quot;)</span></code>
+decorator to create a route for the root URL.</p>
+</div>
+</section>
+<section id="stage-6-2-make-main-endpoint">
+<h4>Stage 6.2. Make main endpoint<a class="headerlink" href="#stage-6-2-make-main-endpoint" title="Link to this heading"></a></h4>
+<p>When a user clicks the button on the start page,
+a POST request must be initiated to the main endpoint
+which is responsible for processing the data using LLM pipeline.</p>
+<p>Implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_7_llm.service.infer()</span></code> method
+which allows to create a main endpoint for model call.</p>
+<p>To make a query in an <code class="docutils literal notranslate"><span class="pre">entry</span> <span class="pre">field</span></code> you need to implement
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_7_llm.service.Query</span></code> abstraction
+with <code class="docutils literal notranslate"><span class="pre">question</span></code> field which contains text of the query.
+Use <code class="docutils literal notranslate"><span class="pre">&#64;dataclass</span></code> decorator from <code class="docutils literal notranslate"><span class="pre">pydantic</span></code> module.</p>
+<p>Response obtained as a result of the pipeline
+will be displayed in the <code class="docutils literal notranslate"><span class="pre">output</span> <span class="pre">field</span></code>.
+Response should be in the form of the <strong>dictionary</strong>
+with <code class="docutils literal notranslate"><span class="pre">infer</span></code> key and the value containing response.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">&#64;app.post(&quot;/infer&quot;)</span></code>
+decorator to create a route for the main endpoint URL.</p>
+</div>
+</section>
+<section id="stage-6-3-demonstrate-the-result">
+<h4>Stage 6.3. Demonstrate the result<a class="headerlink" href="#stage-6-3-demonstrate-the-result" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stage 6</strong> is required to get the mark <strong>10</strong>.</p>
+</div>
+<p>Demonstrate work of your service by running a server
+implemented in <code class="docutils literal notranslate"><span class="pre">service.py</span></code> module and obtaining one sample inference result.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can run you server using <code class="docutils literal notranslate"><span class="pre">uvicorn</span> <span class="pre">PATH:app</span> <span class="pre">--reload</span></code> command,
+where <code class="docutils literal notranslate"><span class="pre">PATH</span></code> is a path to <code class="docutils literal notranslate"><span class="pre">service.py</span></code> module.</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Laboratory works" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_7.api.html" class="btn btn-neutral float-right" title="lab_7 package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
