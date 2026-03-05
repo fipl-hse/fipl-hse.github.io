@@ -307,7 +307,7 @@ Set the following parameters:
 Stage 6. Implement model as a service and demonstrate the result
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. important:: **Stages 6** from :ref:`lab-7-label` are required to get the mark **10**.
+.. important:: **Stages 6** from :ref:`lab-7-llm` are required to get the mark **10**.
 
 An example of start page might look like this:
 

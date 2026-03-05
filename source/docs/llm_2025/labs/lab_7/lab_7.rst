@@ -1,4 +1,4 @@
-.. _lab-7-label:
+.. _lab-7-llm:
 
 Laboratory work №7. Large Language Models no. 1
 ===============================================
