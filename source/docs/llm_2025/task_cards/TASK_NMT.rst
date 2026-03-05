@@ -12,7 +12,7 @@ Models
 | `Helsinki-NLP/opus-mt-en-fr                                                         | EN   |
 | <https://huggingface.co/Helsinki-NLP/opus-mt-en-fr>`__                              |      |
 +-------------------------------------------------------------------------------------+------+
-| `t5-small <https://huggingface.co/t5-small>`__                                      | EN   |
+| `google-t5/t5-small <https://huggingface.co/t5-small>`__                            | EN   |
 +-------------------------------------------------------------------------------------+------+
 | `Helsinki-NLP/opus-mt-ru-en                                                         | RU   |
 | <https://huggingface.co/Helsinki-NLP/opus-mt-ru-en>`__                              |      |
