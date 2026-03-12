@@ -1,0 +1,21 @@
+fipl\-hse.github.io.lab\_2\_spellcheck package
+==============================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_2\_spellcheck.main module
+--------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_2_spellcheck.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_2_spellcheck
+   :members:
+   :undoc-members:
+   :show-inheritance:

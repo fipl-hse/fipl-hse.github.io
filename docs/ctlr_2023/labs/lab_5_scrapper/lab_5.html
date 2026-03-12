@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratory work №5. Retrieve raw data from World Wide Web &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_5_scrapper package" href="lab_5.api.html" />
+    <link rel="prev" title="Laboratory works" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Laboratory works</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Laboratory work №5. Retrieve raw data from World Wide Web</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_5.api.html">lab_5_scrapper package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_6_pipeline/lab_6.html">Laboratory work №6. Process raw data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content.html">Short summary of lectures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/ctlr_docs/index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Laboratory works</a></li>
+      <li class="breadcrumb-item active">Laboratory work №5. Retrieve raw data from World Wide Web</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/ctlr_2023/labs/lab_5_scrapper/lab_5.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="laboratory-work-o5-retrieve-raw-data-from-world-wide-web">
+<span id="scrapper-label"></span><h1>Laboratory work №5. Retrieve raw data from World Wide Web<a class="headerlink" href="#laboratory-work-o5-retrieve-raw-data-from-world-wide-web" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_5.api.html">lab_5_scrapper package</a></li>
+</ul>
+</div>
+<p>Python competencies required to complete this tutorial:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>working with external dependencies, going beyond Python standard library;</p></li>
+<li><p>working with external modules: local and downloaded from PyPi;</p></li>
+<li><p>working with files: create/read/update;</p></li>
+<li><p>downloading web pages;</p></li>
+<li><p>parsing web pages as HTML structure.</p></li>
+</ul>
+</div></blockquote>
+<p>Scraping as a process contains the following steps:</p>
+<ol class="arabic simple">
+<li><p>Crawling the website and collecting all pages that satisfy criteria
+given.</p></li>
+<li><p>Downloading selected pages content.</p></li>
+<li><p>Extracting specific content from pages downloaded.</p></li>
+<li><p>Saving necessary information.</p></li>
+</ol>
+<p>As a part of the first milestone, you need to implement scrapping logic
+as a <code class="docutils literal notranslate"><span class="pre">scrapper.py</span></code> module. When it is run as a standalone Python
+program, it should perform all aforementioned stages.</p>
+<section id="executing-scrapper">
+<h2>Executing scrapper<a class="headerlink" href="#executing-scrapper" title="Link to this heading"></a></h2>
+<p>Example execution (<code class="docutils literal notranslate"><span class="pre">Windows</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>scrapper.py
+</pre></div>
+</div>
+<p>Expected result:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> articles from the given URL are parsed.</p></li>
+<li><p>All articles are downloaded to the <code class="docutils literal notranslate"><span class="pre">tmp/articles</span></code> directory.
+<code class="docutils literal notranslate"><span class="pre">tmp</span></code> directory should conform to the following structure:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-- 2023-2-level-ctlr
+    +-- tmp
+        +-- articles
+            +-- 1_raw.txt     &lt;- the paper with the ID as the name
+            +-- 1_meta.json   &lt;- the paper meta-information
+            +-- ...
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using CI (Continuous Integration), generated
+<code class="docutils literal notranslate"><span class="pre">raw-dataset.zip</span></code> is available in build artifacts. Go to
+<code class="docutils literal notranslate"><span class="pre">Actions</span></code> tab in GitHub UI of your fork, open the last job and if
+there is an artifact, you can download it.</p>
+</div>
+</section>
+<section id="configuring-scrapper">
+<h2>Configuring scrapper<a class="headerlink" href="#configuring-scrapper" title="Link to this heading"></a></h2>
+<p>Scrapper behavior is fully defined by a configuration file that is
+called <code class="docutils literal notranslate"><span class="pre">scrapper_config.json</span></code> and it is placed at the same level as
+<code class="docutils literal notranslate"><span class="pre">scrapper.py</span></code>. It is JSON file, simply speaking it is a set of
+key-value pairs.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Config parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">seed_urls</span></code></p></td>
+<td><p>Entry points for crawling.
+Can contain several URLs as there
+is no guarantee that
+there will be enough article
+links on a single page
+For example, <code class="docutils literal notranslate"><span class="pre">[</span>
+<span class="pre">&quot;https://www.nn.ru/text/?page=2&quot;,</span>
+<span class="pre">&quot;https://www.nn.ru/text/?page=3&quot;]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">headers</span></code></p></td>
+<td><p>Headers let you pass additional
+information
+within request to the web page.
+For example,
+<code class="docutils literal notranslate"><span class="pre">{&quot;user-agent&quot;:</span> <span class="pre">&quot;Mozilla/5.0&quot;}</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">total_articles_to_find_and_parse</span></code></p></td>
+<td><p>Number of articles to parse.
+Range: <code class="docutils literal notranslate"><span class="pre">0&lt;x&lt;=150</span></code>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">encoding</span></code></p></td>
+<td><p>This parameter specifies encoding
+for the
+response received by the web page
+you request. For example, <code class="docutils literal notranslate"><span class="pre">utf-8</span></code>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timeout</span></code></p></td>
+<td><p>The amount of time you wait for a
+response from your web page.
+If the page does not respond in the
+specified time, an exception will
+be received.
+Range: <code class="docutils literal notranslate"><span class="pre">0&lt;x&lt;=60</span></code>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">should_verify_certificate</span></code></p></td>
+<td><p>Parameter that enables or disables
+the security certificate check
+of your requests to the page.
+Disable it if you cannot pass
+web page security certification.
+For example, <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">headless_mode</span></code></p></td>
+<td><p>Not used.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">seed_urls</span></code> and <code class="docutils literal notranslate"><span class="pre">total_articles_to_find_and_parse</span></code> are used
+in <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler</span></code> abstraction.
+<code class="docutils literal notranslate"><span class="pre">headers</span></code>, <code class="docutils literal notranslate"><span class="pre">encoding</span></code>, <code class="docutils literal notranslate"><span class="pre">timeout</span></code>, <code class="docutils literal notranslate"><span class="pre">should_verify_certificate</span></code> are used
+in <code class="xref py py-func docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.make_request()</span></code> function.
+<code class="docutils literal notranslate"><span class="pre">headless_mode</span></code> is used only if you work with dynamic websites. See
+definition and requirements for these abstractions and functions
+within further steps.</p>
+</div>
+</section>
+<section id="assessment-criteria">
+<h2>Assessment criteria<a class="headerlink" href="#assessment-criteria" title="Link to this heading"></a></h2>
+<p>You state your ambitions on the mark by editing <code class="docutils literal notranslate"><span class="pre">target_score</span></code> parameter
+in <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file. Possible values are <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">6</span></code>,
+<code class="docutils literal notranslate"><span class="pre">8</span></code>, and <code class="docutils literal notranslate"><span class="pre">10</span></code>. See example below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">6</span>
+</pre></div>
+</div>
+<p>would mean that you have made tasks for mark <code class="docutils literal notranslate"><span class="pre">6</span></code> and request mentors
+to check if you can get it. See mark requirements and explanations
+below:</p>
+<ol class="arabic simple">
+<li><p>Desired mark <strong>4</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <code class="docutils literal notranslate"><span class="pre">5/10</span></code>.</p></li>
+<li><p>Scrapper validates config and fails appropriately if the latter is
+incorrect.</p></li>
+<li><p>Scrapper downloads articles from the selected newspaper.</p></li>
+<li><p>Scrapper produces only <code class="docutils literal notranslate"><span class="pre">_raw.txt</span></code> files in the <code class="docutils literal notranslate"><span class="pre">tmp/articles</span></code>
+directory (<em>no metadata files</em>).</p></li>
+</ol>
+</li>
+<li><p>Desired mark <strong>6</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <code class="docutils literal notranslate"><span class="pre">7/10</span></code>.</p></li>
+<li><p>All requirements for the mark <strong>4</strong>.</p></li>
+<li><p>Scrapper produces <code class="docutils literal notranslate"><span class="pre">_meta.json</span></code> files for each article, however,
+it is allowed for each meta file to contain reduced number of
+keys: <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">author</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code>.</p></li>
+</ol>
+</li>
+<li><p>Desired mark <strong>8</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <code class="docutils literal notranslate"><span class="pre">10/10</span></code>.</p></li>
+<li><p>All requirements for the mark <strong>6</strong>.</p></li>
+<li><p>Scrapper produces <code class="docutils literal notranslate"><span class="pre">_meta.json</span></code> files for each article, meta file
+should be full: <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">author</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code>, <code class="docutils literal notranslate"><span class="pre">date</span></code>,
+<code class="docutils literal notranslate"><span class="pre">topics</span></code>. In contrast to the task for mark <strong>6</strong>, it is
+mandatory to collect a date for each of the articles in the
+appropriate format.</p></li>
+</ol>
+</li>
+<li><p>Desired mark <strong>10</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <code class="docutils literal notranslate"><span class="pre">10/10</span></code>;</p></li>
+<li><p>All requirements for the mark <strong>8</strong>.</p></li>
+<li><p>Given just one seed url, crawler can find and visit all website
+pages requested.</p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Date should be in the special format.
+Read <a class="reference internal" href="../../../useful_docs/ctlr_docs/dataset.html#dataset-label"><span class="std std-ref">Dataset requirements</span></a> for technical details.</p>
+</div>
+</section>
+<section id="implementation-tactics">
+<h2>Implementation tactics<a class="headerlink" href="#implementation-tactics" title="Link to this heading"></a></h2>
+<p>All logic for instantiating and using needed abstractions
+should be implemented in a special block of the module <code class="docutils literal notranslate"><span class="pre">scrapper.py</span></code>.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your code goes here&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="stage-0-choose-the-media">
+<h3>Stage 0. Choose the media<a class="headerlink" href="#stage-0-choose-the-media" title="Link to this heading"></a></h3>
+<p>Start your implementation by selecting a website you are going to scrap.
+Pick the website that interests you the most. If you plan on working on
+a mark higher than <strong>4</strong>, make sure all the necessary information is
+present on your chosen website.</p>
+</section>
+<section id="stage-1-extract-and-validate-config-first">
+<h3>Stage 1. Extract and validate config first<a class="headerlink" href="#stage-1-extract-and-validate-config-first" title="Link to this heading"></a></h3>
+<section id="stage-1-1-use-configdto-abstraction">
+<h4>Stage 1.1. Use <code class="docutils literal notranslate"><span class="pre">ConfigDTO</span></code> abstraction<a class="headerlink" href="#stage-1-1-use-configdto-abstraction" title="Link to this heading"></a></h4>
+<p>You are provided with <a class="reference internal" href="../../../useful_docs/ctlr_docs/core_utils.api.html#core_utils.ctlr.config_dto.ConfigDTO" title="core_utils.ctlr.config_dto.ConfigDTO"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.config_dto.ConfigDTO</span></code></a> abstraction.
+It is located in <code class="docutils literal notranslate"><span class="pre">core_utils</span></code> package.
+Use it to store you scrapper configuration data from <code class="docutils literal notranslate"><span class="pre">scrapper_config.json</span></code>.
+Examine class fields closely.</p>
+<p>For more information about DTO object fields refer to description of
+scrapper configuration parameters above.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>DTO is a short for Data Transfer Object. It is commonly used
+term and programming pattern. You may read more about DTO
+<a class="reference external" href="https://www.okta.com/identity-101/dto/">here</a>.</p>
+</div>
+</section>
+<section id="stage-1-2-introduce-config-abstraction">
+<h4>Stage 1.2. Introduce Config abstraction<a class="headerlink" href="#stage-1-2-introduce-config-abstraction" title="Link to this heading"></a></h4>
+<p>To be able to read, validate, and use scrapper configuration data inside
+your program you need to implement special
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config</span></code> abstraction that
+is responsible for extracting and validating data from
+<code class="docutils literal notranslate"><span class="pre">scrapper_config.json</span></code> file.</p>
+<p>See the intended instantiation:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">configuration</span> <span class="o">=</span> <span class="n">Config</span><span class="p">(</span><span class="n">path_to_config</span><span class="o">=</span><span class="n">CRAWLER_CONFIG_PATH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">CRAWLER_CONFIG_PATH</span></code> is the path to the config of the crawler.
+It is mandatory to initialize <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config</span></code>
+class instance with passing a global variable <code class="docutils literal notranslate"><span class="pre">CRAWLER_CONFIG_PATH</span></code>
+that should be properly imported from the <code class="docutils literal notranslate"><span class="pre">core_utils/constants.py</span></code> module.</p>
+</section>
+<section id="stage-1-3-extract-configuration-data">
+<h4>Stage 1.3. Extract configuration data<a class="headerlink" href="#stage-1-3-extract-configuration-data" title="Link to this heading"></a></h4>
+<p>To be able to use scrapper configuration data inside your program you
+need to define <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config._extract_config_content()</span></code>
+method for extracting configuration data.</p>
+<p>The method should open configuration file, create and fill the
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/core_utils.api.html#core_utils.ctlr.config_dto.ConfigDTO" title="core_utils.ctlr.config_dto.ConfigDTO"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.config_dto.ConfigDTO</span></code></a> instance with
+all configuration parameters filled.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method should be called during
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config</span></code> class instance
+initialization step to fill fields with configuration parameters
+information.</p>
+</div>
+</section>
+<section id="stage-1-4-validate-configuration-data">
+<h4>Stage 1.4. Validate configuration data<a class="headerlink" href="#stage-1-4-validate-configuration-data" title="Link to this heading"></a></h4>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config</span></code> class is responsible
+not only for configuration data extraction, but for its validation as well.
+Hence you need to implement
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config._validate_config_content()</span></code> method.</p>
+<p>Inside the method you need to define and check formal criteria for valid
+configuration. When config is invalid:</p>
+<ol class="arabic simple">
+<li><p>One of the following errors is thrown:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IncorrectSeedURLError</span></code>: seed URL does not match standard
+pattern <code class="docutils literal notranslate"><span class="pre">&quot;https?://(www.)?&quot;</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NumberOfArticlesOutOfRangeError</span></code>: total number of articles is
+out of range from 1 to 150;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IncorrectNumberOfArticlesError</span></code>: total number of articles to
+parse is not integer or less than 0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IncorrectHeadersError</span></code>: headers are not in a form of
+dictionary;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IncorrectEncodingError</span></code>: encoding must be specified as a
+string;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IncorrectTimeoutError</span></code>: timeout value must be a positive
+integer less than 60;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IncorrectVerifyError</span></code>: verify certificate value must either be
+<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Script immediately finishes execution.</p></li>
+</ol>
+<p>When all validation criteria are passed there is no exception thrown and
+program continues its execution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method should be called during
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config</span></code>
+class instance initialization step before
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config._extract_config_content()</span></code> method
+call to check config fields and make sure they are appropriate and
+can be used inside the program.</p>
+</div>
+</section>
+<section id="stage-1-5-provide-getting-methods-for-configuration-parameters">
+<h4>Stage 1.5. Provide getting methods for configuration parameters<a class="headerlink" href="#stage-1-5-provide-getting-methods-for-configuration-parameters" title="Link to this heading"></a></h4>
+<p>To be able to further use configuration data extracted across your
+program you need to specify methods for getting each configuration
+parameter.</p>
+<p>For example, <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config.get_seed_urls()</span></code> method
+should return seed urls value from scrapper config file extracted when needed.
+Similar methods should be defined for all scrapper configuration parameters that
+you will be using across the program.</p>
+</section>
+</section>
+<section id="stage-2-set-up-work-environment">
+<h3>Stage 2. Set up work environment<a class="headerlink" href="#stage-2-set-up-work-environment" title="Link to this heading"></a></h3>
+<section id="stage-2-1-set-up-folder-for-articles">
+<h4>Stage 2.1. Set up folder for articles<a class="headerlink" href="#stage-2-1-set-up-folder-for-articles" title="Link to this heading"></a></h4>
+<p>When config is correct (the <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config</span></code>
+class instance is initialized meaning config is valid and loaded inside the program),
+you should prepare appropriate environment for your scrapper to work. Basically,
+you must check that a directory provided by <code class="docutils literal notranslate"><span class="pre">ASSETS_PATH</span></code> does in fact
+exist and is empty. In order to do that, implement
+<code class="xref py py-func docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.prepare_environment()</span></code> function.</p>
+<p>It is mandatory to call this function after the config file is validated
+and before crawler is run.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If folder specified by <code class="docutils literal notranslate"><span class="pre">ASSETS_PATH</span></code> is already created and
+filled with some files (for example, from your previous scrapper run)
+you need to remove the existing folder and then create an empty
+folder with this name in current method.</p>
+</div>
+</section>
+<section id="stage-2-2-set-up-website-requesting-function">
+<h4>Stage 2.2. Set up website requesting function<a class="headerlink" href="#stage-2-2-set-up-website-requesting-function" title="Link to this heading"></a></h4>
+<p>You will need to make requests inside you program to the website several
+times during each scrapper run, so it is wise to create service function
+making request to your website for reusing across program when needed.
+Implement <code class="xref py py-func docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.make_request()</span></code> function.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Inside this function use config getting methods that you should
+have defined previously inside
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config</span></code> class to get request
+configuration parameters, for example
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Config.get_timeout()</span></code> to get timeout value.</p>
+</div>
+</section>
+</section>
+<section id="stage-3-find-necessary-number-of-article-urls">
+<h3>Stage 3. Find necessary number of article URLs<a class="headerlink" href="#stage-3-find-necessary-number-of-article-urls" title="Link to this heading"></a></h3>
+<section id="stage-3-1-introduce-crawler-abstraction">
+<h4>Stage 3.1. Introduce Crawler abstraction<a class="headerlink" href="#stage-3-1-introduce-crawler-abstraction" title="Link to this heading"></a></h4>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler</span></code> is an entity
+that visits <code class="docutils literal notranslate"><span class="pre">seed_urls</span></code> with the intention to
+collect URLs of the articles that should be parsed later.
+<strong>Seed url</strong> - this is a known term, you can read more in
+<a class="reference external" href="https://en.wikipedia.org/wiki/Web_crawler#Overview">Wikipedia</a> or
+any other more reliable source of information you trust.</p>
+<p>It should be instantiated with the following instruction:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">crawler</span> <span class="o">=</span> <span class="n">Crawler</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler</span></code> instance saves
+provided configuration instance in an attribute
+with the corresponding name. Each instance should also have an
+additional <code class="docutils literal notranslate"><span class="pre">self.urls</span></code> attribute, initialized with empty list.</p>
+</section>
+<section id="stage-3-2-implement-a-method-for-collecting-article-urls">
+<h4>Stage 3.2. Implement a method for collecting article URLs<a class="headerlink" href="#stage-3-2-implement-a-method-for-collecting-article-urls" title="Link to this heading"></a></h4>
+<p>Once the crawler is instantiated, it can be started by executing its
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler.find_articles()</span></code> method.
+The method should iterate over the list of seeds, download them and
+extract article URLs from it. As a result, the internal attribute
+<code class="docutils literal notranslate"><span class="pre">self.urls</span></code> should be filled with collected URLs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each URL in <code class="docutils literal notranslate"><span class="pre">self.urls</span></code> should be a valid URL, not just a
+suffix. For example, we need
+<code class="docutils literal notranslate"><span class="pre">https://www.nn.ru/text/transport/2022/03/09/70495829/</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">text/transport/2022/03/09/70495829/</span></code>.</p>
+</div>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler.find_articles()</span></code> method
+must call another method of Crawler:
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler._extract_url()</span></code>.
+This method is responsible for retrieving a URL from
+HTML of the page. Make sure that
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler.find_articles()</span></code>
+only iterates over seed URLs and stores newly collected ones, while all the extraction is
+performed via protected
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler._extract_url()</span></code> method.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At this point, an approach for extracting articles URLs is
+different for each website.</p>
+</div>
+<p>Finally, to access seed URLs of the crawler,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler.get_search_urls()</span></code> must be employed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is possible that at some point your crawler will encounter an
+unavailable website (for example, its response code is not 200). In
+such case, your crawler must continue processing the other URLs
+provided. Ensure that your crawler handles such URLs without throwing
+an exception.</p>
+</div>
+<p>Some web resources load new articles only after a user performs a
+special interaction (for example, scrolling or button pressing). If this
+is your case, refer to <span class="xref std std-ref">dynamic-scrapping-label</span>.</p>
+</section>
+</section>
+<section id="stage-4-extract-data-from-every-article-page">
+<h3>Stage 4. Extract data from every article page<a class="headerlink" href="#stage-4-extract-data-from-every-article-page" title="Link to this heading"></a></h3>
+<section id="stage-4-1-introduce-htmlparser-abstraction">
+<h4>Stage 4.1. Introduce <code class="docutils literal notranslate"><span class="pre">HTMLParser</span></code> abstraction<a class="headerlink" href="#stage-4-1-introduce-htmlparser-abstraction" title="Link to this heading"></a></h4>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser</span></code> is an entity
+that is responsible for extraction of all
+needed information from a single article web page.
+Parser is initialized the following way:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">HTMLParser</span><span class="p">(</span><span class="n">full_url</span><span class="o">=</span><span class="n">full_url</span><span class="p">,</span> <span class="n">article_id</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser</span></code> instance
+saves all constructor arguments in attributes with corresponding names.
+Each instance should also have an additional <code class="docutils literal notranslate"><span class="pre">self.article</span></code> attribute,
+initialized with a new instance of
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> class.</p>
+<p><a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> is an abstraction
+that is implemented for you. You must use it
+in your implementation. A more detailed description of the Article class
+can be found in <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.html#ctlr-article-label"><span class="std std-ref">Article package</span></a>.</p>
+</section>
+<section id="stage-4-2-implement-main-htmlparser-method">
+<h4>Stage 4.2. Implement main <code class="docutils literal notranslate"><span class="pre">HTMLParser</span></code> method<a class="headerlink" href="#stage-4-2-implement-main-htmlparser-method" title="Link to this heading"></a></h4>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser</span></code>
+interface includes a single
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser.parse()</span></code> method that
+encapsulates the logic of extracting all necessary data from the article
+web page. It should do the following:</p>
+<ol class="arabic simple">
+<li><p>Download the web page.</p></li>
+<li><p>Initialize <code class="docutils literal notranslate"><span class="pre">BeautifulSoup</span></code> object on top of downloaded page (we
+will call it <code class="docutils literal notranslate"><span class="pre">article_bs</span></code>).</p></li>
+<li><p>Fill <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> instance
+by calling private methods to extract text (more details in the next sections).</p></li>
+</ol>
+<p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser.parse()</span></code> method returns
+the instance of <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> that is
+stored in <code class="docutils literal notranslate"><span class="pre">self.article</span></code> field.</p>
+</section>
+<section id="stage-4-3-implement-extraction-of-text-from-article-page">
+<h4>Stage 4.3. Implement extraction of text from article page<a class="headerlink" href="#stage-4-3-implement-extraction-of-text-from-article-page" title="Link to this heading"></a></h4>
+<p>Extraction of the text should happen in the private
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser._fill_article_with_text()</span></code> method.</p>
+<p>A call to this method results in filling the internal
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> instance with text.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is very likely that the text on pages of a chosen website is
+split across different HTML blocks, make sure to collect text from
+them all.</p>
+</div>
+</section>
+</section>
+<section id="stage-5-save-article">
+<h3>Stage 5. Save article<a class="headerlink" href="#stage-5-save-article" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 0-5</strong> are required to get the mark <strong>4</strong>.</p>
+</div>
+<p>Make sure that you save each <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a>
+object as a text file on the file system by using the appropriate
+API method <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.io.to_raw" title="core_utils.ctlr.article.io.to_raw"><code class="xref py py-func docutils literal notranslate"><span class="pre">core_utils.ctlr.article.io.to_raw()</span></code></a> from <code class="docutils literal notranslate"><span class="pre">io.py</span></code> module.
+Read more in <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.html#ctlr-article-label"><span class="std std-ref">Article package</span></a>.</p>
+<p>As we return the <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> instance
+from the <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser.parse()</span></code> method, saving
+the article is out of scope of an <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser</span></code>.
+This means that you need to save the articles in the place where you call
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser.parse()</span></code>.</p>
+</section>
+<section id="stage-6-collect-basic-article-metadata">
+<h3>Stage 6. Collect basic article metadata<a class="headerlink" href="#stage-6-collect-basic-article-metadata" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 0-6</strong> are required to get the mark <strong>6</strong>.</p>
+</div>
+<p>According to the <a class="reference internal" href="../../../useful_docs/ctlr_docs/dataset.html#dataset-label"><span class="std std-ref">Dataset requirements</span></a>, the
+dataset that is generated by your code should contain meta-information
+about each article including its id, title, author.</p>
+<p>Implement
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser._fill_article_with_meta_information()</span></code>
+method. A call to this method results in filling the internal
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> instance with meta-information.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Authors must be saved as a list of strings.
+If there is no author in your newspaper, fill the field with a
+list with a single string “NOT FOUND”.</p>
+</div>
+<p>To save the collected meta-information, refer
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.io.to_meta" title="core_utils.ctlr.article.io.to_meta"><code class="xref py py-func docutils literal notranslate"><span class="pre">core_utils.ctlr.article.io.to_meta()</span></code></a> method.
+Saving must be performed outside of parser methods.</p>
+</section>
+<section id="stage-7-collect-advanced-metadata-publication-date-and-topics">
+<h3>Stage 7. Collect advanced metadata: publication date and topics<a class="headerlink" href="#stage-7-collect-advanced-metadata-publication-date-and-topics" title="Link to this heading"></a></h3>
+<p>There is plenty of information that can be collected from each page,
+much more than title and author. It is very common to also collect
+publication date. Working with dates often becomes a nightmare for a
+data scientist. It can be represented very differently: <code class="docutils literal notranslate"><span class="pre">2009Feb17</span></code>,
+<code class="docutils literal notranslate"><span class="pre">2009/02/17</span></code>, <code class="docutils literal notranslate"><span class="pre">20130623T13:22-0500</span></code>, or even <code class="docutils literal notranslate"><span class="pre">48/2009</span></code> (do you
+understand what 48 stand for?).</p>
+<p>The task is to ensure that each article metadata is extended with dates.
+However, the task is even harder as you have to follow the required
+format. In particular, you need to translate it to the format shown by
+example: <code class="docutils literal notranslate"><span class="pre">2021-01-26</span> <span class="pre">07:30:00</span></code>. For example, in <a class="reference external" href="https://www.nn.ru/text/realty/2021/01/26/69724161/">this
+paper</a> it is
+stated that the article was published at <code class="docutils literal notranslate"><span class="pre">26</span> <span class="pre">ЯНВАРЯ</span> <span class="pre">2021,</span> <span class="pre">07:30</span></code>, but
+in the meta-information it must be written as<code class="docutils literal notranslate"><span class="pre">2021-01-26</span> <span class="pre">07:30:00</span></code>.</p>
+<p>To correctly process the date, implement
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser.unify_date_format()</span></code>
+method.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Use <a class="reference external" href="https://docs.python.org/3/library/datetime.html">datetime</a>
+module for such manipulations. In particular, you need to parse the
+date from your website that is represented as a string and transform
+it to the instance of <code class="docutils literal notranslate"><span class="pre">datetime</span></code>. For that it might be useful to
+look into <a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior">datetime.datetime.strptime()</a> method.</p>
+</div>
+<p>Except for that, you are also expected to extract information about
+topics, or keywords, which relate to the article you are parsing. You
+are expected to store them in a meta-information file as a list-like
+value for the key <code class="docutils literal notranslate"><span class="pre">topics</span></code>. In case there are not any topics or
+keywords present in your source, leave this list empty.</p>
+<p>You should extend
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser._fill_article_with_meta_information()</span></code>
+method with a call to
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.HTMLParser.unify_date_format()</span></code>
+method and topics extraction.</p>
+</section>
+<section id="stage-8-determine-the-optimal-number-of-seed-urls">
+<h3>Stage 8. Determine the optimal number of seed URLs<a class="headerlink" href="#stage-8-determine-the-optimal-number-of-seed-urls" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 0-8</strong> are required to get the mark <strong>8</strong>.</p>
+</div>
+<p>As it was stated in <strong>Stage 2.1</strong>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler</span></code> is an entity that visits
+<code class="docutils literal notranslate"><span class="pre">seed_urls</span></code> with the intention to collect URLs with articles that
+should be parsed later”. Often you can reach the situation when there
+are not enough article links on the given URL. For example, you may want
+to collect 100 articles whereas each newspaper page contains links to
+only 10 articles. This brings the need in at least 10 seed URLs to be
+used for crawling. At this stage you need to ensure that your Crawler is
+able to find and parse the required number of articles. Do this by
+determining exactly how many seed URLs it takes.</p>
+<p>As before, such settings are specified in the config file.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Ensure you have enough seeds in your configuration file to
+get at least 100 articles in your dataset. 100 is a required number
+of papers for the final part of the course.</p>
+</div>
+</section>
+<section id="stage-9-turn-your-crawler-into-a-real-recursive-crawler">
+<h3>Stage 9. Turn your crawler into a real recursive crawler<a class="headerlink" href="#stage-9-turn-your-crawler-into-a-real-recursive-crawler" title="Link to this heading"></a></h3>
+<p>Crawlers used in production or even just for collection of documents
+from a website should be much more robust and tricky than what you have
+implemented during the previous steps. To name a few challenges:</p>
+<ol class="arabic simple">
+<li><p><strong>Content is not in HTML</strong>. Yes, it can happen that your website is an
+empty HTML by default and content appears dynamically when you click,
+scroll, etc. For example, many pages have so-called virtual scroll,
+it is when new content appears when you scroll the page. You can
+think of feed in VKontakte, for example.</p></li>
+<li><p><strong>The website’s defense against your crawler</strong>. Even if data is public,
+your crawler that sends thousands of requests produces huge load on
+the server and exposes risks for business continuity. Therefore,
+websites may reject too much traffic of suspicious origins.</p></li>
+<li><p><strong>There may be no way to specify seed URLs - due to website size or
+budget constraints</strong>. Imagine you need to collect 100k articles of the
+Wikipedia. Do you think you would be able to copy-paste enough seeds?
+How about the task of collection 1M articles?</p></li>
+<li><p><strong>Software and hardware limitations and accidents</strong>. Imagine you have
+your crawler running for 24 hours, and it crashes. If you have not
+mitigated this risk, you lose everything and have to restart your
+crawler.</p></li>
+</ol>
+<p>And we are not talking about such objective challenges as impossibility
+of building universal crawlers.</p>
+<p>Therefore, your <strong>Stage 9</strong> is about addressing some of these questions. In
+particular, you need to implement your crawler in a recursive manner:
+you provide a single seed url of your newspaper, and it visits every
+page of the website and collects <em>all</em> articles from the website. You
+need to make a child of <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler</span></code> class
+and name it <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.CrawlerRecursive</span></code>.
+Follow the interface of <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler</span></code>.</p>
+<p>A required addition is an ability to stop crawler at any time. When it
+is started again, it continues search and crawling process without
+repetitions.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Think of storing intermediate information in one or few files?
+What information do you need to store?</p>
+</div>
+<section id="stage-9-1-introduce-crawlerrecursive-abstraction">
+<h4>Stage 9.1. Introduce <code class="docutils literal notranslate"><span class="pre">CrawlerRecursive</span></code> abstraction<a class="headerlink" href="#stage-9-1-introduce-crawlerrecursive-abstraction" title="Link to this heading"></a></h4>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.CrawlerRecursive</span></code> must inherit
+from <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler</span></code>.
+The initialization interface is the same as for
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.Crawler</span></code>.
+During initialization, make sure to create a <code class="docutils literal notranslate"><span class="pre">self.start_url</span></code> field:
+it is a single URL that will be used as a seed.
+Fill <code class="docutils literal notranslate"><span class="pre">self.start_url</span></code> with one of the seed URLs
+presented in the configuration instance.</p>
+</section>
+<section id="stage-9-2-re-implement-find-articles-method">
+<h4>Stage 9.2. Re-implement <code class="docutils literal notranslate"><span class="pre">find_articles</span></code> method<a class="headerlink" href="#stage-9-2-re-implement-find-articles-method" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 0-9.2</strong> are required to get the mark <strong>10</strong>.</p>
+</div>
+<p>The key idea of recursive crawling is collecting a required number of
+URLs (however large it may be) given just one seed URL. It can be
+achieved in the following way:</p>
+<ol class="arabic">
+<li><p>Extract all the available URLs from the seed URL provided.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>If the number of extracted URLs is smaller than the required number,
+extract all the available URLs from the URLs
+that were extracted during the previous step.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Repeat this process until the desired number of URLs is found.</p></li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.CrawlerRecursive.find_articles()</span></code>
+must be called inside the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_5_scrapper.scrapper.CrawlerRecursive.find_articles()</span></code>.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="faq">
+<h2>FAQ<a class="headerlink" href="#faq" title="Link to this heading"></a></h2>
+<p>If you still have questions about Lab 5 implementation, or you have
+problems with it, we hope you will find a solution in <a class="reference internal" href="../../../useful_docs/ctlr_docs/faq.html#ctlr-faq-label"><span class="std std-ref">Frequently asked questions</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Laboratory works" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_5.api.html" class="btn btn-neutral float-right" title="lab_5_scrapper package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
