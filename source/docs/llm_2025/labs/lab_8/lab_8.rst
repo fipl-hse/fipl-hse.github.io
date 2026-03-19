@@ -9,8 +9,8 @@ Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models
     :caption: Full API
 
     lab_8.api.rst
-    core_utils.api.rst
-    lab_settings.api.rst
+    ../core_utils/llm/core_utils_sft.api.rst
+    ../core_utils/project/core_utils_project.api.rst
 
 
 Implementation tactics
@@ -307,7 +307,7 @@ Set the following parameters:
 Stage 6. Implement model as a service and demonstrate the result
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. important:: **Stages 6** from :ref:`lab-7-label` are required to get the mark **10**.
+.. important:: **Stages 6** from :ref:`lab-7-llm` are required to get the mark **10**.
 
 An example of start page might look like this:
 
