@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generation &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="NLI" href="TASK_NLI.html" />
+    <link rel="prev" title="Classification" href="TASK_CLASSIFICATION.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general_info.html">Общая информация</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../labs/index.html">Laboratory works</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Task cards</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="TASK_CLASSIFICATION.html">Classification</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TASK_NLI.html">NLI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TASK_NMT.html">Neural Machine Translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TASK_SUMMARIZATION.html">Summarization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Task cards</a></li>
+      <li class="breadcrumb-item active">Generation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/llm_2023/task_cards/TASK_GENERATION.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generation">
+<span id="generation-label"></span><h1>Generation<a class="headerlink" href="#generation" title="Link to this heading"></a></h1>
+<section id="models">
+<h2>Models<a class="headerlink" href="#models" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Lang</p></th>
+<th class="head"><p>Task</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://huggingface.co/timpal0l/mdeberta-v3-base-squad2">timpal0l/mdeberta-v3-base-squad2</a></p></td>
+<td><p>EN/RU</p></td>
+<td><p>CLOSED QA</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/VMware/electra-small-mrqa">VMware/electra-small-mrqa</a></p></td>
+<td><p>EN</p></td>
+<td><p>CLOSED QA</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://huggingface.co/EleutherAI/pythia-160m-deduped">EleutherAI/pythia-160m-deduped</a></p></td>
+<td><p>EN</p></td>
+<td><p>OPEN QA</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://huggingface.co/JackFram/llama-68m">JackFram/llama-68m</a></p></td>
+<td><p>EN</p></td>
+<td><p>OPEN QA</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://huggingface.co/EleutherAI/gpt-neo-125m">EleutherAI/gpt-neo-125m</a></p></td>
+<td><p>EN</p></td>
+<td><p>OPEN QA</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="datasets-closed-qa">
+<h2>Datasets CLOSED QA<a class="headerlink" href="#datasets-closed-qa" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://huggingface.co/datasets/starmpcc/Asclepius-Synthetic-Clinical-Notes?row=61">starmpcc/Asclepius-Synthetic-Clinical-Notes</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: EN</p></li>
+<li><p><strong>Rows</strong>: 20038</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Choose task <code class="docutils literal notranslate"><span class="pre">Question</span> <span class="pre">Answering</span></code>.</p></li>
+<li><p>Choose columns <code class="docutils literal notranslate"><span class="pre">note</span></code>, <code class="docutils literal notranslate"><span class="pre">question</span></code> and <code class="docutils literal notranslate"><span class="pre">answer</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">note</span></code> to <code class="docutils literal notranslate"><span class="pre">context</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">answer</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+<li><p>Reset indexes.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/lionelchg/dolly_closed_qa?row=0">lionelchg/dolly_closed_qa</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: EN</p></li>
+<li><p><strong>Rows</strong>: 1773</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Choose columns <code class="docutils literal notranslate"><span class="pre">instruction</span></code>, <code class="docutils literal notranslate"><span class="pre">context</span></code> and <code class="docutils literal notranslate"><span class="pre">response</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">instruction</span></code> to <code class="docutils literal notranslate"><span class="pre">question</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">response</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+<li><p>Reset indexes.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/HuggingFaceH4/no_robots?row=12">HuggingFaceH4/no_robots</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: EN</p></li>
+<li><p><strong>Rows</strong>: 260</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">train_sft</span></code> split.</p></li>
+<li><p>Choose category <code class="docutils literal notranslate"><span class="pre">Closed</span> <span class="pre">QA</span></code>.</p></li>
+<li><p>Choose columns <code class="docutils literal notranslate"><span class="pre">prompt</span></code>, <code class="docutils literal notranslate"><span class="pre">messages</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">prompt</span></code> to <code class="docutils literal notranslate"><span class="pre">question</span></code>.</p></li>
+<li><p>Reset indexes.</p></li>
+<li><p>Process column <code class="docutils literal notranslate"><span class="pre">messages</span></code> with raw text into two columns <code class="docutils literal notranslate"><span class="pre">context</span></code> and <code class="docutils literal notranslate"><span class="pre">answer</span></code>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/sberquad">sberquad</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: RU</p></li>
+<li><p><strong>Rows</strong>: 5040</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">validation</span></code> split.</p></li>
+<li><p>Choose columns <code class="docutils literal notranslate"><span class="pre">question</span></code>, <code class="docutils literal notranslate"><span class="pre">context</span></code>, <code class="docutils literal notranslate"><span class="pre">answers</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">answers</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+<li><p>Process column <code class="docutils literal notranslate"><span class="pre">target</span></code> with raw text to leave just an answer in this column.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/RussianNLP/wikiomnia">RussianNLP/wikiomnia</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: RU</p></li>
+<li><p><strong>Rows</strong>: 173000</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Select <code class="docutils literal notranslate"><span class="pre">train</span></code> split and <code class="docutils literal notranslate"><span class="pre">`wikiomnia_ruGPT3_filtered</span></code> subset.</p></li>
+<li><p>Drop NaN.</p></li>
+<li><p>Drop duplicates</p></li>
+<li><p>Reset indexes.</p></li>
+<li><p>Choose columns <code class="docutils literal notranslate"><span class="pre">question</span></code>, <code class="docutils literal notranslate"><span class="pre">summary</span></code>, <code class="docutils literal notranslate"><span class="pre">answer</span></code>.</p></li>
+<li><p>Rename columns <code class="docutils literal notranslate"><span class="pre">summary</span></code> to <code class="docutils literal notranslate"><span class="pre">context</span></code> and <code class="docutils literal notranslate"><span class="pre">answer</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="datasets-open-qa">
+<h2>Datasets OPEN QA<a class="headerlink" href="#datasets-open-qa" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://huggingface.co/datasets/truthful_qa">truthful_qa</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: EN</p></li>
+<li><p><strong>Rows</strong>: 817</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Drop columns <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">category</span></code>, <code class="docutils literal notranslate"><span class="pre">correct_answers</span></code>,
+<code class="docutils literal notranslate"><span class="pre">incorrect_answers</span></code>, <code class="docutils literal notranslate"><span class="pre">source</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">best_answer</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/jtatman/databricks-dolly-8k-qa-open-close">jtatman/databricks-dolly-8k-qa-open-close</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: EN</p></li>
+<li><p><strong>Rows</strong>: 7706</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Filter dataset rows by <code class="docutils literal notranslate"><span class="pre">category</span></code> == <code class="docutils literal notranslate"><span class="pre">open_qa</span></code>.</p></li>
+<li><p>Drop columns <code class="docutils literal notranslate"><span class="pre">context</span></code>, <code class="docutils literal notranslate"><span class="pre">category</span></code>, <code class="docutils literal notranslate"><span class="pre">__index_level_0__</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">instruction</span></code> to <code class="docutils literal notranslate"><span class="pre">question</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">response</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/tatsu-lab/alpaca">tatsu-lab/alpaca</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: EN</p></li>
+<li><p><strong>Rows</strong>: 52002</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Drop columns <code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">text</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">instruction</span></code> to <code class="docutils literal notranslate"><span class="pre">question</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">output</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://huggingface.co/datasets/lionelchg/dolly_open_qa">lionelchg/dolly_open_qa</a></p>
+<ol class="arabic simple">
+<li><p><strong>Lang</strong>: EN</p></li>
+<li><p><strong>Rows</strong>: 188</p></li>
+<li><p><strong>Preprocess</strong>:</p>
+<ol class="arabic simple">
+<li><p>Drop columns <code class="docutils literal notranslate"><span class="pre">context</span></code>, <code class="docutils literal notranslate"><span class="pre">category</span></code>, <code class="docutils literal notranslate"><span class="pre">text</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">instruction</span></code> to <code class="docutils literal notranslate"><span class="pre">question</span></code>.</p></li>
+<li><p>Rename column <code class="docutils literal notranslate"><span class="pre">response</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="inferring-batch">
+<h2>Inferring batch<a class="headerlink" href="#inferring-batch" title="Link to this heading"></a></h2>
+<p>Process of implementing method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">stubs.labs.lab_7_llm.main.LLMPipeline._infer_batch()</span></code>
+for closed question-answering task has its specifics:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>You need to transpose the <code class="docutils literal notranslate"><span class="pre">sample_batch</span></code> before you pass it to the tokenizer,
+so that it is a sequence of tuples
+where each tuple has two strings: a question and a context.</p></li>
+<li><p>The prediction of the model will consist of two tensors
+that contain start and end scores respectively.</p></li>
+<li><p>Only the ids between start and end location corresponding
+to the answer have to be decoded and passed on.</p></li>
+<li><p>To get the ids, iterate through <code class="docutils literal notranslate"><span class="pre">input_ids</span></code> field of the tokenized batch.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="metrics">
+<h2>Metrics<a class="headerlink" href="#metrics" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>Open QA</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>BLEU</p></li>
+<li><p>ROUGE</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Closed QA</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>squad</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To calculate the squad metric, you need to convert the data
+into a special structure. This structure you can find in
+<a class="reference external" href="https://github.com/huggingface/datasets">this repository</a>
+in the <code class="docutils literal notranslate"><span class="pre">metrics</span></code> directory.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="TASK_CLASSIFICATION.html" class="btn btn-neutral float-left" title="Classification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="TASK_NLI.html" class="btn btn-neutral float-right" title="NLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

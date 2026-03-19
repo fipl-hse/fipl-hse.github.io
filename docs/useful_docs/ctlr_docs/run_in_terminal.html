@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Run Python Programs in Terminal &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="How to scrape dynamic web sources" href="dynamic_scraping.html" />
+    <link rel="prev" title="Configuring Python for course development" href="DEVELOPER.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Полезные Материалы</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_guide_en.html">Starting guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fork_update.html">Fork update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html">Working with tests: locally and in CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DEVELOPER.html">Configuring Python for course development</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Run Python Programs in Terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dynamic_scraping.html">How to scrape dynamic web sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_utils.html">Core utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="article.html">Article package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ud_format.html">Working with UD format and <code class="docutils literal notranslate"><span class="pre">CoNLL-U</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="UD_intro.html">Introduction to UD format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="graphs_intro.html">Introduction to graph data structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dataset.html">Dataset requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Полезные Материалы</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+      <li class="breadcrumb-item active">Run Python Programs in Terminal</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/useful_docs/ctlr_docs/run_in_terminal.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <nav class="contents" id="contents" role="doc-toc">
+<span id="run-in-terminal-label"></span><p class="topic-title">Contents:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#run-python-programs-in-terminal" id="id1">Run Python Programs in Terminal</a></p>
+<ul>
+<li><p><a class="reference internal" href="#run-simple-program-with-no-dependencies" id="id2">Run simple program with no dependencies</a></p></li>
+<li><p><a class="reference internal" href="#running-programs-with-custom-modules" id="id3">Running programs with custom modules</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="run-python-programs-in-terminal">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Run Python Programs in Terminal</a><a class="headerlink" href="#run-python-programs-in-terminal" title="Link to this heading"></a></h1>
+<p>This is a short tutorial on calling Python programs in terminal (Unix)
+or <code class="docutils literal notranslate"><span class="pre">cmd</span></code> (Windows).</p>
+<section id="run-simple-program-with-no-dependencies">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Run simple program with no dependencies</a><a class="headerlink" href="#run-simple-program-with-no-dependencies" title="Link to this heading"></a></h2>
+<p>Let’s say you have a Python program represented as <code class="docutils literal notranslate"><span class="pre">script.py</span></code> file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To run your program, you need to open terminal (Windows: <code class="docutils literal notranslate"><span class="pre">Powershell</span></code>,
+macOS: <code class="docutils literal notranslate"><span class="pre">Terminal</span></code>).</p>
+<p>Then activate environment:</p>
+<ol class="arabic simple">
+<li><p>For Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scripts\activate</span></code>.</p></li>
+<li><p>For macOS: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv\bin\activate</span></code>.</p></li>
+</ol>
+<p>If you have problems with access in <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code>, you should change
+the execution policy in 2 steps:</p>
+<ol class="arabic simple">
+<li><p>Start Windows <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> with the “Run as Administrator” option.</p></li>
+<li><p>Enable running unsigned scripts by entering:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>set-executionpolicy remotesigned
+</pre></div>
+</div>
+<p>If any other problems appear during activation, write in chat to get
+help.</p>
+<p>As a result, you get <code class="docutils literal notranslate"><span class="pre">(venv)</span></code> at the beginning of line.</p>
+<p>Now you run your program <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">script.py</span></code>
+and get output <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">world!</span></code>.</p>
+<p>The program executes fine if you call Python from the same directory
+where script resides. To go to the script directory use
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&quot;path_to_directory&quot;</span></code> command. Or call python using the full path
+to the script e.g.:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span><span class="s2">&quot;full_path_to_directory_with_script/script.py&quot;</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">python</span></code> is not recognized as a command, you need to install it.
+Follow install instructions from <span class="xref std std-ref">starting-guide-en-label</span>.</p>
+</section>
+<section id="running-programs-with-custom-modules">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Running programs with custom modules</a><a class="headerlink" href="#running-programs-with-custom-modules" title="Link to this heading"></a></h2>
+<p>Now, try to run your scraper:</p>
+<ol class="arabic simple">
+<li><p>Go to your project’s folder
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">C:\Users\user\Documents\20XX-2-level-ctlr</span></code>.</p></li>
+<li><p>Run scraper <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">lab_5_scraper/scraper.py</span></code>.</p></li>
+</ol>
+<p>You get error:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="o">)</span>:
+<span class="w">   </span>File<span class="w"> </span>....,<span class="w"> </span>line<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">      </span>from<span class="w"> </span>core_utils.constants<span class="w"> </span>import<span class="w"> </span>ASSETS_PATH
+ModuleNotFoundError:<span class="w"> </span>No<span class="w"> </span>module<span class="w"> </span>named<span class="w"> </span><span class="s1">&#39;core_utils&#39;</span>
+</pre></div>
+</div>
+<p>Why? When we run the same from our Integrated Development Environment, it works like a charm! What
+is wrong with terminal run? <code class="docutils literal notranslate"><span class="pre">core_utils</span></code> is exactly here, in our
+current directory!</p>
+<p>Answer is a bit deep. We need to understand how Python imports modules
+and libraries. To be able to import installed libraries, Python needs to
+know where they are placed. By default, it knows several locations on
+your computer where it can find requested library.</p>
+<p>You can see them if you want <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">&quot;import</span> <span class="pre">sys;print(sys.path)&quot;</span></code>.
+You will see standard directories where Python will try to find
+libraries:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[
+    &#39;/Users/alexanderdemidovskij/.pyenv/versions/3.10.8/lib/python310.zip&#39;,
+    &#39;/Users/alexanderdemidovskij/.pyenv/versions/3.10.8/lib/python3.10&#39;,
+    &#39;/Users/alexanderdemidovskij/.pyenv/versions/3.10.8/lib/python3.10/lib-dynload&#39;,
+    &#39;/Users/alexanderdemidovskij/Documents/hse/2022-2-level-ctlr/venv/lib/python3.10/site-packages&#39;
+]
+</pre></div>
+</div>
+<p>So, if the module you are trying to import is not within these paths,
+Python will fail with the aforementioned error.</p>
+<p>To resolve this you need to explicitly add path to your custom
+dependencies to that standard list.</p>
+<p>The recommended way is to append it to a <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> system variable
+in terminal:</p>
+<ol class="arabic simple">
+<li><p>For Windows: <code class="docutils literal notranslate"><span class="pre">$env:PYTHONPATH</span> <span class="pre">=</span> <span class="pre">&quot;$pwd;&quot;</span> <span class="pre">+</span> <span class="pre">$env:PYTHONPATH</span></code>.</p></li>
+<li><p>For macOS: <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYTHONPATH=$pwd:$PYTHONPATH</span></code>, <code class="docutils literal notranslate"><span class="pre">pwd</span></code> allows to
+get current working directory.</p></li>
+</ol>
+<p>Run scraper again <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">lab_5_scraper/scraper.py</span></code>.</p>
+<p>Does it work? If yes, congratulations, you have a chance to get the
+highest possible mark. If not, write in chat for help.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="DEVELOPER.html" class="btn btn-neutral float-left" title="Configuring Python for course development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dynamic_scraping.html" class="btn btn-neutral float-right" title="How to scrape dynamic web sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа №2. Исправление опечаток на основе редакционного расстояния &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_2_spellcheck package" href="lab_2_spellcheck.api.html" />
+    <link rel="prev" title="lab_1_keywords_tfidf package" href="../lab_1_keywords_tfidf/lab_1_keywords_tfidf.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2025/2026)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_1_keywords_tfidf/lab_1.html">Лабораторная работа №1. Выделение ключевых слов</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Лабораторная работа №2. Исправление опечаток на основе редакционного расстояния</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_2_spellcheck.api.html">lab_2_spellcheck package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3.html">Лабораторная работа №3. Генерация текста с помощью n-грамм</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_4_auto_completion/lab_4.html">Лабораторная работа №4. Система генерации текста на основе префиксного дерева</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+      <li class="breadcrumb-item active">Лабораторная работа №2. Исправление опечаток на основе редакционного расстояния</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/labs_2025/labs/lab_2_spellcheck/lab_2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o2">
+<h1>Лабораторная работа №2. Исправление опечаток на основе редакционного расстояния<a class="headerlink" href="#o2" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_2_spellcheck.api.html">lab_2_spellcheck package</a></li>
+</ul>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Описание лабораторных работ и другие полезные материалы
+доступны на
+<a class="reference external" href="https://fipl-hse.github.io/docs/labs_2025/">сайте дисциплины</a></p>
+</div>
+<section id="id1">
+<h2>Дано<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Текст первой главы «Мастера и Маргариты» на русском языке
+(<code class="docutils literal notranslate"><span class="pre">assets/Master_and_Margarita_chapter1.txt</span></code>)</p></li>
+<li><p>Список стоп-слов (<code class="docutils literal notranslate"><span class="pre">assets/stop_words.txt</span></code>)</p></li>
+<li><p>Предложения со словами с ошибками
+(<code class="docutils literal notranslate"><span class="pre">assets/incorrect_sentence_n.txt</span></code>)</p></li>
+</ol>
+<p>В рамках данной лабораторной работы вам предстоит
+реализовать и сравнить эффективность нескольких метрик
+строкового расстояния, которые являются ключевым
+компонентом системы проверки орфографии — <cite>spellcheck</cite>.</p>
+<p>Основная задача — найти слово с возможной опечаткой и найти подходящее слово замену.
+Близость определяется на основе вычисления «расстояния» между строками.</p>
+<p>Вам необходимо реализовать и сравнить следующие алгоритмы:</p>
+<ul class="simple">
+<li><p>расстояние на основе коэффициента сходства Жаккара</p></li>
+<li><p>расстояние на основе частотности</p></li>
+<li><p>расстояние Левенштейна</p></li>
+<li><p>расстояние Джаро-Винклера.</p></li>
+</ul>
+<p>Каждый алгоритм по-разному вычисляет расстояние
+между словом-опечаткой и его потенциальной заменой в словаре.
+Итогом работы станет сравнение эффективности этих алгоритмов
+для задачи поиска кандидатов исправления.</p>
+</section>
+<section id="id2">
+<h2>Что надо сделать<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>Шаг 0. Начать работу над лабораторной (вместе с преподавателем на практике)<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Создайте форк репозитория.</p></li>
+<li><p>Установите необходимые инструменты для работы.</p></li>
+<li><p>Измените файлы <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Закоммитьте изменения и создайте Pull request.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> вы должны написать код,
+вычисляющий и сравнивающий метрики.</p>
+</div>
+<p>Для этого реализуйте функции в модуле <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и импортируйте их в
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Весь код, выполняющий вычисление и сравнение, должен быть
+выполнен в функции <code class="docutils literal notranslate"><span class="pre">main</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Вызов функции в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В рамках данной лабораторной работы <strong>нельзя использовать модули
+collections, itertools, а также сторонние модули.</strong></p>
+<p>Обратите внимание, что желаемую оценку необходимо указать в файле
+<code class="docutils literal notranslate"><span class="pre">settings.json</span></code> в поле <code class="docutils literal notranslate"><span class="pre">target_score</span></code>. Возможные значения: 0, 4, 6, 8, 10.
+Чем большее значение выставлено, тем больше тестов будет запущено.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если на вход в функции подаются аргументы неправильных типов,
+то возвращается значение <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</div>
+</section>
+<section id="id4">
+<h3>Шаг 1. Токенизировать текст<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Для токенизации текста Вы можете использовать уже
+реализованную в прошлой лабораторной функцию <a class="reference internal" href="../lab_1_keywords_tfidf/lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.clean_and_tokenize" title="lab_1_keywords_tfidf.main.clean_and_tokenize"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.clean_and_tokenize()</span></code></a>.</p>
+</section>
+<section id="id5">
+<h3>Шаг 2. Удалить стоп-слова<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Для удаления стоп-слов Вы можете использовать уже
+реализованную в прошлой лабораторной функцию <a class="reference internal" href="../lab_1_keywords_tfidf/lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.remove_stop_words" title="lab_1_keywords_tfidf.main.remove_stop_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.remove_stop_words()</span></code></a>.</p>
+</section>
+<section id="id6">
+<h3>Шаг 3. Построить словарь для коллекции документов<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.build_vocabulary" title="lab_2_spellcheck.main.build_vocabulary"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.build_vocabulary()</span></code></a>.</p>
+<p>Функция принимает на вход список токенов и возвращает словарь, который
+содержит каждый уникальный токен и его относительную частоту в переданном списке.
+Частота рассчитывается как отношение количества вхождений токена к общему количеству токенов.</p>
+<p>Продемонстрируйте полученный словарь в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</section>
+<section id="id7">
+<h3>Шаг 4. Найти слова, отсутствующие в словаре<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.find_out_of_vocab_words" title="lab_2_spellcheck.main.find_out_of_vocab_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.find_out_of_vocab_words()</span></code></a>.</p>
+<p>Функция принимает на вход список токенов и список слов из словаря корпуса.
+Возвращает список токенов, которых нет в словаре корпуса.
+Это могут быть как неологизмы или редкие термины, так и слова с опечатками.</p>
+<p>Выведите отсутствующие в словаре слова в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</section>
+<section id="id8">
+<h3>Шаг 5. Рассчитать расстояние Жаккара на основе коэффициента сходства<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_jaccard_distance" title="lab_2_spellcheck.main.calculate_jaccard_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_jaccard_distance()</span></code></a>.</p>
+<p><strong>Коэффициент сходства Жаккара (Jaccard similarity coefficient)</strong> -
+мера сходства между двумя множествами,
+определяемая как размер пересечения множеств, делённый на размер их объединения.</p>
+<p>Для строк коэффициент Жаккара можно вычислять на основе символов или n-грамм.
+В данной работе расчеты производятся на основе отдельных символов (букв).</p>
+<p>Формула:</p>
+<div class="math notranslate nohighlight">
+\[J(A, B) = 1 - \frac{|A \cap B|}{|A \cup B|}\]</div>
+<p>где</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> и <span class="math notranslate nohighlight">\(B\)</span> — множества символов строк,</p></li>
+<li><p><span class="math notranslate nohighlight">\(|A \cap B|\)</span> — размер пересечения множеств <span class="math notranslate nohighlight">\(A\)</span> и <span class="math notranslate nohighlight">\(B\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(|A \cup B|\)</span> — размер объединения множеств <span class="math notranslate nohighlight">\(A\)</span> и <span class="math notranslate nohighlight">\(B\)</span></p></li>
+</ul>
+<p>Пример: <code class="docutils literal notranslate"><span class="pre">calculate_jaccard_distance('молоко',</span> <span class="pre">'малоко')</span></code></p>
+<ul class="simple">
+<li><p>Множества символов: <code class="docutils literal notranslate"><span class="pre">{'м',</span> <span class="pre">'о',</span> <span class="pre">'л',</span> <span class="pre">'к'}</span></code> и <code class="docutils literal notranslate"><span class="pre">{'м',</span> <span class="pre">'а',</span> <span class="pre">'л',</span> <span class="pre">'о',</span> <span class="pre">'к'}</span></code></p></li>
+<li><p>Пересечение: <code class="docutils literal notranslate"><span class="pre">{'м',</span> <span class="pre">'о',</span> <span class="pre">'л',</span> <span class="pre">'к'}</span></code> (размер = 4 элемента)</p></li>
+<li><p>Объединение: <code class="docutils literal notranslate"><span class="pre">{'м',</span> <span class="pre">'а',</span> <span class="pre">'л',</span> <span class="pre">'о',</span> <span class="pre">'к'}</span></code> (размер = 5 элементов)</p></li>
+<li><p>Результат: <span class="math notranslate nohighlight">\(J =  1 - \frac{4}{5} = 0.2\)</span></p></li>
+</ul>
+<p>В случае подачи на вход пустых строк возвращается значение <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</p>
+</section>
+<section id="id9">
+<h3>Шаг 6. Рассчитать расстояние между двумя строками<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>Функция <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_distance" title="lab_2_spellcheck.main.calculate_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_distance()</span></code></a> должна реализовываться и дополняться
+в ходе выполнения работы и знакомства с новыми алгоритмами.</p>
+<p>На вход принимается строка для сравнения, словарь частот и название метода.
+Возвращается словарь, где ключи — слова из словаря, а значения — вычисленное расстояние.
+Функция считает расстояние между двумя словами в зависимости от выбранного алгоритма:
+сходства Жаккара, метода, основанном на подсчете частот, расстояния Левенштейна или сходства Джаро-Винклера.</p>
+<p>В функции <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_distance" title="lab_2_spellcheck.main.calculate_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_distance()</span></code></a>
+реализуйте ветку для метода <code class="docutils literal notranslate"><span class="pre">&quot;jaccard&quot;</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Функция должна проходить по каждому слову из словаря частот.</p></li>
+<li><p>Для каждого слова вызовите функцию
+<a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_jaccard_distance" title="lab_2_spellcheck.main.calculate_jaccard_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_jaccard_distance()</span></code></a></p></li>
+<li><p>Сохраните результат в новый словарь, где:
+* ключ — текущее слово из словаря частот;
+* значение — вычисленное расстояние Жаккара.</p></li>
+<li><p>Верните этот словарь как результат работы функции.</p></li>
+</ol>
+<p>Пример:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calculate_distance</span><span class="p">(</span><span class="s2">&quot;кот&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;кот&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;пёс&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;jaccard&quot;</span><span class="p">)</span>
+<span class="go">{&quot;кот&quot;: 0.0, &quot;пёс&quot;: 1.0}</span>
+</pre></div>
+</div>
+<p>Продемонстрируйте получаемый с помощью метода Жаккара словарь в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</section>
+<section id="id10">
+<h3>Шаг 7. Найти наиболее похожее слово<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-7 соответствует 4 баллам.</p>
+</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.find_correct_word" title="lab_2_spellcheck.main.find_correct_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.find_correct_word()</span></code></a>.
+Функция должна реализовываться и дополняться
+в ходе выполнения работы и знакомства с новыми алгоритмами.</p>
+<p>Функция находит наиболее похожего кандидата для введенного слова с помощью
+реализуемых методов.</p>
+<p>Для всех методов на основе расстояния выбирается слово с минимальным значением.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Если найдено несколько слов с одинаковым значением расстояния,
+выбирается слово, которое:</p>
+<ul class="simple">
+<li><p>ближе всех по длине к исходному слову;</p></li>
+<li><p>при равенстве длины — идёт раньше других в алфавитном порядке.</p></li>
+</ul>
+</div>
+<p>Добавьте подсчет расстояния Жаккара в функцию.</p>
+</section>
+<section id="id11">
+<h3>Шаг 8. Рассчитать расстояние на основе подсчета частотности<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>Даже если два слова сильно похожи по форме (например, по расстоянию Левенштейна),
+правильным исправлением с большей вероятностью будет то слово, которое чаще встречается
+в языке. Например, для опечатки <code class="docutils literal notranslate"><span class="pre">&quot;молако&quot;</span></code> кандидаты <code class="docutils literal notranslate"><span class="pre">&quot;молоко&quot;</span></code> и <code class="docutils literal notranslate"><span class="pre">&quot;малака&quot;</span></code>
+равноудалены на один символ, но <code class="docutils literal notranslate"><span class="pre">&quot;молоко&quot;</span></code> встречается гораздо чаще — именно его
+мы хотим выбрать.</p>
+<p>Пусть имеется словарь частот <span class="math notranslate nohighlight">\(V\)</span>, где каждому слову <span class="math notranslate nohighlight">\(w\)</span> сопоставлена
+его относительная частота <span class="math notranslate nohighlight">\(f(w)\)</span>.</p>
+<p>Для заданного слова с опечаткой <span class="math notranslate nohighlight">\(t\)</span> определим <strong>расстояние на основе частотности</strong>
+для каждого кандидата <span class="math notranslate nohighlight">\(c\)</span> как:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{distance_freq}(t, с) =
+\begin{cases}
+    1.0, &amp; \text{если } c \notin V \\
+    1.0 - f(c), &amp; \text{если } c \in V
+\end{cases}\end{split}\]</div>
+<p>То есть слова, которые встречаются чаще, имеют меньшее расстояние и
+считаются более вероятными исправлениями. При выборе кандидата
+следует минимизировать это расстояние.</p>
+<p>При выполнении шагов 8.1 - 8.4 реализуем все требуемые трансформации
+текста для генерации кандидатов.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Все трансформации должны возвращать <strong>отсортированный список слов</strong>.</p>
+</div>
+</section>
+<section id="id12">
+<h3>Шаг 8.1. Генерация кандидатов: удаление символов<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.delete_letter" title="lab_2_spellcheck.main.delete_letter"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.delete_letter()</span></code></a>.</p>
+<p>Удаление символа — одна из базовых операций для генерации возможных кандидатов.
+Формально, если слово имеет длину n, операция удаления создает n кандидатов.</p>
+<p>Формула:</p>
+<div class="math notranslate nohighlight">
+\[D(w) = \{ w[:i] + w[i+1:] | i = 0..n-1 \}\]</div>
+<p>Например, для слова <code class="docutils literal notranslate"><span class="pre">'кот'</span></code> должны быть получены: <code class="docutils literal notranslate"><span class="pre">['ко',</span> <span class="pre">'кт',</span> <span class="pre">'от']</span></code></p>
+<p>Функция принимает слово и возвращает список всех возможных слов,
+полученных удалением одного символа.</p>
+</section>
+<section id="id13">
+<h3>Шаг 8.2. Генерация кандидатов: вставка символов<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.add_letter" title="lab_2_spellcheck.main.add_letter"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.add_letter()</span></code></a>.</p>
+<p>Вставка символа позволяет учесть ошибки пропуска. Для слова длины n и алфавита A
+формально создается n+1 позиция для вставки каждого символа из A.</p>
+<p>Формула:</p>
+<div class="math notranslate nohighlight">
+\[I(w) = \{ w[:i] + a + w[i:] | i = 0..n, a ∈ A \}\]</div>
+<dl class="simple">
+<dt>Пример: для слова <code class="docutils literal notranslate"><span class="pre">'кот'</span></code> и алфавита <code class="docutils literal notranslate"><span class="pre">['и',</span> <span class="pre">'р']</span></code> результат может быть:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">['икот',</span> <span class="pre">'ркот',</span> <span class="pre">'киот',</span> <span class="pre">'крот',</span> <span class="pre">'коит',</span> <span class="pre">'корт',</span> <span class="pre">'коти',</span> <span class="pre">'котр']</span></code></p>
+</dd>
+</dl>
+<p>Функция принимает слово и алфавит, возвращает список всех возможных слов,
+полученных вставкой одного символа из алфавита в любую позицию.</p>
+</section>
+<section id="id14">
+<h3>Шаг 8.3. Генерация кандидатов: замена символов<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.replace_letter" title="lab_2_spellcheck.main.replace_letter"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.replace_letter()</span></code></a>.</p>
+<p>Замена символа моделирует опечатки при нажатии неправильной клавиши.
+Для слова длины n и алфавита A.</p>
+<p>Формула:</p>
+<div class="math notranslate nohighlight">
+\[R(w) = \{w[:i] + a + w[i+1:] | i = 0..n-1, a ∈ A\}\]</div>
+<dl class="simple">
+<dt>Пример: для слова <code class="docutils literal notranslate"><span class="pre">'море'</span></code> и алфавита <code class="docutils literal notranslate"><span class="pre">['а',</span> <span class="pre">'й']</span></code> результат может быть:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">['аоре',</span> <span class="pre">'йоре',</span> <span class="pre">'маре',</span> <span class="pre">'мйре',</span> <span class="pre">'моае',</span> <span class="pre">'мойе',</span> <span class="pre">'мора',</span> <span class="pre">'морй']</span></code></p>
+</dd>
+</dl>
+<p>Функция принимает слово и алфавит, возвращает список всех возможных слов,
+полученных заменой каждого символа на символы из алфавита.</p>
+</section>
+<section id="id15">
+<h3>Шаг 8.4. Генерация кандидатов: перестановка соседних символов<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.swap_adjacent" title="lab_2_spellcheck.main.swap_adjacent"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.swap_adjacent()</span></code></a>.</p>
+<p>Перестановка соседних символов моделирует опечатки, когда две буквы перепутаны местами.</p>
+<p>Формула:</p>
+<div class="math notranslate nohighlight">
+\[S(w) = \{ w[:i] + w[i+1] + w[i] + w[i+2:] | i = 0..n-2 \},\]</div>
+<p>где <code class="docutils literal notranslate"><span class="pre">n</span></code> — длина слова.</p>
+<p>Например, для слова <code class="docutils literal notranslate"><span class="pre">'май'</span></code> результат: <code class="docutils literal notranslate"><span class="pre">['амй',</span> <span class="pre">'мйа']</span></code>.</p>
+<p>Функция принимает слово и возвращает список всех возможных слов,
+полученных перестановкой каждой пары соседних символов.</p>
+</section>
+<section id="id16">
+<h3>Шаг 9. Сгенерировать кандидатов для исправления<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.generate_candidates" title="lab_2_spellcheck.main.generate_candidates"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.generate_candidates()</span></code></a>.</p>
+<p>Полный набор кандидатов для исправления опечаток строится как объединение всех базовых операций.</p>
+<p>Формула:</p>
+<div class="math notranslate nohighlight">
+\[C(w) = D(w) ∪ I(w) ∪ R(w) ∪ S(w)\]</div>
+<p>Функция принимает слово и возвращает список всех возможных кандидатов,
+полученных применением четырех базовых операций:
+удаление, вставка, замена и перестановка соседних символов.</p>
+<p>Используйте функции из предыдущих шагов (8.1-8.4).</p>
+<p>Удалите дубликаты из результирующего списка.</p>
+</section>
+<section id="id17">
+<h3>Шаг 10. Предложить кандидатов для исправления<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.propose_candidates" title="lab_2_spellcheck.main.propose_candidates"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.propose_candidates()</span></code></a>.</p>
+<p>Функция принимает слово и возвращает кортеж из кандидатов для исправления.
+Используйте функцию из предыдущего шага для генерации кандидатов.</p>
+<p>Так как порой опечатки накладываются друг на друга, для их исправления
+может быть полезно посмотреть на кандидаты, которые имеют несколько
+исправлений.</p>
+<p>Сгенерируйте кандидаты дважды: сначала для данного слова, а
+затем для каждого из полученных кандидатов.</p>
+</section>
+<section id="id18">
+<h3>Шаг 11. Рассчитать расстояние на основе подсчета частотности<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-11 соответствует 6 баллам.</p>
+</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_frequency_distance" title="lab_2_spellcheck.main.calculate_frequency_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_frequency_distance()</span></code></a>.</p>
+<p>Функция принимает слово с опечаткой и словарь частот, возвращает словарь с кандидатами и
+их расстоянием на основе частотности (формула описана в Шаге 8.).</p>
+<p>Добавьте подсчет схожести на основе частотности в функции
+<a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_distance" title="lab_2_spellcheck.main.calculate_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_distance()</span></code></a>
+и <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.find_correct_word" title="lab_2_spellcheck.main.find_correct_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.find_correct_word()</span></code></a>.</p>
+<p>Продемонстрируйте исправление некорректных слов с помощью алгоритма в файле
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</section>
+<section id="id19">
+<h3>Шаг 12. Реализовать алгоритм Левенштейна<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<p><strong>Расстояние Левенштейна</strong> — это метрика, которая измеряет сходство между двумя строками символов,
+вычисляя минимальное количество односимвольных элементарных операций таких, как
+вставка, удаление и замена, необходимых для преобразования одной строки в другую.</p>
+<p>Рассмотрим пример для каждой односимвольной операции.</p>
+<ol class="arabic simple">
+<li><p>Вставка. Даны два слова <code class="docutils literal notranslate"><span class="pre">кот</span></code> и <code class="docutils literal notranslate"><span class="pre">скат</span></code>. Для того чтобы преобразовать первое слово во второе,
+необходимо выполнить две операции вставки: первую, чтобы преобразовать
+<code class="docutils literal notranslate"><span class="pre">кот</span></code> в <code class="docutils literal notranslate"><span class="pre">скот</span></code>, а вторую, чтобы преобразовать <code class="docutils literal notranslate"><span class="pre">скот</span></code> в <code class="docutils literal notranslate"><span class="pre">скат</span></code>.
+Таким образом, расстояние Левенштейна равно 2.</p></li>
+<li><p>Удаление. Даны два слова <code class="docutils literal notranslate"><span class="pre">коты</span></code> и <code class="docutils literal notranslate"><span class="pre">кот</span></code>. Для того чтобы преобразовать первое слово во второе,
+необходимо выполнить одну операцию удаления. Таким образом, расстояние Левенштейна равно 1.</p></li>
+<li><p>Замена. Даны два слова <code class="docutils literal notranslate"><span class="pre">коты</span></code> и <code class="docutils literal notranslate"><span class="pre">косы</span></code>. Необходимо выполнить одну операцию замены
+<code class="docutils literal notranslate"><span class="pre">т</span></code> на <code class="docutils literal notranslate"><span class="pre">с</span></code>. Таким образом, расстояние Левенштейна равно 1.</p></li>
+</ol>
+<p>Таким образом, чем больше расстояние, тем более различны строки. Для двух одинаковых
+последовательностей расстояние равно нулю.</p>
+<p>На практике минимальное количество элементарных операций для
+<strong>расстояния Левенштейна</strong> вычисляется с помощью матрицы, где каждая ячейка хранит
+минимальное количество операций для подстрок (префиксов строк).</p>
+<p>При выполнении шагов 15.1 - 15.3 изучим и реализуем алгоритм подсчёта расстояния Левенштейна
+с помощью матрицы Вагнера-Фишера.</p>
+</section>
+<section id="id20">
+<h3>Шаг 12.1. Инициализировать матрицу Левенштейна<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.initialize_levenshtein_matrix" title="lab_2_spellcheck.main.initialize_levenshtein_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.initialize_levenshtein_matrix()</span></code></a>.</p>
+<p>Пусть дана пара слов: <code class="docutils literal notranslate"><span class="pre">кот</span></code> и <code class="docutils literal notranslate"><span class="pre">кто</span></code>. Первое слова является некорректным, а второе -
+кандидатом для исправления первого.</p>
+<p>Функция создает и инициализирует матрицу размером <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">x</span> <span class="pre">m</span></code>, где
+<code class="docutils literal notranslate"><span class="pre">n</span></code> - значение на единицу больше, чем длина некорректного слова,
+<code class="docutils literal notranslate"><span class="pre">m</span></code> - значение на единицу больше, чем длина слова-кандидата,
+для вычисления расстояния Левенштейна.</p>
+<p>Первым шагом матрица инициализируется нулевыми значениями и приобретает следующий вид:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">к</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">т</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">о</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">к</span></code></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">о</span></code></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">т</span></code></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>Затем первая строка заполняется числами от 0 до длины слова-кандидата, первый
+столбец — от 0 до длины некорректного слова. В данном примере длина и некорректного слова,
+и кандидата равна 3, тогда получается матрица вида:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">к</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">т</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">о</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">к</span></code></p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">о</span></code></p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">т</span></code></p></td>
+<td><p>3</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>Теперь первая строка и первый столбец отражают базовые случаи.</p>
+</section>
+<section id="id21">
+<h3>Шаг 12.2. Заполнить матрицу Левенштейна<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.fill_levenshtein_matrix" title="lab_2_spellcheck.main.fill_levenshtein_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.fill_levenshtein_matrix()</span></code></a>,
+которая заполняет матрицу для вычисления <strong>расстояния Левенштейна</strong>.</p>
+<p>Расстояние Левенштейна <span class="math notranslate nohighlight">\(lev[i][j]\)</span> определяется рекурсивно:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{lev}[i][j] =
+\begin{cases}
+    j, &amp; \text{если } i = 0 \quad (\text{вставка всех символов строки } b)\\
+    i, &amp; \text{если } j = 0 \quad (\text{удаление всех символов строки } a)\\
+    \text{lev}[i-1][j-1], &amp; \text{если } a[i-1] = b[j-1] \quad (\text{cost = 0})\\
+    \min
+    \begin{cases}
+        \text{lev}[i-1][j] + 1, \\
+        \text{lev}[i][j-1] + 1, \\
+        \text{lev}[i-1][j-1] + cost
+    \end{cases} &amp; \text{иначе cost = 1}
+\end{cases}\end{split}\]</div>
+<p>где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{lev}[i][j]\)</span> - расстояние Левенштейна между префиксами длины <code class="docutils literal notranslate"><span class="pre">i</span></code> и <code class="docutils literal notranslate"><span class="pre">j</span></code>, то есть
+минимальное число операций (вставка, удаление, замена), чтобы превратить
+первые <code class="docutils literal notranslate"><span class="pre">i</span></code> символов строки <code class="docutils literal notranslate"><span class="pre">a</span></code> в первые <code class="docutils literal notranslate"><span class="pre">j</span></code> символов <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{lev}[i-1][j]\)</span> + 1 — удаление символа</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{lev}[i][j-1]\)</span> + 1 — вставка символа</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{lev}[i-1][j-1]\)</span> + 1 — замена символа</p></li>
+</ul>
+<p>В таком случае заполнение матрицы по строкам для слов <em>кот</em> и <em>кто</em> будет проходить
+следующим образом:</p>
+<ol class="arabic">
+<li><p>На первой итерации сравниваем первые символы в каждой строке, то есть <code class="docutils literal notranslate"><span class="pre">к</span></code> и <code class="docutils literal notranslate"><span class="pre">к</span></code>.
+Символы равны, значит стоимость замены одного символа другим (<code class="docutils literal notranslate"><span class="pre">cost</span></code>) равна 0.</p></li>
+<li><p>Далее вычисляем минимумы при <code class="docutils literal notranslate"><span class="pre">i=1</span></code> и <code class="docutils literal notranslate"><span class="pre">j=1</span></code>:</p>
+<p>Удаление: <span class="math notranslate nohighlight">\(lev([0][1]) + 1 = 1 + 1 = 2\)</span></p>
+<p>Вставка: <span class="math notranslate nohighlight">\(lev([1][0]) + 1 = 1 + 1 = 2\)</span></p>
+<p>Замена: <span class="math notranslate nohighlight">\(lev([0][0]) + cost = 0 + 0\)</span></p>
+</li>
+<li><p>Минимальное значение равно 0, значит <span class="math notranslate nohighlight">\(lev[1][1] = 0\)</span></p></li>
+<li><p>Повторяем шаги 1-3 для всех <code class="docutils literal notranslate"><span class="pre">j</span></code> в строке <code class="docutils literal notranslate"><span class="pre">i</span></code>, а затем и для всех строк <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p></li>
+</ol>
+<p>В результате итеративного заполнения получается следующая матрица:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">к</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">т</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">о</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">к</span></code></p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">о</span></code></p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">т</span></code></p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id22">
+<h3>Шаг 12.3. Рассчитать расстояние Левенштейна<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_levenshtein_distance" title="lab_2_spellcheck.main.calculate_levenshtein_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_levenshtein_distance()</span></code></a>.</p>
+<p>Функция возвращает итоговое значение расстояния Левенштейна между двумя строками,
+используя заполненную матрицу. Значение, хранящееся в правом нижнем углу матрицы, отвечает
+за расстояние Левенштейна.</p>
+<p>В примере со словами <code class="docutils literal notranslate"><span class="pre">кот</span></code> и <code class="docutils literal notranslate"><span class="pre">кто</span></code> расстояние Левенштейна равно 2 и соответствует
+двум операциям: замене <code class="docutils literal notranslate"><span class="pre">о</span></code> на <code class="docutils literal notranslate"><span class="pre">т</span></code>, замене <code class="docutils literal notranslate"><span class="pre">т</span></code> на <code class="docutils literal notranslate"><span class="pre">о</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Необходимо добавить поддержку подсчёта расстояния Левенштейна в функцию
+<a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_distance" title="lab_2_spellcheck.main.calculate_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_distance()</span></code></a>. Для этого найдите
+расстояние между каждым словом-кандидатом из словаря с некорректным словом.</p>
+</div>
+</section>
+<section id="id23">
+<h3>Шаг 13. Найти наиболее похожее слово<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-13 соответствует 8 баллам.</p>
+</div>
+<p>Дополните реализацию функции <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.find_correct_word" title="lab_2_spellcheck.main.find_correct_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.find_correct_word()</span></code></a>
+расстоянием Левенштейна. Для данного алгоритма выбирается слово с минимальным
+расстоянием.</p>
+<p>Продемонстрируйте исправление некорректных слов с помощью расстояния Левенштейна
+в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</section>
+<section id="id24">
+<h3>Шаг 14. Реализовать алгоритм Джаро-Винклера<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<p>Расстояние Джаро-Винклера — это метрика сходства строк, которая
+основана на метрике Джаро, учитывающей количество совпадающих
+символов и перестановок между ними.</p>
+<p>Расстояние Джаро-Винклера добавляет к расстоянию Джаро поправку: если
+строки совпадают в начале (имеют общий префикс), то итоговое сходство
+увеличивается. Такая модификация полезна, поскольку в реальных
+данных совпадение начальных символов часто более значимо (например,
+в именах, фамилиях или названиях).</p>
+</section>
+<section id="id25">
+<h3>Шаг 15. Определить совпадающие символы<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.get_matches" title="lab_2_spellcheck.main.get_matches"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.get_matches()</span></code></a>.</p>
+<p>Функция находит количество совпадающих символов между двумя строками
+в пределах заданного расстояния.
+Каждый символ из первой строки может быть сопоставлен с символом из второй строки,
+если они совпадают и находятся в радиусе <code class="docutils literal notranslate"><span class="pre">match_distance</span></code>.</p>
+<p>Чем больше расстояние, тем больше перестановок
+и вставок алгоритм может учесть при сопоставлении символов.</p>
+<p>Например, слова <em>кот</em> и <em>кто</em> при заданном расстоянии совпадающих символов 1 будут
+считаться идеальными кандидатами друг для друга и совпадут во всех позициях, так как
+окно поиска, равное 1, позволяет искать символы не только на том же месте, но и на соседних
+позициях. Алгоритм идёт последовательно: сначала <code class="docutils literal notranslate"><span class="pre">к</span></code> совпало по индексу 0;
+затем <code class="docutils literal notranslate"><span class="pre">о</span></code> не совпало в центре, но совпало справа; затем <code class="docutils literal notranslate"><span class="pre">т</span></code> совпало слева.
+В итоге каждый символ нашёл себе пару.
+При расстоянии 0 совпадающим будет один символ <em>к</em>
+(поиск строгого позиционного совпадения).</p>
+</section>
+<section id="id26">
+<h3>Шаг 16. Подсчитать количество транспозиций<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.count_transpositions" title="lab_2_spellcheck.main.count_transpositions"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.count_transpositions()</span></code></a>.</p>
+<p>Функция подсчитывает количество транспозиций среди совпадающих символов.</p>
+<p>Транспозиция — это случай, когда совпадающие символы находятся на разных позициях в двух строках.</p>
+<p>Эта метрика используется в алгоритмах типа Джаро-Винклера, который будет рассмотрен далее,
+для учета перестановок символов при сравнении строк.</p>
+<p>Вновь обратимся к примеру со словами <code class="docutils literal notranslate"><span class="pre">кот</span></code> и <code class="docutils literal notranslate"><span class="pre">кто</span></code>.
+На предыдущем шаге было определено, что все символы считаются совпавшими.
+Теперь важно посчитать количество транспозиций.
+И в слове <code class="docutils literal notranslate"><span class="pre">кот</span></code>, и в слове <code class="docutils literal notranslate"><span class="pre">кто</span></code>, первая буква <code class="docutils literal notranslate"><span class="pre">к</span></code>, значит количество транспозиций
+не увеличивается.
+Вторые и третьи символы не совпадают, поэтому считаем, что количество транспозиций равно 2.
+Однако транспозиция — это пара символов, поменявшихся местами, поэтому итоговое число
+делится пополам. Следовательно, количество транспозиций необходимых для того, чтобы
+получить из слова <code class="docutils literal notranslate"><span class="pre">кот</span></code> слово <code class="docutils literal notranslate"><span class="pre">кто</span></code> равно 1.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Позиция</p></th>
+<th class="head"><p>Токен</p></th>
+<th class="head"><p>Кандидат</p></th>
+<th class="head"><p>Результат</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">к</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">к</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">о</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">т</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">т</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">о</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id27">
+<h3>Шаг 17. Рассчитать расстояние Джаро<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_jaro_distance" title="lab_2_spellcheck.main.calculate_jaro_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_jaro_distance()</span></code></a>.</p>
+<p><strong>Расстояние Джаро</strong> — это мера различия между двумя строками, основанная на сходстве Джаро,
+которая учитывает как количество общих символов, так и их порядок.</p>
+<p>Если <span class="math notranslate nohighlight">\(J_sim(s_1, s_2)\)</span> — стандартное сходство Джаро между строками <span class="math notranslate nohighlight">\(s_1\)</span> и <span class="math notranslate nohighlight">\(s_2\)</span>,
+тогда <strong>расстояние Джаро</strong> определяется как:</p>
+<div class="math notranslate nohighlight">
+\[J_\text{d}(s_1, s_2) = 1 - J_\text{sim}(s_1, s_2)\]</div>
+<p>Стандартное сходство Джаро вычисляется по формуле:</p>
+<div class="math notranslate nohighlight">
+\[J_\text{sim}(s_1, s_2) = \frac{1}{3} \left( \frac{m}{|s_1|} + \frac{m}{|s_2|} + \frac{m-t}{m} \right)\]</div>
+<p>где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m\)</span> — количество совпадающих символов</p></li>
+<li><p><span class="math notranslate nohighlight">\(t\)</span> — количество транспозиций</p></li>
+<li><p><span class="math notranslate nohighlight">\(|s_1|, |s_2|\)</span> — длины строк</p></li>
+</ul>
+<p>Если совпадающих символов нет (<span class="math notranslate nohighlight">\(m = 0\)</span>), сходство равно 0, а расстояние — 1.</p>
+<p>Пример:</p>
+<p><code class="docutils literal notranslate"><span class="pre">calculate_jaro_distance('кофа',</span> <span class="pre">'кофе')</span> <span class="pre">-&gt;</span> <span class="pre">0.167</span></code></p>
+<p>То есть чем ближе строки друг к другу, тем меньше расстояние.</p>
+</section>
+<section id="id28">
+<h3>Шаг 18. Реализовать поправку Винклера<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.winkler_adjustment" title="lab_2_spellcheck.main.winkler_adjustment"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.winkler_adjustment()</span></code></a>.</p>
+<p>Поправка Винклера усиливает влияние совпадений в начале строк (общий префикс).</p>
+<p>Формула поправки:</p>
+<div class="math notranslate nohighlight">
+\[adjustment = l \times p \times (1 - J)\]</div>
+<p>где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(l\)</span> — длина общего префикса (максимум 4 символа)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> — коэффициент масштабирования (обычно 0.1)</p></li>
+<li><p><span class="math notranslate nohighlight">\(J\)</span> — значение сходства Джаро</p></li>
+</ul>
+<p>Пример расчёта расстояния:</p>
+<p><code class="docutils literal notranslate"><span class="pre">winkler_adjustment('привет',</span> <span class="pre">'превед',</span> <span class="pre">0.694)</span></code></p>
+<div class="math notranslate nohighlight">
+\[winkler = 2 \times 0.1 \times (1 - 0.694) = 0.0611\]</div>
+</section>
+<section id="id29">
+<h3>Шаг 19. Рассчитать расстояние Джаро–Винклера<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_jaro_winkler_distance" title="lab_2_spellcheck.main.calculate_jaro_winkler_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_jaro_winkler_distance()</span></code></a>.</p>
+<p><strong>Расстояние Джаро–Винклера</strong> объединяет расстояние Джаро с поправкой Винклера.
+Оно вычисляется через сходство Джаро-Винклера по формуле:</p>
+<div class="math notranslate nohighlight">
+\[JW_\text{d} = 1 - JW_\text{sim}\]</div>
+<p>где сходство Джаро-Винклера это:</p>
+<div class="math notranslate nohighlight">
+\[JW_\text{sim} = J_\text{sim} + adjustment\]</div>
+<p>где <span class="math notranslate nohighlight">\(J_\text{sim}\)</span> — сходство Джаро, <span class="math notranslate nohighlight">\(adjustment\)</span> — поправка Винклера.</p>
+<p>Таким образом, расстояние Джаро-Винклера имеет вид:</p>
+<div class="math notranslate nohighlight">
+\[JW_\text{d} = J_\text{d} - adjustment\]</div>
+<p>где <span class="math notranslate nohighlight">\(J_\text{d}\)</span> — расстояние Джаро, <span class="math notranslate nohighlight">\(adjustment\)</span> — поправка Винклера.</p>
+<p>Данный алгоритм даёт меньшее расстояние для нормального слова <em>привет</em> и
+большее для некорректного слова <em>превед</em>, что соответствует принципу минимизации
+расстояния.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Необходимо добавить поддержку подсчёта расстояния Джаро-Винклера в функцию
+<a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.calculate_distance" title="lab_2_spellcheck.main.calculate_distance"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.calculate_distance()</span></code></a>. Для этого найдите
+расстояние между каждым словом-кандидатом из словаря с некорректным словом.</p>
+</div>
+</section>
+<section id="id30">
+<h3>Шаг 20. Найти наиболее похожее слово<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-20 соответствует 10 баллам.</p>
+</div>
+<p>Дополните реализацию функции <a class="reference internal" href="lab_2_spellcheck.api.html#lab_2_spellcheck.main.find_correct_word" title="lab_2_spellcheck.main.find_correct_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_2_spellcheck.main.find_correct_word()</span></code></a>
+расстоянием Джаро-Винклера. Для данного алгоритма выбирается слово с минимальным
+расстоянием.</p>
+<p>Продемонстрируйте исправление некорректных слов с помощью алгоритма в файле
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</section>
+</section>
+<section id="id31">
+<h2>Полезные ссылки<a class="headerlink" href="#id31" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://python.algorithmexamples.com/web/maths/jaccard_similarity.html">Коэффициент сходства Жаккара</a></p></li>
+<li><p><a class="reference external" href="https://www.easiio.com/ru/levenshtein-algorithm/">Алгоритм Левенштейна</a></p></li>
+<li><p><a class="reference external" href="https://habr.com/ru/articles/671136/">Обо всех алгоритмах</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_1_keywords_tfidf/lab_1_keywords_tfidf.api.html" class="btn btn-neutral float-left" title="lab_1_keywords_tfidf package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_2_spellcheck.api.html" class="btn btn-neutral float-right" title="lab_2_spellcheck package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

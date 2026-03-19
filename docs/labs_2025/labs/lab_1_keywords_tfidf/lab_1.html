@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа №1. Выделение ключевых слов &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_1_keywords_tfidf package" href="lab_1_keywords_tfidf.api.html" />
+    <link rel="prev" title="Лабораторные работы" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2025/2026)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Лабораторная работа №1. Выделение ключевых слов</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_1_keywords_tfidf.api.html">lab_1_keywords_tfidf package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_2_spellcheck/lab_2.html">Лабораторная работа №2. Исправление опечаток на основе редакционного расстояния</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3.html">Лабораторная работа №3. Генерация текста с помощью n-грамм</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lab_4_auto_completion/lab_4.html">Лабораторная работа №4. Система генерации текста на основе префиксного дерева</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content_ru.html">Краткий конспект лекций</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/general_docs/index.html">Полезные материалы для курсов на русском языке</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+      <li class="breadcrumb-item active">Лабораторная работа №1. Выделение ключевых слов</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/labs_2025/labs/lab_1_keywords_tfidf/lab_1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o1">
+<h1>Лабораторная работа №1. Выделение ключевых слов<a class="headerlink" href="#o1" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_1_keywords_tfidf.api.html">lab_1_keywords_tfidf package</a></li>
+</ul>
+</div>
+<section id="id1">
+<h2>Дано<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Текст сказки Ганса Христиана Андерсена “Дюймовочка” на русском языке (<code class="docutils literal notranslate"><span class="pre">assets/Дюймовочка.txt</span></code>).</p></li>
+<li><p>Список стоп-слов (<code class="docutils literal notranslate"><span class="pre">assets/stop_words.txt</span></code>).</p></li>
+<li><p>Словарь с Inverse Document Frequency значениями (<code class="docutils literal notranslate"><span class="pre">assets/IDF.json</span></code>).</p></li>
+<li><p>Словарь с корпусными частотами (<code class="docutils literal notranslate"><span class="pre">assets/corpus_frequencies.json</span></code>).</p></li>
+</ol>
+<p>Современные методы обработки текстовой информации требуют выделения наиболее
+значимых слов и выражений, которые отражают суть документа. Такой процесс называется извлечением
+ключевых слов и является важным этапом в задачах информационного поиска, аннотирования
+текстов, автоматического реферирования и построения поисковых систем.</p>
+<p>Одним из наиболее простых подходов является использование частотного словаря, который
+показывает, как часто то или иное слово встречается в тексте. Предполагается, что более
+важные слова появляются чаще, однако данный метод имеет существенный недостаток:
+высокочастотные служебные слова (например, «и», «в», «на») не несут смысловой
+нагрузки, но доминируют в статистике.</p>
+<p>Для устранения этого недостатка была разработана метрика TF-IDF (Term Frequency – Inverse
+Document Frequency), которая позволяет учитывать не только частоту термина в документе,
+но и его распространённость в корпусе текстов. Таким образом, слова, часто встречающиеся
+в конкретном документе, но редко — в других текстах, получают более высокий вес и рассматриваются
+как потенциальные ключевые.</p>
+<p>В рамках лабораторной работы №1 будут рассмотрены два подхода к извлечению ключевых слов:</p>
+<ol class="arabic simple">
+<li><p>Метод на основе частотного словаря.</p></li>
+<li><p>Метод на основе метрики TF-IDF.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>Что надо сделать<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<section id="id3">
+<h3>Шаг 0. Начать работу над лабораторной (вместе с преподавателем на практике)<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Создайте форк репозитория.</p></li>
+<li><p>Установите необходимые инструменты для работы.</p></li>
+<li><p>Измените файлы <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Закоммитьте изменения и создайте Pull request.</p></li>
+</ol>
+<p>Для этого реализуйте функции в модуле <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и импортируйте их в
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Весь процесс (от предобработки текста до выделения ключевых слов) должен быть
+выполнен в функции <code class="docutils literal notranslate"><span class="pre">main</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Вызов функции в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>В рамках данной лабораторной работы <strong>нельзя использовать модули
+collections, itertools, а также сторонние модули.</strong></p>
+<p>Обратите внимание, что желаемую оценку необходимо указать в файле
+<code class="docutils literal notranslate"><span class="pre">settings.json</span></code> в поле <code class="docutils literal notranslate"><span class="pre">target_score</span></code>. Возможные значения: 0, 4, 6, 8, 10.
+Чем большее значение выставлено, тем больше тестов будет запущено.</p>
+</section>
+<section id="id4">
+<h3>Шаг 1. Проверить типы входных данных<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>Реализуйте функции <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.check_list" title="lab_1_keywords_tfidf.main.check_list"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.check_list()</span></code></a>,
+<a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.check_dict" title="lab_1_keywords_tfidf.main.check_dict"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.check_dict()</span></code></a>,
+<a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.check_positive_int" title="lab_1_keywords_tfidf.main.check_positive_int"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.check_positive_int()</span></code></a>,
+<a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.check_float" title="lab_1_keywords_tfidf.main.check_float"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.check_float()</span></code></a>, которые отвечают за
+соответствие входных данных следующим типам - списку,
+словарю, положительному целому значению и значению с плавающей точкой.
+Если на вход функции подаются некорректные значения, возвращается <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</section>
+<section id="id5">
+<h3>Шаг 2. Очистить и токенизировать текст<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.clean_and_tokenize" title="lab_1_keywords_tfidf.main.clean_and_tokenize"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.clean_and_tokenize()</span></code></a>.</p>
+<p>Функция принимает на вход текст в виде строки.
+Возвращаемым значением должен быть список строк без:</p>
+<ul class="simple">
+<li><p>знаков препинания,</p></li>
+<li><p>букв верхнего регистра,</p></li>
+<li><p>лишних пробелов.</p></li>
+</ul>
+<p>Например, строка <code class="docutils literal notranslate"><span class="pre">'Hey!</span> <span class="pre">How</span> <span class="pre">are</span> <span class="pre">you?'</span></code> должна быть токенизирована
+следующим образом:
+<code class="docutils literal notranslate"><span class="pre">['hey',</span> <span class="pre">'how',</span> <span class="pre">'are',</span> <span class="pre">'you']</span></code>.</p>
+<p>Если на вход подаются некорректные значения, возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Некорректным значением считается значение не того типа, который ожидается.</p>
+</section>
+<section id="id6">
+<h3>Шаг 3. Удалить стоп-слова<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-3 соответствует 4 баллам.</p>
+</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.remove_stop_words" title="lab_1_keywords_tfidf.main.remove_stop_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.remove_stop_words()</span></code></a>.</p>
+<p>Функция принимает на вход список токенов и список стоп-слов.
+Возвращаемым значением должен быть список токенов без стоп-слов.
+Если на вход подаются некорректные значения, возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Пустой список стоп-слов не считается некорректным значением.</p>
+<p>Продемонстрируйте выделяемые токены из текста про Дюймовочку без стоп-слов в
+файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>. Текст сохранен в переменную <code class="docutils literal notranslate"><span class="pre">target_text</span></code>.</p>
+</section>
+<section id="id7">
+<h3>Шаг 4. Получить частотный словарь по заданному тексту<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.calculate_frequencies" title="lab_1_keywords_tfidf.main.calculate_frequencies"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.calculate_frequencies()</span></code></a>.</p>
+<p>Функция принимает список токенов.
+Возвращает словарь вида <code class="docutils literal notranslate"><span class="pre">{токен:</span> <span class="pre">количество</span> <span class="pre">вхождений}</span></code>.
+Так, из последовательности токенов
+<code class="docutils literal notranslate"><span class="pre">['hey',</span> <span class="pre">'how',</span> <span class="pre">'are',</span> <span class="pre">'you']</span></code>
+должен получиться следующий словарь частот:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;hey&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="s1">&#39;how&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="s1">&#39;are&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="s1">&#39;you&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="n">
+<h3>Шаг 5. Получить список первых N по популярности слов<a class="headerlink" href="#n" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-5 соответствует 6 баллам.</p>
+</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.get_top_n" title="lab_1_keywords_tfidf.main.get_top_n"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.get_top_n()</span></code></a>.</p>
+<p>Функция принимает частотный словарь и число <code class="docutils literal notranslate"><span class="pre">N</span></code>.
+Возвращает список первых <code class="docutils literal notranslate"><span class="pre">N</span></code> слов по убыванию частоты.
+Если <code class="docutils literal notranslate"><span class="pre">N</span></code> больше числа слов в словаре, возвращаются все слова.
+Обратите внимание, что значения ожидаемого на вход словаря могут быть как в целочисленном формате <cite>int</cite>, так и в формате с плавающей точкой <cite>float</cite>.</p>
+</section>
+<section id="term-frequency">
+<h3>Шаг 6. Рассчитать значения Term Frequency для каждого из слов в тексте<a class="headerlink" href="#term-frequency" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>Term Frequency - это отношение числа вхождений некоторого слова к общему числу слов документа.</dt><dd><p>Таким образом оценивается важность слова в пределах отдельного документа.</p>
+</dd>
+</dl>
+<p>Формула:</p>
+<div class="math notranslate nohighlight">
+\[tf(t, d) = \frac{n_t}{N_d}\]</div>
+<p>Где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n_t\)</span> — количество вхождений слова <span class="math notranslate nohighlight">\(t\)</span> в документ <span class="math notranslate nohighlight">\(d\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(N_d\)</span> — общее количество слов в документе <span class="math notranslate nohighlight">\(d\)</span>.</p></li>
+</ul>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.calculate_tf" title="lab_1_keywords_tfidf.main.calculate_tf"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.calculate_tf()</span></code></a>.
+Она должны будет рассчитывать Term Frequency для токенов. Функция принимает на вход частотный словарь.
+Возвращаемым значением функции должен быть словарь, в котором ключами являются токены,
+а значениями - соответствующие
+им значения TF.</p>
+</section>
+<section id="tf-idf">
+<h3>Шаг 7. Рассчитать значения TF-IDF для каждого из слов в тексте<a class="headerlink" href="#tf-idf" title="Link to this heading"></a></h3>
+<p>TF-IDF — статистическая мера, используемая для оценки важности слова в контексте документа,
+являющегося частью коллекции документов или корпуса.
+Она состоит из двух множителей — Term Frequency (TF) и Inverse Document Frequency (IDF).</p>
+<p>Формула:</p>
+<div class="math notranslate nohighlight">
+\[TFIDF(t, d, D) = TF(t, d) \times IDF(t, D)\]</div>
+<p>Множитель Inverse Document Frequency — это инверсия частоты,
+с которой некоторое слово встречается в документах коллекции:</p>
+<div class="math notranslate nohighlight">
+\[idf(t, D) = \log \left(\frac{|D|}{|\{d_i \in D : t \in d_i\}| + 1}\right)\]</div>
+<p>Здесь:</p>
+<ul class="simple">
+<li><p>числитель (<span class="math notranslate nohighlight">\(|D|\)</span>) — общее количество документов в коллекции;</p></li>
+<li><dl class="simple">
+<dt>знаменатель (<span class="math notranslate nohighlight">\(|\{d_i \in D : t \in d_i\}|\)</span>) — количество таких документов,</dt><dd><p>в которых встречается слово <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Таким образом, вес токена в документе прямо пропорционален количеству его вхождений в этот документ
+и обратно пропорционален количеству вхождений в остальные документы.
+Простыми словами: чем чаще слово встречается в нашем документе и чем реже оно встречается где-то ещё, тем оно важнее.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Если слово не найдено в словаре IDF, используйте формулу выше,
+подставив 0 вместо <span class="math notranslate nohighlight">\(|\{d_i \in D : t \in d_i\}|\)</span> и 47 вместо <span class="math notranslate nohighlight">\(|D|\)</span>
+(именно столько текстов содержится в коллекции сказок Г. Х. Андерсена), то есть
+<span class="math notranslate nohighlight">\(idf(t, D) = \log 47\)</span>.</p>
+</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.calculate_tfidf" title="lab_1_keywords_tfidf.main.calculate_tfidf"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.calculate_tfidf()</span></code></a>.</p>
+<p>Функция принимает на вход два словаря: словарь со значениями TF и словарь со значениями IDF.
+Возвращает словарь формата <code class="docutils literal notranslate"><span class="pre">{слово:</span> <span class="pre">значение</span> <span class="pre">TF-IDF}</span></code>.
+Если на вход подаются некорректные значения, возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</section>
+<section id="id8">
+<h3>Шаг 8. Продемонстрировать топ-10 ключевых слов согласно TF-IDF<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-8 соответствует 8 баллам.</p>
+</div>
+<p>Выведите 10 наиболее важных слов согласно значению TF-IDF с помощью функции <code class="docutils literal notranslate"><span class="pre">print</span></code>.
+Напомним, чем выше значение TF-IDF, тем более важным считается слово.</p>
+<p>В этом задании обязательно использовать функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.get_top_n" title="lab_1_keywords_tfidf.main.get_top_n"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.get_top_n()</span></code></a>.</p>
+</section>
+<section id="id9">
+<h3>Шаг 9. Рассчитать ожидаемую частотность слов<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<p>Предположим, что важность слова можно оценивать,
+сравнивая его частотность в документе с его частотностью в коллекции документов.
+Если токен ключевой для документа, его встречаемость в этом документе будет
+сильно отличаться от обычной частотности.
+Если слово не ключевое, частотность примерно совпадает с частотой в коллекции.</p>
+<p>Формулировка гипотез:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_0:\)</span> частотность слова <span class="math notranslate nohighlight">\(t\)</span> в документе
+<span class="math notranslate nohighlight">\(d\)</span> статистически значимо превышает его частотность в коллекции <span class="math notranslate nohighlight">\(D\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(H_1:\)</span> частотность слова <span class="math notranslate nohighlight">\(t\)</span> в документе
+<span class="math notranslate nohighlight">\(d\)</span> не превышает его частотность в коллекции <span class="math notranslate nohighlight">\(D\)</span></p></li>
+</ul>
+<p>Для вычисления ожидаемой частотности необходимо найти следующие значения:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>d</p></th>
+<th class="head"><p>D</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>t</p></td>
+<td><p>j</p></td>
+<td><p>k</p></td>
+</tr>
+<tr class="row-odd"><td><p>~t</p></td>
+<td><p>l</p></td>
+<td><p>m</p></td>
+</tr>
+</tbody>
+</table>
+<p>где:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(j\)</span> — количество вхождений слова <span class="math notranslate nohighlight">\(t\)</span> в документ <span class="math notranslate nohighlight">\(d\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> — количество вхождений слова <span class="math notranslate nohighlight">\(t\)</span> во все документы коллекции <span class="math notranslate nohighlight">\(D\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(l\)</span> — количество вхождений всех слов, кроме <span class="math notranslate nohighlight">\(t\)</span>, в документ <span class="math notranslate nohighlight">\(d\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(m\)</span> — количество вхождений всех слов, кроме <span class="math notranslate nohighlight">\(t\)</span>, в коллекцию документов <span class="math notranslate nohighlight">\(D\)</span></p></li>
+</ul>
+<p>Ожидаемая частотность слова <span class="math notranslate nohighlight">\(t\)</span> в документе <span class="math notranslate nohighlight">\(d\)</span> рассчитывается по формуле:</p>
+<div class="math notranslate nohighlight">
+\[Expected = \frac{(j + k) \times (j + l)}{j + k + l + m}\]</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.calculate_expected_frequency" title="lab_1_keywords_tfidf.main.calculate_expected_frequency"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.calculate_expected_frequency()</span></code></a>.</p>
+<dl class="simple">
+<dt>Частотный словарь для коллекции сказок Г. Х. Андерсена</dt><dd><p>загружен в переменной <code class="docutils literal notranslate"><span class="pre">corpus_freqs</span></code> в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Шаг 10. Рассчитать значения хи-квадрат<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>Для оценки того, насколько наблюдаемая частотность превышает ожидаемую,
+используется статистический критерий
+<span class="math notranslate nohighlight">\(\chi^2\)</span>.
+Формула для каждого слова:</p>
+<div class="math notranslate nohighlight">
+\[\chi^2 = \frac{(observed - expected)^2}{expected}\]</div>
+<p>где:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">observed</span></code> — наблюдаемое количество вхождений слова в документе</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expected</span></code> — ожидаемая частотность слова (рассчитанная в Шаге 8)</p></li>
+</ul>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.calculate_chi_values" title="lab_1_keywords_tfidf.main.calculate_chi_values"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.calculate_chi_values()</span></code></a>.</p>
+<p>Если на вход подаются некорректные значения, функция должна возвращать <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</section>
+<section id="id11">
+<h3>Шаг 11. Выделить статистически значимые слова<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>Статистически значимыми словами считаются те,</dt><dd><p>для которых значение <span class="math notranslate nohighlight">\(\chi^2\)</span> превышает критическое значение.</p>
+</dd>
+<dt>Выбор критического значения зависит от желаемого уровня значимости</dt><dd><p>(вероятность ошибочно назвать неключевое слово ключевым):</p>
+</dd>
+</dl>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">criterion</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.05</span><span class="p">:</span> <span class="mf">3.842</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">:</span> <span class="mf">6.635</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">:</span> <span class="mf">10.828</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.extract_significant_words" title="lab_1_keywords_tfidf.main.extract_significant_words"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.extract_significant_words()</span></code></a>.
+Функция принимает словарь значений <span class="math notranslate nohighlight">\(\chi^2\)</span> и уровень значимости <code class="docutils literal notranslate"><span class="pre">alpha</span></code>.
+Возвращает словарь, содержащий только статистически значимые слова.
+Если на вход подаются некорректные значения, возвращается <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</section>
+<section id="chi-2">
+<h3>Шаг 12. Вывести топ-10 ключевых слов согласно <span class="math notranslate nohighlight">\(\chi^2\)</span><a class="headerlink" href="#chi-2" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-12 соответствует 10 баллам.</p>
+</div>
+<p>Чем выше значение <span class="math notranslate nohighlight">\(\chi^2\)</span> для токена, тем более значимым считается слово.
+Выведите 10 самых важных слов с точки зрения статистики.
+Ранжирование токенов выполняется с помощью функции <a class="reference internal" href="lab_1_keywords_tfidf.api.html#lab_1_keywords_tfidf.main.get_top_n" title="lab_1_keywords_tfidf.main.get_top_n"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_1_keywords_tfidf.main.get_top_n()</span></code></a>.</p>
+</section>
+</section>
+<section id="id12">
+<h2>Полезные ссылки<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://lukoshko.net/storyList/skazki-andersena.htm">Источник текстов Г. Х.
+Андерсена</a></p></li>
+<li><p><a class="reference external" href="assets/freq_and_idf_dictionary_creation.py">Пример создания частотного словаря и словаря IDF
+из корпуса</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/swlh/a-quick-intro-to-tf-idf-483db9a749f5">TF-IDF clearly explained</a></p></li>
+<li><p><a class="reference external" href="https://cyberleninka.ru/article/n/raspredelenie-hi-kvadrat-i-vzveshivanie-terminov">Три странички, объясняющие принцип работы χ² для взвешивания терминов</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Лабораторные работы" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_1_keywords_tfidf.api.html" class="btn btn-neutral float-right" title="lab_1_keywords_tfidf package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

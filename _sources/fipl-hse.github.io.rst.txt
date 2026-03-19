@@ -1,0 +1,35 @@
+fipl\-hse.github.io package
+===========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   fipl-hse.github.io.config
+   fipl-hse.github.io.core_utils
+   fipl-hse.github.io.final_project
+   fipl-hse.github.io.lab_1_classify_by_unigrams
+   fipl-hse.github.io.lab_1_keywords_tfidf
+   fipl-hse.github.io.lab_2_retrieval_w_bm25
+   fipl-hse.github.io.lab_2_spellcheck
+   fipl-hse.github.io.lab_2_tokenize_by_bpe
+   fipl-hse.github.io.lab_3_ann_retriever
+   fipl-hse.github.io.lab_3_generate_by_ngrams
+   fipl-hse.github.io.lab_4_auto_completion
+   fipl-hse.github.io.lab_4_fill_words_by_ngrams
+   fipl-hse.github.io.lab_4_retrieval_w_clustering
+   fipl-hse.github.io.lab_5_scraper
+   fipl-hse.github.io.lab_6_pipeline
+   fipl-hse.github.io.lab_7_llm
+   fipl-hse.github.io.lab_8_sft
+   fipl-hse.github.io.tools
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io
+   :members:
+   :undoc-members:
+   :show-inheritance:

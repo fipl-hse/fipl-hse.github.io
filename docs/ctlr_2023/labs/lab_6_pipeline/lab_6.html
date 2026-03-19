@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratory work №6. Process raw data &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_6_pipeline package" href="lab_6.api.html" />
+    <link rel="prev" title="lab_5_scrapper package" href="../lab_5_scrapper/lab_5.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные Материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../general_info.html">General Information</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Laboratory works</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../lab_5_scrapper/lab_5.html">Laboratory work №5. Retrieve raw data from World Wide Web</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Laboratory work №6. Process raw data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lab_6.api.html">lab_6_pipeline package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../lectures_content.html">Short summary of lectures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../useful_docs/ctlr_docs/index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Laboratory works</a></li>
+      <li class="breadcrumb-item active">Laboratory work №6. Process raw data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/ctlr_2023/labs/lab_6_pipeline/lab_6.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="laboratory-work-o6-process-raw-data">
+<span id="pipeline-label"></span><h1>Laboratory work №6. Process raw data<a class="headerlink" href="#laboratory-work-o6-process-raw-data" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Full API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_6.api.html">lab_6_pipeline package</a></li>
+</ul>
+</div>
+<p>Python competencies required to complete this tutorial:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>working with external dependencies, going beyond Python standard
+library;</p></li>
+<li><p>working with external modules: local and downloaded from PyPi;</p></li>
+<li><p>working with files: create/read/update;</p></li>
+<li><p>applying basic cleaning techniques to the raw text: tokenization,
+lemmatization etc.;</p></li>
+<li><p>extracting linguistic features from the raw text: part of speech,
+case etc.</p></li>
+<li><p>collecting statistics from text: POS frequency,
+grammar structures extraction etc.</p></li>
+</ul>
+</div></blockquote>
+<p>Processing data breaks down in the following steps:</p>
+<ol class="arabic simple">
+<li><p>Loading raw data.</p></li>
+<li><p>Cleaning the text.</p></li>
+<li><p>Extracting valuable information from the text such as parts of speech, lemmas,
+syntactic positions etc.</p></li>
+<li><p>Saving extracted information in the specified format.</p></li>
+<li><p>Aggregating saved linguistic information to answer questions about data.</p></li>
+</ol>
+<p>As a part of the second milestone, you need to implement processing
+logic as a <code class="docutils literal notranslate"><span class="pre">pipeline.py</span></code> module. When it is run as a standalone Python
+program, it should perform all aforementioned stages.</p>
+<p>During this assignment you will be working with the UD text description
+format (<code class="docutils literal notranslate"><span class="pre">.conllu</span></code> extension).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>UD (Universal Dependencies) is a framework for consistent
+annotation of grammar (parts of speech, morphological features, and
+syntactic dependencies) across different human languages. All this
+annotation is usually stored in a format called <code class="docutils literal notranslate"><span class="pre">CONLL-U</span></code>, that is
+a vertical, table-like format. More information about the structure
+of the <code class="docutils literal notranslate"><span class="pre">CONLL-U</span></code> format is available on the <a class="reference external" href="https://universaldependencies.org/format.html">dedicated
+page</a>.</p>
+</div>
+<section id="executing-pipeline">
+<h2>Executing pipeline<a class="headerlink" href="#executing-pipeline" title="Link to this heading"></a></h2>
+<p>Example execution (<code class="docutils literal notranslate"><span class="pre">Windows</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>pipeline.py
+</pre></div>
+</div>
+<p>Expected result:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> raw texts previously collected by scrapper are processed.</p></li>
+<li><p>Each article has a processed version (or versions) saved
+in the <code class="docutils literal notranslate"><span class="pre">tmp/articles</span></code> directory.</p></li>
+</ol>
+<p>An example <code class="docutils literal notranslate"><span class="pre">tmp</span></code> directory content for mark 4:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-- 2023-2-level-ctlr
+    +-- tmp
+        +-- articles
+            +-- 1_raw.txt &lt;- the paper with the ID (from scrapper.py run)
+            +-- 1_meta.json &lt;- the paper meta-information (from scrapper.py run)
+            +-- 1_cleaned.txt &lt;- processed text with no punctuation (by pipeline.py run)
+</pre></div>
+</div>
+<p>An example <code class="docutils literal notranslate"><span class="pre">tmp</span></code> directory content for mark 6:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-- 2023-2-level-ctlr
+    +-- tmp
+        +-- articles
+            +-- 1_raw.txt &lt;- the paper with the ID (from scrapper.py run)
+            +-- 1_meta.json &lt;- the paper meta-information (from scrapper.py run)
+            +-- 1_cleaned.txt &lt;- processed text with no punctuation (by pipeline.py run)
+            +-- 1_udpipe_conllu.conllu &lt;- processed text in the UD format (by pipeline.py run)
+</pre></div>
+</div>
+<p>An example <code class="docutils literal notranslate"><span class="pre">tmp</span></code> directory content for marks 8 and 10:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-- 2023-2-level-ctlr
+    +-- tmp
+        +-- articles
+            +-- 1_raw.txt &lt;- the paper with the ID (from scrapper.py run)
+            +-- 1_meta.json &lt;- the paper meta-information (from scrapper.py and pipeline.py run)
+            +-- 1_cleaned.txt &lt;- processed text with no punctuation (by pipeline.py run)
+            +-- 1_udpipe_conllu.conllu &lt;- processed text in the UD format (by pipeline.py run)
+            +-- 1_stanza_conllu.conllu &lt;- processed text in the UD format (by pipeline.py run)
+            +-- 1_image.png &lt;- POS frequencies bar chart (by pipeline.py run)
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>When using CI (Continuous Integration), generated
+<code class="docutils literal notranslate"><span class="pre">processed-dataset.zip</span></code> is available in build artifacts. Go to
+<code class="docutils literal notranslate"><span class="pre">Actions</span></code> tab in GitHub UI of your fork, open the last job and if
+there is an artifact, you can download it.</p>
+</div>
+</section>
+<section id="configuring-pipeline">
+<h2>Configuring pipeline<a class="headerlink" href="#configuring-pipeline" title="Link to this heading"></a></h2>
+<p>Processing behavior must follow several steps:</p>
+<ol class="arabic simple">
+<li><p>Pipeline takes a raw dataset that is collected by <code class="docutils literal notranslate"><span class="pre">scrapper.py</span></code> and
+placed at <code class="docutils literal notranslate"><span class="pre">ASSETS_PATH</span></code> (see <code class="docutils literal notranslate"><span class="pre">core_utils/constants.py</span></code> for a particular
+place).</p></li>
+<li><p>Pipeline goes through each raw file, for example <code class="docutils literal notranslate"><span class="pre">1_raw.txt</span></code>.</p></li>
+<li><p>Pipeline processes each text via specified UD model and extracts
+linguistic information.</p></li>
+<li><p>Pipeline saves extracted information into the file with the same id
+for each article processed, for example <code class="docutils literal notranslate"><span class="pre">1_udpipe_conllu.conllu</span></code>.</p></li>
+</ol>
+</section>
+<section id="assessment-criteria">
+<h2>Assessment criteria<a class="headerlink" href="#assessment-criteria" title="Link to this heading"></a></h2>
+<p>You state your ambition on the mark by editing the file
+<code class="docutils literal notranslate"><span class="pre">settings.json</span></code>. For example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;target_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>would mean that you have made tasks for mark <code class="docutils literal notranslate"><span class="pre">6</span></code> and request mentors
+to check if you can get it. See mark requirements and explanations
+below:</p>
+<ol class="arabic simple">
+<li><p>Desired mark <strong>4</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <code class="docutils literal notranslate"><span class="pre">5/10</span></code>.</p></li>
+<li><p>Pipeline validates that raw dataset has a proper structure and
+fails appropriately if the latter is incorrect. Criteria:</p>
+<ol class="arabic simple">
+<li><p>Dataset exists (there is a folder).</p></li>
+<li><p>Dataset is not empty (there are files inside).</p></li>
+<li><p>Dataset is balanced - there are only files that follow the
+naming conventions:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">N_raw.txt</span></code> where N is a valid number.</p></li>
+<li><p>Numbers of articles are from 1 to N without any slips.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Pipeline cleans text in each file by removing punctuation and
+casting it to the lower case (no <em>lemmatization</em> or <em>tagging</em>).</p></li>
+<li><p>Pipeline produces <code class="docutils literal notranslate"><span class="pre">N_cleaned.txt</span></code> files in the <code class="docutils literal notranslate"><span class="pre">tmp/articles</span></code>.</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_raw.txt">Example raw text</a> and <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/reference_score_four.txt">Desired output</a>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Desired mark <strong>6</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <code class="docutils literal notranslate"><span class="pre">7/10</span></code>.</p></li>
+<li><p>All requirements for the mark <strong>4</strong>.</p></li>
+<li><p>Pipeline uses <code class="docutils literal notranslate"><span class="pre">spacy-udpipe</span></code> library to extract linguistic markup for the text
+in the CoNLL-U format.</p></li>
+<li><p>Pipeline produces <code class="docutils literal notranslate"><span class="pre">N_udpipe_conllu.conllu</span></code> files for each article.</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_raw.txt">Example raw text</a> and <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/reference_score_six_test.conllu">Desired output</a>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Desired mark <strong>8</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <code class="docutils literal notranslate"><span class="pre">10/10</span></code>.</p></li>
+<li><p>All requirements for the mark <strong>6</strong>.</p></li>
+<li><p>Pipeline uses <code class="docutils literal notranslate"><span class="pre">stanza</span></code> library to extract linguistic markup for the text
+in the CoNLL-U format.</p></li>
+<li><p>Pipeline produces <code class="docutils literal notranslate"><span class="pre">N_stanza_conllu.conllu</span></code> files for each article.</p></li>
+<li><p>Pipeline collects frequencies of POS in each text,
+extends <code class="docutils literal notranslate"><span class="pre">N_meta.json</span></code> files with this information
+and visualizes this distribution via bar chart saved as
+<code class="docutils literal notranslate"><span class="pre">N_image.png</span></code> files for each article.</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_raw.txt">Example raw text</a>, <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/reference_score_eight_test.conllu">Desired CoNLL-U output</a>, <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_meta.json">Example meta info</a> and <a class="reference external" href="https://github.com/fipl-hse/2022-2-level-ctlr/blob/main/core_utils/tests/test_files/reference_image.png">Desired bar chart</a>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Desired mark <strong>10</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pylint</span></code> level: <code class="docutils literal notranslate"><span class="pre">10/10</span></code>.</p></li>
+<li><p>All requirements for the mark <strong>8</strong>.</p></li>
+<li><p>Pipeline uses <code class="docutils literal notranslate"><span class="pre">networkx</span></code> library to create a graph of
+dependencies to search for a required syntactic pattern.</p></li>
+<li><p>Pipeline collects required syntactic patterns in each text and
+extends <code class="docutils literal notranslate"><span class="pre">N_meta.json</span></code> files with this information.</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_raw.txt">Example raw text</a> and <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_meta.json">Example meta info</a>.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="implementation-tactics">
+<h2>Implementation tactics<a class="headerlink" href="#implementation-tactics" title="Link to this heading"></a></h2>
+<p>All logic for instantiating and using needed abstractions should be
+implemented in a special block of the module <code class="docutils literal notranslate"><span class="pre">pipeline.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Your code goes here&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="stage-0-prerequisites">
+<h3>Stage 0. Prerequisites<a class="headerlink" href="#stage-0-prerequisites" title="Link to this heading"></a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">scrapper.py</span></code> implementation</p>
+<p>You will not be able to start your implementation if there is no
+<code class="docutils literal notranslate"><span class="pre">scrapper.py</span></code> implementation.
+Make sure you implemented and passed <code class="docutils literal notranslate"><span class="pre">scrapper.py</span></code> assignment first.</p>
+</li>
+<li><p>Ensure you only use <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> to work with file paths</p>
+<p>As we discussed during lectures it is always better to have something
+designed specifically for the given task. Comparing <code class="docutils literal notranslate"><span class="pre">os</span></code> and
+<code class="docutils literal notranslate"><span class="pre">pathlib</span></code> modules, the latter is the one that is designed for most
+file system related operations. Make sure you use only <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> in
+the code you write.</p>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Do not change modules external to your code, for example
+<code class="docutils literal notranslate"><span class="pre">core_utils/article/article.py</span></code>, consider them as not available
+for installation. If you see a way to improve external modules,
+propose them in a separate PR - mentors will review them separately
+and give you bonuses as any improvements are appreciated.</p>
+</div>
+</section>
+<section id="stage-1-introduce-a-corpus-abstraction-corpusmanager">
+<h3>Stage 1. Introduce a corpus abstraction: <code class="docutils literal notranslate"><span class="pre">CorpusManager</span></code><a class="headerlink" href="#stage-1-introduce-a-corpus-abstraction-corpusmanager" title="Link to this heading"></a></h3>
+<p>As we discussed multiple times, when we are working from our Python
+programs with the real world entities, we need to emulate their behavior
+by new abstractions. If we think of the Pipeline and consider the Single
+Responsibility Principle, we will quickly realize that it is not the
+responsibility of the Pipeline to know where the dataset files are
+located and how to read/write to them, etc. Therefore, we need a new
+abstraction to be responsible for such tasks. We call it
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code>.</p>
+<section id="stage-1-1-introduce-corpusmanager-abstraction">
+<h4>Stage 1.1. Introduce <code class="docutils literal notranslate"><span class="pre">CorpusManager</span></code> abstraction<a class="headerlink" href="#stage-1-1-introduce-corpusmanager-abstraction" title="Link to this heading"></a></h4>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code> is an entity
+that knows where the dataset is placed
+and what are the available files of this dataset.</p>
+<p>It should be instantiated with the following instruction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corpus_manager</span> <span class="o">=</span> <span class="n">CorpusManager</span><span class="p">(</span><span class="n">path_to_raw_txt_data</span><span class="o">=</span><span class="n">ASSETS_PATH</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code> instance validates
+the dataset provided and saves all the constructor arguments in attributes
+with corresponding names. Each instance should also have an additional
+attribute <code class="docutils literal notranslate"><span class="pre">self._storage</span></code> of a dictionary type and filled with
+information about the files. Read about
+the filling instructions in the <strong>Stage 1.3</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember to use <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> to create file path object.</p>
+</div>
+</section>
+<section id="stage-1-2-implement-a-method-for-a-dataset-validation">
+<h4>Stage 1.2. Implement a method for a dataset validation<a class="headerlink" href="#stage-1-2-implement-a-method-for-a-dataset-validation" title="Link to this heading"></a></h4>
+<p>Pipeline expects that dataset is collected by scrapper. It must not
+start working if dataset is invalid. The very first thing that should
+happen after <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code>
+is instantiated is a dataset validation.
+Implement <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager._validate_dataset()</span></code>
+method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember to use <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module in order
+to operate paths.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Call this method during initialization.</p>
+</div>
+<p>When dataset is valid, method returns <code class="docutils literal notranslate"><span class="pre">None</span></code>. Otherwise:</p>
+<ol class="arabic simple">
+<li><p>One of the following errors is thrown:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code>: file does not exist;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NotADirectoryError</span></code>: path does not lead to directory;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">InconsistentDatasetError</span></code>: IDs contain slips, number of meta
+and raw files is not equal, files are empty;</p>
+<ul>
+<li><p>For <strong>mark 4</strong>, check that dataset contains no slips in IDs of
+raw files and files are not empty.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EmptyDirectoryError</span></code>: directory is empty.</p></li>
+</ul>
+</li>
+<li><p>Script immediately finishes execution.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While validating dataset, ignore files which names do not conform to the format.</p>
+</div>
+</section>
+<section id="stage-1-3-implement-a-method-for-filling-files-storage">
+<h4>Stage 1.3. Implement a method for filling files storage<a class="headerlink" href="#stage-1-3-implement-a-method-for-filling-files-storage" title="Link to this heading"></a></h4>
+<p>During initialization of <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code>,
+it should scan the provided folder path and register each dataset entry.
+All the storage is represented as <code class="docutils literal notranslate"><span class="pre">self._storage</span></code> attribute.
+Filling the storage should be done by executing
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager._scan_dataset()</span></code> method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Call this method during initialization and save the results in
+<code class="docutils literal notranslate"><span class="pre">self._storage</span></code> attribute.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Can you explain why the name of the method starts with an
+underscore?</p>
+</div>
+<p>The method should contain logic for iterating over the content of the
+folder, finding all <code class="docutils literal notranslate"><span class="pre">N_raw.txt</span></code> files and creating
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> instance for each file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> constructor
+expects URL as the first argument. It
+should be safe to pass <code class="docutils literal notranslate"><span class="pre">None</span></code> instead of the real URL. Pipeline
+does not need to know where was the article downloaded from.
+See <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.html#ctlr-article-label"><span class="std std-ref">Article package</span></a>.</p>
+</div>
+<p>As it was stated before, <code class="docutils literal notranslate"><span class="pre">self._storage</span></code> attribute is just a
+dictionary. Keys are ids of the files, values are instances of the
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> class.
+For example, pipeline finds a file <code class="docutils literal notranslate"><span class="pre">1_raw.txt</span></code>.
+Then we put new pair to the storage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Article</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">article_id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code>
+knows where are the files,
+it can easily find them by id, but it is not its responsibility
+to perform actual file reads and writes.
+See <code class="docutils literal notranslate"><span class="pre">core_utils/article/io.py</span></code> module for article
+save/read functionality.</p>
+</div>
+</section>
+<section id="stage-1-4-implement-a-method-for-retrieval-of-files-storage">
+<h4>Stage 1.4. Implement a method for retrieval of files storage<a class="headerlink" href="#stage-1-4-implement-a-method-for-retrieval-of-files-storage" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">self._storage</span></code> attribute is not a part of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code>
+interface, therefore we need a special getter - a method that just
+returns a storage value. At this stage, you need to implement
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager.get_articles()</span></code> method.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Can you explain why we might need getters?</p>
+</div>
+<p>Eventually, <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code> should return
+a dictionary of <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> instances via
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager.get_articles()</span></code> method.</p>
+</section>
+</section>
+<section id="stage-2-introduce-abstraction-for-processing-texts-textprocessingpipeline">
+<h3>Stage 2. Introduce abstraction for processing texts: <code class="docutils literal notranslate"><span class="pre">TextProcessingPipeline</span></code><a class="headerlink" href="#stage-2-introduce-abstraction-for-processing-texts-textprocessingpipeline" title="Link to this heading"></a></h3>
+<p>To get a mark not lower than 4, your pipeline must perform basic text
+preprocessing:</p>
+<ol class="arabic simple">
+<li><p>Lowercase text.</p></li>
+<li><p>Remove punctuation.</p></li>
+</ol>
+<p>After implementation of preprocessing, your pipeline must save results
+in the files with the names following the pattern <code class="docutils literal notranslate"><span class="pre">N_cleaned.txt</span></code>. See
+examples for a better understanding: <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_raw.txt">Raw text</a> - <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/reference_score_four.txt">Desired output</a>.</p>
+<section id="stage-2-1-implement-simplified-logic-of-textprocessingpipeline">
+<h4>Stage 2.1. Implement simplified logic of <code class="docutils literal notranslate"><span class="pre">TextProcessingPipeline</span></code><a class="headerlink" href="#stage-2-1-implement-simplified-logic-of-textprocessingpipeline" title="Link to this heading"></a></h4>
+<p>All of the above stages are necessary for implementing simplified
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline</span></code> abstraction.
+It takes the raw text of the article and saves the processed
+(lowercased with no punctuation) text to a file <code class="docutils literal notranslate"><span class="pre">N_cleaned.txt</span></code>.
+The abstraction should have <code class="docutils literal notranslate"><span class="pre">self._corpus</span></code> attribute which represents your
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code> abstraction.</p>
+<p>It should be instantiated with the following instruction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">TextProcessingPipeline</span><span class="p">(</span><span class="n">corpus_manager</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is executed with a simple interface method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline.run()</span></code>
+that you need to implement. Once executed,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline.run()</span></code>
+iterates through the available articles taken from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code>,
+reads each file, performs basic
+preprocessing and writes processed text to files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is mandatory to get articles with the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager.get_articles()</span></code> method.</p>
+</div>
+</section>
+<section id="stage-2-2-save-the-results-of-text-preprocessing">
+<h4>Stage 2.2. Save the results of text preprocessing<a class="headerlink" href="#stage-2-2-save-the-results-of-text-preprocessing" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 0-2.2</strong> are required to get the <strong>mark 4</strong>.</p>
+</div>
+<p>It is mandatory to save generated text to file in the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline.run()</span></code> method.
+In order to do this, inspect the <code class="docutils literal notranslate"><span class="pre">core_utils/article/io.py</span></code> module.
+Use <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.io.to_cleaned" title="core_utils.ctlr.article.io.to_cleaned"><code class="xref py py-func docutils literal notranslate"><span class="pre">core_utils.ctlr.article.io.to_cleaned()</span></code></a> function
+to save cleaned text to the appropriate folder. Call this
+function with the article instance you want to save text for.</p>
+<p>The function generates a file with a name <code class="docutils literal notranslate"><span class="pre">N_cleaned.txt</span></code>, where <code class="docutils literal notranslate"><span class="pre">N</span></code>
+is the index of your article in the <code class="docutils literal notranslate"><span class="pre">tmp/articles</span></code> directory.</p>
+</section>
+</section>
+<section id="stage-3-extract-linguistic-markup-using-udpipe-model">
+<h3>Stage 3. Extract linguistic markup using UDPipe model<a class="headerlink" href="#stage-3-extract-linguistic-markup-using-udpipe-model" title="Link to this heading"></a></h3>
+<p>To get a mark not lower than 6, your pipeline, in addition to mark 4
+requirements, must perform morphological text analysis for each article
+using <code class="docutils literal notranslate"><span class="pre">spacy-udpipe</span></code> library and save the result in the file with the
+name following the pattern <code class="docutils literal notranslate"><span class="pre">N_udpipe_conllu.conllu</span></code>.
+See examples for a better understanding: <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_raw.txt">Raw text</a> - <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/reference_score_six_test.conllu">Desired output</a>.</p>
+<p>File with <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> extension means that it corresponds to the UD
+format. Starting with the mark 6 you are required to save results of
+morphological text analysis in the UD format. For better understanding
+of the format fields refer to the <a class="reference external" href="https://universaldependencies.org/format.html">dedicated
+page</a>.</p>
+<p>As all article text information storing and managing is done by the
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> abstraction,
+see <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.html#ctlr-article-label"><span class="std std-ref">Article package</span></a> before proceeding to the next stages.</p>
+<section id="stage-3-1-introduce-udpipeanalyzer-abstraction">
+<h4>Stage 3.1. Introduce <code class="docutils literal notranslate"><span class="pre">UDPipeAnalyzer</span></code> abstraction<a class="headerlink" href="#stage-3-1-introduce-udpipeanalyzer-abstraction" title="Link to this heading"></a></h4>
+<p>Given that the present laboratory work implements text processing via more than one
+linguistic model (UDPipe and Stanza), there is a need for unified interface. For this
+reason, you are required to implement a wrapper abstraction over UDPipe model:
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code>. This abstraction is responsible
+for processing text and outputting its linguistic features in CoNLL-U format.</p>
+<p>Notice that this class inherits from
+<code class="docutils literal notranslate"><span class="pre">LibraryWrapper</span></code>, which defines a specific set of methods to be present
+across all wrappers: <code class="docutils literal notranslate"><span class="pre">_bootstrap</span></code>, <code class="docutils literal notranslate"><span class="pre">analyze</span></code>, <code class="docutils literal notranslate"><span class="pre">to_conllu</span></code>,
+as well as <code class="docutils literal notranslate"><span class="pre">self._analyzer</span></code> attribute.
+In the following sections each field will be explained.</p>
+<p>First, the wrapper should be instantiated with the following instruction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">udpipe_analyzer</span> <span class="o">=</span> <span class="n">UDPipeAnalyzer</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Wrapper does not accept any arguments during initialization, but calls protected method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap()</span></code>,
+which is responsible for loading and setting up the UDPipe model.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Path to the required UDPipe model is stored in
+<code class="docutils literal notranslate"><span class="pre">core_utils/constants.py</span></code> module as <code class="docutils literal notranslate"><span class="pre">UDPIPE_MODEL_PATH</span></code>.</p>
+</div>
+<p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap()</span></code> method
+must read the UDPipe model via <code class="docutils literal notranslate"><span class="pre">spacy_udpipe</span></code> library, add CoNLL-U formatter
+to the model pipeline and define specific configurations for the model.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Refer to the corresponding seminar materials
+or inspect <a class="reference external" href="https://github.com/TakeLab/spacy-udpipe/blob/master/README.md">the official repository of the library</a>
+to learn more about appropriate configuration details.</p>
+</div>
+<p>Finally, <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap()</span></code>
+returns the resulting model, which is further stored in the protected
+<code class="docutils literal notranslate"><span class="pre">self._analyzer</span></code> attribute of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code> instance.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Naturally, methods of <code class="docutils literal notranslate"><span class="pre">spacy-udpipe</span></code> module return an instance of
+its own abstraction <code class="docutils literal notranslate"><span class="pre">Language</span></code>, not the instance of <code class="docutils literal notranslate"><span class="pre">AbstractCoNLLUAnalyzer</span></code>,
+as specified in the typing annotation of
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap()</span></code>.
+However, given that the laboratory work covers more than one language analyzer,
+it is necessary to unite all the different types of analyzer instances used.
+For this exact reason class <code class="docutils literal notranslate"><span class="pre">AbstractCoNLLUAnalyzer</span></code> is defined: it does not
+impose a special interface, as protocols of pipeline and library wrappers do,
+but simply indicates that this object is responsible for analyzing the language
+material. As for the interface of the analyzer object, it is responsibility
+of corresponding library wrapper to handle it.</p>
+</div>
+</section>
+<section id="stage-3-2-process-text-via-udpipeanalyzer-abstraction">
+<h4>Stage 3.2. Process text via <code class="docutils literal notranslate"><span class="pre">UDPipeAnalyzer</span></code> abstraction<a class="headerlink" href="#stage-3-2-process-text-via-udpipeanalyzer-abstraction" title="Link to this heading"></a></h4>
+<p>Next, you are required to implement
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer.analyze()</span></code> method.
+It is a public method used to process texts into CoNLL-U formatted markup.
+The method accepts a list of strings and produces a list of strings.</p>
+<p>This method uses <code class="docutils literal notranslate"><span class="pre">self._analyzer</span></code> attribute, which encloses the UDPipe model,
+to retrieve linguistic features of the text in a required format.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To learn more about the UDPipe model interface,
+refer to the corresponding seminar materials or inspect
+<a class="reference external" href="https://github.com/TakeLab/spacy-udpipe/blob/master/README.md">the official repository of the library</a>.</p>
+</div>
+</section>
+<section id="stage-3-3-save-linguistic-markup-via-udpipeanalyzer-abstraction">
+<h4>Stage 3.3. Save linguistic markup via <code class="docutils literal notranslate"><span class="pre">UDPipeAnalyzer</span></code> abstraction<a class="headerlink" href="#stage-3-3-save-linguistic-markup-via-udpipeanalyzer-abstraction" title="Link to this heading"></a></h4>
+<p>Finally, <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code> abstraction
+must possess a method for producing a file with <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> extension with
+retrieved linguistic markup.
+Method <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu()</span></code> does not perform
+any analysis, but operates fields of
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> instance.</p>
+<p>The method accepts one instance of <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a>
+as an argument. It is presumed that the given article object
+has a filled attribute with CoNLL-U markup. The method thus uses interface of
+the <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> instance to save the stored
+information into the <code class="docutils literal notranslate"><span class="pre">N_udpipe_conllu.conllu</span></code> file,
+where <code class="docutils literal notranslate"><span class="pre">N</span></code> corresponds to the identifier of the article.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is mandatory to use
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article.get_file_path" title="core_utils.ctlr.article.article.Article.get_file_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article.get_file_path()</span></code></a>
+and
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article.get_conllu_info" title="core_utils.ctlr.article.article.Article.get_conllu_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article.get_conllu_info()</span></code></a>
+methods.</p>
+</div>
+</section>
+<section id="stage-3-4-extend-textprocessingpipeline-with-morphological-analysis-logic">
+<h4>Stage 3.4. Extend <code class="docutils literal notranslate"><span class="pre">TextProcessingPipeline</span></code> with morphological analysis logic<a class="headerlink" href="#stage-3-4-extend-textprocessingpipeline-with-morphological-analysis-logic" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 0-3.4</strong> are required to get the <strong>mark 6</strong>.</p>
+</div>
+<p>After implementing abstraction for linguistic
+data retrieval you need to define overall processing logic to fill article instances
+with markup and save processing result in the UD format. All
+processing and filling actions is the responsibility of pipeline.
+So you need to extend
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline</span></code>.</p>
+<p>For mark 6, apart from punctuation removal and casting to
+lowercase, you must implement the extraction of all information required by
+UD format and save it in the corresponding <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> files. In other words,
+the execution of the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline.run()</span></code> method
+must result in producing both <code class="docutils literal notranslate"><span class="pre">N_cleaned.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">N_udpipe_conllu.conllu</span></code> files
+for each available article.</p>
+<p>In order to achieve that, first, make sure that during the instantiation of the pipeline
+an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code> model is accepted
+as an argument and saved to the <code class="docutils literal notranslate"><span class="pre">_analyzer</span></code> protected attribute.</p>
+<p>Then, during the execution of
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline.run()</span></code> method,
+apart from cleaning of each article perform the following:</p>
+<ol class="arabic simple">
+<li><p>Extract ConLLU formatted markup of the text via analyzer.</p></li>
+<li><p>Store the extracted markup in a corresponding field of article instance.</p></li>
+<li><p>Save the stored markup to <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> file via analyzer interface.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is mandatory to use
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer.analyze()</span></code>,
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article.set_conllu_info" title="core_utils.ctlr.article.article.Article.set_conllu_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article.set_conllu_info()</span></code></a> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu()</span></code> methods.</p>
+</div>
+</section>
+</section>
+<section id="stage-4-extract-linguistic-markup-using-stanza-model">
+<h3>Stage 4. Extract linguistic markup using Stanza model<a class="headerlink" href="#stage-4-extract-linguistic-markup-using-stanza-model" title="Link to this heading"></a></h3>
+<p>For a mark higher than 6, you are required to be able to perform text processing
+via both UDPipe and Stanza linguistic models.
+See examples for a better understanding: <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_raw.txt">Raw text</a> - <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/reference_score_eight_test.conllu">Desired output</a>.</p>
+<section id="stage-4-1-introduce-stanzaanalyzer-abstraction">
+<h4>Stage 4.1. Introduce <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code> abstraction<a class="headerlink" href="#stage-4-1-introduce-stanzaanalyzer-abstraction" title="Link to this heading"></a></h4>
+<p>Implement
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer</span></code> abstraction.
+It is a wrapper over a Stanza model. Similarly, its responsibility
+is processing text and outputting its linguistic features in CoNLL-U format.</p>
+<p>Notice that this wrapper inherits from <code class="docutils literal notranslate"><span class="pre">LibraryWrapper</span></code> protocol,
+which means that its interface is dictated by the protocol and identical to that of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code> abstraction.
+In other words, <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code> have the same function and
+interface, meaning that they can be used interchangeably, but their inner workings
+are different as they are based on separate models. Thus, the resulting processing
+may also vary.</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer</span></code>
+wrapper should be instantiated with the following instruction:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stanza_analyzer</span> <span class="o">=</span> <span class="n">StanzaAnalyzer</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Wrapper does not accept any arguments during initialization, but calls protected method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer._bootstrap()</span></code>,
+which is responsible for downloading and initializing the Stanza model.</p>
+<p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer._bootstrap()</span></code> method must
+download via <code class="docutils literal notranslate"><span class="pre">stanza</span></code> library a model for the Russian language with the following
+functionality:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tokenization</p></li>
+<li><p>lemmatization</p></li>
+<li><p>part of speech extraction</p></li>
+<li><p>dependency parsing</p></li>
+</ul>
+</div></blockquote>
+<p>The method then initializes an instance of Stanza model and returns it.
+The model returned is further stored in the protected <code class="docutils literal notranslate"><span class="pre">self._analyzer</span></code> attribute of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer</span></code> instance.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Refer to the corresponding seminar materials
+or inspect <a class="reference external" href="https://stanfordnlp.github.io/stanza/">the official repository of the library</a>.
+to learn more about <code class="docutils literal notranslate"><span class="pre">stanza</span></code> interface details.</p>
+</div>
+</section>
+<section id="stage-4-2-process-text-via-stanzaanalyzer-abstraction">
+<h4>Stage 4.2. Process text via <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code> abstraction<a class="headerlink" href="#stage-4-2-process-text-via-stanzaanalyzer-abstraction" title="Link to this heading"></a></h4>
+<p>Next, you are required to implement
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer.analyze()</span></code> method.
+It is a public method used to process texts into CoNLL-U formatted markup.
+The method accepts a list of strings and produces a list of
+<code class="docutils literal notranslate"><span class="pre">StanzaDocument</span></code> instances.</p>
+<p>This method uses <code class="docutils literal notranslate"><span class="pre">self._analyzer</span></code> attribute, which encloses the Stanza model,
+to retrieve linguistic features of the text.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To learn more about the Stanza model interface,
+refer to the corresponding seminar materials or inspect
+<a class="reference external" href="https://stanfordnlp.github.io/stanza">the official repository of the library</a>.</p>
+</div>
+</section>
+<section id="stage-4-3-save-linguistic-markup-via-stanzaanalyzer-abstraction">
+<h4>Stage 4.3. Save linguistic markup via <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code> abstraction<a class="headerlink" href="#stage-4-3-save-linguistic-markup-via-stanzaanalyzer-abstraction" title="Link to this heading"></a></h4>
+<p>Finally, <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer</span></code> abstraction
+must possess a method for producing a file with <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> extension with
+retrieved linguistic markup.
+Method <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer.to_conllu()</span></code>
+does not perform any analysis but operates fields of
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a>
+instance along with functions from <code class="docutils literal notranslate"><span class="pre">stanza.utils.conll</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To learn more about the Stanza library interface,
+refer to the corresponding seminar materials or inspect
+<a class="reference external" href="https://stanfordnlp.github.io/stanza">the official repository of the library</a>.</p>
+</div>
+<p>The method accepts
+one instance of <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a> as an argument.
+It is presumed that the given article object has a filled attribute with CoNLL-U markup.
+The method thus uses interface of the
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article" title="core_utils.ctlr.article.article.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article</span></code></a>
+instance to save the stored UD information into the <code class="docutils literal notranslate"><span class="pre">N_stanza_conllu.conllu</span></code> file,
+where <code class="docutils literal notranslate"><span class="pre">N</span></code> corresponds to the identifier of the article.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It is mandatory to use
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article.get_file_path" title="core_utils.ctlr.article.article.Article.get_file_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article.get_file_path()</span></code></a>
+and
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article.get_conllu_info" title="core_utils.ctlr.article.article.Article.get_conllu_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article.get_conllu_info()</span></code></a>
+methods.</p>
+</div>
+</section>
+<section id="stage-4-4-ensure-compatibility-of-textprocessingpipeline-with-stanzaanalyzer">
+<h4>Stage 4.4. Ensure compatibility of <code class="docutils literal notranslate"><span class="pre">TextProcessingPipeline</span></code> with <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code><a class="headerlink" href="#stage-4-4-ensure-compatibility-of-textprocessingpipeline-with-stanzaanalyzer" title="Link to this heading"></a></h4>
+<p>Since both <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer</span></code>
+and <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.UDPipeAnalyzer</span></code> derive from the same interface
+protocol and carry the same functionality, there is no need to adjust
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline</span></code> logic to working with
+Stanza wrapper. Perform a self-check by ensuring that your code works accordingly to
+the following examples.</p>
+<p>This code snippet must produce <code class="docutils literal notranslate"><span class="pre">N_cleaned.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">N_stanza_conllu.conllu</span></code>
+files for each available article:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corpus_manager</span> <span class="o">=</span> <span class="n">CorpusManager</span><span class="p">(</span><span class="n">path_to_raw_txt_data</span><span class="o">=</span><span class="n">ASSETS_PATH</span><span class="p">)</span>
+<span class="n">stanza_analyzer</span> <span class="o">=</span> <span class="n">StanzaAnalyzer</span><span class="p">()</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">TextProcessingPipeline</span><span class="p">(</span><span class="n">corpus_manager</span><span class="p">,</span> <span class="n">stanza_analyzer</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This code snippet must produce <code class="docutils literal notranslate"><span class="pre">N_cleaned.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">N_udpipe_conllu.conllu</span></code>
+files for each available article:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corpus_manager</span> <span class="o">=</span> <span class="n">CorpusManager</span><span class="p">(</span><span class="n">path_to_raw_txt_data</span><span class="o">=</span><span class="n">ASSETS_PATH</span><span class="p">)</span>
+<span class="n">udpipe_analyzer</span> <span class="o">=</span> <span class="n">UDPipeAnalyzer</span><span class="p">()</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">TextProcessingPipeline</span><span class="p">(</span><span class="n">corpus_manager</span><span class="p">,</span> <span class="n">udpipe_analyzer</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Finally, this code snippet must produce just the <code class="docutils literal notranslate"><span class="pre">N_cleaned.txt</span></code>
+files for each available article, with no <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corpus_manager</span> <span class="o">=</span> <span class="n">CorpusManager</span><span class="p">(</span><span class="n">path_to_raw_txt_data</span><span class="o">=</span><span class="n">ASSETS_PATH</span><span class="p">)</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">TextProcessingPipeline</span><span class="p">(</span><span class="n">corpus_manager</span><span class="p">)</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you encounter errors from using
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline</span></code>
+with <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer</span></code>,
+then you must have made a mistake during either implementation of the
+model wrapper or markup extraction during pipeline execution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All model wrappers must have identical interface, specified by
+<code class="docutils literal notranslate"><span class="pre">LibraryWrapper</span></code>, and processing pipeline must only rely on that interface.
+Pipeline must not rely on any library specific attributes or methods.</p>
+</div>
+</section>
+</section>
+<section id="stage-5-extract-and-visualize-pos-frequency-statistics">
+<h3>Stage 5. Extract and visualize POS frequency statistics<a class="headerlink" href="#stage-5-extract-and-visualize-pos-frequency-statistics" title="Link to this heading"></a></h3>
+<p>We have just finished implementation of text processing pipeline.
+However, this is just the beginning of your
+linguistic research: you have the data and now it is time to start analyzing
+it, gaining insights, achieving a better understanding and finding hidden meanings.
+During this stage we will make a pipeline that will compute
+distribution of various parts of speech in our texts, visualize it and,
+maybe, provide us with better understanding of the text.</p>
+<p>This is a sample result we are going to obtain:</p>
+<figure class="align-default">
+<img alt="sample_visualization.png" src="../../../../_images/sample_visualization.png" />
+</figure>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Starting from the current stage, you are expected to work with files and
+classes related to <code class="docutils literal notranslate"><span class="pre">stanza</span></code> library only. Do not parse and process CONLL-U
+files by means of <code class="docutils literal notranslate"><span class="pre">spacy-udpipe</span></code>.</p>
+</div>
+<section id="stage-5-1-extend-stanzaanalyzer-with-conll-u-parsing-functionality">
+<h4>Stage 5.1 Extend <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code> with CoNLL-U parsing functionality<a class="headerlink" href="#stage-5-1-extend-stanzaanalyzer-with-conll-u-parsing-functionality" title="Link to this heading"></a></h4>
+<p>In order to process information stored in the <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> files,
+you are required to implement a
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer.from_conllu()</span></code> method.</p>
+<p>Its responsibility is the opposite of that of
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.StanzaAnalyzer.to_conllu()</span></code> method: it
+accepts article instance, derives the name of the file where its UD properties are stored,
+and converts its contents to the <code class="docutils literal notranslate"><span class="pre">StanzaDocument</span></code> via <code class="docutils literal notranslate"><span class="pre">stanza.utils.conll</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To learn more about the Stanza library interface,
+refer to the corresponding seminar materials or inspect
+<a class="reference external" href="https://stanfordnlp.github.io/stanza">the official repository of the library</a>.</p>
+</div>
+</section>
+<section id="stage-5-2-introduce-posfrequencypipeline-abstraction">
+<h4>Stage 5.2. Introduce <code class="docutils literal notranslate"><span class="pre">POSFrequencyPipeline</span></code> abstraction<a class="headerlink" href="#stage-5-2-introduce-posfrequencypipeline-abstraction" title="Link to this heading"></a></h4>
+<p>Now we are going to work with
+the <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.POSFrequencyPipeline</span></code> class.
+The <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.POSFrequencyPipeline</span></code>
+is instantiated in the similar manner as the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.TextProcessingPipeline</span></code>.
+During initialization it must accept an instance of <code class="docutils literal notranslate"><span class="pre">CorpusManager</span></code>
+and an instance of <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corpus_manager</span> <span class="o">=</span> <span class="n">CorpusManager</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">stanza_analyzer</span> <span class="o">=</span> <span class="n">StanzaAnalyzer</span><span class="p">()</span>
+<span class="n">visualizer</span> <span class="o">=</span> <span class="n">POSFrequencyPipeline</span><span class="p">(</span><span class="n">corpus_manager</span><span class="p">,</span> <span class="n">stanza_analyzer</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>During instantiation, provided instances of <code class="docutils literal notranslate"><span class="pre">CorpusManager</span></code> and <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code>
+are stored in the <code class="docutils literal notranslate"><span class="pre">self._corpus</span></code>, <code class="docutils literal notranslate"><span class="pre">self._analyzer</span></code> attributes.</p>
+</section>
+<section id="stage-5-3-implement-core-logic-of-posfrequencypipeline">
+<h4>Stage 5.3. Implement core logic of <code class="docutils literal notranslate"><span class="pre">POSFrequencyPipeline</span></code><a class="headerlink" href="#stage-5-3-implement-core-logic-of-posfrequencypipeline" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 0-5.3</strong> are required to get the <strong>mark 8</strong>.</p>
+</div>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.POSFrequencyPipeline</span></code>
+is executed with the same interface method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.POSFrequencyPipeline.run()</span></code>
+that you need to implement.</p>
+<p>Once executed,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.POSFrequencyPipeline.run()</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Iterates through the available articles taken from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code>.</p></li>
+<li><p>Retrieves UD information for each article via <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code> interface
+(notice only <code class="docutils literal notranslate"><span class="pre">N_stanza_conllu.conllu</span></code> files can be used).</p></li>
+<li><p>Calculates frequencies of each part of speech via protected method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.POSFrequencyPipeline._count_frequencies()</span></code>,
+which accepts article instance and returns the dictionary
+in the format <code class="docutils literal notranslate"><span class="pre">{&lt;POS&gt;:</span> <span class="pre">&lt;number</span> <span class="pre">of</span> <span class="pre">occurrences&gt;}</span></code>.</p></li>
+<li><p>Writes them to the meta file via <code class="docutils literal notranslate"><span class="pre">Article</span></code> instance interface.</p></li>
+<li><p>Visualizes frequencies in a form of images with names following
+convention <code class="docutils literal notranslate"><span class="pre">N_image.png</span></code>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is mandatory to get articles with the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager.get_articles()</span></code> method.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is mandatory to use <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article.get_file_path" title="core_utils.ctlr.article.article.Article.get_file_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article.get_file_path()</span></code></a>,
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article.set_pos_info" title="core_utils.ctlr.article.article.Article.set_pos_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article.set_pos_info()</span></code></a> methods and
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.io.to_meta" title="core_utils.ctlr.article.io.to_meta"><code class="xref py py-func docutils literal notranslate"><span class="pre">core_utils.ctlr.article.io.to_meta()</span></code></a>,
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.io.from_meta" title="core_utils.ctlr.article.io.from_meta"><code class="xref py py-func docutils literal notranslate"><span class="pre">core_utils.ctlr.article.io.from_meta()</span></code></a> functions.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>You have to create <code class="docutils literal notranslate"><span class="pre">EmptyFileError</span></code> exception class and to
+raise it when an article file is empty.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Make sure that resulting meta files are valid: they must
+contain no more than one dictionary-like object.</p>
+</div>
+<p>For visualization, you need to use <code class="xref py py-func docutils literal notranslate"><span class="pre">core_utils.ctlr.visualizer.visualize()</span></code>
+function.</p>
+<p>Sample usage:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">visualize</span><span class="p">(</span><span class="n">article</span><span class="o">=</span><span class="n">article</span><span class="p">,</span> <span class="n">path_to_save</span><span class="o">=</span><span class="n">ASSETS_PATH</span> <span class="o">/</span> <span class="s1">&#39;1_image.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="stage-6-extract-syntactic-patterns-using-graphs">
+<h3>Stage 6. Extract syntactic patterns using graphs<a class="headerlink" href="#stage-6-extract-syntactic-patterns-using-graphs" title="Link to this heading"></a></h3>
+<p>For a mark higher than 8, you are required to be able to perform
+searching for a certain pattern using
+information from <code class="docutils literal notranslate"><span class="pre">.conllu</span></code> files and the functionality of <code class="docutils literal notranslate"><span class="pre">networkx</span></code> library.</p>
+<p>See examples for a better understanding: <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_raw.txt">Raw text</a> - <a class="reference external" href="https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/tests/test_files/1_meta.json">Desired output</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To learn more about the <code class="docutils literal notranslate"><span class="pre">networkx</span></code>,
+inspect <a class="reference external" href="https://networkx.org/documentation/stable/">the official documentation of the library</a>.</p>
+</div>
+<section id="stage-6-1-introduce-patternsearchpipeline-abstraction">
+<h4>Stage 6.1. Introduce <code class="docutils literal notranslate"><span class="pre">PatternSearchPipeline</span></code> abstraction<a class="headerlink" href="#stage-6-1-introduce-patternsearchpipeline-abstraction" title="Link to this heading"></a></h4>
+<p>Now we are going to work with
+the <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline</span></code> class.
+During instantiation it must accept an instance of <code class="docutils literal notranslate"><span class="pre">CorpusManager</span></code>,
+instance of <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code> and tuple of POS tags
+for required syntactic pattern.</p>
+<p>In this laboratory work we are interested in exploring
+verb control noun with preposition models, that is why there would be
+the following instantiation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corpus_manager</span> <span class="o">=</span> <span class="n">CorpusManager</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">stanza_analyzer</span> <span class="o">=</span> <span class="n">StanzaAnalyzer</span><span class="p">()</span>
+<span class="n">visualizer</span> <span class="o">=</span> <span class="n">PatternSearchPipeline</span><span class="p">(</span><span class="n">corpus_manager</span><span class="p">,</span> <span class="n">stanza_analyzer</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;VERB&quot;</span><span class="p">,</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span> <span class="s2">&quot;ADP&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>During instantiation, provided instances of <code class="docutils literal notranslate"><span class="pre">CorpusManager</span></code> and <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code>
+are stored in the <code class="docutils literal notranslate"><span class="pre">self._corpus</span></code>, <code class="docutils literal notranslate"><span class="pre">self._analyzer</span></code> attributes.
+A tuple of POS tags is stored in the <code class="docutils literal notranslate"><span class="pre">self._node_labels</span></code> attribute.</p>
+</section>
+<section id="stage-6-1-make-syntactic-graphs-via-patternsearchpipeline-abstraction">
+<h4>Stage 6.1. Make syntactic graphs via <code class="docutils literal notranslate"><span class="pre">PatternSearchPipeline</span></code> abstraction<a class="headerlink" href="#stage-6-1-make-syntactic-graphs-via-patternsearchpipeline-abstraction" title="Link to this heading"></a></h4>
+<p>In this laboratory work we are going to search for patterns
+using graphs of syntactic dependencies. This approach facilitates effortless
+scaling of pattern sizes, enabling the discovery of syntactic patterns
+of varying lengths and widths.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The idea of the graph of syntactic dependencies is based on the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Dependency_grammar">Dependency grammar</a>.
+It represents the structure of a sentence in the form of a hierarchy of components
+between which dependency relationships are established.
+Thus, sentence structure is considered in terms of
+vertices (roots) and dependents (children).</p>
+</div>
+<p>Before looking for a patterns, we have to create syntactic graph
+of each sentence in the article which we will subsequently search for.</p>
+<p>Example of the graph for the sentence: Я учусь в университете.</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="sentence graph sample" src="../../../../_images/sample_sentence_graph.png" />
+</figure>
+</div></blockquote>
+<p>In order to make a graph of syntactic dependencies for each sentence in the article,
+you are required to implement a
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs()</span></code> method.</p>
+<p>The method accepts
+one instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.CoNLLUDocument</span></code> as an argument.
+It is presumed that the given document object
+contains information from <code class="docutils literal notranslate"><span class="pre">conllu</span></code> file
+which was obtained using
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.LibraryWrapper.from_conllu()</span></code> method.</p>
+<p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs()</span></code> method
+iterates through each sentence in the article and creates nodes and edges for the words
+in the sentence. Pass <code class="docutils literal notranslate"><span class="pre">upos</span></code> as <code class="docutils literal notranslate"><span class="pre">label</span></code> argument when creating node and
+<code class="docutils literal notranslate"><span class="pre">deprel</span></code> as a <code class="docutils literal notranslate"><span class="pre">label</span></code> argument when creating edge.
+Edges should connect this word with its parent using dependency relation.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To make a graph it is mandatory to use an instance of
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/digraph.html">DiGraph</a> class.</p>
+</div>
+</section>
+<section id="stage-6-2-find-syntactic-patterns-via-patternsearchpipeline-abstraction">
+<h4>Stage 6.2. Find syntactic patterns via <code class="docutils literal notranslate"><span class="pre">PatternSearchPipeline</span></code> abstraction<a class="headerlink" href="#stage-6-2-find-syntactic-patterns-via-patternsearchpipeline-abstraction" title="Link to this heading"></a></h4>
+<p>After creating graphs of syntactic dependencies for each sentence in the article,
+we are ready to search for the required pattern in it.</p>
+<p>The key idea is the following: we have the dependency graph of our sentence
+and we want to make an ideal graph for our pattern.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your implementation on creating an ideal graph
+should be scalable, which means that it is not tied
+to a specific syntactic pattern.</p>
+</div>
+<p>Example of the ideal graph for our syntactic pattern:</p>
+<blockquote>
+<div><figure class="align-default">
+<img alt="ideal graph sample" src="../../../../_images/sample_ideal_graph.png" />
+</figure>
+</div></blockquote>
+<p>After that, we are searching for the subgraphs in our graph
+which are isomorphic to the ideal graph which represents our syntactic pattern.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Isomorphic graphs are graphs that have the same structure,
+meaning they have the same number of vertices (points) and edges (connections between points),
+and these connections are arranged in the same way.
+The simple example is two different maps of the same city
+that show the same streets and intersections but might label them differently.</p>
+</div>
+<p>After we have found all isomorphic graphs, we instantiate the <a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/isomorphism.vf2.html#graph-matcher">GraphMatcher</a>
+class. During instantiation it takes an isomorphic ideal graph and subgraph
+and an anonymous function to fill the <code class="docutils literal notranslate"><span class="pre">node_match</span></code> argument with the logic
+of comparing labels of these graphs. This way we can find all subgraphs which
+match with required POS tags of the syntactic pattern.</p>
+<p>However, it is not everything. Graphs are just a convenient way to
+search for a certain pattern. If we want to further analyze information
+about the received patterns or calculate some statistics we need to use
+a more traditional way of storing information.</p>
+<p>For these aims there are
+<code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.TreeNode</span></code> class.
+It stores information about the node of the tree.
+You have to instantiate it with the POS tag,
+text and list of dependent children of your node.</p>
+<p>To add all children to this list you have to implement a
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline._add_children()</span></code> method.
+It accepts the current graph - an instance of
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/digraph.html">DiGraph</a> class,
+a dictionary with matched subgraphs, ID of the root node and
+root node of the matched subgraph. It iterates through the available
+children of the accepted root node, instantiates
+<code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.TreeNode</span></code> class
+and appends information about the new children into root node.</p>
+<p>The method works recursively: until all the children of the current root node
+will not be found.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recursion is a method where a function calls itself to solve a problem.
+It’s like a loop that repeats an action, but instead of using a traditional loop structure,
+the function keeps calling itself with a modified parameter
+until it reaches a condition that tells it to stop,
+known as the base case.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A classic example of recursion is calculating the factorial of a number</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_factorial</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># Base case</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">number</span> <span class="o">*</span> <span class="n">calculate_factorial</span><span class="p">(</span><span class="n">number</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Recursive case</span>
+</pre></div>
+</div>
+<p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline._find_pattern()</span></code> method
+returns a dictionary which as keys contains the indexes of sentences
+where the required pattern was found,
+and as values a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">core_utils.ctlr.pipeline.TreeNode</span></code> class instances
+with information about the pattern matches.</p>
+</section>
+<section id="stage-6-3-implement-core-logic-of-patternsearchpipeline">
+<h4>Stage 6.3. Implement core logic of <code class="docutils literal notranslate"><span class="pre">PatternSearchPipeline</span></code><a class="headerlink" href="#stage-6-3-implement-core-logic-of-patternsearchpipeline" title="Link to this heading"></a></h4>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Stages 0-6.3</strong> are required to get the <strong>mark 10</strong>.</p>
+</div>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline</span></code>
+is executed with the same interface method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline.run()</span></code>
+that you need to implement.</p>
+<p>Once executed,
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline.run()</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Iterates through the available articles taken from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager</span></code>.</p></li>
+<li><p>Retrieves UD information for each article via <code class="docutils literal notranslate"><span class="pre">StanzaAnalyzer</span></code> interface
+(notice only <code class="docutils literal notranslate"><span class="pre">N_stanza_conllu.conllu</span></code> files can be used).</p></li>
+<li><p>Makes graphs of syntactic dependencies for each article via protected method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs()</span></code>.</p></li>
+<li><p>Searches for the required pattern for each article via protected method
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.PatternSearchPipeline._find_pattern()</span></code>.</p></li>
+<li><p>Writes them to the meta file via <code class="docutils literal notranslate"><span class="pre">Article</span></code> instance interface.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is mandatory to get articles with the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_6_pipeline.pipeline.CorpusManager.get_articles()</span></code> method.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is mandatory to use <a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article.get_file_path" title="core_utils.ctlr.article.article.Article.get_file_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article.get_file_path()</span></code></a>,
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.article.Article.set_pos_info" title="core_utils.ctlr.article.article.Article.set_pos_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_utils.ctlr.article.article.Article.set_pos_info()</span></code></a> method and
+<a class="reference internal" href="../../../useful_docs/ctlr_docs/article.api.html#core_utils.ctlr.article.io.to_meta" title="core_utils.ctlr.article.io.to_meta"><code class="xref py py-func docutils literal notranslate"><span class="pre">core_utils.ctlr.article.io.to_meta()</span></code></a> function.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Make sure that resulting meta files are valid: they must
+contain no more than one dictionary-like object.</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_5_scrapper/lab_5.api.html" class="btn btn-neutral float-left" title="lab_5_scrapper package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_6.api.html" class="btn btn-neutral float-right" title="lab_6_pipeline package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

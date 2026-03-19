@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Запуск Python программ в терминале &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Часто задаваемые вопросы" href="FAQ.html" />
+    <link rel="prev" title="Запуск тестов: локально и в CI" href="tests.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Полезные Материалы</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Полезные материалы для курсов на русском языке</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="starting_guide_ru.html">Подготовка к прохождению курса</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fork_update.html">Обновление форка</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html">Запуск тестов: локально и в CI</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Запуск Python программ в терминале</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html">Часто задаваемые вопросы</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ctlr_docs/index.html">Useful Materials for Technical Track of Computer Tools for Linguistic Research</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2023/index.html">Курс “Программирование для лингвистов” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2024/index.html">Курс “Программирование для лингвистов” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../labs_2025/index.html">Курс “Программирование для лингвистов” (2025/2026)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2023/index.html">Technical Track of Computer Tools for Linguistic Research (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ctlr_2024/index.html">Technical Track of Computer Tools for Linguistic Research (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2023/index.html">Курс “Информационный поиск и извлечение данных” (2023/2024)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2024/index.html">Курс “Информационный поиск и извлечение данных” (2024/2025)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../llm_2025/index.html">Курс “Информационный поиск и извлечение данных” (2025/2026)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Полезные Материалы</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Полезные материалы для курсов на русском языке</a></li>
+      <li class="breadcrumb-item active">Запуск Python программ в терминале</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/useful_docs/general_docs/run_in_terminal_ru.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <nav class="contents" id="id1" role="doc-toc">
+<span id="run-in-terminal-ru-label"></span><p class="topic-title">Содержание:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#python" id="id4">Запуск Python программ в терминале</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id5">Запуск простой программы без зависимостей</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id6">Запуск программ с пользовательскими модулями</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="python">
+<h1><a class="toc-backref" href="#id4" role="doc-backlink">Запуск Python программ в терминале</a><a class="headerlink" href="#python" title="Link to this heading"></a></h1>
+<p>Это короткая инструкция по запуску Python программ в терминале (Unix)
+или <code class="docutils literal notranslate"><span class="pre">cmd</span></code> (Windows).</p>
+<section id="id2">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Запуск простой программы без зависимостей</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>Пусть у Вас есть некий Python файл <code class="docutils literal notranslate"><span class="pre">script.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Чтобы запустить программу, необходимо открыть терминал
+(Windows: <code class="docutils literal notranslate"><span class="pre">Powershell</span></code>, macOS: <code class="docutils literal notranslate"><span class="pre">Terminal</span></code>).</p>
+<p>Далее потребуется создать виртуальное окружение
+с помощью команды <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">venv</span></code> и активировать его:</p>
+<ol class="arabic simple">
+<li><p>Для Windows: <code class="docutils literal notranslate"><span class="pre">.\venv\Scripts\activate</span></code>.</p></li>
+<li><p>Для macOS: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv\bin\activate</span></code>.</p></li>
+</ol>
+<p>Если на любом из этапов <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> выводит ошибку, связанную с
+отсутствием прав, Вам понадобится изменить политику выполнения.
+Выполните следующие два шага:</p>
+<ol class="arabic simple">
+<li><p>Запустите <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> через опцию “Запуск от имени администратора”.</p></li>
+<li><p>Разрешить запуск скриптов:</p></li>
+</ol>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>set-executionpolicy remotesigned
+</pre></div>
+</div>
+<p>3. Для вопроса “Вы хотите изменить политику выполнения?” введите
+<strong>A</strong> и нажмите <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p>
+<p>Если у Вас возникнут любые другие проблемы во время активации окружения,
+попросите о помощи в чате курса.</p>
+<p>После успешной активации в начале строки появится метка <code class="docutils literal notranslate"><span class="pre">(venv)</span></code>.</p>
+<p>Теперь можно запустить программу через команду <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">script.py</span></code>
+и получить вывод <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">world!</span></code>.</p>
+<p>Данная команда будет работать без проблем, если её запуск происходит из той
+же папки, где находится <code class="docutils literal notranslate"><span class="pre">script.py</span></code>. Чтобы перейти в нужную папку,
+используйте комманду <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">&quot;path_to_directory&quot;</span></code> (в кавычках укажите нужный путь).
+Также можно вызвать <code class="docutils literal notranslate"><span class="pre">.py</span></code> файл, используя полный путь до этого файла.
+Например:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span><span class="s2">&quot;full_path_to_directory_with_script/script.py&quot;</span>
+</pre></div>
+</div>
+<p>Если <code class="docutils literal notranslate"><span class="pre">python</span></code> не опознан как имя командлета, Вам понадобится установить Python.
+Инструкцию по установке можно найти в <a class="reference external" href="https://fipl-hse.github.io/docs/useful_docs/general_docs/starting_guide_ru.html">инструкции по подготовке к прохождению курса</a>.</p>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Запуск программ с пользовательскими модулями</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>Попробуем запустить файл <code class="docutils literal notranslate"><span class="pre">start.py</span></code> для лабораторной работы.
+Для этого выполним следующие шаги:</p>
+<ol class="arabic simple">
+<li><p>Перейти в папку проекта
+<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">C:\Users\user\Documents\20XX-2-level-labs</span></code>.</p></li>
+<li><p>Запустить нужный файл через относительный путь <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">lab_N_lab_name/start.py</span></code>.</p></li>
+</ol>
+<p>При запуске терминал выводит ошибку:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="o">)</span>:
+<span class="w">   </span>File<span class="w"> </span>....,<span class="w"> </span>line<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">      </span>from<span class="w"> </span>lab_N_lab_name.main<span class="w"> </span>import<span class="w"> </span>lab_function
+ModuleNotFoundError:<span class="w"> </span>No<span class="w"> </span>module<span class="w"> </span>named<span class="w"> </span><span class="s1">&#39;lab_N_lab_name&#39;</span>
+</pre></div>
+</div>
+<p>Почему же? Когда мы запускаем данный файл в среде разработки, всё работает без проблем!
+Что не так с терминалом? Папка <code class="docutils literal notranslate"><span class="pre">lab_N_lab_name</span></code> никуда не исчезла,
+она всё ещё находится в нашей текущей папке.</p>
+<p>Ответ на эти вопросы более замысловатый. Нам нужно понимать, как Python
+импортирует модули и библиотеки. Чтобы использовать скачанные библиотеки
+и импортированные модули, Python требуется знать положение их файлов.
+По умолчанию, Python знает несколько базовых мест, где хранятся эти файлы
+на компьютере.</p>
+<p>Их можно увидеть при выполнении команды <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">&quot;import</span> <span class="pre">sys;print(sys.path)&quot;</span></code>.
+Среди них будут только стандартные папки, в которых Python будет пытаться искать
+библиотеки:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[
+    &#39;/Users/alexanderdemidovskij/.pyenv/versions/3.10.8/lib/python310.zip&#39;,
+    &#39;/Users/alexanderdemidovskij/.pyenv/versions/3.10.8/lib/python3.10&#39;,
+    &#39;/Users/alexanderdemidovskij/.pyenv/versions/3.10.8/lib/python3.10/lib-dynload&#39;,
+    &#39;/Users/alexanderdemidovskij/Documents/hse/2022-2-level-ctlr/venv/lib/python3.10/site-packages&#39;
+]
+</pre></div>
+</div>
+<p>Поэтому, если модуль, который мы пытаемся импортировать, не находится
+в подпапках этих путей, Python выдаст ошибку.</p>
+<p>Чтобы решить эту проблему, Вам понадобится эксплицитно добавить путь
+до Ваших пользовательских зависимостей в этот список стандартных путей.</p>
+<p>Рекомендуется добавить их в системную переменную <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> через терминал:</p>
+<ol class="arabic simple">
+<li><p>Для Windows: <code class="docutils literal notranslate"><span class="pre">$env:PYTHONPATH</span> <span class="pre">=</span> <span class="pre">&quot;$pwd;&quot;</span> <span class="pre">+</span> <span class="pre">$env:PYTHONPATH</span></code>.</p></li>
+<li><p>Для macOS: <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PYTHONPATH=$pwd:$PYTHONPATH</span></code>.</p></li>
+</ol>
+<p>Переменная <code class="docutils literal notranslate"><span class="pre">pwd</span></code> возвращает путь до текущей рабочей папки (в которой Вы
+находитесь на момент работы с терминалом).</p>
+<p>Теперь попробуйте запустить программу снова через <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">lab_N_lab_name/start.py</span></code>.</p>
+<p>Если всё работает корректно, поздравляем! У Вас есть шанс получить самую высокую
+оценку за лабораторную работу. Если нет, попросите о помощи в чате курса.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tests.html" class="btn btn-neutral float-left" title="Запуск тестов: локально и в CI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="FAQ.html" class="btn btn-neutral float-right" title="Часто задаваемые вопросы" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
