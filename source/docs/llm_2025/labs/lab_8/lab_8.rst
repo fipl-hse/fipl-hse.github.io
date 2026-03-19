@@ -9,8 +9,8 @@ Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models
     :caption: Full API
 
     lab_8.api.rst
-    core_utils.api.rst
-    lab_settings.api.rst
+    ../core_utils/llm/core_utils_sft.api.rst
+    ../core_utils/project/core_utils_project.api.rst
 
 
 Implementation tactics

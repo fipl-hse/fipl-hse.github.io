@@ -1,10 +1,11 @@
-lab\_settings package
-=====================
+core\_utils\_sft package
+===================
 
 Submodules
 ----------
 
-.. automodule:: core_utils.project.lab_settings
+
+.. automodule:: core_utils.llm.sft_pipeline
    :members:
    :undoc-members:
    :show-inheritance:
