@@ -8,8 +8,9 @@ Laboratory work №7. Large Language Models no. 1
     :titlesonly:
     :caption: Full API
 
-    lab_7.api.rst
-    core_utils.api.rst
+    lab_7_llm.api.rst
+    ../core_utils/llm/core_utils_llm.api.rst
+    ../core_utils/project/core_utils_project.api.rst
 
 **Python competencies required to complete this tutorial:**
     * working with Transformers models;
@@ -372,7 +373,7 @@ See the intended instantiation:
 
 .. code:: py
 
-    dataset = TaskDataset(preprocessor.data.iloc[:100])
+    dataset = TaskDataset(preprocessor.data.iloc[: 100])
 
 where ``preprocessor.data`` is the property of the ``RawDataPreprocessor`` class.
 
@@ -649,7 +650,7 @@ Stage 6.1. Initialize core application
 Let's start implementing the service with initialisation
 all needed instances for a pipeline and web-service.
 To do this, implement
-:py:meth:`lab_7_llm.service.init_application` method.
+:py:func:`lab_7_llm.service.init_application` method.
 
 .. important:: Remember, you have to implement your service using
               ``FastAPI`` web framework.
@@ -695,16 +696,16 @@ so that the query can be correctly processed.
 
 So, an example of start page might look like this:
 
-.. image:: ../../_static/site.png
+.. image:: _static/site.png
 
 And now we are ready to implement
-:py:meth:`lab_7_llm.service.root` method
+:py:func:`lab_7_llm.service.root` method
 which allows to create a root endpoint of the service.
 The method should return an HTML page using ``TemplateResponse``
 which renders an HTML page based on a specific template and passed data.
 Before that you need to create a template using
 ``Jinja2Templates`` with ``assets`` directory and
-call :py:meth:`lab_7_llm.service.init_application` method.
+call :py:func:`lab_7_llm.service.init_application` method.
 
 .. note:: Use ``@app.get("/")``
           decorator to create a route for the root URL.
@@ -716,7 +717,7 @@ When a user clicks the button on the start page,
 a POST request must be initiated to the main endpoint
 which is responsible for processing the data using LLM pipeline.
 
-Implement :py:meth:`lab_7_llm.service.infer` method
+Implement :py:func:`lab_7_llm.service.infer` method
 which allows to create a main endpoint for model call.
 
 To make a query in an ``entry field`` you need to implement
