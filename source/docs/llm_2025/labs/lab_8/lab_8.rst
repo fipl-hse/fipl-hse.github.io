@@ -1,4 +1,4 @@
-.. _lab-8-label:
+.. _lab-8-sft:
 
 Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models
 ======================================================================
@@ -8,7 +8,7 @@ Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models
     :titlesonly:
     :caption: Full API
 
-    lab_8.api.rst
+    lab_8_sft.api.rst
     ../core_utils/llm/core_utils_sft.api.rst
     ../core_utils/project/core_utils_project.api.rst
 
