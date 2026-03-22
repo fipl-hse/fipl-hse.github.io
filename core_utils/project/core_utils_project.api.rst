@@ -1,5 +1,5 @@
-lab\_settings package
-=====================
+core\_utils\_project package
+============================
 
 Submodules
 ----------

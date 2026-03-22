@@ -9,8 +9,7 @@ Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models
     :caption: Full API
 
     lab_8.api.rst
-    core_utils.api.rst
-    lab_settings.api.rst
+    ../core_utils/llm/core_utils_sft.api.rst
 
 
 Implementation tactics
@@ -96,12 +95,12 @@ LoRA-based fine-tuning to adapt LLMs for specific tasks while optimizing for eff
 Stage 1. Infer one sample from dataset and demonstrate the result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important:: **Stages 1 - 4.3** from :ref:`lab_7_llm/README` are required to get the mark **4**.
+.. important:: **Stages 1 - 4.3** from :ref:`lab-7-llm` are required to get the mark **4**.
 
 Stage 2. Inference of model and demonstrate the result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important:: **Stages 4.4 - 5.2** from :ref:`lab_7_llm/README` are required to get the mark **6**.
+.. important:: **Stages 4.4 - 5.2** from :ref:`lab-7-llm` are required to get the mark **6**.
 
 Stage 3. Tokenize one sample from dataset
 """""""""""""""""""""""""""""""""""""""""
@@ -311,7 +310,7 @@ Stage 6. Implement model as a service and demonstrate the result
 
 An example of start page might look like this:
 
-.. image:: ../../_static/site.png
+.. image:: _static/site.png
 
 .. important:: You need to add a checkbox that is responsible
                for which model's result will be output as an answer. If the

@@ -1,5 +1,5 @@
-lab\_7_llm package
-==================
+lab\_7\_llm package
+===================
 
 Submodules
 ----------

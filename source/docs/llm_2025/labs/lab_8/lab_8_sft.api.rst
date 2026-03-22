@@ -1,5 +1,5 @@
-lab\_8 package
-==============
+lab\_8\_sft package
+===================
 
 Submodules
 ----------
