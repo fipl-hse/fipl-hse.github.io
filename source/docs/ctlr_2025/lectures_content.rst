@@ -1,4 +1,4 @@
-.. _ctlr-lectures-label:
+.. _ctlr-lectures-label-2025:
 
 Short summary of lectures
 =========================

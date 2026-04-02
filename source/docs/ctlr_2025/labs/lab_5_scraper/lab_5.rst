@@ -47,7 +47,7 @@ Expected result:
 
 .. code:: text
 
-   +-- 2024-2-level-ctlr
+   +-- 2025-2-level-ctlr
        +-- tmp
            +-- articles
                +-- 1_raw.txt     <- the paper with the ID as the name

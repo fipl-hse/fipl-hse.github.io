@@ -39,13 +39,13 @@ Module with constants
 
 ``constants.py`` module defines the following constant values:
 
--  ``PROJECT_ROOT``: a path to ``2024-2-level-ctlr`` folder,
+-  ``PROJECT_ROOT``: a path to ``202X-2-level-ctlr`` folder,
    which the root of the current project;
--  ``ASSETS_PATH``: a path to ``2024-2-level-ctlr/tmp/article`` folder,
+-  ``ASSETS_PATH``: a path to ``202X-2-level-ctlr/tmp/article`` folder,
    where all the collected articles must be stored;
 -  ``CRAWLER_CONFIG_PATH``: a path to ``lab_5_scraper/scraper_config.json``
    file with configuration parameters for scraper;
--  ``PROJECT_CONFIG_PATH``: a path to ``2024-2-level-ctlr`` folder
+-  ``PROJECT_CONFIG_PATH``: a path to ``202X-2-level-ctlr`` folder
    configuration file (*this is an admin utils related item and
    is not intended for you to interact with it*);
 -  ``NUM_ARTICLES_UPPER_LIMIT``: a maximum number for articles to be

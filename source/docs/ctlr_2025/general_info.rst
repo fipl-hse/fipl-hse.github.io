@@ -6,7 +6,8 @@ data from external WWW resources and processing it for future linguistic
 research. The idea is to automatically obtain a dataset that has a
 certain structure and appropriate content, perform morphological
 analysis using various natural language processing (NLP) libraries.
-:ref:`dataset-label`.
+Dataset requirements :ref:`dataset-label`.
+
 
 Instructors:
 ------------
@@ -22,18 +23,12 @@ Instructors:
    technical track practice lecturer
 
 
--  `Kashchikhin Andrei Nikolaevich <https://github.com/WhiteJaeger>`__ -
-   technical track expert
--  `Zharikov Egor Igorevich <https://t.me/godb0i>`__ - technical track senior
-    assistant
--  `Nurtdinova Sofia Alekseevna <https://t.me/sunrielly>`__ - technical track
-   assistant
--  `Podpryatova Anna Sergeevna <https://t.me/anpruch>`__ - technical track
-   assistant
+-  `Zharikov Egor Igorevich <https://t.me/godb0i>`__ - technical track assistant
+-  `Nurtdinova Sofia Alekseevna <https://t.me/sunrielly>`__ - technical track assistant
+-  `Podpryatova Anna Sergeevna <https://t.me/anpruch>`__ - technical track assistant
 -  `Klimov Andrey Petrovich <https://t.me/hollow_shelves_quiet_hell>`__ -
    technical track assistant
--  `Evgrafova Anna Sergeevna <https://t.me/evgraff_19>`__ - technical
-   track assistant
+-  `Evgrafova Anna Sergeevna <https://t.me/evgraff_19>`__ - technical track assistant
 
 
 Project Timeline
@@ -44,7 +39,7 @@ Project Timeline
    1. Short summary: Your code can automatically parse a media website
       you are going to choose, save texts and its metadata in a proper
       format.
-   2. Deadline: **TBD**.
+   2. Deadline: **May, 11**.
    3. Format: each student works in their own PR.
    4. Dataset volume: 5-7 articles.
    5. Design document: :ref:`scraper-label`.
@@ -66,13 +61,13 @@ Lectures history
 +------------+---------------------+--------------------------------------------------------------+
 | Date       | Lecture topic       | Important links                                              |
 +============+=====================+==============================================================+
-| 06.04.2024 | Seminar: Local      | N/A                                                          |
+| 06.04.2025 | Seminar: Local      | N/A                                                          |
 |            | setup. Choose       |                                                              |
 |            | website.            |                                                              |
 +------------+---------------------+--------------------------------------------------------------+
 
 
-You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
+You can find a more complete summary from lectures in :ref:`ctlr-lectures-label-2025`.
 
 Technical solution
 ------------------
@@ -166,8 +161,8 @@ are satisfied:**
 Resources
 ---------
 
-1. `Academic performance
-2. `Media websites list
+1. `Academic performance <https://docs.google.com/spreadsheets/d/1wCyGfGEXwjnB0p8WMbSCMJlmpxeQfG07QMGDnfiYFhI/>`__
+2. `Media websites list <https://docs.google.com/spreadsheets/d/1rKtvIpzmUFmXL5NVUEVfsmuLc4AWhzmOOQ0xPgBulsI/edit?gid=0#gid=0>`__
 3. `Python programming course from previous semester
    <https://github.com/fipl-hse/2025-2-level-labs>`__
 4. `Scraping tutorials (Russian) <https://youtu.be/7hn1_t2ZtJQ>`__
