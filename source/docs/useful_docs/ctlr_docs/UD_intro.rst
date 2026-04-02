@@ -99,7 +99,7 @@ In our work, we will be using pre-downloaded UDPipe model based on
 `SynTagRus
 treebank <https://universaldependencies.org/treebanks/ru_syntagrus/index.html>`__.
 You can find it in the releases
-`here <https://github.com/fipl-hse/2024-2-level-ctlr-admin/releases/tag/v1.0.0>`__.
+`here <https://github.com/fipl-hse/202-2-level-ctlr-admin/releases/tag/v1.0.0>`__.
 
 Python frameworks
 -----------------

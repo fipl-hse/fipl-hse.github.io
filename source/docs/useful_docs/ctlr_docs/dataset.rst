@@ -15,7 +15,7 @@ Structure
 
 .. code:: text
 
-   +-- 2024-2-level-ctlr
+   +-- 202X-2-level-ctlr
        +-- tmp
            +-- articles
                +-- articles
@@ -90,9 +90,9 @@ The files contain the following information about the tags: ``ID``,
 
 .. attention:: Read more about the structure of such files
                in :ref:`ud-format-label` and look at the example files
-               for `UDPipe model <https://github.com/fipl-hse/2024-2-level-ctlr/
+               for `UDPipe model <https://github.com/fipl-hse/2025-2-level-ctlr/
                blob/main/lab_6_pipeline/tests/test_files/reference_score_six_test.conllu>`__
-               and `Stanza model <https://github.com/fipl-hse/2024-2-level-ctlr/
+               and `Stanza model <https://github.com/fipl-hse/2025-2-level-ctlr/
                blob/main/lab_6_pipeline/tests/test_files/reference_score_eight_test.conllu>`__.
 
 Meta information
