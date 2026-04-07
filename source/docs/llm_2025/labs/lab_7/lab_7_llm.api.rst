@@ -1,12 +1,16 @@
-lab\_settings package
-=====================
+lab\_7\_llm package
+===================
 
 Submodules
 ----------
 
-.. automodule:: core_utils.project.lab_settings
+.. automodule:: lab_7_llm.main
    :members:
    :undoc-members:
    :show-inheritance:
    :private-members:
    :special-members: __init__, __str__, __len__, __getitem__, __iter__
+
+.. automodule:: lab_7_llm.service
+   :members:
+   :undoc-members:

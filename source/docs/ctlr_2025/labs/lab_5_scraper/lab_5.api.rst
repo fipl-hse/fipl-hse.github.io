@@ -1,11 +1,10 @@
-core\_utils package
-===================
+lab\_5\_scraper package
+========================
 
 Submodules
 ----------
 
-
-.. automodule:: core_utils.llm.sft_pipeline
+.. automodule:: lab_5_scraper.scraper
    :members:
    :undoc-members:
    :show-inheritance:
