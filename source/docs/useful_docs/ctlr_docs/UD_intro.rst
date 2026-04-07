@@ -98,8 +98,7 @@ the `official UD website <https://universaldependencies.org/>`__.
 In our work, we will be using pre-downloaded UDPipe model based on
 `SynTagRus
 treebank <https://universaldependencies.org/treebanks/ru_syntagrus/index.html>`__.
-You can find it in the releases
-`here <https://github.com/fipl-hse/202-2-level-ctlr-admin/releases/tag/v1.0.0>`__.
+You can find it `here <https://github.com/fipl-hse/2025-2-level-ctlr/releases/tag/v1.0.0>`__.
 
 Python frameworks
 -----------------

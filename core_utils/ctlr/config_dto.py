@@ -1,4 +1,4 @@
-# pylint: disable=too-few-public-methods, disable=too-many-arguments
+# pylint: disable=too-few-public-methods, disable=too-many-arguments, disable=too-many-positional-arguments
 """
 ConfigDTO class implementation: stores the configuration information.
 """

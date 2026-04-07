@@ -101,10 +101,6 @@ Technical solution
 | //pypi.org/project    | analysis                  |              |         |
 | /spacy-udpipe/>`__    |                           |              |         |
 +-----------------------+---------------------------+--------------+---------+
-| `stanza <https://p    | module for morphological  | pipeline     | 8       |
-| ypi.org/project       | analysis                  |              |         |
-| /stanza/>`__          |                           |              |         |
-+-----------------------+---------------------------+--------------+---------+
 | `networkx <https:/    | working with graphs       | pipeline     | 10      |
 | /pypi.org/project     |                           |              |         |
 | /networkx/>`__        |                           |              |         |
