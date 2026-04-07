@@ -123,8 +123,8 @@ with code from the Technical Track: ``admin_utils/final_project/checker.py``
 
 You can also use it to check the `.conllu` file locally.
 
-Note that this script can be run from Integrated Development Environment
-terminal or PowerShell from a root of the project, like this:
+Note that this script can be run from PyCharm terminal or PowerShell
+from a root of the project, like this:
 
 .. code-block:: bash
 
