@@ -8,7 +8,7 @@ Laboratory work №5. Retrieve raw data from World Wide Web
     :titlesonly:
     :caption: Full API
 
-    lab_5.api.rst
+    lab_5_scraper.api.rst
 
 Python competencies required to complete this tutorial:
 
@@ -223,8 +223,8 @@ See the intended instantiation:
    configuration = Config(path_to_config=CRAWLER_CONFIG_PATH)
 
 where ``CRAWLER_CONFIG_PATH`` is the path to the config of the crawler.
-It is mandatory to initialize :py:class:`lab_5_scraper.scraper.Config`
-class instance with passing a global variable ``CRAWLER_CONFIG_PATH``
+It is mandatory to initialize :py:class:`lab_5_scraper.scraper.Config` class
+instance with passing a global variable ``CRAWLER_CONFIG_PATH``
 that should be properly imported from the ``core_utils/constants.py`` module.
 
 Stage 1.3. Extract configuration data
@@ -372,11 +372,9 @@ extract article URLs from it. As a result, the internal attribute
 must call another method of Crawler:
 :py:meth:`lab_5_scraper.scraper.Crawler._extract_url`.
 This method is responsible for retrieving a URL from
-HTML of the page. Make sure that
-:py:meth:`lab_5_scraper.scraper.Crawler.find_articles`
+HTML of the page. Make sure that :py:meth:`lab_5_scraper.scraper.Crawler.find_articles`
 only iterates over seed URLs and stores newly collected ones, while all the extraction is
-performed via protected
-:py:meth:`lab_5_scraper.scraper.Crawler._extract_url` method.
+performed via protected :py:meth:`lab_5_scraper.scraper.Crawler._extract_url` method.
 
 .. warning:: At this point, an approach for extracting articles URLs is
              different for each website.
@@ -585,8 +583,8 @@ Therefore, your **Stage 9** is about addressing some of these questions. In
 particular, you need to implement your crawler in a recursive manner:
 you provide a single seed url of your newspaper, and it visits every
 page of the website and collects *all* articles from the website. You
-need to make a child of :py:class:`lab_5_scraper.scraper.Crawler` class
-and name it :py:class:`lab_5_scraper.scraper.CrawlerRecursive`.
+need to make a child of :py:class:`lab_5_scraper.scraper.Crawler` class and name it
+:py:class:`lab_5_scraper.scraper.CrawlerRecursive`.
 Follow the interface of :py:class:`lab_5_scraper.scraper.Crawler`.
 
 A required addition is an ability to stop crawler at any time. When it
@@ -601,8 +599,7 @@ Stage 9.1. Introduce ``CrawlerRecursive`` abstraction
 
 :py:class:`lab_5_scraper.scraper.CrawlerRecursive` must inherit
 from :py:class:`lab_5_scraper.scraper.Crawler`.
-The initialization interface is the same as for
-:py:class:`lab_5_scraper.scraper.Crawler`.
+The initialization interface is the same as for :py:class:`lab_5_scraper.scraper.Crawler`.
 During initialization, make sure to create a ``self.start_url`` field:
 it is a single URL that will be used as a seed.
 Fill ``self.start_url`` with one of the seed URLs

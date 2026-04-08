@@ -20,21 +20,9 @@ class PipelineProtocol(Protocol):
         """
 
 
-class UDPipeDocument(Protocol):
+class CoNLLUDocument(Protocol):
     """
-    Utility class to mimic UDPipe Doc.
-    """
-
-
-class StanzaDocument(Protocol):
-    """
-    Utility class to mimic Stanza Document.
-    """
-
-
-class CoNLLUDocument(UDPipeDocument, StanzaDocument, Protocol):
-    """
-    Utility class to mimic analyzer document classes.
+    Utility class to mimic analyzer document class.
     """
 
 
@@ -74,18 +62,7 @@ class AbstractCoNLLUAnalyzer(Protocol):
     Mock definition of library-specific entity.
     """
 
-    def process(self, docs: list[StanzaDocument]) -> list[StanzaDocument]:
-        """
-        Process given document.
-
-        Args:
-            docs (list[StanzaDocument]): Collection of original documents.
-
-        Returns:
-            list[StanzaDocument]: Collection of resulting documents.
-        """
-
-    def __call__(self, text: str) -> UDPipeDocument:
+    def __call__(self, text: str) -> CoNLLUDocument:
         """
         Run analyzer as a function.
 
@@ -93,7 +70,7 @@ class AbstractCoNLLUAnalyzer(Protocol):
             text (str): Raw document content.
 
         Returns:
-            UDPipeDocument: Output document.
+            CoNLLUDocument: Output document.
         """
 
 

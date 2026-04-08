@@ -1,14 +1,14 @@
-# pylint: disable=too-many-arguments, too-many-instance-attributes, unused-import, undefined-variable
 """
 Crawler implementation.
 """
 
+# pylint: disable=too-many-arguments, too-many-instance-attributes, unused-import, undefined-variable, unused-argument
 import datetime
+import json
 import pathlib
-from typing import Pattern, Union
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from core_utils.ctlr.article.article import Article
 from core_utils.ctlr.config_dto import ConfigDTO
@@ -116,7 +116,7 @@ class Crawler:
     """
 
     #: Url pattern
-    url_pattern: Union[Pattern, str]
+    url_pattern: re.Pattern | str
 
     def __init__(self, config: Config) -> None:
         """
@@ -126,12 +126,12 @@ class Crawler:
             config (Config): Configuration
         """
 
-    def _extract_url(self, article_bs: BeautifulSoup) -> str:
+    def _extract_url(self, article_bs: Tag) -> str:
         """
         Find and retrieve url from HTML.
 
         Args:
-            article_bs (bs4.BeautifulSoup): BeautifulSoup instance
+            article_bs (bs4.Tag): Tag instance
 
         Returns:
             str: Url from HTML
@@ -151,25 +151,8 @@ class Crawler:
         """
 
 
-class CrawlerRecursive(Crawler):  # pragma: no cover
-    """
-    Recursive implementation.
-
-    Get one URL of the title page and find requested number of articles recursively.
-    """
-
-    def __init__(self, config: Config) -> None:
-        """
-        Initialize an instance of the CrawlerRecursive class.
-
-        Args:
-            config (Config): Configuration
-        """
-
-    def find_articles(self) -> None:
-        """
-        Find number of article urls requested.
-        """
+# 10
+# 4, 6, 8, 10
 
 
 class HTMLParser:
@@ -214,21 +197,21 @@ class HTMLParser:
             datetime.datetime: Datetime object
         """
 
-    def parse(self) -> Union[Article, bool, list]:
+    def parse(self) -> Article | bool:
         """
         Parse each article.
 
         Returns:
-            Union[Article, bool, list]: Article instance
+            Article | bool: Article instance, False in case of request error
         """
 
 
-def prepare_environment(base_path: Union[pathlib.Path, str]) -> None:
+def prepare_environment(base_path: pathlib.Path | str) -> None:
     """
     Create ASSETS_PATH folder if no created and remove existing folder.
 
     Args:
-        base_path (Union[pathlib.Path, str]): Path where articles stores
+        base_path (pathlib.Path | str): Path where articles stores
     """
 
 

@@ -41,40 +41,34 @@ After processing articles, you should save
 annotated data in a ``.conllu`` file.
 It has the following structure, where each field is responsible for:
 
-+-------------+-------------------------------------------------------------+--------------------+
-| Field       | Description                                                 | Library            |
-+=============+=============================================================+====================+
-| **ID**      | Word index, integer starting at 1                           | ``spacy_udpipe``,  |
-|             | for each new word in the sentence                           | ``stanza``         |
-+-------------+-------------------------------------------------------------+--------------------+
-| **FORM**    | Word form or punctuation symbol                             | ``spacy_udpipe``,  |
-|             |                                                             | ``stanza``         |
-+-------------+-------------------------------------------------------------+--------------------+
-| **LEMMA**   | Lemma or stem of word form                                  | ``spacy_udpipe``,  |
-|             |                                                             | ``stanza``         |
-+-------------+-------------------------------------------------------------+--------------------+
-| **UPOS**    | Universal POS tag                                           | ``spacy_udpipe``,  |
-|             |                                                             | ``stanza``         |
-+-------------+-------------------------------------------------------------+--------------------+
-| **XPOS**    | Language-specific POS tag                                   | ``spacy_udpipe``,  |
-|             |                                                             | ``stanza``         |
-+-------------+-------------------------------------------------------------+--------------------+
-| **FEATS**   | List of morphological features                              | ``spacy_udpipe``,  |
-|             | structured as                                               | ``stanza``         |
-|             | ``FeatureName=Value|FeatureName=Value|FeatureName=Value...``|                    |
-|             | as per UD format                                            |                    |
-+-------------+-------------------------------------------------------------+--------------------+
-| **HEAD**    | Head of the current word                                    | ``spacy_udpipe``,  |
-|             |                                                             | ``stanza``         |
-+-------------+-------------------------------------------------------------+--------------------+
-| **DEPREL**  | Universal dependency relation to the HEAD                   | ``spacy_udpipe``,  |
-|             |                                                             | ``stanza``         |
-+-------------+-------------------------------------------------------------+--------------------+
-| **DEPS**    | Enhanced dependency graph in the form of a list of          | ``spacy_udpipe``,  |
-|             | head-deprel pairs                                           | ``stanza``         |
-+-------------+-------------------------------------------------------------+--------------------+
-| **MISC**    | Any other annotation                                        | ``stanza``         |
-+-------------+-------------------------------------------------------------+--------------------+
++-------------+-------------------------------------------------------------+
+| Field       | Description                                                 |
++=============+=============================================================+
+| **ID**      | Word index, integer starting at 1                           |
+|             | for each new word in the sentence                           |
++-------------+-------------------------------------------------------------+
+| **FORM**    | Word form or punctuation symbol                             |
++-------------+-------------------------------------------------------------+
+| **LEMMA**   | Lemma or stem of word form                                  |
++-------------+-------------------------------------------------------------+
+| **UPOS**    | Universal POS tag                                           |
++-------------+-------------------------------------------------------------+
+| **XPOS**    | Language-specific POS tag                                   |
++-------------+-------------------------------------------------------------+
+| **FEATS**   | List of morphological features                              |
+|             | structured as                                               |
+|             | ``FeatureName=Value|FeatureName=Value|FeatureName=Value...``|
+|             | as per UD format                                            |
++-------------+-------------------------------------------------------------+
+| **HEAD**    | Head of the current word                                    |
++-------------+-------------------------------------------------------------+
+| **DEPREL**  | Universal dependency relation to the HEAD                   |
++-------------+-------------------------------------------------------------+
+| **DEPS**    | Enhanced dependency graph in the form of a list of          |
+|             | head-deprel pairs                                           |
++-------------+-------------------------------------------------------------+
+| **MISC**    | Any other annotation                                        |
++-------------+-------------------------------------------------------------+
 
 In addition, you must take into account that:
 
@@ -86,7 +80,7 @@ In addition, you must take into account that:
 Let’s explain the first line
 ``1	Красивая красивый ADJ _ Case=Nom|Degree=Pos|Gender=Fem|Number=Sing 3 amod _ _``
 from `Desired output <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/lab_6_pipeline/tests/
-test_files/reference_score_six_test.conllu>`__ for mark 6:
+test_files/reference_udpipe_test.conllu>`__ for mark 6:
 
 -  ``1`` - ID
 -  ``Красивая`` - text of the token

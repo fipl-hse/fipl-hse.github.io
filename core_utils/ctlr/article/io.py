@@ -5,7 +5,6 @@ I/O operations for Article.
 import json
 import pathlib
 from pathlib import Path
-from typing import Optional, Union
 
 from core_utils.ctlr.article.article import (
     Article,
@@ -26,13 +25,13 @@ def to_raw(article: Article) -> None:
         file.write(article.text)
 
 
-def from_raw(path: Union[pathlib.Path, str], article: Optional[Article] = None) -> Article:
+def from_raw(path: pathlib.Path | str, article: Article | None = None) -> Article:
     """
     Load raw text and create an Article with it.
 
     Args:
-        path (Union[pathlib.Path, str]): Path to article raw text
-        article (Optional[Article]): Article instance
+        path (pathlib.Path | str): Path to article raw text
+        article (Article | None, optional): Article instance. Defaults to None.
 
     Returns:
         Article: Article instance
@@ -71,13 +70,13 @@ def to_meta(article: Article) -> None:
         )
 
 
-def from_meta(path: Union[pathlib.Path, str], article: Optional[Article] = None) -> Article:
+def from_meta(path: pathlib.Path | str, article: Article | None = None) -> Article:
     """
     Load meta.json file into the Article abstraction.
 
     Args:
-        path (Union[pathlib.Path, str]): Path to meta info
-        article (Optional[Article]): Article instance
+        path (pathlib.Path | str): Path to meta info
+        article (Article | None, optional): Article instance. Defaults to None.
 
     Returns:
         Article: Article instance

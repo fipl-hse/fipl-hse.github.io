@@ -22,21 +22,18 @@ Structure
                    +-- 1_raw.txt <- the raw text of the article with the ID as the name
                    +-- 1_meta.json <- the meta-information of the article
                    +-- 1_cleaned.txt <- lowercased text with no punctuation
-                   +-- 1_udpipe_conllu.conllu <- processed text in the UD format (by UDPipe model)
-                   +-- 1_stanza_conllu.conllu <- processed text in the UD format (by Stanza model)
+                   +-- 1_udpipe.conllu <- processed text in the UD format (by UDPipe model)
                    +-- 1_image.png <- POS frequencies bar chart
                    +-- 2_raw.txt
                    +-- 2_meta.json
                    +-- 2_cleaned.txt
-                   +-- 2_udpipe_conllu.conllu
-                   +-- 2_stanza_conllu.conllu
+                   +-- 2_udpipe.conllu
                    +-- 2_image.png
                    +-- ...
                    +-- 100_raw.txt
                    +-- 100_meta.json
                    +-- 100_cleaned.txt
-                   +-- 100_udpipe_conllu.conllu
-                   +-- 100_stanza_conllu.conllu
+                   +-- 100_udpipe.conllu
                    +-- 100_image.png
 
 Raw texts
@@ -59,7 +56,6 @@ Ideally, the dataset consists of three processed texts examples:
 
 -  cleaned text
 -  morphological and syntactic annotation from UDPipe model
--  morphological and syntactic annotation from Stanza model
 
 Cleaned text
 ~~~~~~~~~~~~
@@ -76,12 +72,11 @@ Example:
 
    красивая мама красиво училась в пдд и жку по адресу львовская 10 лет с почтой test
 
-Morphological and syntactic annotation from UDPipe and Stanza models
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Morphological and syntactic annotation from UDPipe models
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Texts with morphological and syntactic annotation
-from UDPipe and Stanza models are stored in ``N_udpipe_conllu.conllu``
-and ``N_stanza_conllu.conllu`` files respectively
+from UDPipe models are stored in ``N_udpipe.conllu`` files
 where ``N`` corresponds to the index of the article.
 
 The files contain the following information about the tags: ``ID``,
@@ -91,9 +86,7 @@ The files contain the following information about the tags: ``ID``,
 .. attention:: Read more about the structure of such files
                in :ref:`ud-format-label` and look at the example files
                for `UDPipe model <https://github.com/fipl-hse/2025-2-level-ctlr/
-               blob/main/lab_6_pipeline/tests/test_files/reference_score_six_test.conllu>`__
-               and `Stanza model <https://github.com/fipl-hse/2025-2-level-ctlr/
-               blob/main/lab_6_pipeline/tests/test_files/reference_score_eight_test.conllu>`__.
+               blob/main/lab_6_pipeline/tests/test_files/reference_udpipe_test.conllu>`__.
 
 Meta information
 ----------------

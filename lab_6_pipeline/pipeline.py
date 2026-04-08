@@ -3,6 +3,7 @@ Pipeline for CONLL-U formatting.
 """
 
 # pylint: disable=too-few-public-methods, unused-import, undefined-variable, too-many-nested-blocks
+import json
 import pathlib
 
 from networkx import DiGraph
@@ -13,9 +14,7 @@ from core_utils.ctlr.pipeline import (
     CoNLLUDocument,
     LibraryWrapper,
     PipelineProtocol,
-    StanzaDocument,
     TreeNode,
-    UDPipeDocument,
     UnifiedCoNLLUDocument,
 )
 
@@ -65,7 +64,7 @@ class TextProcessingPipeline(PipelineProtocol):
 
         Args:
             corpus_manager (CorpusManager): CorpusManager instance
-            analyzer (LibraryWrapper | None): Analyzer instance
+            analyzer (LibraryWrapper | None, optional): Analyzer instance. Defaults to None.
         """
 
     def run(self) -> None:
@@ -95,7 +94,7 @@ class UDPipeAnalyzer(LibraryWrapper):
             AbstractCoNLLUAnalyzer: Analyzer instance
         """
 
-    def analyze(self, texts: list[str]) -> list[UDPipeDocument | str]:
+    def analyze(self, texts: list[str]) -> list[CoNLLUDocument | str]:
         """
         Process texts into CoNLL-U formatted markup.
 
@@ -103,7 +102,7 @@ class UDPipeAnalyzer(LibraryWrapper):
             texts (list[str]): Collection of texts
 
         Returns:
-            list[UDPipeDocument | str]: List of documents
+            list[CoNLLUDocument | str]: List of documents
         """
 
     def to_conllu(self, article: Article) -> None:
@@ -114,7 +113,7 @@ class UDPipeAnalyzer(LibraryWrapper):
             article (Article): Article containing information to save
         """
 
-    def from_conllu(self, article: Article) -> UDPipeDocument:
+    def from_conllu(self, article: Article) -> CoNLLUDocument:
         """
         Load ConLLU content from article stored on disk.
 
@@ -122,81 +121,18 @@ class UDPipeAnalyzer(LibraryWrapper):
             article (Article): Article to load
 
         Returns:
-            UDPipeDocument: Document ready for parsing
+            CoNLLUDocument: Document ready for parsing
         """
 
-    def get_document(self, doc: UDPipeDocument) -> UnifiedCoNLLUDocument:
+    def get_document(self, doc: CoNLLUDocument) -> UnifiedCoNLLUDocument:
         """
         Present ConLLU document's sentence tokens as a unified structure.
 
         Args:
-            doc (UDPipeDocument): ConLLU document
+            doc (CoNLLUDocument): ConLLU document
 
         Returns:
             UnifiedCoNLLUDocument: Dictionary of token features within document sentences
-        """
-
-
-class StanzaAnalyzer(LibraryWrapper):
-    """
-    Wrapper for stanza library.
-    """
-
-    #: Analyzer
-    _analyzer: AbstractCoNLLUAnalyzer
-
-    def __init__(self) -> None:
-        """
-        Initialize an instance of the StanzaAnalyzer class.
-        """
-
-    def _bootstrap(self) -> AbstractCoNLLUAnalyzer:
-        """
-        Load and set up the Stanza model.
-
-        Returns:
-            AbstractCoNLLUAnalyzer: Analyzer instance
-        """
-
-    def analyze(self, texts: list[str]) -> list[StanzaDocument]:
-        """
-        Process texts into CoNLL-U formatted markup.
-
-        Args:
-            texts (list[str]): Collection of texts
-
-        Returns:
-            list[StanzaDocument]: List of documents
-        """
-
-    def to_conllu(self, article: Article) -> None:
-        """
-        Save content to ConLLU format.
-
-        Args:
-            article (Article): Article containing information to save
-        """
-
-    def from_conllu(self, article: Article) -> StanzaDocument:
-        """
-        Load ConLLU content from article stored on disk.
-
-        Args:
-            article (Article): Article to load
-
-        Returns:
-            StanzaDocument: Document ready for parsing
-        """
-
-    def get_document(self, doc: StanzaDocument) -> UnifiedCoNLLUDocument:
-        """
-        Present ConLLU document's sentence tokens as a unified structure.
-
-        Args:
-            doc (StanzaDocument): ConLLU document
-
-        Returns:
-            UnifiedCoNLLUDocument: Document of token features within document sentences
         """
 
 

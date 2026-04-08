@@ -67,8 +67,7 @@ class ArtifactType(enum.Enum):
     """
 
     CLEANED = "cleaned"
-    UDPIPE_CONLLU = "udpipe_conllu"
-    STANZA_CONLLU = "stanza_conllu"
+    UDPIPE_CONLLU = "udpipe"
 
 
 class Article:
@@ -231,9 +230,7 @@ class Article:
         Returns:
             pathlib.Path: Path to Article instance
         """
-        conllu = kind in (ArtifactType.UDPIPE_CONLLU, ArtifactType.STANZA_CONLLU)
-
-        extension = ".conllu" if conllu else ".txt"
+        extension = ".conllu" if kind == ArtifactType.UDPIPE_CONLLU else ".txt"
         article_name = f"{self.article_id}_{kind.value}{extension}"
 
         return ASSETS_PATH / article_name
