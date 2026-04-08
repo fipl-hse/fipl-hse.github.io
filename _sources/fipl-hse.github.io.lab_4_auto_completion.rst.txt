@@ -1,0 +1,21 @@
+fipl\-hse.github.io.lab\_4\_auto\_completion package
+====================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_4\_auto\_completion.main module
+--------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_4_auto_completion.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_4_auto_completion
+   :members:
+   :undoc-members:
+   :show-inheritance:

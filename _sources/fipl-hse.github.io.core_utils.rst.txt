@@ -1,0 +1,20 @@
+fipl\-hse.github.io.core\_utils package
+=======================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   fipl-hse.github.io.core_utils.ctlr
+   fipl-hse.github.io.core_utils.llm
+   fipl-hse.github.io.core_utils.project
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.core_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
