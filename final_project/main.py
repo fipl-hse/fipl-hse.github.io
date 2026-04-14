@@ -3,7 +3,6 @@ Final project implementation.
 """
 
 # pylint: disable=unused-import
-from pathlib import Path
 
 
 def main() -> None:

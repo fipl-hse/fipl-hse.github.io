@@ -17,7 +17,7 @@ In universal dependencies paradigm, a language is represented as a
 graph, meaning that all words are related to each other in a some
 hierarchical form, and that is what dependency grammar is about.
 
-.. figure:: _static/ud_intro/sentence_as_graph.png
+.. figure:: ../images/sentence_as_graph.png
    :alt: sentence_as_graph
 
 In such terms, a syntactic structure of a sentence is decoded using
@@ -89,7 +89,7 @@ So, the obtained CoNLL-U annotation might be different depending on the
 UDPipe model used to process text. As of now, there are 5 models trained
 on the Russian language treebanks.
 
-.. figure:: _static/ud_intro/udpipe_models_russian.png
+.. figure:: ../images/udpipe_models_russian.png
    :alt: udpipe_models_russian
 
 To view more details about the models and examine statistics refer to
@@ -98,7 +98,9 @@ the `official UD website <https://universaldependencies.org/>`__.
 In our work, we will be using pre-downloaded UDPipe model based on
 `SynTagRus
 treebank <https://universaldependencies.org/treebanks/ru_syntagrus/index.html>`__.
-You can find it `here <https://github.com/fipl-hse/2025-2-level-ctlr/releases/tag/v1.0.0>`__.
+You can find it
+`here <https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/core_utils/udpipe
+/russian-syntagrus-ud-2.0-170801.udpipe>`__.
 
 Python frameworks
 -----------------

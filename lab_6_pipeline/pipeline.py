@@ -3,20 +3,6 @@ Pipeline for CONLL-U formatting.
 """
 
 # pylint: disable=too-few-public-methods, unused-import, undefined-variable, too-many-nested-blocks
-import json
-import pathlib
-
-from networkx import DiGraph
-
-from core_utils.ctlr.article.article import Article
-from core_utils.ctlr.pipeline import (
-    AbstractCoNLLUAnalyzer,
-    CoNLLUDocument,
-    LibraryWrapper,
-    PipelineProtocol,
-    TreeNode,
-    UnifiedCoNLLUDocument,
-)
 
 
 class CorpusManager:
@@ -94,7 +80,7 @@ class UDPipeAnalyzer(LibraryWrapper):
             AbstractCoNLLUAnalyzer: Analyzer instance
         """
 
-    def analyze(self, texts: list[str]) -> list[CoNLLUDocument | str]:
+    def analyze(self, texts: list[str]) -> list[UDPipeDocument | str]:
         """
         Process texts into CoNLL-U formatted markup.
 
@@ -102,7 +88,7 @@ class UDPipeAnalyzer(LibraryWrapper):
             texts (list[str]): Collection of texts
 
         Returns:
-            list[CoNLLUDocument | str]: List of documents
+            list[UDPipeDocument | str]: List of documents
         """
 
     def to_conllu(self, article: Article) -> None:
@@ -113,7 +99,7 @@ class UDPipeAnalyzer(LibraryWrapper):
             article (Article): Article containing information to save
         """
 
-    def from_conllu(self, article: Article) -> CoNLLUDocument:
+    def from_conllu(self, article: Article) -> UDPipeDocument:
         """
         Load ConLLU content from article stored on disk.
 
@@ -121,18 +107,81 @@ class UDPipeAnalyzer(LibraryWrapper):
             article (Article): Article to load
 
         Returns:
-            CoNLLUDocument: Document ready for parsing
+            UDPipeDocument: Document ready for parsing
         """
 
-    def get_document(self, doc: CoNLLUDocument) -> UnifiedCoNLLUDocument:
+    def get_document(self, doc: UDPipeDocument) -> UnifiedCoNLLUDocument:
         """
         Present ConLLU document's sentence tokens as a unified structure.
 
         Args:
-            doc (CoNLLUDocument): ConLLU document
+            doc (UDPipeDocument): ConLLU document
 
         Returns:
             UnifiedCoNLLUDocument: Dictionary of token features within document sentences
+        """
+
+
+class StanzaAnalyzer(LibraryWrapper):
+    """
+    Wrapper for stanza library.
+    """
+
+    #: Analyzer
+    _analyzer: AbstractCoNLLUAnalyzer
+
+    def __init__(self) -> None:
+        """
+        Initialize an instance of the StanzaAnalyzer class.
+        """
+
+    def _bootstrap(self) -> AbstractCoNLLUAnalyzer:
+        """
+        Load and set up the Stanza model.
+
+        Returns:
+            AbstractCoNLLUAnalyzer: Analyzer instance
+        """
+
+    def analyze(self, texts: list[str]) -> list[StanzaDocument]:
+        """
+        Process texts into CoNLL-U formatted markup.
+
+        Args:
+            texts (list[str]): Collection of texts
+
+        Returns:
+            list[StanzaDocument]: List of documents
+        """
+
+    def to_conllu(self, article: Article) -> None:
+        """
+        Save content to ConLLU format.
+
+        Args:
+            article (Article): Article containing information to save
+        """
+
+    def from_conllu(self, article: Article) -> StanzaDocument:
+        """
+        Load ConLLU content from article stored on disk.
+
+        Args:
+            article (Article): Article to load
+
+        Returns:
+            StanzaDocument: Document ready for parsing
+        """
+
+    def get_document(self, doc: StanzaDocument) -> UnifiedCoNLLUDocument:
+        """
+        Present ConLLU document's sentence tokens as a unified structure.
+
+        Args:
+            doc (StanzaDocument): ConLLU document
+
+        Returns:
+            UnifiedCoNLLUDocument: Document of token features within document sentences
         """
 
 

@@ -1,159 +1,131 @@
 .. _ctlr-tests-label:
 
-.. contents:: Contents:
-   :depth: 2
-
 Working with tests: locally and in CI
 =====================================
 
 .. contents:: Content:
    :depth: 2
 
+Running tests locally
+---------------------
 
-Tests configuration in Visual Studio Code
------------------------------------------
-To configure tests locally you need to perform several steps:
+Before pushing your changes to a remote fork, you will want to check
+that your code is working correctly. To do this, you can run tests
+locally.
 
-1. Install tests dependencies:
+.. hint:: If you extract articles URLs from dynamic site, make sure you use
+          ``selenium.webdriver.Chrome`` and have ``headless mode`` enabled.
+
+To run tests locally, you need to perform several steps in PyCharm:
+
+1. Install tests dependencies (ensure you have activated your
+   environment if you have such by running ``.\venv\Scripts\activate``):
 
    .. code:: bash
 
       python -m pip install -r requirements_qa.txt
 
-.. important:: Ensure you have activated your environment
-               if you have such by running ``.\venv\Scripts\activate``
-               (Windows) or ``source venv\bin\activate`` (macOS).
-
 2. Create a new configuration:
 
-   To create a new configuration open the Testing tab on the side
-   bar of Visual Studio Code and press the `Configure Python Tests`
-   button.
-
-   .. image:: _static/tests/vscode_testing_tab.png
-
-   Alternatively, you can open configuration settings via command bar.
-   Use `Ctrl + Shift + P` keyboard shortcut to open it and type in
-   `Python: Configure Tests`.
-
-   .. image:: _static/tests/vscode_command_bar.png
+   .. figure:: ../images/tests/pycharm_create_configuration.jpg
+      :alt: create configuration
 
 3. Choose ``pytest`` as a target:
 
-   .. image:: _static/tests/vscode_tests_configuration_step_1.png
+   .. figure:: ../images/tests/pycharm_choose_pytest_template.jpg
+      :alt: choose pytest template
 
-4. Choose the directory to run all tests. You can use root directory to run all
-   tests or a specific lab.
+4. Fill ``pytest`` configuration and click ``OK``:
 
-   .. image:: _static/tests/vscode_tests_configuration_step_2.png
+   .. figure:: ../images/tests/pycharm_fill_pytest_configuration.jpg
+      :alt: fill pytest configuration
 
-   When you are done, the `settings.json` file for the tests will be opened
-   and all the tests will be displayed on the `Testing` tab of the
-   Visual Studio Code.
+5. Run ``pytest`` configuration:
 
-   .. image:: _static/tests/vscode_configured_tests.png
+   .. figure:: ../images/tests/pycharm_run_pytest.jpg
+      :alt: run pytest
 
-Running tests in Visual Studio Code
------------------------------------
-  
-To run the test, press the run button, as indicated in the screenshot above.
+   This should run all the tests in the repository. You can inspect them
+   by clicking through a list at the bottom of a screen.
 
-As you have some tests failing, you want to run them separately. You can press
-a run button next to a test you want to run in the tests files specifically
-or in the `Testing` tab.
+   .. figure:: ../images/tests/pycharm_tests_report.png
+      :alt: tests report
 
-.. image:: _static/tests/vscode_running_tests.png
+6. As you have some tests failing, you want to debug them. Then, first,
+   you need to limit a scope of running tests and the mark level you
+   want to get for an assignment. For example, you might want to run
+   checks for a crawler configuration. Then you need to return to
+   configuration menu and pass additional parameters, like
+   ``-m stage_2_1_crawler_config_check``.
 
-Debugging
----------
+   .. figure:: ../images/tests/pycharm_control_tests_scope.jpg
+      :alt: control tests scope
 
-When you want to debug a test, execute debugging by clicking a run button
-with a bug on it on a test you want to run in the `Testing` tab or make a
-right click on the testing button in the test file itself and choose the
-`Debug Test` option.
+   You can choose any of the labels that are described in
+   ``pyproject.toml`` file and combine with a mark.
+   For example, running the aforementioned check for configuration
+   for a mark 8 will look like
+   ``-m "mark8 and stage_2_1_crawler_config_check"``.
 
-.. image:: _static/tests/vscode_debugging.png
+.. hint:: To running all tests for first assignment for mark 8:
+          ``-m "mark8 and (stage_2_1_crawler_config_check or
+          stage_2_2_crawler_check or stage_2_3_HTML_parser_check or
+          stage_2_4_dataset_volume_check or stage_2_5_dataset_validation)"``
 
-To debug you should put a breakpoint in your code or in the test itself.
-Breakpoints are red dots that you can put at the potentially vulnerable place of code.
-The execution stops at breakpoints and you can debug your code from these lines.
-
-.. image:: _static/tests/breakpoints.png
-
-Running tests in terminal
--------------------------
-
-.. important:: Ensure you have activated your environment
-               and installed all required dependencies.
-
-To run all tests, execute the following command in the terminal:
-
-.. code:: bash
-
-   python -m pytest
-
-You can also run tests for any of the allowed marks:
-``mark4``, ``mark6``, ``mark8`` or ``mark10``.
-
-.. code:: bash
-
-   python -m pytest -m mark8
-
-To run tests for a specific laboratory work you can add the directory name
-after `pytest` command. For example, if you want to run tests for
-`lab_1_keywords_tfidf` and mark 4, the full command and the full terminal
-output should look like this:
-
-.. image:: _static/tests/running_from_command_line.png
-
-.. hint:: Note that if you activated virtual environment and installed
-          requirements properly, you can use `pytest` without calling
-         `python -m` first.
-
-
-Running tests with the start button
------------------------------------
-
-As well as running tests in command-line, you can run them with
-the triangle-shaped start button. For that, go to the
-abovementioned Testing tab on the side bar of Visual Studio Code.
-The button appears at the right side of the laboratory work's name when the
-cursor is hovered over it.
-
-.. image:: _static/tests/cursor_over_the_start_button.png
-
-Initially, when pressing the button, all tests in that laboratory
-work are run, regardless of their mark.
-To do that for the particular mark (and the particular laboratory work),
-go to the ``.vscode\settings.json`` and change the value of the
-**python.testing.pytestArgs** key. By default, ``"."`` is set.
-Instead of it, you should place the laboratory work's name,
-``"-m"`` flag and the desired mark in the list. See the example below:
-
-.. code:: python
-
-   {
-    "python.testing.pytestArgs": [
-        "lab_4_auto_completion",
-        "-m", "mark10"
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
-   }
+.. hint:: When you want to debug a test, instead of running them, put
+          a breakpoint at the potentially vulnerable place of code and execute
+          debugging by clicking a ‘bug’ button.
 
 Running tests in CI
 -------------------
 
 Tests will never run until you create a Pull Request.
 
-The very first check happens exactly when you create a pull request.
+The very first check happens exactly when you create a Pull Request.
 After that, each time you push changes in your fork, CI check will be
 automatically started, normally within a minute or two. To see the
 results, navigate to your PR and click either the particular step in the
 report at the end of a page, or click **Checks** in the toolbar.
 
-.. image:: _static/tests/ci_report.png
+.. figure:: ../images/tests/ci_report.png
+   :alt: ci report
 
-.. image:: _static/tests/ci_tab.png
+.. figure:: ../images/tests/ci_tab.png
+   :alt: ci tab
 
 Inspect each step by clicking through the list to the left.
+
+CI stages
+---------
+
+1. Stage 1. Style
+
+   1. Stage 1.1. PR Name
+   2. Stage 1.2. Code style (``pylint``, ``flake8``)
+
+2. Stage 2. Crawler
+
+   1. Stage 2.1. Crawler config validation (we ensure that crawler has
+      certain sanity checks)
+   2. Stage 2.2. ``Crawler`` instantiation validation
+   3. Stage 2.3. ``Parser`` instantiation validation
+   4. Stage 2.4. Articles downloading
+   5. Stage 2.5. Dataset volume validation
+   6. Stage 2.6. Dataset structure validation
+
+3. Stage 3. Text Processing Pipeline
+
+   1. Stage 3.1. Dataset sanity checks (we ensure that pipeline has
+      certain sanity checks)
+   2. Stage 3.2. ``CorpusManager`` sanity checks (we ensure that
+      pipeline identifies all articles correctly)
+   3. Stage 3.3. ``MorphologicalToken`` sanity checks (we ensure that
+      pipeline displays all tokens appropriately)
+   4. Stage 3.4. Admin data processing
+   5. Stage 3.5. Student dataset processing
+   6. Stage 3.6. Student dataset validation
+
+4. Stage 4. Additional tasks
+
+   1. stage 4.1. ``POSFrequencyPipeline`` checks
+   2. Stage 4.2. Frequency visualization
