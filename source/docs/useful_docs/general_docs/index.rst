@@ -7,6 +7,7 @@
     :titlesonly:
 
     starting_guide_ru.rst
+    handover_rules_ru.rst
     fork_update.rst
     tests.rst
     run_in_terminal_ru.rst
