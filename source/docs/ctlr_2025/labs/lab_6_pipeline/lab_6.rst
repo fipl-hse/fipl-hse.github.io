@@ -66,7 +66,7 @@ An example ``tmp`` directory content for mark 4:
 
 .. code:: text
 
-   +-- 2024-2-level-ctlr
+   +-- 2025-2-level-ctlr
        +-- tmp
            +-- articles
                +-- 1_raw.txt <- the paper with the ID (from scraper.py run)
@@ -77,7 +77,7 @@ An example ``tmp`` directory content for mark 6:
 
 .. code:: text
 
-   +-- 2024-2-level-ctlr
+   +-- 2025-2-level-ctlr
        +-- tmp
            +-- articles
                +-- 1_raw.txt <- the paper with the ID (from scraper.py run)
@@ -89,14 +89,13 @@ An example ``tmp`` directory content for marks 8 and 10:
 
 .. code:: text
 
-   +-- 2024-2-level-ctlr
+   +-- 2025-2-level-ctlr
        +-- tmp
            +-- articles
                +-- 1_raw.txt <- the paper with the ID (from scraper.py run)
                +-- 1_meta.json <- the paper meta-information (from scraper.py and pipeline.py run)
                +-- 1_cleaned.txt <- processed text with no punctuation (by pipeline.py run)
                +-- 1_udpipe.conllu <- processed text in the UD format (by pipeline.py run)
-               +-- 1_stanza.conllu <- processed text in the UD format (by pipeline.py run, only for mark 10)
                +-- 1_image.png <- POS frequencies bar chart (by pipeline.py run)
 
 .. hint:: When using CI (Continuous Integration), generated
@@ -152,9 +151,9 @@ to check if you can get it.
    4. Pipeline produces ``N_cleaned.txt`` files in the ``tmp/articles``.
 
       1. `Example raw text
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_raw.txt>`__ and `Desired output
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/lab_6_pipeline/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/lab_6_pipeline/
          tests/test_files/reference_score_four.txt>`__.
 
 2. Desired mark **6**:
@@ -166,9 +165,9 @@ to check if you can get it.
    4. Pipeline produces ``N_udpipe.conllu`` files for each article.
 
       1. `Example raw text
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_raw.txt>`__ and `Desired output
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/lab_6_pipeline/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/lab_6_pipeline/
          tests/test_files/reference_udpipe_test.conllu>`__.
 
 3. Desired mark **8**:
@@ -183,31 +182,28 @@ to check if you can get it.
       ``N_image.png`` files for each article.
 
       1. `Example raw text
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_raw.txt>`__, `Desired CoNLL-U output
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/lab_6_pipeline/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/lab_6_pipeline/
          tests/test_files/reference_udpipe_test.conllu>`__, `Example meta info
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_meta.json>`__ and `Desired bar chart
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          core_utils/tests/test_files/reference_image.png>`__.
 
 4. Desired mark **10**:
 
    1. ``pylint`` level: ``10/10``.
    2. All requirements for the mark **8**.
-   3. Pipeline uses ``stanza`` library to extract linguistic markup for the text
-      in the CoNLL-U format.
-   4. Pipeline produces ``N_stanza.conllu`` files for each article.
-   5. Pipeline uses ``networkx`` library to create a graph of
+   3. Pipeline uses ``networkx`` library to create a graph of
       dependencies to search for a required syntactic pattern.
-   6. Pipeline collects required syntactic patterns in each text and
+   4. Pipeline collects required syntactic patterns in each text and
       extends ``N_meta.json`` files with this information.
 
       1. `Example raw text
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_raw.txt>`__ and `Example meta info
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_meta.json>`__.
 
 Implementation tactics
@@ -382,9 +378,9 @@ preprocessing:
 After implementation of preprocessing, your pipeline must save results
 in the files with the names following the pattern ``N_cleaned.txt``. See
 examples for a better understanding: `Raw text
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
 lab_6_pipeline/tests/test_files/1_raw.txt>`__ - `Desired output
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
 lab_6_pipeline/tests/test_files/reference_score_four.txt>`__.
 
 Stage 2.1. Implement simplified logic of ``TextProcessingPipeline``
@@ -437,9 +433,9 @@ requirements, must perform morphological text analysis for each article
 using ``spacy-udpipe`` library and save the result in the file with the
 name following the pattern ``N_udpipe.conllu``.
 See examples for a better understanding: `Raw text
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
 lab_6_pipeline/tests/test_files/1_raw.txt>`__ - `Desired output
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
 lab_6_pipeline/tests/test_files/reference_udpipe_test.conllu>`__.
 
 File with ``.conllu`` extension means that it corresponds to the UD
@@ -456,15 +452,13 @@ Stage 3.1.1 Download model from GitHub releases
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You are required to download the UDPipe model from `HERE
-<https://github.com/fipl-hse/2024-2-level-ctlr/releases/tag/v1.0.0>`__
+<https://github.com/fipl-hse/2025-2-level-ctlr/releases/tag/v1.0.0>`__
 and place the model to ``lab_6_pipeline/assets/model``.
 
 Stage 3.1.2 Introduce ``UDPipeAnalyzer`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Given that the present laboratory work implements text processing via more than one
-linguistic model (UDPipe and Stanza), there is a need for unified interface. For this
-reason, you are required to implement a wrapper abstraction over UDPipe model:
+You are required to implement a wrapper abstraction over UDPipe model:
 :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer`. This abstraction is responsible
 for processing text and outputting its linguistic features in CoNLL-U format.
 
@@ -483,9 +477,6 @@ First, the wrapper should be instantiated with the following instruction:
 Wrapper does not accept any arguments during initialization, but calls protected method
 :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap`, which is responsible for
 loading and setting up the UDPipe model.
-
-.. hint:: Path to the required UDPipe model is stored in
-          ``core_utils/constants.py`` module as ``UDPIPE_MODEL_PATH``.
 
 The :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap` method must read the UDPipe
 model via ``spacy_udpipe`` library, add CoNLL-U formatter to the model pipeline and define
@@ -616,7 +607,7 @@ you are required to implement method
 Their responsibility is the opposite of that of
 :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu` method: it
 accepts article instance, derives the name of the file where their UD properties are stored,
-and converts contents to the ``UDPipeDocument`` via ``parser`` module of the
+and converts contents to the ``CoNLLUDocument`` via ``parser`` module of the
 ``spacy_conll`` library.
 
 .. tip:: Refer to the corresponding seminar materials
@@ -624,7 +615,7 @@ and converts contents to the ``UDPipeDocument`` via ``parser`` module of the
          <https://github.com/BramVanroy/spacy_conll/blob/master/README.md>`__
          to learn more about appropriate configuration details.
 
-.. note:: Note that ``UDPipeDocument``, similarly to ``AbstractCoNLLUAnalyzer``,
+.. note:: Note that ``CoNLLUDocument``, similarly to ``AbstractCoNLLUAnalyzer``,
           is a protocol that is used to mimic the UDPipe document class of the
           respective library and help unify the interfaces for further usage with
           different libraries.
@@ -638,9 +629,7 @@ The :py:class:`lab_6_pipeline.pipeline.POSFrequencyPipeline`
 is instantiated in the similar manner as the
 :py:class:`lab_6_pipeline.pipeline.TextProcessingPipeline`.
 During initialization it must accept an instance of ``CorpusManager``
-and an instance of an analyzer. For **marks 8** it is ``UDPipeAnalyzer``,
-and for **mark 10** it could also be ``StanzaAnalyzer``, which would be described
-at later stages.
+and an instance of an analyzer.
 
 .. code:: python
 
@@ -709,10 +698,10 @@ searching for a certain pattern using
 information from ``.conllu`` files and the functionality of ``networkx`` library.
 
 See examples for a better understanding: `Raw text
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
-lab_6_pipeline/tests/test_files/1_raw.txt>`__ - `Desired output
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
-lab_6_pipeline/tests/test_files/1_meta.json>`__.
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
+lab_6_pipeline/tests/test_files/2_raw.txt>`__ - `Desired output
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
+lab_6_pipeline/tests/test_files/2_meta.json>`__.
 
 .. tip:: To learn more about the ``networkx``,
          inspect `the official documentation of the library
@@ -782,15 +771,6 @@ Edges should connect this word with its parent using dependency relation.
 .. tip:: To make a graph it is mandatory to use an instance of
     `DiGraph <https://networkx.org/documentation/stable/reference/classes/digraph.html>`__ class.
 
-.. note:: :py:class:`core_utils.pipeline.CoNLLUDocument` is a protocol class that mimics and
-          inherits protocols for analyzers' document classes. It is used to unify the
-          interfaces of analyzers and simplify the typing across the classes based on the same
-          protocols. You can notice it, for example, in the interface difference of
-          :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.analyze`,
-          :py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.analyze` and their mutual protocol
-          interface of :py:meth:`core_utils.pipeline.LibraryWrapper.analyze`. It makes for a
-          clearer distinction in what is allowed in which exact case without disjunction usage
-          in typing.
 
 Stage 5.3. Find syntactic patterns via ``PatternSearchPipeline`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -871,8 +851,17 @@ where the required pattern was found,
 and as values a list of :py:class:`core_utils.pipeline.TreeNode` class instances
 with information about the pattern matches.
 
+.. note:: You are allowed to collect and store patterns one by one or
+          by storing children with the same parent in a single root.
+          For clarification you can reference
+          `pattern cases <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
+          lab_6_pipeline\tests\test_files\complex_pattern_matches.json>`__.
+
+
 Stage 5.4. Implement core logic of ``PatternSearchPipeline``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. important:: **Stages 0-5.4** are required to get the **mark 10**.
 
 The :py:class:`lab_6_pipeline.pipeline.PatternSearchPipeline`
 is executed with the same interface method
@@ -902,289 +891,3 @@ Once executed,
 
 .. attention:: Make sure that resulting meta files are valid: they must
                contain no more than one dictionary-like object.
-
-Stage 6. Extract linguistic markup using Stanza model
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-There are other models that can be used for extraction of linguistic features in
-CoNNL-U format and that you might encounter in your linguistic research. It might
-be valuable to understand the differences in the performances of the models and be
-familiar with their distinctive features.
-
-By now, you have already implemented all text and linguistic feature processing
-with a UDPipe model. As an additional challenge of **mark 10**, you are required to be
-able to perform processing by also using Stanza model.
-
-See examples for a better understanding of Stanza model output: `Raw text
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
-lab_6_pipeline/tests/test_files/1_raw.txt>`__ - `Desired output
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
-lab_6_pipeline/tests/test_files/reference_stanza_test.conllu>`__.
-
-.. tip:: Refer to the corresponding seminar materials
-         or inspect `the official repository of the library
-         <https://stanfordnlp.github.io/stanza/>`__.
-         to learn more about ``stanza`` interface details.
-
-Stage 6.1. Introduce ``StanzaAnalyzer`` abstraction
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Implement
-:py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer` abstraction.
-It is a wrapper over a Stanza model. Similarly, its responsibility
-is processing text and outputting its linguistic features in CoNLL-U format.
-
-Notice that this wrapper inherits from ``LibraryWrapper`` protocol,
-which means that its interface is dictated by the protocol and identical to that of
-:py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer` abstraction.
-In other words, :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer` and
-:py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer` have the same function and
-interface, meaning that they can be used interchangeably, but their inner workings
-are different as they are based on separate models. Thus, the resulting processing
-may also vary.
-
-The :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer`
-wrapper should be instantiated with the following instruction:
-
-.. code:: python
-
-   stanza_analyzer = StanzaAnalyzer()
-
-Wrapper does not accept any arguments during initialization, but calls protected method
-:py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer._bootstrap`, which is responsible for
-downloading and initializing the Stanza model.
-
-The :py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer._bootstrap` method must
-download via ``stanza`` library a model for the Russian language with the following
-functionality:
-
-   -  tokenization
-   -  lemmatization
-   -  part of speech extraction
-   -  dependency parsing
-
-The method then initializes an instance of Stanza model via ``stanza.pipeline.core``
-module functionality and returns it.
-The model returned is further stored in the protected ``self._analyzer`` attribute of
-:py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer` instance.
-
-.. tip:: Refer to the corresponding seminar materials
-         or inspect `the official repository of the library
-         <https://stanfordnlp.github.io/stanza/>`__.
-         to learn more about ``stanza`` interface details.
-
-Stage 6.2. Process text via ``StanzaAnalyzer`` abstraction
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Next, you are required to implement
-:py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.analyze` method.
-It is a public method used to process texts into CoNLL-U formatted markup.
-The method accepts a list of strings and produces a list of
-``StanzaDocument`` instances.
-
-.. note:: Note that ``StanzaDocument``, similarly to ``UDPipeDocument``,
-          is a protocol that is used to mimic the Stanza document class of the
-          stanza library and help unify the interfaces for further usage with
-          different libraries.
-
-This method uses ``self._analyzer`` attribute, which encloses the Stanza model,
-to retrieve linguistic features of the text.
-
-.. tip:: To learn more about the Stanza model interface,
-         refer to the corresponding seminar materials or inspect
-         `the official repository of the library
-         <https://stanfordnlp.github.io/stanza>`__.
-
-Stage 6.3. Save linguistic markup via ``StanzaAnalyzer`` abstraction
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Finally, :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer` abstraction
-must possess a method for producing a file with ``.conllu`` extension with
-retrieved linguistic markup.
-Implement method :py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.to_conllu`,
-which does not perform any analysis but operates fields of
-:py:class:`core_utils.article.article.Article`
-instance along with functions from ``stanza.utils.conll``.
-
-.. tip:: To learn more about the Stanza library interface,
-         refer to the corresponding seminar materials or inspect
-         `the official repository of the library
-         <https://stanfordnlp.github.io/stanza>`__.
-
-The method accepts
-one instance of :py:class:`core_utils.article.article.Article` as an argument. It is
-presumed that the given article object has a filled attribute with CoNLL-U markup.
-The method thus uses interface of the :py:class:`core_utils.article.article.Article`
-instance to save the stored UD information into the ``N_stanza.conllu`` file,
-where ``N`` corresponds to the identifier of the article.
-
-.. tip:: It is mandatory to use
-         :py:meth:`core_utils.article.article.Article.get_file_path`
-         and
-         :py:meth:`core_utils.article.article.Article.get_conllu_info`
-         methods.
-
-Stage 6.4. Ensure compatibility of ``TextProcessingPipeline`` with ``StanzaAnalyzer``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Since both :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer`
-and :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer` derive from the same interface
-protocol and carry the same functionality, there is no need to adjust
-:py:class:`lab_6_pipeline.pipeline.TextProcessingPipeline` logic to working with
-Stanza wrapper. Perform a self-check by ensuring that your code works accordingly to
-the following examples.
-
-This code snippet must produce ``N_cleaned.txt`` and ``N_stanza.conllu``
-files for each available article:
-
-.. code:: python
-
-    corpus_manager = CorpusManager(path_to_raw_txt_data=ASSETS_PATH)
-    stanza_analyzer = StanzaAnalyzer()
-    pipeline = TextProcessingPipeline(corpus_manager, stanza_analyzer)
-    pipeline.run()
-
-This code snippet must produce ``N_cleaned.txt`` and ``N_udpipe.conllu``
-files for each available article:
-
-.. code:: python
-
-    corpus_manager = CorpusManager(path_to_raw_txt_data=ASSETS_PATH)
-    udpipe_analyzer = UDPipeAnalyzer()
-    pipeline = TextProcessingPipeline(corpus_manager, udpipe_analyzer)
-    pipeline.run()
-
-Finally, this code snippet must produce just the ``N_cleaned.txt``
-files for each available article, with no ``.conllu`` files:
-
-.. code:: python
-
-    corpus_manager = CorpusManager(path_to_raw_txt_data=ASSETS_PATH)
-    pipeline = TextProcessingPipeline(corpus_manager)
-    pipeline.run()
-
-If you encounter errors from using
-:py:class:`lab_6_pipeline.pipeline.TextProcessingPipeline`
-with :py:class:`lab_6_pipeline.pipeline.StanzaAnalyzer`, then you must have made a mistake
-during either implementation of the model wrapper or markup extraction during pipeline
-execution.
-
-.. note:: All model wrappers must have identical interface, specified by
-          ``LibraryWrapper``, and processing pipeline must only rely on that interface.
-          Pipeline must not rely on any library specific attributes or methods.
-
-Stage 6.5. Extend ``StanzaAnalyzer`` with CoNLL-U parsing functionality
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Once again, in order to process information stored in the ``.conllu`` files,
-you are required to implement method
-:py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.from_conllu`, which shares the
-the responsibility with :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.from_conllu`
-but is used to convert contents of ``.conllu`` files to ``StanzaDocument``
-via ``stanza.utils.conll`` functions.
-
-.. tip:: To learn more about the Stanza library interface,
-         refer to the corresponding seminar materials or inspect
-         `the official repository of the library
-         <https://stanfordnlp.github.io/stanza>`__.
-
-Stage 6.6. Extend ``UDPipeAnalyzer`` and ``StanzaAnalyzer`` with ability to return unified documents
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Now that you are familiar with both libraries and their respective document formats
-(``UDPipeDocument`` and ``StanzaDocument``), you might have discovered that they have slightly
-different interfaces: generally their functions are the same, however,
-when it comes to the names of attributes, they differ. This is disadvantageous in those
-cases when we want to be able to work with any ``.conllu`` file contents comfortably.
-It would take more time and resources to majorly alter Pipelines to work with both
-types of analyzers (imagine if we introduce yet another analyzer and have to add one more
-condition to all the places where we are using document interfaces).
-
-As a solution to this problem, you are required to implement methods
-:py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.get_document` and
-:py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.get_document` that are given the documents of
-respective origin (``UDPipeDocument`` and ``StanzaDocument``) and produce a unified document —
-an instance of :py:class:`core_utils.pipeline.UnifiedCoNLLUDocument` which contains the necessary
-information from the document: sentences as instances of
-:py:class:`core_utils.pipeline.ConLLUSentence` and each word in sentence with its linguistic
-properties saved in its attributes as an instance of :py:class:`core_utils.pipeline.ConLLUWord`.
-
-Stage 6.7. Ensure compatibility of ``POSFrequencyPipeline`` with ``StanzaAnalyzer``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Likewise ``TextProcessingPipeline``, ``POSFrequencyPipeline`` should be able to
-accept instances of both analyzer classes. With an addition of
-:py:meth:`core_utils.pipeline.LibraryWrapper.get_document` methods, you still have to
-partially rework implementation of
-:py:meth:`lab_6_pipeline.pipeline.POSFrequencyPipeline._count_frequencies` for the
-``POSFrequencyPipeline`` to work successfully with both models, but this change will
-not be as global as adding the ability to work with different analyzers to the Pipeline
-itself (for example, by using conditions).
-
-.. note:: Adding such an additional ability to the Pipeline also
-          would not comply with single responsibility principle of OOP — Pipeline
-          does not have to check what type of analyzer it uses.
-
-.. note:: From Stage 6.7 onwards, it is required to use the analyzer method
-          :py:meth:`core_utils.pipeline.LibraryWrapper.get_document` to get
-          frequency from the unified document.
-
-Check that the result of running both of the following snippets produces
-``N_image.png`` and extends ``N_meta.json`` with POS frequencies information.
-
-With ``UDPipeAnalyzer`` usage:
-
-.. code:: python
-
-   corpus_manager = CorpusManager(path_to_raw_txt_data=ASSETS_PATH)
-   udpipe_analyzer = UDPipeAnalyzer()
-   visualizer = POSFrequencyPipeline(corpus_manager, udpipe_analyzer)
-   visualizer.run()
-
-With ``StanzaAnalyzer`` usage:
-
-.. code:: python
-
-   corpus_manager = CorpusManager(path_to_raw_txt_data=ASSETS_PATH)
-   stanza_analyzer = StanzaAnalyzer()
-   visualizer = POSFrequencyPipeline(corpus_manager, stanza_analyzer)
-   visualizer.run()
-
-
-Stage 6.8. Ensure compatibility of ``PatternSearchPipeline`` with ``StanzaAnalyzer``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. important:: **Stages 0-6.8** are required to get the **mark 10**.
-
-Finally, you have to rework the implementation of
-:py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs` method
-to be compatible with ``StanzaAnalyzer``.
-
-.. note:: For Stage 6.8, it is mandatory to use the analyzer method
-          :py:meth:`core_utils.pipeline.LibraryWrapper.get_document` to
-          create graphs.
-
-Don't forget to check that the result of running both of the following
-snippets produces and extends ``N_meta.json`` with POS frequencies information.
-
-With ``UDPipeAnalyzer`` usage:
-
-.. code:: python
-
-   corpus_manager = CorpusManager(path_to_raw_txt_data=ASSETS_PATH)
-   udpipe_analyzer = UDPipeAnalyzer()
-   pattern_searcher = PatternSearchPipeline(
-        corpus_manager, udpipe_analyzer, ("VERB", "NOUN", "ADP")
-   )
-   pattern_searcher.run()
-
-With ``StanzaAnalyzer`` usage:
-
-.. code:: python
-
-   corpus_manager = CorpusManager(path_to_raw_txt_data=ASSETS_PATH)
-   stanza_analyzer = StanzaAnalyzer()
-   pattern_searcher = PatternSearchPipeline(
-        corpus_manager, stanza_analyzer, ("VERB", "NOUN", "ADP")
-   )
-   pattern_searcher.run()

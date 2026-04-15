@@ -38,13 +38,13 @@ Module with constants
 
 ``constants.py`` module defines the following constant values:
 
--  ``PROJECT_ROOT``: a path to ``2023-2-level-ctlr`` folder,
+-  ``PROJECT_ROOT``: a path to ``2025-2-level-ctlr`` folder,
    which the root of the current project;
--  ``ASSETS_PATH``: a path to ``2023-2-level-ctlr/tmp/article`` folder,
+-  ``ASSETS_PATH``: a path to ``2025-2-level-ctlr/tmp/article`` folder,
    where all the collected articles must be stored;
 -  ``CRAWLER_CONFIG_PATH``: a path to ``lab_5_scraper/scraper_config.json``
    file with configuration parameters for scraper;
--  ``PROJECT_CONFIG_PATH``: a path to ``2023-2-level-ctlr`` folder
+-  ``PROJECT_CONFIG_PATH``: a path to ``2025-2-level-ctlr`` folder
    configuration file (*this is an admin utils related item and
    is not intended for you to interact with it*);
 -  ``NUM_ARTICLES_UPPER_LIMIT``: a maximum number for articles to be
@@ -71,14 +71,13 @@ in order to be considered compatible with that protocol.
 It influences the code implicitly and, if necessary, organizes a check
 for the presence of methods or attributes in the corresponding classes.
 
-:py:class:`core_utils.pipeline.AbstractCoNLLUAnalyzer` protocol unites all the different
-types of analyzer instances used, UDPipe and Stanza models. It does not impose a special interface
+:py:class:`core_utils.pipeline.AbstractCoNLLUAnalyzer` protocol mimics
+analyzer instance for UDPipe model. It does not impose a special interface
 but simply indicates that this object is responsible for analyzing the language material.
 
-:py:class:`core_utils.pipeline.StanzaDocument` and :py:class:`core_utils.pipeline.CoNLLUDocument`
-protocols are utility classes that mimic Stanza and UDPipe documents respectively.
-Linguistic data retrieval models process texts and return
-CoNLL-U formatted markup as instances of :py:class:`core_utils.pipeline.StanzaDocument`.
+:py:class:`core_utils.pipeline.CoNLLUDocument` protocol is the class that mimics UDPipe
+document. Linguistic data retrieval models process texts and return
+CoNLL-U formatted markup as instances of :py:class:`core_utils.pipeline.CoNLLUDocument`.
 At the same time :py:class:`core_utils.pipeline.CoNLLUDocument`
 object contains information from ``.conllu`` file.
 

@@ -39,8 +39,8 @@ In addition to the ``Article`` class, the module has:
 2. :py:func:`core_utils.article.article.get_article_id_from_filepath` function which
    extracts the article id from its path.
 3. :py:class:`core_utils.article.article.ArtifactType` abstraction which provides
-   types of artifacts that can be created by text processing pipelines, such as ``CLEANED``,
-   ``UDPIPE_CONLLU``, and ``STANZA_CONLLU``.
+   types of artifacts that can be created by text processing pipelines, such as ``CLEANED``
+   and ``UDPIPE_CONLLU``.
 
 The description of each artifact you can find in :ref:`dataset-label`.
 
