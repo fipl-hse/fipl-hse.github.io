@@ -7,6 +7,7 @@ Useful Materials for Technical Track of Computer Tools for Linguistic Research
     :titlesonly:
 
     starting_guide_en.rst
+    handover_rules.rst
     fork_update.rst
     tests.rst
     DEVELOPER.rst
