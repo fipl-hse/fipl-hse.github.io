@@ -8,7 +8,7 @@ Laboratory work №6. Process raw data
     :titlesonly:
     :caption: Full API
 
-    lab_6.api.rst
+    lab_6_pipeline.api.rst
 
 Python competencies required to complete this tutorial:
 
@@ -66,7 +66,7 @@ An example ``tmp`` directory content for mark 4:
 
 .. code:: text
 
-   +-- 2024-2-level-ctlr
+   +-- 2025-2-level-ctlr
        +-- tmp
            +-- articles
                +-- 1_raw.txt <- the paper with the ID (from scraper.py run)
@@ -77,26 +77,25 @@ An example ``tmp`` directory content for mark 6:
 
 .. code:: text
 
-   +-- 2024-2-level-ctlr
+   +-- 2025-2-level-ctlr
        +-- tmp
            +-- articles
                +-- 1_raw.txt <- the paper with the ID (from scraper.py run)
                +-- 1_meta.json <- the paper meta-information (from scraper.py run)
                +-- 1_cleaned.txt <- processed text with no punctuation (by pipeline.py run)
-               +-- 1_udpipe_conllu.conllu <- processed text in the UD format (by pipeline.py run)
+               +-- 1_udpipe.conllu <- processed text in the UD format (by pipeline.py run)
 
 An example ``tmp`` directory content for marks 8 and 10:
 
 .. code:: text
 
-   +-- 2024-2-level-ctlr
+   +-- 2025-2-level-ctlr
        +-- tmp
            +-- articles
                +-- 1_raw.txt <- the paper with the ID (from scraper.py run)
                +-- 1_meta.json <- the paper meta-information (from scraper.py and pipeline.py run)
                +-- 1_cleaned.txt <- processed text with no punctuation (by pipeline.py run)
-               +-- 1_udpipe_conllu.conllu <- processed text in the UD format (by pipeline.py run)
-               +-- 1_stanza_conllu.conllu <- processed text in the UD format (by pipeline.py run, only for mark 10)
+               +-- 1_udpipe.conllu <- processed text in the UD format (by pipeline.py run)
                +-- 1_image.png <- POS frequencies bar chart (by pipeline.py run)
 
 .. hint:: When using CI (Continuous Integration), generated
@@ -116,7 +115,7 @@ Processing behavior must follow several steps:
 3. Pipeline processes each text via specified UD model and extracts
    linguistic information.
 4. Pipeline saves extracted information into the file with the same id
-   for each article processed, for example ``1_udpipe_conllu.conllu``.
+   for each article processed, for example ``1_udpipe.conllu``.
 
 Assessment criteria
 -------------------
@@ -152,9 +151,9 @@ to check if you can get it.
    4. Pipeline produces ``N_cleaned.txt`` files in the ``tmp/articles``.
 
       1. `Example raw text
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_raw.txt>`__ and `Desired output
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/lab_6_pipeline/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/lab_6_pipeline/
          tests/test_files/reference_score_four.txt>`__.
 
 2. Desired mark **6**:
@@ -163,49 +162,48 @@ to check if you can get it.
    2. All requirements for the mark **4**.
    3. Pipeline uses ``spacy-udpipe`` library to extract linguistic markup for the text
       in the CoNLL-U format.
-   4. Pipeline produces ``N_udpipe_conllu.conllu`` files for each article.
+   4. Pipeline produces ``N_udpipe.conllu`` files for each article.
 
       1. `Example raw text
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_raw.txt>`__ and `Desired output
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/lab_6_pipeline/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/lab_6_pipeline/
          tests/test_files/reference_udpipe_test.conllu>`__.
 
 3. Desired mark **8**:
 
    1. ``pylint`` level: ``10/10``.
    2. All requirements for the mark **6**.
-   3. Pipeline collects frequencies of POS in each text,
+   3. Pipeline uses ``spacy-conll`` library to parse linguistic markup from the CoNLL-U files
+      for further analysis.
+   4. Pipeline collects frequencies of POS in each text,
       extends ``N_meta.json`` files with this information
       and visualizes this distribution via bar chart saved as
       ``N_image.png`` files for each article.
 
       1. `Example raw text
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_raw.txt>`__, `Desired CoNLL-U output
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/lab_6_pipeline/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/lab_6_pipeline/
          tests/test_files/reference_udpipe_test.conllu>`__, `Example meta info
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_meta.json>`__ and `Desired bar chart
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          core_utils/tests/test_files/reference_image.png>`__.
 
 4. Desired mark **10**:
 
    1. ``pylint`` level: ``10/10``.
    2. All requirements for the mark **8**.
-   3. Pipeline uses ``stanza`` library to extract linguistic markup for the text
-      in the CoNLL-U format.
-   4. Pipeline produces ``N_stanza_conllu.conllu`` files for each article.
-   5. Pipeline uses ``networkx`` library to create a graph of
+   3. Pipeline uses ``networkx`` library to create a graph of
       dependencies to search for a required syntactic pattern.
-   6. Pipeline collects required syntactic patterns in each text and
+   4. Pipeline collects required syntactic patterns in each text and
       extends ``N_meta.json`` files with this information.
 
       1. `Example raw text
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_raw.txt>`__ and `Example meta info
-         <https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+         <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
          lab_6_pipeline/tests/test_files/1_meta.json>`__.
 
 Implementation tactics
@@ -240,8 +238,8 @@ Stage 0. Prerequisites
    the code you write.
 
 .. important:: Do not change modules external to your code, for example
-               ``core_utils/article/article.py``, consider them as available
-               only via installation. If you see a way to improve external modules,
+               ``core_utils/article/article.py``, consider them as not available
+               for installation. If you see a way to improve external modules,
                propose them in a separate PR - mentors will review them separately
                and give you bonuses as any improvements are appreciated.
 
@@ -292,7 +290,7 @@ method.
 .. note:: Remember to use ``pathlib`` module in order
           to operate paths.
 
-.. note:: Call this method during CorpusManager initialization.
+.. note:: Call this method during initialization.
 
 When dataset is valid, method returns ``None``. Otherwise:
 
@@ -329,9 +327,9 @@ Filling the storage should be done by executing
 
 The method should contain logic for iterating over the content of the
 folder, finding all ``N_raw.txt`` files and creating
-:py:class:`core_utils.ctlr.article.article.Article` instance for each file.
+:py:class:`core_utils.article.article.Article` instance for each file.
 
-.. note:: The :py:class:`core_utils.ctlr.article.article.Article` constructor
+.. note:: The :py:class:`core_utils.article.article.Article` constructor
           expects URL as the first argument. It
           should be safe to pass ``None`` instead of the real URL. Pipeline
           does not need to know where was the article downloaded from.
@@ -339,7 +337,7 @@ folder, finding all ``N_raw.txt`` files and creating
 
 As it was stated before, ``self._storage`` attribute is just a
 dictionary. Keys are ids of the files, values are instances of the
-:py:class:`core_utils.ctlr.article.article.Article` class.
+:py:class:`core_utils.article.article.Article` class.
 For example, pipeline finds a file ``1_raw.txt``.
 Then we put new pair to the storage:
 
@@ -365,7 +363,7 @@ returns a storage value. At this stage, you need to implement
 .. attention:: Can you explain why we might need getters?
 
 Eventually, :py:class:`lab_6_pipeline.pipeline.CorpusManager` should return
-a dictionary of :py:class:`core_utils.ctlr.article.article.Article` instances via
+a dictionary of :py:class:`core_utils.article.article.Article` instances via
 :py:meth:`lab_6_pipeline.pipeline.CorpusManager.get_articles` method.
 
 Stage 2. Introduce abstraction for processing texts: ``TextProcessingPipeline``
@@ -380,9 +378,9 @@ preprocessing:
 After implementation of preprocessing, your pipeline must save results
 in the files with the names following the pattern ``N_cleaned.txt``. See
 examples for a better understanding: `Raw text
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
 lab_6_pipeline/tests/test_files/1_raw.txt>`__ - `Desired output
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
 lab_6_pipeline/tests/test_files/reference_score_four.txt>`__.
 
 Stage 2.1. Implement simplified logic of ``TextProcessingPipeline``
@@ -420,7 +418,7 @@ Stage 2.2. Save the results of text preprocessing
 It is mandatory to save generated text to file in the
 :py:meth:`lab_6_pipeline.pipeline.TextProcessingPipeline.run` method.
 In order to do this, inspect the ``core_utils/article/io.py`` module.
-Use :py:func:`core_utils.ctlr.article.io.to_cleaned` function
+Use :py:func:`core_utils.article.io.to_cleaned` function
 to save cleaned text to the appropriate folder. Call this
 function with the article instance you want to save text for.
 
@@ -433,11 +431,11 @@ Stage 3. Extract linguistic markup using UDPipe model
 To get a mark not lower than 6, your pipeline, in addition to mark 4
 requirements, must perform morphological text analysis for each article
 using ``spacy-udpipe`` library and save the result in the file with the
-name following the pattern ``N_udpipe_conllu.conllu``.
+name following the pattern ``N_udpipe.conllu``.
 See examples for a better understanding: `Raw text
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
 lab_6_pipeline/tests/test_files/1_raw.txt>`__ - `Desired output
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
 lab_6_pipeline/tests/test_files/reference_udpipe_test.conllu>`__.
 
 File with ``.conllu`` extension means that it corresponds to the UD
@@ -447,22 +445,20 @@ of the format fields refer to the `dedicated
 page <https://universaldependencies.org/format.html>`__.
 
 As all article text information storing and managing is done by the
-:py:class:`core_utils.ctlr.article.article.Article` abstraction,
+:py:class:`core_utils.article.article.Article` abstraction,
 see :ref:`ctlr-article-label` before proceeding to the next stages.
 
 Stage 3.1.1 Download model from GitHub releases
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You are required to download the UDPipe model from `HERE
-<https://github.com/fipl-hse/2024-2-level-ctlr/releases/tag/v1.0.0>`__
+<https://github.com/fipl-hse/2025-2-level-ctlr/releases/tag/v1.0.0>`__
 and place the model to ``lab_6_pipeline/assets/model``.
 
 Stage 3.1.2 Introduce ``UDPipeAnalyzer`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Given that the present laboratory work implements text processing via more than one
-linguistic model (UDPipe and Stanza), there is a need for unified interface. For this
-reason, you are required to implement a wrapper abstraction over UDPipe model:
+You are required to implement a wrapper abstraction over UDPipe model:
 :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer`. This abstraction is responsible
 for processing text and outputting its linguistic features in CoNLL-U format.
 
@@ -481,9 +477,6 @@ First, the wrapper should be instantiated with the following instruction:
 Wrapper does not accept any arguments during initialization, but calls protected method
 :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap`, which is responsible for
 loading and setting up the UDPipe model.
-
-.. hint:: Path to the required UDPipe model is stored in
-          ``core_utils/constants.py`` module as ``UDPIPE_MODEL_PATH``.
 
 The :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer._bootstrap` method must read the UDPipe
 model via ``spacy_udpipe`` library, add CoNLL-U formatter to the model pipeline and define
@@ -535,19 +528,19 @@ must possess a method for producing a file with ``.conllu`` extension with
 retrieved linguistic markup.
 Method :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu` does not perform
 any analysis, but operates fields of
-:py:class:`core_utils.ctlr.article.article.Article` instance.
+:py:class:`core_utils.article.article.Article` instance.
 
-The method accepts one instance of :py:class:`core_utils.ctlr.article.article.Article`
+The method accepts one instance of :py:class:`core_utils.article.article.Article`
 as an argument. It is presumed that the given article object
 has a filled attribute with CoNLL-U markup. The method thus uses interface of
-the :py:class:`core_utils.ctlr.article.article.Article` instance to save the stored
-information into the ``N_udpipe_conllu.conllu`` file,
+the :py:class:`core_utils.article.article.Article` instance to save the stored
+information into the ``N_udpipe.conllu`` file,
 where ``N`` corresponds to the identifier of the article.
 
 .. note:: It is mandatory to use
-          :py:meth:`core_utils.ctlr.article.article.Article.get_file_path`
+          :py:meth:`core_utils.article.article.Article.get_file_path`
           and
-          :py:meth:`core_utils.ctlr.article.article.Article.get_conllu_info`
+          :py:meth:`core_utils.article.article.Article.get_conllu_info`
           methods.
 
 Stage 3.4. Extend ``TextProcessingPipeline`` with morphological analysis logic
@@ -567,7 +560,7 @@ lowercase, you must implement the extraction of all information required by
 UD format and save it in the corresponding ``.conllu`` files. In other words,
 the execution of the
 :py:meth:`lab_6_pipeline.pipeline.TextProcessingPipeline.run` method
-must result in producing both ``N_cleaned.txt`` and ``N_udpipe_conllu.conllu`` files
+must result in producing both ``N_cleaned.txt`` and ``N_udpipe.conllu`` files
 for each available article.
 
 In order to achieve that, first, make sure that during the instantiation of the pipeline
@@ -583,9 +576,9 @@ apart from cleaning of each article perform the following:
 3. Save the stored markup to ``.conllu`` file via analyzer interface.
 
 .. note:: It is mandatory to use
-          :py:meth:`core_utils.ctlr.article.io.from_raw`,
+          :py:meth:`core_utils.article.io.from_raw`,
           :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.analyze`,
-          :py:meth:`core_utils.ctlr.article.article.Article.set_conllu_info` and
+          :py:meth:`core_utils.article.article.Article.set_conllu_info` and
           :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu` methods.
 
 Stage 4. Extract and visualize POS frequency statistics
@@ -601,7 +594,7 @@ maybe, provide us with better understanding of the text.
 
 This is a sample result we are going to obtain:
 
-.. figure:: ../../_static/lab_6_pipeline/sample_visualization.png
+.. figure:: ../docs/images/sample_visualization.png
    :alt: sample_visualization.png
 
 Stage 4.1 Extend ``UDPipeAnalyzer`` with CoNLL-U parsing functionality
@@ -614,10 +607,15 @@ you are required to implement method
 Their responsibility is the opposite of that of
 :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.to_conllu` method: it
 accepts article instance, derives the name of the file where their UD properties are stored,
-and converts contents to the :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer`
-via ``spacy_conll.parser``.
+and converts contents to the ``CoNLLUDocument`` via ``parser`` module of the
+``spacy_conll`` library.
 
-.. note:: Note that ``UDPipeDocument``, similarly to ``AbstractCoNLLUAnalyzer``,
+.. tip:: Refer to the corresponding seminar materials
+         or inspect `the official repository of the library
+         <https://github.com/BramVanroy/spacy_conll/blob/master/README.md>`__
+         to learn more about appropriate configuration details.
+
+.. note:: Note that ``CoNLLUDocument``, similarly to ``AbstractCoNLLUAnalyzer``,
           is a protocol that is used to mimic the UDPipe document class of the
           respective library and help unify the interfaces for further usage with
           different libraries.
@@ -631,9 +629,7 @@ The :py:class:`lab_6_pipeline.pipeline.POSFrequencyPipeline`
 is instantiated in the similar manner as the
 :py:class:`lab_6_pipeline.pipeline.TextProcessingPipeline`.
 During initialization it must accept an instance of ``CorpusManager``
-and an instance of an analyzer. For **marks 8** it is ``UDPipeAnalyzer``,
-and for **mark 10** it could also be ``StanzaAnalyzer``, which would be described
-at later stages.
+and an instance of an analyzer.
 
 .. code:: python
 
@@ -671,21 +667,21 @@ Once executed,
 .. note:: It is mandatory to get articles with the
           :py:meth:`lab_6_pipeline.pipeline.CorpusManager.get_articles` method
           and get UD information with the corresponding to the analyzer
-          :py:meth:`core_utils.ctlr.pipeline.LibraryWrapper.from_conllu` method.
+          :py:meth:`core_utils.pipeline.LibraryWrapper.from_conllu` method.
 
-.. note:: It is mandatory to use :py:meth:`core_utils.ctlr.article.article.Article.get_file_path`,
-          :py:meth:`core_utils.ctlr.article.article.Article.set_pos_info` methods and
-          :py:func:`core_utils.ctlr.article.io.to_meta`,
-          :py:func:`core_utils.ctlr.article.io.from_meta` functions.
+.. note:: It is mandatory to use :py:meth:`core_utils.article.article.Article.get_file_path`,
+          :py:meth:`core_utils.article.article.Article.set_pos_info` methods and
+          :py:func:`core_utils.article.io.to_meta`,
+          :py:func:`core_utils.article.io.from_meta` functions.
 
 .. attention:: You have to create ``EmptyFileError`` exception class and to
                raise it when an article file is empty (you can add checks directly to
-               :py:meth:`core_utils.ctlr.pipeline.LibraryWrapper.from_conllu` methods).
+               :py:meth:`core_utils.pipeline.LibraryWrapper.from_conllu` methods).
 
 .. attention:: Make sure that resulting meta files are valid: they must
                contain no more than one dictionary-like object.
 
-For visualization, you need to use :py:func:`core_utils.ctlr.visualizer.visualize`
+For visualization, you need to use :py:func:`core_utils.visualizer.visualize`
 function.
 
 Sample usage:
@@ -702,10 +698,10 @@ searching for a certain pattern using
 information from ``.conllu`` files and the functionality of ``networkx`` library.
 
 See examples for a better understanding: `Raw text
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
-lab_6_pipeline/tests/test_files/1_raw.txt>`__ - `Desired output
-<https://github.com/fipl-hse/2024-2-level-ctlr/blob/main/
-lab_6_pipeline/tests/test_files/1_meta.json>`__.
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
+lab_6_pipeline/tests/test_files/2_raw.txt>`__ - `Desired output
+<https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
+lab_6_pipeline/tests/test_files/2_meta.json>`__.
 
 .. tip:: To learn more about the ``networkx``,
          inspect `the official documentation of the library
@@ -720,7 +716,7 @@ During instantiation it must accept an instance of ``CorpusManager``,
 instance of an analyzer and a tuple of POS tags for required syntactic pattern.
 
 In this laboratory work we are interested in exploring
-"verb-preposition-noun dependency" models, that is why there would be
+verb control noun with preposition models, that is why there would be
 the following instantiation:
 
 .. code:: python
@@ -753,7 +749,7 @@ of each sentence in the article which we will subsequently search for.
 
 Example of the graph for the sentence: Я учусь в университете.
 
-   .. figure:: ../../_static/lab_6_pipeline/sample_sentence_graph.png
+   .. figure:: ../docs/images/sample_sentence_graph.png
       :alt: sentence graph sample
 
 In order to make a graph of syntactic dependencies for each sentence in the article,
@@ -761,10 +757,10 @@ you are required to implement a
 :py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs` method.
 
 The method accepts
-one instance of :py:class:`core_utils.ctlr.pipeline.CoNLLUDocument` as an argument.
+one instance of :py:class:`core_utils.pipeline.CoNLLUDocument` as an argument.
 It is presumed that the given document object
 contains information from ``.conllu`` file
-which was obtained using :py:meth:`core_utils.ctlr.pipeline.LibraryWrapper.from_conllu` method.
+which was obtained using :py:meth:`core_utils.pipeline.LibraryWrapper.from_conllu` method.
 
 The :py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._make_graphs` method
 iterates through each sentence in the article and creates nodes and edges for the words
@@ -775,15 +771,6 @@ Edges should connect this word with its parent using dependency relation.
 .. tip:: To make a graph it is mandatory to use an instance of
     `DiGraph <https://networkx.org/documentation/stable/reference/classes/digraph.html>`__ class.
 
-.. note:: :py:class:`core_utils.pipeline.CoNLLUDocument` is a protocol class that mimics and
-          inherits protocols for analyzers' document classes. It is used to unify the
-          interfaces of analyzers and simplify the typing across the classes based on the same
-          protocols. You can notice it, for example, in the interface difference of
-          :py:meth:`lab_6_pipeline.pipeline.UDPipeAnalyzer.analyze`,
-          :py:meth:`lab_6_pipeline.pipeline.StanzaAnalyzer.analyze` and their mutual protocol
-          interface of :py:meth:`core_utils.ctlr.pipeline.LibraryWrapper.analyze`. It makes for a
-          clearer distinction in what is allowed in which exact case without disjunction usage
-          in typing.
 
 Stage 5.3. Find syntactic patterns via ``PatternSearchPipeline`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -800,7 +787,7 @@ and we want to make an ideal graph for our pattern.
 
 Example of the ideal graph for our syntactic pattern:
 
-   .. figure:: ../../_static/lab_6_pipeline/sample_ideal_graph.png
+   .. figure:: ../docs/images/sample_ideal_graph.png
       :alt: ideal graph sample
 
 After that, we are searching for the subgraphs in our graph
@@ -825,7 +812,7 @@ about the received patterns or calculate some statistics we need to use
 a more traditional way of storing information.
 
 For these aims there are
-:py:class:`core_utils.ctlr.pipeline.TreeNode` class.
+:py:class:`core_utils.pipeline.TreeNode` class.
 It stores information about the node of the tree.
 You have to instantiate it with the POS tag,
 text and list of dependent children of your node.
@@ -836,7 +823,7 @@ It accepts the current graph - an instance of
 `DiGraph <https://networkx.org/documentation/stable/reference/classes/digraph.html>`__ class,
 a dictionary with matched subgraphs, ID of the root node and
 root node of the matched subgraph. It iterates through the available
-children of the accepted root node, instantiates :py:class:`core_utils.ctlr.pipeline.TreeNode` class
+children of the accepted root node, instantiates :py:class:`core_utils.pipeline.TreeNode` class
 and appends information about the new children into root node.
 
 The method works recursively: until all the children of the current root node
@@ -861,8 +848,15 @@ will not be found.
 The :py:meth:`lab_6_pipeline.pipeline.PatternSearchPipeline._find_pattern` method
 returns a dictionary which as keys contains the indexes of sentences
 where the required pattern was found,
-and as values a list of :py:class:`core_utils.ctlr.pipeline.TreeNode` class instances
+and as values a list of :py:class:`core_utils.pipeline.TreeNode` class instances
 with information about the pattern matches.
+
+.. note:: You are allowed to collect and store patterns one by one or
+          by storing children with the same parent in a single root.
+          For clarification you can reference
+          `pattern cases <https://github.com/fipl-hse/2025-2-level-ctlr/blob/main/
+          lab_6_pipeline\tests\test_files\complex_pattern_matches.json>`__.
+
 
 Stage 5.4. Implement core logic of ``PatternSearchPipeline``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -889,11 +883,11 @@ Once executed,
 .. note:: It is mandatory to get articles with the
           :py:meth:`lab_6_pipeline.pipeline.CorpusManager.get_articles` method
           and get UD information with the corresponding to the analyzer
-          :py:meth:`core_utils.ctlr.pipeline.LibraryWrapper.from_conllu` method.
+          :py:meth:`core_utils.pipeline.LibraryWrapper.from_conllu` method.
 
-.. note:: It is mandatory to use :py:meth:`core_utils.ctlr.article.article.Article.get_file_path`,
-          :py:meth:`core_utils.ctlr.article.article.Article.set_pos_info` method and
-          :py:func:`core_utils.ctlr.article.io.to_meta` function.
+.. note:: It is mandatory to use :py:meth:`core_utils.article.article.Article.get_file_path`,
+          :py:meth:`core_utils.article.article.Article.set_pos_info` method and
+          :py:func:`core_utils.article.io.to_meta` function.
 
 .. attention:: Make sure that resulting meta files are valid: they must
                contain no more than one dictionary-like object.
