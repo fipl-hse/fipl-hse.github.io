@@ -45,6 +45,10 @@ nitpick_ignore = [
     ('py:class', 'spacy.tokens.token.Token'),
     ('py:class', 'spacy.tokens.Token'),
     ('py:class', 'DiGraph'),
+    ("py:class", "Doc"),
+    ("py:class", "Language"),
+    ("py:class", "spacy.language.Language"),
+    ("py:class", "spacy.tokens.doc.Doc"),
 ]
 
 templates_path = ['_templates']
