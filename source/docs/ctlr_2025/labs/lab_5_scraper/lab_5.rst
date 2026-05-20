@@ -195,7 +195,7 @@ Stage 1. Extract and validate config first
 Stage 1.1. Use ``ConfigDTO`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You are provided with :py:class:`core_utils.ctlr.config_dto.ConfigDTO` abstraction.
+You are provided with :py:class:`core_utils.config_dto.ConfigDTO` abstraction.
 It is located in ``core_utils`` package.
 Use it to store you scraper configuration data from ``scraper_config.json``.
 Examine class fields closely.
@@ -235,7 +235,7 @@ need to define :py:meth:`lab_5_scraper.scraper.Config._extract_config_content`
 method for extracting configuration data.
 
 The method should open configuration file, create and fill the
-:py:class:`core_utils.ctlr.config_dto.ConfigDTO` instance with
+:py:class:`core_utils.config_dto.ConfigDTO` instance with
 all configuration parameters filled.
 
 .. note:: This method returns a :py:class:`core_utils.config_dto.ConfigDTO`
@@ -418,9 +418,9 @@ Parser is initialized the following way:
 saves all constructor arguments in attributes with corresponding names.
 Each instance should also have an additional ``self.article`` attribute,
 initialized with a new instance of
-:py:class:`core_utils.ctlr.article.article.Article` class.
+:py:class:`core_utils.article.article.Article` class.
 
-:py:class:`core_utils.ctlr.article.article.Article` is an abstraction
+:py:class:`core_utils.article.article.Article` is an abstraction
 that is implemented for you. You must use it
 in your implementation. A more detailed description of the Article class
 can be found in :ref:`ctlr-article-label`.
@@ -437,11 +437,11 @@ web page. It should do the following:
 1. Download the web page.
 2. Initialize ``BeautifulSoup`` object on top of downloaded page (we
    will call it ``article_bs``).
-3. Fill :py:class:`core_utils.ctlr.article.article.Article` instance
+3. Fill :py:class:`core_utils.article.article.Article` instance
    by calling private methods to extract text (more details in the next sections).
 
 The :py:meth:`lab_5_scraper.scraper.HTMLParser.parse` method returns
-the instance of :py:class:`core_utils.ctlr.article.article.Article` that is
+the instance of :py:class:`core_utils.article.article.Article` that is
 stored in ``self.article`` field.
 
 Stage 4.3. Implement extraction of text from article page
@@ -451,7 +451,7 @@ Extraction of the text should happen in the private
 :py:meth:`lab_5_scraper.scraper.HTMLParser._fill_article_with_text` method.
 
 A call to this method results in filling the internal
-:py:class:`core_utils.ctlr.article.article.Article` instance with text.
+:py:class:`core_utils.article.article.Article` instance with text.
 
 .. note:: It is very likely that the text on pages of a chosen website is
           split across different HTML blocks, make sure to collect text from
@@ -462,12 +462,12 @@ Stage 5. Save article
 
 .. important:: **Stages 0-5** are required to get the mark **4**.
 
-Make sure that you save each :py:class:`core_utils.ctlr.article.article.Article`
+Make sure that you save each :py:class:`core_utils.article.article.Article`
 object as a text file on the file system by using the appropriate
-API method :py:func:`core_utils.ctlr.article.io.to_raw` from ``io.py`` module.
+API method :py:func:`core_utils.article.io.to_raw` from ``io.py`` module.
 Read more in :ref:`ctlr-article-label`.
 
-As we return the :py:class:`core_utils.ctlr.article.article.Article` instance
+As we return the :py:class:`core_utils.article.article.Article` instance
 from the :py:meth:`lab_5_scraper.scraper.HTMLParser.parse` method, saving
 the article is out of scope of an :py:class:`lab_5_scraper.scraper.HTMLParser`.
 This means that you need to save the articles in the place where you call
@@ -485,14 +485,14 @@ about each article including its id, title, author.
 Implement
 :py:meth:`lab_5_scraper.scraper.HTMLParser._fill_article_with_meta_information`
 method. A call to this method results in filling the internal
-:py:class:`core_utils.ctlr.article.article.Article` instance with meta-information.
+:py:class:`core_utils.article.article.Article` instance with meta-information.
 
 .. note:: Authors must be saved as a list of strings.
           If there is no author in your newspaper, fill the field with a
           list with a single string “NOT FOUND”.
 
 To save the collected meta-information, refer
-:py:func:`core_utils.ctlr.article.io.to_meta` method.
+:py:func:`core_utils.article.io.to_meta` method.
 Saving must be performed outside of parser methods.
 
 Stage 7. Collect advanced metadata: publication date and topics
@@ -532,8 +532,7 @@ keywords present in your source, leave this list empty.
 
 You should extend
 :py:meth:`lab_5_scraper.scraper.HTMLParser._fill_article_with_meta_information`
-method with a call to
-:py:meth:`lab_5_scraper.scraper.HTMLParser.unify_date_format`
+method with a call to :py:meth:`lab_5_scraper.scraper.HTMLParser.unify_date_format`
 method and topics extraction.
 
 Stage 8. Determine the optimal number of seed URLs

@@ -10,8 +10,10 @@ import pathlib
 import requests
 from bs4 import BeautifulSoup, Tag
 
-from core_utils.ctlr.article.article import Article
-from core_utils.ctlr.config_dto import ConfigDTO
+from core_utils.article.article import Article
+from core_utils.config_dto import ConfigDTO
+
+logger = get_child_logger(__file__)
 
 
 class Config:
@@ -152,6 +154,29 @@ class Crawler:
 
 
 # 10
+
+
+class CrawlerRecursive(Crawler):
+    """
+    Recursive implementation.
+
+    Get one URL of the title page and find requested number of articles recursively.
+    """
+
+    def __init__(self, config: Config) -> None:
+        """
+        Initialize an instance of the CrawlerRecursive class.
+
+        Args:
+            config (Config): Configuration
+        """
+
+    def find_articles(self) -> None:
+        """
+        Find number of article urls requested.
+        """
+
+
 # 4, 6, 8, 10
 
 

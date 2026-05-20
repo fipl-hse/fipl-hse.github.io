@@ -1,4 +1,4 @@
-.. _ctlr-lectures-label-2025:
+.. _ctlr-lectures-label:
 
 Short summary of lectures
 =========================
@@ -11,8 +11,8 @@ assessment formula. Technical track overview. Programming assignment overview.
 Client-server architecture in World Wide Web. Request. Response.
 Python package manager ``pip``. ``requirements.txt`` as a manifest of project dependencies.
 
-Lecture 2. Headers. HTML structure.
------------------------------------
+Lecture 2. Headers. HTML structure
+----------------------------------
 
 Types of HTTP methods:
 ``GET``, ``POST``, ``DELETE``, ``PUT``.

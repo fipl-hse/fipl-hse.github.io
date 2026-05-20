@@ -1,5 +1,9 @@
-General Information
-===================
+Technical Track of Computer Tools for Linguistic Research (2025/2026)
+=====================================================================
+
+As a part of a compulsory course `Computer Tools for Linguistic
+Research <https://nnov.hse.ru/ba/ling/courses/1128051801.html>`__ in `National
+Research University Higher School of Economics <https://www.hse.ru/>`__.
 
 This technical track is aimed at building basic skills for retrieving
 data from external WWW resources and processing it for future linguistic
@@ -49,7 +53,7 @@ Project Timeline
    1. Short summary: Your code can automatically process raw texts from
       previous step, make point-of-speech tagging and basic
       morphological analysis.
-   2. Deadline: **TBD**.
+   2. Deadline: **June, 1**.
    3. Format: each student works in their own PR.
    4. Dataset volume: 100 articles.
    5. Design document: :ref:`pipeline-label`.
@@ -58,30 +62,31 @@ Project Timeline
 Lectures history
 ----------------
 
-+------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
-| Date       | Lecture topic       | Important links                                                                                                    |
-+============+=====================+====================================================================================================================+
-| 06.04.2024 | Lecture:            | N/A                                                                                                                |
-|            | Introduction to     |                                                                                                                    |
-|            | technical track.    |                                                                                                                    |
-|            | 3rd party libraries.|                                                                                                                    |
-+------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
-| 13.04.2024 | Lecture:            | N/A                                                                                                                |
-|            | Headers. HTML       |                                                                                                                    |
-|            | structure.          |                                                                                                                    |
-+------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
-| 13.04.2024 | Seminar: Local      | `Листинг <https://github.com/fipl-hse/2025-2-level-ctlr/tree/main/seminars/seminar_04_13_2026/try_requests.py>`__. |
-|            | setup. Choose       |                                                                                                                    |
-|            | website.            |                                                                                                                    |
-+------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
-| 20.04.2024 | Lecture: Search in  | N/A                                                                                                                |
-|            | HTML page.          |                                                                                                                    |
-+------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
-| 20.04.2024 | Seminar: `requests`:| `Листинг <https://github.com/fipl-hse/2025-2-level-ctlr/tree/main/seminars/seminar_04_20_2026/try_bs.py>`__.       |
-|            | install, API.       |                                                                                                                    |
-+------------+---------------------+--------------------------------------------------------------------------------------------------------------------+
++------------+---------------------+--------------------------------------------------------------+
+| Date       | Lecture topic       | Important links                                              |
++============+=====================+==============================================================+
+| 06.04.2024 | Lecture:            | N/A                                                          |
+|            | Introduction to     |                                                              |
+|            | technical track.    |                                                              |
+|            | 3rd party libraries.|                                                              |
++------------+---------------------+--------------------------------------------------------------+
+| 13.04.2024 | Lecture:            | `Листинг <./seminars/seminar_04_13_2024/try_requests.py>`__. |
+|            | Headers. HTML       |                                                              |
+|            | structure.          |                                                              |
++------------+---------------------+--------------------------------------------------------------+
+| 13.04.2024 | Seminar: Local      | N/A                                                          |
+|            | setup. Choose       |                                                              |
+|            | website.            |                                                              |
++------------+---------------------+--------------------------------------------------------------+
+| 20.04.2024 | Lecture: Search in  | `Листинг <./seminars/seminar_04_20_2024/try_bs.py>`__.       |
+|            | HTML page.          |                                                              |
++------------+---------------------+--------------------------------------------------------------+
+| 20.04.2024 | Seminar: `requests`:| N/A                                                          |
+|            | install, API.       |                                                              |
++------------+---------------------+--------------------------------------------------------------+
 
-You can find a more complete summary from lectures in :ref:`ctlr-lectures-label-2025`.
+
+You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
 
 Technical solution
 ------------------

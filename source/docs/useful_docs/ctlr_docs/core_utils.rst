@@ -6,7 +6,7 @@ Core utils
     :titlesonly:
     :caption: Full API
 
-    core_utils.api.rst
+    ../../core_utils/core_utils.api.rst
 
 Core utils package contains auxiliary materials to help you implement
 your laboratory works. We are going to over each of its parts
@@ -22,7 +22,7 @@ Lab 5 and Lab 6. See exhaustive guide for :ref:`ctlr-article-label`.
 Configurations DTO
 ------------------
 
-The ``config_dto.py`` module defines a :py:class:`core_utils.ctlr.config_dto.ConfigDTO` abstraction.
+The ``config_dto.py`` module defines a :py:class:`core_utils.config_dto.ConfigDTO` abstraction.
 This abstraction is responsible for indicating what fields must be passed as
 a configuration settings along with what their types must be.
 
@@ -71,7 +71,17 @@ in order to be considered compatible with that protocol.
 It influences the code implicitly and, if necessary, organizes a check
 for the presence of methods or attributes in the corresponding classes.
 
-:py:class:`core_utils.ctlr.pipeline.LibraryWrapper` defines a specific set of methods and attributes
+:py:class:`core_utils.pipeline.AbstractCoNLLUAnalyzer` protocol mimics
+analyzer instance for UDPipe model. It does not impose a special interface
+but simply indicates that this object is responsible for analyzing the language material.
+
+:py:class:`core_utils.pipeline.CoNLLUDocument` protocol is the class that mimics UDPipe
+document. Linguistic data retrieval models process texts and return
+CoNLL-U formatted markup as instances of :py:class:`core_utils.pipeline.CoNLLUDocument`.
+At the same time :py:class:`core_utils.pipeline.CoNLLUDocument`
+object contains information from ``.conllu`` file.
+
+:py:class:`core_utils.pipeline.LibraryWrapper` defines a specific set of methods and attributes
 to be present across all model wrappers:
 
 -  ``_analyzer`` attribute
@@ -79,10 +89,10 @@ to be present across all model wrappers:
 -  ``analyze`` method
 -  ``to_conllu`` method
 
-:py:class:`core_utils.ctlr.pipeline.PipelineProtocol` defines an interface for pipelines:
+:py:class:`core_utils.pipeline.PipelineProtocol` defines an interface for pipelines:
 they must have a ``run`` method.
 
-Dataclass :py:class:`core_utils.ctlr.pipeline.TreeNode` stores information about
+Dataclass :py:class:`core_utils.pipeline.TreeNode` stores information about
 the node of syntactic tree:
 
 -  POS tag
@@ -95,11 +105,11 @@ Visualizer module
 As one of the tasks for mark 8 you are expected to perform an
 analysis of distribution of part-of-speech tags in the processed
 collected articles. This is where ``visualizer.py`` module comes into play.
-Its :py:func:`core_utils.ctlr.visualizer.visualize` function takes an
+Its :py:func:`core_utils.visualizer.visualize` function takes an
 ``Article`` instance along with a path and creates a bar chart depicting
 POS distribution in the specified location.
 
-.. note:: :py:func:`core_utils.ctlr.visualizer.visualize` function must be called
+.. note:: :py:func:`core_utils.visualizer.visualize` function must be called
           during the execution of
           :py:meth:`lab_6_pipeline.pipeline.POSFrequencyPipeline.run` method,
           but before that, make sure you have already filled the
