@@ -9,65 +9,41 @@ Run Python Programs in Terminal
 This is a short tutorial on calling Python programs in terminal (Unix)
 or ``cmd`` (Windows).
 
+.. _running-code-en:
+
 Run simple program with no dependencies
 ---------------------------------------
 
-Let’s say you have a Python program represented as ``script.py`` file.
+Let's try to launch a Python program represented as ``script.py`` file in folder
+``lab_N_lab_name`` of a project ``2-level-ctlr``.
 
-.. code:: python
+1. Open terminal (Windows: ``PowerShell``, macOS: ``Terminal``).
 
-   def main():
-       print("Hello world!")
+2. Go to the project folder via command ``cd C:\<path-to-folder>\2-level-labs``.
 
-   if __name__ == "__main__":
-       main()
+3. Create a virtual environment via command ``python -m venv venv``.
 
-To run your program, you need to open terminal (Windows: ``Powershell``,
-macOS: ``Terminal``).
+4. Activate environment:
 
-Then activate environment:
+   1. For Windows: ``.\venv\Scripts\activate``.
+   2. For macOS: ``source venv\bin\activate``.
 
-1. For Windows: ``.\venv\Scripts\activate``.
-2. For macOS: ``source venv\bin\activate``.
+   As a result, you get ``(venv)`` at the beginning of line.
 
-If you have problems with access in ``PowerShell``, you should change
-the execution policy in 2 steps:
+5. Run your program from the root of the project via ``python lab_N_lab_name/script.py``.
 
-1. Start Windows ``PowerShell`` with the “Run as Administrator” option.
-2. Enable running unsigned scripts by entering:
-
-.. code:: text
-
-   set-executionpolicy remotesigned
-
-If any other problems appear during activation, write in chat to get
-help.
-
-As a result, you get ``(venv)`` at the beginning of line.
-
-Now you run your program ``python script.py``
-and get output ``Hello world!``.
-
-The program executes fine if you call Python from the same directory
-where script resides. To go to the script directory use
-``cd "path_to_directory"`` command. Or call python using the full path
-to the script e.g.:
-
-.. code:: shell
-
-   python "full_path_to_directory_with_script/script.py"
-
-If ``python`` is not recognized as a command, you need to install it.
-Follow install instructions from :ref:`starting-guide-en-label`.
 
 Running programs with custom modules
 ------------------------------------
 
 Now, try to run your scraper:
 
-1. Go to your project’s folder
-   ``cd C:\Users\user\Documents\20XX-2-level-ctlr``.
-2. Run scraper ``python lab_5_scraper/scraper.py``.
+1. Complete steps 1-4 of :ref:`the previous instruction <running-code-en>`
+   to start working in your CTLR project.
+
+2. Install dependencies via ``python -m pip install -r requirements.txt``.
+
+3. Run scraper ``python lab_5_scraper/scraper.py``.
 
 You get error:
 
@@ -117,3 +93,30 @@ Run scraper again ``python lab_5_scraper/scraper.py``.
 
 Does it work? If yes, congratulations, you have a chance to get the
 highest possible mark. If not, write in chat for help.
+
+
+FAQ
+===
+
+Python is not recognized as a command
+-------------------------------------
+
+If ``python`` is not recognized as a command, you need to install it.
+Follow install instructions from :ref:`starting-guide-en-label`.
+
+
+I get an access error in PowerShell
+-----------------------------------
+
+If you have problems with access in ``PowerShell``, you should change
+the execution policy in 2 steps:
+
+1. Start Windows ``PowerShell`` with the “Run as Administrator” option.
+2. Enable running unsigned scripts by entering:
+
+.. code:: text
+
+   set-executionpolicy remotesigned
+
+If any other problems appear during activation, write in chat to get
+help.
