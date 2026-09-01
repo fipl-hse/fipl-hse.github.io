@@ -6,7 +6,6 @@
     :maxdepth: 1
     :titlesonly:
 
+    docs/index.rst
     docs/useful_docs/index.rst
-    docs/labs_2026/index.rst
-    docs/archived_courses/index.rst
     docs/developer_docs/index.rst

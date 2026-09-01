@@ -10,7 +10,6 @@
     :maxdepth: 1
     :titlesonly:
 
-    general_info.rst
+    Общая информация <general_info.rst>
     labs/index.rst
-    lectures_content_ru.rst
-    ../../docs/useful_docs/general_docs/index.rst
+    lectures_content.rst

@@ -6,13 +6,6 @@ Useful Materials for Technical Track of Computer Tools for Linguistic Research
     :maxdepth: 1
     :titlesonly:
 
-    starting_guide_en.rst
-    handover_rules.rst
-    fork_update.rst
-    tests.rst
-    DEVELOPER.rst
-    run_in_terminal.rst
-    dynamic_scraping.rst
     core_utils.rst
     article.rst
     ud_format.rst
@@ -20,3 +13,4 @@ Useful Materials for Technical Track of Computer Tools for Linguistic Research
     graphs_intro.rst
     dataset.rst
     faq.rst
+    dynamic_scraping.rst
