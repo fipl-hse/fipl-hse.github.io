@@ -148,6 +148,6 @@
 
 1. `Таблица
    успеваемости <https://docs.google.com/spreadsheets/d/1Y66lNzVtdNGyNdZNBLJgKttQ2ejb8ECjfAeMxCo8F1A/edit?usp=sharing>`__
-2. :ref:`starting-guide-ru-label`
+2. :ref:`starting-guide-label`
 3. :ref:`running-tests-label`
 4. :ref:`faq-label`

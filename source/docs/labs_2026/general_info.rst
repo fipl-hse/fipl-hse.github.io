@@ -35,7 +35,7 @@
 +-------------+------------------+--------------------------------------------------+
 
 Более полное содержание пройденных занятий Вы найдете
-`на сайте <https://fipl-hse.github.io/docs/labs_2026/lectures_content_ru.html>`__.
+`на сайте <https://fipl-hse.github.io/docs/labs_2026/lectures_content.html>`__.
 
 Литература
 ----------
@@ -71,12 +71,12 @@
 2. `Сайт дисциплины <https://fipl-hse.github.io/docs/labs_2026/index.html#>`__ с описанием лабораторных работ и
    полезными материалами
 3. Инструкция по подготовке к прохождению курса
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/starting_guide_ru.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/starting_guide_ru.html>`__
 4. Инструкция по запуску тестов
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/tests.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/tests.html>`__
 5. Инструкция по запуску ``.py`` файлов в терминале
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/run_in_terminal_ru.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/run_in_terminal_ru.html>`__
 6. Инструкция по обновлению форка
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/fork_update.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/fork_update.html>`__
 7. Ответы на часто задаваемые вопросы
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/FAQ.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/FAQ.html>`__

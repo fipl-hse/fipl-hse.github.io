@@ -6,9 +6,12 @@ Article package
 .. toctree::
     :maxdepth: 1
     :titlesonly:
-    :caption: Full API
 
-    article.api.rst
+    Full API of article package <article.api.rst>
+
+.. contents:: Contents
+   :depth: 2
+
 
 The ``article`` package is responsible for handling the articles you
 have collected from your website.

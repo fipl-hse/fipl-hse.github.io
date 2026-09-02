@@ -1,4 +1,4 @@
-.. _starting-guide-ru-label:
+.. _starting-guide-label:
 
 Подготовка к прохождению курса
 ==============================

@@ -122,7 +122,7 @@ Lectures history
 |            | (with penalties)    |                                            |
 +------------+---------------------+--------------------------------------------+
 
-You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
+You can find a more complete summary from lectures in :ref:`ctlr-lectures-label-2023`.
 
 Technical solution
 ------------------
@@ -225,7 +225,7 @@ Resources
 4. `Scrapping tutorials (Russian) <https://youtu.be/7hn1_t2ZtJQ>`__
 5. `Scrapping tutorials (English)
    <https://www.youtube.com/playlist?list=PL1jK3K11NINiOn4DdIDVdyQpcU3kaNxl0>`__
-6. :ref:`starting-guide-en-label`
-7. :ref:`ctlr-tests-label`
+6. :ref:`starting-guide-label`
+7. :ref:`running-tests-label`
 8. :ref:`run-in-terminal-label`
 9. :ref:`ctlr-faq-label`

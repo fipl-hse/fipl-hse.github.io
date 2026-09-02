@@ -3,6 +3,9 @@
 How to scrape dynamic web sources
 =================================
 
+.. contents:: Contents
+   :depth: 2
+
 It is not an uncommon practice for a web sources today to load more
 articles dynamically, for example, after a user scrolls or presses a
 button. In such cases, it is often impossible to collect a significant

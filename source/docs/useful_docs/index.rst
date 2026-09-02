@@ -1,5 +1,5 @@
 ==================
-Полезные Материалы
+Полезные материалы
 ==================
 
 Здесь Вы найдёте все вспомогательные материалы для курсов
@@ -9,5 +9,11 @@
     :maxdepth: 1
     :titlesonly:
 
-    general_docs/index.rst
-    ctlr_docs/index.rst
+    starting_guide.rst
+    handover_rules.rst
+    fork_update.rst
+    tests.rst
+    run_in_terminal.rst
+    Инструкция по настройке Python на английском языке <DEVELOPER.rst>
+    FAQ.rst
+    Полезные материалы для курса "Копьютерные инструменты лингвистических исследований" <ctlr_docs/index.rst>

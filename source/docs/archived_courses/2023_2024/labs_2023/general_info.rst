@@ -131,7 +131,7 @@
 | 22.12.2023 | Устный экзамен.            | N/A                                                                                                      |
 +------------+----------------------------+----------------------------------------------------------------------------------------------------------+
 
-Более полное содержание пройденных занятий Вы найдете в :ref:`lectures-content-label`.
+Более полное содержание пройденных занятий Вы найдете в :ref:`lectures-content-label-2023`.
 
 Литература
 ----------
@@ -165,6 +165,6 @@
 
 1. `Таблица
    успеваемости <https://docs.google.com/spreadsheets/d/1mx9N7tmkaWjwK0h4oNnKFspjTheNVoDd>`__
-2. :ref:`starting-guide-ru-label`
+2. :ref:`starting-guide-label`
 3. :ref:`running-tests-label`
 4. :ref:`faq-label`
