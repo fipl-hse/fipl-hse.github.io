@@ -170,12 +170,12 @@ Hello, LLM! для 4-го курса ФПЛ (2025/2026)
    датасетами <https://docs.google.com/spreadsheets/d/1UEEylqXeSjtFyUtPzyEMiFhhdCukmmuIG4d1ne0y_mU/edit?usp=sharing>`__
 3. `Сайт дисциплины <https://fipl-hse.github.io/docs/llm_2025/#>`__
 4. Инструкция по подготовке к прохождению курса
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/starting_guide_ru.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/starting_guide_ru.html>`__
 5. Инструкция по запуску тестов
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/tests.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/tests.html>`__
 6. Инструкция по запуску ``.py`` файлов в терминале
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/run_in_terminal_ru.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/run_in_terminal_ru.html>`__
 7. Инструкция по обновлению форка
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/fork_update.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/fork_update.html>`__
 8. Ответы на часто задаваемые вопросы
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/general_docs/FAQ.html>`__
+   `на сайте <https://fipl-hse.github.io/docs/useful_docs/FAQ.html>`__

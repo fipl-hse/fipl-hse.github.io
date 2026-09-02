@@ -200,7 +200,7 @@ Resources
 4. `Scraping tutorials (Russian) <https://youtu.be/7hn1_t2ZtJQ>`__
 5. `Scraping tutorials (English)
    <https://www.youtube.com/playlist?list=PL1jK3K11NINiOn4DdIDVdyQpcU3kaNxl0>`__
-6. :ref:`starting-guide-en-label`
-7. :ref:`ctlr-tests-label`
+6. :ref:`starting-guide-label`
+7. :ref:`running-tests-label`
 8. :ref:`run-in-terminal-label`
 9. :ref:`ctlr-faq-label`

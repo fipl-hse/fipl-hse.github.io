@@ -1,4 +1,4 @@
-.. _run-in-terminal-ru-label:
+.. _run-in-terminal-label:
 
 ==================================
 Запуск Python программ в терминале
@@ -107,7 +107,7 @@ Python не распознан как имя командлета
 
 Если ``python`` не опознан как имя командлета, Вам понадобится установить Python.
 Инструкцию по установке можно найти в `инструкции по подготовке к прохождению курса
-<https://fipl-hse.github.io/docs/useful_docs/general_docs/starting_guide_ru.html>`__.
+<https://fipl-hse.github.io/docs/useful_docs/starting_guide_ru.html>`__.
 
 
 PowerShell выводит ошибку об отсутствии прав
