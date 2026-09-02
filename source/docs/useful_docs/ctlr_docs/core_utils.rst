@@ -4,9 +4,11 @@ Core utils
 .. toctree::
     :maxdepth: 1
     :titlesonly:
-    :caption: Full API
 
-    core_utils.api.rst
+    Full API of core_utils package <core_utils.api.rst>
+
+.. contents:: Contents
+   :depth: 2
 
 Core utils package contains auxiliary materials to help you implement
 your laboratory works. We are going to over each of its parts

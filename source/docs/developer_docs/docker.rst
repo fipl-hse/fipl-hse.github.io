@@ -1,5 +1,10 @@
 Docker usage guide
 ==================
+
+..  contents:: Contents
+   :depth: 2
+
+
 Docker Setup Guide
 ------------------
 This guide helps you set up Docker and VSCode for development in this repository.
@@ -79,12 +84,13 @@ After creating own image for interactive development mode, follow the instructio
 2. Open Command Palette (Ctrl+Shift+P);
 3. Select "Remote-Containers: Attach to Running Container";
 4. Select `advanced_ctlr`;
-5. Open the folder on the path `/app`.
-6. Activate your environment
+5. Open the folder on the path `/app`;
+6. Activate your environment and install dependencies
 
 .. code:: bash
 
    source venv/bin/activate
+   pip install -r requirements.txt -r requirements_qa.txt 
 
 Now you are ready to develop. Good luck!
 

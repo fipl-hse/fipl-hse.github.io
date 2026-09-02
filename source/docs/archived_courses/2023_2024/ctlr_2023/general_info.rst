@@ -122,7 +122,7 @@ Lectures history
 |            | (with penalties)    |                                            |
 +------------+---------------------+--------------------------------------------+
 
-You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
+You can find a more complete summary from lectures in :ref:`ctlr-lectures-label-2023`.
 
 Technical solution
 ------------------

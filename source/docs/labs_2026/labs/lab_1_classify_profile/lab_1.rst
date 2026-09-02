@@ -5,9 +5,8 @@
 .. toctree::
     :maxdepth: 1
     :titlesonly:
-    :caption: Full API
 
-    lab_1_classify_profile.api.rst
+    Full API <lab_1_classify_profile.api.rst>
 
 
 Дано
@@ -20,8 +19,8 @@
    помощью частотных слов, характерных для конкретного языка
 
 
-UML-диаграмма классов
----------------------
+UML-диаграмма
+-------------
 
 .. image:: assets/description.png
    :alt: Диаграмма функций лабораторной работы №1

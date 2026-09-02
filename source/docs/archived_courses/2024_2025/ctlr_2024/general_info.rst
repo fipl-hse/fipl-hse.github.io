@@ -97,7 +97,7 @@ Lectures history
 |            | handover.           |                                                              |
 +------------+---------------------+--------------------------------------------------------------+
 
-You can find a more complete summary from lectures in :ref:`ctlr-lectures-label`.
+You can find a more complete summary from lectures in :ref:`ctlr-lectures-label-2024`.
 
 Technical solution
 ------------------

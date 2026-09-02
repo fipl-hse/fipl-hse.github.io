@@ -4,7 +4,7 @@ Frequently asked questions
 ==========================
 
 .. contents:: Content:
-   :depth: 2
+   :depth: 3
 
 Lab 5. Scraper
 ---------------

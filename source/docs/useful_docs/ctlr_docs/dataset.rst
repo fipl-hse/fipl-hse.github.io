@@ -7,7 +7,7 @@ For effective analysis of the collected articles, it is necessary to
 organize the data in a consistent way. The description of the structure
 and each of the elements of the dataset is provided below.
 
-.. contents:: Content:
+.. contents:: Contents:
    :depth: 2
 
 Structure
