@@ -12,5 +12,5 @@
 
     general_info.rst
     labs/index.rst
-    lectures_content_ru.rst
+    lectures_content.rst
     ../../docs/useful_docs/index.rst
