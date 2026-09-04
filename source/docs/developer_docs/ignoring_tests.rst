@@ -1,3 +1,5 @@
+.. _ignoring-tests:
+
 Ignoring Lab Tests Optionally
 =============================
 
