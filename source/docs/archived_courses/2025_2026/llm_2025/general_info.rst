@@ -175,7 +175,5 @@ Hello, LLM! для 4-го курса ФПЛ (2025/2026)
    `на сайте <https://fipl-hse.github.io/docs/useful_docs/tests.html>`__
 6. Инструкция по запуску ``.py`` файлов в терминале
    `на сайте <https://fipl-hse.github.io/docs/useful_docs/run_in_terminal_ru.html>`__
-7. Инструкция по обновлению форка
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/fork_update.html>`__
-8. Ответы на часто задаваемые вопросы
+7. Ответы на часто задаваемые вопросы
    `на сайте <https://fipl-hse.github.io/docs/useful_docs/FAQ.html>`__
