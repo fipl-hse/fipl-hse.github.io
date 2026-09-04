@@ -11,7 +11,6 @@
 
     starting_guide.rst
     handover_rules.rst
-    fork_update.rst
     tests.rst
     run_in_terminal.rst
     Инструкция по настройке Python на английском языке <DEVELOPER.rst>

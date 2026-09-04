@@ -76,7 +76,5 @@
    `на сайте <https://fipl-hse.github.io/docs/useful_docs/tests.html>`__
 5. Инструкция по запуску ``.py`` файлов в терминале
    `на сайте <https://fipl-hse.github.io/docs/useful_docs/run_in_terminal_ru.html>`__
-6. Инструкция по обновлению форка
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/fork_update.html>`__
-7. Ответы на часто задаваемые вопросы
+6. Ответы на часто задаваемые вопросы
    `на сайте <https://fipl-hse.github.io/docs/useful_docs/FAQ.html>`__
