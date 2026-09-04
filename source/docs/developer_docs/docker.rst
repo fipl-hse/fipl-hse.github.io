@@ -1,3 +1,5 @@
+.. _use-docker:
+
 Docker usage guide
 ==================
 Docker Setup Guide
