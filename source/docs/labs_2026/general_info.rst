@@ -68,13 +68,10 @@
 -------
 
 1. `Таблица успеваемости <https://docs.google.com/spreadsheets/d/1t5A5ZFMJelFWN35U2_LOlDXWBg-rT72usA5SiHyvnnU/edit?usp=sharing>`__
-2. `Сайт дисциплины <https://fipl-hse.github.io/docs/labs_2026/index.html#>`__ с описанием лабораторных работ и
+2. `Сайт дисциплины <https://fipl-hse.github.io/docs/labs_2026/index.html>`__ с описанием лабораторных работ и
    полезными материалами
-3. Инструкция по подготовке к прохождению курса
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/starting_guide_ru.html>`__
-4. Инструкция по запуску тестов
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/tests.html>`__
-5. Инструкция по запуску ``.py`` файлов в терминале
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/run_in_terminal_ru.html>`__
-6. Ответы на часто задаваемые вопросы
-   `на сайте <https://fipl-hse.github.io/docs/useful_docs/FAQ.html>`__
+3. `Регламент выполнения лабораторных работ <https://fipl-hse.github.io/docs/useful_docs/handover_rules.html>`__
+4. `Инструкция по подготовке компьютера к работе над заданиями курса <https://fipl-hse.github.io/docs/useful_docs/starting_guide.html>`__
+5. `Инструкция по запуску тестов <https://fipl-hse.github.io/docs/useful_docs/tests.html>`__
+6. `Инструкция по запуску Python программ в терминале <https://fipl-hse.github.io/docs/useful_docs/run_in_terminal.html>`__
+7. `Ответы на часто задаваемые вопросы <https://fipl-hse.github.io/docs/useful_docs/FAQ.html>`__
