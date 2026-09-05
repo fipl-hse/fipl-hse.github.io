@@ -1,0 +1,29 @@
+fipl\-hse.github.io.lab\_4\_retrieval\_w\_clustering package
+============================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_4\_retrieval\_w\_clustering.main module
+----------------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_4_retrieval_w_clustering.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fipl\-hse.github.io.lab\_4\_retrieval\_w\_clustering.start module
+-----------------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_4_retrieval_w_clustering.start
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_4_retrieval_w_clustering
+   :members:
+   :undoc-members:
+   :show-inheritance:

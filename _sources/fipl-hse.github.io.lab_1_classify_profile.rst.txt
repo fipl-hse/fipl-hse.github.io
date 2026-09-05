@@ -1,0 +1,21 @@
+fipl\-hse.github.io.lab\_1\_classify\_profile package
+=====================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_1\_classify\_profile.main module
+---------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_1_classify_profile.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_1_classify_profile
+   :members:
+   :undoc-members:
+   :show-inheritance:

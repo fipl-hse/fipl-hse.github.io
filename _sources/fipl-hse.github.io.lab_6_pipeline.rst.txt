@@ -1,0 +1,21 @@
+fipl\-hse.github.io.lab\_6\_pipeline package
+============================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_6\_pipeline.pipeline module
+----------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_6_pipeline.pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_6_pipeline
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,29 @@
+fipl\-hse.github.io.lab\_8\_sft package
+=======================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_8\_sft.main module
+-------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_8_sft.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fipl\-hse.github.io.lab\_8\_sft.service module
+----------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_8_sft.service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_8_sft
+   :members:
+   :undoc-members:
+   :show-inheritance:
