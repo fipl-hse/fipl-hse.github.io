@@ -592,7 +592,8 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
 - `"Language scores"` — значение метрик схожести известных профилей с неизвестным профилем.
 
 Обратите внимание, что все вещественные числа необходимо округлить до пяти знаков
-после запятой.
+после запятой, даже если дробная часть короче пяти знаков (в этом случае она дополняется 
+нулями справа, 0.2 -> 0.20000).
 
 Для получения топ N пересекающихся частотных слов необходимо использовать функцию
 :py:func:`lab_1_classify_profile.main.get_top_n_words`.
@@ -629,4 +630,3 @@ Error <https://en.wikipedia.org/wiki/Mean_squared_error>`__). Для начал�
    Notation <https://en.wikipedia.org/wiki/JSON>`__
 -  `Описание стандартной библиотеки
    json <https://docs.python.org/3/library/json.html>`__
-   
