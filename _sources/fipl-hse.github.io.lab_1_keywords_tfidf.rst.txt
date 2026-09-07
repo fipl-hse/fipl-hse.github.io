@@ -1,0 +1,21 @@
+fipl\-hse.github.io.lab\_1\_keywords\_tfidf package
+===================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_1\_keywords\_tfidf.main module
+-------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_1_keywords_tfidf.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_1_keywords_tfidf
+   :members:
+   :undoc-members:
+   :show-inheritance:

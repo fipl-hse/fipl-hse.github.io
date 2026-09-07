@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Обновление форков студентов &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Ignoring Lab Tests Optionally" href="ignoring_tests.html" />
+    <link rel="prev" title="Публикация лабораторной работы" href="publish_lab.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Курсы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_docs/index.html">Полезные материалы</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Для разработчиков курсов</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="publish_lab.html">Публикация лабораторной работы</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Обновление форков студентов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ignoring_tests.html">Ignoring Lab Tests Optionally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Docker usage guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html">Graphviz для работы с автоматическим построением UML диаграмм</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Для разработчиков курсов</a></li>
+      <li class="breadcrumb-item active">Обновление форков студентов</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/developer_docs/fork_update.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fork-update">
+<span id="id1"></span><h1><a class="toc-backref" href="#id5" role="doc-backlink">Обновление форков студентов</a><a class="headerlink" href="#fork-update" title="Link to this heading"></a></h1>
+<nav class="contents" id="id2">
+<p class="topic-title">Содержание</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#fork-update" id="id5">Обновление форков студентов</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id6">Обновление форков с помощью скрипта</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id7">Обновление форка вручную студентом</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="id3">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Обновление форков с помощью скрипта</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>В течении курса в основной репозиторий добавляются лучшие реализации лабораторных работ студентов
+путём мержа пул реквеста студентов.
+Эти изменения приводят к мёрж конфликтам у студентов и их необходимо исправить путём мержа
+основного репозитория в форки студентов. Однако, не все студенты сдают лабораторные во время и обновление
+для таких студентов и студентов, сдавших лабораторные работы, должны производиться по разным стратегиям:
+1. Сдавшим студентам (winners) вливаются лучшие реализации из основного репозитория
+2. В форках несдавших студентов (losers) необходимо оставить их реализацию для дальнейшей сдачи лабораторной
+3. В форках сдавших студентов, которые проявили желание повысить оценку, необходимо также оставить их реализацию</p>
+<p>Для автоматизации процесса обновления форков может быть
+использован скрипт <code class="docutils literal notranslate"><span class="pre">config/github/update_forks.py</span></code>
+и конфигурационный файл <code class="docutils literal notranslate"><span class="pre">config/github/update_fork_config.json</span></code>.</p>
+<p>Управление стратегиями обновлений осуществляется через конфигурационный файл:
+<strong>Стратегия 1</strong> обновления сдавших студентов (winners) настраивается в конфигурационном файле
+в поле <code class="docutils literal notranslate"><span class="pre">winners</span></code>.
+Поле <code class="docutils literal notranslate"><span class="pre">forks</span></code> заполняется списком форков сдавших студентов:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"winners"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"forks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"https://github.com/artyomtugaryov/2024-2-level-labs"</span>
+<span class="w">    </span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Например, студенты сдали лабораторную работу <code class="docutils literal notranslate"><span class="pre">lab_1_classify_by_unigrams</span></code>.
+Как правило, сдавшим студентам необходимо добавить лучшую реализацию сданной лабораторной работы,
+вместо их собственной реализации
+В таком случае в поле <code class="docutils literal notranslate"><span class="pre">upstream</span></code> секции <code class="docutils literal notranslate"><span class="pre">pathsToKeep</span></code> необходимо указать локальные пути до файлов,
+версии которых будут взяты главного репозитория, a поле <code class="docutils literal notranslate"><span class="pre">fork</span></code> необходимо оставить пустым:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"winners"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"forks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">"https://github.com/artyomtugaryov/2024-2-level-labs"</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"pathsToKeep"</span><span class="p">:{</span>
+<span class="w">            </span><span class="nt">"fork"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">],</span>
+<span class="w">            </span><span class="nt">"upstream"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">"lab_1_classify_by_unigrams"</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Для студентов, которые не сдали лабораторную работу предназначена секция <code class="docutils literal notranslate"><span class="pre">losers</span></code>.
+В ней также необходимо указать все форки не сдавших студентов.
+В поле <code class="docutils literal notranslate"><span class="pre">fork</span></code> в секции <code class="docutils literal notranslate"><span class="pre">pathsToKeep</span></code> необходимо указать локальный путь до несданной лабораторной работы:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"losers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"forks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"https://github.com/demid5111/2024-2-level-labs"</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"pathsToKeep"</span><span class="p">:{</span>
+<span class="w">        </span><span class="nt">"fork"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s2">"lab_1_classify_by_unigrams"</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"upstream"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Также для обновления форков студентов необходимо указать имя пользователя,
+от которого будет сделан и запушен коммит, а также указать токен,
+сгенерированый на github по инструкции из <span class="xref std std-ref">&lt;creating-pat&gt;</span>.
+Для успешного обновления токен можно сгенерировать с разрешениями <code class="docutils literal notranslate"><span class="pre">repo</span></code> и <code class="docutils literal notranslate"><span class="pre">workflow</span></code>.
+Имя пользователя и токен указываются в соответствующие поля конфигурационного файла.
+Также необходимо указать ссылку на основной репозиторий:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"authentication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"artyomtugaryov"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghp_mysecrettoken"</span>
+<span class="p">},</span>
+<span class="nt">"upstream"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/fipl-hse/2024-2-level-labs"</span>
+</pre></div>
+</div>
+<p>После заполнения конфигурационного файла необходимо запустить скрипт для обновления:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fiplconfig.update_forks<span class="w"> </span>--config<span class="w"> </span>config/github/update_fork_config.json
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Обновление форка вручную студентом</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>Чтобы добавить изменения в форк из основного репозитория, выполните
+следующие шаги:</p>
+<ol class="arabic">
+<li><p>Откройте сайт публичного репозитория.</p></li>
+<li><p>Нажмите кнопку <code class="docutils literal notranslate"><span class="pre">Code</span></code>, выберите <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> и нажмите кнопку
+копирования:</p>
+<img alt="../../_images/copy_original_repo_url.png" src="../../_images/copy_original_repo_url.png" />
+</li>
+<li><p>Откройте терминал в среде разработки Visual Studio Code:</p>
+<p>Терминал можно открыть нажатием кнопки Terminal -&gt; New Terminal
+в верхней панели или сочетанием клавиш <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">`</span></code>.</p>
+</li>
+<li><p>В терминале выполните команду
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">upstream</span> <span class="pre">&lt;ссылка-на-основной-репозиторий&gt;</span></code>:</p>
+<img alt="../../_images/add_upstream.png" src="../../_images/add_upstream.png" />
+</li>
+<li><p>В терминале выполните команду <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">upstream</span></code>:</p>
+<img alt="../../_images/fetch_upstream.png" src="../../_images/fetch_upstream.png" />
+</li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Обратите внимание, что ссылка на скриншоте выше указывает
+на родительский репозиторий.</p>
+</div>
+<ol class="arabic" start="6">
+<li><p>В терминале выполните команду <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">upstream/main</span> <span class="pre">--no-edit</span></code>:</p>
+<img alt="../../_images/merge_upstream.png" src="../../_images/merge_upstream.png" />
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>В зависимости от количества изменений вывод команды может
+отличаться от того, что на скриншоте выше.</p>
+</div>
+<p>В результате выполнения этих команд в <em>локальном</em> форке появятся
+последние изменения из основного репозитория.</p>
+<p>Больше информации о командах, описанных выше, можно найти в <a class="reference external" href="https://git-scm.com/docs">официальной
+документации по Git</a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="publish_lab.html" class="btn btn-neutral float-left" title="Публикация лабораторной работы" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ignoring_tests.html" class="btn btn-neutral float-right" title="Ignoring Lab Tests Optionally" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

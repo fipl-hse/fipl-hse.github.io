@@ -1,0 +1,31 @@
+fipl\-hse.github.io.tools package
+=================================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   fipl-hse.github.io.tools.docs_generator
+   fipl-hse.github.io.tools.docstring_linter
+   fipl-hse.github.io.tools.source_files_collector
+
+Submodules
+----------
+
+fipl\-hse.github.io.tools.helpers module
+----------------------------------------
+
+.. automodule:: fipl-hse.github.io.tools.helpers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.tools
+   :members:
+   :undoc-members:
+   :show-inheritance:

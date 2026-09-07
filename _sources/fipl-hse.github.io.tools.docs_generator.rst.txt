@@ -1,0 +1,29 @@
+fipl\-hse.github.io.tools.docs\_generator package
+=================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.tools.docs\_generator.build\_documentation module
+---------------------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.tools.docs_generator.build_documentation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fipl\-hse.github.io.tools.docs\_generator.generate\_api\_docs module
+--------------------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.tools.docs_generator.generate_api_docs
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.tools.docs_generator
+   :members:
+   :undoc-members:
+   :show-inheritance:

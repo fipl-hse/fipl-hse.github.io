@@ -1,0 +1,21 @@
+fipl\-hse.github.io.lab\_2\_tokenize\_by\_bpe package
+=====================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_2\_tokenize\_by\_bpe.main module
+---------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_2_tokenize_by_bpe.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_2_tokenize_by_bpe
+   :members:
+   :undoc-members:
+   :show-inheritance:

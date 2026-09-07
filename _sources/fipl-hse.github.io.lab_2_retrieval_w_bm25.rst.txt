@@ -1,0 +1,21 @@
+fipl\-hse.github.io.lab\_2\_retrieval\_w\_bm25 package
+======================================================
+
+Submodules
+----------
+
+fipl\-hse.github.io.lab\_2\_retrieval\_w\_bm25.main module
+----------------------------------------------------------
+
+.. automodule:: fipl-hse.github.io.lab_2_retrieval_w_bm25.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: fipl-hse.github.io.lab_2_retrieval_w_bm25
+   :members:
+   :undoc-members:
+   :show-inheritance:

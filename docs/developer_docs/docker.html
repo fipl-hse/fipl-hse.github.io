@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker usage guide &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Graphviz для работы с автоматическим построением UML диаграмм" href="graphviz.html" />
+    <link rel="prev" title="Ignoring Lab Tests Optionally" href="ignoring_tests.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Курсы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_docs/index.html">Полезные материалы</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Для разработчиков курсов</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="publish_lab.html">Публикация лабораторной работы</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fork_update.html">Обновление форков студентов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ignoring_tests.html">Ignoring Lab Tests Optionally</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Docker usage guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html">Graphviz для работы с автоматическим построением UML диаграмм</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Для разработчиков курсов</a></li>
+      <li class="breadcrumb-item active">Docker usage guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/developer_docs/docker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="docker-usage-guide">
+<span id="use-docker"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Docker usage guide</a><a class="headerlink" href="#docker-usage-guide" title="Link to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#docker-usage-guide" id="id1">Docker usage guide</a></p>
+<ul>
+<li><p><a class="reference internal" href="#docker-setup-guide" id="id2">Docker Setup Guide</a></p></li>
+<li><p><a class="reference internal" href="#basic-usage" id="id3">Basic usage</a></p></li>
+<li><p><a class="reference internal" href="#advanced-usage" id="id4">Advanced usage</a></p></li>
+<li><p><a class="reference internal" href="#interactive-development-mode" id="id5">Interactive Development Mode</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="docker-setup-guide">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Docker Setup Guide</a><a class="headerlink" href="#docker-setup-guide" title="Link to this heading"></a></h2>
+<p>This guide helps you set up Docker and VSCode for development in this repository.</p>
+<ol class="arabic simple">
+<li><p>Install Docker Desktop</p></li>
+<li><p>Download Docker Desktop from <a class="reference external" href="https://www.docker.com/products/docker-desktop">official site</a>;</p></li>
+<li><p>Run installer and follow prompts;</p></li>
+<li><p>After installation:</p>
+<ul class="simple">
+<li><p>Launch Docker Desktop</p></li>
+<li><p>Enable WSL2 backend (Windows) or VirtioFS (macOS) for better performance.</p></li>
+</ul>
+</li>
+<li><p>Install all required extensions:</p>
+<ul class="simple">
+<li><p>Docker (ms-azuretools.vscode-docker);</p></li>
+<li><p>Docker containers (ms-vscode-remote.remote-containers).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="basic-usage">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Basic usage</a><a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<p>If you want to check your files with <cite>precommit.sh</cite>, launch this commandline:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/app<span class="w"> </span>-w<span class="w"> </span>/app<span class="w"> </span>python:3.13-slim<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"bash ./admin_utils/docker/docker.sh &amp;&amp; bash ./admin_utils/precommit.sh"</span>
+</pre></div>
+</div>
+<p>If you want to check your files with spellcheck, launch this commandline:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/app<span class="w"> </span>-w<span class="w"> </span>/app<span class="w"> </span>python:3.13-slim<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"bash ./admin_utils/docker/docker.sh &amp;&amp; source venv/bin/activate &amp;&amp; fiplconfig.check_spelling"</span>
+</pre></div>
+</div>
+<p>If you encounter the <code class="docutils literal notranslate"><span class="pre">script.sh:</span> <span class="pre">line</span> <span class="pre">N:</span> <span class="pre">$'\r':</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code> error
+with any bash script, make sure that the file in your VSCode has end-of-line sequence set to LF
+instead of CRLF. You can check at the bottom right of the screen or find
+<code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">End</span> <span class="pre">of</span> <span class="pre">Line</span> <span class="pre">Sequence</span></code> via Comand Palette (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code>) with the bash script open.</p>
+</section>
+<section id="advanced-usage">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Advanced usage</a><a class="headerlink" href="#advanced-usage" title="Link to this heading"></a></h2>
+<p>After several launches of basic script,
+you noticed that the dependencies are downloading every time.
+To download dependencies once and check your code many times, you should create image and use it.</p>
+<p>Follow the instructions:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>advanced-ctlr-admin<span class="w"> </span>-f<span class="w"> </span>admin_utils/docker/Dockerfile<span class="w"> </span>.
+</pre></div>
+</div>
+<p>After creating own image you can check your code with next docker command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/app<span class="w"> </span>-w<span class="w"> </span>/app<span class="w"> </span>advanced-ctlr-admin<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">"bash ./admin_utils/docker/docker.sh &amp;&amp; ./admin_utils/precommit.sh"</span>
+</pre></div>
+</div>
+<p>If any dependencies (especially from Quality Control) are not installed properly,
+delete created container and virtual environment and rebuild them via the abovementioned commands.</p>
+</section>
+<section id="interactive-development-mode">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Interactive Development Mode</a><a class="headerlink" href="#interactive-development-mode" title="Link to this heading"></a></h2>
+<p>If you want to develop yourself in interactive mode
+to fix some problems which are not reproducable on Windows,
+you can create own image, create container and start it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>advanced-ctlr-admin<span class="w"> </span>-f<span class="w"> </span>admin_utils/docker/Dockerfile<span class="w"> </span>.
+
+docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>advanced_ctlr<span class="w"> </span>-d<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/app<span class="w"> </span>-w<span class="w"> </span>/app<span class="w"> </span>advanced-ctlr-admin<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/dev/null<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>After creating own image for interactive development mode, follow the instructions:</p>
+<ol class="arabic simple">
+<li><p>Make sure that you have the <cite>Dev Containers</cite> extension downloaded;</p></li>
+<li><p>Open Command Palette (Ctrl+Shift+P);</p></li>
+<li><p>Select “Remote-Containers: Attach to Running Container”;</p></li>
+<li><p>Select <cite>advanced_ctlr</cite>;</p></li>
+<li><p>Open the folder on the path <cite>/app</cite>;</p></li>
+<li><p>Activate your environment and install dependencies</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>-r<span class="w"> </span>requirements_qa.txt
+</pre></div>
+</div>
+<p>Now you are ready to develop. Good luck!</p>
+<p>If you already have a container and you want to enter it, then first you need to launch it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>start<span class="w"> </span>advanced_ctlr
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ignoring_tests.html" class="btn btn-neutral float-left" title="Ignoring Lab Tests Optionally" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="graphviz.html" class="btn btn-neutral float-right" title="Graphviz для работы с автоматическим построением UML диаграмм" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
