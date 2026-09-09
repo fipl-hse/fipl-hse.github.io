@@ -3,13 +3,8 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from config.constants import (API_DOC_TEMPLATES_PATH,
-                              RST_DOCS_ROOT,
-                              PROJECT_CONFIG,
-                              DOC_BUILD_DIR,
-                              WEBSITE_ROOT,
-                              SOURCE_CODE_ROOT)
-from tools.docs_generator.generate_api_docs import generate_api_docs
+from config.constants import (DOC_BUILD_DIR,
+                              WEBSITE_ROOT)
 from tools.helpers import prepare_args_for_shell
 
 
@@ -27,13 +22,6 @@ def build_documentation(build_directory: Path) -> None:
 
     os.makedirs(name=build_directory,
                 exist_ok=True)
-
-    # print(f'Generating API docs...')
-    # generate_api_docs(source_code_root=SOURCE_CODE_ROOT,
-    #                   labs_list=PROJECT_CONFIG.get_labs_names(),
-    #                   rst_docs_root=RST_DOCS_ROOT,
-    #                   apidoc_templates_path=API_DOC_TEMPLATES_PATH,
-    #                   overwrite=True)
 
     print(f'Building documentation...')
     args = [
@@ -54,28 +42,10 @@ def build_documentation(build_directory: Path) -> None:
     if result_html.returncode != 0:
         print(f'There are problems with building html: {result_html.stdout}')
 
-    args = [
-        'sphinx-build',
-        '-n',
-        '-b',
-        'docx',
-        WEBSITE_ROOT,
-        build_directory
-    ]
-    args = prepare_args_for_shell(args)
-    print(f'DOCX BUILD COMMAND: {args}')
-    result_docs = subprocess.run(args=args,
-                                 text=True,
-                                 stdout=subprocess.PIPE,
-                                 stderr=subprocess.STDOUT,
-                                 shell=True)
-    if result_docs.returncode != 0:
-        print(f'There are problems with building docx: {result_docs.stdout}')
-
-    if not result_html.returncode and not result_docs.returncode:
+    if not result_html.returncode:
         print(f'Documentation is built in {build_directory}')
 
-        full_build_log = 'BUILD LOG:\n' + result_html.stdout + '\n' + result_docs.stdout
+        full_build_log = 'BUILD LOG:\n' + result_html.stdout + '\n'
         log_file_path = build_directory.joinpath('build.log')
         with open(file=log_file_path, mode='w', encoding='utf-8') as log_file:
             log_file.write(full_build_log)

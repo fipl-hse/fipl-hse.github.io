@@ -20,14 +20,15 @@ author = 'Демидовский А.В. и другие'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx_design',
+    'docxbuilder',
+    'notfound.extension',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
-    'docxbuilder',
-    'sphinx.ext.napoleon',
-    'sphinx_tabs.tabs',
-    'notfound.extension',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.napoleon',
+    'sphinxcontrib.plantuml',
+    'sphinx_design',
+    'sphinx_tabs.tabs',
 ]
 
 intersphinx_mapping = {

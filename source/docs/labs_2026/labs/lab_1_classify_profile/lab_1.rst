@@ -22,10 +22,11 @@
 UML-диаграмма
 -------------
 
-.. image:: assets/description.png
-   :alt: Диаграмма функций лабораторной работы №1
-   :width: 25%
-   :align: center
+This is just for example!!
+
+.. uml::
+   Alice -> Bob: Hi!
+   Alice <- Bob: How are you?
 
 
 Что надо сделать
