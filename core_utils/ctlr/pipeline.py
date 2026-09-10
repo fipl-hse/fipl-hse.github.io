@@ -5,11 +5,14 @@ Interface definitions for text processing pipelines.
 # pylint: disable=too-few-public-methods, unused-argument
 from dataclasses import dataclass
 from typing import Protocol
-
-from spacy import Language
-from spacy.tokens import Doc
-
-from core_utils.article.article import Article
+try:
+    from spacy import Language
+    from spacy.tokens import Doc
+except ImportError:
+    print("Unable to import spacy")
+    Doc = None
+    Language = None
+from core_utils.ctlr.article.article import Article
 
 
 class PipelineProtocol(Protocol):

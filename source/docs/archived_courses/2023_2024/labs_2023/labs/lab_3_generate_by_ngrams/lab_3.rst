@@ -2,14 +2,6 @@
 ==========================================================
 
 
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-    :caption: Full API
-
-    lab_3_generate_by_ngrams.api.rst
-
-
 Дано
 ----
 
@@ -98,7 +90,7 @@
 
 Для работы с текстом в первую очередь необходимо научиться предобрабатывать сырые
 текстовые данные. В этом нам поможет класс
-:py:class:`lab_3_generate_by_ngrams.main.TextProcessor`, который Вы реализуете в
+`lab_3_generate_by_ngrams.main.TextProcessor`, который Вы реализуете в
 ходе выполнения первого шага. В зону ответственности данного класса входят любые
 манипуляции с текстом, включая его очистку, токенизацию, кодирование и декодирование.
 Данный этап работы является ключевым, так как благодаря нему становится возможным
@@ -119,7 +111,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor._tokenize`,
+`lab_3_generate_by_ngrams.main.TextProcessor._tokenize`,
 который позволяет разбить текст на токены.
 Текст должен быть приведен к нижнему регистру и очищен от знаков препинания и цифр.
 Токеном в данном случае является один буквенный символ.
@@ -159,7 +151,7 @@
 а с числами, которые их представляют.
 
 Для этого реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor._put`.
+`lab_3_generate_by_ngrams.main.TextProcessor._put`.
 
 .. note:: **Идентификатор** - значение, которое однозначно указывает
           на токен и равно длине ``_storage`` (атрибут объекта данного
@@ -192,7 +184,7 @@
 идентификатор для каждой буквы из токенизированного текста.
 
 Для этого реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.get_id`.
+`lab_3_generate_by_ngrams.main.TextProcessor.get_id`.
 
 Например, в хранилище вида ``{'_': 0, 's': 1}`` для ``'s'``
 метод вернет идентификатор ``1``.
@@ -206,7 +198,7 @@
 
 Теперь сделаем обратный процесс.
 Для декодирования, реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.get_token`,
+`lab_3_generate_by_ngrams.main.TextProcessor.get_token`,
 который получает букву по заданному идентификатору.
 
 Например, в хранилище вида ``{'_': 0, 's': 1}`` для идентификатора
@@ -220,11 +212,11 @@
 """""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.encode`,
+`lab_3_generate_by_ngrams.main.TextProcessor.encode`,
 который кодирует текст. Он обязательно должен вызывать методы
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor._tokenize`,
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor._put` и
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.get_id`.
+`lab_3_generate_by_ngrams.main.TextProcessor._tokenize`,
+`lab_3_generate_by_ngrams.main.TextProcessor._put` и
+`lab_3_generate_by_ngrams.main.TextProcessor.get_id`.
 
 Например, возьмем текст ``"She is happy. He is happy."`` и
 заполним по нему хранилище:
@@ -250,11 +242,11 @@
 идентификаторы, мы можем декодировать любую последовательность.
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor._decode`,
+`lab_3_generate_by_ngrams.main.TextProcessor._decode`,
 который позволяет преобразовать закодированный текст в кортеж,
 состоящий из буквенных и специальных символов.
 Метод обязательно должен вызывать
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.get_token`.
+`lab_3_generate_by_ngrams.main.TextProcessor.get_token`.
 
 Например, для закодированного корпуса
 ``(1, 2, 3, 0, 4, 1, 0, 2, 5, 6, 6, 7, 0, 2, 3, 0, 4, 1, 0, 2, 5, 6, 6, 7, 0)``
@@ -276,7 +268,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text`,
+`lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text`,
 который позволяет перейти от токенизированного текста в формате
 кортежа к тексту в строковом формате.
 
@@ -306,13 +298,13 @@
 Наконец, применим полную логику перехода от закодированного текста к декодированному.
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
+`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
 который преобразует закодированный текст - кортеж с
 идентификаторами - в текст в виде строки.
 
 Метод обязательно должен вызывать методы
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor._decode` и
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text`.
+`lab_3_generate_by_ngrams.main.TextProcessor._decode` и
+`lab_3_generate_by_ngrams.main.TextProcessor._postprocess_decoded_text`.
 
 Например, для закодированного корпуса
 ``(1, 2, 3, 0, 4, 1, 0, 2, 5, 6, 6, 7, 0, 2, 3, 0, 4, 1, 0, 2, 5, 6, 6, 7, 0)``
@@ -335,7 +327,7 @@
 иногда необходимо.
 
 Для этого реализуем метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.get_end_of_word_token`,
+`lab_3_generate_by_ngrams.main.TextProcessor.get_end_of_word_token`,
 который возвращает значение внутреннего атрибута ``self._end_of_word_token``.
 
 Шаг 1.10. Продемонстрировать результаты в ``start.py``
@@ -354,7 +346,7 @@
 Теперь у Вас есть все, чтобы создать свою простейшую языковую модель на основе
 n-грамм для решения задачи генерации текста.
 
-Класс :py:class:`lab_3_generate_by_ngrams.main.NGramLanguageModel`
+Класс `lab_3_generate_by_ngrams.main.NGramLanguageModel`
 позволяет собрать n-граммы из заданного закодированного текста и
 сгенерировать следующую букву последовательности.
 
@@ -379,7 +371,7 @@ n-грамм для решения задачи генерации текста.
 Перейдем к реализации абстракции, которая хранит в себе языковое представление
 в виде n-грамм и на их основе предсказывает следующий токен.
 
-Создайте класс :py:class:`lab_3_generate_by_ngrams.main.NGramLanguageModel`.
+Создайте класс `lab_3_generate_by_ngrams.main.NGramLanguageModel`.
 
 Описание внутренних атрибутов:
 
@@ -401,7 +393,7 @@ n-грамм для решения задачи генерации текста.
 заданного размера.
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams`,
+`lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams`,
 который извлекает из закодированного корпуса n-граммы, размер которых
 указан в атрибуте ``self._n_gram_size``.
 
@@ -422,11 +414,11 @@ n-грамм для решения задачи генерации текста.
 """"""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.build`,
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.build`,
 который заполняет атрибут ``self._n_gram_frequencies``, где ключом
 является n-грамма, а значением - вероятность появления последнего токена данной
 n-граммы в контексте. Метод обязательно должен вызывать
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams`.
+`lab_3_generate_by_ngrams.main.NGramLanguageModel._extract_n_grams`.
 
 В данной работе вам необходимо научиться считать вероятность появления последнего токена
 с учетом некоторого контекста. Давайте посмотрим на общий вид вычисления данной вероятности:
@@ -530,7 +522,7 @@ n-граммы в контексте. Метод обязательно долж
 иногда необходимо.
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size`,
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size`,
 который возвращает значение внутреннего атрибута ``self._n_gram_size``.
 
 Шаг 2.5. Сгенерировать следующий токен
@@ -540,7 +532,7 @@ n-граммы в контексте. Метод обязательно долж
 контексту определять следующую букву в последовательности.
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token`.
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token`.
 
 Данный метод принимает на вход последовательность закодированных токенов.
 Метод отсекает контекст, по которому необходимо определить вероятность каждого из потенциальных
@@ -608,7 +600,7 @@ n-грамм, хранимых моделью.
 предполагая, что конечное решение также будет наиболее вероятный.
 
 Для того, чтобы сгенерировать последовательности заданной длины,
-создайте класс :py:class:`lab_3_generate_by_ngrams.main.GreedyTextGenerator`.
+создайте класс `lab_3_generate_by_ngrams.main.GreedyTextGenerator`.
 
 Описание внутренних атрибутов:
 
@@ -619,7 +611,7 @@ n-грамм, хранимых моделью.
 """""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.GreedyTextGenerator.run`,
+`lab_3_generate_by_ngrams.main.GreedyTextGenerator.run`,
 который генерирует последовательность указанной длины.
 
 Прежде чем создать жадный алгоритм генерации, необходимо сделать несколько
@@ -652,11 +644,11 @@ n-грамм, хранимых моделью.
           значение ``None``, метод возвращает значение ``None``.
 
 В данном методе необходимо использовать методы
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.encode` и
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
+`lab_3_generate_by_ngrams.main.TextProcessor.encode` и
+`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
 а также методы
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size` и
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token`.
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size` и
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token`.
 
 Например, при следующих значениях:
 
@@ -758,7 +750,7 @@ n-грамм, хранимых моделью.
 """""""""""""""""""""""""""""""""""""
 
 Теперь Ваша задача - написать алгоритм лучевого поиска.
-Для этого создайте класс :py:class:`lab_3_generate_by_ngrams.main.BeamSearcher`.
+Для этого создайте класс `lab_3_generate_by_ngrams.main.BeamSearcher`.
 
 Описание внутренних атрибутов класса:
 
@@ -770,11 +762,11 @@ n-грамм, хранимых моделью.
 """""""""""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token`,
+`lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token`,
 который позволит Вам получать следующую букву для генерации и вероятность
 появления этого токена в заданном контексте.
 Данный метод обязательно должен вызывать метод
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token`.
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token`.
 
 .. note:: Помните, что количество возвращаемых букв-кандидатов не должно
           превышать значение ширины луча.
@@ -817,7 +809,7 @@ n-грамм, хранимых моделью.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence`,
+`lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence`,
 который позволяет получить варианты продолжения последовательностей.
 
 В данном методе необходимо заполнить существующий словарь итоговых
@@ -887,7 +879,7 @@ n-грамм, хранимых моделью.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates`,
+`lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates`,
 который фильтрует недостаточно вероятные последовательности.
 
 .. important:: Помните, что количество итоговых последовательностей
@@ -958,7 +950,7 @@ n-грамм, хранимых моделью.
 
 Теперь у Вас есть все, чтобы создать генератор.
 Для этого создайте класс
-:py:class:`lab_3_generate_by_ngrams.main.BeamSearchTextGenerator`.
+`lab_3_generate_by_ngrams.main.BeamSearchTextGenerator`.
 
 Описание внутренних атрибутов класса:
 
@@ -979,9 +971,9 @@ n-грамм, хранимых моделью.
 который хранится в атрибуте ``self.beam_searchers`` данного класса.
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.BeamSearchTextGenerator._get_next_token`.
+`lab_3_generate_by_ngrams.main.BeamSearchTextGenerator._get_next_token`.
 Он обязательно должен использовать метод
-:py:meth:`lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token`.
+`lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token`.
 
 .. note:: Если аргумент имеет некорректный тип данных, то есть не
           является кортежем, или кортеж пустой, то метод возвращается ``None``.
@@ -992,7 +984,7 @@ n-грамм, хранимых моделью.
 """""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.BeamSearchTextGenerator.run`,
+`lab_3_generate_by_ngrams.main.BeamSearchTextGenerator.run`,
 который принимает на вход количество букв для генерации
 и начало последовательности в строковом виде. Данный метод позволяет получить
 готовый сгенерированный текст.
@@ -1016,12 +1008,12 @@ n-грамм, хранимых моделью.
 7. Декодируйте наилучшую последовательность в текст.
 
 В данном методе необходимо использовать методы
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.encode` и
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
+`lab_3_generate_by_ngrams.main.TextProcessor.encode` и
+`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
 а также методы
-:py:meth:`lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token`,
-:py:meth:`lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence` и
-:py:meth:`lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates`.
+`lab_3_generate_by_ngrams.main.BeamSearcher.get_next_token`,
+`lab_3_generate_by_ngrams.main.BeamSearcher.continue_sequence` и
+`lab_3_generate_by_ngrams.main.BeamSearcher.prune_sequence_candidates`.
 
 .. note:: Если на вход подаются некорректные значения (количество букв для
           генерации не является целым числом или значение является неположительным,
@@ -1085,7 +1077,7 @@ BackOff, мы предлагаем Вам расширить хранилище 
 словарь составлен на большом текстовом материале.
 
 Вам необходимо расширить класс ``TextProcessor`` новым методом
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.fill_from_ngrams`.
+`lab_3_generate_by_ngrams.main.TextProcessor.fill_from_ngrams`.
 
 Получая на вход словарь из файла с языковым профилем английского
 языка, вам необходимо:
@@ -1095,7 +1087,7 @@ BackOff, мы предлагаем Вам расширить хранилище 
    ``_storage``.
 
 В данном методе необходимо использовать метод
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor._put`
+`lab_3_generate_by_ngrams.main.TextProcessor._put`
 
 .. note:: Если на вход подается некорректное значение (аргумент
           неправильного типа, то есть не словарь, или словарь пустой),
@@ -1121,7 +1113,7 @@ BackOff, мы предлагаем Вам расширить хранилище 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Вам необходимо расширить класс ``NGramLanguageModel`` новым методом
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams`.
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams`.
 
 Данный метод позволяет присвоить атрибуту ``self._n_gram_frequencies``
 получаемое на вход значение.
@@ -1143,7 +1135,7 @@ BackOff, мы предлагаем Вам расширить хранилище 
 Шаг 8.1. Объявить сущность по расширению языковой модели на основе n-грамм
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Создайте класс :py:class:`lab_3_generate_by_ngrams.main.NGramLanguageModelReader`.
+Создайте класс `lab_3_generate_by_ngrams.main.NGramLanguageModelReader`.
 
 Описание внутренних атрибутов класса:
 
@@ -1162,7 +1154,7 @@ BackOff, мы предлагаем Вам расширить хранилище 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModelReader.load`,
+`lab_3_generate_by_ngrams.main.NGramLanguageModelReader.load`,
 который позволяет получить языковую модель для определенного размера n-грамм.
 
 Во-первых, необходимо каждую n-грамму, полученную из файла ``.json``,
@@ -1199,8 +1191,8 @@ BackOff, мы предлагаем Вам расширить хранилище 
           размер находится за пределами от 2 до 5), то метод возвращает ``None``.
 
 Метод обязательно должен вызывать методы
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.get_id` и
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams`.
+`lab_3_generate_by_ngrams.main.TextProcessor.get_id` и
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.set_n_grams`.
 
 Шаг 8.1.2 Получить экземпляр класса ``TextProcessor``
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1211,14 +1203,14 @@ BackOff, мы предлагаем Вам расширить хранилище 
 иногда необходимо.
 
 Для этого реализуем метод
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModelReader.get_text_processor`,
+`lab_3_generate_by_ngrams.main.NGramLanguageModelReader.get_text_processor`,
 который возвращает значение внутреннего атрибута ``self._text_processor``.
 Метод не принимает никаких аргументов.
 
 Шаг 8.2. Объявить сущность по созданию BackOff генератора
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Создайте класс :py:class:`lab_3_generate_by_ngrams.main.BackOffGenerator`.
+Создайте класс `lab_3_generate_by_ngrams.main.BackOffGenerator`.
 
 Описание внутренних атрибутов класса:
 
@@ -1231,12 +1223,12 @@ BackOff, мы предлагаем Вам расширить хранилище 
 """"""""""""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token`,
+`lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token`,
 который возвращает словарь, ключами которого являются буквы-кандидаты,
 а значениями - частоты n-грамм, из которых данная буква была выявлена по контексту.
 В данном методе необходимо использовать методы
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size` и
-:py:meth:`lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token`.
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.get_n_gram_size` и
+`lab_3_generate_by_ngrams.main.NGramLanguageModel.generate_next_token`.
 
 Вам необходимо:
 
@@ -1261,14 +1253,14 @@ BackOff, мы предлагаем Вам расширить хранилище 
 .. important:: Выполнение Шагов 6-8 соответствует 10 баллам.
 
 Реализуйте метод
-:py:meth:`lab_3_generate_by_ngrams.main.BackOffGenerator.run`,
+`lab_3_generate_by_ngrams.main.BackOffGenerator.run`,
 который принимает на вход длину последовательности для генерации
 и начало последовательности в строковом виде.
 В данном методе необходимо использовать методы
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.encode` и
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
+`lab_3_generate_by_ngrams.main.TextProcessor.encode` и
+`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
 а также метод
-:py:meth:`lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token`.
+`lab_3_generate_by_ngrams.main.BackOffGenerator._get_next_token`.
 
 Перед тем как непосредственно приступить к генерации, необходимо закодировать заданную
 последовательность (``prompt``).

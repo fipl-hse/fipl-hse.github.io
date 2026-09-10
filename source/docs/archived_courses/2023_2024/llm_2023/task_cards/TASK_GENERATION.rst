@@ -137,7 +137,7 @@ Inferring batch
 ---------------
 
 Process of implementing method
-:py:meth:`stubs.labs.lab_7_llm.main.LLMPipeline._infer_batch`
+`stubs.labs.lab_7_llm.main.LLMPipeline._infer_batch`
 for closed question-answering task has its specifics:
 
    1. You need to transpose the ``sample_batch`` before you pass it to the tokenizer,

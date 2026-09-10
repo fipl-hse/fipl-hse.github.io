@@ -76,7 +76,7 @@ def from_meta(path: pathlib.Path | str, article: Article | None = None) -> Artic
 
     Args:
         path (pathlib.Path | str): Path to meta info
-        article (Article | None, optional): Article instance. Defaults to None.
+        article (Article | None): Article instance. Defaults to None.
 
     Returns:
         Article: Article instance

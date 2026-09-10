@@ -1,7 +1,7 @@
 Final project. Analyze and correct UD annotation
 ================================================
 
-Final project is dedicated to using :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer`
+Final project is dedicated to using `lab_6_pipeline.pipeline.UDPipeAnalyzer`
 to process a corpus of texts and correcting mistakes that might be present in the
 retrieved UD linguistic annotation.
 
@@ -48,7 +48,7 @@ Stage 2.1. Create ``.conllu`` file for the corpus
 
 The needed logic for data processing should  be written in ``final_project/main.py`` file.
 Firstly, all the `.txt` files from ``final_project/assets`` are to be joint into one `.txt`
-file and then processed using :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer`
+file and then processed using `lab_6_pipeline.pipeline.UDPipeAnalyzer`
 into a single ``auto_annotated.conllu`` file.
 
 .. important::
@@ -64,7 +64,7 @@ into a single ``auto_annotated.conllu`` file.
 .. note::
 
     It is mandatory to use the
-    :py:class:`lab_6_pipeline.pipeline.UDPipeAnalyzer`.
+    `lab_6_pipeline.pipeline.UDPipeAnalyzer`.
 
 Stage 2.2. Correct morphological annotation manually
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

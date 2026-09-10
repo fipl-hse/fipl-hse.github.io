@@ -167,7 +167,7 @@ Technical solution
 
 Software solution is built on top of three components:
 
-1. `scrapper.py <https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_5_scrapper/scrapper.py>`__
+1. `scrapper.py <https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_5_scraper/scrapper.py>`__
    - a module for finding articles from the given media, extracting text and dumping it to
    the file system. Students need to implement it.
 2. `pipeline.py <https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/pipeline.py>`__
