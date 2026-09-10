@@ -22,11 +22,11 @@
 UML-диаграмма
 -------------
 
-.. This is just for example!!
+This is just for example!!
 
-.. .. uml::
-..    Alice -> Bob: Hi!
-..    Alice <- Bob: How are you?
+.. uml::
+   Alice -> Bob: Hi!
+   Alice <- Bob: How are you?
 
 
 Что надо сделать
