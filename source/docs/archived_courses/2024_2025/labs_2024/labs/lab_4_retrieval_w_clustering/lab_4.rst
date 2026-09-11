@@ -1,15 +1,6 @@
 Лабораторная работа №4. Векторный поиск на основе кластеризации
 ===============================================================
 
-
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-    :caption: Full API
-
-    lab_4_retrieval_w_clustering.api.rst
-
-
 Дано
 ----
 
@@ -74,7 +65,7 @@ collections, itertools, а также сторонние модули.**
 информацию под имеющийся запрос.
 
 Для того чтобы получить список абзацев текста, реализуйте функцию
-:py:func:`lab_4_retrieval_w_clustering.main.get_paragraphs`.
+`lab_4_retrieval_w_clustering.main.get_paragraphs`.
 
 .. note:: Критерием нового абзаца является символ переноса строки.
 
@@ -100,8 +91,8 @@ collections, itertools, а также сторонние модули.**
 
 В лабораторой работе №3 Вы уже познакомились с понятием векторного представления
 текстов. В данном случае нам так же необходимо получить векторы абзацев. Для
-этого реализуйте класс :py:class:`lab_4_retrieval_w_clustering.main.BM25Vectorizer`.
-Данный класс является наследником класса :py:class:`lab_3_ann_retriever.main.Vectorizer`,
+этого реализуйте класс `lab_4_retrieval_w_clustering.main.BM25Vectorizer`.
+Данный класс является наследником класса `lab_3_ann_retriever.main.Vectorizer`,
 который уже был реализован Вами в предыдущей лабораторной. Отличие данного класса
 лишь в том, что векторизация происходит не на основе метрики TF-IDF, а на
 основе алгоритма BM25.
@@ -109,7 +100,7 @@ collections, itertools, а также сторонние модули.**
 Класс имеет следующие атрибуты:
 
 * ``self._corpus`` - список токенизированных абзацев, за вид которых в данной работе
-  отвечает тип :py:class:`lab_4_retrieval_w_clustering.main.TokenizedCorpus`;
+  отвечает тип `lab_4_retrieval_w_clustering.main.TokenizedCorpus`;
 * ``self._avg_doc_len`` - средняя длина абзацев в корпусе.
 
 .. important:: Оба эти атрибута являются защищенными, то есть обращение
@@ -132,7 +123,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.BM25Vectorizer.set_tokenized_corpus`,
+`lab_4_retrieval_w_clustering.main.BM25Vectorizer.set_tokenized_corpus`,
 который принимает на вход список токенизированных абзацев и заполняет им атрибут
 ``self._corpus``. Используя полученный корпус, заполните атрибут ``self._avg_doc_len``
 корректным значением.
@@ -143,14 +134,14 @@ collections, itertools, а также сторонние модули.**
 Шаг 3.2. Посчитать BM25 для абзаца
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_retrieval_w_clustering.main.BM25Vectorizer._calculate_bm25`,
+Реализуйте метод `lab_4_retrieval_w_clustering.main.BM25Vectorizer._calculate_bm25`,
 который вычисляет ``BM25`` и создаёт вектор документа.
 Для того чтобы сразу учесть неизменяемость размерности вектора, создайте
 вектор из нулей длины списка ``self._vocabulary``, атрибута из класса родителя.
 Затем заполните созданный вектор значениями ``BM25``.
 
 .. important:: Для вычисления метрики ``BM25`` используйте функцию
-               :py:func:`lab_2_retrieval_w_bm25.main.calculate_bm25`.
+               `lab_2_retrieval_w_bm25.main.calculate_bm25`.
 
 Например, вектор уже знакомого нам абзаца
 ``'Привет! Как твои дела?'`` будет выглядеть так:
@@ -159,12 +150,12 @@ collections, itertools, а также сторонние модули.**
 Шаг 3.3. Векторизировать документ
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Переопределите поведение метода :py:meth:`lab_3_ann_retriever.main.Vectorizer.vectorize`
-в классе наследнике :py:class:`lab_4_retrieval_w_clustering.main.BM25Vectorizer`,
+Переопределите поведение метода `lab_3_ann_retriever.main.Vectorizer.vectorize`
+в классе наследнике `lab_4_retrieval_w_clustering.main.BM25Vectorizer`,
 который возвращает векторное представление абзаца.
 
 .. important:: Метод должен вызывать защищённый метод
-               :py:meth:`lab_4_retrieval_w_clustering.main.BM25Vectorizer._calculate_bm25`.
+               `lab_4_retrieval_w_clustering.main.BM25Vectorizer._calculate_bm25`.
 
 .. note:: Если на вход подаётся пустой аргумент или вызываемые методы возвращают значение ``None``,
           то необходимо поднять исключение ``ValueError``.
@@ -185,7 +176,7 @@ collections, itertools, а также сторонние модули.**
 В предыдущей лабораторной работе для того чтобы получить ответ на некоторый запрос,
 необходимо было проиндексировать хранящиеся для сравнения документы, каждый раз
 вызывая при добавлении нового документа метод
-:py:meth:`lab_3_ann_retriever.main.BasicSearchEngine.index_documents`.
+`lab_3_ann_retriever.main.BasicSearchEngine.index_documents`.
 
 В больших поисковых системах данные не обрабатываются и не векторизируются
 при каждом запросе заново. Вместо этого они предварительно
@@ -195,18 +186,18 @@ collections, itertools, а также сторонние модули.**
 
 В данной лабораторной работе Вы создаете прототип поисковой системы. Следовательно,
 необходимо создать базу данных, которая будет хранить документы и их векторы.
-Для этого реализуйте класс :py:class:`lab_4_retrieval_w_clustering.main.DocumentVectorDB`.
+Для этого реализуйте класс `lab_4_retrieval_w_clustering.main.DocumentVectorDB`.
 необходимо создать базу данных.
 
 Класс имеет следующие атрибуты:
 
-* ``self._tokenizer`` - объект класса :py:class:`lab_3_ann_retriever.main.Tokenizer`;
-* ``self._vectorizer`` - объект класса :py:class:`lab_4_retrieval_w_clustering.main.BM25Vectorizer`;
+* ``self._tokenizer`` - объект класса `lab_3_ann_retriever.main.Tokenizer`;
+* ``self._vectorizer`` - объект класса `lab_4_retrieval_w_clustering.main.BM25Vectorizer`;
 * ``self.__documents`` - список абзацев, за вид которых в данной работе
-  отвечает тип :py:class:`lab_4_retrieval_w_clustering.main.Corpus`;
+  отвечает тип `lab_4_retrieval_w_clustering.main.Corpus`;
 * ``self.__vectors`` - словарь, который хранит в себе уникальный индекс абзаца в качестве ключа и
   вектор данного абзаца (за вид вектора абзаца отвечает тип
-  :py:class:`lab_3_ann_retriever.main.Vector`).
+  `lab_3_ann_retriever.main.Vector`).
 
 .. important:: Атрибуты ``self._tokenizer`` и ``self._vectorizer`` являются защищёнными, а
                атрибуты ``self.__documents`` и ``self.__vectors`` - приватными. Подумайте,
@@ -223,15 +214,15 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.put_corpus`,
+`lab_4_retrieval_w_clustering.main.DocumentVectorDB.put_corpus`,
 который принимает на вход список абзацев и заполняет атрибуты
 ``self.__documents`` и ``self.__vectors``.
 
 Для заполнения атрибута ``self.__vectors`` Вам потребуется использовать
-метод :py:meth:`lab_3_ann_retriever.main.Tokenizer.tokenize`, а также метод
-:py:meth:`lab_4_retrieval_w_clustering.main.BM25Vectorizer.vectorize`, предварительно
+метод `lab_3_ann_retriever.main.Tokenizer.tokenize`, а также метод
+`lab_4_retrieval_w_clustering.main.BM25Vectorizer.vectorize`, предварительно
 заполнив атрибуты ``self._corpus``, ``self._avg_doc_len`` и ``self._vocabulary``,
-используя объект класса :py:class:`lab_4_retrieval_w_clustering.main.BM25Vectorizer`.
+используя объект класса `lab_4_retrieval_w_clustering.main.BM25Vectorizer`.
 
 .. note:: Обратите внимание, что если документ состоит полностью из стоп-слов, то после токенизации
           возвращается пустой список. В данном случае необходимо пропускать такие значения и не добавлять
@@ -244,21 +235,21 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectorizer`,
-который возвращает объект класса :py:class:`lab_4_retrieval_w_clustering.main.BM25Vectorizer`.
+`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectorizer`,
+который возвращает объект класса `lab_4_retrieval_w_clustering.main.BM25Vectorizer`.
 
 Шаг 4.3. Получить токенизатор
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_tokenizer`,
-который возвращает объект класса :py:class:`lab_3_ann_retriever.main.Tokenizer`.
+`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_tokenizer`,
+который возвращает объект класса `lab_3_ann_retriever.main.Tokenizer`.
 
 Шаг 4.4. Получить векторы по индексам
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`.
+`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`.
 
 В случае если на вход приходит значение ``None``, ожидается, что
 метод вернёт все пары «индекс и вектор» соответствующего документа.
@@ -269,8 +260,8 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`, который,
-как и метод :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`,
+`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`, который,
+как и метод `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`,
 принимает индексы.
 
 В случае если на вход приходит значение ``None``, метод возвращает все документы,
@@ -283,16 +274,16 @@ collections, itertools, а также сторонние модули.**
 
 Теперь, когда векторная база данных создана, необходимо проверить её работу
 на базовом алгоритме K-ближайших соседей. Для этого реализуйте класс
-:py:class:`lab_4_retrieval_w_clustering.main.VectorDBSearchEngine`.
+`lab_4_retrieval_w_clustering.main.VectorDBSearchEngine`.
 Его основная функция — ранжирование документов по степени схожести с запросом.
 
 Данный класс наследуется от уже реализованного в предыдущей лабораторной работе
-класса :py:class:`lab_3_ann_retriever.main.BasicSearchEngine`. В данном случае
+класса `lab_3_ann_retriever.main.BasicSearchEngine`. В данном случае
 наследование позволит использовать методы класса родителя, а также переопределить
 некоторые из них.
 
 В данном классе есть единственный внутренний атрибут ``self._db``, который
-хранит в себе объект класса :py:class:`lab_4_retrieval_w_clustering.main.DocumentVectorDB`.
+хранит в себе объект класса `lab_4_retrieval_w_clustering.main.DocumentVectorDB`.
 
 Создание экземпляра данного класса может выглядеть следующим образом:
 
@@ -306,19 +297,19 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь реализуйте поиск ближайших соседей по запросу с помощью метода
-:py:meth:`lab_4_retrieval_w_clustering.main.VectorDBSearchEngine.retrieve_relevant_documents`.
+`lab_4_retrieval_w_clustering.main.VectorDBSearchEngine.retrieve_relevant_documents`.
 На вход подаётся строка запроса и количество соседей,
 которое мы хотим получить.
 
 Благодаря тому, что была создана векторная база данных, не требуется дополнительно
 токенизировать и векторизировать данные. Теперь Вы можете получить все необходимые данные
-из объекта класса :py:class:`lab_4_retrieval_w_clustering.main.DocumentVectorDB`, который
+из объекта класса `lab_4_retrieval_w_clustering.main.DocumentVectorDB`, который
 хранится в соответствующем атрибуте.
 
 .. important:: В данном методе необходимо использовать метод
-               :py:meth:`lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn`
+               `lab_3_ann_retriever.main.BasicSearchEngine._calculate_knn`
                для нахождения наиболее релевантных ``n`` документов, а также
-               метод :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`
+               метод `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`
                для получения релевантных документов по индексу.
 
 .. note:: Если на вход подаётся пустой аргумент, некорректное значение количества
@@ -414,12 +405,12 @@ collections, itertools, а также сторонние модули.**
 
 Для того чтобы реализовать алгоритм кластеризации K-means, необходимо создать
 сущность, которая будет хранить в себе ключевую информацию о кластере. Для этого
-реализуйте класс :py:class:`lab_4_retrieval_w_clustering.main.ClusterDTO`.
+реализуйте класс `lab_4_retrieval_w_clustering.main.ClusterDTO`.
 
 Класс имеет следующие атрибуты:
 
 * ``self.__centroid`` - вектор центроида кластера (за вид вектора отвечает тип
-  :py:class:`lab_3_ann_retriever.main.Vector`);
+  `lab_3_ann_retriever.main.Vector`);
 * ``self.__indices`` - индексы документов, которые относятся к текущему кластеру.
 
 .. important:: Атрибуты ``self.__centroid`` и ``self.__indices`` являются приватными.
@@ -437,7 +428,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте магический метод
-:py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.__len__`, который
+`lab_4_retrieval_w_clustering.main.ClusterDTO.__len__`, который
 позволяет получить количество документов в кластере.
 
 Метод ``__len__`` называют магическим, потому что его переопределение меняет поведение объекта
@@ -449,7 +440,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`, который
+`lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`, который
 позволяет получить доступ к приватному атрибуту, хранящему центроид кластера.
 
 Шаг 7.1.3. Изменить центроид
@@ -459,7 +450,7 @@ collections, itertools, а также сторонние модули.**
 сообщить об этом изменении кластеру, то есть сохранить эту информацию в объекте
 текущего класса. Для того чтобы после обновления сохранить актуальную информацию
 о центроиде, реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.set_new_centroid`,
+`lab_4_retrieval_w_clustering.main.ClusterDTO.set_new_centroid`,
 который изменяет текущее состояние атрибута ``self.__centroid``.
 
 .. note:: Если на вход подаётся пустой аргумент,
@@ -473,14 +464,14 @@ collections, itertools, а также сторонние модули.**
 в себе информацию об индексах документов, хранящихся в кластере. Данное поведение
 является некорректным, так как получив новые центроиды, кластеры должны формироваться
 заново. Для того чтобы очистить кластер, реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.erase_indices`.
+`lab_4_retrieval_w_clustering.main.ClusterDTO.erase_indices`.
 
 Шаг 7.1.5. Добавить новый документ в кластер
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Кластеру необходимо иметь возможность добавлять в себя новый элемент.
 Для того чтобы кластер мог осуществить данное действие, реализуйте
-метод :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.add_document_index`,
+метод `lab_4_retrieval_w_clustering.main.ClusterDTO.add_document_index`,
 который пополняет соответствующий атрибут данного класса индексом нового документа.
 
 .. note:: Если на вход подаётся пустой аргумент или аргумент ``index`` принимает
@@ -489,7 +480,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 7.1.6. Получить индексы документов кластера
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_indices`,
+Реализуйте метод `lab_4_retrieval_w_clustering.main.ClusterDTO.get_indices`,
 который позволяет получить список всех индексов документов, которые хранятся
 в текущем кластере. В дальнейшем такое поведение позволит получить документы кластера,
 наиболее близкого к пользовательскому запросу, а следовательно, получить наиболее
@@ -499,13 +490,13 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь Вам необходимо реализовать алгоритм кластеризации K-Means. Для
-этого реализуйте класс :py:class:`lab_4_retrieval_w_clustering.main.KMeans`.
+этого реализуйте класс `lab_4_retrieval_w_clustering.main.KMeans`.
 
 Класс имеет следующие атрибуты:
 
 * ``self.__clusters`` - список, который хранит в себе объекты класса
-  :py:class:`lab_4_retrieval_w_clustering.main.ClusterDTO`;
-* ``self._db`` - объект класса :py:class:`lab_4_retrieval_w_clustering.main.DocumentVectorDB`,
+  `lab_4_retrieval_w_clustering.main.ClusterDTO`;
+* ``self._db`` - объект класса `lab_4_retrieval_w_clustering.main.DocumentVectorDB`,
   который хранит в себе векторную базу данных;
 * ``self._n_clusters`` - количество кластеров.
 
@@ -528,9 +519,9 @@ collections, itertools, а также сторонние модули.**
 Как уже рассматривалось выше, алгоритм необходимо обучать до тех пор,
 пока центроиды кластера не сойдутся к заданному порогу. Для того чтобы
 пройти одну полную итерацию обучения, реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.KMeans.run_single_train_iteration`,
+`lab_4_retrieval_w_clustering.main.KMeans.run_single_train_iteration`,
 который возвращает список обновлённых объектов класса
-:py:class:`lab_4_retrieval_w_clustering.main.ClusterDTO`.
+`lab_4_retrieval_w_clustering.main.ClusterDTO`.
 
 В ходе реализации данного метода необходимо выполнить следующие шаги:
 
@@ -544,13 +535,13 @@ collections, itertools, а также сторонние модули.**
    векторов документов текущего кластера.
 
 .. important:: В данном методе необходимо использовать следующие методы:
-               :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.erase_indices`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.add_document_index`,
-               и :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.set_new_centroid`,
+               `lab_4_retrieval_w_clustering.main.ClusterDTO.erase_indices`,
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`,
+               `lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
+               `lab_4_retrieval_w_clustering.main.ClusterDTO.add_document_index`,
+               и `lab_4_retrieval_w_clustering.main.ClusterDTO.set_new_centroid`,
                а также функцию
-               :py:func:`lab_3_ann_retriever.main.calculate_distance`.
+               `lab_3_ann_retriever.main.calculate_distance`.
 
 .. note:: Если вызываемые методы возвращают значение ``None``,
           то необходимо поднять исключение ``ValueError``.
@@ -559,7 +550,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.KMeans._is_convergence_reached`,
+`lab_4_retrieval_w_clustering.main.KMeans._is_convergence_reached`,
 который проверяет, сошлись ли центроиды до обновления с центроидами после обновления.
 
 Считается, что центроиды сошлись, если расстояние между ними меньше некоторого
@@ -567,8 +558,8 @@ collections, itertools, а также сторонние модули.**
 возвращает значение ``True``.
 
 .. important:: В данном методе необходимо вызвать функцию
-               :py:func:`lab_3_ann_retriever.main.calculate_distance`, а
-               также метод :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
+               `lab_3_ann_retriever.main.calculate_distance`, а
+               также метод `lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
                чтобы получить центроиды до и после обновления.
 
 .. note:: Если на вход подаётся пустой аргумент или вызываемые методы возвращают
@@ -578,7 +569,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь у Вас есть всё, чтобы обучить алгоритм кластеризации K-Means.
-Реализуйте метод :py:meth:`lab_4_retrieval_w_clustering.main.KMeans.train`.
+Реализуйте метод `lab_4_retrieval_w_clustering.main.KMeans.train`.
 
 Рассмотрим реализацию данного метода по шагам:
 
@@ -586,26 +577,26 @@ collections, itertools, а также сторонние модули.**
    центроидов необходимо взять первые ``n`` векторов из построенной базы данных, которая
    хранится в соответствующем атрибуте текущего класса. Затем Вам необходимо заполнить
    атрибут ``self.__clusters`` объектами класса
-   :py:class:`lab_4_retrieval_w_clustering.main.ClusterDTO`.
+   `lab_4_retrieval_w_clustering.main.ClusterDTO`.
 2. **Цикл обучения**.
    За логику одной итерации обучения отвечает уже реализованный ранее метод
-   :py:meth:`lab_4_retrieval_w_clustering.main.KMeans.run_single_train_iteration`,
+   `lab_4_retrieval_w_clustering.main.KMeans.run_single_train_iteration`,
    который возвращает новые кластера после обновления центроидов.
 3. **Проверка сходимости**. В случае если центроиды сошлись, необходимо закончить цикл обучения
    и заключительный раз обновить кластера, чтобы поддерживать объекты класса
-   :py:class:`lab_4_retrieval_w_clustering.main.ClusterDTO` в актуальном состоянии. В
+   `lab_4_retrieval_w_clustering.main.ClusterDTO` в актуальном состоянии. В
    противном случае, происходит переход на новую итерацию обучения.
 
 .. important:: В данном методе необходимо использовать следующие методы:
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.KMeans.run_single_train_iteration`
-               и :py:meth:`lab_4_retrieval_w_clustering.main.KMeans._is_convergence_reached`.
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`,
+               `lab_4_retrieval_w_clustering.main.KMeans.run_single_train_iteration`
+               и `lab_4_retrieval_w_clustering.main.KMeans._is_convergence_reached`.
 
 Шаг 7.2.4. Сделать инференс модели кластеризации
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь, когда Вы натренировали модель на то, чтобы определять кластер для документа,
-реализуйте метод :py:meth:`lab_4_retrieval_w_clustering.main.KMeans.infer`, который
+реализуйте метод `lab_4_retrieval_w_clustering.main.KMeans.infer`, который
 позволит получить ближайший кластер к запросу пользователя.
 
 Для того чтобы реализовать данный метод, необходимо выполнить следующие шаги:
@@ -620,11 +611,11 @@ collections, itertools, а также сторонние модули.**
 5. Выбрать ``n`` ближайших документов кластера.
 
 .. important:: В данном методе необходимо использовать функцию
-               :py:func:`lab_3_ann_retriever.main.calculate_distance`, а также
+               `lab_3_ann_retriever.main.calculate_distance`, а также
                следующие методы:
-               :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors` и
-               :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_indices`.
+               `lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors` и
+               `lab_4_retrieval_w_clustering.main.ClusterDTO.get_indices`.
 
 .. note:: Если на вход подаётся некорректное значение или вызываемые методы возвращают значение ``None``,
           то необходимо поднять исключение ``ValueError``.
@@ -640,15 +631,15 @@ collections, itertools, а также сторонние модули.**
 На **Шаге 5** Вы уже создали алгоритм поиска ``n`` релевантных документов, основываясь на
 алгоритме K-ближайших соседей. Теперь осуществим поиск релевантных документов на основе K-Means
 алгоритма. Для этого реализуйте класс
-:py:class:`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`.
+`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`.
 
 Класс имеет следующие атрибуты:
 
-* ``self.__algo`` - объект класса :py:class:`lab_4_retrieval_w_clustering.main.KMeans`;
-* ``self._db`` - объект класса :py:class:`lab_4_retrieval_w_clustering.main.DocumentVectorDB`,
+* ``self.__algo`` - объект класса `lab_4_retrieval_w_clustering.main.KMeans`;
+* ``self._db`` - объект класса `lab_4_retrieval_w_clustering.main.DocumentVectorDB`,
   который хранит в себе векторную базу данных.
 
-При инициализации класса :py:class:`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`
+При инициализации класса `lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`
 обратите внимание на то, что атрибут ``self.__algo`` хранит в себе лишь объект класса. Для того
 чтобы использовать алгоритм K-Means дальше, необходимо его обучить.
 
@@ -669,7 +660,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine.retrieve_relevant_documents`.
+`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine.retrieve_relevant_documents`.
 На вход подаётся строка запроса и количество релевантных данному запросу документов.
 
 Вам необходимо сделать инференс модели кластеризации и получить индексы ближайших
@@ -677,10 +668,10 @@ collections, itertools, а также сторонние модули.**
 на выходе метод ожидает получить дистанции и сами документы в формате строки.
 
 .. important:: В данном методе необходимо использовать метод
-               :py:meth:`lab_3_ann_retriever.main.Tokenizer.tokenize`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.BM25Vectorizer.vectorize`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`,
-               а также :py:meth:`lab_4_retrieval_w_clustering.main.KMeans.infer`.
+               `lab_3_ann_retriever.main.Tokenizer.tokenize`,
+               `lab_4_retrieval_w_clustering.main.BM25Vectorizer.vectorize`,
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`,
+               а также `lab_4_retrieval_w_clustering.main.KMeans.infer`.
 
 .. note:: Если на вход подаётся некорректное значение или вызываемые методы возвращают значение ``None``,
           то необходимо поднять исключение ``ValueError``.
@@ -702,8 +693,8 @@ collections, itertools, а также сторонние модули.**
 На предыдущих шагах Вы построили алгоритм кластеризации K-Means,
 который позволяет разбивать данные на группы (кластеры).
 
-При создании экземпляров класса :py:class:`lab_4_retrieval_w_clustering.main.KMeans`
-и класса :py:class:`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`
+При создании экземпляров класса `lab_4_retrieval_w_clustering.main.KMeans`
+и класса `lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`
 количество кластеров задавалось произвольно.
 Однако существуют различные способы подбора наиболее подходящего количества
 кластеров. Один из таких способов называется **метод локтя (elbow method)**.
@@ -742,7 +733,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.KMeans.calculate_square_sum`.
+`lab_4_retrieval_w_clustering.main.KMeans.calculate_square_sum`.
 
 Рассмотрим реализацию данного метода по шагам:
 
@@ -754,19 +745,19 @@ collections, itertools, а также сторонние модули.**
 4. Посчитать сумму полученных значений на **Шаге 3** для всех кластеров.
 
 .. important:: В данном методе необходимо использовать метод
-               :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors` и
-               :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_indices`.
+               `lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors` и
+               `lab_4_retrieval_w_clustering.main.ClusterDTO.get_indices`.
 
 Шаг 10.2. Получить метрику SSE в поисковой системе
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine.calculate_square_sum`,
+`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine.calculate_square_sum`,
 который возвращает сумму квадратов расстояний от векторов кластера до центроида.
 
 .. important:: В данном методе необходимо использовать метод
-               :py:meth:`lab_4_retrieval_w_clustering.main.KMeans.calculate_square_sum`.
+               `lab_4_retrieval_w_clustering.main.KMeans.calculate_square_sum`.
 
 Шаг 11. Создать отчёт с информацией о кластерах
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -775,18 +766,18 @@ collections, itertools, а также сторонние модули.**
 """""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.KMeans.get_clusters_info`.
+`lab_4_retrieval_w_clustering.main.KMeans.get_clusters_info`.
 
 Данный метод позволяет получить некоторую информацию о полученных кластерах, а
 именно идентификатор кластера и несколько самых ближайших к центроиду документов
 из текущего кластера. Количество ближайших документов задаётся входящим аргументом.
 
 .. important:: В данном методе необходимо использовать функцию
-               :py:func:`lab_3_ann_retriever.main.calculate_distance`, а также методы
-               :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.ClusterDTO.get_indices` и
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`.
+               `lab_3_ann_retriever.main.calculate_distance`, а также методы
+               `lab_4_retrieval_w_clustering.main.ClusterDTO.get_centroid`,
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectors`,
+               `lab_4_retrieval_w_clustering.main.ClusterDTO.get_indices` и
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`.
 
 Пример структурированной информации о кластерах сохранён в файле
 ``"./assets/states/report_example.json"``,
@@ -797,9 +788,9 @@ collections, itertools, а также сторонние модули.**
 Шаг 11.2. Сохранить отчёт в формате json
 """"""""""""""""""""""""""""""""""""""""
 
-Реализуйте метод :py:meth:`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine.make_report`,
+Реализуйте метод `lab_4_retrieval_w_clustering.main.ClusteringSearchEngine.make_report`,
 который сохраняет полученную в методе
-:py:meth:`lab_4_retrieval_w_clustering.main.KMeans.get_clusters_info` информацию о кластерах в
+`lab_4_retrieval_w_clustering.main.KMeans.get_clusters_info` информацию о кластерах в
 файл ``assets/report.json``.
 
 Шаг 12. Продемонстрировать результаты в ``start.py``
@@ -827,48 +818,48 @@ collections, itertools, а также сторонние модули.**
 упростить работу пользователя с имеющимися сущностями.
 
 На данный момент у Вас реализованы следующие оптимизированные алгоритмы векторного
-поиска: :py:class:`lab_4_retrieval_w_clustering.main.VectorDBSearchEngine`,
-:py:class:`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`, а также
-:py:class:`lab_3_ann_retriever.main.BasicSearchEngine` и
-:py:class:`lab_3_ann_retriever.main.AdvancedSearchEngine`. Однако два последних
+поиска: `lab_4_retrieval_w_clustering.main.VectorDBSearchEngine`,
+`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`, а также
+`lab_3_ann_retriever.main.BasicSearchEngine` и
+`lab_3_ann_retriever.main.AdvancedSearchEngine`. Однако два последних
 не умеют работать с векторной базой данных. Необходимо добавить им такое поведение.
 
 Для этого реализуйте класс
-:py:class:`lab_4_retrieval_w_clustering.main.VectorDBEngine`, который предоставляет
-унифицированный интерфейс для алгоритма :py:class:`lab_3_ann_retriever.main.BasicSearchEngine`
-и алгоритма :py:class:`lab_3_ann_retriever.main.AdvancedSearchEngine` и добавляет
+`lab_4_retrieval_w_clustering.main.VectorDBEngine`, который предоставляет
+унифицированный интерфейс для алгоритма `lab_3_ann_retriever.main.BasicSearchEngine`
+и алгоритма `lab_3_ann_retriever.main.AdvancedSearchEngine` и добавляет
 возможность работать данным классам с базой документов и векторов.
 
 Класс имеет следующие атрибуты:
 
-* ``self._db`` - объект класса :py:class:`lab_4_retrieval_w_clustering.main.DocumentVectorDB`,
+* ``self._db`` - объект класса `lab_4_retrieval_w_clustering.main.DocumentVectorDB`,
   который хранит в себе векторную базу данных;
-* ``self._engine`` - объект класса :py:class:`lab_3_ann_retriever.main.BasicSearchEngine`.
+* ``self._engine`` - объект класса `lab_3_ann_retriever.main.BasicSearchEngine`.
 
 Шаг 13.1. Предоставить унифицированный API для получения релевантных документов
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_retrieval_w_clustering.main.VectorDBEngine.retrieve_relevant_documents`,
+`lab_4_retrieval_w_clustering.main.VectorDBEngine.retrieve_relevant_documents`,
 который позволяет получить ``n`` наиболее релевантных документов по пользовательскому
 запросу с помощью каждого алгоритма.
 
 Шаг 13.2. Предоставить унифицированный API для простого К-мерного дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте класс :py:class:`lab_4_retrieval_w_clustering.main.VectorDBTreeSearchEngine`,
+Реализуйте класс `lab_4_retrieval_w_clustering.main.VectorDBTreeSearchEngine`,
 который наследуется от созданного ранее класса
-:py:class:`lab_4_retrieval_w_clustering.main.VectorDBEngine`.
+`lab_4_retrieval_w_clustering.main.VectorDBEngine`.
 
 При инициализации данного класса необходимо создать объект класса
-:py:class:`lab_3_ann_retriever.main.SearchEngine` и проиндексировать
+`lab_3_ann_retriever.main.SearchEngine` и проиндексировать
 все документы, используя векторную базу данных.
 
 .. important:: При инициализации необходимо вызвать методы:
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectorizer`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_tokenizer`,
-               :py:meth:`lab_3_ann_retriever.main.SearchEngine.index_documents` и
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`.
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectorizer`,
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_tokenizer`,
+               `lab_3_ann_retriever.main.SearchEngine.index_documents` и
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`.
 
 Пример создания экземпляра класса:
 
@@ -881,20 +872,20 @@ collections, itertools, а также сторонние модули.**
 Шаг 13.3. Предоставить унифицированный API для оптимизированного К-мерного дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте класс :py:class:`lab_4_retrieval_w_clustering.main.VectorDBAdvancedSearchEngine`,
+Реализуйте класс `lab_4_retrieval_w_clustering.main.VectorDBAdvancedSearchEngine`,
 который также наследуется от созданного ранее класса
-:py:class:`lab_4_retrieval_w_clustering.main.VectorDBEngine` и перенимает все его атрибуты
+`lab_4_retrieval_w_clustering.main.VectorDBEngine` и перенимает все его атрибуты
 и поведение.
 
 При инициализации данного класса необходимо создать объект класса
-:py:class:`lab_3_ann_retriever.main.AdvancedSearchEngine` и проиндексировать
+`lab_3_ann_retriever.main.AdvancedSearchEngine` и проиндексировать
 все документы, используя векторную базу данных.
 
 .. important:: При инициализации необходимо вызвать методы:
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectorizer`,
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_tokenizer`,
-               :py:meth:`lab_3_ann_retriever.main.SearchEngine.index_documents` и
-               :py:meth:`lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`.
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_vectorizer`,
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_tokenizer`,
+               `lab_3_ann_retriever.main.SearchEngine.index_documents` и
+               `lab_4_retrieval_w_clustering.main.DocumentVectorDB.get_raw_documents`.
 
 Пример создания экземпляра класса:
 
@@ -910,10 +901,10 @@ collections, itertools, а также сторонние модули.**
 .. important:: Выполнение Шагов 10-14 соответствует 10 баллам.
 
 Продемонстрируйте полиморфное поведение классов
-:py:class:`lab_4_retrieval_w_clustering.main.VectorDBSearchEngine`,
-:py:class:`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`,
-:py:class:`lab_4_retrieval_w_clustering.main.VectorDBTreeSearchEngine` и
-:py:class:`lab_4_retrieval_w_clustering.main.VectorDBAdvancedSearchEngine`
+`lab_4_retrieval_w_clustering.main.VectorDBSearchEngine`,
+`lab_4_retrieval_w_clustering.main.ClusteringSearchEngine`,
+`lab_4_retrieval_w_clustering.main.VectorDBTreeSearchEngine` и
+`lab_4_retrieval_w_clustering.main.VectorDBAdvancedSearchEngine`
 в функции ``main()`` модуля ``start.py`` и получите ``5`` наиболее релевантных
 документов на пользовательский запрос
 ``'Первый был не кто иной, как Михаил Александрович Берлиоз, председатель правления'``.

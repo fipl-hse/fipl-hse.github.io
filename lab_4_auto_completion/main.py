@@ -101,8 +101,8 @@ class TrieNode:
         Initialize a Trie node.
 
         Args:
-            name (int | None, optional): The name of the node.
-            value (float, optional): The value stored in the node.
+            name (int | None): The name of the node.
+            value (float): The value stored in the node.
         """
 
     def __bool__(self) -> bool:
@@ -134,7 +134,7 @@ class TrieNode:
         Get the tuple of child nodes or one child.
 
         Args:
-            item (int | None, optional): Special data to find special child
+            item (int | None): Special data to find special child
 
         Returns:
             tuple["TrieNode", ...]: Tuple of child nodes.
@@ -376,7 +376,7 @@ class DynamicNgramLMTrie(NGramTrieLanguageModel):
 
         Args:
             encoded_corpus (tuple[NGramType, ...]): Tokenized corpus.
-            n_gram_size (int, optional): N-gram size. Defaults to 3.
+            n_gram_size (int): N-gram size. Defaults to 3.
         """
 
     def build(self) -> int:
@@ -413,7 +413,7 @@ class DynamicNgramLMTrie(NGramTrieLanguageModel):
         Args:
             parent (TrieNode): A sequence to match beginning of N-grams for continuation.
             node_name (int): Name of TrieNode to find a child.
-            freq (float, optional): Frequency of child TrieNode.
+            freq (float): Frequency of child TrieNode.
 
         Returns:
             TrieNode: Existing or new TrieNode.

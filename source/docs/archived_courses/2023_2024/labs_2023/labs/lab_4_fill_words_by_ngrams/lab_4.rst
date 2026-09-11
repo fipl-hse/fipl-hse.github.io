@@ -1,15 +1,6 @@
 Лабораторная работа №4. Заполнение текста с помощью n-грамм
 ===========================================================
 
-
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-    :caption: Full API
-
-    lab_4_fill_words_by_ngrams.api.rst
-
-
 Дано
 ----
 
@@ -90,9 +81,9 @@
 числами требуют меньшего количества ресурсов, чем операции над строками.
 
 Для предобработки текста необходимо реализовать класс
-:py:class:`lab_4_fill_words_by_ngrams.main.WordProcessor`.
+`lab_4_fill_words_by_ngrams.main.WordProcessor`.
 Данный класс должен наследоваться от
-:py:class:`lab_3_generate_by_ngrams.main.TextProcessor`, поскольку их логика
+`lab_3_generate_by_ngrams.main.TextProcessor`, поскольку их логика
 во многом похожа. Принципиальным отличием выступает используемая единица текста:
 в данной лабораторной работе мы будем оперировать словами, а не буквами.
 
@@ -110,7 +101,7 @@
 """""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.WordProcessor._tokenize`,
+`lab_4_fill_words_by_ngrams.main.WordProcessor._tokenize`,
 который позволяет разбить текст на токены.
 
 Поскольку в данной лабораторной токеном выступает слово, а не буква, необходимо
@@ -120,7 +111,7 @@
 (``!``, ``?``, ``.``), должны быть заменены на специальный токен конца предложения.
 Обратите внимание, что токен конца предложения содержится в соответствующем атрибуте,
 унаследованном от класса
-:py:class:`lab_3_generate_by_ngrams.main.TextProcessor`.
+`lab_3_generate_by_ngrams.main.TextProcessor`.
 Далее текст необходимо очистить от цифр и специальных символов, оставив только
 пробелы, буквы и токены конца предложения. Текст необходимо привести
 к нижнему регистру и разделить на слова. Границей слова в настоящей лабораторной
@@ -151,7 +142,7 @@
 На этом шаге Вам нужно присвоить токену
 некоторый уникальный целочисленный идентификатор.
 Для этого реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.WordProcessor._put`.
+`lab_4_fill_words_by_ngrams.main.WordProcessor._put`.
 
 .. note:: **Идентификатор** - значение, которое однозначно указывает
           на токен и равно длине ``_storage`` (атрибут объекта данного
@@ -189,7 +180,7 @@
 Таким образом, нам остается переопределить только постобработку текста.
 
 Для этого необходимо реализовать метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.WordProcessor._postprocess_decoded_text`,
+`lab_4_fill_words_by_ngrams.main.WordProcessor._postprocess_decoded_text`,
 который позволяет перейти от токенизированного текста в формате
 кортежа к тексту в строковом формате.
 
@@ -221,7 +212,7 @@
 от контекста мы вновь будем опираться на понятие N-граммы.
 В этом нам пригодится языковая модель, реализованная в предыдущей
 лабораторной работе,
-:py:class:`lab_3_generate_by_ngrams.main.NGramLanguageModel`.
+`lab_3_generate_by_ngrams.main.NGramLanguageModel`.
 
 Обратите внимание, что ее логика остается актуальной и для задачи недетерминированной
 генерации, поэтому переопределять сущность языковой модели нет необходимости.
@@ -267,7 +258,7 @@
 """""""""""""""""""""""""""""""""""""
 
 Для генерации текста описанным способом вам необходимо реализовать
-класс :py:class:`lab_4_fill_words_by_ngrams.main.TopPGenerator`.
+класс `lab_4_fill_words_by_ngrams.main.TopPGenerator`.
 
 Данный класс заключает в себе полную логику продолжения последовательности
 от принятия исходного контекста до постобработки результата.
@@ -286,7 +277,7 @@
 """""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.TopPGenerator.run`,
+`lab_4_fill_words_by_ngrams.main.TopPGenerator.run`,
 который генерирует последовательность указанной длины по заданному контексту.
 
 Прежде чем приступить к генерации, необходимо предобработать заданное
@@ -403,7 +394,7 @@
 * алгоритм **Top P**
 
 Необходимо объявить сущность, хранящую данные виды генерации в качестве атрибутов,
-:py:class:`lab_4_fill_words_by_ngrams.main.GeneratorTypes`.
+`lab_4_fill_words_by_ngrams.main.GeneratorTypes`.
 Это необходимо для предотвращения уязвимости кода в дальнейшем: при передаче аргументов
 в виде строки всегда есть вероятность допустить опечатку. Поэтому удобно
 иметь класс, экземпляры которого содержат фиксированную репрезентацию того
@@ -434,7 +425,7 @@
 понятным человеку.
 
 Реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.GeneratorTypes.get_conversion_generator_type`,
+`lab_4_fill_words_by_ngrams.main.GeneratorTypes.get_conversion_generator_type`,
 который возвращает название метода генерации в виде строки.
 
 Если был использован жадный алгоритм, то следует вернуть строку ``'Greedy Generator'``,
@@ -447,7 +438,7 @@
 Для более удобного управления результатами сравнительного анализа реализуем
 сущность, хранящую в себе необходимую информацию о результатах оценки сгенерированной
 последовательности,
-:py:class:`lab_4_fill_words_by_ngrams.main.GenerationResultDTO`.
+`lab_4_fill_words_by_ngrams.main.GenerationResultDTO`.
 
 `DTO (Data Transfer Object) <https://www.baeldung.com/java-dto-pattern>`__
 в объектно-ориентированном программировании (ООП)
@@ -472,7 +463,7 @@
 его изменения в течение жизненного цикла экземпляра класса ``GenerationResultDTO``.
 
 Тем не менее, потребность узнать данное значение существует. Для этого реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_perplexity`,
+`lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_perplexity`,
 который возвращает значение перплексии.
 
 Шаг 4.5. Получить оцениваемую последовательность
@@ -483,7 +474,7 @@
 его изменения в течение жизненного цикла экземпляра класса ``GenerationResultDTO``.
 
 Тем не менее, потребность узнать данное значение существует. Для этого реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_text`,
+`lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_text`,
 который возвращает текст.
 
 Шаг 4.6. Получить идентификатор типа алгоритма генерации
@@ -494,7 +485,7 @@
 его изменения в течение жизненного цикла экземпляра класса ``GenerationResultDTO``.
 
 Тем не менее, потребность узнать данное значение существует. Для этого реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_type`,
+`lab_4_fill_words_by_ngrams.main.GenerationResultDTO.get_type`,
 который возвращает идентификатор алгоритма генерации.
 
 Шаг 4.7. Получить отчет об оценке качества генерации
@@ -503,7 +494,7 @@
 Наконец, необходимо реализовать формирование отчета о полученном результате.
 
 Для этого реализуйте магический метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__str__`,
+`lab_4_fill_words_by_ngrams.main.GenerationResultDTO.__str__`,
 который возвращает строку определенного формата, отражающую тип генерации, значение перплексии
 и текст, на котором была произведена оценка.
 
@@ -530,7 +521,7 @@
 
 Наконец, перейдем к реализации класса, ответственного за проведение
 сравнительного анализа,
-:py:class:`lab_4_fill_words_by_ngrams.main.QualityChecker`.
+`lab_4_fill_words_by_ngrams.main.QualityChecker`.
 
 Данный класс заключает логику генерации последовательности каждым из заданных
 алгоритмов, подсчет метрики качества для каждой из получившихся последовательностей
@@ -556,7 +547,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.QualityChecker._calculate_perplexity`.
+`lab_4_fill_words_by_ngrams.main.QualityChecker._calculate_perplexity`.
 
 Метод производит оценку сгенерированной последовательности следующим образом:
 
@@ -610,16 +601,16 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.QualityChecker.run`,
+`lab_4_fill_words_by_ngrams.main.QualityChecker.run`,
 осуществляющий логику сравнительного анализа.
 
 Для каждого из методов генерации, хранимых в соответствующем атрибуте,
 необходимо сгенерировать последовательность
 заданной длины по заданному контексту. Полученные последовательности необходимо оценить
 при помощи метода
-:py:meth:`lab_4_fill_words_by_ngrams.main.QualityChecker._calculate_perplexity`.
+`lab_4_fill_words_by_ngrams.main.QualityChecker._calculate_perplexity`.
 Результат оценки необходимо сохранить в экземпляр
-:py:class:`lab_4_fill_words_by_ngrams.main.GenerationResultDTO`.
+`lab_4_fill_words_by_ngrams.main.GenerationResultDTO`.
 Каждому методу генерации должен соответствовать один экземпляр хранилища результатов.
 Возвращаемые значения должны быть отсортированы по значению метрики в порядке
 возрастания. В случае, если значения метрики совпадают, необходимо дополнительно
@@ -638,9 +629,9 @@
 Продемонстрируйте результат сравнительного анализа
 в функции ``main()`` модуля ``start.py``. В качестве аргумента для
 инициализации экземпляра класса
-:py:class:`lab_4_fill_words_by_ngrams.main.QualityChecker`
+`lab_4_fill_words_by_ngrams.main.QualityChecker`
 необходимо использовать экземпляр класса
-:py:class:`lab_4_fill_words_by_ngrams.main.GeneratorTypes`.
+`lab_4_fill_words_by_ngrams.main.GeneratorTypes`.
 
 Сравните качество генерации алгоритмами жадной генерации, **Beam Search** генерации
 и **Top P** генерации.
@@ -669,7 +660,7 @@
 """""""""""""""""""""""""""""""""""""""
 
 Далее необходимо определить класс
-:py:class:`lab_4_fill_words_by_ngrams.main.Examiner`,
+`lab_4_fill_words_by_ngrams.main.Examiner`,
 роль которого заключается в осуществлении логики составления и оценки
 экзамена.
 
@@ -692,7 +683,7 @@
 """""""""""""""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.Examiner._load_from_json`,
+`lab_4_fill_words_by_ngrams.main.Examiner._load_from_json`,
 в котором происходит чтение файла из соответствующего атрибута и заполнение
 атрибутов его содержимым.
 
@@ -720,14 +711,14 @@
 поэтому соответствующий атрибут класса экзаменатора является защищенным.
 
 Реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.Examiner.provide_questions`,
+`lab_4_fill_words_by_ngrams.main.Examiner.provide_questions`,
 возвращающий вопросы экзамена. Метод не должен возвращать ответы!
 
 Шаг 5.4. Выставить оценку
 """""""""""""""""""""""""
 
 Реализуйте метод
-:py:meth:`lab_4_fill_words_by_ngrams.main.Examiner.assess_exam`,
+`lab_4_fill_words_by_ngrams.main.Examiner.assess_exam`,
 заключающий логику проверки ответов.
 
 Метод должен сопоставить полученные ответы с правильными и посчитать долю правильных ответов.
@@ -740,7 +731,7 @@
 """""""""""""""""""""""""""""""""""
 
 Далее необходимо определить класс
-:py:class:`lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent`.
+`lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent`.
 Данный класс представляет абстракцию студента и реализует общую логику ответа
 на вопрос одной из изученных техник генерации.
 
@@ -764,7 +755,7 @@
 """"""""""""""""""""""""""""""""""""
 
 Логику обработки заданий необходимо реализовать в методе
-:py:meth:`lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.take_exam`.
+`lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.take_exam`.
 
 Для каждого из заданий метод осуществляет следующие действия:
 
@@ -785,7 +776,7 @@
 Перед началом сдачи экзамена каждому студенту необходимо представиться.
 Для этого реализуйте метод,
 возвращающий тип использованного алгоритма генерации,
-:py:meth:`lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.get_generator_type`.
+`lab_4_fill_words_by_ngrams.main.GeneratorRuleStudent.get_generator_type`.
 
 В данном методе необходимо инициализировать и использовать экземпляр класса `GeneratorTypes`.
 

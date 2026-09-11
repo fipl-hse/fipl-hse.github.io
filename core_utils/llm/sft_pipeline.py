@@ -55,7 +55,7 @@ class AbstractSFTPipeline(ABC):
         Args:
             model_name (str): The name of the pre-trained model
             dataset (torch.utils.data.dataset.Dataset): The dataset used
-            data_collator (Callable[[AutoTokenizer], torch.Tensor] | None, optional): processing
+            data_collator (Callable[[AutoTokenizer], torch.Tensor] | None): processing
                                                                     batch. Defaults to None.
         """
         self._model_name = model_name

@@ -31,7 +31,7 @@ def from_raw(path: pathlib.Path | str, article: Article | None = None) -> Articl
 
     Args:
         path (pathlib.Path | str): Path to article raw text
-        article (Article | None, optional): Article instance. Defaults to None.
+        article (Article | None): Article instance. Defaults to None.
 
     Returns:
         Article: Article instance
@@ -76,7 +76,7 @@ def from_meta(path: pathlib.Path | str, article: Article | None = None) -> Artic
 
     Args:
         path (pathlib.Path | str): Path to meta info
-        article (Article | None, optional): Article instance. Defaults to None.
+        article (Article | None): Article instance. Defaults to None.
 
     Returns:
         Article: Article instance
@@ -85,7 +85,8 @@ def from_meta(path: pathlib.Path | str, article: Article | None = None) -> Artic
         meta = json.load(meta_file)
 
     article = (
-        article if article else Article(url=meta.get("url", None), article_id=meta.get("id", 0))
+        article if article else Article(url=meta.get(
+            "url", None), article_id=meta.get("id", 0))
     )
 
     article.article_id = meta.get("id", 0)

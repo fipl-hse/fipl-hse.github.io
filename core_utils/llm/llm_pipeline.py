@@ -31,7 +31,7 @@ class HFModelLike(Protocol):
 
         Args:
             args (tuple): Arbitrary positional arguments
-            return_dict (bool, optional): Special argument for QA models. Defaults to False.
+            return_dict (bool): Special argument for QA models. Defaults to False.
             kwargs (dict): Arbitrary named arguments
 
         Returns:
@@ -74,7 +74,7 @@ class AbstractLLMPipeline(ABC):
             dataset (torch.utils.data.dataset.Dataset): The dataset used.
             max_length (int): The maximum length of generated sequence.
             batch_size (int): The size of the batch inside DataLoader.
-            device (str, optional): The device for inference. Defaults to "cpu".
+            device (str): The device for inference. Defaults to "cpu".
         """
         self._model_name = model_name
         self._model = None

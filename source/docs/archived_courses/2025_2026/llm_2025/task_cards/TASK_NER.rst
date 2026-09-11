@@ -52,7 +52,7 @@ Inferring batch
 ---------------
 
 Process of implementing method
-:py:meth:`lab_7_llm.main.LLMPipeline._infer_batch`
+`lab_7_llm.main.LLMPipeline._infer_batch`
 for named entity recognition task has its specifics:
 
    1. You need to set the ``is_split_into_words=True`` parameter during the tokenization.

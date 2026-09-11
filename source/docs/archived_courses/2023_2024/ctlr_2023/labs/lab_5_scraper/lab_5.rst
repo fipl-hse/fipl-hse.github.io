@@ -3,13 +3,6 @@
 Laboratory work №5. Retrieve raw data from World Wide Web
 =========================================================
 
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-    :caption: Full API
-
-    lab_5.api.rst
-
 Python competencies required to complete this tutorial:
 
    -  working with external dependencies, going beyond Python standard library;
@@ -111,9 +104,9 @@ key-value pairs.
 +-------------------------------------+-------------------------------------+---------+
 
 .. note:: ``seed_urls`` and ``total_articles_to_find_and_parse`` are used
-          in :py:class:`lab_5_scrapper.scrapper.Crawler` abstraction.
+          in `lab_5_scraper.scraper.Crawler` abstraction.
           ``headers``, ``encoding``, ``timeout``, ``should_verify_certificate`` are used
-          in :py:func:`lab_5_scrapper.scrapper.make_request` function.
+          in `lab_5_scraper.scraper.make_request` function.
           ``headless_mode`` is used only if you work with dynamic websites. See
           definition and requirements for these abstractions and functions
           within further steps.
@@ -195,7 +188,7 @@ Stage 1. Extract and validate config first
 Stage 1.1. Use ``ConfigDTO`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You are provided with :py:class:`core_utils.ctlr.config_dto.ConfigDTO` abstraction.
+You are provided with `core_utils.ctlr.config_dto.ConfigDTO` abstraction.
 It is located in ``core_utils`` package.
 Use it to store you scrapper configuration data from ``scrapper_config.json``.
 Examine class fields closely.
@@ -212,7 +205,7 @@ Stage 1.2. Introduce Config abstraction
 
 To be able to read, validate, and use scrapper configuration data inside
 your program you need to implement special
-:py:class:`lab_5_scrapper.scrapper.Config` abstraction that
+`lab_5_scraper.scraper.Config` abstraction that
 is responsible for extracting and validating data from
 ``scrapper_config.json`` file.
 
@@ -223,7 +216,7 @@ See the intended instantiation:
    configuration = Config(path_to_config=CRAWLER_CONFIG_PATH)
 
 where ``CRAWLER_CONFIG_PATH`` is the path to the config of the crawler.
-It is mandatory to initialize :py:class:`lab_5_scrapper.scrapper.Config`
+It is mandatory to initialize `lab_5_scraper.scraper.Config`
 class instance with passing a global variable ``CRAWLER_CONFIG_PATH``
 that should be properly imported from the ``core_utils/constants.py`` module.
 
@@ -231,25 +224,25 @@ Stage 1.3. Extract configuration data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To be able to use scrapper configuration data inside your program you
-need to define :py:meth:`lab_5_scrapper.scrapper.Config._extract_config_content`
+need to define `lab_5_scraper.scraper.Config._extract_config_content`
 method for extracting configuration data.
 
 The method should open configuration file, create and fill the
-:py:class:`core_utils.ctlr.config_dto.ConfigDTO` instance with
+`core_utils.ctlr.config_dto.ConfigDTO` instance with
 all configuration parameters filled.
 
 .. note:: This method should be called during
-          :py:class:`lab_5_scrapper.scrapper.Config` class instance
+          `lab_5_scraper.scraper.Config` class instance
           initialization step to fill fields with configuration parameters
           information.
 
 Stage 1.4. Validate configuration data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:py:class:`lab_5_scrapper.scrapper.Config` class is responsible
+`lab_5_scraper.scraper.Config` class is responsible
 not only for configuration data extraction, but for its validation as well.
 Hence you need to implement
-:py:meth:`lab_5_scrapper.scrapper.Config._validate_config_content` method.
+`lab_5_scraper.scraper.Config._validate_config_content` method.
 
 Inside the method you need to define and check formal criteria for valid
 configuration. When config is invalid:
@@ -277,9 +270,9 @@ When all validation criteria are passed there is no exception thrown and
 program continues its execution.
 
 .. note:: This method should be called during
-          :py:class:`lab_5_scrapper.scrapper.Config`
+          `lab_5_scraper.scraper.Config`
           class instance initialization step before
-          :py:meth:`lab_5_scrapper.scrapper.Config._extract_config_content` method
+          `lab_5_scraper.scraper.Config._extract_config_content` method
           call to check config fields and make sure they are appropriate and
           can be used inside the program.
 
@@ -290,7 +283,7 @@ To be able to further use configuration data extracted across your
 program you need to specify methods for getting each configuration
 parameter.
 
-For example, :py:meth:`lab_5_scrapper.scrapper.Config.get_seed_urls` method
+For example, `lab_5_scraper.scraper.Config.get_seed_urls` method
 should return seed urls value from scrapper config file extracted when needed.
 Similar methods should be defined for all scrapper configuration parameters that
 you will be using across the program.
@@ -301,12 +294,12 @@ Stage 2. Set up work environment
 Stage 2.1. Set up folder for articles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When config is correct (the :py:class:`lab_5_scrapper.scrapper.Config`
+When config is correct (the `lab_5_scraper.scraper.Config`
 class instance is initialized meaning config is valid and loaded inside the program),
 you should prepare appropriate environment for your scrapper to work. Basically,
 you must check that a directory provided by ``ASSETS_PATH`` does in fact
 exist and is empty. In order to do that, implement
-:py:func:`lab_5_scrapper.scrapper.prepare_environment` function.
+`lab_5_scraper.scraper.prepare_environment` function.
 
 It is mandatory to call this function after the config file is validated
 and before crawler is run.
@@ -322,13 +315,13 @@ Stage 2.2. Set up website requesting function
 You will need to make requests inside you program to the website several
 times during each scrapper run, so it is wise to create service function
 making request to your website for reusing across program when needed.
-Implement :py:func:`lab_5_scrapper.scrapper.make_request` function.
+Implement `lab_5_scraper.scraper.make_request` function.
 
 .. note:: Inside this function use config getting methods that you should
           have defined previously inside
-          :py:class:`lab_5_scrapper.scrapper.Config` class to get request
+          `lab_5_scraper.scraper.Config` class to get request
           configuration parameters, for example
-          :py:meth:`lab_5_scrapper.scrapper.Config.get_timeout` to get timeout value.
+          `lab_5_scraper.scraper.Config.get_timeout` to get timeout value.
 
 Stage 3. Find necessary number of article URLs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -336,7 +329,7 @@ Stage 3. Find necessary number of article URLs
 Stage 3.1. Introduce Crawler abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:py:class:`lab_5_scrapper.scrapper.Crawler` is an entity
+`lab_5_scraper.scraper.Crawler` is an entity
 that visits ``seed_urls`` with the intention to
 collect URLs of the articles that should be parsed later.
 **Seed url** - this is a known term, you can read more in
@@ -349,7 +342,7 @@ It should be instantiated with the following instruction:
 
    crawler = Crawler(config=configuration)
 
-:py:class:`lab_5_scrapper.scrapper.Crawler` instance saves
+`lab_5_scraper.scraper.Crawler` instance saves
 provided configuration instance in an attribute
 with the corresponding name. Each instance should also have an
 additional ``self.urls`` attribute, initialized with empty list.
@@ -358,7 +351,7 @@ Stage 3.2. Implement a method for collecting article URLs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once the crawler is instantiated, it can be started by executing its
-:py:meth:`lab_5_scrapper.scrapper.Crawler.find_articles` method.
+`lab_5_scraper.scraper.Crawler.find_articles` method.
 The method should iterate over the list of seeds, download them and
 extract article URLs from it. As a result, the internal attribute
 ``self.urls`` should be filled with collected URLs.
@@ -368,21 +361,21 @@ extract article URLs from it. As a result, the internal attribute
           ``https://www.nn.ru/text/transport/2022/03/09/70495829/`` instead of
           ``text/transport/2022/03/09/70495829/``.
 
-:py:meth:`lab_5_scrapper.scrapper.Crawler.find_articles` method
+`lab_5_scraper.scraper.Crawler.find_articles` method
 must call another method of Crawler:
-:py:meth:`lab_5_scrapper.scrapper.Crawler._extract_url`.
+`lab_5_scraper.scraper.Crawler._extract_url`.
 This method is responsible for retrieving a URL from
 HTML of the page. Make sure that
-:py:meth:`lab_5_scrapper.scrapper.Crawler.find_articles`
+`lab_5_scraper.scraper.Crawler.find_articles`
 only iterates over seed URLs and stores newly collected ones, while all the extraction is
 performed via protected
-:py:meth:`lab_5_scrapper.scrapper.Crawler._extract_url` method.
+`lab_5_scraper.scraper.Crawler._extract_url` method.
 
 .. warning:: At this point, an approach for extracting articles URLs is
              different for each website.
 
 Finally, to access seed URLs of the crawler,
-:py:meth:`lab_5_scrapper.scrapper.Crawler.get_search_urls` must be employed.
+`lab_5_scraper.scraper.Crawler.get_search_urls` must be employed.
 
 .. note:: It is possible that at some point your crawler will encounter an
           unavailable website (for example, its response code is not 200). In
@@ -390,17 +383,13 @@ Finally, to access seed URLs of the crawler,
           provided. Ensure that your crawler handles such URLs without throwing
           an exception.
 
-Some web resources load new articles only after a user performs a
-special interaction (for example, scrolling or button pressing). If this
-is your case, refer to :ref:`dynamic-scrapping-label`.
-
 Stage 4. Extract data from every article page
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Stage 4.1. Introduce ``HTMLParser`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:py:class:`lab_5_scrapper.scrapper.HTMLParser` is an entity
+`lab_5_scraper.scraper.HTMLParser` is an entity
 that is responsible for extraction of all
 needed information from a single article web page.
 Parser is initialized the following way:
@@ -409,13 +398,13 @@ Parser is initialized the following way:
 
    parser = HTMLParser(full_url=full_url, article_id=i, config=configuration)
 
-:py:class:`lab_5_scrapper.scrapper.HTMLParser` instance
+`lab_5_scraper.scraper.HTMLParser` instance
 saves all constructor arguments in attributes with corresponding names.
 Each instance should also have an additional ``self.article`` attribute,
 initialized with a new instance of
-:py:class:`core_utils.ctlr.article.article.Article` class.
+`core_utils.ctlr.article.article.Article` class.
 
-:py:class:`core_utils.ctlr.article.article.Article` is an abstraction
+`core_utils.ctlr.article.article.Article` is an abstraction
 that is implemented for you. You must use it
 in your implementation. A more detailed description of the Article class
 can be found in :ref:`ctlr-article-label`.
@@ -423,30 +412,30 @@ can be found in :ref:`ctlr-article-label`.
 Stage 4.2. Implement main ``HTMLParser`` method
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The :py:class:`lab_5_scrapper.scrapper.HTMLParser`
+The `lab_5_scraper.scraper.HTMLParser`
 interface includes a single
-:py:meth:`lab_5_scrapper.scrapper.HTMLParser.parse` method that
+`lab_5_scraper.scraper.HTMLParser.parse` method that
 encapsulates the logic of extracting all necessary data from the article
 web page. It should do the following:
 
 1. Download the web page.
 2. Initialize ``BeautifulSoup`` object on top of downloaded page (we
    will call it ``article_bs``).
-3. Fill :py:class:`core_utils.ctlr.article.article.Article` instance
+3. Fill `core_utils.ctlr.article.article.Article` instance
    by calling private methods to extract text (more details in the next sections).
 
-The :py:meth:`lab_5_scrapper.scrapper.HTMLParser.parse` method returns
-the instance of :py:class:`core_utils.ctlr.article.article.Article` that is
+The `lab_5_scraper.scraper.HTMLParser.parse` method returns
+the instance of `core_utils.ctlr.article.article.Article` that is
 stored in ``self.article`` field.
 
 Stage 4.3. Implement extraction of text from article page
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Extraction of the text should happen in the private
-:py:meth:`lab_5_scrapper.scrapper.HTMLParser._fill_article_with_text` method.
+`lab_5_scraper.scraper.HTMLParser._fill_article_with_text` method.
 
 A call to this method results in filling the internal
-:py:class:`core_utils.ctlr.article.article.Article` instance with text.
+`core_utils.ctlr.article.article.Article` instance with text.
 
 .. note:: It is very likely that the text on pages of a chosen website is
           split across different HTML blocks, make sure to collect text from
@@ -457,16 +446,16 @@ Stage 5. Save article
 
 .. important:: **Stages 0-5** are required to get the mark **4**.
 
-Make sure that you save each :py:class:`core_utils.ctlr.article.article.Article`
+Make sure that you save each `core_utils.ctlr.article.article.Article`
 object as a text file on the file system by using the appropriate
-API method :py:func:`core_utils.ctlr.article.io.to_raw` from ``io.py`` module.
+API method `core_utils.ctlr.article.io.to_raw` from ``io.py`` module.
 Read more in :ref:`ctlr-article-label`.
 
-As we return the :py:class:`core_utils.ctlr.article.article.Article` instance
-from the :py:meth:`lab_5_scrapper.scrapper.HTMLParser.parse` method, saving
-the article is out of scope of an :py:class:`lab_5_scrapper.scrapper.HTMLParser`.
+As we return the `core_utils.ctlr.article.article.Article` instance
+from the `lab_5_scraper.scraper.HTMLParser.parse` method, saving
+the article is out of scope of an `lab_5_scraper.scraper.HTMLParser`.
 This means that you need to save the articles in the place where you call
-:py:meth:`lab_5_scrapper.scrapper.HTMLParser.parse`.
+`lab_5_scraper.scraper.HTMLParser.parse`.
 
 Stage 6. Collect basic article metadata
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -478,16 +467,16 @@ dataset that is generated by your code should contain meta-information
 about each article including its id, title, author.
 
 Implement
-:py:meth:`lab_5_scrapper.scrapper.HTMLParser._fill_article_with_meta_information`
+`lab_5_scraper.scraper.HTMLParser._fill_article_with_meta_information`
 method. A call to this method results in filling the internal
-:py:class:`core_utils.ctlr.article.article.Article` instance with meta-information.
+`core_utils.ctlr.article.article.Article` instance with meta-information.
 
 .. note:: Authors must be saved as a list of strings.
           If there is no author in your newspaper, fill the field with a
           list with a single string “NOT FOUND”.
 
 To save the collected meta-information, refer
-:py:func:`core_utils.ctlr.article.io.to_meta` method.
+`core_utils.ctlr.article.io.to_meta` method.
 Saving must be performed outside of parser methods.
 
 Stage 7. Collect advanced metadata: publication date and topics
@@ -509,7 +498,7 @@ stated that the article was published at ``26 ЯНВАРЯ 2021, 07:30``, but
 in the meta-information it must be written as\ ``2021-01-26 07:30:00``.
 
 To correctly process the date, implement
-:py:meth:`lab_5_scrapper.scrapper.HTMLParser.unify_date_format`
+`lab_5_scraper.scraper.HTMLParser.unify_date_format`
 method.
 
 .. hint:: Use `datetime <https://docs.python.org/3/library/datetime.html>`__
@@ -526,9 +515,9 @@ value for the key ``topics``. In case there are not any topics or
 keywords present in your source, leave this list empty.
 
 You should extend
-:py:meth:`lab_5_scrapper.scrapper.HTMLParser._fill_article_with_meta_information`
+`lab_5_scraper.scraper.HTMLParser._fill_article_with_meta_information`
 method with a call to
-:py:meth:`lab_5_scrapper.scrapper.HTMLParser.unify_date_format`
+`lab_5_scraper.scraper.HTMLParser.unify_date_format`
 method and topics extraction.
 
 Stage 8. Determine the optimal number of seed URLs
@@ -537,7 +526,7 @@ Stage 8. Determine the optimal number of seed URLs
 .. important:: **Stages 0-8** are required to get the mark **8**.
 
 As it was stated in **Stage 2.1**,
-:py:class:`lab_5_scrapper.scrapper.Crawler` is an entity that visits
+`lab_5_scraper.scraper.Crawler` is an entity that visits
 ``seed_urls`` with the intention to collect URLs with articles that
 should be parsed later". Often you can reach the situation when there
 are not enough article links on the given URL. For example, you may want
@@ -585,9 +574,9 @@ Therefore, your **Stage 9** is about addressing some of these questions. In
 particular, you need to implement your crawler in a recursive manner:
 you provide a single seed url of your newspaper, and it visits every
 page of the website and collects *all* articles from the website. You
-need to make a child of :py:class:`lab_5_scrapper.scrapper.Crawler` class
-and name it :py:class:`lab_5_scrapper.scrapper.CrawlerRecursive`.
-Follow the interface of :py:class:`lab_5_scrapper.scrapper.Crawler`.
+need to make a child of `lab_5_scraper.scraper.Crawler` class
+and name it `lab_5_scraper.scraper.CrawlerRecursive`.
+Follow the interface of `lab_5_scraper.scraper.Crawler`.
 
 A required addition is an ability to stop crawler at any time. When it
 is started again, it continues search and crawling process without
@@ -599,10 +588,10 @@ repetitions.
 Stage 9.1. Introduce ``CrawlerRecursive`` abstraction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:py:class:`lab_5_scrapper.scrapper.CrawlerRecursive` must inherit
-from :py:class:`lab_5_scrapper.scrapper.Crawler`.
+`lab_5_scraper.scraper.CrawlerRecursive` must inherit
+from `lab_5_scraper.scraper.Crawler`.
 The initialization interface is the same as for
-:py:class:`lab_5_scrapper.scrapper.Crawler`.
+`lab_5_scraper.scraper.Crawler`.
 During initialization, make sure to create a ``self.start_url`` field:
 it is a single URL that will be used as a seed.
 Fill ``self.start_url`` with one of the seed URLs
@@ -625,9 +614,9 @@ achieved in the following way:
 
 2. Repeat this process until the desired number of URLs is found.
 
-.. hint:: :py:meth:`lab_5_scrapper.scrapper.CrawlerRecursive.find_articles`
+.. hint:: `lab_5_scraper.scraper.CrawlerRecursive.find_articles`
           must be called inside the
-          :py:meth:`lab_5_scrapper.scrapper.CrawlerRecursive.find_articles`.
+          `lab_5_scraper.scraper.CrawlerRecursive.find_articles`.
 
 FAQ
 ---

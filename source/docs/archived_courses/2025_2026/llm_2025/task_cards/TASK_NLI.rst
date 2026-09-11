@@ -35,7 +35,7 @@ Datasets
       1. Select ``dev`` split.
       2. Filter the dataset by the column ``source`` with the value ``mnli``.
 
-         1. This step you should implement in :py:meth:`lab_7_llm.main.RawDataImporter.obtain`.
+         1. This step you should implement in `lab_7_llm.main.RawDataImporter.obtain`.
 
       3. Leave only columns ``premise_ru``, ``hypothesis_ru`` and ``label``.
       4. Rename column ``premise_ru`` to ``premise``.
