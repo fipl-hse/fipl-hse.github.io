@@ -1,5 +1,5 @@
 beautifulsoup4==4.15.0
-docutils==0.23
+docutils==0.18.1
 docxbuilder==1.2.0
 fastapi==0.141.1
 networkx==3.6.1
