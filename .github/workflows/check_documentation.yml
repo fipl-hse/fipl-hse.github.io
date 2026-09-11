@@ -1,31 +1,43 @@
 name: Documentation Check
 
 on:
-  pull_request:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-env:
-  PYTHON_VERSION: '3.13.11'
+concurrency:
+  group: ${{ github.repository }}-${{ github.ref }}-admin
+  cancel-in-progress: true
 
 jobs:
+  install-dependencies:
+    name: Installing dependencies
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup FIPL environment
+        uses: fipl-hse/setup-env-action@v0.13.3
+      - name: Confirming everything is OK
+        run: |
+          ls -la venv
+
   build:
     name: Build Documentation
     runs-on: ubuntu-latest
+    timeout-minutes: 7
+    needs: [ install-dependencies ]
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-      - name: Set up Python ${{ env.PYTHON_VERSION }}
-        uses: actions/setup-python@v7
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
-
-      - name: Install dependencies
-        run: python3 -m pip install -r requirements.txt
-
+      - uses: actions/checkout@v7
+      - name: Setup FIPL environment
+        uses: fipl-hse/setup-env-action@v0.13.3
       - name: Build Documentation
         run: |
+          source venv/bin/activate
+          which python
           export PYTHONPATH=$(pwd):$PYTHONPATH
           rm -rf source/build/
           sphinx-build -W -n -b html source/ source/build/
