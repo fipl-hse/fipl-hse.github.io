@@ -1,5 +1,3 @@
-.. _lab-8-label:
-
 Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models
 ======================================================================
 

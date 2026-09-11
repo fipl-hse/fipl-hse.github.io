@@ -1,5 +1,3 @@
-.. _pipeline-label:
-
 Laboratory work №6. Process raw data
 ====================================
 

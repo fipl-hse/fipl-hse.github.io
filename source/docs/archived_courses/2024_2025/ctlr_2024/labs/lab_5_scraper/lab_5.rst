@@ -1,5 +1,3 @@
-.. _scraper-label:
-
 Laboratory work №5. Retrieve raw data from World Wide Web
 =========================================================
 

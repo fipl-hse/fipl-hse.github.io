@@ -40,6 +40,9 @@ nitpick_ignore = [
     ("py:class", "Language"),
     ("py:class", "spacy.language.Language"),
     ("py:class", "spacy.tokens.doc.Doc"),
+    ("py:class", "ProfileType"),
+    ("py:meth", "lab_5_scraper.scraper.Config._extract_config_content"),
+    ("py:meth", "lab_6_pipeline.pipeline.POSFrequencyPipeline.run"),
 ]
 
 templates_path = ['_templates']

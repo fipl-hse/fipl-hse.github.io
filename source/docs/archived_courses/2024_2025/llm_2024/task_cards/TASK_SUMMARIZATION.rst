@@ -1,5 +1,3 @@
-.. _summarization-label:
-
 Summarization
 =============
 

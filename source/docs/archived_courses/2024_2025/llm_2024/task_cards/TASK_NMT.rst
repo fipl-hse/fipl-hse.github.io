@@ -1,5 +1,3 @@
-.. _nmt-label:
-
 Neural Machine Translation
 ==========================
 

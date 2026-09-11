@@ -29,11 +29,11 @@ This abstraction is responsible for indicating what fields must be passed as
 a configuration settings along with what their types must be.
 
 They match the fields of the ``scraper_config.json`` configuration file.
-For more details on what each of the parameters presents, refer to :ref:`scraper-label`.
+For more details on what each of the parameters presents, refer to Scraper documentation.
 
 .. note:: During implementation of Lab 5, make sure to return
           a ``ConfigDTO`` instance from the
-          :py:func:`lab_5_scraper.scraper.Config._extract_config_content` method.
+          :py:meth:`lab_5_scraper.scraper.Config._extract_config_content` method.
 
 Module with constants
 ---------------------

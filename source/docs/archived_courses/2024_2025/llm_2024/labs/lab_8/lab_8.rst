@@ -1,5 +1,3 @@
-.. _lab-8-label:
-
 Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models
 ======================================================================
 
@@ -85,12 +83,12 @@ LoRA-based fine-tuning to adapt LLMs for specific tasks while optimizing for eff
 Stage 1. Infer one sample from dataset and demonstrate the result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important:: **Stages 1 - 4.3** from :ref:`lab-7-label` are required to get the mark **4**.
+.. important:: **Stages 1 - 4.3** from Lab 7 are required to get the mark **4**.
 
 Stage 2. Inference of model and demonstrate the result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important:: **Stages 4.4 - 5.2** from :ref:`lab-7-label` are required to get the mark **6**.
+.. important:: **Stages 4.4 - 5.2** from Lab 7 are required to get the mark **6**.
 
 Stage 3. Tokenize one sample from dataset
 """""""""""""""""""""""""""""""""""""""""
@@ -292,7 +290,7 @@ Set the following parameters:
 Stage 6. Implement model as a service and demonstrate the result
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. important:: **Stages 6** from :ref:`lab-7-label` are required to get the mark **10**.
+.. important:: **Stages 6** from Lab 7 are required to get the mark **10**.
 
 An example of start page might look like this:
 

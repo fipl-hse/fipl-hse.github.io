@@ -44,7 +44,6 @@ Project Timeline
    2. Deadline: **April, 29**.
    3. Format: each student works in their own PR.
    4. Dataset volume: 5-7 articles.
-   5. Design document: :ref:`scrapper-label`.
 
 2. **Pipeline**:
 
@@ -54,7 +53,6 @@ Project Timeline
    2. Deadline: **May, 27**.
    3. Format: each student works in their own PR.
    4. Dataset volume: 5-7 articles.
-   5. Design document: :ref:`pipeline-label`.
 
 Lectures history
 ----------------

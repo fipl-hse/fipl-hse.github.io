@@ -1,5 +1,3 @@
-.. _nli-label:
-
 NLI
 ===
 

@@ -1,5 +1,3 @@
-.. _generation-label:
-
 Generation
 ==========
 
