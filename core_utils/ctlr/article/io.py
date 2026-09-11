@@ -31,7 +31,7 @@ def from_raw(path: pathlib.Path | str, article: Article | None = None) -> Articl
 
     Args:
         path (pathlib.Path | str): Path to article raw text
-        article (Article | None, optional): Article instance. Defaults to None.
+        article (Article | None): Article instance. Defaults to None.
 
     Returns:
         Article: Article instance
