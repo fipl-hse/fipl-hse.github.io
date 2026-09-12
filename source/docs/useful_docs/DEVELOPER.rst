@@ -4,6 +4,9 @@ Configuring Python for course development
 .. contents:: Content:
    :depth: 2
 
+
+.. _pythonpath_on_windows:
+
 Providing ``PYTHONPATH`` on Windows
 -----------------------------------
 
