@@ -20,7 +20,7 @@ except ImportError:  # pragma: no cover
     DiGraph = None  # type: ignore
     print("No libraries installed. Failed to import.")
 
-from core_utils.article.article import Article
+from core_utils.ctlr.article.article import Article
 
 
 def visualize(article: Article, path_to_save: Path) -> None:

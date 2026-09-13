@@ -61,7 +61,7 @@ class TextProcessingPipeline(PipelineProtocol):
 
         Args:
             corpus_manager (CorpusManager): CorpusManager instance
-            analyzer (LibraryWrapper | None, optional): Analyzer instance. Defaults to None.
+            analyzer (LibraryWrapper | None): Analyzer instance. Defaults to None.
         """
 
     def run(self) -> None:

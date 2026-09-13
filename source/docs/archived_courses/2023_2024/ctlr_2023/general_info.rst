@@ -44,7 +44,6 @@ Project Timeline
    2. Deadline: **April, 29**.
    3. Format: each student works in their own PR.
    4. Dataset volume: 5-7 articles.
-   5. Design document: :ref:`scrapper-label`.
 
 2. **Pipeline**:
 
@@ -54,7 +53,6 @@ Project Timeline
    2. Deadline: **May, 27**.
    3. Format: each student works in their own PR.
    4. Dataset volume: 5-7 articles.
-   5. Design document: :ref:`pipeline-label`.
 
 Lectures history
 ----------------
@@ -167,7 +165,7 @@ Technical solution
 
 Software solution is built on top of three components:
 
-1. `scrapper.py <https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_5_scrapper/scrapper.py>`__
+1. `scrapper.py <https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_5_scraper/scrapper.py>`__
    - a module for finding articles from the given media, extracting text and dumping it to
    the file system. Students need to implement it.
 2. `pipeline.py <https://github.com/fipl-hse/2023-2-level-ctlr/blob/main/lab_6_pipeline/pipeline.py>`__

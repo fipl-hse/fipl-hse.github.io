@@ -1,16 +1,5 @@
-.. _lab-8-label:
-
 Laboratory work №8. Supervised Fine-Tuning (SFT) Large Language Models
 ======================================================================
-
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-    :caption: Full API
-
-    lab_8.api.rst
-    core_utils.api.rst
-    lab_settings.api.rst
 
 Implementation tactics
 ----------------------
@@ -94,12 +83,12 @@ LoRA-based fine-tuning to adapt LLMs for specific tasks while optimizing for eff
 Stage 1. Infer one sample from dataset and demonstrate the result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important:: **Stages 1 - 4.3** from :ref:`lab-7-label` are required to get the mark **4**.
+.. important:: **Stages 1 - 4.3** from Lab 7 are required to get the mark **4**.
 
 Stage 2. Inference of model and demonstrate the result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important:: **Stages 4.4 - 5.2** from :ref:`lab-7-label` are required to get the mark **6**.
+.. important:: **Stages 4.4 - 5.2** from Lab 7 are required to get the mark **6**.
 
 Stage 3. Tokenize one sample from dataset
 """""""""""""""""""""""""""""""""""""""""
@@ -109,7 +98,7 @@ Since the data is presented as text, it must be tokenized (i.e.
 converted into a numeric representation) to prepare it for transfer
 to the model for fine-tuning.
 
-Implement :py:func:`lab_8_sft.main.tokenize_sample` function, which tokenizes the
+Implement `lab_8_sft.main.tokenize_sample` function, which tokenizes the
 sample and truncates it to its maximum length.
 
 Set the following parameters for tokenizer:
@@ -140,7 +129,7 @@ we will use Transformers ``Trainer`` abstraction, which uses PyTorch ``DataLoade
 to efficiently load the data into the model's memory,
 process it in batches and pass it to the model.
 
-Implement :py:class:`lab_8_sft.main.TokenizedTaskDataset` abstraction, which allows to
+Implement `lab_8_sft.main.TokenizedTaskDataset` abstraction, which allows to
 prepare data for fine-tuning.
 
 This class inherits from ``torch.utils.data.Dataset`` abstraction,
@@ -149,7 +138,7 @@ which has one internal attribute:
     * ``self._data`` - ``pd.DataFrame`` with preprocessed data.
 
 Fill the attribute ``self._data`` with tokenized samples from the data.
-Use the function :py:func:`lab_8_sft.main.tokenize_sample`.
+Use the function `lab_8_sft.main.tokenize_sample`.
 
 So, this class allows to combine ``pd.DataFrame`` and PyTorch ``Dataset``,
 tokenize text in the required format for the model,
@@ -182,7 +171,7 @@ Stage 4.1. Get the dataset length
 In the next two steps, we will override some methods
 that will allow us to further tune the model.
 
-Implement :py:meth:`lab_8_sft.main.TokenizedTaskDataset.__len__` method
+Implement `lab_8_sft.main.TokenizedTaskDataset.__len__` method
 which allows to get the number of items in dataset.
 PyTorch ``DataLoader`` uses this method
 to determine the total number of batches.
@@ -190,7 +179,7 @@ to determine the total number of batches.
 Stage 4.2. Retrieve an item from the dataset
 """"""""""""""""""""""""""""""""""""""""""""
 
-Implement :py:meth:`lab_8_sft.main.TokenizedTaskDataset.__getitem__` method
+Implement `lab_8_sft.main.TokenizedTaskDataset.__getitem__` method
 which allows to retrieve an item from the dataset by index.
 
 PyTorch ``DataLoader`` calls this method to retrieve data for each batch.
@@ -201,7 +190,7 @@ one sample from the dataset by index.
 
 .. note:: For example, if the data at index 0 contains the sample
           ``i feel bitchy but not defeated yet``, then
-          :py:meth:`lab_8_sft.main.TokenizedTaskDataset.__getitem__`
+          `lab_8_sft.main.TokenizedTaskDataset.__getitem__`
           method will output the following value: ``{'input_ids': tensor([...]),
           'attention_mask': tensor([...]), 'labels': 3}``
 
@@ -209,10 +198,10 @@ Stage 5. Introduce SFT Pipeline: ``SFTPipeline``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To fine-tune the selected model, you need to implement the
-:py:class:`lab_8_sft.main.SFTPipeline` abstraction.
+`lab_8_sft.main.SFTPipeline` abstraction.
 
 This class inherits from
-:py:class:`core_utils.llm.sft_pipeline.AbstractSFTPipeline`,
+`core_utils.llm.sft_pipeline.AbstractSFTPipeline`,
 which provides a structure for initializing a model and performing fine-tuning.
 
 The class has the following internal attributes:
@@ -240,7 +229,7 @@ Stage 5.1. Model fine-tuning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Implement method
-:py:meth:`lab_8_sft.main.SFTPipeline.run`,
+`lab_8_sft.main.SFTPipeline.run`,
 which allows to fine-tune a pre-trained model using the LoRA method.
 
 Before starting fine-tuning, set up the training parameters using the
@@ -257,7 +246,7 @@ which takes the model, training arguments, and dataset as input.
 
 .. important:: After fine-tuning process merge LoRA-adapted weights and then
                save the fine-tuned model to the specified output directory, the path to which
-               you can get from :py:class:`core_utils.llm.sft_pipeline.AbstractSFTPipeline`
+               you can get from `core_utils.llm.sft_pipeline.AbstractSFTPipeline`
                class.
 
 Stage 5.2. Demonstrate the result in ``start.py``
@@ -292,7 +281,7 @@ Set the following parameters:
                    * :ref:`summarization-label`
 
 .. important:: To infer the fine-tuned model you need to save it to
-               :py:attr:`core_utils.project.lab_settings.SFTParams.finetuned_model_path`
+               `core_utils.project.lab_settings.SFTParams.finetuned_model_path`
 
 .. note:: After model inference you have to save
           you predictions to ``dist/predictions.csv`` file in ``start.py``.
@@ -301,7 +290,7 @@ Set the following parameters:
 Stage 6. Implement model as a service and demonstrate the result
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-.. important:: **Stages 6** from :ref:`lab-7-label` are required to get the mark **10**.
+.. important:: **Stages 6** from Lab 7 are required to get the mark **10**.
 
 An example of start page might look like this:
 

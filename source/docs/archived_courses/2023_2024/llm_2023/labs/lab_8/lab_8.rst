@@ -3,7 +3,7 @@ Laboratory work №8. Large Language Models no. 2
 
 Since the core concept of this laboratory work closely mirrors Laboratory Work No. 7,
 the documentation remains unchanged. Hence, you can refer to the complete documentation
-about implementation tactic in :ref:`lab-7-label`.
+about implementation tactic in Lab 7.
 
 Start working with laboratory work
 ----------------------------------

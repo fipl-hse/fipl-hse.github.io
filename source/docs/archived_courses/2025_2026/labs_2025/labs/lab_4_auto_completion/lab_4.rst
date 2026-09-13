@@ -1,13 +1,6 @@
 Лабораторная работа №4. Система генерации текста на основе префиксного дерева
 ========================================================================================
 
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-    :caption: Full API
-
-    lab_4_auto_completion.api.rst
-
 .. important::
 
    Описание лабораторных работ и другие полезные материалы
@@ -20,7 +13,7 @@
 1. Текст на английском языке (``./assets/hp_letters.txt``),
    который загружен и сохранен в переменную ``hp_letters`` в ``start.py``
 
-1. Текст на английском языке (``./assets/ussr_letters.txt``),
+2. Текст на английском языке (``./assets/ussr_letters.txt``),
    который загружен и сохранен в переменную ``ussr_letters`` в ``start.py``
 
 
@@ -325,8 +318,8 @@ collections, itertools, а также сторонние модули.**
 вам необходимо создать на его основе новый класс для работы со словами и предложениями,
 а не с отдельными буквами.
 
-Ваша задача - создать класс :py:class:`lab_4_auto_completion.main.WordProcessor`,
-являющийся наследником класса :py:class:`lab_3_generate_by_ngrams.main.TextProcessor`,
+Ваша задача - создать класс `lab_4_auto_completion.main.WordProcessor`,
+являющийся наследником класса `lab_3_generate_by_ngrams.main.TextProcessor`,
 который выполняет полный цикл обработки текста на уровне слов с сохранением структуры предложений.
 
 **Ключевое отличие**: в родительском классе использовался разделитель **слов** под названием
@@ -348,7 +341,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 3.1. Реализовать метод для токенизации текста
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Переопределите метод :py:meth:`lab_4_auto_completion.main.WordProcessor._tokenize`, который,
+Переопределите метод `lab_4_auto_completion.main.WordProcessor._tokenize`, который,
 в отличие от одноименного метода родительского класса, разбивает текст на предложения, а не
 отдельные слова.
 
@@ -383,7 +376,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 3.2. Реализовать метод для вставки слов в хранилище
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Переопределите метод :py:meth:`lab_4_auto_completion.main.WordProcessor._put`. Одноименный метод
+Переопределите метод `lab_4_auto_completion.main.WordProcessor._put`. Одноименный метод
 родительского класса добавлял только буквы в хранилище. Теперь же этот метод должен добавлять
 слова в хранилище `_storage`.
 
@@ -402,7 +395,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 3.3. Реализовать метод для кодирования предложений
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.WordProcessor.encode_sentences`, который
+Реализуйте метод `lab_4_auto_completion.main.WordProcessor.encode_sentences`, который
 используется для кодирования текста на уровне предложений.
 
 Метод работает следующим образом:
@@ -414,7 +407,7 @@ collections, itertools, а также сторонние модули.**
    1. Каждое предложение разбивается на слова, которые очищаются от небуквенных символов
 
    2. Слова добавляются в хранилище посредством метода
-      :py:meth:`lab_4_auto_completion.main.WordProcessor._put`, после чего идентификатор каждого
+      `lab_4_auto_completion.main.WordProcessor._put`, после чего идентификатор каждого
       слова добавляется в список, который хранит данные о текущем предложении
 
    3. В конец предложения должен быть добавлен ``end_of_sentence_token``, после чего все текущее
@@ -432,7 +425,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 3.4. Реализовать метод для обработки декодированного текста
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Переопределите метод :py:meth:`lab_4_auto_completion.main.WordProcessor._postprocess_decoded_text`,
+Переопределите метод `lab_4_auto_completion.main.WordProcessor._postprocess_decoded_text`,
 который принимает на вход последовательность элементов, хранящуюся в кортеже `decoded_corpus`, и
 возвращает строковое представление данной последовательности. Так, все входные
 последовательности из кортежа объединяются в список строк, разделителем которых является
@@ -475,7 +468,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 4.1. Объявить сущность узла префиксного дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте инициализатор класса :py:class:`lab_4_auto_completion.main.TrieNode`.
+Реализуйте инициализатор класса `lab_4_auto_completion.main.TrieNode`.
 Класс имеет 3 атрибута: 1 приватный и 2 защищенных:
 
 1. **__name** - элемент, соответствующий данному узлу (обратите внимание, что в нашем случае тип
@@ -483,7 +476,7 @@ collections, itertools, а также сторонние модули.**
 
 2. **_value** — позже в нем мы будем хранить относительную частоту
    соответствующей n-граммы в корпусе. По умолчанию частота равна ``0.0``. Значение может быть
-   обновлено позже методом :py:meth:`lab_4_auto_completion.main.TrieNode.set_value`.
+   обновлено позже методом `lab_4_auto_completion.main.TrieNode.set_value`.
 
 3. **_children** - список всех дочерних узлов
 
@@ -496,7 +489,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 4.2. Реализовать метод, возвращающий элемент, хранящийся в данном узле
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.TrieNode.get_name`, который
+Реализуйте метод `lab_4_auto_completion.main.TrieNode.get_name`, который
 должен возвращать название элемента, который хранится в узле. Такие методы называются
 **геттерами**. Геттеры обеспечивают один из основных принципов ООП - инкапсуляцию,
 позволяя внешнему коду получать информацию о конфигурации узла без прямого доступа к
@@ -507,14 +500,14 @@ collections, itertools, а также сторонние модули.**
 Шаг 4.3. Реализовать метод, возвращающий относительную частоту n-граммы
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.TrieNode.get_value`, который должен
+Реализуйте метод `lab_4_auto_completion.main.TrieNode.get_value`, который должен
 возвращать значение относительной частоты n-граммы, хранящейся в узле.
 
 
 Шаг 4.4. Реализовать метод, устанавливающий значение частоты n-граммы
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.TrieNode.set_value`, который должен
+Реализуйте метод `lab_4_auto_completion.main.TrieNode.set_value`, который должен
 устанавливать в поле относительной частоты n-граммы значение, переданное в аргументе
 `new_value`. Данный метод является примером **сеттера**.
 
@@ -522,14 +515,14 @@ collections, itertools, а также сторонние модули.**
 Шаг 4.5. Реализовать метод, возвращающий дочерние узлы
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.TrieNode.get_children`. На вход данного
+Реализуйте метод `lab_4_auto_completion.main.TrieNode.get_children`. На вход данного
 метода может подаваться значение аргумента `item`, по умолчанию оно равняется `None`. В случае,
 если значение аргумента не заполнено, метод должен вернуть кортеж **всех** дочерних узлов.
 В случае, если значение аргумента `item` явно указано, должен возвращаться кортеж только из тех
 дочерних узлов, значение которых равняется значению `item`.
 
 .. important:: Данный метод должен использовать созданный вами на прошлом шаге метод
-               :py:meth:`lab_4_auto_completion.main.TrieNode.get_name` для нахождения
+               `lab_4_auto_completion.main.TrieNode.get_name` для нахождения
                значения дочерних узлов
 
 
@@ -537,7 +530,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 4.6. Переопределить служебный метод для проверки наличия дочерних узлов
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Переопределите служебный метод :py:meth:`lab_4_auto_completion.main.TrieNode.__bool__`.
+Переопределите служебный метод `lab_4_auto_completion.main.TrieNode.__bool__`.
 Метод должен вернуть `True` в случае, если узел имеет дочерние узлы.
 
 По умолчанию Python считает объект `True`, если он не является:
@@ -572,9 +565,9 @@ collections, itertools, а также сторонние модули.**
 Шаг 4.7. Реализовать метод, возвращающий результат проверки на наличие дочерних узлов
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.TrieNode.has_children`, который должен
+Реализуйте метод `lab_4_auto_completion.main.TrieNode.has_children`, который должен
 возвращать результат работы переопределенного метода
-:py:meth:`lab_4_auto_completion.main.TrieNode.__bool__`: возвращать `True`, если у узла есть
+`lab_4_auto_completion.main.TrieNode.__bool__`: возвращать `True`, если у узла есть
 дочерние узлы, и `False` в обратном случае.
 
 
@@ -582,7 +575,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 4.8. Реализовать метод для добавления дочернего узла
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.TrieNode.add_child`. Метод принимает
+Реализуйте метод `lab_4_auto_completion.main.TrieNode.add_child`. Метод принимает
 на вход значение `item`, после чего вставляет в массив дочерних узлов
 объект класса `TrieNode` с этим значением, работа метода должна выглядеть так:
 
@@ -608,7 +601,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 4.9. Переопределить служебный метод, возвращающий значение узла
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Переопределите служебный метод :py:meth:`lab_4_auto_completion.main.TrieNode.__str__`, который
+Переопределите служебный метод `lab_4_auto_completion.main.TrieNode.__str__`, который
 должен возвращать строковое представление узла в формате
 `"TrieNode(name=XXX, value=XXX)"`.
 
@@ -628,7 +621,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Теперь, после создания сущности узла дерева, перейдем к реализации абстракции самого префиксного
-дерева. Создайте класс :py:class:`lab_4_auto_completion.main.PrefixTrie`.
+дерева. Создайте класс `lab_4_auto_completion.main.PrefixTrie`.
 Описание внутреннего атрибута: `self._root` - корневой узел, объект класса `TrieNode`.
 
 
@@ -636,7 +629,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 На данном этапе вам необходимо реализовать метод
-:py:meth:`lab_4_auto_completion.main.PrefixTrie._insert`, который выполняет операцию вставки
+`lab_4_auto_completion.main.PrefixTrie._insert`, который выполняет операцию вставки
 заданной последовательности `sequence` в дерево.
 
 Работа метода выглядит следующим образом:
@@ -651,8 +644,8 @@ collections, itertools, а также сторонние модули.**
 3. Алгоритм продолжается до тех пор, пока не будет произведен обход всей заданной последовательности
 
 .. note:: Для поиска дочерних узлов и создания нужного дочернего узла метод должен использовать
-          реализованные вами ранее методы :py:meth:`lab_4_auto_completion.main.TrieNode.get_children`
-          и :py:meth:`lab_4_auto_completion.main.TrieNode.add_child`.
+          реализованные вами ранее методы `lab_4_auto_completion.main.TrieNode.get_children`
+          и `lab_4_auto_completion.main.TrieNode.add_child`.
 
 Предположим, у нас есть дерево, состоящее только из корневого узла, и нам надо добавить в него
 последовательность `(1, 2)`.
@@ -688,7 +681,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 5.3. Реализовать операцию очистки всего префиксного дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.PrefixTrie.clean`, задача которого - очистить
+Реализуйте метод `lab_4_auto_completion.main.PrefixTrie.clean`, задача которого - очистить
 все префиксное дерево, сделав его пустым. Метод выполняет данную задачу посредством того, что создает
 новый корневой узел, в результате чего все предыдущие данные удаляются.
 
@@ -698,7 +691,7 @@ collections, itertools, а также сторонние модули.**
 
 Одна из базовых операций, связанных с префиксным деревом -
 поиск по префиксу. Для выполнения этой операции реализуйте метод
-:py:meth:`lab_4_auto_completion.main.PrefixTrie.get_prefix`.
+`lab_4_auto_completion.main.PrefixTrie.get_prefix`.
 
 Работа метода происходит следующим образом:
 
@@ -759,12 +752,12 @@ collections, itertools, а также сторонние модули.**
 Шаг 5.5. Найти все возможные продолжения для заданного префикса
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.PrefixTrie.suggest`, задача которого -
+Реализуйте метод `lab_4_auto_completion.main.PrefixTrie.suggest`, задача которого -
 вернуть все возможные последовательности, которые начинаются с данного префикса.
 
 Алгоритм работы данного метода следующий:
 
-1. При помощи метода :py:meth:`lab_4_auto_completion.main.PrefixTrie.get_prefix` производится
+1. При помощи метода `lab_4_auto_completion.main.PrefixTrie.get_prefix` производится
    поиск узла, соответствующего данному префиксу, переданному в аргументе `prefix`
 
 2. Если узел не найден, возвращается пустой массив
@@ -816,14 +809,14 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Финальным шагом на оценку 6 является реализация алгоритма для построения префиксного дерева.
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.PrefixTrie.fill`, который
+Реализуйте метод `lab_4_auto_completion.main.PrefixTrie.fill`, который
 сначала производит операцию очистки дерева, а после для каждого элемента
 в заданном корпусе выполняет операцию вставки этого элемента в дерево при помощи метода
-:py:meth:`lab_4_auto_completion.main.PrefixTrie._insert`, реализованного вами в шаге 5.2. Таким образом
+`lab_4_auto_completion.main.PrefixTrie._insert`, реализованного вами в шаге 5.2. Таким образом
 данный метод используется для построения полного дерева из входного набора символов. Так, если
 в примере выше (в шаге 5.3) мы два раза вызывали метод
-:py:meth:`lab_4_auto_completion.main.PrefixTrie._insert` для вставки каждого символа, один вызов метода
-:py:meth:`lab_4_auto_completion.main.PrefixTrie.fill` приведет к созданию всего дерева.
+`lab_4_auto_completion.main.PrefixTrie._insert` для вставки каждого символа, один вызов метода
+`lab_4_auto_completion.main.PrefixTrie.fill` приведет к созданию всего дерева.
 
 
 
@@ -834,9 +827,9 @@ collections, itertools, а также сторонние модули.**
 
 Продемонстрируйте результат обновленной обработки текста и построения префиксного дерева
 в функции ``main()`` модуля ``start.py``. Текст писем про Гарри Поттера должен быть
-закодирован посредством метода :py:meth:`lab_4_auto_completion.main.WordProcessor.encode_sentences`,
-после чего передан на вход метода :py:meth:`lab_4_auto_completion.main.PrefixTrie.fill` для
-построения дерева. Далее при помощи метода :py:meth:`lab_4_auto_completion.main.PrefixTrie.suggest`
+закодирован посредством метода `lab_4_auto_completion.main.WordProcessor.encode_sentences`,
+после чего передан на вход метода `lab_4_auto_completion.main.PrefixTrie.fill` для
+построения дерева. Далее при помощи метода `lab_4_auto_completion.main.PrefixTrie.suggest`
 необходимо найти все продолжения для префикса со значением `2` и вывести на экран первую из
 предложенных последовательностей в **декодированном** виде.
 
@@ -847,10 +840,10 @@ collections, itertools, а также сторонние модули.**
 2. Выполните чтения файла и найдите место, которое было сожжено.
 3. По указанному ниже размеру N-gram извлеките контекст для генерации сожженного текста.
 4. Сгенерируйте текст с помощью
-   :py:class:`lab_4_auto_completion.main.WordProcessor`,
+   `lab_4_auto_completion.main.WordProcessor`,
    ``NGramLanguageModel``
-   из :py:class:`lab_3_generate_by_ngrams.main.NGramLanguageModel` и
-   алгоритма Beam Search :py:class:`lab_3_generate_by_ngrams.main.BeamSearcher`.
+   из `lab_3_generate_by_ngrams.main.NGramLanguageModel` и
+   алгоритма Beam Search `lab_3_generate_by_ngrams.main.BeamSearcher`.
 5. Вставьте сгенерированный текст на место пропуска в исходном письме.
 6. Отправьте письмо своему ментору.
 
@@ -877,7 +870,7 @@ collections, itertools, а также сторонние модули.**
 
 Чтобы использовать n-граммное дерево для генерации текста, необходимо объединить
 структуру данных с логикой обработки корпуса и предсказания следующих токенов.
-Класс :py:class:`lab_4_auto_completion.main.NGramTrieLanguageModel`
+Класс `lab_4_auto_completion.main.NGramTrieLanguageModel`
 инкапсулирует эту логику: он строит дерево из корпуса, вычисляет относительные частоты всех n-грамм
 и предоставляет методы для получения вероятных продолжений заданного контекста.
 
@@ -886,7 +879,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 7.1. Инициализировать класс NGramTrieLanguageModel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Класс :py:class:`lab_4_auto_completion.main.NGramTrieLanguageModel` должен быть инициализирован
+Класс `lab_4_auto_completion.main.NGramTrieLanguageModel` должен быть инициализирован
 двумя параметрами (т.е. аргументами):
 
 - ``encoded_corpus`` — кортеж закодированных предложений (или `None` при создании пустой модели),
@@ -897,7 +890,7 @@ collections, itertools, а также сторонние модули.**
 1. Вызывается ``NGramLanguageModel.__init__(self, encoded_corpus, n_gram_size)``,
    чтобы установить атрибуты ``_encoded_corpus`` и ``_n_gram_size``.
 2. Корневой узел `_root` инициализируется как экземпляр
-   :py:class:`lab_4_auto_completion.main.TrieNode` (без аргументов,
+   `lab_4_auto_completion.main.TrieNode` (без аргументов,
    с частотой по умолчанию `0.0`).
 
 Класс ``NGramTrieLanguageModel`` использует существующий класс ``TrieNode``,
@@ -909,7 +902,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 7.2. Реализовать метод получения размера n-граммы
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size`.
+Реализуйте метод `lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size`.
 Он возвращает значение размера n-граммы, заданное при создании экземпляра.
 
 
@@ -921,16 +914,16 @@ collections, itertools, а также сторонние модули.**
 ей необходимо уметь находить нужный узел в дереве и собирать информацию о возможных
 следующих токенах. Эти задачи реализуются с помощью трёх вспомогательных методов:
 
-- :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.get_node_by_prefix` — возвращает
+- `lab_4_auto_completion.main.NGramTrieLanguageModel.get_node_by_prefix` — возвращает
   узел, соответствующий префиксу ``prefix``, вызывая унаследованный метод
   ``self.get_prefix(prefix)``,
-- :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies` — собирает
+- `lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies` — собирает
   и возвращает словарь вида ``{токен: частота}``, где:
 
     - **токен** — значение ``name`` дочернего узла (используйте метод ``get_name()``),
     - **частота** — значение ``_value`` дочернего узла (используйте метод ``get_value()``),
 
-- :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens` — находит
+- `lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens` — находит
   узел по ``start_sequence`` (для справки (не нужно вычислять в методе):
   по срезу последних ``n_gram_size - 1`` токенов из входной последовательности
   ``sequence``) с помощью унаследованного метода ``self.get_prefix(prefix)``,
@@ -938,7 +931,7 @@ collections, itertools, а также сторонние модули.**
 
     - Если детей нет — возвращается пустой словарь.
     - Если дети есть — вызывается метод
-      :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies`
+      `lab_4_auto_completion.main.NGramTrieLanguageModel._collect_frequencies`
       и возвращает результат.
 
 
@@ -946,7 +939,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 7.4. Реализовать метод сбора всех n-грамм из дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams`.
+Реализуйте метод `lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams`.
 Он должен делать следующее:
 
 1. Обход дерева, начиная с корня ``self._root``.
@@ -966,10 +959,10 @@ collections, itertools, а также сторонние модули.**
 Шаг 7.5. Вычислить и присвоить относительные частоты n-граммам
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies`.
+Реализуйте метод `lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies`.
 Он принимает на вход **кортеж полных n-грамм** (например, ``((1, 2, 3), (2, 3, 4), ...)``),
 извлечённых из дерева методом
-:py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams`.
+`lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams`.
 
 Алгоритм работы:
 
@@ -982,14 +975,14 @@ collections, itertools, а также сторонние модули.**
           {\text{общее количество n-грамм}}
 
 4. Эта частота присваивается **последнему узлу** соответствующей n-граммы в дереве
-   через метод :py:meth:`lab_4_auto_completion.main.TrieNode.set_value`.
+   через метод `lab_4_auto_completion.main.TrieNode.set_value`.
    Узел находится вызовом ``self.get_prefix(ngram)``.
 
 Таким образом, **в каждом листовом узле**, соответствующем завершению полной n-граммы,
 хранится её **глобальная относительная частота** в корпусе.
 
 Эти частоты используются методом
-:py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token`
+`lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token`
 для выбора наиболее вероятного продолжения:
 среди дочерних узлов заданного контекста выбирается тот, у которого частота выше.
 
@@ -1002,7 +995,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 7.6. Реализовать метод построения дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.build`. Он
+Реализуйте метод `lab_4_auto_completion.main.NGramTrieLanguageModel.build`. Он
 строит модель префиксного дерева из корпуса. Дерево должно:
 
 - Строиться на основе **скользящего окна** фиксированного размера ``n_gram_size``
@@ -1026,18 +1019,18 @@ collections, itertools, а также сторонние модули.**
           - (30, 40, 50) — снова сдвиг на 1 → позиции 2, 3 и 4
 
 .. note:: В начале каждого вызова метода
-          :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.build`
+          `lab_4_auto_completion.main.NGramTrieLanguageModel.build`
           необходимо обнулять дерево, то есть нужно повторно (как в методе
-          :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.__init__`) инициализировать
+          `lab_4_auto_completion.main.NGramTrieLanguageModel.__init__`) инициализировать
           атрибут ``self._root``. Это требуется для того, чтобы метод работал именно
           с текущим корпусом.
 
 .. note:: В рамках этого метода после формирования всех n-грамм
           с помощью скользящего окна и их вставки в дерево
           обязательно последовательно вызываются два метода:
-          сначала :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams`,
+          сначала `lab_4_auto_completion.main.NGramTrieLanguageModel._collect_all_ngrams`,
           чтобы получить полный список n-грамм, хранящихся в дереве, а затем
-          :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies`,
+          `lab_4_auto_completion.main.NGramTrieLanguageModel._fill_frequencies`,
           которому передаётся этот список для вычисления и присвоения частот.
 
 
@@ -1045,21 +1038,21 @@ collections, itertools, а также сторонние модули.**
 Шаг 7.7. Реализовать метод расширения модели и обновления частот
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте метод :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.update`. Он
+Реализуйте метод `lab_4_auto_completion.main.NGramTrieLanguageModel.update`. Он
 должен расширять существующую модель новыми n-граммами из дополнительного корпуса
 и пересчитывать частоты на основе объединённого корпуса.
 
 В рамках метода обязательно использовать атрибут ``self._encoded_corpus``. Он хранит
 текущий закодированный корпус в виде кортежа
 последовательностей токенов (предложений). При вызове метода
-:py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.update`:
+`lab_4_auto_completion.main.NGramTrieLanguageModel.update`:
 
 - Если ``self._encoded_corpus`` равен ``None`` или пуст, он инициализируется как переданный
   новый корпус (``new_corpus``).
 - Если ``self._encoded_corpus`` уже содержит данные, к нему добавляется новый корпус.
 
 После обновления значения ``self._encoded_corpus`` необходимо вызвать
-:py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.build`,
+`lab_4_auto_completion.main.NGramTrieLanguageModel.build`,
 чтобы полностью перестроить дерево и заново вычислить относительные частоты
 на основе всего объединённого корпуса.
 
@@ -1070,7 +1063,7 @@ collections, itertools, а также сторонние модули.**
 
 Ключевая функция языковой модели — предсказание наиболее вероятных продолжений
 заданной последовательности. Эту задачу решает метод
-:py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token`.
+`lab_4_auto_completion.main.NGramTrieLanguageModel.generate_next_token`.
 
 Метод принимает на вход произвольную последовательность токенов и:
 
@@ -1079,15 +1072,15 @@ collections, itertools, а также сторонние модули.**
    (недостаточно контекста для предсказания).
 3. Если всё в порядке, метод извлекает последние ``n_gram_size - 1`` токенов как **контекст**.
 4. Далее метод вызывает
-   :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens`,
+   `lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens`,
    передавая ему этот контекст (внутри
-   :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens`
+   `lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens`
    выполняется поиск узла, соответствующего контексту):
 
     - Если контекст **не найден в дереве**, выбрасывается исключение
       ``TriePrefixNotFoundError``, и метод возвращает **пустой словарь** ``{}``.
     - Если контекст найден,
-      :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens`
+      `lab_4_auto_completion.main.NGramTrieLanguageModel.get_next_tokens`
       собирает все дочерние узлы и возвращает
       словарь вида ``{токен: частота}``.
 
@@ -1095,7 +1088,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 7.9. Переопределить строковое представление модели
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Переопределите метод :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.__str__`.
+Переопределите метод `lab_4_auto_completion.main.NGramTrieLanguageModel.__str__`.
 Строка должна возвращаться в формате ``NGramTrieLanguageModel(X)``, где ``X`` — значение
 атрибута ``self._n_gram_size``, заданное при инициализации модели. Например, если модель создана
 при n_gram_size=3, то вызов ``str(model)`` должен вернуть строку
@@ -1114,27 +1107,27 @@ collections, itertools, а также сторонние модули.**
 
     - Загрузите текст с помощью ``WordProcessor``,
     - Закодируйте его в последовательности токенов с помощью
-      :py:meth:`lab_4_auto_completion.main.WordProcessor.encode_sentences`,
-    - Создайте экземпляр :py:class:`lab_4_auto_completion.main.NGramTrieLanguageModel`
+      `lab_4_auto_completion.main.WordProcessor.encode_sentences`,
+    - Создайте экземпляр `lab_4_auto_completion.main.NGramTrieLanguageModel`
       с параметрами ``encoded_corpus`` и подходящим значением ``n_gram_size`` (например, 5),
-    - Вызовите метод :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.build`.
+    - Вызовите метод `lab_4_auto_completion.main.NGramTrieLanguageModel.build`.
 
 2. Добавьте второй корпус ``assets/ussr_letters.txt`` через метод
-   :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.update`,
+   `lab_4_auto_completion.main.NGramTrieLanguageModel.update`,
    чтобы расширить контекстную базу.
 
 3. Продемонстрируйте генерацию текста. Для этого создайте экземпляры
    генераторов из лабораторной работы 3:
 
-    - :py:class:`lab_3_generate_by_ngrams.main.GreedyTextGenerator` (жадный выбор),
-    - :py:class:`lab_3_generate_by_ngrams.main.BeamSearchTextGenerator` (beam search).
+    - `lab_3_generate_by_ngrams.main.GreedyTextGenerator` (жадный выбор),
+    - `lab_3_generate_by_ngrams.main.BeamSearchTextGenerator` (beam search).
 
 .. note:: Оба генератора принимают в качестве аргументов
           вашу модель (``NGramTrieLanguageModel``) и ``WordProcessor``.
 
-Далее вызовите метод :py:meth:`lab_3_generate_by_ngrams.main.GreedyTextGenerator.run`
+Далее вызовите метод `lab_3_generate_by_ngrams.main.GreedyTextGenerator.run`
 и выведите результат для каждого генератора **до** и **после** вызова
-:py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.update`.
+`lab_4_auto_completion.main.NGramTrieLanguageModel.update`.
 
 4. **Сравните качество генерации**:
 
@@ -1171,7 +1164,7 @@ collections, itertools, а также сторонние модули.**
 Шаг 9.1. Инициализировать динамическую модель префиксного дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Реализуйте инициализацию класса :py:class:`lab_4_auto_completion.main.DynamicNgramLMTrie`,
+Реализуйте инициализацию класса `lab_4_auto_completion.main.DynamicNgramLMTrie`,
 наследующегося от ``NGramTrieLanguageModel``.
 
 Данный класс имеют следующие атрибуты:
@@ -1212,7 +1205,7 @@ collections, itertools, а также сторонние модули.**
 узлами деревьев.
 
 Дополните ``NGramTrieLanguageModel`` геттером
-:py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.get_root`,
+`lab_4_auto_completion.main.NGramTrieLanguageModel.get_root`,
 который возвращает корневой узел дерева.
 
 
@@ -1221,7 +1214,7 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Реализуйте метод
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child`,
+`lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child`,
 который отвечает за получение дочернего узла с именем ``node_name`` или создание
 нового узла, если он отсутствует в родительском дереве.
 
@@ -1267,7 +1260,7 @@ collections, itertools, а также сторонние модули.**
 иерархию и частоты.
 
 Реализуйте защищённый метод
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie`,
+`lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie`,
 который принимает на вход корневой узел копируемого дерева и вставляет
 все его поддеревья в динамическое дереве.
 
@@ -1286,10 +1279,10 @@ collections, itertools, а также сторонние модули.**
 В результате работы алгоритма в атрибут ``_root`` будет интегрировано копируемое дерево.
 
 .. important:: На данном шаге необходимо использовать следующие методы:
-   :py:meth:`lab_4_auto_completion.main.TrieNode.get_name`,
-   :py:meth:`lab_4_auto_completion.main.TrieNode.get_value`,
-   :py:meth:`lab_4_auto_completion.main.TrieNode.get_children` и
-   :py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child`.
+   `lab_4_auto_completion.main.TrieNode.get_name`,
+   `lab_4_auto_completion.main.TrieNode.get_value`,
+   `lab_4_auto_completion.main.TrieNode.get_children` и
+   `lab_4_auto_completion.main.DynamicNgramLMTrie._assign_child`.
 
 
 
@@ -1300,14 +1293,14 @@ collections, itertools, а также сторонние модули.**
 динамическое n-граммное дерево.
 
 Реализуйте защищённый метод
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie._merge`,
+`lab_4_auto_completion.main.DynamicNgramLMTrie._merge`,
 который отвечает за последовательное добавление всех построенных деревьев
 в одно итоговое.
 
 В процессе работы метода следует инициализировать новый корневой узел
 и последовательно интегрировать в него все деревья из ``_models``
 (в порядке возрастания размеров n-грамм) с использованием метода
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie`.
+`lab_4_auto_completion.main.DynamicNgramLMTrie._insert_trie`.
 
 В результате работы метода атрибут ``_root`` заполняется структурой, в которую
 интегрированы все n-граммные деревья.
@@ -1321,17 +1314,17 @@ collections, itertools, а также сторонние модули.**
 Шаг 9.6. Построить новое дерево на основе всех длин n-грамм
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Реализуйте метод
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie.build`,
+`lab_4_auto_completion.main.DynamicNgramLMTrie.build`,
 который отвечает за построение `(N - 1)` моделей и их слияние
 в одно большое дерево. `N` здесь — максимальное количество n-грамм.
 
 Для каждого создаваемой модели обязательным является построение дерева с помощью
-:py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.build`.
+`lab_4_auto_completion.main.NGramTrieLanguageModel.build`.
 
 Все модели после создания должны сохраняться в словарь ``_models``.
 
 После заполнения ``_models`` совершите слияние моделей с помощью метода
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie._merge`.
+`lab_4_auto_completion.main.DynamicNgramLMTrie._merge`.
 
 Если построение моделей и их слияние прошло успешно, метод должен возвращать
 `0`, иначе `1`.
@@ -1353,8 +1346,8 @@ collections, itertools, а также сторонние модули.**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 При инициализации класса на вход подаются экземпляры
-:py:class:`lab_4_auto_completion.main.DynamicNgramLMTrie`
-и :py:class:`lab_4_auto_completion.main.WordProcessor`.
+`lab_4_auto_completion.main.DynamicNgramLMTrie`
+и `lab_4_auto_completion.main.WordProcessor`.
 
 Используйте ``DynamicNgramLMTrie`` в качестве требуемых моделей.
 
@@ -1370,7 +1363,7 @@ collections, itertools, а также сторонние модули.**
 n-грамм, поддерживаемых динамическим деревом, мы смотрим в конкретный момент.
 
 Расширьте функционал динамического дерева сеттером
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size`,
+`lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size`,
 который задаёт текущий максимальный размер n-грамм для генерации.
 
 .. note:: В случае, если в метод передаётся некорректное значение аргумента
@@ -1382,7 +1375,7 @@ n-грамм, поддерживаемых динамическим дерево
 Шаг 10.3. Продолжить последовательность
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Расширьте ``NGramTrieLanguageModel`` методом
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token`.
+`lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token`.
 
 Данный метод принимает на вход последовательность закодированных токенов.
 Метод отрезает из последовательности всё, кроме контекста, по которому необходимо
@@ -1413,16 +1406,16 @@ n-грамм, поддерживаемых динамическим дерево
           возвращается ``None``.
 
 .. important:: На данном шаге необходимо использовать следующие методы:
-   :py:meth:`lab_4_auto_completion.main.TrieNode.get_children`,
-   :py:meth:`lab_4_auto_completion.main.TrieNode.get_name` и
-   :py:meth:`lab_4_auto_completion.main.TrieNode.get_value`.
+   `lab_4_auto_completion.main.TrieNode.get_children`,
+   `lab_4_auto_completion.main.TrieNode.get_name` и
+   `lab_4_auto_completion.main.TrieNode.get_value`.
 
 
 
 Шаг 10.4. Получить следующий токен из динамического дерева
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Переопределите метод
-:py:meth:`lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token`,
+`lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token`,
 который возвращает словарь, ключами которого являются буквы-кандидаты, а значениями
 вероятности буквы кандидата.
 
@@ -1439,9 +1432,9 @@ n-грамм, поддерживаемых динамическим дерево
    и вернуться на шаг 3.
 
 В данном методе необходимо использовать методы
-:py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size`,
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size` и
-:py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token`.
+`lab_4_auto_completion.main.NGramTrieLanguageModel.get_n_gram_size`,
+`lab_4_auto_completion.main.DynamicNgramLMTrie.set_current_ngram_size` и
+`lab_4_auto_completion.main.DynamicNgramLMTrie.generate_next_token`.
 
 .. note:: Если на вход подается некорректное значение аргумента (кортеж пустой),
           то метод возвращает ``None``.
@@ -1452,7 +1445,7 @@ n-грамм, поддерживаемых динамическим дерево
 Шаг 10.5. Сгенерировать последовательность
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Переопределите метод
-:py:meth:`lab_4_auto_completion.main.DynamicBackOffGenerator.run`
+`lab_4_auto_completion.main.DynamicBackOffGenerator.run`
 
 На данном шаге Вам следует:
 
@@ -1468,11 +1461,11 @@ n-грамм, поддерживаемых динамическим дерево
 Метод возвращает сгенерированный текст в виде строки.
 
 В данном методе необходимо использовать методы
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.encode` и
-:py:meth:`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
+`lab_3_generate_by_ngrams.main.TextProcessor.encode` и
+`lab_3_generate_by_ngrams.main.TextProcessor.decode`,
 наследуемые через ``WordProcessor``
 а также метод
-:py:meth:`lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token`.
+`lab_4_auto_completion.main.DynamicBackOffGenerator.get_next_token`.
 
 .. note:: Если на вход подаются некорректные значения (количество букв для
           генерации не является целым числом или число отрицательное, а также
@@ -1487,7 +1480,7 @@ n-грамм, поддерживаемых динамическим дерево
 инициализации. В нашем случае такими параметрами является вся структура
 динамического дерева.
 
-Реализуйте функцию :py:func:`lab_4_auto_completion.main.save`, которая
+Реализуйте функцию `lab_4_auto_completion.main.save`, которая
 отвечает за сохранение структуры дерева в файл, путь до которого указывается
 при вызове функции.
 
@@ -1503,9 +1496,9 @@ n-грамм, поддерживаемых динамическим дерево
 Сохранённую модель затем следует уметь загрузить обратно для дальнейшего
 использования.
 
-Реализуйте функцию :py:func:`lab_4_auto_completion.main.load`, которая отвечает
+Реализуйте функцию `lab_4_auto_completion.main.load`, которая отвечает
 за загрузку дерева обратно в экземпляр класса
-:py:class:`lab_4_auto_completion.main.DynamicNgramLMTrie`.
+`lab_4_auto_completion.main.DynamicNgramLMTrie`.
 
 
 
@@ -1518,21 +1511,21 @@ n-грамм, поддерживаемых динамическим дерево
 
     - Загрузите текст с помощью ``WordProcessor``,
     - Закодируйте его в последовательности токенов с помощью
-      :py:meth:`lab_4_auto_completion.main.WordProcessor.encode_sentences`,
-    - Создайте экземпляр :py:class:`lab_4_auto_completion.main.DynamicNgramLMTrie`
+      `lab_4_auto_completion.main.WordProcessor.encode_sentences`,
+    - Создайте экземпляр `lab_4_auto_completion.main.DynamicNgramLMTrie`
       с параметрами ``encoded_corpus`` и подходящим значением ``n_gram_size`` (например, 5),
-    - Вызовите метод :py:meth:`lab_4_auto_completion.main.DynamicNgramLMTrie.build`.
+    - Вызовите метод `lab_4_auto_completion.main.DynamicNgramLMTrie.build`.
 
 2. **Продемонстрируйте сохранение и загрузку модели**.
 
 3. **Продемонстрируйте генерацию текста**. Для этого создайте экземпляр
    динамического генератора
-   :py:class:`lab_4_auto_completion.main.DynamicBackOffGenerator`.
+   `lab_4_auto_completion.main.DynamicBackOffGenerator`.
    Запустите генерацию со следующими параметрами: промпт — "Ivanov" и
    длина генерируемого продолжения — 50.
 
 4. **Добавьте второй корпус assets/ussr_letters.txt** через метод
-   :py:meth:`lab_4_auto_completion.main.NGramTrieLanguageModel.update`,
+   `lab_4_auto_completion.main.NGramTrieLanguageModel.update`,
    чтобы расширить контекстную базу.
 
 5. **Продемонстрируйте генерацию текста** на обновлённом дереве с теми же параметрами.

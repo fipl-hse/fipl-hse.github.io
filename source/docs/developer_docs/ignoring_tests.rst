@@ -31,8 +31,7 @@ This parameter accepts a list of lab names which tests should be skipped.
                 "name": "final_project",
                 "coverage": 0
             }
-        ],
-    ...
+        ]
     }
 
 In this example:
