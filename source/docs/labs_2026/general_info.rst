@@ -26,20 +26,6 @@
    1. Контрольная отсечка: **18 сентября**
    2. Дедлайн: **28 сентября**
 
-История занятий
----------------
-
-+-------------+----------------------------+------------------------------------------------------+
-| Дата        | Тема лекции                | Тема практики. Материалы практики.                   |
-+=============+============================+======================================================+
-| 07.09.2026  | Установочная встреча.      | Создание форка.                                      |
-+-------------+----------------------------+------------------------------------------------------+
-| 11.09.2026  | Общая информация о Python. | N/A                                                  |
-|             | Числа.                     |                                                      |
-+-------------+----------------------------+------------------------------------------------------+
-
-Более полное содержание пройденных занятий Вы найдете
-`на сайте <https://fipl-hse.github.io/docs/labs_2026/lectures_content.html>`__.
 
 Литература
 ----------
@@ -47,15 +33,11 @@
 Базовый уровень
 ~~~~~~~~~~~~~~~
 
-1. M. Lutz. `Learning
-   Python <https://www.amazon.com/Learning-Python-5th-Mark-Lutz/dp/1449355730>`__.
-2. Хирьянов Т.Ф. Видеолекции. `Практика
-   программирования на Python
-   3 <https://www.youtube.com/watch?v=fgf57Sa5A-A&list=PLRDzFCPr95fLuusPXwvOPgXzBL3ZTzybY>`__
-   . 2019.
+1. M. Lutz. `Learning Python <https://www.amazon.com/Learning-Python-5th-Mark-Lutz/dp/1449355730>`__.
+2. Хирьянов Т.Ф. Видеолекции. `Практика программирования на Python 3
+   <https://www.youtube.com/watch?v=fgf57Sa5A-A&list=PLRDzFCPr95fLuusPXwvOPgXzBL3ZTzybY>`__. 2019.
 3. Хирьянов Т.Ф. Видеолекции. `Алгоритмы и структуры данных на
-   Python3 <https://www.youtube.com/watch?v=KdZ4HF1SrFs&list=PLRDzFCPr95fK7tr47883DFUbm4GeOjjc0>`__
-   . 2017.
+   Python3 <https://www.youtube.com/watch?v=KdZ4HF1SrFs&list=PLRDzFCPr95fK7tr47883DFUbm4GeOjjc0>`__. 2017.
 4. `Официальная документация Python <https://docs.python.org/3/>`__.
 
 Продвинутый уровень
@@ -72,10 +54,10 @@
 -------
 
 1. `Таблица успеваемости <https://docs.google.com/spreadsheets/d/1t5A5ZFMJelFWN35U2_LOlDXWBg-rT72usA5SiHyvnnU/edit?usp=sharing>`__
-2. `Сайт дисциплины <https://fipl-hse.github.io/docs/labs_2026/index.html>`__ с описанием лабораторных работ и
-   полезными материалами
+2. `Сайт дисциплины <https://fipl-hse.github.io/docs/labs_2026/index.html>`__ с описанием лабораторных работ и полезными материалами
 3. `Регламент выполнения лабораторных работ <https://fipl-hse.github.io/docs/useful_docs/handover_rules.html>`__
 4. `Инструкция по подготовке компьютера к работе над заданиями курса <https://fipl-hse.github.io/docs/useful_docs/starting_guide.html>`__
 5. `Инструкция по запуску тестов <https://fipl-hse.github.io/docs/useful_docs/tests.html>`__
 6. `Инструкция по запуску Python программ в терминале <https://fipl-hse.github.io/docs/useful_docs/run_in_terminal.html>`__
 7. `Ответы на часто задаваемые вопросы <https://fipl-hse.github.io/docs/useful_docs/FAQ.html>`__
+8. `Конспект лекций и материалы для пройденных занятий <https://fipl-hse.github.io/docs/labs_2026/lectures_content.html>`__
