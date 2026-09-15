@@ -26,6 +26,11 @@
    1. Контрольная отсечка: **18 сентября**
    2. Дедлайн: **28 сентября**
 
+История занятий
+---------------
+
+Конспект лекций и материалы для пройденных занятий Вы найдете
+`на сайте <https://fipl-hse.github.io/docs/labs_2026/lectures_content.html>`__.
 
 Литература
 ----------
@@ -60,4 +65,3 @@
 5. `Инструкция по запуску тестов <https://fipl-hse.github.io/docs/useful_docs/tests.html>`__
 6. `Инструкция по запуску Python программ в терминале <https://fipl-hse.github.io/docs/useful_docs/run_in_terminal.html>`__
 7. `Ответы на часто задаваемые вопросы <https://fipl-hse.github.io/docs/useful_docs/FAQ.html>`__
-8. `Конспект лекций и материалы для пройденных занятий <https://fipl-hse.github.io/docs/labs_2026/lectures_content.html>`__
