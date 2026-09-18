@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Публикация лабораторной работы &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Обновление форков студентов" href="fork_update.html" />
+    <link rel="prev" title="Для разработчиков курсов" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Курсы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_docs/index.html">Полезные материалы</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Для разработчиков курсов</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Публикация лабораторной работы</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fork_update.html">Обновление форков студентов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ignoring_tests.html">Ignoring Lab Tests Optionally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Docker usage guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html">Graphviz для работы с автоматическим построением UML диаграмм</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Для разработчиков курсов</a></li>
+      <li class="breadcrumb-item active">Публикация лабораторной работы</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/developer_docs/publish_lab.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><a class="toc-backref" href="#id9" role="doc-backlink">Публикация лабораторной работы</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<nav class="contents" id="id2">
+<p class="topic-title">Содержание</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id1" id="id9">Публикация лабораторной работы</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id10">1. Проверка имплементации в админе</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id11">2. Проверка текста в админе</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id12">3. Публикация в публичный репозиторий</a></p></li>
+<li><p><a class="reference internal" href="#id6" id="id13">4. Проверка в приватном форке</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id14">5. Публикация документации на сайте</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id15">6. Сообщение в чате курса</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>В данном документе описан порядок публикации лабораторной работы.
+Предполагается, что на момент публикации лабораторной работы существуют следующие элементы:</p>
+<ul class="simple">
+<li><p>Текст лабораторной работы;</p></li>
+<li><p>Работающая имплементация;</p></li>
+<li><p>Тесты;</p></li>
+<li><p>Базовая настройка лабораторной работы (<code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>,
+<code class="docutils literal notranslate"><span class="pre">project_config.json</span></code>, <code class="docutils literal notranslate"><span class="pre">admin_utils/precommit.sh</span></code>)</p></li>
+</ul>
+<p>Далее описаны шаги, необходимые для успешной публикации лабораторной работы.</p>
+<section id="id3">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">1. Проверка имплементации в админе</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>Удостоверьтесь, что при наличии лабораторной работы CI зелёный.
+Этот этап включает проверку следующих параметров:</p>
+<ol class="arabic simple">
+<li><p>Покрытие тестами (coverage);</p></li>
+<li><p>Наличие стабов;</p></li>
+<li><p>Проверка кода линтерами;</p></li>
+<li><p>Наличие UML-диаграммы в RST файле;</p></li>
+<li><p>Спеллчек работает корректно и не выдаёт ошибок;</p></li>
+</ol>
+<p>Чтобы проверить лабораторную работу на соответствие этим и другим параметрам,
+можно использовать следующий скрипт:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./admin_utils/precommit.sh
+</pre></div>
+</div>
+<p>Для запуска скрипта на Windows потребуется использовать Docker.
+Воспользуйтесь следующей инструкцией: <a class="reference internal" href="docker.html#use-docker"><span class="std std-ref">Docker usage guide</span></a>.</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">2. Проверка текста в админе</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>Чтобы проверить текст перед публикацией, необходимо построить RST.
+Скрипт для построения RST в том числе запускается в <code class="docutils literal notranslate"><span class="pre">./admin_utils/precommit.sh</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>-W<span class="w"> </span>--keep-going<span class="w"> </span>-n<span class="w"> </span>.<span class="w"> </span>dist<span class="w"> </span>-c<span class="w"> </span>admin_utils
+</pre></div>
+</div>
+<p>Откройте файл <code class="docutils literal notranslate"><span class="pre">dist/admin_utils/index.html</span></code> в браузере (например, с помощью
+<a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">расширения VSCode</a>
+или опции <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">in</span> <span class="pre">Integrated</span> <span class="pre">Browser</span></code>)
+и проверьте текст, а также API лабораторной работы.</p>
+<p>Лабороторная проверяется на нескольких уровнях:</p>
+<ul class="simple">
+<li><p>Логика;</p></li>
+<li><p>Последовательность;</p></li>
+<li><p>Опечатки;</p></li>
+<li><p>Отображение изображений;</p></li>
+<li><p>Ссылки;</p></li>
+<li><p>Примеры;</p></li>
+<li><p>Докстринги (совпадение описания объектов с их названиями, как в тексте, так и в API).</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">3. Публикация в публичный репозиторий</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>Далее файлы лабораторной работы публикуются в публичный репозиторий.</p>
+<p>Чеклист:</p>
+<ol class="arabic simple">
+<li><p>Создать папку;</p></li>
+<li><p>Перенести тесты (включая все дополнительные материалы из внутренней папки <code class="docutils literal notranslate"><span class="pre">/tests/assets</span></code>);</p></li>
+<li><p>Перенести <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> с текстом лабораторной работы;</p></li>
+<li><p>Перенести стабы и переименовать их (например, <code class="docutils literal notranslate"><span class="pre">main_stub.py</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">main.py</span></code>);</p></li>
+<li><p>Перенести дополнительные материалы из папки <code class="docutils literal notranslate"><span class="pre">assets</span></code>.</p></li>
+</ol>
+<p>Дополнительно обновите следующие места в репозитории:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">README.rst</span></code> с общей информацией о курсе (название, ссылка, дедлайн);</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></dt><dd><ul>
+<li><p>Пути для тестов (<code class="docutils literal notranslate"><span class="pre">tool.pytest.ini_options</span></code>);</p></li>
+<li><p>При необходимости overrides для игнорирования ошибок mypy и pylint;</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">project_config.json</span></code> (блоки <code class="docutils literal notranslate"><span class="pre">labs</span></code>, <code class="docutils literal notranslate"><span class="pre">stubs</span> <span class="pre">config</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">admin_utils/precommit.sh</span></code> (тесты).</p></li>
+</ul>
+<p>С помощью <code class="docutils literal notranslate"><span class="pre">admin_utils/precommit.sh</span></code> проверяется целостность
+лабораторной работы (выложеннных стабов, тестов, форматирования кода).</p>
+<p>По результатам публикации в публичном репозитории пустой лабораторной
+работы CI должен быть зелёным.</p>
+</section>
+<section id="id6">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">4. Проверка в приватном форке</a><a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<p>Создайте форк публичного репозитория.</p>
+<p>В настройках форка нажмите <code class="docutils literal notranslate"><span class="pre">Leave</span> <span class="pre">fork</span> <span class="pre">network</span></code>,
+затем измените статус форка на приватный в блоке <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">repository</span> <span class="pre">visibility</span></code>.</p>
+<p>У репозитория рядом с названием должна появиться иконка замка:</p>
+<img alt="../../_images/private_fork_example.png" src="../../_images/private_fork_example.png" />
+<p>Крайне важно удостовериться, что форк приватный, чтобы не было утечек админской имплементации.</p>
+<p>После того, как форк стал приватным, клонируйте его как VSCode проект.</p>
+<p>Перед началом проверки лабораторной необходимо удалить собственный GitHub никнейм из
+<code class="docutils literal notranslate"><span class="pre">project_config.json</span></code>, чтобы удостовериться в корректной работе <code class="docutils literal notranslate"><span class="pre">PR</span> <span class="pre">name</span> <span class="pre">check</span></code>,
+который пропускается для админов курсов.</p>
+<p>Проверка лабораторной работы выполняется в отдельной ветке. Файлы лабораторной изменяются,
+пушатся и просматриваются в формате Пулл Реквеста. Проверка должна проводиться для всех оценок
+(0, 4, 6, 8, 10) по следующему порядку:</p>
+<ol class="arabic simple">
+<li><p>Изменить оценку в <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> на 4;</p></li>
+<li><p>Внимательно идти по шагам лабораторной работы, проверяя текст и докстринги;</p></li>
+<li><p>Для каждого шага вставлять имплементацию из админского репозитория (в том числе в дополнительные файлы, например, <code class="docutils literal notranslate"><span class="pre">start.py</span></code>);</p></li>
+<li><p>После завершения всех шагов на оценку, сделать <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> изменений;</p></li>
+<li><p>Проверить, что CI зелёный.</p></li>
+<li><p>Повторить для оценок 6, 8 и 10.</p></li>
+</ol>
+<p>Все найденные недочёты необходимо задокументировать в issue в админском репозитории.</p>
+<p>При необходимости пропустить проверку тестов для других лабораторных работ обратитесь к
+инструкции <a class="reference internal" href="ignoring_tests.html#ignoring-tests"><span class="std std-ref">Ignoring Lab Tests Optionally</span></a>.</p>
+</section>
+<section id="id7">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">5. Публикация документации на сайте</a><a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<p>Далее необходимо опубликовать лабораторную работу на сайт.</p>
+<p>В <a class="reference external" href="https://github.com/fipl-hse/fipl-hse.github.io">репозитории сайта</a> стабы хранятся в папке
+с соответствующим лабораторной работе названием.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-- fipl-hse.github.io
+    +-- lab_1_classify_profile
+        +-- __init__.py
+        +-- main.py
+</pre></div>
+</div>
+<p>Текст хранится в разделе с документацией.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+-- fipl-hse.github.io
+    +-- source
+        +-- docs
+            +-- index.rst
+            +-- archived_courses
+                +-- index.rst
+                +-- 2025_2026
+                    +-- index.rst
+                    +-- labs_2025
+            +-- labs_2026
+                +-- index.rst
+                +-- general_info.rst
+                +-- lectures_content.rst
+                +-- labs
+                    +-- index.rst
+                    +-- lab_1_classify_profile
+                        +-- assets
+                            +-- description.png
+                        +-- lab_1.rst
+                        +-- lab_1_classify_profile.api.rst
+</pre></div>
+</div>
+<p>При публикации лаборатолрной работы файл с текстом выкладывается в соответствующую папку.
+На примере лабораторной работы <code class="docutils literal notranslate"><span class="pre">lab_1_classify_profile</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">README.rst</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">lab_1.rst</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lab_1_classify_profile.api.rst</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">lab_1_classify_profile.api.rst</span></code></p></li>
+<li><p>Папка <code class="docutils literal notranslate"><span class="pre">assets</span></code> содержит любые изображения, на которые ссылается текст.</p></li>
+</ul>
+<p>Также необходимо добавить <code class="docutils literal notranslate"><span class="pre">labs/lab_1.rst</span></code> в <code class="docutils literal notranslate"><span class="pre">labs_2026/labs/index.rst</span></code>.</p>
+<p>Если курсы предыдущего года ещё не архивированы, перенесите их в соответствующую папку <code class="docutils literal notranslate"><span class="pre">archived_courses</span></code>.
+Обновите <code class="docutils literal notranslate"><span class="pre">archived_courses/index.rst</span></code> и <code class="docutils literal notranslate"><span class="pre">docs/index.rst</span></code>.
+При переносе может понадобиться обновить ссылку на лекции соответствующего года:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>`здесь &lt;https://fipl-hse.github.io/docs/llm_2025/lectures_content.html&gt;`__ -&gt; :ref:`lectures-content-llm-label-2025`.
+</pre></div>
+</div>
+<p>После добавления файлов, нужно построить сайт:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>tools/docs_generator/build_documentation.py
+</pre></div>
+</div>
+<p>Проверьте добавленную лабораторную на предмет сломанных изображений, ссылок
+и форматирования. Построенный сайт будет лежать в <code class="docutils literal notranslate"><span class="pre">source/build/index.html</span></code>.</p>
+<p>После того, как обновление было замёржено, лабораторная работа появится
+<a class="reference external" href="https://fipl-hse.github.io/">на сайте</a>.</p>
+</section>
+<section id="id8">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">6. Сообщение в чате курса</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<p>После полной публикации лабораторной работы, необходимо сделать анонс в чате (паблике) курса.
+В анонсе нужно упомянуть:</p>
+<ul class="simple">
+<li><p>Обновление форков;</p></li>
+<li><p>Необходимость сделать <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>;</p></li>
+<li><p>Наличие документации на сайте;</p></li>
+<li><p>Дедлайн.</p></li>
+</ul>
+<p>Если студентов необходимо обновить вручную, воспользуйтесь инструкцией <a class="reference internal" href="fork_update.html#fork-update"><span class="std std-ref">Обновление форков студентов</span></a>.
+В таком случае, необходимо уведомить студентов об успешном обновлении форков.</p>
+<p>Пример анонса:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>❗️Уважаемые студенты, анонс❗️
+
+Лабораторная работа №1.
+
+Работа анонсирована. Дедлайн: 28 сентября.
+Описание можно найти на сайте.
+Форки обновлены, делайте `git pull` и приступайте к выполнению.
+</pre></div>
+</div>
+<p>Для удобства можно прикрепить к тексту ссылку на сайт (<code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">K</span></code> для эмбеддинга в Телеграме).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Для разработчиков курсов" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fork_update.html" class="btn btn-neutral float-right" title="Обновление форков студентов" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
