@@ -17,6 +17,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',
+    'sphinxcontrib.plantuml',
     'sphinx_design',
     'sphinx_tabs.tabs',
 ]
