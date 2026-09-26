@@ -42,6 +42,7 @@ nitpick_ignore = [
     ("py:class", "ProfileType"),
     ("py:meth", "lab_5_scraper.scraper.Config._extract_config_content"),
     ("py:meth", "lab_6_pipeline.pipeline.POSFrequencyPipeline.run"),
+    ('py:class', 'optional')
 ]
 
 templates_path = ['_templates']
