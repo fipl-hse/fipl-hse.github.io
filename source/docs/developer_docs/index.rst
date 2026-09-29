@@ -7,6 +7,7 @@
     :titlesonly:
 
     publish_lab.rst
+    docs_sync.rst
     fork_update.rst
     ignoring_tests.rst
     docker.rst
