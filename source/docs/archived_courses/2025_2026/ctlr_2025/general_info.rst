@@ -69,18 +69,18 @@ Lectures history
 |            | structure.          |                                                           |
 +------------+---------------------+-----------------------------------------------------------+
 | 13.04.2024 | Seminar: Local      | `Листинг <https://github.com/fipl-hse/                    |
-|            |                     | 2025-2-level-ctlr/tree/main/seminars/                     |
-|            |                     | seminar_04_13_2026/try_requests.py>`__.                   |
-|            | setup. Choose       |                                                           |
-|            | website.            |                                                           |
+|            | setup. Choose       | 2025-2-level-ctlr/tree/main/seminars/                     |
+|            | website.            | seminar_04_13_2026/try_requests.py>`__.                   |
+|            |                     |                                                           |
+|            |                     |                                                           |
 +------------+---------------------+-----------------------------------------------------------+
 | 20.04.2024 | Lecture: Search in  | N/A                                                       |
 |            | HTML page.          |                                                           |
 +------------+---------------------+-----------------------------------------------------------+
 | 20.04.2024 | Seminar: `requests`:| `Листинг <https://github.com/fipl-hse/                    |
-|            |                     | 2025-2-level-ctlr/tree/main/seminars/                     |
+|            | install, API.       | 2025-2-level-ctlr/tree/main/seminars/                     |
 |            |                     | seminar_04_20_2026/try_bs.py>`__.                         |
-|            | install, API.       |                                                           |
+|            |                     |                                                           |
 +------------+---------------------+-----------------------------------------------------------+
 
 You can find a more complete summary from lectures in :ref:`ctlr-lectures-label-2025`.
