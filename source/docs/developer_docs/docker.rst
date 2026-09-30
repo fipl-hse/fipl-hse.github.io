@@ -92,7 +92,7 @@ After creating own image for interactive development mode, follow the instructio
 .. code:: bash
 
    source venv/bin/activate
-   pip install -r requirements.txt -r requirements_qa.txt 
+   pip install -r requirements.txt -r requirements_qa.txt
 
 Now you are ready to develop. Good luck!
 
