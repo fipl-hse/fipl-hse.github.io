@@ -115,7 +115,7 @@ Tests package
 
 To make sure that the provided materials work as intended, they are
 thoroughly tested. The ``tests`` package
-contains a number of unit-tests for ``article`` package,
+contains a number of unittests for ``article`` package,
 ``config_dto.py`` module, and ``visualizer.py`` module.
 
 During work on Lab 5 and Lab 6, you do not need to

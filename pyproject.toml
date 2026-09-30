@@ -1,0 +1,29 @@
+[tool.logging]
+version = 1
+disable_existing_loggers = true
+style = '%'
+datefmt = "%d/%m/%Y %H:%M:%S"
+propagate = true
+
+[tool.logging.loggers." "]
+level = "INFO"
+handlers = ["console"]
+
+[tool.logging.handlers.console]
+class = "logging.StreamHandler"
+level = "INFO"
+formatter = "formatter"
+
+[tool.logging.formatters.formatter]
+class = "logging.Formatter"
+format = "%(asctime)s %(name)s: %(message)s"
+
+[tool.doc8]
+allow-long-titles = true
+max-line-length = 100
+ignore = ['D004']
+ignore-path = [
+    'venv*',
+    'build/',
+    'dist/',
+]
