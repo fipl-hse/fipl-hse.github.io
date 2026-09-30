@@ -41,21 +41,3 @@ matrix:
   sources:
   - 'source/docs/**/*.rst'
   default_encoding: utf-8
-
-- name: docstrings
-  hidden: true
-  aspell:
-    lang: en
-    ignore-case: true
-  dictionary:
-    wordlists:
-    - admin_utils/spellcheck/.wordlist_en.txt
-    encoding: utf-8
-    output: build/dictionary/dictionary.dic
-  pipeline:
-  - pyspelling.filters.python:
-      docstrings: true
-      comments: false
-  sources:
-  - 'source/docs/**/*.py'
-  default_encoding: utf-8
