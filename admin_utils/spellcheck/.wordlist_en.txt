@@ -391,6 +391,7 @@ cedr
 cedr-emotion-detection
 centos
 centroid
+centroids
 cerny
 certain
 certificate
@@ -465,6 +466,7 @@ cluster
 ClusterDTO
 clustering
 ClusteringSearchEngine
+clusterization
 clusters
 cmd
 cn
@@ -1640,6 +1642,7 @@ level-ctlr
 level-labs
 levenshtein
 levow
+lexicographically
 LF
 lib
 Lib
@@ -1912,6 +1915,7 @@ ngramlanguagemodel
 ngramlanguagemodelreader
 ngrams
 NGramTrieLanguageModel
+NGramType
 nightmare
 nikolaevich
 nikolaevna
@@ -1930,6 +1934,7 @@ nn
 no
 no-edit
 node
+NodeLike
 nodes
 nom
 nominative
@@ -2442,6 +2447,7 @@ required
 requirements
 requires
 requiring
+RerankerEngine
 research
 reserved
 Reset
@@ -2602,6 +2608,7 @@ sent
 sentence
 sentenceprotocol
 sentences
+SentenceStorage
 sentiment
 SEP
 separate
@@ -2702,6 +2709,7 @@ spacy-udpipe
 speaking
 spearman
 Spearman
+Spearman's
 special
 specialized
 specific
@@ -3133,10 +3141,12 @@ ve
 vec
 vector
 Vector
+VectorDB
 VectorDBAdvancedSearchEngine
 VectorDBEngine
 VectorDBSearchEngine
 VectorDBTreeSearchEngine
+vectorization
 vectorize
 vectorized
 vectorizer
