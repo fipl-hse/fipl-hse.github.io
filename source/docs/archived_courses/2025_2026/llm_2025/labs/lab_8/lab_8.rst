@@ -21,8 +21,9 @@ in the `table <https://docs.google.com/spreadsheets/d/1UEEylqXeSjtFyUtPzyEMiFhhd
 .. note:: All logic for instantiating and using needed abstractions
           should be implemented in a ``main()`` function of a ``start.py`` module.
 
-To do this, implement the class methods and functions in the ``main.py`` module in ``lab_8_sft`` folder
-and import them into ``start.py`` module in ``lab_8_sft`` folder.
+To do this, implement the class methods and functions in the
+``main.py`` module in ``lab_8_sft`` folder and
+import them into ``start.py`` module in ``lab_8_sft`` folder.
 
 .. code:: py
 

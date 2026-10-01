@@ -41,3 +41,18 @@ jobs:
           export PYTHONPATH=$(pwd):$PYTHONPATH
           rm -rf source/build/
           sphinx-build -W -n -b html source/ source/build/
+
+  doc8-checks:
+    name: Doc8 checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    needs: [ install-dependencies ]
+
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup FIPL environment
+        uses: fipl-hse/setup-env-action@v0.13.3
+      - name: Doc8 check
+        run: |
+          source venv/bin/activate
+          doc8 source/
