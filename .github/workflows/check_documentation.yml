@@ -55,4 +55,4 @@ jobs:
       - name: Doc8 check
         run: |
           source venv/bin/activate
-          doc8 source/
+          python -m doc8 source/
