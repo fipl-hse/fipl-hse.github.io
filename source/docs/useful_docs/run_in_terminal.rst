@@ -29,7 +29,7 @@
 4. Активируйте виртуальное окружение:
 
    1. Для Windows: ``.\venv\Scripts\activate``.
-   2. Для macOS: ``source venv\bin\activate``.
+   2. Для macOS: ``source venv/bin/activate``.
 
    После успешной активации в начале строки появится метка ``(venv)``
 
