@@ -59,4 +59,10 @@ matrix:
   sources:
   - 'lab*/**/*.py'
   - 'lab*/*.py'
+  - 'final_project/**/*.py'
+  - 'final_project/*.py'
+  - 'admin_utils/**/*.py'
+  - 'admin_utils/*.py'
+  - 'core_utils/**/*.py'
+  - 'core_utils/*.py'
   default_encoding: utf-8
