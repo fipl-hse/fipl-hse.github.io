@@ -14,7 +14,7 @@
 
 2. Activate virtual environment:
    1. Windows: ``.\venv\Scripts\activate``.
-   2. macOS: ``source venv\bin\activate``.
+   2. macOS: ``source venv/bin/activate``.
 
 3. Configure PYTHONPATH:
    1. Windows: ``$env:PYTHONPATH = "$pwd;" + $env:PYTHONPATH``.

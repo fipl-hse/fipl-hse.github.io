@@ -61,3 +61,17 @@ jobs:
             source venv/bin/activate
             export PYTHONPATH=$(pwd)
             fiplconfig.check_spelling
+  doc8-checks:
+    name: Doc8 checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    needs: [ install-dependencies ]
+
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup FIPL environment
+        uses: fipl-hse/setup-env-action@v0.13.3
+      - name: Doc8 check
+        run: |
+          source venv/bin/activate
+          python -m doc8 source/

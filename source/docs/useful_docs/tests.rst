@@ -21,7 +21,7 @@
 
 .. important:: Удостоверьтесь, что у Вас активировано виртуальное окружение.
                Это делается через запуск команд ``.\venv\Scripts\activate``
-               (Windows) или ``source venv\bin\activate`` (macOS) в терминале.
+               (Windows) или ``source venv/bin/activate`` (macOS) в терминале.
 
 2. Создайте новую конфигурацию:
 
