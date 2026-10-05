@@ -1,3 +1,4 @@
+-
 ab
 abbreviation
 ability
@@ -416,6 +417,7 @@ checkbox
 checked
 checker
 checking
+checkout
 checks
 Checks
 chi
@@ -547,11 +549,13 @@ Configure
 configured
 configuring
 conflicts
+conflicts-label
 conform
 conll
 conll-u
 conlladapter
 conllu
+ConlluArticle
 conlludocument
 conllusentence
 conllusentenceminimaltest
@@ -807,6 +811,7 @@ directory
 disable
 disables
 disadvantageous
+discard-changes-checkout
 discipline
 discovered
 discovery
@@ -958,6 +963,7 @@ entities
 entity
 entry
 entrypoint
+enum
 enumerate
 env
 environment
@@ -1129,6 +1135,7 @@ fixed
 flexible
 float
 fluency
+fn
 focus
 focuses
 folder
@@ -1393,6 +1400,7 @@ included
 includes
 including
 inclusively
+Incoming
 incompatible
 Incompatible
 incomplete
@@ -1784,6 +1792,7 @@ mentor
 mentors
 menu
 merge
+merge-message
 merges
 MergeTreesError
 merz
@@ -1792,6 +1801,7 @@ messages
 meta
 meta-information
 metadata
+metafile
 meth
 method
 methods
@@ -2364,6 +2374,7 @@ real-world
 realize
 reason
 reasons
+rebase
 rebuild
 receive
 received
