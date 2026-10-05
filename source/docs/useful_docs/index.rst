@@ -15,4 +15,5 @@
     run_in_terminal.rst
     Инструкция по настройке Python на английском языке <DEVELOPER.rst>
     FAQ.rst
+    conflicts_resolution.rst
     Полезные материалы для курса "Компьютерные инструменты лингвистических исследований" <ctlr_docs/index.rst>
