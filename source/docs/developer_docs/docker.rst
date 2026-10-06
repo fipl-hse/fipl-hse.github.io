@@ -43,7 +43,7 @@ If you want to check your files with spellcheck, launch this commandline:
 If you encounter the ``script.sh: line N: $'\r': command not found`` error
 with any bash script, make sure that the file in your VSCode has end-of-line sequence set to LF
 instead of CRLF. You can check at the bottom right of the screen or find
-``Change End of Line Sequence`` via Comand Palette (``Ctrl+Shift+P``) with the bash script open.
+``Change End of Line Sequence`` via Command Palette (``Ctrl+Shift+P``) with the bash script open.
 
 
 Advanced usage
@@ -71,7 +71,7 @@ delete created container and virtual environment and rebuild them via the abovem
 Interactive Development Mode
 ----------------------------
 If you want to develop yourself in interactive mode
-to fix some problems which are not reproducable on Windows,
+to fix some problems which are not reproducible on Windows,
 you can create own image, create container and start it:
 
 .. code:: bash

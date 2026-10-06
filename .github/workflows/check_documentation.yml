@@ -42,6 +42,25 @@ jobs:
           rm -rf source/build/
           sphinx-build -W -n -b html source/ source/build/
 
+  spellcheck:
+      name: Spellcheck
+      runs-on: ubuntu-latest
+      timeout-minutes: 4
+      needs: [ install-dependencies ]
+      steps:
+        - uses: actions/checkout@v7
+        - name: Install Aspell
+          run: |
+            sudo sed -i '1d' /etc/apt/apt-mirrors.txt
+            sudo apt-get update
+            sudo apt-get install aspell aspell-en aspell-ru
+        - name: Setup FIPL environment
+          uses: fipl-hse/setup-env-action@v0.13.3
+        - name: Spell check
+          run: |
+            source venv/bin/activate
+            export PYTHONPATH=$(pwd)
+            fiplconfig.check_spelling
   doc8-checks:
     name: Doc8 checks
     runs-on: ubuntu-latest
