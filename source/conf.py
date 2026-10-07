@@ -36,6 +36,7 @@ nitpick_ignore = [
     ('py:class', 'DiGraph'),
     ("py:class", "Doc"),
     ("py:class", "Language"),
+    ('py:class', 'spacy.Language'),
     ("py:class", "spacy.language.Language"),
     ("py:class", "spacy.tokens.doc.Doc"),
     ("py:class", "ProfileType"),
