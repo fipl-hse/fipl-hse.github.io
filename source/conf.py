@@ -22,7 +22,6 @@ extensions = [
 ]
 
 intersphinx_mapping = {
-    "torch": ("https://pytorch.org/docs/stable", "../config/intersphinx/pytorch.inv"),
     "python": ("https://docs.python.org/3", None),
     "pandas": ("http://pandas.pydata.org/pandas-docs/stable/", "../config/intersphinx/pandas.inv"),
     "pydantic": ("https://docs.pydantic.dev/latest/", "../config/intersphinx/pydantic.inv"),
@@ -37,6 +36,7 @@ nitpick_ignore = [
     ('py:class', 'DiGraph'),
     ("py:class", "Doc"),
     ("py:class", "Language"),
+    ('py:class', 'spacy.Language'),
     ("py:class", "spacy.language.Language"),
     ("py:class", "spacy.tokens.doc.Doc"),
     ("py:class", "ProfileType"),
@@ -54,3 +54,5 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 html_css_files = ['css/custom.css']
 html_logo = '_static/fal_logo.jpeg'
+
+autodoc_mock_imports = ["torch", "spacy"]
