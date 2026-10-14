@@ -20,8 +20,9 @@
 3. В форках сдавших студентов, которые проявили желание повысить оценку, необходимо также оставить их реализацию
 
 Для автоматизации процесса обновления форков может быть
-использован скрипт ``config/github/update_forks.py``
-и конфигурационный файл ``config/github/update_fork_config.json``.
+использован скрипт ``quality_control/github/update_forks.py``
+и конфигурационный файл ``quality_control/github/update_fork_config.json``
+из репозитория `quality-control <https://github.com/fipl-hse/quality-control>`__.
 
 
 Управление стратегиями обновлений осуществляется через конфигурационный файл:
@@ -78,8 +79,7 @@
 
 Также для обновления форков студентов необходимо указать имя пользователя,
 от которого будет сделан и запушен коммит, а также указать токен,
-сгенерированный на github.
-Для успешного обновления токен можно сгенерировать с разрешениями ``repo`` и ``workflow``.
+сгенерированный на GitHub (см. :ref:`fork-update-token`).
 Имя пользователя и токен указываются в соответствующие поля конфигурационного файла.
 Также необходимо указать ссылку на основной репозиторий:
 
@@ -95,7 +95,47 @@
 
 .. code:: bash
 
-    fiplconfig.update_forks --config config/github/update_fork_config.json
+    fiplconfig.update_forks --config quality_control/github/update_fork_config.json
+
+
+.. _fork-update-token:
+
+Создание токена
+---------------
+
+Скрипт пушит изменения в форки студентов, поэтому нужен classic токен GitHub.
+
+.. important:: У пользователя, от имени которого создаётся токен, должен быть
+               доступ на запись в форки студентов.
+
+1. Откройте настройки GitHub и внизу страницы в левом блоке
+   найдите раздел ``Developer settings``:
+
+   .. image:: ../useful_docs/_static/starting_guide/github_find_settings.png
+
+2. Выберите ``Personal access tokens`` -> ``Tokens (classic)``
+   и нажмите ``Generate new token (classic)``:
+
+   .. image:: ../useful_docs/_static/starting_guide/github_pat_tab.png
+
+3. Введите название токена в поле ``Note``, выберите срок действия
+   в поле ``Expiration`` и отметьте разрешения ``repo`` и ``workflow``:
+
+   .. image:: ../useful_docs/_static/starting_guide/github_pat_settings.png
+
+   .. note:: Разрешение ``workflow`` нужно, чтобы пушить изменения
+             в файлы ``.github/workflows``.
+
+4. Внизу страницы нажмите кнопку ``Generate token``.
+
+5. Скопируйте токен и вставьте его в поле ``token`` секции ``authentication``
+   конфигурационного файла:
+
+   .. image:: ../useful_docs/_static/starting_guide/github_pat_copy.png
+
+.. important:: Обязательно сохраните этот токен! Его нельзя будет
+               увидеть снова — только сгенерировать новый.
+               Не коммитьте конфигурационный файл с настоящим токеном.
 
 
 Обновление форка вручную студентом
