@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Синхронизация документации админа и сайта &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=480edd71" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Обновление форков студентов" href="fork_update.html" />
+    <link rel="prev" title="Публикация лабораторной работы" href="publish_lab.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Курсы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful_docs/index.html">Полезные материалы</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Для разработчиков курсов</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="publish_lab.html">Публикация лабораторной работы</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Синхронизация документации админа и сайта</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fork_update.html">Обновление форков студентов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ignoring_tests.html">Ignoring Lab Tests Optionally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Docker usage guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphviz.html">Graphviz для работы с автоматическим построением UML диаграмм</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Для разработчиков курсов</a></li>
+      <li class="breadcrumb-item active">Синхронизация документации админа и сайта</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/developer_docs/docs_sync.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="docs-sync">
+<span id="id1"></span><h1><a class="toc-backref" href="#id6" role="doc-backlink">Синхронизация документации админа и сайта</a><a class="headerlink" href="#docs-sync" title="Link to this heading"></a></h1>
+<nav class="contents" id="id2">
+<p class="topic-title">Содержание</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#docs-sync" id="id6">Синхронизация документации админа и сайта</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id7">Настройка списка файлов</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id8">Создание токена</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id9">Запуск вручную</a></p></li>
+<li><p><a class="reference internal" href="#ci" id="id10">Запуск через CI</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>Инструмент DOCSYNC переносит файлы из админского репозитория в
+<a class="reference external" href="https://github.com/fipl-hse/fipl-hse.github.io">репозиторий сайта</a>
+и создаёт там Пулл Реквест. Какие файлы и куда переносить, задаётся
+в <code class="docutils literal notranslate"><span class="pre">project_config.json</span></code> админского репозитория.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Источником правды является админский репозиторий.
+Если файл на сайте был исправлен напрямую, синхронизация
+перезапишет эти правки. Перед запуском перенесите такие
+правки в админский репозиторий.</p>
+</div>
+<section id="id3">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Настройка списка файлов</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>Список файлов задаётся в поле <code class="docutils literal notranslate"><span class="pre">doc_sync_config</span></code> файла <code class="docutils literal notranslate"><span class="pre">project_config.json</span></code>.
+Пути указываются относительно корня репозитория: <code class="docutils literal notranslate"><span class="pre">source</span></code> в админском
+репозитории, <code class="docutils literal notranslate"><span class="pre">target</span></code> в репозитории сайта.</p>
+<p>На примере лабораторной работы <code class="docutils literal notranslate"><span class="pre">lab_1_classify_profile</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"doc_sync_config"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"README.rst"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source/docs/labs_2026/general_info.rst"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab_1_classify_profile/__init__.py"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab_1_classify_profile/__init__.py"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab_1_classify_profile/main_stub.py"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab_1_classify_profile/main.py"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab_1_classify_profile/README.rst"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source/docs/labs_2026/labs/lab_1_classify_profile/lab_1.rst"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab_1_classify_profile/lab_1_classify_profile.api.rst"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source/docs/labs_2026/labs/lab_1_classify_profile/lab_1_classify_profile.api.rst"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab_1_classify_profile/assets/description.png"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source/docs/labs_2026/labs/lab_1_classify_profile/assets/description.png"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Переносятся только файлы, которые отличаются от <code class="docutils literal notranslate"><span class="pre">main</span></code> репозитория сайта.</p>
+</section>
+<section id="id4">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Создание токена</a><a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<p>Для работы инструмента нужен fine-grained токен GitHub.</p>
+<ol class="arabic">
+<li><p>Откройте <a class="reference external" href="https://github.com/settings/personal-access-tokens/new">страницу создания токена</a>.
+Укажите имя токена и выберите <code class="docutils literal notranslate"><span class="pre">fipl-hse</span></code> в поле <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">owner</span></code>:</p>
+<img alt="../../_images/token_create.jpg" src="../../_images/token_create.jpg" />
+</li>
+<li><p>В разделе <code class="docutils literal notranslate"><span class="pre">Repository</span> <span class="pre">access</span></code> выберите <code class="docutils literal notranslate"><span class="pre">Only</span> <span class="pre">select</span> <span class="pre">repositories</span></code> и укажите
+репозиторий сайта и админский репозиторий. В разделе <code class="docutils literal notranslate"><span class="pre">Permissions</span></code> выдайте
+права <code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">and</span> <span class="pre">write</span></code> для <code class="docutils literal notranslate"><span class="pre">Contents</span></code> и <code class="docutils literal notranslate"><span class="pre">Pull</span> <span class="pre">requests</span></code>:</p>
+<img alt="../../_images/token_permissions.jpg" src="../../_images/token_permissions.jpg" />
+</li>
+<li><p>Для запуска через CI добавьте токен в секреты админского репозитория
+(<code class="docutils literal notranslate"><span class="pre">Settings</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Secrets</span> <span class="pre">and</span> <span class="pre">variables</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Actions</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">repository</span> <span class="pre">secret</span></code>)
+под именем <code class="docutils literal notranslate"><span class="pre">TARGET_REPO_PAT</span></code>:</p>
+<img alt="../../_images/repo_secret.jpg" src="../../_images/repo_secret.jpg" />
+</li>
+</ol>
+</section>
+<section id="id5">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Запуск вручную</a><a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<p>Установите <a class="reference external" href="https://cli.github.com/">GitHub CLI</a> и <code class="docutils literal notranslate"><span class="pre">quality-control</span></code>
+(устанавливается вместе с зависимостями админского репозитория из <code class="docutils literal notranslate"><span class="pre">requirements_qa.txt</span></code>).</p>
+<p>Передайте токен через переменную окружения <code class="docutils literal notranslate"><span class="pre">GH_TOKEN</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">GH_TOKEN</span><span class="o">=</span>&lt;токен&gt;
+</pre></div>
+</div>
+<p>В PowerShell:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nv">$env:GH_TOKEN</span> <span class="p">=</span> <span class="s2">"&lt;токен&gt;"</span>
+</pre></div>
+</div>
+<p>Запустите синхронизацию, указав админский репозиторий и номер Пулл Реквеста в нём:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fiplconfig.sync_docs<span class="w"> </span>--repo-name<span class="w"> </span>fipl-hse/2026-2-level-labs-admin<span class="w"> </span>--pr-number<span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+<p>Если Пулл Реквест открыт, файлы берутся из его ветки, если замёржен — из <code class="docutils literal notranslate"><span class="pre">main</span></code>.
+В репозитории сайта будет создана ветка
+<code class="docutils literal notranslate"><span class="pre">auto-update-from-&lt;админский</span> <span class="pre">репозиторий&gt;-pr-&lt;номер&gt;</span></code> и Пулл Реквест.
+При повторном запуске ветка обновится, а в Пулл Реквест будет добавлен комментарий.</p>
+<p>Дополнительные аргументы:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--dry-run</span></code> — только показать, какие файлы изменятся. Коммит, пуш и
+Пулл Реквест не создаются. Рекомендуется запускать перед настоящей синхронизацией.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--work-dir</span> <span class="pre">&lt;папка&gt;</span></code> — папка, в которую клонируется репозиторий сайта.
+По умолчанию используется временная папка. Если в указанной папке уже есть
+клон сайта, он будет удалён и склонирован заново.</p></li>
+</ul>
+<p>После запуска с <code class="docutils literal notranslate"><span class="pre">--dry-run</span></code> изменения можно посмотреть в клоне сайта:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>-C<span class="w"> </span>&lt;папка&gt;/fipl-hse.github.io<span class="w"> </span>diff<span class="w"> </span>--cached
+</pre></div>
+</div>
+<p>После синхронизации проверьте и замёржите автоматически созданный
+Пулл Реквест в репозитории сайта.</p>
+</section>
+<section id="ci">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Запуск через CI</a><a class="headerlink" href="#ci" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>WIP.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="publish_lab.html" class="btn btn-neutral float-left" title="Публикация лабораторной работы" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fork_update.html" class="btn btn-neutral float-right" title="Обновление форков студентов" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
