@@ -667,6 +667,7 @@ ctrl
 cuda
 curation
 curation-corpus-ru
+curr
 current
 currently
 cutoff
@@ -1963,6 +1964,7 @@ obtaining
 obviously
 occurrences
 occurs
+oclock
 of
 official
 offline
