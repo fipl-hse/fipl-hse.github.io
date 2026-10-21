@@ -4,8 +4,7 @@ Hello, LLM! for 4th-Year FPL Students (2026/2027)
 `“Introduction to Neural Network” <https://nnov.hse.ru/ba/ling/courses/1163565652.html>`__
 course at HSE University – Nizhny Novgorod.
 
-Teaching Staff:
----------------
+**Teaching Staff:**
 
 -  `Demidovskiy Aleksandr
    Vladimirovich <https://www.hse.ru/staff/demidovs>`__ — Course Lead
@@ -13,14 +12,11 @@ Teaching Staff:
    Instructor
 -  `Sviridov Viacheslav Mikhailovich <https://t.me/VSvirTG>`__ —
    Instructor
-
-Student Research Team
-~~~~~~~~~~~~~~~~~~~~~
-
-- `Kaizerova Anna Andreevna <https://t.me/kaizerova_a>`__
+- `Kaizerova Anna Andreevna <https://t.me/kaizerova_a>`__ —
+   Assistant
 
 
-Laboratory Works:
+Laboratory Works
 -----------------
 
 1. `Laboratory work #7. Neural Language Model Inference and Evaluation <https://github.com/fipl-hse/2026-hello-llm/tree/main/lab_7_llm>`__
@@ -37,11 +33,6 @@ Laboratory Works:
 
 Class Log
 ---------
-
-+------------+----------------------+--------------------------------------------------------------+
-| Date       | Lecture Topic        | Practice Topic & Materials                                   |
-+============+======================+==============================================================+
-+------------+----------------------+--------------------------------------------------------------+
 
 Detailed notes and materials for all completed sessions are available
 `here <https://fipl-hse.github.io/docs/llm_2026/lectures_content_ru.html>`__.
