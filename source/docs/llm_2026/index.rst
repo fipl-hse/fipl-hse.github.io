@@ -7,6 +7,7 @@ Here you will find all the documentation within the subject
 which is conducted for the 4th year of the FPL (2026/2027)
 at the National Research University Higher School of Economics - Nizhny Novgorod.
 
+
 .. toctree::
     :maxdepth: 1
     :titlesonly:
