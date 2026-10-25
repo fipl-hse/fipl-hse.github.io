@@ -88,7 +88,9 @@ aim
 aimed
 aims
 albert-base-v
+aleksandr
 alekseevna
+aleksei
 alexander
 algo
 algorithm
@@ -730,6 +732,7 @@ delete
 delivered
 demands
 demidovskij
+demidovskiy
 demo
 demonstrate
 denoted
@@ -1233,6 +1236,7 @@ gpt
 gpt-neo
 gpu
 grade
+gradebook
 gram
 grammar
 grammatical
@@ -1539,6 +1543,7 @@ k-nearest
 k-qa-open-close
 k-ближайших
 k-мерного
+kaizerova
 kashchikhin
 kazyulina
 kd
@@ -1784,6 +1789,7 @@ metrics
 michellejieli
 micro
 might
+mikhailovich
 mikhailovna
 milestone
 mimic
@@ -2811,6 +2817,7 @@ sure
 surname
 suspect
 suspicious
+sviridov
 swap
 switch
 symbol
@@ -2989,6 +2996,7 @@ truncation
 trust
 truthful
 truthfulqa
+trutnev
 try
 tune
 tuned
@@ -3131,6 +3139,7 @@ vertical
 vertices
 very
 via
+viacheslav
 vice
 view
 virtiofs
