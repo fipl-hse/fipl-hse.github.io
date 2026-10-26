@@ -4,10 +4,10 @@ docxbuilder==1.2.0
 fastapi==0.141.1
 networkx==3.6.1
 pandas==2.3.3
-pydantic==2.11.7
+pydantic==2.13.4
 requests==2.34.2
-sphinx==8.2.3
-sphinx_rtd_theme==3.0.2
-sphinx-design==0.6.1
+sphinx==9.1.0
+sphinx_rtd_theme==3.1.0
+sphinx-design==0.7.0
 sphinx_tabs==3.5.0
-sphinx-notfound-page==1.0.0
+sphinx-notfound-page==1.1.0
