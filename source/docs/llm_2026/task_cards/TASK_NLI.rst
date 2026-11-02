@@ -91,6 +91,8 @@ Datasets
 Supervised Fine-Tuning (SFT) Parameters
 ---------------------------------------
 
+.. note:: For all models in this task, set parameter ``alpha=16``.
+
 .. note:: Set the parameter ``target_modules=["key"]`` for the
           `cointegrated/rubert-base-cased-nli-threeway
           <https://huggingface.co/cointegrated/rubert-base-cased-nli-threeway>`__ model.

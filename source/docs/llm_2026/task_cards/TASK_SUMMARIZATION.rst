@@ -24,9 +24,6 @@ Models
 | `UrukHan/t5-russian-summarization                                     | RU    |
 | <https://huggingface.co/UrukHan/t5-russian-summarization>`__          |       |
 +-----------------------------------------------------------------------+-------+
-| `dmitry-vorobiev/rubert_ria_headlines                                 | RU    |
-| <https://huggingface.co/dmitry-vorobiev/rubert_ria_headlines>`__      |       |
-+-----------------------------------------------------------------------+-------+
 
 
 Datasets
@@ -125,9 +122,7 @@ Supervised Fine-Tuning (SFT) Parameters
           cnn_daily_mail-summarization>`__,
           `mrm8488/bert-mini2bert-mini-finetuned-cnn_daily_mail-summarization
           <https://huggingface.co/mrm8488/bert-mini2bert-mini-finetuned-
-          cnn_daily_mail-summarization>`__ and
-          `dmitry-vorobiev/rubert_ria_headlines <https://huggingface.co/dmitry-
-          vorobiev/rubert_ria_headlines>`__ models, and as
+          cnn_daily_mail-summarization>`__ models, and as
           ``["q", "k", "wi", "wo"]`` for the
           `UrukHan/t5-russian-summarization
           <https://huggingface.co/UrukHan/t5-russian-summarization>`__ model.
