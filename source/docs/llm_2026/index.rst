@@ -13,5 +13,6 @@ at the National Research University Higher School of Economics - Nizhny Novgorod
     :titlesonly:
 
     general_info.rst
+    labs/index.rst
     task_cards/index.rst
     lectures_content.rst
