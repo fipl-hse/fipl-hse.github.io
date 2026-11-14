@@ -13,7 +13,7 @@ concurrency:
 jobs:
   install-dependencies:
     name: Installing dependencies
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 4
 
     steps:
@@ -26,7 +26,7 @@ jobs:
 
   build:
     name: Build Documentation
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 7
     needs: [ install-dependencies ]
 
@@ -44,7 +44,7 @@ jobs:
 
   spellcheck:
       name: Spellcheck
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-24.04
       timeout-minutes: 4
       needs: [ install-dependencies ]
       steps:
@@ -63,7 +63,7 @@ jobs:
             fiplconfig.check_spelling
   doc8-checks:
     name: Doc8 checks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 4
     needs: [ install-dependencies ]
 
