@@ -175,8 +175,8 @@
                     +-- index.rst
                     +-- 2025_2026
                         +-- index.rst
-                        +-- labs_2025
-                +-- labs_2026
+                        +-- python_2025
+                +-- python_2026
                     +-- index.rst
                     +-- general_info.rst
                     +-- lectures_content.rst
@@ -195,7 +195,7 @@
 - ``lab_1_classify_profile.api.rst`` -> ``lab_1_classify_profile.api.rst``
 - Папка ``assets`` содержит любые изображения, на которые ссылается текст.
 
-Также необходимо добавить ``labs/lab_1.rst`` в ``labs_2026/labs/index.rst``.
+Также необходимо добавить ``labs/lab_1.rst`` в ``python_2026/labs/index.rst``.
 
 Перенести файлы из админского репозитория можно с помощью инструмента DOCSYNC:
 :ref:`docs-sync`.
