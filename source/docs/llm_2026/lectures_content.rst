@@ -18,8 +18,9 @@ History of Lectures
 |             |                            | `Listing <https://github.com/fipl-hse/            |
 |             |                            | 2026-hello-llm/blob/main/seminars/                |
 |             |                            | seminar_2026_11_13/try_pandas.py>`__.             |
-|             |                            | Infering an LLM. `Listing <https://github.com/    |
-|             |                            | fipl-hse/2026-hello-llm/blob/main/seminars/       |
+|             |                            | Running LLM inference.                            |
+|             |                            | `Listing <https://github.com/fipl-hse/            |
+|             |                            | 2026-hello-llm/blob/main/seminars/                |
 |             |                            | seminar_2026_11_13/try_model.py>`__.              |
 +-------------+----------------------------+---------------------------------------------------+
 
