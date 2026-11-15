@@ -39,6 +39,13 @@
 Для запуска скрипта на Windows потребуется использовать Docker.
 Воспользуйтесь следующей инструкцией: :ref:`use-docker`.
 
+Если в репозитории есть отдельный скрипт для Windows, запустите его в терминале:
+
+.. code:: bash
+
+   ./admin_utils/precommit.ps1
+
+
 2. Проверка текста в админе
 ---------------------------
 
@@ -191,11 +198,18 @@
 При публикации лабораторной работы файл с текстом выкладывается в соответствующую папку.
 На примере лабораторной работы ``lab_1_classify_profile``:
 
-- ``README.rst`` -> ``lab_1.rst``
-- ``lab_1_classify_profile.api.rst`` -> ``lab_1_classify_profile.api.rst``
-- Папка ``assets`` содержит любые изображения, на которые ссылается текст.
+- Документация:
+    ``lab_1_classify_profile/README.rst`` -> ``python_2026/labs/lab_1_classify_profile/lab_1.rst``
+- API:
+    ``lab_1_classify_profile/lab_1_classify_profile.api.rst`` ->
+    ``python_2026/labs/lab_1_classify_profile/lab_1_classify_profile.api.rst``
+- Папка ``assets``, содержащая изображения, на которые ссылается текст:
+    ``lab_1_classify_profile/assets`` ->
+    ``python_2026/labs/lab_1_classify_profile/assets``
 
-Также необходимо добавить ``labs/lab_1.rst`` в ``python_2026/labs/index.rst``.
+Также необходимо добавить ``labs/lab_1.rst`` в ``python_2026/labs/index.rst``
+и обновить план лабораторных работ в ``general_info.rst`` согласно информации
+из ``README.rst`` админского репозитория.
 
 Перенести файлы из админского репозитория можно с помощью инструмента DOCSYNC:
 :ref:`docs-sync`.
@@ -204,10 +218,8 @@
 перенесите их в соответствующую папку ``archived_courses``.
 Обновите ``archived_courses/index.rst`` и ``docs/index.rst``.
 При переносе может понадобиться обновить ссылку на лекции соответствующего года:
-
-.. code:: text
-
-    `здесь <https://fipl-hse.github.io/docs/llm_2025/lectures_content.html>`__ -> :ref:`lectures-content-llm-label-2025`.
+```<https://fipl-hse.github.io/docs/llm_2025/lectures_content.html>`__`` ->
+``:ref:`lectures-content-llm-label-2025```.
 
 
 После добавления файлов, нужно построить сайт:
