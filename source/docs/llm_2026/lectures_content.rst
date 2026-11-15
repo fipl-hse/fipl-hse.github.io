@@ -10,15 +10,15 @@ History of Lectures
 |             | Lifecycle of a neural      |                                                   |
 |             | network model.             |                                                   |
 +-------------+----------------------------+---------------------------------------------------+
-| 13.11.2026  | Inference                  | Loading a dataset from HuggingFace.               |
+| 13.11.2026  | Inference                  | Datasets.                                         |
 |             |                            | `Listing <https://github.com/fipl-hse/            |
 |             |                            | 2026-hello-llm/blob/main/seminars/                |
 |             |                            | listing_1_datasets.py>`__.                        |
-|             |                            | Analysing and preprocessing a dataset.            |
+|             |                            | Pandas.                                           |
 |             |                            | `Listing <https://github.com/fipl-hse/            |
 |             |                            | 2026-hello-llm/blob/main/seminars/                |
 |             |                            | listing_2_pandas.py>`__.                          |
-|             |                            | Running LLM inference.                            |
+|             |                            | Inference.                                        |
 |             |                            | `Listing <https://github.com/fipl-hse/            |
 |             |                            | 2026-hello-llm/blob/main/seminars/                |
 |             |                            | listing_3_model.py>`__.                           |
