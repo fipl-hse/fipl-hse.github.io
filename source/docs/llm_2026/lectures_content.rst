@@ -1,24 +1,34 @@
 .. _lectures-content-llm-label-2026:
 
-История занятий
-===============
+History of Lectures
+===================
 
 +-------------+----------------------------+---------------------------------------------------+
-| Дата        | Тема лекции                | Материалы практики.                               |
+| Date        | Lecture Topic              | Practice Materials.                               |
 +=============+============================+===================================================+
-| 07.09.2026  | Современные задачи в.      | Создание форка.                                   |
-|             | области NLP. Жизненный     |                                                   |
-|             | цикл нейросетевой модели.  |                                                   |
+| 06.11.2026  | Modern NLP Tasks           | Creating a fork.                                  |
+|             | Lifecycle of a neural      |                                                   |
+|             | network model.             |                                                   |
++-------------+----------------------------+---------------------------------------------------+
+| 13.11.2026  | Inference                  |                                                   |
 +-------------+----------------------------+---------------------------------------------------+
 
-Лекция 1. Современные задачи в области NLP
+Lecture 1. Modern NLP Tasks
 ------------------------------------------
 
-Знакомство с преподавателем. Общая структура курса. Формирование итоговой оценки. Основные идеи,
-закладываемые в курс. Место курса в
-образовательной программе. Структура лабораторной работы. ``LLM``. Типовые задачи ``NLP``, решаемые
-с помощью нейросетевых моделей. Жизненный цикл модели: предобучение (``pre-training``),
-инференс, тонкая настройка (дообучение, ``fine-tuning``), инференс. Токенизация как способ перехода
-от текстового вида к числовому и обратно. Принципиальная связь токенизатора и модели. Словарь
-модели. Основные критерии при выборе модели: качество решения поставленной задачи и объем требуемых
-вычислительных ресурсов.
+Introduction of the instructor. General course structure. Formation of the final grade. Core ideas
+behind the course. The place of the course in the degree programme. Structure of the laboratory work.
+``LLM``. Typical ``NLP`` tasks solved with neural network models. Model lifecycle: ``pre-training``,
+inference, ``fine-tuning``, inference. Tokenization as a way to move from text to numeric form and back.
+Fundamental relationship between the tokenizer and the model. Model vocabulary. Main criteria when
+choosing a model: quality of solving the task and the amount of computational resources required.
+
+Lecture 2. Inference
+------------------------------------------
+
+Inference as a forward pass with fixed weights. Difference between inference and training: loss,
+backward pass, and weight update. Inference pipeline: text, tokens, IDs, forward pass, logits,
+probabilities, one class or one token. Tokenization in practice: vocabulary, token versus word,
+byte-pair encoding (``BPE``), encoding and decoding, padding, truncation, max length, and special
+tokens. Logits and softmax. Generation as repeated classification over tokens. Greedy decoding and
+sampling with temperature. Prefill and decode phases, ``TTFT`` and tokens/s.

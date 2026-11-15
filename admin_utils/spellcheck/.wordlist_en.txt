@@ -1677,6 +1677,7 @@ locations
 loct
 log
 logic
+logits
 look
 looking
 loop
@@ -2188,6 +2189,7 @@ predefined
 predicted
 prediction
 predictions
+prefill
 prefix
 prefixtrie
 premise
@@ -2242,6 +2244,7 @@ profile
 profiles
 profiletype
 program
+programme
 programmed
 programming
 programs
@@ -2675,6 +2678,7 @@ so
 so-called
 sofia
 sofianurtdinova
+softmax
 software
 solely
 solid
@@ -2999,6 +3003,7 @@ truthful
 truthfulqa
 trutnev
 try
+ttft
 tune
 tuned
 tuning
