@@ -198,7 +198,7 @@
 -------
 
 1. `Таблица успеваемости <https://docs.google.com/spreadsheets/d/1aa5XVjz62MJa7K8jMkH4u56BE9A9-jp1WrDjYKZRols>`__
-2. `Сайт дисциплины <https://fipl-hse.github.io/docs/labs_2025/#>`__ с описанием лабораторных работ и
+2. `Сайт дисциплины <https://fipl-hse.github.io/docs/python_2025/#>`__ с описанием лабораторных работ и
    полезными материалами
 3. Инструкция по подготовке к прохождению курса
    `на сайте <https://fipl-hse.github.io/docs/useful_docs/starting_guide_ru.html>`__

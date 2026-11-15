@@ -32,7 +32,7 @@
     "doc_sync_config": [
         {
             "source": "README.rst",
-            "target": "source/docs/labs_2026/general_info.rst"
+            "target": "source/docs/python_2026/general_info.rst"
         },
         {
             "source": "lab_1_classify_profile/__init__.py",
@@ -44,15 +44,15 @@
         },
         {
             "source": "lab_1_classify_profile/README.rst",
-            "target": "source/docs/labs_2026/labs/lab_1_classify_profile/lab_1.rst"
+            "target": "source/docs/python_2026/labs/lab_1_classify_profile/lab_1.rst"
         },
         {
             "source": "lab_1_classify_profile/lab_1_classify_profile.api.rst",
-            "target": "source/docs/labs_2026/labs/lab_1_classify_profile/lab_1_classify_profile.api.rst"
+            "target": "source/docs/python_2026/labs/lab_1_classify_profile/lab_1_classify_profile.api.rst"
         },
         {
             "source": "lab_1_classify_profile/assets/description.png",
-            "target": "source/docs/labs_2026/labs/lab_1_classify_profile/assets/description.png"
+            "target": "source/docs/python_2026/labs/lab_1_classify_profile/assets/description.png"
         }
     ]
 

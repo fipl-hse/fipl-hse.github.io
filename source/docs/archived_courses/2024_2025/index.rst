@@ -6,6 +6,6 @@
     :maxdepth: 1
     :titlesonly:
 
-    labs_2024/index.rst
+    python_2024/index.rst
     ctlr_2024/index.rst
     llm_2024/index.rst
