@@ -13,15 +13,15 @@ History of Lectures
 | 13.11.2026  | Inference                  | Loading a dataset from HuggingFace.               |
 |             |                            | `Listing <https://github.com/fipl-hse/            |
 |             |                            | 2026-hello-llm/blob/main/seminars/                |
-|             |                            | seminar_2026_11_13/try_datasets.py>`__.           |
+|             |                            | listing_1_datasets.py>`__.                        |
 |             |                            | Analysing and preprocessing a dataset.            |
 |             |                            | `Listing <https://github.com/fipl-hse/            |
 |             |                            | 2026-hello-llm/blob/main/seminars/                |
-|             |                            | seminar_2026_11_13/try_pandas.py>`__.             |
+|             |                            | listing_2_pandas.py>`__.                          |
 |             |                            | Running LLM inference.                            |
 |             |                            | `Listing <https://github.com/fipl-hse/            |
 |             |                            | 2026-hello-llm/blob/main/seminars/                |
-|             |                            | seminar_2026_11_13/try_model.py>`__.              |
+|             |                            | listing_3_model.py>`__.                           |
 +-------------+----------------------------+---------------------------------------------------+
 
 Lecture 1. Modern NLP Tasks
