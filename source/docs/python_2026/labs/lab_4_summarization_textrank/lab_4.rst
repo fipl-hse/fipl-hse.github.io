@@ -30,7 +30,7 @@
 * ``text`` — текст о жизни первого космонавта `Юрия
   Гагарина <https://ru.wikipedia.org/wiki/Гагарин,_Юрий_Алексеевич>`__;
 * ``stop_words`` — список стоп слов;
-* ``idf`` — словарь предвычисленных значений IDF;
+* ``idf`` — словарь заранее вычисленных значений IDF;
 * ``paths_to_texts`` — список из **путей** до текстов из папки `assets <https://github.com/fipl-hse/2026-2-level-labs/blob/main/lab_4_summarization_textrank/assets/texts>`__.
 
 .. important:: В рамках данной лабораторной работы

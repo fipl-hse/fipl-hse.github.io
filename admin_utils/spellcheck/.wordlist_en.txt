@@ -12,6 +12,7 @@ abstract
 abstractconlluanalyzer
 abstraction
 abstractions
+abstractive
 abstractllmpipeline
 abstractrawdataimporter
 abstractrawdatapreprocessor
@@ -928,6 +929,7 @@ encapsulates
 encloses
 encode
 encoded
+encodedsentence
 encoding
 encodingerror
 encompasses
@@ -995,6 +997,7 @@ examine
 examiner
 example
 examples
+exc
 except
 exception
 exceptions
@@ -1391,6 +1394,7 @@ incompatible
 incomplete
 inconsistentdataseterror
 incorrect
+incorrectargumenterror
 incorrectencodingerror
 incorrectheaderserror
 incorrectly
@@ -1437,6 +1441,7 @@ initializes
 initializing
 initiated
 inner
+inout
 input
 insert
 inside
@@ -1511,6 +1516,7 @@ iterate
 iterates
 iterating
 iteration
+iteratively
 itertools
 its
 itself
@@ -1868,6 +1874,7 @@ n-мерного
 n-мерное
 n-мерном
 naivekdtree
+naivesummarizer
 name
 named
 namely
@@ -2200,6 +2207,7 @@ preparing
 preposition
 preprocess
 preprocessed
+preprocessedsentence
 preprocesses
 preprocessing
 preprocessor
@@ -2594,6 +2602,8 @@ sends
 senior
 sent
 sentence
+sentenceencoder
+sentencepreprocessor
 sentenceprotocol
 sentences
 sentencestorage
@@ -2806,11 +2816,13 @@ suggestion
 suitable
 sum
 summ
+summa
 summarisation
 summarization
 summarization-label
 summarizationfinetuningpipeline
 summarizationsftpipeline
+summarizer
 summary
 summer
 super
@@ -2883,11 +2895,15 @@ tested
 testing
 tests
 text
+textgraph
+textgrapherror
 textprocessingpipeline
 textprocessingpipelinescoreeightreferenceprocess
 textprocessingpipelinescorefourreferenceprocess
 textprocessingpipelinescoresixreferenceprocess
 textprocessor
+textrank
+textranksummarizer
 texts
 tf
 tf-idf
@@ -3255,6 +3271,7 @@ write
 writes
 writing
 written
+ws
 wsl
 www
 xfplx
