@@ -11,7 +11,7 @@ Summarize text using TextRank algorithm
    Type alias representing a preprocessed sentence as a tuple of strings.
 """
 
-# pylint:disable=too-few-public-methods, unused-argument
+# pylint:disable=too-few-public-methods, unused-argument, super-init-not-called
 from typing import Sequence
 
 PreprocessedSentence = tuple[str, ...]
