@@ -198,6 +198,7 @@ articles
 artifact
 artifacts
 artifacttype
+arxiv
 as
 ascii
 asclepius
@@ -960,6 +961,7 @@ environment
 eos
 eow
 epoch
+eq
 equal
 equating
 er
