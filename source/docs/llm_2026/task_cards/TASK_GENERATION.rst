@@ -183,3 +183,6 @@ Metrics OPEN QA
 
 -  BLEU
 -  ROUGE
+
+.. note:: Use the ``rougeL`` metric and set ``seed=77`` parameter
+          when loading the rouge metric.
