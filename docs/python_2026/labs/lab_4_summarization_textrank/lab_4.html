@@ -1,0 +1,1187 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторная работа №4. Разработка системы автоматической суммаризации текстов &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=480edd71" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lab_4_summarization_textrank package" href="lab_4_summarization_textrank.api.html" />
+    <link rel="prev" title="lab_3_generate_by_ngrams package" href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Курсы</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2026/2027)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../lab_1_classify_profile/lab_1.html">Лабораторная работа №1. Определение языка текста на основе частотного словаря</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lab_2_tokenize_by_bpe/lab_2.html">Лабораторная работа №2. Кодирование текста с помощью алгоритма BPE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3.html">Лабораторная работа №3. Генерация текста с помощью n-грамм</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Лабораторная работа №4. Разработка системы автоматической суммаризации текстов</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../lectures_content.html">История занятий</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lectures_content.html#id2">Краткий конспект лекций</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../llm_2026/index.html">“Introduction to Neural Network” course (2026/2027)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../archived_courses/index.html">Курсы прошлых лет</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_docs/index.html">Для разработчиков курсов</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Курсы</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2026/2027)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+      <li class="breadcrumb-item active">Лабораторная работа №4. Разработка системы автоматической суммаризации текстов</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/python_2026/labs/lab_4_summarization_textrank/lab_4.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o4">
+<h1>Лабораторная работа №4. Разработка системы автоматической суммаризации текстов<a class="headerlink" href="#o4" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lab_4_summarization_textrank.api.html">Full API</a></li>
+</ul>
+</div>
+<section id="id1">
+<h2>Дано<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Текст на русском языке из <a class="reference external" href="https://www.kaggle.com/datasets/phoenix120/gazeta-summaries">датасета статей сайта
+Газета.ру</a>
+о жизни первого космонавта <a class="reference external" href="https://ru.wikipedia.org/wiki/Гагарин,_Юрий_Алексеевич">Юрия Гагарина</a>
+в папке
+<a class="reference external" href="https://github.com/fipl-hse/2026-2-level-labs/blob/main/lab_4_summarization_textrank/assets/article_701.txt">assets</a>.</p></li>
+<li><p>Список стоп слов (предлоги, союзы, местоимения и другие
+неполнозначные слова русского языка).
+<a class="reference external" href="https://github.com/fipl-hse/2026-2-level-labs/blob/main/lab_4_summarization_textrank/assets/stop_words.txt">Ссылка</a>.</p>
+<ul class="simple">
+<li><p>Данный список взят из библиотеки для работы с естественным языком
+<a class="reference external" href="https://www.nltk.org/index.html">NLTK</a>.</p></li>
+</ul>
+</li>
+</ol>
+<p>Необходимо реализовать алгоритм, способный для произвольного текста
+создавать его краткое содержание (<em>суммаризовать</em>).</p>
+</section>
+<section id="id2">
+<h2>Подходы к выделению краткого содержания текста<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>У большинства задач есть несколько решений. Это применимо и к выделению
+краткого содержания.</p>
+<p>В зависимости от желаемой структуры краткого содержания, выделяют два
+подхода:</p>
+<ol class="arabic simple">
+<li><p><em>Извлекающий</em> (<em>extraction-based</em>) — из исходного текста
+выбираются наиболее важные фразы, предложения или абзацы, совокупность
+которых образует краткое содержание. При этом данные фрагменты не
+обрабатывают, а извлекают в том порядке и виде, в каком они приведены в
+исходном тексте.</p>
+<ul class="simple">
+<li><p><strong>Достоинства</strong>: независимость от предметной области, сравнительная
+простота разработки.</p></li>
+<li><p><strong>Недостатки</strong>: извлекающий при низкой связности суммаризатор может
+не найти значимых связей и начнет просто пересказывать исходный текст.</p></li>
+</ul>
+</li>
+<li><p><em>Генерирующий</em> (<em>abstractive-based</em>) — генерирующие методы основаны на
+лингвистических правилах обработки естественного языка или методах
+искусственного интеллекта. Они содержательно обобщают исходный документ,
+создавая текст, явно в нём не представленный.</p>
+<ul class="simple">
+<li><p><strong>Достоинства</strong>: лучшее качество результата.</p></li>
+<li><p><strong>Недостатки</strong>: сложность практической реализации, необходимость сбора
+большого количества лингвистических знаний.</p></li>
+</ul>
+</li>
+</ol>
+<p>В данной работе мы будем реализовывать алгоритм, основанный на
+извлекающем подходе.</p>
+<p>Также, чтобы избежать путаницы, определим, что мы будем считать кратким
+содержанием:</p>
+<ul class="simple">
+<li><p><em>Краткое содержание</em> или <em>summary</em> для текста — несколько наиболее
+важных для текста предложений.</p></li>
+</ul>
+<p>Для оценки значимости предложений мы будем использовать графовый алгоритм
+<strong>`TextRank &lt;https://arxiv.org/pdf/1602.03606.pdf&gt;`__</strong>.</p>
+</section>
+<section id="id3">
+<h2>Терминология<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<p>В данной работе Вам предлагается поработать с такой структурой организации данных,
+как <em>граф</em>. Давайте коротко рассмотрим его характеристики.</p>
+<p>Граф — сложная нелинейная структура данных, отображающая связи между разными объектами.</p>
+<figure class="align-center" id="id45">
+<img alt="../../../../_images/graph.jpeg" src="../../../../_images/graph.jpeg" />
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://medium.com/swlh/data-structures-graphs-50a8a032db03">Источник картинки</a></span><a class="headerlink" href="#id45" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>На картинке выше изображен граф. Круги называются <strong>вершинами</strong> (vertex), соединяющие их
+линии — <strong>ребрами</strong> (edge). Как видите, может быть так, что не все вершины соединены между
+собой. Если у двух вершин есть общее соединяющее их ребро, то такие вершины называются
+<strong>инцидентными</strong>. Ребро, соединяющее вершину с самой собой, называется <em>петлей</em>. На данном
+графе нет петель.</p>
+<p>Графы бывают <strong>ориентированные</strong> (directed) и <strong>неориентированные</strong> (undirected). В
+ориентированных графах ребра различаются по их направлению: есть вершина, из которой ребро
+исходит, и вершина, к которой оно направлено. В неориентированных графах такого различия нет.</p>
+<figure class="align-center" id="id46">
+<img alt="../../../../_images/directed_undirected_graph.jpeg" src="../../../../_images/directed_undirected_graph.jpeg" />
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://medium.com/swlh/data-structures-graphs-50a8a032db03">Источник картинки</a></span><a class="headerlink" href="#id46" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Графы также делятся на <strong>взвешенные</strong> и <strong>невзвешенные</strong>. Во взвешенных графах ребра могут
+иметь разный вес. Так, например, на картинке ниже изображен взвешенный граф, в котором
+вершинами являются предложения:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> — “Кот спит на диване.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> — “Кот любит играть с клубком.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> — “Собака громко лает во дворе.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> — “Кот и собака гуляют.”</p></li>
+</ul>
+<p>В данном графе ребра показывают связь одного предложения с другим по мере Жаккара, с
+которой мы познакомимся с Вами в дальнейшем.</p>
+<figure class="align-center">
+<img alt="../../../../_images/weighted_graph.jpeg" src="../../../../_images/weighted_graph.jpeg" />
+</figure>
+<p>В настоящей лабораторной графы будут использованы как способ представить текст. В таких
+графах вершинами являются предложения, а ребрами — связи (значения смежности) между ними.</p>
+</section>
+<section id="id4">
+<h2>Что надо сделать<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<section id="id5">
+<h3>Шаг 0. Начать работу над лабораторной (вместе с преподавателем на практике)<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Измените оценку в файле <code class="docutils literal notranslate"><span class="pre">settings.json</span></code>.</p></li>
+<li><p>Измените файлы <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p></li>
+<li><p>Закоммитьте изменения.</p></li>
+<li><p>Создайте Pull request.</p></li>
+</ol>
+<p>Реализуйте классы и функции в <code class="docutils literal notranslate"><span class="pre">main.py</span></code> и импортируйте их в
+<code class="docutils literal notranslate"><span class="pre">start.py</span></code> для проверки работы кода.
+В модуле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> весь код должен быть оформлен в функции <code class="docutils literal notranslate"><span class="pre">main()</span></code>,
+которая вызывается в конце файла.
+Часть кода с чтением данного текста и стоп-слов и сохранением их в переменные
+<code class="docutils literal notranslate"><span class="pre">text</span></code> и <code class="docutils literal notranslate"><span class="pre">stop_words</span></code> уже написана.
+Строчку <code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">result</span></code> нельзя изменять и перемещать в другие места кода,
+она должна остаться в конце функции <code class="docutils literal notranslate"><span class="pre">main()</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В рамках данной лабораторной работы
+нельзя использовать сторонние модули и модуль collections.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Если на вход в функцию или метод подаются некорректные аргументы,
+поднимается исключение
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.IncorrectArgumentError" title="lab_4_summarization_textrank.main.IncorrectArgumentError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.IncorrectArgumentError</span></code></a>
+с соответствующим сообщением: <code class="docutils literal notranslate"><span class="pre">&quot;Incorrect</span> <span class="pre">input</span> <span class="pre">value&quot;</span></code>.
+Некорректным аргумент считается, если его тип отличается от ожидаемого типа.
+О том, считаются ли пустые последовательности и словари некорректными
+аргументами, будет упомянуто в релевантных шагах.</p>
+<p>При ошибках в работе графа смежности (например, при добавлении петли или
+обращении к вершине, отсутствующей в графе) поднимается исключение
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraphError" title="lab_4_summarization_textrank.main.TextGraphError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraphError</span></code></a>
+с сообщением, соответствующим ошибке. О необходимости использования этого
+исключения будет упомянуто в релевантных шагах.</p>
+</div>
+</section>
+<section id="id6">
+<h3>Шаг 1. Творческое задание<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шага 1 соответствует 4 баллам.</p>
+</div>
+<p>Задание анонсируется преподавателем на практике.
+Подробная информация о задании и сроки приёмки публикуются в канале курса.
+Выполнение задания также является обязательным для получения оценки 6 и выше.</p>
+</section>
+<section id="id7">
+<h3>Шаг 2. Создание абстракции для предложения<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>Мы научились предобрабатывать и кодировать отдельные слова, однако в задаче <strong>извлекающей</strong>
+суммаризации базовой единицей текста выступает целое предложение.
+Так как в данной работе мы будем оперировать предложениями, причём в
+разных их проявлениях (сырой текст, предобработанный, закодированный),
+имеет смысл создать <em>абстракцию</em>, которая будет представлять предложение
+из реального мира в коде.</p>
+<p>За это отвечает класс <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>.</p>
+<section id="sentence">
+<h4>Шаг 2.1. Инициализация класса <code class="docutils literal notranslate"><span class="pre">Sentence</span></code><a class="headerlink" href="#sentence" title="Link to this heading"></a></h4>
+<p>Инициализатор <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.__init__" title="lab_4_summarization_textrank.main.Sentence.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.__init__()</span></code></a> принимает
+параметры <code class="docutils literal notranslate"><span class="pre">text</span></code> (текст предложения) и <code class="docutils literal notranslate"><span class="pre">position</span></code> (позиция предложения в тексте;
+нумерация позиций начинается с нуля).</p>
+<p>Внутри инициализатора необходимо сохранить пришедшие на вход аргументы в одноимённые
+защищённые атрибуты класса: <code class="docutils literal notranslate"><span class="pre">_text</span></code> и <code class="docutils literal notranslate"><span class="pre">_position</span></code>, а также создать следующие
+защищённые атрибуты класса, инициализированные пустыми кортежами:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_preprocessed</span></code> — предобработанная версия предложения;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_encoded</span></code> — закодированная версия предложения.</p></li>
+</ul>
+<p>Пример создания экземпляра класса:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sentence</span> <span class="o">=</span> <span class="n">Sentence</span><span class="p">(</span><span class="s2">"В лесу родилась ёлочка."</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4>Шаг 2.2. Реализация методов доступа и изменения атрибутов<a class="headerlink" href="#id8" title="Link to this heading"></a></h4>
+<p>В объектно-ориентированном программировании прямой доступ к внутренним полям объекта извне
+обычно ограничивают с помощью защищённых атрибутов (начинающихся с <code class="docutils literal notranslate"><span class="pre">_</span></code>), чтобы защитить
+состояние объекта от некорректных изменений. Взаимодействие с такими атрибутами строится
+через единый публичный интерфейс — <strong>геттеры</strong> (методы чтения значения) и <strong>сеттеры</strong>
+(методы записи значения с предварительной проверкой корректности данных).</p>
+<p>Реализуйте следующие геттеры и сеттеры для класса
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>:</p>
+<ul class="simple">
+<li><p>геттеры:
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.get_text" title="lab_4_summarization_textrank.main.Sentence.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.get_text()</span></code></a>,
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.get_position" title="lab_4_summarization_textrank.main.Sentence.get_position"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.get_position()</span></code></a>,
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.get_preprocessed" title="lab_4_summarization_textrank.main.Sentence.get_preprocessed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.get_preprocessed()</span></code></a>,
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.get_encoded" title="lab_4_summarization_textrank.main.Sentence.get_encoded"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.get_encoded()</span></code></a>;</p></li>
+<li><p>сеттеры:
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.set_preprocessed" title="lab_4_summarization_textrank.main.Sentence.set_preprocessed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.set_preprocessed()</span></code></a>,
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.set_encoded" title="lab_4_summarization_textrank.main.Sentence.set_encoded"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.set_encoded()</span></code></a>.</p></li>
+</ul>
+<p>Методы <code class="docutils literal notranslate"><span class="pre">set_preprocessed</span></code> и <code class="docutils literal notranslate"><span class="pre">set_encoded</span></code> принимают новое значение,
+проверяют его тип и сохраняют в соответствующий защищённый атрибут экземпляра.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>При вызове сеттеров должна происходить проверка типа входных данных:</p>
+<ul class="simple">
+<li><p>для <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.set_preprocessed" title="lab_4_summarization_textrank.main.Sentence.set_preprocessed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.set_preprocessed()</span></code></a> проверяется,
+что передана последовательность, все элементы которой являются строками;</p></li>
+<li><p>для <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.set_encoded" title="lab_4_summarization_textrank.main.Sentence.set_encoded"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.set_encoded()</span></code></a> проверяется,
+что передана последовательность, все элементы которой являются целыми числами.</p></li>
+</ul>
+<p>Если условие не выполняется, поднимается
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.IncorrectArgumentError" title="lab_4_summarization_textrank.main.IncorrectArgumentError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.IncorrectArgumentError</span></code></a>.</p>
+</div>
+<p>Обратите внимание, что <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.set_encoded" title="lab_4_summarization_textrank.main.Sentence.set_encoded"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.set_encoded()</span></code></a> и
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.set_preprocessed" title="lab_4_summarization_textrank.main.Sentence.set_preprocessed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.set_preprocessed()</span></code></a> могут принимать пустые
+последовательности.</p>
+</section>
+<section id="id9">
+<h4>Шаг 2.3. Описание предложения<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<p>В данной лабораторной работе Вы будете много работать с пользовательскими классами.
+Чтобы узнать, что скрывается за интерфейсом экземпляра
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>, в общем случае понадобится
+вызывать один из геттеров класса и затем функцию <code class="docutils literal notranslate"><span class="pre">print()</span></code> от полученного результата.</p>
+<p>Чтобы упростить работу с классами, реализуйте служебный метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.__str__" title="lab_4_summarization_textrank.main.Sentence.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.__str__()</span></code></a>,
+который возвращает строковое представление предложения в формате
+<code class="docutils literal notranslate"><span class="pre">Sentence(text='Привет.',</span> <span class="pre">position=0)</span></code>.
+Используйте значения атрибутов <code class="docutils literal notranslate"><span class="pre">_text</span></code> и <code class="docutils literal notranslate"><span class="pre">_position</span></code>.</p>
+</section>
+</section>
+<section id="id10">
+<h3>Шаг 3. Выделение и предобработка предложения<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>За разделение текста на предложения и очистку каждого предложения отвечает класс
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor" title="lab_4_summarization_textrank.main.SentencePreprocessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor</span></code></a>.</p>
+<section id="sentencepreprocessor">
+<h4>Шаг 3.1. Инициализация класса <code class="docutils literal notranslate"><span class="pre">SentencePreprocessor</span></code><a class="headerlink" href="#sentencepreprocessor" title="Link to this heading"></a></h4>
+<p>Инициализатор <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor.__init__" title="lab_4_summarization_textrank.main.SentencePreprocessor.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor.__init__()</span></code></a>
+принимает параметры <code class="docutils literal notranslate"><span class="pre">stop_words</span></code> (последовательность стоп-слов) и <code class="docutils literal notranslate"><span class="pre">punctuation</span></code>
+(последовательность символов пунктуации, подлежащих удалению).</p>
+<p>Внутри инициализатора необходимо сохранить пришедшие на вход аргументы в одноимённые
+защищённые атрибуты класса: <code class="docutils literal notranslate"><span class="pre">_stop_words</span></code> и <code class="docutils literal notranslate"><span class="pre">_punctuation</span></code>.
+Допускается передача пустых последовательностей стоп-слов и знаков пунктуации.</p>
+<p>Пример создания экземпляра класса:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stop_words</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'в'</span><span class="p">,</span> <span class="s1">'на'</span><span class="p">,</span> <span class="s1">'и'</span><span class="p">)</span>
+<span class="n">punctuation</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'.'</span><span class="p">,</span> <span class="s1">','</span><span class="p">,</span> <span class="s1">'!'</span><span class="p">,</span> <span class="s1">'?'</span><span class="p">)</span>
+<span class="n">sentence_preprocessor</span> <span class="o">=</span> <span class="n">SentencePreprocessor</span><span class="p">(</span><span class="n">stop_words</span><span class="p">,</span> <span class="n">punctuation</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h4>Шаг 3.2. Разделение текста на предложения<a class="headerlink" href="#id11" title="Link to this heading"></a></h4>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor._split_by_sentence" title="lab_4_summarization_textrank.main.SentencePreprocessor._split_by_sentence"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor._split_by_sentence()</span></code></a>
+разделяет текст на отдельные предложения. Метод принимает на вход неочищенный текст и
+возвращает кортеж предложений.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Каждый элемент возвращаемого кортежа — экземпляр класса
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Критерий разделения текста на предложения</strong>: один из знаков препинания завершения
+предложения (<code class="docutils literal notranslate"><span class="pre">.!?</span></code>), за которым следуют пробел(ы) или символ(ы) новой
+строки и заглавная буква. Перед разделением замените в тексте символы переноса
+строки <code class="docutils literal notranslate"><span class="pre">\n</span></code> и повторяющиеся пробелы на одиночный пробел.</p>
+</div>
+</section>
+<section id="id12">
+<h4>Шаг 3.3. Очистка и токенизация текста<a class="headerlink" href="#id12" title="Link to this heading"></a></h4>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor._clean_and_tokenize" title="lab_4_summarization_textrank.main.SentencePreprocessor._clean_and_tokenize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor._clean_and_tokenize()</span></code></a>
+очищает текст от знаков препинания из атрибута <code class="docutils literal notranslate"><span class="pre">_punctuation</span></code>, приводит его к нижнему
+регистру и делит на отдельные токены по пробелу. Метод возвращает кортеж выделенных токенов.</p>
+</section>
+<section id="id13">
+<h4>Шаг 3.4. Удаление стоп-слов<a class="headerlink" href="#id13" title="Link to this heading"></a></h4>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor._remove_stop_words" title="lab_4_summarization_textrank.main.SentencePreprocessor._remove_stop_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor._remove_stop_words()</span></code></a>
+принимает последовательность токенов и возвращает кортеж токенов, не содержащий стоп-слов из
+атрибута <code class="docutils literal notranslate"><span class="pre">_stop_words</span></code>.</p>
+<p>Принимаемая последовательность может быть пустой.</p>
+</section>
+<section id="id14">
+<h4>Шаг 3.5. Очистка произвольного текста<a class="headerlink" href="#id14" title="Link to this heading"></a></h4>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor.preprocess_text" title="lab_4_summarization_textrank.main.SentencePreprocessor.preprocess_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor.preprocess_text()</span></code></a>
+принимает неочищенную строку и возвращает кортеж очищенных токенов без стоп-слов,
+последовательно вызывая
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor._clean_and_tokenize" title="lab_4_summarization_textrank.main.SentencePreprocessor._clean_and_tokenize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor._clean_and_tokenize()</span></code></a> и
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor._remove_stop_words" title="lab_4_summarization_textrank.main.SentencePreprocessor._remove_stop_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor._remove_stop_words()</span></code></a>.</p>
+</section>
+<section id="id15">
+<h4>Шаг 3.6. Предобработка предложений<a class="headerlink" href="#id15" title="Link to this heading"></a></h4>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor._preprocess_sentences" title="lab_4_summarization_textrank.main.SentencePreprocessor._preprocess_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor._preprocess_sentences()</span></code></a>
+предобрабатывает последовательность предложений с помощью
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor.preprocess_text" title="lab_4_summarization_textrank.main.SentencePreprocessor.preprocess_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor.preprocess_text()</span></code></a>.</p>
+<p>Метод устанавливает для каждого предложения его предобработанную версию с помощью
+сеттера <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.set_preprocessed" title="lab_4_summarization_textrank.main.Sentence.set_preprocessed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.set_preprocessed()</span></code></a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Необходимо использовать методы
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.get_text" title="lab_4_summarization_textrank.main.Sentence.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.get_text()</span></code></a> и
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.set_preprocessed" title="lab_4_summarization_textrank.main.Sentence.set_preprocessed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.set_preprocessed()</span></code></a> для
+взаимодействия с экземплярами класса
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>.</p>
+</div>
+<p>Последовательность предложений на входе может быть пустая.</p>
+</section>
+<section id="id16">
+<h4>Шаг 3.7. Извлечение предложений из текста<a class="headerlink" href="#id16" title="Link to this heading"></a></h4>
+<p>Метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor.get_sentences" title="lab_4_summarization_textrank.main.SentencePreprocessor.get_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor.get_sentences()</span></code></a>
+является частью публичного интерфейса класса
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor" title="lab_4_summarization_textrank.main.SentencePreprocessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor</span></code></a>.
+Он принимает на вход текст и возвращает кортеж предобработанных предложений.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Каждый элемент возвращаемого кортежа — экземпляр класса
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>, у которого заполнены поля
+<code class="docutils literal notranslate"><span class="pre">_text</span></code>, <code class="docutils literal notranslate"><span class="pre">_position</span></code> и <code class="docutils literal notranslate"><span class="pre">_preprocessed</span></code>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Необходимо использовать методы
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor._split_by_sentence" title="lab_4_summarization_textrank.main.SentencePreprocessor._split_by_sentence"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor._split_by_sentence()</span></code></a> и
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor._preprocess_sentences" title="lab_4_summarization_textrank.main.SentencePreprocessor._preprocess_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor._preprocess_sentences()</span></code></a>.</p>
+</div>
+</section>
+<section id="id17">
+<h4>Шаг 3.8. Описание обработчика предложений<a class="headerlink" href="#id17" title="Link to this heading"></a></h4>
+<p>Аналогично <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.__str__" title="lab_4_summarization_textrank.main.Sentence.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.__str__()</span></code></a>,
+реализуйте служебный метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor.__str__" title="lab_4_summarization_textrank.main.SentencePreprocessor.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor.__str__()</span></code></a>,
+который возвращает строковое представление класса в формате
+<code class="docutils literal notranslate"><span class="pre">SentencePreprocessor(stop_words=4,</span> <span class="pre">punctuation=0)</span></code>, где числа обозначают
+длину последовательностей атрибутов <code class="docutils literal notranslate"><span class="pre">_stop_words</span></code> и <code class="docutils literal notranslate"><span class="pre">_punctuation</span></code>.</p>
+</section>
+</section>
+<section id="id18">
+<h3>Шаг 4. Кодирование предложения<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<p>За кодирование токенов в предложениях отвечает класс
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder" title="lab_4_summarization_textrank.main.SentenceEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder</span></code></a>.</p>
+<section id="sentenceencoder">
+<h4>Шаг 4.1. Инициализация класса <code class="docutils literal notranslate"><span class="pre">SentenceEncoder</span></code><a class="headerlink" href="#sentenceencoder" title="Link to this heading"></a></h4>
+<p>Инициализатор <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder.__init__" title="lab_4_summarization_textrank.main.SentenceEncoder.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder.__init__()</span></code></a> не
+принимает аргументов и создаёт следующие атрибуты:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_word2id</span></code> — защищённый словарь соответствий вида <code class="docutils literal notranslate"><span class="pre">токен</span> <span class="pre">-&gt;</span> <span class="pre">идентификатор</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_id2word</span></code> — защищённый словарь соответствий вида <code class="docutils literal notranslate"><span class="pre">идентификатор</span> <span class="pre">-&gt;</span> <span class="pre">токен</span></code>;</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">last</span></code> — целочисленный счётчик последнего присвоенного идентификатора,</dt><dd><p>инициализируемый числом <cite>999</cite>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Пример создания экземпляра класса:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sentence_encoder</span> <span class="o">=</span> <span class="n">SentenceEncoder</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h4>Шаг 4.2. Заполнение атрибутов класса<a class="headerlink" href="#id19" title="Link to this heading"></a></h4>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder._learn_indices" title="lab_4_summarization_textrank.main.SentenceEncoder._learn_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder._learn_indices()</span></code></a>
+принимает последовательность токенов и дополняет атрибуты <code class="docutils literal notranslate"><span class="pre">_word2id</span></code> и <code class="docutils literal notranslate"><span class="pre">_id2word</span></code>. Метод
+ничего не возвращает. Идентификаторы присваиваются последовательно, по порядку первого
+появления уникальных токенов, начиная с <code class="docutils literal notranslate"><span class="pre">1000</span></code>.
+Принимаемая последовательность токенов может быть пустой.</p>
+<p>Рассмотрим пример. Пусть дана последовательность токенов:
+<code class="docutils literal notranslate"><span class="pre">('в',</span> <span class="pre">'лесу',</span> <span class="pre">'родилась',</span> <span class="pre">'ёлочка',</span> <span class="pre">'в',</span> <span class="pre">'лесу',</span> <span class="pre">'она',</span> <span class="pre">'росла')</span></code>.
+Тогда атрибут <code class="docutils literal notranslate"><span class="pre">_word2id</span></code> будет выглядеть так:
+<code class="docutils literal notranslate"><span class="pre">{'в':</span> <span class="pre">1000,</span> <span class="pre">'лесу':</span> <span class="pre">1001,</span> <span class="pre">'родилась':</span> <span class="pre">1002,</span> <span class="pre">'ёлочка':</span> <span class="pre">1003,</span> <span class="pre">'она':</span> <span class="pre">1004,</span> <span class="pre">'росла':</span> <span class="pre">1005}</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder" title="lab_4_summarization_textrank.main.SentenceEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder</span></code></a> обрабатывает
+предложения одно за другим, поэтому метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder._learn_indices" title="lab_4_summarization_textrank.main.SentenceEncoder._learn_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder._learn_indices()</span></code></a>
+должен <strong>дополнять</strong> атрибуты <code class="docutils literal notranslate"><span class="pre">_word2id</span></code> и <code class="docutils literal notranslate"><span class="pre">_id2word</span></code>, не перезаписывая уже
+сохранённые соответствия. Атрибут <code class="docutils literal notranslate"><span class="pre">last</span></code> изменяется соответственно.</p>
+</div>
+</section>
+<section id="id20">
+<h4>Шаг 4.3. Кодирование предложений<a class="headerlink" href="#id20" title="Link to this heading"></a></h4>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder.encode_sentences" title="lab_4_summarization_textrank.main.SentenceEncoder.encode_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder.encode_sentences()</span></code></a>
+принимает последовательность предложений (экземпляров класса
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>) и для каждого из них формирует
+закодированную версию на основе его предобработанных токенов.
+Последовательность предложений может быть пустой.</p>
+<p>Для каждого предобработанного предложения, получаемого через
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.get_preprocessed" title="lab_4_summarization_textrank.main.Sentence.get_preprocessed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.get_preprocessed()</span></code></a>
+вызывается
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder._learn_indices" title="lab_4_summarization_textrank.main.SentenceEncoder._learn_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder._learn_indices()</span></code></a>.</p>
+<p>Метод изменяет каждый переданный экземпляр
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a> на месте,
+записывая полученный кортеж идентификаторов в его атрибут <code class="docutils literal notranslate"><span class="pre">_encoded</span></code> через
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.set_encoded" title="lab_4_summarization_textrank.main.Sentence.set_encoded"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.set_encoded()</span></code></a>.</p>
+</section>
+<section id="id21">
+<h4>Шаг 4.4. Описание кодировщика предложений<a class="headerlink" href="#id21" title="Link to this heading"></a></h4>
+<p>Аналогично предыдущим классам, реализуйте служебный метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder.__str__" title="lab_4_summarization_textrank.main.SentenceEncoder.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder.__str__()</span></code></a>,
+который возвращает строковое представление класса в формате
+<code class="docutils literal notranslate"><span class="pre">SentenceEncoder(vocabulary_size=5)</span></code>, где число обозначает размер
+словарей с парами индексов и токенов.</p>
+</section>
+</section>
+<section id="id22">
+<h3>Шаг 5. Демонстрация выделения и кодирования предложений<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-5 соответствует 6 баллам.</p>
+</div>
+<p>В файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code> в переменной <code class="docutils literal notranslate"><span class="pre">text</span></code> находится одна из статей.
+Выделите из неё предложения с помощью
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor" title="lab_4_summarization_textrank.main.SentencePreprocessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor</span></code></a> и закодируйте их
+с помощью <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder" title="lab_4_summarization_textrank.main.SentenceEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder</span></code></a>.</p>
+</section>
+<section id="id23">
+<h3>Шаг 6. Вычисление метрики смежности<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<p>Предобработанное предложение — последовательность из токенов. Существует
+<a class="reference external" href="https://aircconline.com/mlaij/V3N1/3116mlaij03.pdf">множество способов</a> узнать,
+насколько две последовательности элементов похожи друг на друга.</p>
+<p>В данной работе Вы реализуете <em>меру Жаккара</em> (<em>Jaccard
+Similarity/Index</em>), которая позволяет понять, насколько два множества
+элементов похожи.</p>
+<p>Формула выглядит следующим образом:</p>
+<div class="math notranslate nohighlight">
+\[J(A, B) = \frac{|A\cap B|}{|A\cup B|}\]</div>
+<p>Объяснение:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> и <span class="math notranslate nohighlight">\(B\)</span> — множества элементов;</p></li>
+<li><p><span class="math notranslate nohighlight">\(|A\cap B|\)</span> — количество уникальных элементов, которые являются общими для
+обоих множеств;</p></li>
+<li><p><span class="math notranslate nohighlight">\(|A\cup B|\)</span> — общее количество уникальных элементов в обоих множествах.</p></li>
+</ul>
+<p>Пример:</p>
+<ul class="simple">
+<li><p>Множество <span class="math notranslate nohighlight">\(A\)</span> — <span class="math notranslate nohighlight">\(\{0, 1, 2, 5, 6\}\)</span></p></li>
+<li><p>Множество <span class="math notranslate nohighlight">\(B\)</span> — <span class="math notranslate nohighlight">\(\{0, 2, 3, 4, 5, 7, 9\}\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[J(A, B) = \frac{|A\cap B|}{|A\cup B|} = \frac{|\{0, 2, 5\}|}{|\{0, 1, 2, 3, 4, 5, 6, 7, 9\}|} = \frac{3}{9} = 0.3(3)\]</div>
+<p>Реализуйте функцию <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.calculate_similarity" title="lab_4_summarization_textrank.main.calculate_similarity"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.calculate_similarity()</span></code></a>,
+рассчитывающую значение меры Жаккара для двух последовательностей элементов.</p>
+<p>Функция принимает на вход две последовательности элементов и возвращает значение меры Жаккара.
+На данном этапе проверку типов элементов осуществлять не нужно, только проверку на то, что
+принимаемый объект — последовательность.</p>
+<p>Обратите внимание, что любой из аргументов может быть пустым. В случае,
+если хотя бы одна из входных последовательностей пустая, значение меры
+Жаккара равно <code class="docutils literal notranslate"><span class="pre">0.0</span></code>.</p>
+</section>
+<section id="id24">
+<h3>Шаг 7. Представление текста в виде графа смежности предложений<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<p>Для выделения важных предложений, нам нужно представить текст в виде графа:</p>
+<ul class="simple">
+<li><p><strong>Вершинами</strong> графа будут предложения (экземпляры класса
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>);</p></li>
+<li><p><strong>Рёбрами</strong> будут значения смежности между предложениями, вычисленные с помощью
+функции <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.calculate_similarity" title="lab_4_summarization_textrank.main.calculate_similarity"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.calculate_similarity()</span></code></a> из предыдущего шага.</p></li>
+</ul>
+<p>В этом шаге Вы будете реализовывать класс
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph</span></code></a>, представляющий
+такой граф смежности.</p>
+<p>Граф смежности задаётся в виде таблицы (матрицы смежности). В нашем случае
+незаполненная таблица выглядит вот так.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>В ней одинаковое количество столбцов и строк. При этом каждая строка и
+каждый столбец соответствуют одной какой-либо вершине графа. Например,
+на пересечении строки, соответствующей вершине <code class="docutils literal notranslate"><span class="pre">A</span></code>, и столбца,
+соответствующего вершине <code class="docutils literal notranslate"><span class="pre">B</span></code>, будет записано число, отражающее значение
+смежности между этими вершинами, являющимися предложениями. Давайте
+посмотрим, как она может выглядеть в заполненном виде.
+Представим, что каждая буква представляет вершину графа — предложение:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> — “Кот спит на диване.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> — “Кот любит играть с клубком.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> — “Собака громко лает во дворе.”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> — “Кот и собака гуляют.”</p></li>
+</ul>
+<p>Заполнение матрицы происходит в три шага:</p>
+<ol class="arabic">
+<li><p><strong>Предобработка и кодирование.</strong> При помощи классов
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentencePreprocessor" title="lab_4_summarization_textrank.main.SentencePreprocessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentencePreprocessor</span></code></a> и
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.SentenceEncoder" title="lab_4_summarization_textrank.main.SentenceEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.SentenceEncoder</span></code></a> предложения очищаются от
+стоп-слов и преобразуются в кортежи числовых ID:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">encoded_sentences</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'A'</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>     <span class="c1"># ('кот', 'спит', 'диване')</span>
+    <span class="s1">'B'</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>  <span class="c1"># ('кот', 'любит', 'играть', 'клубком')</span>
+    <span class="s1">'C'</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span>  <span class="c1"># ('собака', 'громко', 'лает', 'дворе')</span>
+    <span class="s1">'D'</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>    <span class="c1"># ('кот', 'собака', 'гуляют')</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Попарный расчёт меры Жаккара.</strong> Для каждой пары предложений вызывается функция
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.calculate_similarity" title="lab_4_summarization_textrank.main.calculate_similarity"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.calculate_similarity()</span></code></a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> и <code class="docutils literal notranslate"><span class="pre">B</span></code>: общий ID 0 , всего 6 уникальных ID — <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">6</span> <span class="pre">≈</span> <span class="pre">0.167</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> и <code class="docutils literal notranslate"><span class="pre">C</span></code>: общих ID нет — 0.0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> и <code class="docutils literal notranslate"><span class="pre">D</span></code>: общий ID 0, всего 5 уникальных ID — <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">5</span> <span class="pre">=</span> <span class="pre">0.2</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">C</span></code>: общих ID нет — 0.0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">D</span></code>: общий ID 0, всего 6 уникальных ID — <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">6</span> <span class="pre">≈</span> <span class="pre">0.167</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> и <code class="docutils literal notranslate"><span class="pre">D</span></code>: общий ID 6, всего 6 уникальных ID — <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">6</span> <span class="pre">≈</span> <span class="pre">0.167</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Заполнение матрицы смежности.</strong> Полученные значения записываются на пересечение
+соответствующих строк и столбцов. При этом на диагонали матрицы сходство предложения с
+самим собой равно 1.0.</p></li>
+</ol>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>1.0</p></td>
+<td><p>0.167</p></td>
+<td><p>0.0</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>0.167</p></td>
+<td><p>1.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.167</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>1.0</p></td>
+<td><p>0.167</p></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td><p>0.2</p></td>
+<td><p>0.167</p></td>
+<td><p>0.167</p></td>
+<td><p>1.0</p></td>
+</tr>
+</tbody>
+</table>
+<p>Далее описаны шаги реализации графа смежности.</p>
+<section id="textgraph">
+<h4>Шаг 7.1. Инициализация класса <code class="docutils literal notranslate"><span class="pre">TextGraph</span></code><a class="headerlink" href="#textgraph" title="Link to this heading"></a></h4>
+<p>Инициализатор <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.__init__" title="lab_4_summarization_textrank.main.TextGraph.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.__init__()</span></code></a> не
+принимает аргументов и создаёт защищённые атрибуты:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_vertices</span></code> — список вершин графа (экземпляров
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>), пустой при инициализации;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_matrix</span></code> — матрицу смежности, кодирующую связи между вершинами (пустой список при
+инициализации; ожидаемый тип данных: <code class="docutils literal notranslate"><span class="pre">list[list[float]]</span></code>).</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>В матрице смежности <code class="docutils literal notranslate"><span class="pre">_matrix</span></code>, которую Вы реализуете, должны храниться только
+строки и столбцы с вещественными числами (значениями смежности). Названия колонок и
+строк в примере выше даны исключительно для наглядности.</p>
+</div>
+<p>Пример создания экземпляра класса:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span> <span class="o">=</span> <span class="n">TextGraph</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h4>Шаг 7.2. Добавление вершины<a class="headerlink" href="#id25" title="Link to this heading"></a></h4>
+<p>Реализуйте вспомогательный метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph._add_vertex" title="lab_4_summarization_textrank.main.TextGraph._add_vertex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph._add_vertex()</span></code></a>. Метод принимает
+вершину (экземпляр <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>).</p>
+<p>Если такой объект ещё не сохранён в <code class="docutils literal notranslate"><span class="pre">_vertices</span></code>, метод добавляет его в <code class="docutils literal notranslate"><span class="pre">_vertices</span></code> и
+синхронно расширяет матрицу <code class="docutils literal notranslate"><span class="pre">_matrix</span></code> (добавляет новый столбец и новую строку,
+заполненные нулями <code class="docutils literal notranslate"><span class="pre">0.0</span></code>). Вычисление весов рёбер в этом методе <strong>не выполняется</strong> —
+за расчёт смежности отвечает метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph._add_edge" title="lab_4_summarization_textrank.main.TextGraph._add_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph._add_edge()</span></code></a>.
+Повторное добавление уже существующей вершины не должно изменять граф. Метод ничего не
+возвращает.</p>
+</section>
+<section id="id26">
+<h4>Шаг 7.3. Проверка вершины<a class="headerlink" href="#id26" title="Link to this heading"></a></h4>
+<p>В дальнейшем Вам понадобится убедиться в том, что вершина случайно не сравнилась с самой собой.
+Так как вершины являются экземплярами класса <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>,
+проверку удобнее всего совершать внутренне. Дополните поведение класса реализацией служебного метода
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.__eq__" title="lab_4_summarization_textrank.main.Sentence.__eq__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.__eq__()</span></code></a>,
+который вызывается каждый раз, когда Вы проверяете эквивалентность с помощью
+<code class="docutils literal notranslate"><span class="pre">==</span></code> и <code class="docutils literal notranslate"><span class="pre">!=</span></code>. В качестве критериев эквивалентности двух предложений
+используйте значения атрибутов <code class="docutils literal notranslate"><span class="pre">_text</span></code> и <code class="docutils literal notranslate"><span class="pre">_position</span></code>. То есть, внутри метода от Вас требуется
+сравнить значения атрибутов <code class="docutils literal notranslate"><span class="pre">_text</span></code> и <code class="docutils literal notranslate"><span class="pre">_position</span></code> текущего предложения и предложения, переданного
+как аргумент, и вернуть результат.</p>
+<p>Определение <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.__eq__" title="lab_4_summarization_textrank.main.Sentence.__eq__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.__eq__()</span></code></a> для пользовательского
+класса по умолчанию делает экземпляры класса нехэшируемыми. Это плохо, так как в дальнейшем мы
+будем использовать вершины (предложения) в качестве ключей словаря, а, как мы знаем, ключи словаря
+обязательно должны быть хэшируемы.</p>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.__hash__" title="lab_4_summarization_textrank.main.Sentence.__hash__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.__hash__()</span></code></a>,
+который решает эту проблему. Возвращаемое значение представляет собой хэш, взятый от кортежа
+значений атрибутов <code class="docutils literal notranslate"><span class="pre">_text</span></code> и <code class="docutils literal notranslate"><span class="pre">_position</span></code>.</p>
+</section>
+<section id="id27">
+<h4>Шаг 7.4. Добавление ребра<a class="headerlink" href="#id27" title="Link to this heading"></a></h4>
+<p>В данной лабораторной граф является изменяемой структурой данных: мы
+можем добавлять вершины и ребра после инициализации объекта.</p>
+<p>Ответственным за это является метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph._add_edge" title="lab_4_summarization_textrank.main.TextGraph._add_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph._add_edge()</span></code></a>. Он принимает на вход
+две вершины.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Петли, то есть ребра, соединяющие вершину с самой собой, добавлять нельзя.
+Если в качестве обоих входных аргументов переданы одинаковые вершины,
+поднимается исключение <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraphError" title="lab_4_summarization_textrank.main.TextGraphError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraphError</span></code></a>.</p>
+</div>
+<p>В случае, если какой-либо из вершин, пришедших в качестве аргумента, в графе ещё нет,
+необходимо добавить её с помощью метода
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph._add_vertex" title="lab_4_summarization_textrank.main.TextGraph._add_vertex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph._add_vertex()</span></code></a>.</p>
+<p>Далее метод вычисляет вес ребра для закодированной формы обоих вершин
+(получаемой из <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.get_encoded" title="lab_4_summarization_textrank.main.Sentence.get_encoded"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.get_encoded()</span></code></a>)
+с помощью функции <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.calculate_similarity" title="lab_4_summarization_textrank.main.calculate_similarity"><code class="xref py py-func docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.calculate_similarity()</span></code></a>
+и сохраняет полученное значение в симметричные ячейки матрицы
+<code class="docutils literal notranslate"><span class="pre">_matrix</span></code> (на пересечении строки первой вершины и столбца второй, а также строки второй
+вершины и столбца первой). Метод ничего не возвращает.</p>
+</section>
+<section id="id28">
+<h4>Шаг 7.5. Получение значения метрики смежности<a class="headerlink" href="#id28" title="Link to this heading"></a></h4>
+<p>Для использования графа необходимо иметь возможность запросить у него
+информацию о том, насколько связаны две вершины друг с другом. Для этого нужно определить метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.get_similarity_score" title="lab_4_summarization_textrank.main.TextGraph.get_similarity_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.get_similarity_score()</span></code></a>. Метод
+принимает на вход два аргумента: вершина №1 и вершина №2.</p>
+<p>Метод возвращает значение смежности между двумя вершинами из графа смежности.
+Он не вызывает другие методы и не обновляет атрибуты класса.</p>
+<p>Если какая-либо из запрошенных вершин отсутствует в графе, поднимается
+исключение <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraphError" title="lab_4_summarization_textrank.main.TextGraphError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraphError</span></code></a>.</p>
+</section>
+<section id="id29">
+<h4>Шаг 7.6. Получение информации обо всех вершинах<a class="headerlink" href="#id29" title="Link to this heading"></a></h4>
+<p>Также необходимо реализовать возможность узнать, какие вершины есть в
+графе. Для этого следует реализовать метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.get_vertices" title="lab_4_summarization_textrank.main.TextGraph.get_vertices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.get_vertices()</span></code></a>. Он не
+принимает никаких дополнительных аргументов. Возвращаемым значением
+является кортеж вершин сохраненного графа.</p>
+</section>
+<section id="id30">
+<h4>Шаг 7.7. Подсчет количества смежных вершин<a class="headerlink" href="#id30" title="Link to this heading"></a></h4>
+<p>Для алгоритма выявления важных предложений важно знать,
+со сколькими другими вершинами графа каждая конкретная вершина соединена ребром
+(имеет ненулевую смежность). Это значение называется <code class="docutils literal notranslate"><span class="pre">InOut</span> <span class="pre">score</span></code>. При суммаризации
+мы считаем, что две различные вершины соединены ребром, если значение метрики смежности для них
+больше <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.calculate_inout_score" title="lab_4_summarization_textrank.main.TextGraph.calculate_inout_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.calculate_inout_score()</span></code></a>
+принимает на вход вершину и возвращает количество других вершин графа, связанных с ней
+ребром положительного веса. Если на вход приходит вершина, которой нет в графе, поднимается
+исключение <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraphError" title="lab_4_summarization_textrank.main.TextGraphError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraphError</span></code></a>.</p>
+</section>
+<section id="id31">
+<h4>Шаг 7.8. Заполнение экземпляра графа<a class="headerlink" href="#id31" title="Link to this heading"></a></h4>
+<p>Для упрощения работы с экземпляром графа реализуем метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.build" title="lab_4_summarization_textrank.main.TextGraph.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.build()</span></code></a>,
+который заполнит его всеми вершинами и ребрами, которые можно извлечь из
+последовательности предложений.</p>
+<p>Метод принимает на вход непустую последовательность предложений.
+При заполнении графа обязательно используйте метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph._add_vertex" title="lab_4_summarization_textrank.main.TextGraph._add_vertex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph._add_vertex()</span></code></a>,
+чтобы добавить каждое входное предложение в качестве вершины.</p>
+<p>Внутри метода происходит выделение пар предложений и добавление
+соответствующих ребер в граф. Необходимо обращаться к методу
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph._add_edge" title="lab_4_summarization_textrank.main.TextGraph._add_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph._add_edge()</span></code></a>.</p>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.build" title="lab_4_summarization_textrank.main.TextGraph.build"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.build()</span></code></a> ничего не возвращает.</p>
+<p>Обратите внимание, что текст может содержать одинаковые предложения.
+Метод не должен передавать в
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph._add_edge" title="lab_4_summarization_textrank.main.TextGraph._add_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph._add_edge()</span></code></a> одинаковые предложения.</p>
+</section>
+<section id="id32">
+<h4>Шаг 7.9. Отбор лучших вершин<a class="headerlink" href="#id32" title="Link to this heading"></a></h4>
+<p>Проведите отбор лучших предложений для графа.
+Для этого реализуйте метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences" title="lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences()</span></code></a>,
+который принимает целое положительное число <code class="docutils literal notranslate"><span class="pre">n</span></code> и возвращает кортеж из <code class="docutils literal notranslate"><span class="pre">n</span></code>
+предложений с наибольшей суммой значений смежности в матрице <code class="docutils literal notranslate"><span class="pre">_matrix</span></code>.</p>
+<p>Если на момент вызова метода в графе нет вершин, поднимается
+исключение <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraphError" title="lab_4_summarization_textrank.main.TextGraphError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraphError</span></code></a>.</p>
+</section>
+<section id="id33">
+<h4>Шаг 7.10. Описание графа<a class="headerlink" href="#id33" title="Link to this heading"></a></h4>
+<p>Реализуйте служебные методы класса <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph</span></code></a>:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.__len__" title="lab_4_summarization_textrank.main.TextGraph.__len__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.__len__()</span></code></a> — возвращает целочисленное
+количество вершин в графе;</p></li>
+<li><p><a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.__str__" title="lab_4_summarization_textrank.main.TextGraph.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.__str__()</span></code></a> — возвращает строковое
+представление графа в формате <code class="docutils literal notranslate"><span class="pre">TextGraph(vertices=4)</span></code>, где число означает количество
+вершин в графе (его размер).</p></li>
+</ul>
+<p>Благодаря этому вызов <code class="docutils literal notranslate"><span class="pre">len(graph)</span></code> вернёт количество предложений в графе,
+а <code class="docutils literal notranslate"><span class="pre">print(graph)</span></code> выведет его краткое описание.</p>
+</section>
+</section>
+<section id="id34">
+<h3>Шаг 8. Наивная суммаризация<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<p>Класс <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer" title="lab_4_summarization_textrank.main.NaiveSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer</span></code></a> реализует базовый
+(наивный) графовый суммаризатор и определяет общий публичный интерфейс для графовых
+алгоритмов суммаризации.</p>
+<section id="naivesummarizer">
+<h4>Шаг 8.1. Инициализация класса <code class="docutils literal notranslate"><span class="pre">NaiveSummarizer</span></code><a class="headerlink" href="#naivesummarizer" title="Link to this heading"></a></h4>
+<p>Инициализатор <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer.__init__" title="lab_4_summarization_textrank.main.NaiveSummarizer.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer.__init__()</span></code></a>
+принимает построенный экземпляр <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph</span></code></a>,
+который необходимо сохранить в защищённый атрибут <code class="docutils literal notranslate"><span class="pre">_graph</span></code>.</p>
+<p>Пример создания экземпляра класса:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">summarizer</span> <span class="o">=</span> <span class="n">NaiveSummarizer</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id35">
+<h4>Шаг 8.2. Отбор лучших предложений<a class="headerlink" href="#id35" title="Link to this heading"></a></h4>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer._get_top_n_sentences" title="lab_4_summarization_textrank.main.NaiveSummarizer._get_top_n_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer._get_top_n_sentences()</span></code></a>,
+отбирающий лучшие предложения путём вызова метода
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences" title="lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences()</span></code></a>
+от сохранённого экземпляра графа.</p>
+</section>
+<section id="id36">
+<h4>Шаг 8.3. Составление краткого содержания<a class="headerlink" href="#id36" title="Link to this heading"></a></h4>
+<p>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer.summarize" title="lab_4_summarization_textrank.main.NaiveSummarizer.summarize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer.summarize()</span></code></a>
+упорядочивает переданные предложения по возрастанию их исходной позиции в тексте
+(<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.get_position" title="lab_4_summarization_textrank.main.Sentence.get_position"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.get_position()</span></code></a>), извлекает их текст с
+помощью <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence.get_text" title="lab_4_summarization_textrank.main.Sentence.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence.get_text()</span></code></a> и объединяет через
+символ переноса строки <code class="docutils literal notranslate"><span class="pre">\n</span></code>.</p>
+<p>Для примера возьмем матрицу из предыдущего шага:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+<th class="head"><p>C</p></th>
+<th class="head"><p>D</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>1.0</p></td>
+<td><p>0.167</p></td>
+<td><p>0.0</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>0.167</p></td>
+<td><p>1.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.167</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>1.0</p></td>
+<td><p>0.167</p></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td><p>0.2</p></td>
+<td><p>0.167</p></td>
+<td><p>0.167</p></td>
+<td><p>1.0</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt>Метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences" title="lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences()</span></code></a></dt><dd><p>считает сумму значений смежности по каждой строке матрицы:</p>
+</dd>
+</dl>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'A'</span><span class="p">:</span> <span class="mf">1.367</span><span class="p">,</span>  <span class="c1"># 1.0 + 0.167 + 0.0 + 0.2</span>
+    <span class="s1">'B'</span><span class="p">:</span> <span class="mf">1.334</span><span class="p">,</span>  <span class="c1"># 0.167 + 1.0 + 0.0 + 0.167</span>
+    <span class="s1">'C'</span><span class="p">:</span> <span class="mf">1.167</span><span class="p">,</span>  <span class="c1"># 0.0 + 0.0 + 1.0 + 0.167</span>
+    <span class="s1">'D'</span><span class="p">:</span> <span class="mf">1.534</span><span class="p">,</span>  <span class="c1"># 0.2 + 0.167 + 0.167 + 1.0</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>После вызова <code class="docutils literal notranslate"><span class="pre">_get_top_n_sentences(2)</span></code> возвращаются два предложения с наибольшей суммой:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">top_sentences</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'D'</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>В результате <code class="docutils literal notranslate"><span class="pre">summarize(n_sentences=2)</span></code> сортирует выбранные предложения в исходном
+порядке текста и возвращает их, соединённые символом <code class="docutils literal notranslate"><span class="pre">\n</span></code> (сначала <code class="docutils literal notranslate"><span class="pre">A</span></code>, затем <code class="docutils literal notranslate"><span class="pre">D</span></code>).</p>
+</section>
+<section id="id37">
+<h4>Шаг 8.4. Описание наивного суммаризатора<a class="headerlink" href="#id37" title="Link to this heading"></a></h4>
+<p>Аналогично предыдущим классам, реализуйте служебный метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer.__str__" title="lab_4_summarization_textrank.main.NaiveSummarizer.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer.__str__()</span></code></a>,
+который возвращает строковое представление класса в формате
+<code class="docutils literal notranslate"><span class="pre">NaiveSummarizer(graph=TextGraph(vertices=53))</span></code>.</p>
+</section>
+</section>
+<section id="id38">
+<h3>Шаг 9. Демонстрация работы алгоритма NaiveSummarizer<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-9 соответствует 8 баллам.</p>
+</div>
+<p>Продемонстрируйте выделение краткого содержания для текста, хранящегося
+в переменной <code class="docutils literal notranslate"><span class="pre">text</span></code>, в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.
+После Шага 5 текст должен быть предобработан, а предложения закодированы.</p>
+<p>Постройте граф <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph</span></code></a>,
+затем создайте экземпляр <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer" title="lab_4_summarization_textrank.main.NaiveSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer</span></code></a>
+на основе этого графа и получите краткое содержание текста из 5 предложений.
+Если текст короче, получите содержание на основе длины графа.</p>
+</section>
+<section id="textrank">
+<h3>Шаг 10. Алгоритм TextRank<a class="headerlink" href="#textrank" title="Link to this heading"></a></h3>
+<p>Алгоритм <strong>TextRank</strong> оценивает важность каждой вершины графа следующим образом: предложение
+считается тем важнее, чем с большим количеством других важных предложений оно связано.</p>
+<p><a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer" title="lab_4_summarization_textrank.main.TextRankSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer</span></code></a> наследуется от
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer" title="lab_4_summarization_textrank.main.NaiveSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer</span></code></a> и использует тот же
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph</span></code></a>. Новый граф для TextRank создавать не
+нужно. Класс оптимизированного суммаризатора использует интерфейс базового суммаризатора
+и дополняет его собственными методами и атрибутами.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text_rank</span> <span class="o">=</span> <span class="n">TextRankSummarizer</span><span class="p">(</span><span class="n">text_graph</span><span class="p">)</span>
+<span class="n">text_rank</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">text_rank</span><span class="o">.</span><span class="n">summarize</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="textranksummarizer">
+<h4>Шаг 10.1. Инициализация класса <code class="docutils literal notranslate"><span class="pre">TextRankSummarizer</span></code><a class="headerlink" href="#textranksummarizer" title="Link to this heading"></a></h4>
+<p>В инициализаторе <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer.__init__" title="lab_4_summarization_textrank.main.TextRankSummarizer.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer.__init__()</span></code></a>
+вызовите инициализатор родительского класса
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer.__init__" title="lab_4_summarization_textrank.main.NaiveSummarizer.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer.__init__()</span></code></a>.
+Передайте ему получаемый аргумент графа
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph</span></code></a>.</p>
+<p>Дополнительно задайте защищённые атрибуты параметров алгоритма:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_damping_factor</span></code> — <code class="docutils literal notranslate"><span class="pre">0.85</span></code> (коэффициент затухания <span class="math notranslate nohighlight">\(d\)</span>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_convergence_threshold</span></code> — <code class="docutils literal notranslate"><span class="pre">0.0001</span></code> (порог сходимости алгоритма);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_max_iter</span></code> — <code class="docutils literal notranslate"><span class="pre">50</span></code> (максимальное число итераций);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_scores</span></code> — словарь оценок значимости вершин (инициализируется пустым словарём).</p></li>
+</ul>
+<p>Пример создания экземпляра класса:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text_rank</span> <span class="o">=</span> <span class="n">TextRankSummarizer</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id39">
+<h4>Шаг 10.2. Обновление веса вершины<a class="headerlink" href="#id39" title="Link to this heading"></a></h4>
+<p>Реализуйте метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score" title="lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score()</span></code></a>,
+который пересчитывает оценку значимости одной вершины графа на текущей итерации алгоритма
+TextRank.</p>
+<p>Входные аргументы метода:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vertex</span></code> (<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>) — вершина <span class="math notranslate nohighlight">\(V_i\)</span>,
+для которой вычисляется новый вес.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">incidental_vertices</span></code> (последовательность экземпляров
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.Sentence</span></code></a>) — список вершин <span class="math notranslate nohighlight">\(InOut(V_i)\)</span>,
+имеющих положительную смежность с <code class="docutils literal notranslate"><span class="pre">vertex</span></code>. Список вершин может быть пустым.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">current_scores</span></code> (<code class="docutils literal notranslate"><span class="pre">dict[Sentence,</span> <span class="pre">float]</span></code>) — словарь оценок всех вершин с предыдущей итерации.</dt><dd><p>Словарь оценок не может быть пустым. Проверять элементы словаря не требуется.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Формула расчёта веса вершины:</p>
+<div class="math notranslate nohighlight">
+\[WS(V_i) = (1 - d) + d \times \sum_{V_j \in InOut(V_i)} \frac{1}{|InOut(V_j)|} WS(V_j)\]</div>
+<p>Пошаговый алгоритм вычисления нового веса:</p>
+<ol class="arabic simple">
+<li><p>Инициализируйте переменную накопителя суммы для вершины.</p></li>
+<li><p>Для каждой смежной вершины из <code class="docutils literal notranslate"><span class="pre">incidental_vertices</span></code>:</p>
+<ul class="simple">
+<li><p>получите количество её смежных рёбер с помощью метода
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.calculate_inout_score" title="lab_4_summarization_textrank.main.TextGraph.calculate_inout_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.calculate_inout_score()</span></code></a>;</p></li>
+<li><dl class="simple">
+<dt>прибавьте к переменной накопителя суммы частное деления веса вершины с</dt><dd><p>предыдущей итерации (значения аргумента <code class="docutils literal notranslate"><span class="pre">current_scores</span></code> для вершины)
+на количество смежных рёбер.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p>Вычислите итоговый вес вершины с учётом коэффициента затухания</p></li>
+<li><p>Обновите <code class="docutils literal notranslate"><span class="pre">self._scores</span></code> новым весом.</p></li>
+</ol>
+</section>
+<section id="id40">
+<h4>Шаг 10.3. Итеративное обучение TextRank<a class="headerlink" href="#id40" title="Link to this heading"></a></h4>
+<p>Реализуйте метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer.train" title="lab_4_summarization_textrank.main.TextRankSummarizer.train"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer.train()</span></code></a>:
+назначьте всем вершинам из <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.get_vertices" title="lab_4_summarization_textrank.main.TextGraph.get_vertices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.get_vertices()</span></code></a>
+начальный вес <code class="docutils literal notranslate"><span class="pre">1.0</span></code> в словаре <code class="docutils literal notranslate"><span class="pre">_scores</span></code> и итеративно пересчитывайте оценки с помощью
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score" title="lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score()</span></code></a>, пока
+суммарное абсолютное изменение оценок за итерацию не станет меньше или равно
+<code class="docutils literal notranslate"><span class="pre">_convergence_threshold</span></code> либо пока не будет достигнуто <code class="docutils literal notranslate"><span class="pre">_max_iter</span></code> итераций.</p>
+<p>Вам необходимо:</p>
+<ol class="arabic simple">
+<li><p>Получить все вершины графа и назначить каждой начальный вес <code class="docutils literal notranslate"><span class="pre">1.0</span></code> в словаре <code class="docutils literal notranslate"><span class="pre">self._scores</span></code>.</p></li>
+<li><p>В начале каждой итерации (не более <code class="docutils literal notranslate"><span class="pre">_max_iter</span></code>) сохранить копию оценок предыдущего шага
+(<code class="docutils literal notranslate"><span class="pre">prev_score</span></code>), чтобы при расчётах опираться только на оценки предыдущей итерации и
+обновление весов происходило синхронно.</p></li>
+<li><p>Для каждой вершины собрать список других похожих вершин (тех, у которых значение смежности с ней
+строго больше <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
+<li><p>Обновить вес вершины в <code class="docutils literal notranslate"><span class="pre">self._scores</span></code>, передав её, список похожих вершин и <code class="docutils literal notranslate"><span class="pre">prev_score</span></code>.</p></li>
+<li><p>Вычислить сумму модулей разностей между старыми и новыми весами всех вершин. Если сумма
+не превышает <code class="docutils literal notranslate"><span class="pre">_convergence_threshold</span></code>, завершить обучение досрочно; иначе вернуться на шаг 2.</p></li>
+</ol>
+<p>В данном методе необходимо использовать методы
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.get_vertices" title="lab_4_summarization_textrank.main.TextGraph.get_vertices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.get_vertices()</span></code></a>,
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph.get_similarity_score" title="lab_4_summarization_textrank.main.TextGraph.get_similarity_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph.get_similarity_score()</span></code></a> и
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score" title="lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score()</span></code></a>.</p>
+<p>Например, по матрице сходства из предыдущего шага можно выделить следующие связи:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> — связана с <code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">D</span></code> (<span class="math notranslate nohighlight">\(|InOut(A)| = 2\)</span>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> — связана с <code class="docutils literal notranslate"><span class="pre">A</span></code> и <code class="docutils literal notranslate"><span class="pre">D</span></code> (<span class="math notranslate nohighlight">\(|InOut(B)| = 2\)</span>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> — связана только с <code class="docutils literal notranslate"><span class="pre">D</span></code> (<span class="math notranslate nohighlight">\(|InOut(C)| = 1\)</span>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> — связана с <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">C</span></code> (<span class="math notranslate nohighlight">\(|InOut(D)| = 3\)</span>).</p></li>
+</ul>
+<p>Обучение начинается с веса <code class="docutils literal notranslate"><span class="pre">1.0</span></code> для каждой вершины:</p>
+<ul>
+<li><p><strong>Итерация 1</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> отдаёт по <code class="docutils literal notranslate"><span class="pre">1.0</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">=</span> <span class="pre">0.5</span></code> вершинам <code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">D</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> отдаёт по <code class="docutils literal notranslate"><span class="pre">1.0</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">=</span> <span class="pre">0.5</span></code> вершинам <code class="docutils literal notranslate"><span class="pre">A</span></code> и <code class="docutils literal notranslate"><span class="pre">D</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> отдаёт <code class="docutils literal notranslate"><span class="pre">1.0</span> <span class="pre">/</span> <span class="pre">1</span> <span class="pre">=</span> <span class="pre">1.0</span></code> вершине <code class="docutils literal notranslate"><span class="pre">D</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> отдаёт по <code class="docutils literal notranslate"><span class="pre">1.0</span> <span class="pre">/</span> <span class="pre">3</span> <span class="pre">≈</span> <span class="pre">0.333</span></code> вершинам <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p></li>
+</ul>
+<p>Собираем входящие доли, умножаем на <code class="docutils literal notranslate"><span class="pre">d</span> <span class="pre">=</span> <span class="pre">0.85</span></code> и прибавляем базовый вес <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">d</span> <span class="pre">=</span> <span class="pre">0.15</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> — <code class="docutils literal notranslate"><span class="pre">0.15</span> <span class="pre">+</span> <span class="pre">0.85</span> <span class="pre">*</span> <span class="pre">(0.5</span> <span class="pre">+</span> <span class="pre">0.5</span> <span class="pre">+</span> <span class="pre">1.0)</span> <span class="pre">=</span> <span class="pre">1.85</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> — <code class="docutils literal notranslate"><span class="pre">0.15</span> <span class="pre">+</span> <span class="pre">0.85</span> <span class="pre">*</span> <span class="pre">(0.5</span> <span class="pre">+</span> <span class="pre">0.333)</span> <span class="pre">≈</span> <span class="pre">0.858</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> — <code class="docutils literal notranslate"><span class="pre">0.15</span> <span class="pre">+</span> <span class="pre">0.85</span> <span class="pre">*</span> <span class="pre">(0.5</span> <span class="pre">+</span> <span class="pre">0.333)</span> <span class="pre">≈</span> <span class="pre">0.858</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> — <code class="docutils literal notranslate"><span class="pre">0.15</span> <span class="pre">+</span> <span class="pre">0.85</span> <span class="pre">*</span> <span class="pre">0.333</span> <span class="pre">≈</span> <span class="pre">0.433</span></code></p></li>
+</ul>
+<p>Как можно видеть, вершина <code class="docutils literal notranslate"><span class="pre">D</span></code> резко приобретает максимальное значение, потому что
+связана со всеми остальными вершинами.</p>
+</li>
+<li><p><strong>Итерация 2</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code> — <code class="docutils literal notranslate"><span class="pre">0.15</span> <span class="pre">+</span> <span class="pre">0.85</span> <span class="pre">*</span> <span class="pre">(0.858</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">0.858</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">0.433</span> <span class="pre">/</span> <span class="pre">1)</span> <span class="pre">≈</span> <span class="pre">1.247</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code> — <code class="docutils literal notranslate"><span class="pre">0.15</span> <span class="pre">+</span> <span class="pre">0.85</span> <span class="pre">*</span> <span class="pre">(0.858</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">1.85</span> <span class="pre">/</span> <span class="pre">3)</span> <span class="pre">≈</span> <span class="pre">1.039</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B</span></code> — <code class="docutils literal notranslate"><span class="pre">0.15</span> <span class="pre">+</span> <span class="pre">0.85</span> <span class="pre">*</span> <span class="pre">(0.858</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">1.85</span> <span class="pre">/</span> <span class="pre">3)</span> <span class="pre">≈</span> <span class="pre">1.039</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> — <code class="docutils literal notranslate"><span class="pre">0.15</span> <span class="pre">+</span> <span class="pre">0.85</span> <span class="pre">*</span> <span class="pre">(1.85</span> <span class="pre">/</span> <span class="pre">3)</span> <span class="pre">≈</span> <span class="pre">0.674</span></code></p></li>
+</ul>
+<p>Здесь вес вершины <code class="docutils literal notranslate"><span class="pre">D</span></code> затухает, а остальные вершины <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">C</span></code>, наоборот,
+приобретают больший вес. На следующих итерациях изменения постепенно затухают, пока сумма
+модулей разностей всех весов не станет меньше порога <code class="docutils literal notranslate"><span class="pre">0.0001</span></code> или не будет достигнут
+максимум итераций.</p>
+</li>
+</ul>
+<p>Метод обновляет <code class="docutils literal notranslate"><span class="pre">_scores</span></code> и ничего не возвращает.</p>
+</section>
+<section id="id41">
+<h4>Шаг 10.4. Отбор лучших предложений для суммаризации<a class="headerlink" href="#id41" title="Link to this heading"></a></h4>
+<p>Напомним, что <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer" title="lab_4_summarization_textrank.main.TextRankSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer</span></code></a>
+имеет тот же интерфейс, что и его класс-родитель
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer" title="lab_4_summarization_textrank.main.NaiveSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer</span></code></a>, а значит имеет
+публичный метод <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer.summarize" title="lab_4_summarization_textrank.main.NaiveSummarizer.summarize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer.summarize()</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text_rank</span> <span class="o">=</span> <span class="n">TextRankSummarizer</span><span class="p">(</span><span class="n">text_graph</span><span class="p">)</span>
+<span class="n">text_rank</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">text_rank</span><span class="o">.</span><span class="n">summarize</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Теперь, когда мы описали работу нового алгоритма поиска важных предложений,
+нам нужно подогнать новое решение под реализацию
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer.summarize" title="lab_4_summarization_textrank.main.NaiveSummarizer.summarize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer.summarize()</span></code></a> — этот метод
+только выводит полученный результат.</p>
+<p>Переопределите метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer._get_top_n_sentences" title="lab_4_summarization_textrank.main.TextRankSummarizer._get_top_n_sentences"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer._get_top_n_sentences()</span></code></a>.
+Он отбирает предложения с наибольшими весами из <code class="docutils literal notranslate"><span class="pre">_scores</span></code>.
+Результат этого отбора будет использован для построения краткого содержания в
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer.summarize" title="lab_4_summarization_textrank.main.NaiveSummarizer.summarize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer.summarize()</span></code></a>.</p>
+</section>
+<section id="id42">
+<h4>Шаг 10.5. Описание суммаризатора TextRank<a class="headerlink" href="#id42" title="Link to this heading"></a></h4>
+<p>Аналогично предыдущим классам, реализуйте служебный метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer.__str__" title="lab_4_summarization_textrank.main.TextRankSummarizer.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer.__str__()</span></code></a>,
+который возвращает строковое представление класса в формате</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TextRankSummarizer</span><span class="p">(</span>
+   <span class="n">graph</span><span class="o">=</span><span class="n">TextGraph</span><span class="p">(</span><span class="n">vertices</span><span class="o">=</span><span class="mi">53</span><span class="p">),</span>
+   <span class="n">damping_factor</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>
+   <span class="n">convergence_threshold</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+   <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Так как теперь размер исходного графа находится в нескольких оболочках
+описания, будет удобно реализовать метод
+<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer.__len__" title="lab_4_summarization_textrank.main.TextRankSummarizer.__len__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer.__len__()</span></code></a>,
+который сразу возвращает количество вершин в используемом графе, не требуя
+обращения ко защищённому состоянию.</p>
+</section>
+</section>
+<section id="id43">
+<h3>Шаг 11. Демонстрация алгоритма TextRank<a class="headerlink" href="#id43" title="Link to this heading"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Выполнение Шагов 1-11 соответствует 10 баллам.</p>
+</div>
+<p>Продемонстрируйте выделение краткого содержания для текста, хранящегося
+в переменной <code class="docutils literal notranslate"><span class="pre">text</span></code>, в файле <code class="docutils literal notranslate"><span class="pre">start.py</span></code>.</p>
+<p>После Шага 9 текст должен быть предобработан, предложения закодированы, а также
+построен граф <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextGraph</span></code></a>.</p>
+<p>Создайте экземпляр класса <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer" title="lab_4_summarization_textrank.main.TextRankSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer</span></code></a>
+на основе этого графа и получите краткое содержание текста из 5 предложений.
+Если текст короче, получите содержание на основе длины графа.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Полиморфизм суммаризаторов
+Поскольку <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.TextRankSummarizer" title="lab_4_summarization_textrank.main.TextRankSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.TextRankSummarizer</span></code></a> наследуется
+от <a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer" title="lab_4_summarization_textrank.main.NaiveSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer</span></code></a>, их экземпляры
+являются полиморфными по определению и предоставляют единый публичный интерфейс
+(<a class="reference internal" href="lab_4_summarization_textrank.api.html#lab_4_summarization_textrank.main.NaiveSummarizer.summarize" title="lab_4_summarization_textrank.main.NaiveSummarizer.summarize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lab_4_summarization_textrank.main.NaiveSummarizer.summarize()</span></code></a>).
+Продемонстрируйте это в <code class="docutils literal notranslate"><span class="pre">start.py</span></code>: поместите оба суммаризатора в одну коллекцию
+(например, кортеж) и обработайте их в едином цикле, вызывая для каждого объекта
+построение краткого содержания без проверки его конкретного типа.</p>
+</div>
+</section>
+</section>
+<section id="id44">
+<h2>Узнать больше<a class="headerlink" href="#id44" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1904.00688.pdf">Подходы к суммаризации
+текста</a></p></li>
+<li><p><a class="reference external" href="https://aircconline.com/mlaij/V3N1/3116mlaij03.pdf">Метрики смежности
+последовательностей</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1602.03606.pdf">TextRank для суммаризации</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../lab_3_generate_by_ngrams/lab_3_generate_by_ngrams.api.html" class="btn btn-neutral float-left" title="lab_3_generate_by_ngrams package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lab_4_summarization_textrank.api.html" class="btn btn-neutral float-right" title="lab_4_summarization_textrank package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
