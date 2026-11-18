@@ -8,6 +8,7 @@
 
     Full API <lab_4_summarization_textrank.api.rst>
 
+TEST
 
 Дано
 ----
