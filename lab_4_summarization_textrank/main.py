@@ -26,35 +26,6 @@ class TextGraphError(IncorrectArgumentError):
     """Raised when an invalid graph operation or vertex lookup occurs."""
 
 
-def check_dict(user_input: dict, key_type: type, value_type: type, can_be_empty: bool) -> bool:
-    """
-    Checks whether an object is a dictionary with keys and values of specified types.
-
-    Args:
-        user_input (dict): Object to check.
-        key_type (type): Required type of dictionary keys.
-        value_type (type): Required type of dictionary values.
-        can_be_empty (bool): Whether the dictionary can be empty.
-
-    Returns:
-        bool: True if the object is a valid dictionary, otherwise False.
-    """
-
-
-def check_sequence(user_input: Sequence, elements_type: type, can_be_empty: bool) -> bool:
-    """
-    Checks the type of an object and its elements.
-
-    Args:
-        user_input (Sequence): Sequence to check.
-        elements_type (type): Required type of its elements.
-        can_be_empty (bool): Whether the sequence can be empty.
-
-    Returns:
-        bool: True if the object is a valid sequence, otherwise False.
-    """
-
-
 class Sentence:
     """
     An abstraction over a real-world sentence.
@@ -486,16 +457,11 @@ class TextRankSummarizer(NaiveSummarizer):
             tuple[Sentence, ...]: Top n sentences with the highest significance scores.
         """
 
-    def train(self) -> None:
-        """
-        Iteratively calculates significance scores for all vertices until convergence.
-        """
-
-    def update_vertex_score(
+    def _update_vertex_score(
         self,
         vertex: Sentence,
         incidental_vertices: Sequence[Sentence],
-        scores: dict[Sentence, float],
+        current_scores: dict[Sentence, float],
     ) -> None:
         """
         Updates a vertex significance score using the TextRank formula.
@@ -503,5 +469,10 @@ class TextRankSummarizer(NaiveSummarizer):
         Args:
             vertex (Sentence): Sentence whose score should be updated.
             incidental_vertices (Sequence[Sentence]): Vertices related to the sentence.
-            scores (dict[Sentence, float]): Current scores of all vertices.
+            current_scores (dict[Sentence, float]): Current scores of all vertices.
+        """
+
+    def train(self) -> None:
+        """
+        Iteratively calculates significance scores for all vertices until convergence.
         """
