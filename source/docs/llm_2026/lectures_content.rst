@@ -10,7 +10,18 @@ History of Lectures
 |             | Lifecycle of a neural      |                                                   |
 |             | network model.             |                                                   |
 +-------------+----------------------------+---------------------------------------------------+
-| 13.11.2026  | Inference                  |                                                   |
+| 13.11.2026  | Inference                  | Datasets.                                         |
+|             |                            | `Listing <https://github.com/fipl-hse/            |
+|             |                            | 2026-hello-llm/blob/main/seminars/                |
+|             |                            | listing_1_datasets.py>`__.                        |
+|             |                            | Pandas.                                           |
+|             |                            | `Listing <https://github.com/fipl-hse/            |
+|             |                            | 2026-hello-llm/blob/main/seminars/                |
+|             |                            | listing_2_pandas.py>`__.                          |
+|             |                            | Inference.                                        |
+|             |                            | `Listing <https://github.com/fipl-hse/            |
+|             |                            | 2026-hello-llm/blob/main/seminars/                |
+|             |                            | listing_3_model.py>`__.                           |
 +-------------+----------------------------+---------------------------------------------------+
 
 Lecture 1. Modern NLP Tasks
