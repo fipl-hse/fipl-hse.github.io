@@ -23,6 +23,19 @@ History of Lectures
 |             |                            | 2026-hello-llm/blob/main/seminars/                |
 |             |                            | listing_3_model.py>`__.                           |
 +-------------+----------------------------+---------------------------------------------------+
+| 20.11.2026  | Batch Inference            | Python protocols.                                 |
+|             |                            | `Listing <https://github.com/fipl-hse/            |
+|             |                            | 2026-hello-llm/blob/main/seminars/                |
+|             |                            | listing_4_iter_data.py>`__.                       |
+|             |                            | DataLoader.                                       |
+|             |                            | `Listing <https://github.com/fipl-hse/            |
+|             |                            | 2026-hello-llm/blob/main/seminars/                |
+|             |                            | listing_5_dataloader.py>`__.                      |
+|             |                            | Evaluate.                                         |
+|             |                            | `Listing <https://github.com/fipl-hse/            |
+|             |                            | 2026-hello-llm/blob/main/seminars/                |
+|             |                            | listing_6_evaluate.py>`__.                        |
++-------------+----------------------------+---------------------------------------------------+
 
 Lecture 1. Modern NLP Tasks
 ------------------------------------------
@@ -43,3 +56,15 @@ probabilities, one class or one token. Tokenization in practice: vocabulary, tok
 byte-pair encoding (``BPE``), encoding and decoding, padding, truncation, max length, and special
 tokens. Logits and softmax. Generation as repeated classification over tokens. Greedy decoding and
 sampling with temperature. Prefill and decode phases, ``TTFT`` and tokens/s.
+
+
+Lecture 3. Batch Inference
+------------------------------------------
+
+Typical control-test errors: batch size ``1``, batch size versus number of batches, independent predictions.
+Batch inference as data organization: one sample and one batch; sample = batch of size ``1``.
+Batch size and number of model calls; independent outputs; throughput versus latency.
+Variable-length samples: padding and truncation; one input tensor; logits; row-wise softmax and argmax.
+Generation as iterative classification over the vocabulary; greedy, top-k and top-p; renormalization.
+Dataset schemas and splits; task-specific dataset and metric.
+Classification metrics: Accuracy, F1. Generation metrics: BLEU, ROUGE-L; token Accuracy is not a generation metric.
