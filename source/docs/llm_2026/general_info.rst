@@ -12,8 +12,6 @@ course at HSE University – Nizhny Novgorod.
    Instructor
 -  `Sviridov Viacheslav Mikhailovich <https://t.me/VSvirTG>`__ —
    Instructor
--  `Kaizerova Anna Andreevna <https://t.me/kaizerova_a>`__ —
-   Assistant
 
 
 Laboratory Works
