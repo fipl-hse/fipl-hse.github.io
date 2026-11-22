@@ -12,7 +12,6 @@ author = 'Демидовский А.В. и другие'
 
 extensions = [
     'docxbuilder',
-    'notfound.extension',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
