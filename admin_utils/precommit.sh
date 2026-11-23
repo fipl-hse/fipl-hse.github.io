@@ -11,3 +11,4 @@ rm -rf source/build/
 sphinx-build -W -n -b html source/ source/build/
 
 fiplconfig.check_spelling
+fiplconfig.sort_wordlist
