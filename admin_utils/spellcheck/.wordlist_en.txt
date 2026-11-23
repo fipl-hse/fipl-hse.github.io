@@ -692,8 +692,8 @@ dataclass
 dataframe
 dataloader
 dataset
-dataset's
 dataset-label
+dataset's
 datasets
 datasettypes
 date
@@ -1126,6 +1126,7 @@ fix
 fixed
 flexible
 float
+floordiv
 fluency
 fn
 focus
@@ -1860,6 +1861,7 @@ ms-vscode-remote
 mse
 msra
 much
+mul
 multiclass
 multiple
 must
@@ -3017,6 +3019,7 @@ trigram
 trigrams
 trixdade
 true
+truediv
 truncates
 truncation
 trust
