@@ -1,0 +1,1069 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lab_4_summarization_textrank package &mdash; Программирование для лингвистов  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=480edd71" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="История занятий" href="../../lectures_content.html" />
+    <link rel="prev" title="Лабораторная работа №4. Разработка системы автоматической суммаризации текстов" href="lab_4.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Программирование для лингвистов
+              <img src="../../../../_static/fal_logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Курсы</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Курс “Программирование для лингвистов” (2026/2027)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../general_info.html">Общая информация</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Лабораторные работы</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../lab_1_classify_profile/lab_1.html">Лабораторная работа №1. Определение языка текста на основе частотного словаря</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lab_2_tokenize_by_bpe/lab_2.html">Лабораторная работа №2. Кодирование текста с помощью алгоритма BPE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lab_3_generate_by_ngrams/lab_3.html">Лабораторная работа №3. Генерация текста с помощью n-грамм</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="lab_4.html">Лабораторная работа №4. Разработка системы автоматической суммаризации текстов</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../lectures_content.html">История занятий</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../lectures_content.html#id2">Краткий конспект лекций</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../llm_2026/index.html">“Introduction to Neural Network” course (2026/2027)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../archived_courses/index.html">Курсы прошлых лет</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../useful_docs/index.html">Полезные материалы</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_docs/index.html">Для разработчиков курсов</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Программирование для лингвистов</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Курсы</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Курс “Программирование для лингвистов” (2026/2027)</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Лабораторные работы</a></li>
+          <li class="breadcrumb-item"><a href="lab_4.html">Лабораторная работа №4. Разработка системы автоматической суммаризации текстов</a></li>
+      <li class="breadcrumb-item active">lab_4_summarization_textrank package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/python_2026/labs/lab_4_summarization_textrank/lab_4_summarization_textrank.api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lab-4-summarization-textrank-package">
+<h1>lab_4_summarization_textrank package<a class="headerlink" href="#lab-4-summarization-textrank-package" title="Link to this heading"></a></h1>
+<section id="module-lab_4_summarization_textrank.main">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-lab_4_summarization_textrank.main" title="Link to this heading"></a></h2>
+<p>Lab 4
+Summarize text using TextRank algorithm</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.EncodedSentence">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">EncodedSentence</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.EncodedSentence" title="Link to this definition"></a></dt>
+<dd><p>Type alias representing an encoded sentence as a tuple of integers.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.PreprocessedSentence">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">PreprocessedSentence</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.PreprocessedSentence" title="Link to this definition"></a></dt>
+<dd><p>Type alias representing a preprocessed sentence as a tuple of strings.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.IncorrectArgumentError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">IncorrectArgumentError</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.IncorrectArgumentError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a></p>
+<p>Raised when a provided input has an invalid type or value.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.NaiveSummarizer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">NaiveSummarizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.NaiveSummarizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Naive graph summarizer and shared interface for graph-based algorithms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><em>TextGraph</em></a>)</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.NaiveSummarizer._graph">
+<span class="sig-name descname"><span class="pre">_graph</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.NaiveSummarizer._graph" title="Link to this definition"></a></dt>
+<dd><p>Graph of sentence vertices and their relations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph">TextGraph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.NaiveSummarizer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.NaiveSummarizer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes a graph summarizer with a similarity graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><em>TextGraph</em></a>) – Built graph of encoded sentences.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.NaiveSummarizer.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.NaiveSummarizer.__str__" title="Link to this definition"></a></dt>
+<dd><p>Returns a string representation of the summarizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String representation of the summarizer.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.NaiveSummarizer._get_top_n_sentences">
+<span class="sig-name descname"><span class="pre">_get_top_n_sentences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.NaiveSummarizer._get_top_n_sentences" title="Link to this definition"></a></dt>
+<dd><p>Returns the top n sentences with the highest significance scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – Number of top sentences to return.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Top n sentences with the highest significance scores.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence">Sentence</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.NaiveSummarizer.summarize">
+<span class="sig-name descname"><span class="pre">summarize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_sentences</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.NaiveSummarizer.summarize" title="Link to this definition"></a></dt>
+<dd><p>Returns a summary from the current sentence scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n_sentences</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – Number of sentences to include.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Selected sentences in source order.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">Sentence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>An abstraction over a real-world sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>)</p></li>
+<li><p><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence._text">
+<span class="sig-name descname"><span class="pre">_text</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence._text" title="Link to this definition"></a></dt>
+<dd><p>The text of the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence._position">
+<span class="sig-name descname"><span class="pre">_position</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence._position" title="Link to this definition"></a></dt>
+<dd><p>The position of the sentence in the text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence._preprocessed">
+<span class="sig-name descname"><span class="pre">_preprocessed</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence._preprocessed" title="Link to this definition"></a></dt>
+<dd><p>Preprocessed representation of the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lab_4_summarization_textrank.main.PreprocessedSentence" title="lab_4_summarization_textrank.main.PreprocessedSentence">PreprocessedSentence</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence._encoded">
+<span class="sig-name descname"><span class="pre">_encoded</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence._encoded" title="Link to this definition"></a></dt>
+<dd><p>Encoded representation of the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lab_4_summarization_textrank.main.EncodedSentence" title="lab_4_summarization_textrank.main.EncodedSentence">EncodedSentence</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.__eq__" title="Link to this definition"></a></dt>
+<dd><p>Checks equality between two Sentence instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><em>object</em></a>) – Another object to compare.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>True if both are Sentence instances with the same text and position,</dt><dd><p>otherwise False.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.__hash__" title="Link to this definition"></a></dt>
+<dd><p>Returns a hash value for the Sentence instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Hash value based on the text and position.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes a sentence with its text and position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – Text of the sentence.</p></li>
+<li><p><strong>position</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – Position of the sentence in the text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.__str__" title="Link to this definition"></a></dt>
+<dd><p>Returns a string representation of the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String representation of the sentence.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.get_encoded">
+<span class="sig-name descname"><span class="pre">get_encoded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.get_encoded" title="Link to this definition"></a></dt>
+<dd><p>Returns the encoded representation of the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Encoded sequence of integers.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lab_4_summarization_textrank.main.EncodedSentence" title="lab_4_summarization_textrank.main.EncodedSentence">EncodedSentence</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.get_position">
+<span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.get_position" title="Link to this definition"></a></dt>
+<dd><p>Returns the position of the sentence in the text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Position of the sentence.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.get_preprocessed">
+<span class="sig-name descname"><span class="pre">get_preprocessed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.get_preprocessed" title="Link to this definition"></a></dt>
+<dd><p>Returns the preprocessed representation of the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Preprocessed sequence of tokens.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lab_4_summarization_textrank.main.PreprocessedSentence" title="lab_4_summarization_textrank.main.PreprocessedSentence">PreprocessedSentence</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.get_text">
+<span class="sig-name descname"><span class="pre">get_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.get_text" title="Link to this definition"></a></dt>
+<dd><p>Returns the text of the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Text of the sentence.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.set_encoded">
+<span class="sig-name descname"><span class="pre">set_encoded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoded_sentence</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.set_encoded" title="Link to this definition"></a></dt>
+<dd><p>Sets the encoded representation of the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>encoded_sentence</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.EncodedSentence" title="lab_4_summarization_textrank.main.EncodedSentence"><em>EncodedSentence</em></a>) – Encoded sequence of integers.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.Sentence.set_preprocessed">
+<span class="sig-name descname"><span class="pre">set_preprocessed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">preprocessed_sentence</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.Sentence.set_preprocessed" title="Link to this definition"></a></dt>
+<dd><p>Sets the preprocessed representation of the sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>preprocessed_sentence</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.PreprocessedSentence" title="lab_4_summarization_textrank.main.PreprocessedSentence"><em>PreprocessedSentence</em></a>) – Preprocessed sequence of tokens.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentenceEncoder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">SentenceEncoder</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentenceEncoder" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class to encode string sequences into matching integer sequences.</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentenceEncoder._word2id">
+<span class="sig-name descname"><span class="pre">_word2id</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentenceEncoder._word2id" title="Link to this definition"></a></dt>
+<dd><p>Maps words to integers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)">dict</a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentenceEncoder._id2word">
+<span class="sig-name descname"><span class="pre">_id2word</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentenceEncoder._id2word" title="Link to this definition"></a></dt>
+<dd><p>Maps integers to words.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)">dict</a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentenceEncoder.last">
+<span class="sig-name descname"><span class="pre">last</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentenceEncoder.last" title="Link to this definition"></a></dt>
+<dd><p>Counter for the last assigned identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentenceEncoder.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentenceEncoder.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the sentence encoder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentenceEncoder.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentenceEncoder.__str__" title="Link to this definition"></a></dt>
+<dd><p>Returns a string representation of the encoder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String representation of the encoder.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentenceEncoder._learn_indices">
+<span class="sig-name descname"><span class="pre">_learn_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokens</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentenceEncoder._learn_indices" title="Link to this definition"></a></dt>
+<dd><p>Creates mappings between words and their integer equivalents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tokens</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>]</em>) – Sequence of string tokens.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentenceEncoder.encode_sentences">
+<span class="sig-name descname"><span class="pre">encode_sentences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentences</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentenceEncoder.encode_sentences" title="Link to this definition"></a></dt>
+<dd><p>Encodes the preprocessed tokens of each sentence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sentences</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a><em>]</em>) – Sequence of sentences to encode.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">SentencePreprocessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_words</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">punctuation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class for sentence preprocessing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stop_words</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.15)"><em>Sequence</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>]</em>)</p></li>
+<li><p><strong>punctuation</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.15)"><em>Sequence</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor._stop_words">
+<span class="sig-name descname"><span class="pre">_stop_words</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor._stop_words" title="Link to this definition"></a></dt>
+<dd><p>Insignificant words to remove from tokens.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sequence[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor._punctuation">
+<span class="sig-name descname"><span class="pre">_punctuation</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor._punctuation" title="Link to this definition"></a></dt>
+<dd><p>Punctuation symbols to remove during text cleaning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sequence[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_words</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">punctuation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the text preprocessor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stop_words</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>]</em>) – Insignificant words to remove from tokens.</p></li>
+<li><p><strong>punctuation</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>]</em>) – Punctuation symbols to remove during text cleaning.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor.__str__" title="Link to this definition"></a></dt>
+<dd><p>Returns a string representation of the preprocessor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String representation of the preprocessor.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor._clean_and_tokenize">
+<span class="sig-name descname"><span class="pre">_clean_and_tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor._clean_and_tokenize" title="Link to this definition"></a></dt>
+<dd><p>Removes punctuation, converts text to lowercase, and splits it into tokens.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – Raw text.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Clean lowercase tokens.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor._preprocess_sentences">
+<span class="sig-name descname"><span class="pre">_preprocess_sentences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentences</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor._preprocess_sentences" title="Link to this definition"></a></dt>
+<dd><p>Preprocesses a sequence of sentences and stores their token representations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sentences</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a><em>]</em>) – Sequence of sentences to preprocess.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor._remove_stop_words">
+<span class="sig-name descname"><span class="pre">_remove_stop_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokens</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor._remove_stop_words" title="Link to this definition"></a></dt>
+<dd><p>Removes stop words from a sequence of tokens.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tokens</strong> (<em>Sequence</em><em>[</em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a><em>]</em>) – Sequence of tokens containing stop words.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sequence of tokens without stop words.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor._split_by_sentence">
+<span class="sig-name descname"><span class="pre">_split_by_sentence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor._split_by_sentence" title="Link to this definition"></a></dt>
+<dd><p>Splits the provided text into sentences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – Raw text to split.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sequence of sentences extracted from the text.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence">Sentence</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor.get_sentences">
+<span class="sig-name descname"><span class="pre">get_sentences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor.get_sentences" title="Link to this definition"></a></dt>
+<dd><p>Splits the provided text into sentences and preprocesses them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – Raw text to split and preprocess.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sequence of preprocessed sentences extracted from the text.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence">Sentence</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.SentencePreprocessor.preprocess_text">
+<span class="sig-name descname"><span class="pre">preprocess_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.SentencePreprocessor.preprocess_text" title="Link to this definition"></a></dt>
+<dd><p>Produces filtered, clean, lowercase tokens from raw text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – Raw text.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Clean lowercase tokens without stop words.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">TextGraph</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class to represent relations between sentences.</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph._vertices">
+<span class="sig-name descname"><span class="pre">_vertices</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph._vertices" title="Link to this definition"></a></dt>
+<dd><p>List of sentence vertices in the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)">list</a>[<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence">Sentence</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph._matrix">
+<span class="sig-name descname"><span class="pre">_matrix</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph._matrix" title="Link to this definition"></a></dt>
+<dd><p>Similarity matrix representing edges between vertices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)">list</a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)">list</a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes an empty similarity graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph.__len__" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of sentence vertices in the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of vertices.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph.__str__" title="Link to this definition"></a></dt>
+<dd><p>Returns a short description of the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Description of the graph.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph._add_edge">
+<span class="sig-name descname"><span class="pre">_add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph._add_edge" title="Link to this definition"></a></dt>
+<dd><p>Adds an edge between two vertices in the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertex1</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a>) – First vertex.</p></li>
+<li><p><strong>vertex2</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a>) – Second vertex.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph._add_vertex">
+<span class="sig-name descname"><span class="pre">_add_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph._add_vertex" title="Link to this definition"></a></dt>
+<dd><p>Adds a vertex and extends the matrix without computing similarity scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vertex</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a>) – Vertex to add to the graph.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentences</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph.build" title="Link to this definition"></a></dt>
+<dd><p>Builds the graph from preprocessed and encoded sentences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sentences</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a><em>]</em>) – Sequence of sentences to add.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph.calculate_inout_score">
+<span class="sig-name descname"><span class="pre">calculate_inout_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph.calculate_inout_score" title="Link to this definition"></a></dt>
+<dd><p>Calculates the number of vertices similar to the specified vertex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vertex</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a>) – Vertex whose similar vertices should be counted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of similar vertices.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph.get_similarity_score">
+<span class="sig-name descname"><span class="pre">get_similarity_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph.get_similarity_score" title="Link to this definition"></a></dt>
+<dd><p>Returns the similarity score between two vertices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertex1</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a>) – First vertex.</p></li>
+<li><p><strong>vertex2</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a>) – Second vertex.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Similarity score between the two vertices.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences">
+<span class="sig-name descname"><span class="pre">get_top_n_sentences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph.get_top_n_sentences" title="Link to this definition"></a></dt>
+<dd><p>Returns the top n sentences with the highest sum of similarity scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – Number of top sentences to return.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Top n sentences with the highest similarity score sum.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence">Sentence</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraph.get_vertices">
+<span class="sig-name descname"><span class="pre">get_vertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraph.get_vertices" title="Link to this definition"></a></dt>
+<dd><p>Returns all vertices present in the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sequence of vertices in the graph.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence">Sentence</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextGraphError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">TextGraphError</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextGraphError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lab_4_summarization_textrank.main.IncorrectArgumentError" title="lab_4_summarization_textrank.main.IncorrectArgumentError"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncorrectArgumentError</span></code></a></p>
+<p>Raised when an invalid graph operation or vertex lookup occurs.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">TextRankSummarizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lab_4_summarization_textrank.main.NaiveSummarizer" title="lab_4_summarization_textrank.main.NaiveSummarizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NaiveSummarizer</span></code></a></p>
+<p>TextRank algorithm for text summarization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><em>TextGraph</em></a>)</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer._damping_factor">
+<span class="sig-name descname"><span class="pre">_damping_factor</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer._damping_factor" title="Link to this definition"></a></dt>
+<dd><p>Damping factor for score calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer._convergence_threshold">
+<span class="sig-name descname"><span class="pre">_convergence_threshold</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer._convergence_threshold" title="Link to this definition"></a></dt>
+<dd><p>Threshold for convergence of scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer._max_iter">
+<span class="sig-name descname"><span class="pre">_max_iter</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer._max_iter" title="Link to this definition"></a></dt>
+<dd><p>Maximum number of iterations for score calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer._scores">
+<span class="sig-name descname"><span class="pre">_scores</span></span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer._scores" title="Link to this definition"></a></dt>
+<dd><p>Significance scores for each vertex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)">dict</a>[<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence">Sentence</a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes a TextRank summarizer with a similarity graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.TextGraph" title="lab_4_summarization_textrank.main.TextGraph"><em>TextGraph</em></a>) – Built graph of encoded sentences.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer.__len__" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of vertices in the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of vertices in the graph.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer.__str__" title="Link to this definition"></a></dt>
+<dd><p>Returns a string representation of the TextRank summarizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String representation of the TextRank summarizer.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer._get_top_n_sentences">
+<span class="sig-name descname"><span class="pre">_get_top_n_sentences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer._get_top_n_sentences" title="Link to this definition"></a></dt>
+<dd><p>Returns the top n sentences with the highest significance scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – Number of top sentences to return.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Top n sentences with the highest significance scores.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a>[<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence">Sentence</a>, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score">
+<span class="sig-name descname"><span class="pre">_update_vertex_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">incidental_vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_scores</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer._update_vertex_score" title="Link to this definition"></a></dt>
+<dd><p>Updates a vertex significance score using the TextRank formula.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertex</strong> (<a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a>) – Sentence whose score should be updated.</p></li>
+<li><p><strong>incidental_vertices</strong> (<em>Sequence</em><em>[</em><a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a><em>]</em>) – Vertices related to the sentence.</p></li>
+<li><p><strong>current_scores</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><em>dict</em></a><em>[</em><a class="reference internal" href="#lab_4_summarization_textrank.main.Sentence" title="lab_4_summarization_textrank.main.Sentence"><em>Sentence</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a><em>]</em>) – Current scores of all vertices.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.TextRankSummarizer.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.TextRankSummarizer.train" title="Link to this definition"></a></dt>
+<dd><p>Iteratively calculates significance scores for all vertices until convergence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lab_4_summarization_textrank.main.calculate_similarity">
+<span class="sig-prename descclassname"><span class="pre">lab_4_summarization_textrank.main.</span></span><span class="sig-name descname"><span class="pre">calculate_similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_sequence</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lab_4_summarization_textrank.main.calculate_similarity" title="Link to this definition"></a></dt>
+<dd><p>Calculates the similarity between two sequences using the Jaccard index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequence</strong> (<em>Sequence</em>) – First sequence of items.</p></li>
+<li><p><strong>other_sequence</strong> (<em>Sequence</em>) – Second sequence of items.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Jaccard similarity score between the two sequences.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lab_4.html" class="btn btn-neutral float-left" title="Лабораторная работа №4. Разработка системы автоматической суммаризации текстов" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../lectures_content.html" class="btn btn-neutral float-right" title="История занятий" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Демидовский А.В. и другие.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
